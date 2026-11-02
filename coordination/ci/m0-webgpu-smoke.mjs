@@ -246,8 +246,13 @@ try {
     "resize and hidden container",
     "resolution scale",
   );
-  await page.evaluate(() => {
-    globalThis.__m0Viewer.useDefaultRenderLoop = true;
+  await page.evaluate(async () => {
+    const viewer = globalThis.__m0Viewer;
+    viewer.useDefaultRenderLoop = true;
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve)),
+    );
+    await viewer._webgpuProof._context._device.queue.onSubmittedWorkDone();
   });
   await page.screenshot({
     path: `${outputDir}/webgpu-smoke.png`,
