@@ -396,9 +396,14 @@ class WebGPUGlobeRenderer {
   }
 
   render(scene) {
+    const atmosphere = scene._atmosphere;
+    const composite = atmosphere?.update(scene._planetState, scene.atmosphere)
+      ? atmosphere.composite
+      : undefined;
     this.context.render(
       (pass) => this._draw(pass, scene),
       scene.backgroundColor,
+      composite,
     );
   }
 

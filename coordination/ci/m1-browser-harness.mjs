@@ -123,6 +123,10 @@ export async function installM1Scene(page, options = {}) {
     const viewer = new Cesium.Viewer("cesiumContainer", {
       renderingBackend: "webgpu",
       useDefaultRenderLoop: false,
+      // These suites isolate M1 terrain/imagery behavior and retain their
+      // original color assertions. The dedicated M2 suite enables the actual
+      // atmosphere; the public demo also exercises it with its default on.
+      skyAtmosphere: false,
       ...options,
     });
     const errors = [];

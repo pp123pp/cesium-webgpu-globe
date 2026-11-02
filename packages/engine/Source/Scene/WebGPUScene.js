@@ -23,6 +23,8 @@ import WebGPUGlobeTileProvider from "./WebGPUGlobeTileProvider.js";
 import WebGPUImagery from "./WebGPUImagery.js";
 import WebGPUPlanetState from "./WebGPUPlanetState.js";
 import WebGPUDepth from "../Renderer/WebGPUDepth.js";
+import WebGPUAtmosphereRenderer from "./WebGPUAtmosphereRenderer.js";
+import { createAtmosphereParameters } from "./WebGPUAtmosphereModel.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -138,6 +140,10 @@ class WebGPUScene {
     this.camera.frustum.near = WebGPUDepth.defaultNear;
     this.camera.frustum.far = WebGPUDepth.defaultFar;
     this._planetState = new WebGPUPlanetState(this.ellipsoid);
+    this.atmosphere = createAtmosphereParameters({
+      show: options.skyAtmosphere !== false,
+    });
+    this._atmosphere = new WebGPUAtmosphereRenderer(context);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);
     const baseColor = Color.clone(globe.baseColor);
@@ -228,6 +234,7 @@ class WebGPUScene {
 
   async initialize() {
     await this._renderer.initialize();
+    await this._atmosphere.initialize();
     this.context._checkAlive();
     this._ready = true;
   }
@@ -367,6 +374,7 @@ class WebGPUScene {
       terrain: { ...this._tileProvider.statistics },
       imagery: { ...this._imagery.statistics },
       resources: { ...this._renderer.statistics },
+      atmosphere: { ...this._atmosphere?.statistics },
     };
   }
 
@@ -385,6 +393,7 @@ class WebGPUScene {
       this.globe.destroy();
       layers.destroy();
       this._renderer.destroy();
+      this._atmosphere?.destroy();
       RequestScheduler.update();
     }
   }

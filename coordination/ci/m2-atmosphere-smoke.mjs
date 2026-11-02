@@ -59,7 +59,7 @@ function assertComposite(sample, label) {
 await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
   await page.setViewportSize({ width: 960, height: 540 });
   await trackAtmosphereResources(page);
-  await installM1Scene(page, { skyAtmosphere: true });
+  await installM1Scene(page);
   report.setup = await installAtmosphereProbe(page);
   assert.equal(report.setup.settings.show, true);
   assert.equal(report.setup.settings.lightIntensity, 10);
@@ -109,8 +109,15 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
     viewer.render();
     const stronger = await state.probe(rows);
     state.restore();
-    viewer.render();
-    return { distances, normal, stronger };
+    // At the equator, radial ellipsoid height along the outward normal is
+    // exactly h0 + t. This supplies an independent analytic meter-unit check
+    // across the real shader's uniform packing and nonuniform quadrature.
+    state.setView({ longitude: day.longitude, latitude: 0, height: 2, pitch: 90 });
+    const longitude = Cesium.Math.toRadians(day.longitude);
+    const vertical = (await state.probe([state.row({
+      direction: [Math.cos(longitude), Math.sin(longitude), 0],
+    })]))[0];
+    return { distances, normal, stronger, vertical };
   });
   for (const [index, distance] of report.extinction.distances.entries()) {
     const normal = report.extinction.normal[index];
@@ -129,6 +136,13 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
         assert.ok(normal[channel + 4] < report.extinction.normal[index - 1][channel + 4], "longer visible paths attenuate more strongly");
       }
     }
+  }
+  for (let channel = 0; channel < 3; ++channel) {
+    const settings = report.setup.settings;
+    const column = (scaleHeight) => scaleHeight * (Math.exp(-2 / scaleHeight) - Math.exp(-100000 / scaleHeight));
+    const opticalDepth = settings.rayleighScattering[channel] * column(settings.rayleighScaleHeight) +
+      settings.mieExtinction * column(settings.mieScaleHeight);
+    assert.ok(near(report.extinction.vertical[channel + 4], Math.exp(-opticalDepth), 0.001), "GPU meter-based vertical extinction matches the independent exponential-column integral");
   }
   report.checks.push("GPU zero-path identity, finite nonnegative scattering, path-length attenuation and increased-extinction response");
 
@@ -247,6 +261,13 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
       assertComposite(pixel, `${name}, pixel ${index}`);
     }
     await captureM1Scene(page, report, output, name, { view, settled, pixels });
+    if (name === "low-orbit") {
+      // Retain the same-view M1 input for visual attribution of inherited
+      // coarse NaturalEarth imagery seams, independent of atmosphere blending.
+      await page.evaluate(() => { window.__m1.viewer.scene.atmosphere.show = false; });
+      await captureM1Scene(page, report, output, "low-orbit-atmosphere-disabled", { view });
+      await page.evaluate(() => { window.__m1.viewer.scene.atmosphere.show = true; });
+    }
     if (name === "ground-day") {
       report.timeChange = await page.evaluate(async () => {
         const state = window.__m2Atmosphere;
@@ -319,7 +340,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
   report.terrain = await page.evaluate(async () => {
     const state = window.__m2Atmosphere;
     const { viewer } = window.__m1;
-    const samples = await state.pixelSamples([[0.5, 0.5], [0.78, 0.55], [0.25, 0.65]]);
+    const samples = await state.pixelSamples([[0.5, 0.5], [0.78, 0.55], [0.25, 0.65]], true);
     const unoccluded = await state.probe(samples.map((sample) => state.row({ direction: sample.nativeRay })));
     const framesBeforeDisable = viewer.scene._atmosphere.statistics.frames;
     viewer.scene.atmosphere.show = false;
@@ -329,14 +350,21 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
       return Array.from(data.slice(offset, offset + 4));
     });
     const framesAfterDisable = viewer.scene._atmosphere.statistics.frames;
-    return { samples, unoccluded, disabled, framesBeforeDisable, framesAfterDisable };
+    const disabledGpu = await state.probe(samples.map(({ pixel }) => state.row({ pixel })));
+    return { samples, unoccluded, disabled, disabledGpu, framesBeforeDisable, framesAfterDisable };
   });
   assert.equal(report.terrain.framesAfterDisable, report.terrain.framesBeforeDisable, "show=false skips atmosphere rendering");
   for (const [index, sample] of report.terrain.samples.entries()) {
     assertComposite(sample, `mountain sample ${index}`);
     assert.ok(sample.pickedDistance !== null && sample.pickedHeight > 500, "actual elevated terrain is visible");
     assert.ok(sample.gpu[7] > 0 && sample.gpu[7] <= 1, "terrain writes real reversed depth");
-    assert.ok(near(sample.gpu[3], sample.pickedDistance, 0.01, 2e-6), "GPU aerial-perspective distance agrees with native terrain mesh pick");
+    assert.ok(sample.rasterPickDistances.every((distance) => distance !== null && Number.isFinite(distance)), "subpixel neighborhood remains on real mountain geometry");
+    const pickMin = Math.min(sample.pickedDistance, ...sample.rasterPickDistances);
+    const pickMax = Math.max(sample.pickedDistance, ...sample.rasterPickDistances);
+    const rounding = 0.01 + 2e-6 * sample.pickedDistance;
+    assert.ok(pickMax - pickMin < 25, "fixture has a bounded subpixel depth slope, not a terrain edge");
+    assert.ok(sample.gpu[3] >= pickMin - rounding && sample.gpu[3] <= pickMax + rounding, "GPU distance lies within the fixed 1/16-pixel native terrain neighborhood");
+    assert.equal(report.terrain.disabledGpu[index][7], sample.gpu[7], "atmosphere composition leaves the original terrain depth unchanged");
     assert.ok(sample.pickedDistance + 1000 < sample.ellipsoidDistance, "mountain occludes before analytic Earth");
     assert.ok(near(sample.gpu[13], sample.gpu[3], 0.01, 2e-6), "atmosphere integration stops at real terrain depth");
     assert.ok(near(sample.gpu[11], sample.cosine, 1e-6), "off-axis GPU ray matches native camera ray");

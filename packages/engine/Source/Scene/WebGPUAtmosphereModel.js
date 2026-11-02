@@ -551,3 +551,18 @@ export function generateAtmosphereLuts(parameters, planet) {
   }
   return { transmittance, multipleScattering, maxFeedback };
 }
+
+// Cesium's generated module index consumes a default export for source modules.
+const WebGPUAtmosphereModel = {
+  createAtmosphereParameters,
+  validateAtmosphereParameters,
+  atmosphereLutKey,
+  generateAtmosphereLuts,
+  integrateTransmittance,
+  sampleTransmittance,
+  sampleMultipleScattering,
+  rayleighPhase,
+  cornetteShanksPhase,
+};
+
+export default WebGPUAtmosphereModel;

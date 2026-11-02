@@ -251,7 +251,7 @@ export async function installAtmosphereProbe(page) {
       });
       viewer.render();
     };
-    state.pixelSamples = async (fractions) => {
+    state.pixelSamples = async (fractions, terrainSubpixel = false) => {
       const { data, width, height } = window.__m1.pixels();
       const pixels = fractions.map(([x, y]) => [
         Math.min(width - 1, Math.floor(width * x)),
@@ -266,6 +266,26 @@ export async function installAtmosphereProbe(page) {
         const picked = scene.globe.pick(ray, scene);
         const ellipsoid = Cesium.WebGPUPlanetMath.intersectEllipsoid(ray);
         const cosine = Cesium.Cartesian3.dot(ray.direction, viewer.camera.directionWC);
+        // Rasterization snaps projected vertices. Chromium's SwiftShader GN
+        // configuration supports a 1/16-pixel grid (see WEBGPU_M2.2.md).
+        // Measure a fixed geometric neighborhood, not an adjustable meter
+        // tolerance, for the oblique mountain fixture only. M2.1's depth
+        // reconstruction precision assertions remain unchanged.
+        let rasterPickDistances;
+        if (terrainSubpixel) {
+          rasterPickDistances = [];
+          for (const dx of [-1 / 16, 1 / 16]) {
+            for (const dy of [-1 / 16, 1 / 16]) {
+              const neighbor = viewer.camera.getPickRay(
+                new Cesium.Cartesian2(pixel[0] + 0.5 + dx, pixel[1] + 0.5 + dy),
+              );
+              const position = scene.globe.pick(neighbor, scene);
+              rasterPickDistances.push(position
+                ? Cesium.Cartesian3.distance(neighbor.origin, position)
+                : null);
+            }
+          }
+        }
         return {
           pixel,
           displayed: Array.from(data.slice(offset, offset + 4)),
@@ -275,6 +295,7 @@ export async function installAtmosphereProbe(page) {
           pickedDistance: picked ? Cesium.Cartesian3.distance(ray.origin, picked) : null,
           pickedHeight: picked ? Cesium.Ellipsoid.WGS84.cartesianToCartographic(picked).height : null,
           ellipsoidDistance: ellipsoid?.start ?? null,
+          rasterPickDistances,
         };
       });
     };

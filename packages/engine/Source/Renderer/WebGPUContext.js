@@ -155,6 +155,8 @@ class WebGPUContext {
     }
     try {
       this._depthTexture?.destroy();
+      this._sceneColorTexture?.destroy();
+      this._sceneColorTexture = undefined;
       this.canvas.width = width;
       this.canvas.height = height;
       this._depthTexture = this._device.createTexture({
@@ -185,7 +187,28 @@ class WebGPUContext {
     return this._globe ? this._depthTexture : undefined;
   }
 
-  render(draw, backgroundColor) {
+  get sceneColorTexture() {
+    return this._sceneColorTexture;
+  }
+
+  // Only the atmosphere consumer needs this intermediate. The original direct
+  // canvas path (including the M0 proof) retains its format and behavior.
+  _getSceneColorTexture() {
+    if (!this._sceneColorTexture) {
+      this._sceneColorTexture = this._device.createTexture({
+        label: "M2 completed terrain color",
+        size: [this.canvas.width, this.canvas.height],
+        format: this._format,
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT |
+          GPUTextureUsage.TEXTURE_BINDING |
+          GPUTextureUsage.COPY_SRC,
+      });
+    }
+    return this._sceneColorTexture;
+  }
+
+  render(draw, backgroundColor, composite) {
     this._checkAlive();
     if (!this._ready) {
       return;
@@ -194,10 +217,12 @@ class WebGPUContext {
       const encoder = this._device.createCommandEncoder({
         label: this._globe ? "WGS84 frame" : "M0 frame",
       });
+      const target = this._canvasContext.getCurrentTexture().createView();
+      const color = composite ? this._getSceneColorTexture() : undefined;
       const pass = encoder.beginRenderPass({
         colorAttachments: [
           {
-            view: this._canvasContext.getCurrentTexture().createView(),
+            view: color ? color.createView() : target,
             clearValue: backgroundColor
               ? {
                   r: backgroundColor.red,
@@ -224,6 +249,9 @@ class WebGPUContext {
         pass.draw(3, 2);
       }
       pass.end();
+      // The opaque attachments have finished writing. The atmosphere pass has
+      // a distinct output and no writable depth attachment, avoiding feedback.
+      composite?.(encoder, target, color, this._depthTexture);
       this._device.queue.submit([encoder.finish()]);
     } catch (error) {
       this._fail(error);
@@ -247,6 +275,8 @@ class WebGPUContext {
   _release() {
     this._depthTexture?.destroy();
     this._depthTexture = undefined;
+    this._sceneColorTexture?.destroy();
+    this._sceneColorTexture = undefined;
     if (this._configured) {
       this._canvasContext.unconfigure();
       this._configured = false;
