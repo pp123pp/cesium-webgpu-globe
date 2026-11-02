@@ -73,28 +73,66 @@ try {
     }
     check(sceneRejected, "WebGPU must not pretend to expose a Cesium Scene");
 
-    const sample = () => {
-      viewer.render();
-      const capture = document.createElement("canvas");
-      capture.width = viewer.canvas.width;
-      capture.height = viewer.canvas.height;
-      const context = capture.getContext("2d");
-      context.drawImage(viewer.canvas, 0, 0);
-      return {
-        background: Array.from(context.getImageData(2, 2, 1, 1).data),
-        center: Array.from(
-          context.getImageData(capture.width / 2, capture.height / 2, 1, 1)
-            .data,
-        ),
-      };
+    const gpuContext = viewer._webgpuProof._context;
+    // Read the submitted GPU texture directly instead of relying on Canvas2D
+    // snapshot/presentation timing. COPY_SRC is enabled only by this test.
+    gpuContext._canvasContext.configure({
+      device: gpuContext._device,
+      format: gpuContext._format,
+      alphaMode: "opaque",
+      usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
+    });
+    const sample = async (manual = true) => {
+      const device = gpuContext._device;
+      device.pushErrorScope("validation");
+      if (manual) viewer.render();
+      const buffer = device.createBuffer({
+        size: 512,
+        usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
+      });
+      try {
+        const texture = gpuContext._canvasContext.getCurrentTexture();
+        const encoder = device.createCommandEncoder();
+        for (const [offset, x, y] of [
+          [0, 2, 2],
+          [
+            256,
+            Math.floor(viewer.canvas.width / 2),
+            Math.floor(viewer.canvas.height / 2),
+          ],
+        ]) {
+          encoder.copyTextureToBuffer(
+            { texture, origin: [x, y] },
+            { buffer, offset, bytesPerRow: 256 },
+            [1, 1],
+          );
+        }
+        device.queue.submit([encoder.finish()]);
+        await buffer.mapAsync(GPUMapMode.READ);
+        const bytes = new Uint8Array(buffer.getMappedRange());
+        const rgba = (offset) => {
+          const value = Array.from(bytes.slice(offset, offset + 4));
+          if (gpuContext._format.startsWith("bgra"))
+            [value[0], value[2]] = [value[2], value[0]];
+          return value;
+        };
+        return { background: rgba(0), center: rgba(256) };
+      } finally {
+        buffer.destroy();
+        const validation = await device.popErrorScope();
+        check(
+          !validation,
+          `GPU draw/readback validation: ${validation?.message}`,
+        );
+      }
     };
-    const pixels = sample();
+    const pixels = await sample();
     check(
       pixels.background[0] < 30 &&
         pixels.background[1] < 40 &&
         pixels.background[2] < 55 &&
         pixels.background[3] === 255,
-      "Clear color missing",
+      `Clear color missing: ${JSON.stringify({ pixels, width: viewer.canvas.width, height: viewer.canvas.height, canRender: viewer._webgpuProof._canRender, errors })}`,
     );
     check(
       pixels.center[0] > 85 &&
@@ -104,7 +142,6 @@ try {
         pixels.center[2] < 110,
       "RGB triangle/depth test failed (far magenta must stay occluded)",
     );
-    const gpuContext = viewer._webgpuProof._context;
     const initialDepth = gpuContext._depthTexture;
     const container = viewer.container;
     container.style.width = "640px";
@@ -118,7 +155,7 @@ try {
       gpuContext._depthTexture !== initialDepth,
       "Depth attachment was not resized",
     );
-    const resized = sample();
+    const resized = await sample();
     check(resized.center[1] > 35, "Triangle missing after resize");
     check(window.devicePixelRatio === 2, "DPR fixture did not apply");
     viewer.useBrowserRecommendedResolution = false;
@@ -141,10 +178,11 @@ try {
     container.style.width = "1280px";
     container.style.height = "720px";
     viewer.forceResize();
-    sample();
+    await sample();
     await gpuContext._device.queue.onSubmittedWorkDone();
     check(errors.length === 0, `Unexpected GPU errors: ${errors}`);
     globalThis.__m0Viewer = viewer;
+    globalThis.__m0ReadPixels = sample;
     return {
       adapter: {
         ...gpuContext._adapter.info,
@@ -167,6 +205,9 @@ try {
     "resize and hidden container",
     "resolution scale",
   );
+  await page.evaluate(() => {
+    globalThis.__m0Viewer.useDefaultRenderLoop = true;
+  });
   await page.screenshot({
     path: `${outputDir}/webgpu-smoke.png`,
     scale: "css",
@@ -186,12 +227,12 @@ try {
     );
     if (viewer.canvas.width !== 800 || viewer.canvas.height !== 400)
       throw new Error("Default loop did not resize");
-    const capture = document.createElement("canvas");
-    capture.width = 800;
-    capture.height = 400;
-    const context = capture.getContext("2d");
-    context.drawImage(viewer.canvas, 0, 0);
-    if (context.getImageData(400, 200, 1, 1).data[1] < 35)
+    const automaticPixels = await new Promise((resolve, reject) =>
+      requestAnimationFrame(() =>
+        globalThis.__m0ReadPixels(false).then(resolve, reject),
+      ),
+    );
+    if (automaticPixels.center[1] < 35)
       throw new Error("Default loop did not draw the triangle");
     device.destroy();
     await device.lost;
