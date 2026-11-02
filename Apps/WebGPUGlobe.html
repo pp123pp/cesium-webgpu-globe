@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cesium · WebGPU Globe</title>
+    <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <style>
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #000;
+        color: #eef3fa;
+        font:
+          14px system-ui,
+          sans-serif;
+      }
+      aside {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        max-width: 380px;
+        padding: 18px;
+        border: 1px solid #ffffff25;
+        border-radius: 12px;
+        background: #111c2be8;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 20px;
+      }
+      p {
+        margin: 8px 0;
+        line-height: 1.45;
+      }
+      nav {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 14px 0;
+      }
+      button {
+        padding: 8px 12px;
+        border: 1px solid #90b6d5;
+        border-radius: 6px;
+        background: #1d3448;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #31516b;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: wait;
+      }
+      #status {
+        color: #a4ddc3;
+        white-space: pre-wrap;
+      }
+      small {
+        color: #b4c3d3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <aside>
+      <h1>WebGPU · WGS84 Earth</h1>
+      <p>Drag to orbit, scroll to zoom, Ctrl-drag to tilt.</p>
+      <nav aria-label="Globe controls">
+        <button id="orbit" disabled>Orbit</button>
+        <button id="terrain" disabled>Load real terrain</button>
+        <button id="everest" disabled>Everest</button>
+      </nav>
+      <p id="status" role="status">Initializing WebGPU…</p>
+      <small
+        >Starts with bundled Natural Earth tiles and ellipsoid terrain. Real
+        terrain loads Cesium World Terrain and ArcGIS World Imagery.</small
+      >
+    </aside>
+    <script type="module">
+      /* global Cesium */
+      const status = document.getElementById("status");
+      const orbit = document.getElementById("orbit");
+      const terrain = document.getElementById("terrain");
+      const everest = document.getElementById("everest");
+      const viewer = new Cesium.Viewer("cesiumContainer", {
+        renderingBackend: "webgpu",
+      });
+      let live = false;
+      let failed = false;
+      const showError = (error, fatal = false) => {
+        status.style.color = "#ffb4b4";
+        status.textContent = error.message ?? String(error);
+        if (fatal) {
+          failed = true;
+          orbit.disabled = terrain.disabled = everest.disabled = true;
+        }
+      };
+      viewer.renderError.addEventListener((source, error) =>
+        showError(error, true),
+      );
+      window.addEventListener(
+        "pagehide",
+        () => {
+          if (!viewer.isDestroyed()) {
+            viewer.destroy();
+          }
+        },
+        { once: true },
+      );
+      viewer.scene.globe.tileLoadProgressEvent.addEventListener((remaining) => {
+        if (live && !failed && remaining === 0 && !viewer.isDestroyed()) {
+          status.textContent =
+            "World Terrain + ArcGIS World Imagery · visible tiles ready.";
+        }
+      });
+      orbit.addEventListener("click", () => {
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
+          orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
+          duration: 2,
+        });
+      });
+      everest.addEventListener("click", () => {
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromDegrees(86.925, 27.9, 18000),
+          orientation: {
+            heading: 0,
+            pitch: Cesium.Math.toRadians(-45),
+            roll: 0,
+          },
+          duration: 3,
+        });
+      });
+      terrain.addEventListener("click", async () => {
+        terrain.disabled = true;
+        status.style.color = "";
+        status.textContent = "Loading World Terrain and ArcGIS imagery…";
+        try {
+          const [terrainProvider, imageryProvider] = await Promise.all([
+            Cesium.createWorldTerrainAsync(),
+            Cesium.ArcGisMapServerImageryProvider.fromUrl(
+              "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+            ),
+          ]);
+          if (failed || viewer.isDestroyed()) {
+            return;
+          }
+          viewer.terrainProvider = terrainProvider;
+          viewer.imageryLayers.removeAll();
+          viewer.imageryLayers.addImageryProvider(imageryProvider);
+          live = true;
+          everest.disabled = false;
+          terrain.textContent = "Real terrain loaded";
+          status.textContent =
+            "World Terrain + ArcGIS World Imagery · fly to Everest or navigate freely.";
+        } catch (error) {
+          if (failed || viewer.isDestroyed()) {
+            return;
+          }
+          terrain.disabled = false;
+          showError(error);
+        }
+      });
+      try {
+        await viewer.readyPromise;
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
+          orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
+        });
+        orbit.disabled = terrain.disabled = false;
+        status.textContent = "Natural Earth + WGS84 ellipsoid · ready.";
+      } catch (error) {
+        if (!viewer.isDestroyed()) {
+          showError(error, true);
+        }
+      }
+    </script>
+  </body>
+</html>

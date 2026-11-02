@@ -1,0 +1,196 @@
+{
+  "capturedAt": "2026-11-02T10:32:30.024Z",
+  "localVerifiedCommit": "f2b99213d61046b9a528dd5a2dc87067941d1714",
+  "publishedEquivalentCommit": "03233dae8b524d6b3f4498a48a2fd7e89fffa806",
+  "identicalTree": "48142ced46a15cdf435db7902b9ba601449b5358",
+  "browser": "Chromium 156.0.8078.4",
+  "gpu": "Google SwiftShader (software)",
+  "viewport": [
+    1280,
+    720
+  ],
+  "results": {
+    "build": "PASS",
+    "lint": "PASS",
+    "generatedTypesAndTypeScript": "PASS",
+    "focusedUnits": {
+      "passed": 160,
+      "failed": 0
+    },
+    "terrain": "PASS_WITH_KNOWN_ISSUES",
+    "demo": "PASS"
+  },
+  "environmentFailure": {
+    "initialLog": "m1-ci-policy.test.mjs.log",
+    "cause": "Sandbox blocked spawned Node with EPERM; no test/source change.",
+    "resolvedLog": "m1-ci-policy-unsandboxed.log",
+    "resolvedPassed": 28
+  },
+  "files": [
+    {
+      "path": "build.log",
+      "bytes": 1432,
+      "sha256": "076ba5493237f76c6f879417a1499280509d32a9ec35c69cf84b325258e867db"
+    },
+    {
+      "path": "prepare.log",
+      "bytes": 165,
+      "sha256": "2bff59a8ac5a82805aaa503327f2c51357128addb196a199318ce1dbd3c318a4"
+    },
+    {
+      "path": "quality-results.json",
+      "bytes": 2394,
+      "sha256": "8fb9304d901a2547147e3a25e78138dbc2030477ebf6bac78b61591605269c8a"
+    },
+    {
+      "path": "quality-0.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quality-1.log",
+      "bytes": 713538,
+      "sha256": "447b6a02678c0a4f69335bdd1fe3571070c1146707b501605fb5f607768fe909"
+    },
+    {
+      "path": "quality-2.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "quality-3.log",
+      "bytes": 685,
+      "sha256": "11cd389a581b2ac8d67bc132b7f8b04750adc7c6a78ff5f9a0c53b2ce00d756c"
+    },
+    {
+      "path": "unit-summary.json",
+      "bytes": 1436,
+      "sha256": "339d2c64537a83b2a25de16892b21a7708b16ade1b371da553858afcab8d0ba2"
+    },
+    {
+      "path": "m1-ci-policy.test.mjs.log",
+      "bytes": 29639,
+      "sha256": "cbd7e5f96ea22f3830de8607b664f0dc19dbb0ee8de6aba12aaf96c8708deeca"
+    },
+    {
+      "path": "m1-ci-policy-unsandboxed.log",
+      "bytes": 2488,
+      "sha256": "5827bbdc7fea124bf30857c59af7ff2ea8d2dd7260839358ec1acac115537851"
+    },
+    {
+      "path": "terrain.log",
+      "bytes": 806,
+      "sha256": "90899b856fe4bfe73de7b8c97bc19f671c0b84f94f039a247c5600648212966d"
+    },
+    {
+      "path": "terrain/result.json",
+      "bytes": 480552,
+      "sha256": "d303953d986b590c9e08947b7b31eec67c0c51c15b1c448a124a0d03df1628f5"
+    },
+    {
+      "path": "terrain/base-camp-ground.png",
+      "bytes": 376554,
+      "sha256": "8f7c706b0821e07adcabf4bd03ce6571883e686943bb7c28b392ebacb4c8d5e0"
+    },
+    {
+      "path": "terrain/terrain-coordinate-drape.png",
+      "bytes": 498353,
+      "sha256": "38243a948ff3e509cde63e503acca04f67363bdafbbfa2b1b75545ef9418d77c"
+    },
+    {
+      "path": "demo.log",
+      "bytes": 1485,
+      "sha256": "d9860ee8d43902e9deb1428ea97cabc3cbffc71390928bfef167d1911079c0ac"
+    },
+    {
+      "path": "demo/result.json",
+      "bytes": 24176,
+      "sha256": "91aa57bfa4e24e836d6d51f1c9be59f424b104439cfb19b51a3d1422cd51d248"
+    },
+    {
+      "path": "demo/everest.png",
+      "bytes": 1153076,
+      "sha256": "91fbdbc8e7be836b2a8d48cfdc129ef410c5f46cb74df49b2994ce3effbf3310"
+    },
+    {
+      "path": "m1-terrain-coverage.test.mjs.log",
+      "bytes": 501,
+      "sha256": "1bb78b915e2c1da0843e987f62e93c45894d090e6fbc426f713299af5aab5024"
+    },
+    {
+      "path": "m0-browser-config.test.mjs.log",
+      "bytes": 274,
+      "sha256": "23837f111c71d6f414e37366481e7cc8e3b8aac80b4171088f715bcd678faec8"
+    },
+    {
+      "path": "m1-imagery-lifecycle.test.mjs.log",
+      "bytes": 2664,
+      "sha256": "5afe29f97c092bdec3b22d96644ed69a1e841f5f13f403337816bb72bcb81697"
+    },
+    {
+      "path": "m1-terrain-data.test.mjs.log",
+      "bytes": 890,
+      "sha256": "0f8d6da908c3d0ea6d301ec68972fae6e13aa7521eb49fcabf0078373eb702fa"
+    },
+    {
+      "path": "m1-tile-provider.test.mjs.log",
+      "bytes": 1034,
+      "sha256": "2bef0e2b4a0e8c7e2e08fec2ca3763565f69d55eaed790e75e0bd8fcd24edead"
+    },
+    {
+      "path": "m1-globe-math.test.mjs.log",
+      "bytes": 1084,
+      "sha256": "46a337399f6a4255a1904b0583487b712fe5e841b4c8326951f816dc5aaca5a4"
+    },
+    {
+      "path": "m1-scene-events.test.mjs.log",
+      "bytes": 477,
+      "sha256": "860d9c4705ecb082a4dd92ff9d94e5a65fb356bb88f24c645a9d58dde0085738"
+    },
+    {
+      "path": "m1-terrain-flight.test.mjs.log",
+      "bytes": 731,
+      "sha256": "f437248fa037c42a71f6de7dd2ac03b7e69a2d67291658dad9eb7e6c03b487d8"
+    },
+    {
+      "path": "m1-terrain-edges.test.mjs.log",
+      "bytes": 394,
+      "sha256": "24ec004355701ed48116d80ba08018eb880cf719fcd97ec3f78f239bfd3be012"
+    },
+    {
+      "path": "m1-terrain-fill.test.mjs.log",
+      "bytes": 863,
+      "sha256": "9e92d0807265d037284a2a13019113dc67641fa7a79d623942990cbe15b849b1"
+    },
+    {
+      "path": "m0-webgpu-unit.test.mjs.log",
+      "bytes": 831,
+      "sha256": "86dc2d32088ddad8cc59951bbb37861d5f84108967d0f1617c850870ebaed01b"
+    },
+    {
+      "path": "m1-controller-roundoff.test.mjs.log",
+      "bytes": 301,
+      "sha256": "5935e008494f98d970290c014fea449f911466d5a44a99c9455090b10faf5a9b"
+    },
+    {
+      "path": "m0-visual-checks.test.mjs.log",
+      "bytes": 302,
+      "sha256": "77af6de90aaab97335bf5d30c04a930c9c7dd54d87101c33d8e3f822bee808ea"
+    },
+    {
+      "path": "m0-webgl-regression.test.mjs.log",
+      "bytes": 2251,
+      "sha256": "0de7e7e186d5f8fe1084536bfc43a2d32748bf9e860aa663e75f049a74ccc3d2"
+    },
+    {
+      "path": "m1-renderer-lifecycle.test.mjs.log",
+      "bytes": 609,
+      "sha256": "abf4338f1e3a95b25bf83d978e437ab108c6011015bf7a055c18854df1d12a69"
+    },
+    {
+      "path": "m1-imagery-renderer.test.mjs.log",
+      "bytes": 405,
+      "sha256": "f9b098e41607545e32efd521cecd8690ec9622b8b9654ff88e6e49771c950fa6"
+    }
+  ]
+}

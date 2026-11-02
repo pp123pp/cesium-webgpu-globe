@@ -335,6 +335,7 @@ try {
       setGpu(gpu);
       const viewer = new Cesium.Viewer(container, {
         renderingBackend: "webgpu",
+        globe: false,
       });
       let rejected = false;
       try {
@@ -406,6 +407,7 @@ try {
     });
     const pending = new Cesium.Viewer(container, {
       renderingBackend: "webgpu",
+      globe: false,
     });
     const readiness = pending.readyPromise.then(
       () => "resolved",
@@ -426,7 +428,10 @@ try {
     results.push("destroy while device request pending");
     setGpu(originalGpu);
 
-    const viewer = new Cesium.Viewer(container, { renderingBackend: "webgpu" });
+    const viewer = new Cesium.Viewer(container, {
+      renderingBackend: "webgpu",
+      globe: false,
+    });
     await viewer.readyPromise;
     const errors = [];
     const failed = new Promise((resolve) =>

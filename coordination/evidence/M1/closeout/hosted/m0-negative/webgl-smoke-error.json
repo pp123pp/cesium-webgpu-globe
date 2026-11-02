@@ -1,0 +1,26 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: Globe center surface missing: 8,12,20,255",
+  "config": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "results": [],
+  "browserErrors": [],
+  "browserWarnings": [
+    "[.WebGL-0x20cc0260ac00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels"
+  ]
+}

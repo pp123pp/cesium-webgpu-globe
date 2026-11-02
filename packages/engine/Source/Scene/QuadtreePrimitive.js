@@ -904,9 +904,17 @@ function visitTile(
       const notYetRenderableCount = traversalDetails.notYetRenderableCount;
       let queuedForLoad = false;
 
-      if (!allAreRenderable && !anyWereRenderedLastFrame) {
-        // Some of our descendants aren't ready to render yet, and none were rendered last frame,
-        // so kick them all out of the render list and render this tile instead. Continue to load them though!
+      const canRenderWithFills = defined(tileProvider.canRenderWithFills)
+        ? tileProvider.canRenderWithFills(
+            primitive._tilesToRender,
+            firstRenderedDescendantIndex,
+          )
+        : anyWereRenderedLastFrame;
+      if (!allAreRenderable && !canRenderWithFills) {
+        // Native providers retain descendants rendered last frame. A provider
+        // with an explicit fill contract can instead require a loaded mesh to
+        // anchor its pending neighbors, including after eviction or camera pans.
+        // Otherwise render this tile and continue loading the descendants.
 
         // Mark the rendered descendants and their ancestors - up to this tile - as kicked.
         const renderList = primitive._tilesToRender;

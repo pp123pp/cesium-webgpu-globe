@@ -1,0 +1,13 @@
+{
+  "providerCredits": [
+    "<span><a href=\"https://cesium.com\" target=\"_blank\"><img src=\"https://assets.ion.cesium.com/ion-credit.png\" alt=\"Cesium ion\"></a></span>",
+    "<span>Data available from the U.S. Geological Survey, © CGIAR-CSI, Produced using Copernicus data and information funded by the European Union - EU-DEM layers, Data available from Land Information New Zealand, Data available from data.gov.uk, Data courtesy Geoscience Australia</span>",
+    "<b>             This application is using Cesium's default ion access token. Please assign <i>Cesium.Ion.defaultAccessToken</i>             with an access token from your ion account before making any Cesium API calls.             You can sign up for a free ion account at <a href=\"https://cesium.com\">https://cesium.com</a>.</b>"
+  ],
+  "drawnTileCredits": [
+    "<span><a href=\"https://cesium.com\" target=\"_blank\"><img src=\"https://assets.ion.cesium.com/ion-credit.png\" alt=\"Cesium ion\"></a></span>",
+    "<span>Data available from the U.S. Geological Survey, © CGIAR-CSI, Produced using Copernicus data and information funded by the European Union - EU-DEM layers, Data available from Land Information New Zealand, Data available from data.gov.uk, Data courtesy Geoscience Australia</span>",
+    "<b>             This application is using Cesium's default ion access token. Please assign <i>Cesium.Ion.defaultAccessToken</i>             with an access token from your ion account before making any Cesium API calls.             You can sign up for a free ion account at <a href=\"https://cesium.com\">https://cesium.com</a>.</b>"
+  ],
+  "visibleCredits": "Data provided by:\n×\nSource: Esri, Vantor, Earthstar Geographics, and the GIS User Community"
+}

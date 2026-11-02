@@ -1,0 +1,415 @@
+{
+  "suite": "demo-local",
+  "capturedAt": "2026-11-02T08:45:49.884Z",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "source": "52f4874e6105e7964776d72137446a9e3c8f0b40",
+  "sourceStatus": "M Apps/WebGPUGlobe.html\n?? coordination/ci/m1-demo-smoke.mjs",
+  "bundleSha256": "b0083886cf58c65f06b2ed177e734d960995b56acd2159bb39d00c4ed6657bae",
+  "browserErrors": [],
+  "checks": [
+    "actual demo initialization, automatic rendering and bundled Natural Earth",
+    "Orbit button completes the actual native camera flight",
+    "pagehide cancels pending initialization before readiness",
+    "unsupported WebGPU gives visible feedback and clean teardown",
+    "actual GPU device loss is visible and disables unavailable controls",
+    "provider failure preserves the working globe and enables retry",
+    "pagehide releases every observed native GPU allocation and stops rendering"
+  ],
+  "scenes": [
+    {
+      "name": "natural-earth",
+      "status": "Natural Earth + WGS84 ellipsoid · ready.",
+      "statusColor": "rgb(164, 221, 195)",
+      "viewerIdentity": true,
+      "backend": "webgpu",
+      "camera": {
+        "longitude": 20,
+        "latitude": 20,
+        "height": 20000000,
+        "pitch": -90
+      },
+      "canvas": [
+        1280,
+        720
+      ],
+      "statistics": {
+        "frame": 18,
+        "selectedTiles": 10,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 14,
+        "loadedTiles": 14,
+        "terrain": {
+          "requests": 13,
+          "deferred": 0,
+          "meshes": 13,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 13,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 13,
+          "pendingRequests": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "activeTextures": 13
+        },
+        "resources": {
+          "buffersCreated": 32,
+          "buffersDestroyed": 4,
+          "bufferBytes": 152492,
+          "drawCalls": 10,
+          "triangles": 5700,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "textureBytes": 3407872,
+          "imageryDrawCalls": 10
+        }
+      },
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": [],
+      "frames": 17,
+      "coloredPixels": 238522,
+      "sampledColors": 1993,
+      "credits": "Data attribution Data provided by:\n×\nNatural Earth"
+    },
+    {
+      "name": "orbit-button",
+      "status": "Natural Earth + WGS84 ellipsoid · ready.",
+      "statusColor": "rgb(164, 221, 195)",
+      "viewerIdentity": true,
+      "backend": "webgpu",
+      "camera": {
+        "longitude": 19.999999899820832,
+        "latitude": 19.999999949910436,
+        "height": 19999999.99109519,
+        "pitch": -90
+      },
+      "canvas": [
+        1280,
+        720
+      ],
+      "statistics": {
+        "frame": 114,
+        "selectedTiles": 10,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 38,
+        "loadedTiles": 38,
+        "terrain": {
+          "requests": 35,
+          "deferred": 0,
+          "meshes": 35,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 35,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 35,
+          "pendingRequests": 0,
+          "texturesCreated": 35,
+          "texturesDestroyed": 0,
+          "activeTextures": 35
+        },
+        "resources": {
+          "buffersCreated": 78,
+          "buffersDestroyed": 6,
+          "bufferBytes": 404884,
+          "drawCalls": 10,
+          "triangles": 5700,
+          "texturesCreated": 35,
+          "texturesDestroyed": 0,
+          "textureBytes": 9175040,
+          "imageryDrawCalls": 10
+        }
+      },
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": [],
+      "frames": 113,
+      "coloredPixels": 238522,
+      "sampledColors": 1993,
+      "credits": "Data attribution Data provided by:\n×\nNatural Earth"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "liveProvidersRequired": false,
+  "network": {
+    "terrainTiles": 0,
+    "imageryTiles": 0,
+    "failures": [
+      {
+        "url": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/",
+        "error": "net::ERR_CERT_AUTHORITY_INVALID"
+      },
+      {
+        "url": "https://api.cesium.com/v1/assets/1/endpoint",
+        "error": "net::ERR_CERT_AUTHORITY_INVALID"
+      }
+    ]
+  },
+  "consoleMessages": [
+    "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+    "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+  ],
+  "demoSha256": "6e3c6439030fec6983eca289347bbf889aff7505e2e242c6d96004bc290ad1ff",
+  "testSha256": "744c85ef5508a794c519e26bd182a61eadf9a26a2f0e4820a260e457fc27628f",
+  "pendingInitialization": {
+    "destroyed": true,
+    "framesBefore": 0,
+    "framesAfter": 0,
+    "canvases": 0,
+    "allocations": [
+      {
+        "kind": "Buffer",
+        "created": 0,
+        "destroyed": 0
+      },
+      {
+        "kind": "Texture",
+        "created": 0,
+        "destroyed": 0
+      }
+    ],
+    "resources": {
+      "buffersCreated": 0,
+      "buffersDestroyed": 0,
+      "bufferBytes": 0,
+      "drawCalls": 0,
+      "triangles": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "browserErrors": []
+  },
+  "unavailable": {
+    "status": "WebGPU is unavailable. Use a supported browser and a secure context.",
+    "disabled": true,
+    "browserErrors": [],
+    "cleanup": {
+      "destroyed": true,
+      "framesBefore": 0,
+      "framesAfter": 0,
+      "canvases": 0,
+      "allocations": [
+        {
+          "kind": "Buffer",
+          "created": 0,
+          "destroyed": 0
+        },
+        {
+          "kind": "Texture",
+          "created": 0,
+          "destroyed": 0
+        }
+      ],
+      "resources": {
+        "buffersCreated": 0,
+        "buffersDestroyed": 0,
+        "bufferBytes": 0,
+        "drawCalls": 0,
+        "triangles": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0,
+        "textureBytes": 0,
+        "imageryDrawCalls": 0
+      },
+      "imagery": {
+        "requests": 0,
+        "deferred": 0,
+        "failed": 0,
+        "discarded": 0,
+        "imagesClosed": 0,
+        "pendingRequests": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0,
+        "activeTextures": 0
+      }
+    }
+  },
+  "deviceLost": {
+    "status": "WebGPU device lost (destroyed): Device was destroyed.",
+    "disabled": true,
+    "errors": [
+      "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8091/Build/CesiumUnminified/Cesium.js:20220:13)\n    at http://127.0.0.1:8091/Build/CesiumUnminified/Cesium.js:229666:13"
+    ],
+    "cleanup": {
+      "destroyed": true,
+      "framesBefore": 16,
+      "framesAfter": 16,
+      "canvases": 0,
+      "allocations": [
+        {
+          "kind": "Buffer",
+          "created": 32,
+          "destroyed": 32
+        },
+        {
+          "kind": "Texture",
+          "created": 15,
+          "destroyed": 15
+        }
+      ],
+      "resources": {
+        "buffersCreated": 32,
+        "buffersDestroyed": 32,
+        "bufferBytes": 0,
+        "drawCalls": 10,
+        "triangles": 5700,
+        "texturesCreated": 13,
+        "texturesDestroyed": 13,
+        "textureBytes": 0,
+        "imageryDrawCalls": 10
+      },
+      "imagery": {
+        "requests": 13,
+        "deferred": 0,
+        "failed": 0,
+        "discarded": 0,
+        "imagesClosed": 13,
+        "pendingRequests": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 13,
+        "activeTextures": 0
+      }
+    }
+  },
+  "providerFailureDiagnostic": {
+    "status": "An error occurred while accessing https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/",
+    "disabled": [
+      false,
+      false,
+      true
+    ],
+    "errors": [],
+    "destroyed": false
+  },
+  "providerFailure": {
+    "status": "An error occurred while accessing https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/",
+    "statusColor": "rgb(255, 180, 180)",
+    "ellipsoid": true,
+    "naturalEarth": true,
+    "orbitEnabled": true,
+    "everestDisabled": true
+  },
+  "destroy": {
+    "destroyed": true,
+    "framesBefore": 305,
+    "framesAfter": 305,
+    "canvases": 0,
+    "allocations": [
+      {
+        "kind": "Buffer",
+        "created": 78,
+        "destroyed": 78
+      },
+      {
+        "kind": "Texture",
+        "created": 37,
+        "destroyed": 37
+      }
+    ],
+    "resources": {
+      "buffersCreated": 78,
+      "buffersDestroyed": 78,
+      "bufferBytes": 0,
+      "drawCalls": 10,
+      "triangles": 5700,
+      "texturesCreated": 35,
+      "texturesDestroyed": 35,
+      "textureBytes": 0,
+      "imageryDrawCalls": 10
+    },
+    "imagery": {
+      "requests": 35,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 35,
+      "pendingRequests": 0,
+      "texturesCreated": 35,
+      "texturesDestroyed": 35,
+      "activeTextures": 0
+    }
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,126 @@
+✔ deferred requests retry with native scheduling and produce one credited texture (8.618228ms)
+✔ native skeletons added while terrain loads are reused without duplicate references (1.24515ms)
+✔ initializing missing layers preserves their collection order around pre-existing skeletons (1.151121ms)
+✔ failed child imagery advances the native parent fallback and its mapping (1.49514ms)
+✔ an asynchronous layer replaces its placeholder with real native skeletons (1.25192ms)
+✔ discard policy waits for readiness and closes a discarded image without uploading (1.047749ms)
+✔ provider errors honor TileProviderError retries for synchronous and asynchronous failures (0.991296ms)
+✔ a canceled live imagery request retries without reporting a provider failure (0.787134ms)
+✔ an upload failure closes the image and reports failure through the native provider event (0.887161ms)
+✖ request error callback can remove layer while a READY terrain tile advances native imagery (2.456912ms)
+✖ request error callback can replace terrain while a READY terrain tile advances native imagery (0.762867ms)
+✖ request error callback can destroy adapter while a READY terrain tile advances native imagery (0.591234ms)
+✖ upload error callback can remove layer while a READY terrain tile advances native imagery (0.633106ms)
+✖ upload error callback can replace terrain while a READY terrain tile advances native imagery (0.567389ms)
+✖ upload error callback can destroy adapter while a READY terrain tile advances native imagery (0.504826ms)
+✔ tile teardown cancels imagery and ignores late resolve (0.589451ms)
+✔ tile teardown cancels imagery and ignores late reject (0.369567ms)
+✔ layer teardown cancels imagery and ignores late resolve (0.342577ms)
+✔ layer teardown cancels imagery and ignores late reject (0.368885ms)
+✔ provider teardown cancels imagery and ignores late resolve (0.366602ms)
+✔ provider teardown cancels imagery and ignores late reject (0.269399ms)
+✔ manager teardown cancels imagery and ignores late resolve (0.330508ms)
+✔ manager teardown cancels imagery and ignores late reject (0.295507ms)
+✔ shared native imagery uploads once and survives until its final tile reference is released (0.48048ms)
+✔ polar Mercator imagery keeps its native texture despite geographic skeleton coordinates (1.076672ms)
+✔ WebGPU imagery adaptation leaves the native imagery and tile-imagery prototypes untouched (0.48003ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 20
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37.105215
+
+✖ failing tests:
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ request error callback can remove layer while a READY terrain tile advances native imagery (2.456912ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ request error callback can replace terrain while a READY terrain tile advances native imagery (0.762867ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ request error callback can destroy adapter while a READY terrain tile advances native imagery (0.591234ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ upload error callback can remove layer while a READY terrain tile advances native imagery (0.633106ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ upload error callback can replace terrain while a READY terrain tile advances native imagery (0.567389ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-imagery-lifecycle.test.mjs:370:5
+✖ upload error callback can destroy adapter while a READY terrain tile advances native imagery (0.504826ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "This object was destroyed, i.e., destroy() was called."
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-imagery-lifecycle.test.mjs:430:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [DeveloperError],
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

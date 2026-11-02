@@ -1,0 +1,21 @@
+M1 orbit: 14 tiles; levels 1–2; silhouette 1589/1590
+M1 pole: 16 tiles; levels 2–2; silhouette 1589/1590
+M1 dateline: 16 tiles; levels 1–2; silhouette 1588/1590
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Near-surface tiles must cover every pixel without background cracks
+
+35 !== 0
+
+    at file:///workspace/scratch/74d641ebe31c/cesium-webgpu-m1/coordination/ci/m1-globe-smoke.mjs:131:14 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 35,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

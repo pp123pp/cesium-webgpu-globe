@@ -1,0 +1,3806 @@
+{
+  "suite": "navigation",
+  "capturedAt": "2026-11-02T08:04:59.281Z",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "source": "b101a353c523d6bb1cad51a73b0ad35fee8e1b25",
+  "sourceStatus": "?? coordination/ci/m1-navigation-smoke.mjs\n?? coordination/handoffs/M1.4-navigation-tests.md",
+  "bundleSha256": "931b4e36ac3614a9f121200150bc921f82fc7da2467afafb951c275c9df3a792",
+  "browserErrors": [],
+  "checks": [
+    "real ellipsoid provider and local NaturalEarthII imagery",
+    "native orbital rotations across dateline and both poles",
+    "reversed GPU depth preserves front imagery; always-depth negative control fails",
+    "real Camera.flyTo completes orbit-to-10m path and restores controller inputs",
+    "native flight also completes in the Viewer's default render loop",
+    "10m and 1m surface views: native metre/submetre movement, finite reversed depth, RTC reference agreement, stationary pixels",
+    "actual Playwright mouse drag and wheel drive the native controller",
+    "viewport and resolutionScale recreate correctly sized depth attachments",
+    "rapid pending-request churn and three waypoint cycles keep actual GPU allocations bounded",
+    "balanced native GPU buffer/texture teardown, no hidden WebGL or browser/GPU errors"
+  ],
+  "scenes": [
+    {
+      "name": "dateline-rotation",
+      "before": {
+        "position": [
+          -24789651.0427689,
+          43266.14704375915,
+          9008099.654342132
+        ],
+        "longitude": 179.9,
+        "latitude": 20.000000000000004,
+        "height": 20000000,
+        "radius": 26375642.74409805,
+        "axesError": 5.551115123125783e-17,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          -23933766.06404108,
+          6457825.7001477415,
+          9008099.654342132
+        ],
+        "longitude": 164.9,
+        "latitude": 20.000000000000004,
+        "height": 20000000,
+        "radius": 26375642.74409805,
+        "axesError": 1.6516425770652317e-17,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 417,
+        "disagreements": 2,
+        "agreement": 0.9987421383647799,
+        "interiorBlackPixels": 617
+      },
+      "statistics": {
+        "frame": 24,
+        "selectedTiles": 7,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 10,
+        "loadedTiles": 10,
+        "terrain": {
+          "requests": 10,
+          "deferred": 0,
+          "meshes": 10,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 10,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 10,
+          "pendingRequests": 0,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "activeTextures": 10
+        },
+        "resources": {
+          "buffersCreated": 24,
+          "buffersDestroyed": 2,
+          "bufferBytes": 115096,
+          "drawCalls": 7,
+          "triangles": 3990,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "textureBytes": 2621440,
+          "imageryDrawCalls": 7
+        }
+      },
+      "center": [
+        56,
+        94,
+        130,
+        255
+      ],
+      "distinctSampledColors": 1472,
+      "backgroundPixels": 683096,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "north-pole-rotation",
+      "before": {
+        "position": [
+          176479.00273692026,
+          148083.46610708392,
+          26355747.098706584
+        ],
+        "longitude": 39.99999999999999,
+        "latitude": 89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          208792.44783463737,
+          97361.51739021941,
+          26355747.098706584
+        ],
+        "longitude": 24.99999999999999,
+        "latitude": 89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 419,
+        "disagreements": 3,
+        "agreement": 0.9981132075471698,
+        "interiorBlackPixels": 616
+      },
+      "statistics": {
+        "frame": 36,
+        "selectedTiles": 8,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 10,
+        "loadedTiles": 10,
+        "terrain": {
+          "requests": 10,
+          "deferred": 0,
+          "meshes": 10,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 10,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 10,
+          "pendingRequests": 0,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "activeTextures": 10
+        },
+        "resources": {
+          "buffersCreated": 24,
+          "buffersDestroyed": 2,
+          "bufferBytes": 115096,
+          "drawCalls": 8,
+          "triangles": 4560,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "textureBytes": 2621440,
+          "imageryDrawCalls": 8
+        }
+      },
+      "center": [
+        55,
+        100,
+        141,
+        255
+      ],
+      "distinctSampledColors": 2045,
+      "backgroundPixels": 682335,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "south-pole-rotation",
+      "before": {
+        "position": [
+          -226877.03265825834,
+          -40004.54216072649,
+          -26355747.098706584
+        ],
+        "longitude": -170,
+        "latitude": -89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          -229500.32263824285,
+          20078.676506388234,
+          -26355747.098706584
+        ],
+        "longitude": 175,
+        "latitude": -89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 2.2591849230391247e-20,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 419,
+        "disagreements": 2,
+        "agreement": 0.9987421383647799,
+        "interiorBlackPixels": 615
+      },
+      "statistics": {
+        "frame": 48,
+        "selectedTiles": 8,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 10,
+        "loadedTiles": 10,
+        "terrain": {
+          "requests": 10,
+          "deferred": 0,
+          "meshes": 10,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 10,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 10,
+          "pendingRequests": 0,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "activeTextures": 10
+        },
+        "resources": {
+          "buffersCreated": 24,
+          "buffersDestroyed": 2,
+          "bufferBytes": 115096,
+          "drawCalls": 8,
+          "triangles": 4560,
+          "texturesCreated": 10,
+          "texturesDestroyed": 0,
+          "textureBytes": 2621440,
+          "imageryDrawCalls": 8
+        }
+      },
+      "center": [
+        211,
+        222,
+        224,
+        255
+      ],
+      "distinctSampledColors": 1255,
+      "backgroundPixels": 682335,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "depth-restored",
+      "injectedTiles": 4,
+      "baselineRepeat": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      },
+      "correct": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      },
+      "negative": {
+        "changedPixels": 231214,
+        "maximumChannelDifference": 196
+      },
+      "restored": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      },
+      "comparator": "greater",
+      "statistics": {
+        "frame": 70,
+        "selectedTiles": 8,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 74,
+        "loadedTiles": 74,
+        "terrain": {
+          "requests": 26,
+          "deferred": 0,
+          "meshes": 26,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 14,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 14,
+          "pendingRequests": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "activeTextures": 14
+        },
+        "resources": {
+          "buffersCreated": 58,
+          "buffersDestroyed": 4,
+          "bufferBytes": 296792,
+          "drawCalls": 8,
+          "triangles": 4560,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "textureBytes": 3670016,
+          "imageryDrawCalls": 8
+        }
+      },
+      "center": [
+        53,
+        92,
+        131,
+        255
+      ],
+      "distinctSampledColors": 1719,
+      "backgroundPixels": 683296,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "flight-ground",
+      "final": {
+        "position": [
+          302351.52274232754,
+          5628237.544781367,
+          2975335.732645951
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 9.999999996333575,
+        "radius": 6373468.2101467345,
+        "axesError": 5.551115123125783e-17,
+        "finite": true
+      },
+      "statistics": {
+        "frame": 165,
+        "selectedTiles": 12,
+        "levels": [
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22
+        ],
+        "cacheTiles": 138,
+        "loadedTiles": 138,
+        "terrain": {
+          "requests": 136,
+          "deferred": 0,
+          "meshes": 115,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 24,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 24,
+          "pendingRequests": 0,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "activeTextures": 14
+        },
+        "resources": {
+          "buffersCreated": 236,
+          "buffersDestroyed": 84,
+          "bufferBytes": 840692,
+          "drawCalls": 12,
+          "triangles": 6840,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "textureBytes": 3670016,
+          "imageryDrawCalls": 12
+        }
+      },
+      "center": [
+        174,
+        182,
+        170,
+        255
+      ],
+      "distinctSampledColors": 1,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-10m",
+      "stepMetres": 1,
+      "statistics": {
+        "frame": 215,
+        "selectedTiles": 9,
+        "levels": [
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22,
+          22
+        ],
+        "cacheTiles": 138,
+        "loadedTiles": 138,
+        "terrain": {
+          "requests": 166,
+          "deferred": 0,
+          "meshes": 143,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 24,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 24,
+          "pendingRequests": 0,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "activeTextures": 14
+        },
+        "resources": {
+          "buffersCreated": 292,
+          "buffersDestroyed": 134,
+          "bufferBytes": 873992,
+          "drawCalls": 9,
+          "triangles": 5130,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "textureBytes": 3670016,
+          "imageryDrawCalls": 9
+        }
+      },
+      "center": [
+        174,
+        182,
+        170,
+        255
+      ],
+      "distinctSampledColors": 1,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-1m",
+      "stepMetres": 0.25,
+      "statistics": {
+        "frame": 257,
+        "selectedTiles": 8,
+        "levels": [
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ],
+        "cacheTiles": 126,
+        "loadedTiles": 126,
+        "terrain": {
+          "requests": 181,
+          "deferred": 0,
+          "meshes": 158,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 24,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 24,
+          "pendingRequests": 0,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "activeTextures": 14
+        },
+        "resources": {
+          "buffersCreated": 322,
+          "buffersDestroyed": 162,
+          "bufferBytes": 885092,
+          "drawCalls": 8,
+          "triangles": 4560,
+          "texturesCreated": 23,
+          "texturesDestroyed": 9,
+          "textureBytes": 3670016,
+          "imageryDrawCalls": 8
+        }
+      },
+      "center": [
+        174,
+        182,
+        170,
+        255
+      ],
+      "distinctSampledColors": 1,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mouse-navigation",
+      "statistics": {
+        "frame": 333,
+        "selectedTiles": 17,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 41,
+        "terrain": {
+          "requests": 193,
+          "deferred": 0,
+          "meshes": 170,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 36,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 36,
+          "pendingRequests": 0,
+          "texturesCreated": 35,
+          "texturesDestroyed": 9,
+          "activeTextures": 26
+        },
+        "resources": {
+          "buffersCreated": 348,
+          "buffersDestroyed": 272,
+          "bufferBytes": 427084,
+          "drawCalls": 17,
+          "triangles": 9690,
+          "texturesCreated": 35,
+          "texturesDestroyed": 9,
+          "textureBytes": 6815744,
+          "imageryDrawCalls": 17
+        }
+      },
+      "center": [
+        192,
+        180,
+        105,
+        255
+      ],
+      "distinctSampledColors": 6738,
+      "backgroundPixels": 178037,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "resized-960x540",
+      "statistics": {
+        "frame": 349,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 41,
+        "terrain": {
+          "requests": 193,
+          "deferred": 0,
+          "meshes": 170,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 36,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 36,
+          "pendingRequests": 0,
+          "texturesCreated": 35,
+          "texturesDestroyed": 9,
+          "activeTextures": 26
+        },
+        "resources": {
+          "buffersCreated": 348,
+          "buffersDestroyed": 272,
+          "bufferBytes": 427084,
+          "drawCalls": 16,
+          "triangles": 9120,
+          "texturesCreated": 35,
+          "texturesDestroyed": 9,
+          "textureBytes": 6815744,
+          "imageryDrawCalls": 16
+        }
+      },
+      "center": [
+        192,
+        180,
+        105,
+        255
+      ],
+      "distinctSampledColors": 3914,
+      "backgroundPixels": 100182,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "churn-final",
+      "statistics": {
+        "frame": 526,
+        "selectedTiles": 4,
+        "levels": [
+          11,
+          11,
+          10,
+          10
+        ],
+        "cacheTiles": 74,
+        "loadedTiles": 74,
+        "terrain": {
+          "requests": 400,
+          "deferred": 0,
+          "meshes": 206,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 45,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 45,
+          "pendingRequests": 0,
+          "texturesCreated": 44,
+          "texturesDestroyed": 41,
+          "activeTextures": 3
+        },
+        "resources": {
+          "buffersCreated": 420,
+          "buffersDestroyed": 406,
+          "bufferBytes": 82984,
+          "drawCalls": 4,
+          "triangles": 2280,
+          "texturesCreated": 44,
+          "texturesDestroyed": 41,
+          "textureBytes": 786432,
+          "imageryDrawCalls": 4
+        }
+      },
+      "center": [
+        49,
+        87,
+        126,
+        255
+      ],
+      "distinctSampledColors": 1,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "consoleErrors": [],
+  "providers": {
+    "terrain": "EllipsoidTerrainProvider",
+    "imagery": "TileMapServiceImageryProvider",
+    "maximumImageryLevel": 2,
+    "localImageryUrl": "http://127.0.0.1:8093/Build/CesiumUnminified/Assets/Textures/NaturalEarthII/{z}/{x}/{reverseY}.jpg"
+  },
+  "rotations": [
+    {
+      "name": "dateline",
+      "longitude": 179.9,
+      "latitude": 20,
+      "height": 20000000,
+      "before": {
+        "position": [
+          -24789651.0427689,
+          43266.14704375915,
+          9008099.654342132
+        ],
+        "longitude": 179.9,
+        "latitude": 20.000000000000004,
+        "height": 20000000,
+        "radius": 26375642.74409805,
+        "axesError": 5.551115123125783e-17,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          -23933766.06404108,
+          6457825.7001477415,
+          9008099.654342132
+        ],
+        "longitude": 164.9,
+        "latitude": 20.000000000000004,
+        "height": 20000000,
+        "radius": 26375642.74409805,
+        "axesError": 1.6516425770652317e-17,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 417,
+        "disagreements": 2,
+        "agreement": 0.9987421383647799,
+        "interiorBlackPixels": 617
+      }
+    },
+    {
+      "name": "north-pole",
+      "longitude": 40,
+      "latitude": 89.5,
+      "height": 20000000,
+      "before": {
+        "position": [
+          176479.00273692026,
+          148083.46610708392,
+          26355747.098706584
+        ],
+        "longitude": 39.99999999999999,
+        "latitude": 89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          208792.44783463737,
+          97361.51739021941,
+          26355747.098706584
+        ],
+        "longitude": 24.99999999999999,
+        "latitude": 89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 419,
+        "disagreements": 3,
+        "agreement": 0.9981132075471698,
+        "interiorBlackPixels": 616
+      }
+    },
+    {
+      "name": "south-pole",
+      "longitude": -170,
+      "latitude": -89.5,
+      "height": 20000000,
+      "before": {
+        "position": [
+          -226877.03265825834,
+          -40004.54216072649,
+          -26355747.098706584
+        ],
+        "longitude": -170,
+        "latitude": -89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 1.734723475976807e-18,
+        "finite": true
+      },
+      "after": {
+        "position": [
+          -229500.32263824285,
+          20078.676506388234,
+          -26355747.098706584
+        ],
+        "longitude": 175,
+        "latitude": -89.50000000000014,
+        "height": 20000000,
+        "radius": 26356753.94813105,
+        "axesError": 2.2591849230391247e-20,
+        "finite": true
+      },
+      "coverage": {
+        "checked": 1590,
+        "expectedGlobe": 419,
+        "disagreements": 2,
+        "agreement": 0.9987421383647799,
+        "interiorBlackPixels": 615
+      }
+    }
+  ],
+  "depth": {
+    "injectedTiles": 4,
+    "baselineRepeat": {
+      "changedPixels": 0,
+      "maximumChannelDifference": 0
+    },
+    "correct": {
+      "changedPixels": 0,
+      "maximumChannelDifference": 0
+    },
+    "negative": {
+      "changedPixels": 231214,
+      "maximumChannelDifference": 196
+    },
+    "restored": {
+      "changedPixels": 0,
+      "maximumChannelDifference": 0
+    },
+    "comparator": "greater"
+  },
+  "flight": {
+    "completed": 1,
+    "cancelled": 0,
+    "inputsDisabledDuringFlight": true,
+    "inputsRestored": true,
+    "distanceToDestination": 2.3312150028651566e-9,
+    "samples": [
+      {
+        "timeMs": 0.8000000007450581,
+        "position": [
+          2197124.3242324223,
+          40899207.32013614,
+          21746796.17494623
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 40000000,
+        "radius": 46373436.993458524,
+        "axesError": 2.126034825055817e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 1.5,
+        "position": [
+          2195561.5665088957,
+          40870116.77144906,
+          21731313.97847127
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 39967009.082427025,
+        "radius": 46340446.07829227,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 16.5,
+        "position": [
+          2174900.8304022714,
+          40485519.63231964,
+          21526628.65143401
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 39530846.373627484,
+        "radius": 45904283.401636526,
+        "axesError": 3.0188978939248905e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 37.20000000111759,
+        "position": [
+          2145866.317315061,
+          39945045.633148976,
+          21238984.55318149
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 38917907.327727124,
+        "radius": 45291344.401954144,
+        "axesError": 5.594643097276529e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 58.30000000074506,
+        "position": [
+          2116581.2299310686,
+          39399907.2233211,
+          20948858.022472583
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 38299678.4817211,
+        "radius": 44673115.60384972,
+        "axesError": 3.0170368569801256e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 82.80000000074506,
+        "position": [
+          2082968.3080457288,
+          38774206.69028261,
+          20615855.75801925
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 37590085.99747866,
+        "radius": 43963523.17624846,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 102.90000000037253,
+        "position": [
+          2056108.934592427,
+          38274222.65604323,
+          20349760.706471667
+        ],
+        "longitude": 86.92500000000001,
+        "latitude": 27.98800000000001,
+        "height": 37023065.6831206,
+        "radius": 43396502.90848264,
+        "axesError": 5.559347715208828e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 121.5,
+        "position": [
+          2030723.7029896372,
+          37801679.59658061,
+          20098269.93645649
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 36487165.542765476,
+        "radius": 42860602.81329573,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 140.60000000149012,
+        "position": [
+          2005981.7411346668,
+          37341110.92677316,
+          19853152.021601353
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 35964845.280409545,
+        "radius": 42338282.596063785,
+        "axesError": 3.013210218689635e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 158.40000000037253,
+        "position": [
+          1981870.3976566042,
+          36892281.14285967,
+          19614281.625133116
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000002,
+        "height": 35455837.81669114,
+        "radius": 41829275.17740346,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 179.2000000011176,
+        "position": [
+          1954872.3625122963,
+          36389715.93777546,
+          19346812.856142633
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 34885890.25625398,
+        "radius": 41259327.66873825,
+        "axesError": 2.1216839229276934e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 199.5,
+        "position": [
+          1929063.6203383114,
+          35909289.27952775,
+          19091126.378901936
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 34341049.50908889,
+        "radius": 40714486.9724196,
+        "axesError": 3.010290138236628e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 218.40000000037253,
+        "position": [
+          1904287.245813199,
+          35448080.02196882,
+          18845667.538699035
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 33818002.770999044,
+        "radius": 40191440.28443925,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 241.80000000074506,
+        "position": [
+          1875240.6927683891,
+          34907381.900423035,
+          18557904.160927817
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000002,
+        "height": 33204809.553103387,
+        "radius": 39578247.126975924,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 265.7000000011176,
+        "position": [
+          1844936.1053818949,
+          34343265.61960915,
+          18257677.472588938
+        ],
+        "longitude": 86.92499999999998,
+        "latitude": 27.98800000000001,
+        "height": 32565058.343110874,
+        "radius": 38938495.9820619,
+        "axesError": 3.932076428507247e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 286.1000000014901,
+        "position": [
+          1820165.5109241754,
+          33882163.95731568,
+          18012275.89534995
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 32042133.626319855,
+        "radius": 38415571.32007521,
+        "axesError": 3.0057337836846343e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 308.30000000074506,
+        "position": [
+          1792995.618008314,
+          33376399.640305575,
+          17743104.536287516
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 31468558.027134117,
+        "radius": 37841995.78274399,
+        "axesError": 6.672873654655195e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 334.90000000037253,
+        "position": [
+          1762087.6866266273,
+          32801052.182961408,
+          17436900.536088448
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 30816069.799935643,
+        "radius": 37189507.62822977,
+        "axesError": 6.6714868270472005e-18,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 388.2000000011176,
+        "position": [
+          1704929.1019933964,
+          31737051.945352297,
+          16870632.058128044
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 29609411.771096855,
+        "radius": 35982849.74075221,
+        "axesError": 1.1102230246251565e-16,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 459.40000000037253,
+        "position": [
+          1617502.7511683411,
+          30109620.849077817,
+          16004501.678360835
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 27763779.853650846,
+        "radius": 34137218.05885643,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 544.9000000003725,
+        "position": [
+          1524321.8768675071,
+          28375069.984445814,
+          15081361.397615042
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 25796665.887642138,
+        "radius": 32170104.373656727,
+        "axesError": 1.7011241554835307e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 593.2000000011176,
+        "position": [
+          1474005.7500274251,
+          27438441.282791566,
+          14582880.955080938
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 24734456.967997935,
+        "radius": 31107895.620410852,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 673.2000000011176,
+        "position": [
+          1393411.9903236264,
+          25938198.055551138,
+          13784440.861901242
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 23033065.86734507,
+        "radius": 29406504.811334297,
+        "axesError": 2.981010865677645e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 716.2000000011176,
+        "position": [
+          1351661.8909065702,
+          25161024.933001045,
+          13370823.810266849
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000002,
+        "height": 22151691.827213228,
+        "radius": 28525130.935924347,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 783.3000000007451,
+        "position": [
+          1288478.48843206,
+          23984873.429649327,
+          12744867.632709585
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 20817845.64514917,
+        "radius": 27191285.023454458,
+        "axesError": 2.972421977186549e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 840.9000000003725,
+        "position": [
+          1236371.0420873438,
+          23014899.529005375,
+          12228640.638613034
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 19717820.707555037,
+        "radius": 26091260.32893509,
+        "axesError": 2.3366608226152545e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 867.2000000011176,
+        "position": [
+          1213503.8666144107,
+          22589229.784158256,
+          12002096.17930914
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 19235078.507790387,
+        "radius": 25608518.242436003,
+        "axesError": 2.9653749385234868e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 888.4000000003725,
+        "position": [
+          1194878.8584167587,
+          22242527.477323104,
+          11817578.750969026
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 18841891.450708866,
+        "radius": 25215331.280812457,
+        "axesError": 4.433139986780078e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 909.8000000007451,
+        "position": [
+          1176594.2571116777,
+          21902161.80420454,
+          11636433.724065728
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 18455890.62317849,
+        "radius": 24829330.549936272,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 964.8000000007451,
+        "position": [
+          1130914.2323195534,
+          21051833.589384582,
+          11183883.01312333
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 17491553.087064512,
+        "radius": 23864993.268954266,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 991.7000000011176,
+        "position": [
+          1109326.7652041027,
+          20649985.463025194,
+          10970016.58824724
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 17035826.433154196,
+        "radius": 23409266.742928315,
+        "axesError": 2.091610791632969e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1025.2000000011176,
+        "position": [
+          1082284.0477993283,
+          20146588.502990123,
+          10702105.153368711
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 16464935.598689448,
+        "radius": 22838376.07586616,
+        "axesError": 2.9506900360395075e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1049.5,
+        "position": [
+          1063331.2631652371,
+          19793784.676873274,
+          10514340.453162707
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 16064828.9498925,
+        "radius": 22438269.549469754,
+        "axesError": 2.9482692781374404e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1076.5,
+        "position": [
+          1043699.3345716016,
+          19428338.666927654,
+          10319847.492997939
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 15650385.093189165,
+        "radius": 22023825.824242193,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1117.6000000014901,
+        "position": [
+          1012227.0734245753,
+          18842486.27828989,
+          10008052.693808006
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 14985983.466688922,
+        "radius": 21359424.41915873,
+        "axesError": 4.444994067598721e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1149.1000000014901,
+        "position": [
+          988927.6125259546,
+          18408769.591787405,
+          9777225.59504375
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 14494115.4167479,
+        "radius": 20867556.54221911,
+        "axesError": 1.1102230246251565e-16,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1186.1000000014901,
+        "position": [
+          962900.355583746,
+          17924275.30718395,
+          9519374.29818746
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 13944661.668732818,
+        "radius": 20318102.99736419,
+        "axesError": 8.238718241910193e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 1250.4000000003725,
+        "position": [
+          918933.764669951,
+          17105842.459706772,
+          9083798.528115159
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 13016495.930073896,
+        "radius": 19389937.62804679,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 1310.300000000745,
+        "position": [
+          881077.8155700802,
+          16401158.480989713,
+          8708760.713304266
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 12217330.149224337,
+        "radius": 18590772.19475357,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 1366.6000000014901,
+        "position": [
+          844433.6614477828,
+          15719031.921291068,
+          8345728.116991234
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 11443746.214887908,
+        "radius": 17817188.626545202,
+        "axesError": 4.460401350122748e-18,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 1551.5,
+        "position": [
+          738005.1041143059,
+          13737877.016601989,
+          7291343.415909786
+        ],
+        "longitude": 86.92500000000001,
+        "latitude": 27.987999999999996,
+        "height": 9196964.318026466,
+        "radius": 15570407.999333574,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 12,
+        "imageryDraws": 12
+      },
+      {
+        "timeMs": 1988.9000000003725,
+        "position": [
+          544459.0696430593,
+          10135040.6624984,
+          5373888.337926844
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 5111071.045069797,
+        "radius": 11484518.308467217,
+        "axesError": 2.8164489987228764e-18,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 2000.6000000014901,
+        "position": [
+          539553.5704934249,
+          10043725.38073812,
+          5325289.6968841385
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000004,
+        "height": 5007512.498746185,
+        "radius": 11380959.886356495,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 2040.5,
+        "position": [
+          530738.8760792183,
+          9879640.895243095,
+          5237962.769150577
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000004,
+        "height": 4821428.083694976,
+        "radius": 11194875.700272389,
+        "axesError": 4.4413046483951946e-18,
+        "finite": true,
+        "draws": 8,
+        "imageryDraws": 8
+      },
+      {
+        "timeMs": 2102.60000000149,
+        "position": [
+          505097.41421562055,
+          9402328.140027432,
+          4983933.533203773
+        ],
+        "longitude": 86.92499999999998,
+        "latitude": 27.988000000000024,
+        "height": 4280118.741846552,
+        "radius": 10653567.06995324,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 2166.2000000011176,
+        "position": [
+          485311.6163058354,
+          9034017.871108424,
+          4787916.194084931
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 3862426.595374025,
+        "radius": 10235875.523960248,
+        "axesError": 4.529154395294582e-18,
+        "finite": true,
+        "draws": 12,
+        "imageryDraws": 12
+      },
+      {
+        "timeMs": 2217.4000000003725,
+        "position": [
+          470449.20219754433,
+          8757355.80461154,
+          4640674.678747859
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 3548670.5528345327,
+        "radius": 9922119.965732288,
+        "axesError": 1.99724234116733e-18,
+        "finite": true,
+        "draws": 11,
+        "imageryDraws": 11
+      },
+      {
+        "timeMs": 2310.2000000011176,
+        "position": [
+          445761.1292412059,
+          8297790.270226641,
+          4396090.639684137
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 3027487.9231303115,
+        "radius": 9400938.211972717,
+        "axesError": 2.756583322718168e-18,
+        "finite": true,
+        "draws": 7,
+        "imageryDraws": 7
+      },
+      {
+        "timeMs": 2440.9000000003725,
+        "position": [
+          414898.9208015241,
+          7723293.939996092,
+          4090339.6153756212
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000003,
+        "height": 2375964.9394802395,
+        "radius": 8749416.470095238,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 2526.60000000149,
+        "position": [
+          397242.1100593268,
+          7394614.513350619,
+          3915414.091785836
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 2003217.2134389405,
+        "radius": 8376669.541363983,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 4,
+        "imageryDraws": 4
+      },
+      {
+        "timeMs": 2589.7000000011176,
+        "position": [
+          385927.265490659,
+          7183990.030837217,
+          3803318.247331825
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000002,
+        "height": 1764352.8655642753,
+        "radius": 8137805.742821884,
+        "axesError": 7.633462355564701e-18,
+        "finite": true,
+        "draws": 6,
+        "imageryDraws": 6
+      },
+      {
+        "timeMs": 2679.9000000003725,
+        "position": [
+          370753.9532397168,
+          6901540.6324849855,
+          3652996.672907037
+        ],
+        "longitude": 86.92499999999998,
+        "latitude": 27.98800000000002,
+        "height": 1444033.5439930565,
+        "radius": 7817487.2106038015,
+        "axesError": 2.6897329351256535e-18,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 2783.60000000149,
+        "position": [
+          355834.0670280771,
+          6623808.729637013,
+          3505185.783070991
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000028,
+        "height": 1129064.2248233145,
+        "radius": 7502518.733326578,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 2907.800000000745,
+        "position": [
+          341767.6237399824,
+          6361963.565050021,
+          3365829.9280900257
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000017,
+        "height": 832111.6876027216,
+        "radius": 7205567.0572472885,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 5,
+        "imageryDraws": 5
+      },
+      {
+        "timeMs": 3241.5,
+        "position": [
+          315393.994961628,
+          5871021.610016565,
+          3104547.1352699813
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000014,
+        "height": 275345.78587187716,
+        "radius": 6648802.977412731,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 3243.9000000003725,
+        "position": [
+          315194.4731791193,
+          5867307.5358252665,
+          3102570.478625558
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 271133.7403438631,
+        "radius": 6644590.9468313735,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 3279.300000000745,
+        "position": [
+          313503.44210101716,
+          5835829.193937511,
+          3085817.48166237
+        ],
+        "longitude": 86.925,
+        "latitude": 27.987999999999996,
+        "height": 235434.88179971016,
+        "radius": 6608892.215731439,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 2,
+        "imageryDraws": 2
+      },
+      {
+        "timeMs": 3337.300000000745,
+        "position": [
+          311057.99266299023,
+          5790307.444233285,
+          3061590.4833892956
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 183809.7196749626,
+        "radius": 6557267.240361859,
+        "axesError": 5.95385964575592e-18,
+        "finite": true,
+        "draws": 4,
+        "imageryDraws": 4
+      },
+      {
+        "timeMs": 3440.300000000745,
+        "position": [
+          307651.69666930975,
+          5726899.650462691,
+          3027844.405521884
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988000000000003,
+        "height": 111900.40918823708,
+        "radius": 6485358.194963741,
+        "axesError": 1.1269597273181185e-17,
+        "finite": true,
+        "draws": 4,
+        "imageryDraws": 4
+      },
+      {
+        "timeMs": 3546.10000000149,
+        "position": [
+          305333.9944024983,
+          5683755.89911863,
+          3004882.994853404
+        ],
+        "longitude": 86.925,
+        "latitude": 27.987999999999996,
+        "height": 62972.079932889406,
+        "radius": 6436430.049465524,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 4,
+        "imageryDraws": 4
+      },
+      {
+        "timeMs": 3816.60000000149,
+        "position": [
+          302556.1964741181,
+          5632047.521894252,
+          2977363.4295058926
+        ],
+        "longitude": 86.925,
+        "latitude": 27.987999999999996,
+        "height": 4330.806810419877,
+        "radius": 6377789.00029306,
+        "axesError": 2.600118501571639e-18,
+        "finite": true,
+        "draws": 1,
+        "imageryDraws": 1
+      },
+      {
+        "timeMs": 3962.7000000011176,
+        "position": [
+          302353.30608733033,
+          5628270.741535956,
+          2975353.40019435
+        ],
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 47.647670588176446,
+        "radius": 6373505.857672033,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 1,
+        "imageryDraws": 1
+      },
+      {
+        "timeMs": 4140.300000000745,
+        "position": [
+          302351.52274232754,
+          5628237.544781367,
+          2975335.732645951
+        ],
+        "longitude": 86.925,
+        "latitude": 27.98800000000001,
+        "height": 9.999999996333575,
+        "radius": 6373468.2101467345,
+        "axesError": 5.551115123125783e-17,
+        "finite": true,
+        "draws": 1,
+        "imageryDraws": 1
+      }
+    ],
+    "coverageSamples": [
+      {
+        "threshold": 10000000,
+        "camera": {
+          "position": [
+            736939.2854281,
+            13718036.928841803,
+            7280784.380393209
+          ],
+          "longitude": 86.92500000000001,
+          "latitude": 27.988,
+          "height": 9174464.133964017,
+          "radius": 15547907.829841686,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1128,
+          "disagreements": 1,
+          "agreement": 0.9993710691823899,
+          "interiorBlackPixels": 94
+        }
+      },
+      {
+        "threshold": 1000000,
+        "camera": {
+          "position": [
+            340892.77008744073,
+            6345678.268621664,
+            3357162.777749588
+          ],
+          "longitude": 86.925,
+          "latitude": 27.988000000000017,
+          "height": 813642.910066132,
+          "radius": 7187098.335619352,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1590,
+          "disagreements": 0,
+          "agreement": 1,
+          "interiorBlackPixels": 0
+        }
+      },
+      {
+        "threshold": 100000,
+        "camera": {
+          "position": [
+            305120.1068159135,
+            5679774.40719737,
+            3002764.016595157
+          ],
+          "longitude": 86.925,
+          "latitude": 27.988000000000003,
+          "height": 58456.76215031064,
+          "radius": 6431914.748781756,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1590,
+          "disagreements": 0,
+          "agreement": 1,
+          "interiorBlackPixels": 0
+        }
+      },
+      {
+        "threshold": 10000,
+        "camera": {
+          "position": [
+            302534.4529274185,
+            5631642.768365044,
+            2977148.0168050006
+          ],
+          "longitude": 86.925,
+          "latitude": 27.98800000000001,
+          "height": 3871.785206424548,
+          "radius": 6377329.980458306,
+          "axesError": 1.9063713423919592e-18,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1590,
+          "disagreements": 0,
+          "agreement": 1,
+          "interiorBlackPixels": 0
+        }
+      },
+      {
+        "threshold": 1000,
+        "camera": {
+          "position": [
+            302353.07153032615,
+            5628266.37528529,
+            2975351.076444757
+          ],
+          "longitude": 86.925,
+          "latitude": 27.988,
+          "height": 42.696006823714754,
+          "radius": 6373500.9060273785,
+          "axesError": 4.2279561893581864e-18,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1590,
+          "disagreements": 0,
+          "agreement": 1,
+          "interiorBlackPixels": 0
+        }
+      },
+      {
+        "threshold": 100,
+        "camera": {
+          "position": [
+            302351.52274232754,
+            5628237.544781367,
+            2975335.732645951
+          ],
+          "longitude": 86.925,
+          "latitude": 27.98800000000001,
+          "height": 9.999999996333575,
+          "radius": 6373468.2101467345,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        },
+        "coverage": {
+          "checked": 1590,
+          "expectedGlobe": 1590,
+          "disagreements": 0,
+          "agreement": 1,
+          "interiorBlackPixels": 0
+        }
+      }
+    ],
+    "final": {
+      "position": [
+        302351.52274232754,
+        5628237.544781367,
+        2975335.732645951
+      ],
+      "longitude": 86.925,
+      "latitude": 27.98800000000001,
+      "height": 9.999999996333575,
+      "radius": 6373468.2101467345,
+      "axesError": 5.551115123125783e-17,
+      "finite": true
+    },
+    "coverage": {
+      "checked": 1590,
+      "expectedGlobe": 1590,
+      "disagreements": 0,
+      "agreement": 1,
+      "interiorBlackPixels": 0
+    }
+  },
+  "defaultLoopFlight": {
+    "completed": 1,
+    "frames": 15,
+    "distanceToDestination": 1.3170890159654386e-9
+  },
+  "meterStability": [
+    {
+      "height": 10,
+      "step": 1,
+      "positions": [
+        {
+          "camera": {
+            "position": [
+              302352.5213024993,
+              5628237.491138255,
+              2975335.7326459526
+            ],
+            "longitude": 86.92498983460044,
+            "latitude": 27.987999999999623,
+            "height": 10.000000077263346,
+            "radius": 6373468.2101468155,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "22/6219803/1444984",
+            "gpuPixel": [
+              750.8512420654297,
+              360
+            ],
+            "nativePixel": [
+              750.8512516844082,
+              359.9999951994203
+            ],
+            "errorPixels": 0.000010750363410694255,
+            "reversedDepth": 0.010000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        },
+        {
+          "camera": {
+            "position": [
+              302351.52274232765,
+              5628237.544781369,
+              2975335.7326459526
+            ],
+            "longitude": 86.925,
+            "latitude": 27.988,
+            "height": 9.999999997815891,
+            "radius": 6373468.210146736,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "22/6219803/1444984",
+            "gpuPixel": [
+              640,
+              360
+            ],
+            "nativePixel": [
+              639.9999999935477,
+              359.9999951994203
+            ],
+            "errorPixels": 0.000004800584024589949,
+            "reversedDepth": 0.010000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        },
+        {
+          "camera": {
+            "position": [
+              302350.524182156,
+              5628237.598424483,
+              2975335.7326459526
+            ],
+            "longitude": 86.92501016539956,
+            "latitude": 27.98799999999963,
+            "height": 10.000000077689878,
+            "radius": 6373468.2101468155,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "22/6219803/1444984",
+            "gpuPixel": [
+              529.1487426757812,
+              360
+            ],
+            "nativePixel": [
+              529.1487483091396,
+              359.9999951994203
+            ],
+            "errorPixels": 0.0000074013709236672515,
+            "reversedDepth": 0.010000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        }
+      ],
+      "stationary": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      }
+    },
+    {
+      "height": 1,
+      "step": 0.25,
+      "positions": [
+        {
+          "camera": {
+            "position": [
+              302351.34605838364,
+              5628229.595400407,
+              2975331.509066297
+            ],
+            "longitude": 86.92499745864653,
+            "latitude": 27.98799999999999,
+            "height": 1.0000000030105527,
+            "radius": 6373459.210181475,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "25/49758426/11559874",
+            "gpuPixel": [
+              917.1281242370605,
+              360.00001072883606
+            ],
+            "nativePixel": [
+              917.1281292110205,
+              359.9999994838086
+            ],
+            "errorPixels": 0.000012295971677951133,
+            "reversedDepth": 0.10000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        },
+        {
+          "camera": {
+            "position": [
+              302351.09641834075,
+              5628229.608811186,
+              2975331.509066297
+            ],
+            "longitude": 86.925,
+            "latitude": 27.98800000000001,
+            "height": 0.9999999986300983,
+            "radius": 6373459.210181471,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "25/49758426/11559874",
+            "gpuPixel": [
+              640,
+              360.00001072883606
+            ],
+            "nativePixel": [
+              640.0000000000001,
+              360
+            ],
+            "errorPixels": 0.000010728836059570312,
+            "reversedDepth": 0.10000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        },
+        {
+          "camera": {
+            "position": [
+              302350.84677829786,
+              5628229.622221964,
+              2975331.509066297
+            ],
+            "longitude": 86.92500254135346,
+            "latitude": 27.987999999999975,
+            "height": 1.0000000038479375,
+            "radius": 6373459.210181476,
+            "axesError": 5.551115123125783e-17,
+            "finite": true
+          },
+          "projection": {
+            "tile": "25/49758426/11559874",
+            "gpuPixel": [
+              362.8718566894531,
+              360.00001072883606
+            ],
+            "nativePixel": [
+              362.8718707889797,
+              359.9999994838086
+            ],
+            "errorPixels": 0.000018034613735549995,
+            "reversedDepth": 0.10000000149011612
+          },
+          "coverage": {
+            "checked": 1590,
+            "expectedGlobe": 1590,
+            "disagreements": 0,
+            "agreement": 1,
+            "interiorBlackPixels": 0
+          }
+        }
+      ],
+      "stationary": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      }
+    }
+  ],
+  "precisionMethod": "Real rendered coverage/static-frame comparison plus float32 evaluation of actual uploaded RTC uniforms against native double camera projection; NaturalEarthII is too coarse for metre-scale image landmark tracking.",
+  "inputPointer": {
+    "canvasBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 1280,
+      "height": 720
+    },
+    "center": [
+      640,
+      360
+    ],
+    "inertia": 0
+  },
+  "drag": {
+    "before": {
+      "position": [
+        16230509.86410093,
+        5907422.477496723,
+        6271938.507736782
+      ],
+      "longitude": 19.999999999999996,
+      "latitude": 20,
+      "height": 11999999.999999998,
+      "radius": 18375644.299483556,
+      "axesError": 5.551115123125783e-17,
+      "finite": true
+    },
+    "after": {
+      "position": [
+        16403340.756077664,
+        968514.6320100764,
+        8225368.980703954
+      ],
+      "longitude": 3.379034288457832,
+      "latitude": 26.64470763562406,
+      "height": 12001794.301245527,
+      "radius": 18375644.29948357,
+      "axesError": 1.3877787807814457e-17,
+      "finite": true
+    },
+    "pixels": {
+      "changedPixels": 500703,
+      "maximumChannelDifference": 211
+    },
+    "inertia": 0
+  },
+  "centerWheelPreparation": {
+    "candidates": [
+      {
+        "longitude": 20,
+        "latitude": 20,
+        "selfDot": 1,
+        "normal": [
+          0.8845601654388889,
+          0.3219535729641052,
+          0.3374895710601619
+        ]
+      },
+      {
+        "longitude": 45,
+        "latitude": 45,
+        "selfDot": 0.9999999999999998,
+        "normal": [
+          0.503733140691532,
+          0.5037331406915316,
+          0.701787607426984
+        ]
+      }
+    ],
+    "chosen": {
+      "longitude": 45,
+      "latitude": 45,
+      "selfDot": 0.9999999999999998,
+      "normal": [
+        0.503733140691532,
+        0.5037331406915316,
+        0.701787607426984
+      ]
+    },
+    "camera": {
+      "position": [
+        9194419.145060576,
+        9194419.145060575,
+        12972629.78310449
+      ],
+      "longitude": 44.99999999999999,
+      "latitude": 45.00000000000001,
+      "height": 12000000,
+      "radius": 18367466.083257172,
+      "axesError": 5.551115123125783e-17,
+      "finite": true
+    }
+  },
+  "wheel": {
+    "before": {
+      "position": [
+        9194419.145060576,
+        9194419.145060575,
+        12972629.78310449
+      ],
+      "longitude": 44.99999999999999,
+      "latitude": 45.00000000000001,
+      "height": 12000000,
+      "radius": 18367466.083257172,
+      "axesError": 5.551115123125783e-17,
+      "finite": true
+    },
+    "pointer": [
+      640,
+      360
+    ],
+    "after": {
+      "position": [
+        7102764.0332997665,
+        7102764.033299765,
+        9999545.376076307
+      ],
+      "longitude": 44.99999999999999,
+      "latitude": 44.9570161566734,
+      "height": 7806060.731489361,
+      "radius": 14173546.541133681,
+      "axesError": 6.82948436583157e-17,
+      "finite": true
+    },
+    "rotations": [
+      {
+        "axis": [
+          0.0005818298415347645,
+          -0.0005818298415347645,
+          0
+        ],
+        "axisMagnitude": 0.0008228316528918527,
+        "angle": 0.00006491656036409891,
+        "cameraHeight": 9382013.689735226
+      },
+      {
+        "axis": [
+          0.0006836850759303625,
+          -0.000683685075930418,
+          5.551115123125783e-17
+        ],
+        "axisMagnitude": 0.0009668767067728373,
+        "angle": 0.00004854105460284058,
+        "cameraHeight": 8695954.350880394
+      },
+      {
+        "axis": [
+          0.0007370337061670118,
+          -0.0007370337061670673,
+          5.551115123125783e-17
+        ],
+        "axisMagnitude": 0.001042323063187534,
+        "angle": 0.00002737095674377033,
+        "cameraHeight": 8280252.571244734
+      },
+      {
+        "axis": [
+          0.0007618476449169909,
+          -0.0007618476449170464,
+          5.551115123125783e-17
+        ],
+        "axisMagnitude": 0.0010774152719036497,
+        "angle": 0.000014586882928099626,
+        "cameraHeight": 8068380.201770339
+      },
+      {
+        "axis": [
+          0.0007738717779169346,
+          -0.0007738717779170456,
+          5.551115123125783e-17
+        ],
+        "axisMagnitude": 0.0010944199638679873,
+        "angle": 0.000014446440987581684,
+        "cameraHeight": 7960603.2837841315
+      },
+      {
+        "axis": [
+          0.0007850294603221064,
+          -0.0007850294603222174,
+          5.551115123125783e-17
+        ],
+        "axisMagnitude": 0.001110199309650033,
+        "angle": 0.000007229284017224172,
+        "cameraHeight": 7856891.508143508
+      }
+    ]
+  },
+  "publicCameraValidation": {
+    "message": "DeveloperError: normalized result is not a number\nError\n    at new DeveloperError (http://127.0.0.1:8093/Build/CesiumUnminified/Cesium.js:14366:13)\n    at _Cartesian3.normalize (http://127.0.0.1:8093/Build/CesiumUnminified/Cesium.js:15858:15)\n    at Quaternion.fromAxisAngle (http://127.0.0.1:8093/Build/CesiumUnminified/Cesium.js:24423:47)\n    at Camera.rotate (http://127.0.0.1:8093/Build/CesiumUnminified/Cesium.js:241013:43)\n    at eval (eval at evaluate (:370:30), <anonymous>:6:14)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+    "cameraUnchanged": true
+  },
+  "resize": [
+    {
+      "scale": 1.5,
+      "client": [
+        960,
+        540
+      ],
+      "canvas": [
+        1440,
+        810
+      ],
+      "drawingBuffer": [
+        1440,
+        810
+      ],
+      "depth": [
+        1440,
+        810
+      ],
+      "aspect": 1.7777777777777777,
+      "gpu": {
+        "buffersCreated": 348,
+        "buffersDestroyed": 272,
+        "texturesCreated": 38,
+        "texturesDestroyed": 11,
+        "peakBuffers": 160,
+        "peakTextures": 27,
+        "activeBuffers": 76,
+        "activeTextures": 27,
+        "bufferBytes": 427084
+      }
+    },
+    {
+      "scale": 0.75,
+      "client": [
+        960,
+        540
+      ],
+      "canvas": [
+        720,
+        405
+      ],
+      "drawingBuffer": [
+        720,
+        405
+      ],
+      "depth": [
+        720,
+        405
+      ],
+      "aspect": 1.7777777777777777,
+      "gpu": {
+        "buffersCreated": 348,
+        "buffersDestroyed": 272,
+        "texturesCreated": 39,
+        "texturesDestroyed": 12,
+        "peakBuffers": 160,
+        "peakTextures": 27,
+        "activeBuffers": 76,
+        "activeTextures": 27,
+        "bufferBytes": 427084
+      }
+    },
+    {
+      "scale": 1,
+      "client": [
+        960,
+        540
+      ],
+      "canvas": [
+        960,
+        540
+      ],
+      "drawingBuffer": [
+        960,
+        540
+      ],
+      "depth": [
+        960,
+        540
+      ],
+      "aspect": 1.7777777777777777,
+      "gpu": {
+        "buffersCreated": 348,
+        "buffersDestroyed": 272,
+        "texturesCreated": 40,
+        "texturesDestroyed": 13,
+        "peakBuffers": 160,
+        "peakTextures": 27,
+        "activeBuffers": 76,
+        "activeTextures": 27,
+        "bufferBytes": 427084
+      }
+    }
+  ],
+  "churn": {
+    "cacheSize": 64,
+    "maximumScreenSpaceError": 6,
+    "rapidVisits": 8,
+    "samples": [
+      {
+        "cycle": 0,
+        "waypoint": 0,
+        "statistics": {
+          "frame": 362,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 64,
+          "loadedTiles": 64,
+          "terrain": {
+            "requests": 211,
+            "deferred": 0,
+            "meshes": 170,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 36,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 36,
+            "pendingRequests": 0,
+            "texturesCreated": 35,
+            "texturesDestroyed": 18,
+            "activeTextures": 17
+          },
+          "resources": {
+            "buffersCreated": 348,
+            "buffersDestroyed": 312,
+            "bufferBytes": 205084,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 35,
+            "texturesDestroyed": 18,
+            "textureBytes": 4456448,
+            "imageryDrawCalls": 2
+          }
+        },
+        "gpu": {
+          "buffersCreated": 348,
+          "buffersDestroyed": 312,
+          "texturesCreated": 40,
+          "texturesDestroyed": 22,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 36,
+          "activeTextures": 18,
+          "bufferBytes": 205084
+        },
+        "camera": {
+          "position": [
+            17753299.003507156,
+            0,
+            4745928.6814261405
+          ],
+          "longitude": 0,
+          "latitude": 15.000000000000002,
+          "height": 11999999.999999996,
+          "radius": 18376709.840368908,
+          "axesError": 0,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 0,
+        "waypoint": 1,
+        "statistics": {
+          "frame": 380,
+          "selectedTiles": 4,
+          "levels": [
+            13,
+            13,
+            13,
+            13
+          ],
+          "cacheTiles": 86,
+          "loadedTiles": 86,
+          "terrain": {
+            "requests": 229,
+            "deferred": 0,
+            "meshes": 174,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 37,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 37,
+            "pendingRequests": 0,
+            "texturesCreated": 36,
+            "texturesDestroyed": 25,
+            "activeTextures": 11
+          },
+          "resources": {
+            "buffersCreated": 356,
+            "buffersDestroyed": 326,
+            "bufferBytes": 171784,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 36,
+            "texturesDestroyed": 25,
+            "textureBytes": 2883584,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 356,
+          "buffersDestroyed": 326,
+          "texturesCreated": 41,
+          "texturesDestroyed": 29,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 30,
+          "activeTextures": 12,
+          "bufferBytes": 171784
+        },
+        "camera": {
+          "position": [
+            -5785817.91798398,
+            10098.167512564973,
+            -2679919.699481269
+          ],
+          "longitude": 179.9,
+          "latitude": -25.000000000000004,
+          "height": 2000.000000001491,
+          "radius": 6376343.822969348,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 0,
+        "waypoint": 2,
+        "statistics": {
+          "frame": 393,
+          "selectedTiles": 4,
+          "levels": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "cacheTiles": 78,
+          "loadedTiles": 78,
+          "terrain": {
+            "requests": 249,
+            "deferred": 0,
+            "meshes": 178,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 38,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 38,
+            "pendingRequests": 0,
+            "texturesCreated": 37,
+            "texturesDestroyed": 31,
+            "activeTextures": 6
+          },
+          "resources": {
+            "buffersCreated": 364,
+            "buffersDestroyed": 344,
+            "bufferBytes": 116284,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 37,
+            "texturesDestroyed": 31,
+            "textureBytes": 1572864,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 364,
+          "buffersDestroyed": 344,
+          "texturesCreated": 42,
+          "texturesDestroyed": 35,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 20,
+          "activeTextures": 7,
+          "bufferBytes": 116284
+        },
+        "camera": {
+          "position": [
+            385868.7666257814,
+            -2188370.5209231023,
+            6065009.269197154
+          ],
+          "longitude": -80,
+          "latitude": 70.00000000000001,
+          "height": 99999.99999998813,
+          "radius": 6459272.225053682,
+          "axesError": 8.771382621570771e-18,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 0,
+        "waypoint": 3,
+        "statistics": {
+          "frame": 411,
+          "selectedTiles": 4,
+          "levels": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "cacheTiles": 74,
+          "loadedTiles": 74,
+          "terrain": {
+            "requests": 270,
+            "deferred": 0,
+            "meshes": 182,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 39,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 39,
+            "pendingRequests": 0,
+            "texturesCreated": 38,
+            "texturesDestroyed": 35,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 372,
+            "buffersDestroyed": 358,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 38,
+            "texturesDestroyed": 35,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 372,
+          "buffersDestroyed": 358,
+          "texturesCreated": 43,
+          "texturesDestroyed": 39,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            2058273.153395148,
+            2452954.4250988807,
+            -5509137.3879764825
+          ],
+          "longitude": 49.99999999999999,
+          "latitude": -59.99999999999999,
+          "height": 9999.999999999505,
+          "radius": 6372132.1820250815,
+          "axesError": 1.1102274059010343e-16,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 1,
+        "waypoint": 0,
+        "statistics": {
+          "frame": 416,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 74,
+          "loadedTiles": 74,
+          "terrain": {
+            "requests": 270,
+            "deferred": 0,
+            "meshes": 182,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 39,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 39,
+            "pendingRequests": 0,
+            "texturesCreated": 38,
+            "texturesDestroyed": 35,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 372,
+            "buffersDestroyed": 358,
+            "bufferBytes": 82984,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 38,
+            "texturesDestroyed": 35,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 2
+          }
+        },
+        "gpu": {
+          "buffersCreated": 372,
+          "buffersDestroyed": 358,
+          "texturesCreated": 43,
+          "texturesDestroyed": 39,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            17753299.003507156,
+            0,
+            4745928.6814261405
+          ],
+          "longitude": 0,
+          "latitude": 15.000000000000002,
+          "height": 11999999.999999996,
+          "radius": 18376709.840368908,
+          "axesError": 0,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 1,
+        "waypoint": 1,
+        "statistics": {
+          "frame": 435,
+          "selectedTiles": 4,
+          "levels": [
+            13,
+            13,
+            13,
+            13
+          ],
+          "cacheTiles": 86,
+          "loadedTiles": 86,
+          "terrain": {
+            "requests": 292,
+            "deferred": 0,
+            "meshes": 186,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 40,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 40,
+            "pendingRequests": 0,
+            "texturesCreated": 39,
+            "texturesDestroyed": 36,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 380,
+            "buffersDestroyed": 366,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 39,
+            "texturesDestroyed": 36,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 380,
+          "buffersDestroyed": 366,
+          "texturesCreated": 44,
+          "texturesDestroyed": 40,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            -5785817.91798398,
+            10098.167512564973,
+            -2679919.699481269
+          ],
+          "longitude": 179.9,
+          "latitude": -25.000000000000004,
+          "height": 2000.000000001491,
+          "radius": 6376343.822969348,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 1,
+        "waypoint": 2,
+        "statistics": {
+          "frame": 450,
+          "selectedTiles": 4,
+          "levels": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "cacheTiles": 78,
+          "loadedTiles": 78,
+          "terrain": {
+            "requests": 314,
+            "deferred": 0,
+            "meshes": 190,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 41,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 41,
+            "pendingRequests": 0,
+            "texturesCreated": 40,
+            "texturesDestroyed": 37,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 388,
+            "buffersDestroyed": 374,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 40,
+            "texturesDestroyed": 37,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 388,
+          "buffersDestroyed": 374,
+          "texturesCreated": 45,
+          "texturesDestroyed": 41,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            385868.7666257814,
+            -2188370.5209231023,
+            6065009.269197154
+          ],
+          "longitude": -80,
+          "latitude": 70.00000000000001,
+          "height": 99999.99999998813,
+          "radius": 6459272.225053682,
+          "axesError": 8.771382621570771e-18,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 1,
+        "waypoint": 3,
+        "statistics": {
+          "frame": 468,
+          "selectedTiles": 4,
+          "levels": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "cacheTiles": 74,
+          "loadedTiles": 74,
+          "terrain": {
+            "requests": 335,
+            "deferred": 0,
+            "meshes": 194,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 42,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 42,
+            "pendingRequests": 0,
+            "texturesCreated": 41,
+            "texturesDestroyed": 38,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 396,
+            "buffersDestroyed": 382,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 41,
+            "texturesDestroyed": 38,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 396,
+          "buffersDestroyed": 382,
+          "texturesCreated": 46,
+          "texturesDestroyed": 42,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            2058273.153395148,
+            2452954.4250988807,
+            -5509137.3879764825
+          ],
+          "longitude": 49.99999999999999,
+          "latitude": -59.99999999999999,
+          "height": 9999.999999999505,
+          "radius": 6372132.1820250815,
+          "axesError": 1.1102274059010343e-16,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 2,
+        "waypoint": 0,
+        "statistics": {
+          "frame": 473,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 74,
+          "loadedTiles": 74,
+          "terrain": {
+            "requests": 335,
+            "deferred": 0,
+            "meshes": 194,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 42,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 42,
+            "pendingRequests": 0,
+            "texturesCreated": 41,
+            "texturesDestroyed": 38,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 396,
+            "buffersDestroyed": 382,
+            "bufferBytes": 82984,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 41,
+            "texturesDestroyed": 38,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 2
+          }
+        },
+        "gpu": {
+          "buffersCreated": 396,
+          "buffersDestroyed": 382,
+          "texturesCreated": 46,
+          "texturesDestroyed": 42,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            17753299.003507156,
+            0,
+            4745928.6814261405
+          ],
+          "longitude": 0,
+          "latitude": 15.000000000000002,
+          "height": 11999999.999999996,
+          "radius": 18376709.840368908,
+          "axesError": 0,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 2,
+        "waypoint": 1,
+        "statistics": {
+          "frame": 492,
+          "selectedTiles": 4,
+          "levels": [
+            13,
+            13,
+            13,
+            13
+          ],
+          "cacheTiles": 86,
+          "loadedTiles": 86,
+          "terrain": {
+            "requests": 357,
+            "deferred": 0,
+            "meshes": 198,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 43,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 43,
+            "pendingRequests": 0,
+            "texturesCreated": 42,
+            "texturesDestroyed": 39,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 404,
+            "buffersDestroyed": 390,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 42,
+            "texturesDestroyed": 39,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 404,
+          "buffersDestroyed": 390,
+          "texturesCreated": 47,
+          "texturesDestroyed": 43,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            -5785817.91798398,
+            10098.167512564973,
+            -2679919.699481269
+          ],
+          "longitude": 179.9,
+          "latitude": -25.000000000000004,
+          "height": 2000.000000001491,
+          "radius": 6376343.822969348,
+          "axesError": 5.551115123125783e-17,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 2,
+        "waypoint": 2,
+        "statistics": {
+          "frame": 507,
+          "selectedTiles": 4,
+          "levels": [
+            7,
+            7,
+            7,
+            7
+          ],
+          "cacheTiles": 78,
+          "loadedTiles": 78,
+          "terrain": {
+            "requests": 379,
+            "deferred": 0,
+            "meshes": 202,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 44,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 44,
+            "pendingRequests": 0,
+            "texturesCreated": 43,
+            "texturesDestroyed": 40,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 412,
+            "buffersDestroyed": 398,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 43,
+            "texturesDestroyed": 40,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 412,
+          "buffersDestroyed": 398,
+          "texturesCreated": 48,
+          "texturesDestroyed": 44,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            385868.7666257814,
+            -2188370.5209231023,
+            6065009.269197154
+          ],
+          "longitude": -80,
+          "latitude": 70.00000000000001,
+          "height": 99999.99999998813,
+          "radius": 6459272.225053682,
+          "axesError": 8.771382621570771e-18,
+          "finite": true
+        }
+      },
+      {
+        "cycle": 2,
+        "waypoint": 3,
+        "statistics": {
+          "frame": 525,
+          "selectedTiles": 4,
+          "levels": [
+            11,
+            11,
+            10,
+            10
+          ],
+          "cacheTiles": 74,
+          "loadedTiles": 74,
+          "terrain": {
+            "requests": 400,
+            "deferred": 0,
+            "meshes": 206,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 45,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 45,
+            "pendingRequests": 0,
+            "texturesCreated": 44,
+            "texturesDestroyed": 41,
+            "activeTextures": 3
+          },
+          "resources": {
+            "buffersCreated": 420,
+            "buffersDestroyed": 406,
+            "bufferBytes": 82984,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 44,
+            "texturesDestroyed": 41,
+            "textureBytes": 786432,
+            "imageryDrawCalls": 4
+          }
+        },
+        "gpu": {
+          "buffersCreated": 420,
+          "buffersDestroyed": 406,
+          "texturesCreated": 49,
+          "texturesDestroyed": 45,
+          "peakBuffers": 160,
+          "peakTextures": 27,
+          "activeBuffers": 14,
+          "activeTextures": 4,
+          "bufferBytes": 82984
+        },
+        "camera": {
+          "position": [
+            2058273.153395148,
+            2452954.4250988807,
+            -5509137.3879764825
+          ],
+          "longitude": 49.99999999999999,
+          "latitude": -59.99999999999999,
+          "height": 9999.999999999505,
+          "radius": 6372132.1820250815,
+          "axesError": 1.1102274059010343e-16,
+          "finite": true
+        }
+      }
+    ],
+    "imageryRequests": [
+      {
+        "label": "local NaturalEarthII",
+        "x": 1,
+        "y": 0,
+        "level": 0
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 0,
+        "level": 0
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 3,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 1,
+        "y": 1,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 1,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 3,
+        "y": 1,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 1,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 1,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 6,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 6,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 4,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 4,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 6,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 4,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 1,
+        "y": 1,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 0,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 4,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 3,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 3,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 3,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 4,
+        "y": 3,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 1,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 1,
+        "y": 0,
+        "level": 1
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 6,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 3,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 3,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 7,
+        "y": 2,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 2,
+        "y": 0,
+        "level": 2
+      },
+      {
+        "label": "local NaturalEarthII",
+        "x": 5,
+        "y": 3,
+        "level": 2
+      }
+    ],
+    "providerErrors": [],
+    "errors": []
+  },
+  "teardown": {
+    "resources": {
+      "buffersCreated": 420,
+      "buffersDestroyed": 420,
+      "bufferBytes": 0,
+      "drawCalls": 4,
+      "triangles": 2280,
+      "texturesCreated": 44,
+      "texturesDestroyed": 44,
+      "textureBytes": 0,
+      "imageryDrawCalls": 4
+    },
+    "imagery": {
+      "requests": 45,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 45,
+      "pendingRequests": 0,
+      "texturesCreated": 44,
+      "texturesDestroyed": 44,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "actualGpuTeardown": {
+    "buffersCreated": 420,
+    "buffersDestroyed": 420,
+    "texturesCreated": 49,
+    "texturesDestroyed": 49,
+    "peakBuffers": 160,
+    "peakTextures": 27,
+    "activeBuffers": 0,
+    "activeTextures": 0,
+    "bufferBytes": 0
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "viewport": [
+      960,
+      540
+    ]
+  },
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "status": "PASS"
+}

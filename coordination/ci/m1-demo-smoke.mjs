@@ -1,0 +1,674 @@
+/* global Cesium, window, document, navigator, HTMLCanvasElement, GPUDevice,
+          requestAnimationFrame, PageTransitionEvent, getComputedStyle, fetch */
+import assert from "node:assert/strict";
+import console from "node:console";
+import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
+import { URL } from "node:url";
+import { runM1BrowserSuite } from "./m1-browser-harness.mjs";
+
+// The default gate includes real remote providers. The explicitly named local
+// subset is useful for diagnosis; it never certifies live terrain or imagery.
+const localOnly = process.env.M1_DEMO_LOCAL_ONLY === "1";
+const remoteMatch = /^https:\/\//;
+
+function observeDemo({ unavailable = false, holdAdapter = false } = {}) {
+  const state = (window.__demo = {
+    contexts: [],
+    errors: [],
+    allocations: [],
+    frames: 0,
+  });
+  const getContext = HTMLCanvasElement.prototype.getContext;
+  HTMLCanvasElement.prototype.getContext = function (kind, ...args) {
+    state.contexts.push(kind);
+    return getContext.call(this, kind, ...args);
+  };
+  // Observe native allocations without replacing any GPU operation.
+  if (typeof GPUDevice !== "undefined") {
+    for (const kind of ["Buffer", "Texture"]) {
+      const create = GPUDevice.prototype[`create${kind}`];
+      GPUDevice.prototype[`create${kind}`] = function (...args) {
+        const resource = create.apply(this, args);
+        const row = { kind, destroyed: false };
+        state.allocations.push(row);
+        const destroy = resource.destroy;
+        resource.destroy = function (...args) {
+          row.destroyed = true;
+          return destroy.apply(this, args);
+        };
+        return resource;
+      };
+    }
+  }
+  if (unavailable) {
+    Object.defineProperty(navigator, "gpu", {
+      configurable: true,
+      value: undefined,
+    });
+  } else if (holdAdapter) {
+    const request = navigator.gpu.requestAdapter.bind(navigator.gpu);
+    navigator.gpu.requestAdapter = async (...args) => {
+      const adapter = await request(...args);
+      await new Promise((resolve) => {
+        state.releaseAdapter = resolve;
+      });
+      return adapter;
+    };
+  }
+  // Capture the module-local Viewer through a prototype-preserving constructor
+  // observer. The actual HTML and Cesium bundle are served byte-for-byte; no
+  // test-only export, provider fixture or successful response is injected.
+  let namespace;
+  Object.defineProperty(window, "Cesium", {
+    configurable: true,
+    get: () => namespace,
+    set(value) {
+      const Viewer = new Proxy(value.Viewer, {
+        construct(target, args, newTarget) {
+          const viewer = Reflect.construct(target, args, newTarget);
+          state.viewer = viewer;
+          state.renderer = viewer.scene._renderer;
+          state.imagery = viewer.scene._imagery;
+          viewer.scene.postRender.addEventListener(() => ++state.frames);
+          viewer.renderError.addEventListener((...event) =>
+            state.errors.push(String(event[1])),
+          );
+          viewer.readyPromise.then(
+            () => {
+              state.ready = true;
+              const info = viewer._webgpuProof._context._adapter.info;
+              state.adapterInfo = {
+                vendor: info.vendor,
+                architecture: info.architecture,
+                device: info.device,
+                description: info.description,
+                isFallbackAdapter: info.isFallbackAdapter,
+              };
+            },
+            (error) => {
+              state.readyError = String(error);
+            },
+          );
+          return viewer;
+        },
+      });
+      namespace = new Proxy(value, {
+        get: (target, name, receiver) =>
+          name === "Viewer" ? Viewer : Reflect.get(target, name, receiver),
+      });
+    },
+  });
+}
+
+async function settle(page) {
+  await page.waitForFunction(
+    () => {
+      const state = window.__demo;
+      if (!state?.ready || state.viewer.isDestroyed()) {
+        return false;
+      }
+      if (state.errors.length) {
+        throw new Error(state.errors.join("\n"));
+      }
+      const viewer = state.viewer;
+      const statistics = viewer.scene.debugStatistics;
+      const signature = viewer.scene._renderer._draws
+        .map(({ tile }) => `${tile.level}/${tile.x}/${tile.y}`)
+        .sort()
+        .join("|");
+      const loaded =
+        viewer.scene.globe.tilesLoaded &&
+        statistics.resources.drawCalls > 0 &&
+        statistics.resources.imageryDrawCalls > 0 &&
+        statistics.imagery.pendingRequests === 0;
+      state.stable =
+        loaded && state.signature === signature ? state.stable + 1 : 0;
+      state.signature = signature;
+      return state.stable >= 3;
+    },
+    undefined,
+    { timeout: 90000, polling: "raf" },
+  );
+}
+
+async function snapshot(page, output, name) {
+  const observation = await page.evaluate(() => {
+    const { viewer, contexts, errors, frames } = window.__demo;
+    viewer.render();
+    const canvas = document.createElement("canvas");
+    canvas.width = viewer.canvas.width;
+    canvas.height = viewer.canvas.height;
+    const context = canvas.getContext("2d", { willReadFrequently: true });
+    context.drawImage(viewer.canvas, 0, 0);
+    const { data } = context.getImageData(0, 0, canvas.width, canvas.height);
+    const colors = new Set();
+    let coloredPixels = 0;
+    for (let index = 0; index < data.length; index += 4) {
+      if (data[index] + data[index + 1] + data[index + 2] > 30) {
+        ++coloredPixels;
+      }
+      if (index % 400 === 0) {
+        colors.add(`${data[index]},${data[index + 1]},${data[index + 2]}`);
+      }
+    }
+    const coordinate = viewer.camera.positionCartographic;
+    return {
+      status: document.getElementById("status").textContent,
+      statusColor: getComputedStyle(document.getElementById("status")).color,
+      viewerIdentity: viewer instanceof Cesium.Viewer,
+      backend: viewer.renderingBackend,
+      camera: {
+        longitude: Cesium.Math.toDegrees(coordinate.longitude),
+        latitude: Cesium.Math.toDegrees(coordinate.latitude),
+        height: coordinate.height,
+        pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
+      },
+      canvas: [viewer.canvas.width, viewer.canvas.height],
+      statistics: viewer.scene.debugStatistics,
+      contexts: [...new Set(contexts)],
+      errors: [...errors],
+      frames,
+      coloredPixels,
+      sampledColors: colors.size,
+      credits: viewer.creditDisplay.container.textContent,
+    };
+  });
+  const attribution = page.getByRole("button", {
+    name: "Data attribution",
+    exact: true,
+  });
+  if (await attribution.isVisible()) {
+    await attribution.click();
+    observation.credits += ` ${await page.getByRole("dialog", { name: "Data attribution" }).innerText()}`;
+    await page.getByRole("button", { name: "Close data attribution" }).click();
+  }
+  await page.screenshot({ path: path.join(output, `${name}.png`) });
+  assert.deepEqual(observation.errors, []);
+  assert.ok(!observation.contexts.some((kind) => /webgl/i.test(kind)));
+  assert.ok(
+    observation.coloredPixels > 10000,
+    "The demo must display a visible globe",
+  );
+  assert.ok(
+    observation.sampledColors > 40,
+    "The demo must display real tiled imagery",
+  );
+  return { name, ...observation };
+}
+
+async function lifecycle(page) {
+  return page.evaluate(async () => {
+    const state = window.__demo;
+    window.dispatchEvent(new PageTransitionEvent("pagehide"));
+    const frames = state.frames;
+    for (let index = 0; index < 3; ++index) {
+      await new Promise(requestAnimationFrame);
+    }
+    return {
+      destroyed: state.viewer.isDestroyed(),
+      framesBefore: frames,
+      framesAfter: state.frames,
+      canvases: document.querySelectorAll("canvas").length,
+      allocations: ["Buffer", "Texture"].map((kind) => ({
+        kind,
+        created: state.allocations.filter((row) => row.kind === kind).length,
+        destroyed: state.allocations.filter(
+          (row) => row.kind === kind && row.destroyed,
+        ).length,
+      })),
+      resources: { ...state.renderer.statistics },
+      imagery: { ...state.imagery.statistics },
+    };
+  });
+}
+
+function assertReleased(result) {
+  assert.equal(result.destroyed, true, "pagehide must destroy the Viewer");
+  assert.equal(result.canvases, 0);
+  assert.equal(result.framesAfter, result.framesBefore);
+  for (const row of result.allocations) {
+    assert.equal(row.destroyed, row.created, `Leaked native GPU ${row.kind}`);
+  }
+  assert.equal(result.resources.bufferBytes, 0);
+  assert.equal(result.resources.textureBytes, 0);
+  assert.equal(result.imagery.pendingRequests, 0);
+}
+
+async function holdFailingProviders(page) {
+  let release;
+  let firstRequest;
+  const hold = new Promise((resolve) => {
+    release = resolve;
+  });
+  const intercepted = new Promise((resolve) => {
+    firstRequest = resolve;
+  });
+  await page.route(remoteMatch, async (route) => {
+    firstRequest();
+    await hold;
+    await route.abort("failed");
+  });
+  await page.locator("#terrain").click();
+  await intercepted;
+  return async () => {
+    release();
+    await page.waitForLoadState("networkidle");
+  };
+}
+
+await runM1BrowserSuite(
+  localOnly ? "demo-local" : "demo",
+  async ({ page, report, output, base }) => {
+    report.liveProvidersRequired = !localOnly;
+    const redact = (message) =>
+      message
+        .replace(/([?&](?:access_token|token)=)[^&\s)]+/gi, "$1[redacted]")
+        .replace(/eyJ[A-Za-z0-9._-]+/g, "[redacted-token]");
+    report.network = { terrainTiles: 0, imageryTiles: 0, failures: [] };
+    report.consoleMessages = [];
+    page.on("console", (message) => {
+      if (["error", "warning"].includes(message.type())) {
+        report.consoleMessages.push(redact(message.text()));
+      }
+    });
+    page.on("requestfailed", (request) => {
+      const url = new URL(request.url());
+      report.network.failures.push({
+        url: `${url.origin}${url.pathname}`,
+        error: request.failure()?.errorText,
+      });
+    });
+    page.on("response", (response) => {
+      if (!response.ok()) {
+        return;
+      }
+      const url = new URL(response.url());
+      if (url.pathname.endsWith(".terrain")) {
+        ++report.network.terrainTiles;
+      }
+      if (
+        url.hostname === "services.arcgisonline.com" &&
+        url.pathname.includes("/tile/")
+      ) {
+        ++report.network.imageryTiles;
+      }
+    });
+    const check = (message) => {
+      report.checks.push(message);
+      console.log(`M1 demo: ${message}`);
+    };
+    const url = new URL("Apps/WebGPUGlobe.html", base).href;
+    const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
+    const html = await readFile("Apps/WebGPUGlobe.html");
+    const served = await fetch(url).then((response) => response.arrayBuffer());
+    assert.equal(hash(html), hash(new Uint8Array(served)));
+    report.demoSha256 = hash(html);
+    report.testSha256 = hash(
+      await readFile("coordination/ci/m1-demo-smoke.mjs"),
+    );
+    await page.addInitScript(observeDemo, {});
+    await page.goto(url);
+    await settle(page);
+    report.scenes.push(await snapshot(page, output, "natural-earth"));
+    assert.equal(report.scenes[0].viewerIdentity, true);
+    assert.equal(report.scenes[0].backend, "webgpu");
+    assert.equal(await page.locator("#everest").isDisabled(), true);
+    assert.equal(await page.locator("#terrain").isEnabled(), true);
+    assert.match(report.scenes[0].credits, /Natural Earth/);
+    check(
+      "actual demo initialization, automatic rendering and bundled Natural Earth",
+    );
+
+    await page.evaluate(() =>
+      window.__demo.viewer.camera.setView({
+        destination: Cesium.Cartesian3.fromDegrees(-70, -25, 12000000),
+      }),
+    );
+    await page.locator("#orbit").click();
+    await page.waitForFunction(
+      () => {
+        const c = window.__demo.viewer.camera.positionCartographic;
+        return (
+          Math.abs(Cesium.Math.toDegrees(c.longitude) - 20) < 0.001 &&
+          Math.abs(Cesium.Math.toDegrees(c.latitude) - 20) < 0.001 &&
+          Math.abs(c.height - 20000000) < 1
+        );
+      },
+      undefined,
+      { timeout: 45000 },
+    );
+    await settle(page);
+    report.scenes.push(await snapshot(page, output, "orbit-button"));
+    check("Orbit button completes the actual native camera flight");
+
+    const secondary = async (options, run) => {
+      const testPage = await page
+        .context()
+        .browser()
+        .newPage({
+          viewport: { width: 1280, height: 720 },
+          deviceScaleFactor: 1,
+        });
+      const errors = [];
+      testPage.on("pageerror", (error) => errors.push(String(error)));
+      try {
+        await testPage.addInitScript(observeDemo, options);
+        await testPage.goto(url);
+        await run(testPage, errors);
+        assert.deepEqual(errors, []);
+      } finally {
+        await testPage.close();
+        await page.bringToFront();
+      }
+    };
+    await secondary({ holdAdapter: true }, async (testPage, errors) => {
+      await testPage.waitForFunction(() => window.__demo.releaseAdapter);
+      report.pendingInitialization = await lifecycle(testPage);
+      report.pendingInitialization.browserErrors = errors;
+      assertReleased(report.pendingInitialization);
+      await testPage.evaluate(() => window.__demo.releaseAdapter());
+      await testPage.waitForFunction(() => window.__demo.readyError);
+      check("pagehide cancels pending initialization before readiness");
+    });
+
+    await secondary({ unavailable: true }, async (testPage, errors) => {
+      await testPage.waitForFunction(() => window.__demo.readyError);
+      report.unavailable = await testPage.evaluate(() => ({
+        status: document.getElementById("status").textContent,
+        disabled: [...document.querySelectorAll("nav button")].every(
+          (button) => button.disabled,
+        ),
+      }));
+      report.unavailable.browserErrors = errors;
+      assert.match(report.unavailable.status, /WebGPU.*unavailable/);
+      assert.equal(report.unavailable.disabled, true);
+      await testPage.screenshot({
+        path: path.join(output, "webgpu-unavailable.png"),
+      });
+      report.unavailable.cleanup = await lifecycle(testPage);
+      assertReleased(report.unavailable.cleanup);
+      check("unsupported WebGPU gives visible feedback and clean teardown");
+    });
+
+    await secondary({}, async (testPage) => {
+      await settle(testPage);
+      const releaseProviders = await holdFailingProviders(testPage);
+      await testPage.evaluate(() =>
+        window.__demo.viewer._webgpuProof._context._device.destroy(),
+      );
+      await testPage.waitForFunction(() =>
+        /device lost/i.test(document.getElementById("status").textContent),
+      );
+      report.deviceLost = await testPage.evaluate(() => ({
+        status: document.getElementById("status").textContent,
+        disabled: [...document.querySelectorAll("nav button")].every(
+          (button) => button.disabled,
+        ),
+        errors: [...window.__demo.errors],
+      }));
+      assert.equal(
+        report.deviceLost.disabled,
+        true,
+        "Fatal rendering errors must disable controls",
+      );
+      await testPage.screenshot({ path: path.join(output, "device-lost.png") });
+      await releaseProviders();
+      report.deviceLost.afterProviderFailure = await testPage.evaluate(() => ({
+        status: document.getElementById("status").textContent,
+        disabled: [...document.querySelectorAll("nav button")].every(
+          (button) => button.disabled,
+        ),
+      }));
+      assert.equal(
+        report.deviceLost.afterProviderFailure.status,
+        report.deviceLost.status,
+        "A late provider failure must preserve the fatal renderer error",
+      );
+      assert.equal(report.deviceLost.afterProviderFailure.disabled, true);
+      report.deviceLost.cleanup = await lifecycle(testPage);
+      assertReleased(report.deviceLost.cleanup);
+      check(
+        "actual GPU device loss is visible and disables unavailable controls",
+      );
+    });
+
+    await secondary({}, async (testPage) => {
+      await settle(testPage);
+      const releaseProviders = await holdFailingProviders(testPage);
+      const before = await testPage.locator("#status").textContent();
+      report.pendingProviders = await lifecycle(testPage);
+      assertReleased(report.pendingProviders);
+      await releaseProviders();
+      report.pendingProviders.statusAfter = await testPage
+        .locator("#status")
+        .textContent();
+      assert.equal(
+        report.pendingProviders.statusAfter,
+        before,
+        "A provider completion must not mutate an exited demo",
+      );
+      check(
+        "pagehide during provider loading releases resources and ignores late failures",
+      );
+    });
+
+    // Abort only the network boundary to check recoverable provider failure. No
+    // fake successful metadata, imagery or terrain is supplied in any scenario.
+    report.rejectedProviderRequests = [];
+    const rejectProvider = (route) => {
+      const url = new URL(route.request().url());
+      report.rejectedProviderRequests.push(`${url.origin}${url.pathname}`);
+      return route.abort("failed");
+    };
+    await page.route(remoteMatch, rejectProvider);
+    await page.locator("#terrain").click();
+    try {
+      await page.waitForFunction(
+        () => !document.getElementById("terrain").disabled,
+      );
+    } finally {
+      report.providerFailureDiagnostic = await page.evaluate(() => ({
+        status: document.getElementById("status").textContent,
+        disabled: [...document.querySelectorAll("nav button")].map(
+          (button) => button.disabled,
+        ),
+        errors: [...window.__demo.errors],
+        destroyed: window.__demo.viewer.isDestroyed(),
+      }));
+      report.providerFailureDiagnostic.status = redact(
+        report.providerFailureDiagnostic.status,
+      );
+      await page.screenshot({ path: path.join(output, "provider-error.png") });
+    }
+    report.providerFailure = await page.evaluate(() => ({
+      status: document.getElementById("status").textContent,
+      statusColor: getComputedStyle(document.getElementById("status")).color,
+      ellipsoid:
+        window.__demo.viewer.terrainProvider instanceof
+        Cesium.EllipsoidTerrainProvider,
+      naturalEarth:
+        window.__demo.viewer.imageryLayers.get(0).imageryProvider instanceof
+        Cesium.TileMapServiceImageryProvider,
+      orbitEnabled: !document.getElementById("orbit").disabled,
+      everestDisabled: document.getElementById("everest").disabled,
+    }));
+    assert.equal(report.providerFailure.ellipsoid, true);
+    assert.equal(report.providerFailure.naturalEarth, true);
+    assert.equal(report.providerFailure.orbitEnabled, true);
+    assert.equal(report.providerFailure.everestDisabled, true);
+    assert.equal(
+      report.rejectedProviderRequests.length,
+      2,
+      "The negative control must actually reject both remote metadata requests",
+    );
+    assert.notEqual(
+      report.providerFailure.statusColor,
+      report.scenes[0].statusColor,
+    );
+    await page.screenshot({ path: path.join(output, "provider-error.png") });
+    await page.unroute(remoteMatch, rejectProvider);
+    check("provider failure preserves the working globe and enables retry");
+
+    if (!localOnly) {
+      await page.locator("#terrain").click();
+      await page.waitForFunction(
+        () =>
+          !document.getElementById("everest").disabled ||
+          !document.getElementById("terrain").disabled,
+        undefined,
+        { timeout: 120000 },
+      );
+      report.providers = await page.evaluate(() => ({
+        status: document.getElementById("status").textContent,
+        statusColor: getComputedStyle(document.getElementById("status")).color,
+        terrain:
+          window.__demo.viewer.terrainProvider instanceof
+          Cesium.CesiumTerrainProvider,
+        imagery:
+          window.__demo.viewer.imageryLayers.get(0).imageryProvider instanceof
+          Cesium.ArcGisMapServerImageryProvider,
+        everestEnabled: !document.getElementById("everest").disabled,
+      }));
+      assert.equal(
+        report.providers.terrain,
+        true,
+        JSON.stringify(report.providers),
+      );
+      assert.equal(report.providers.imagery, true);
+      assert.equal(report.providers.everestEnabled, true);
+      await page.evaluate(() => {
+        const state = window.__demo;
+        state.providerErrors = [];
+        for (const [name, provider] of [
+          ["World Terrain", state.viewer.terrainProvider],
+          ["ArcGIS", state.viewer.imageryLayers.get(0).imageryProvider],
+        ]) {
+          provider.errorEvent.addEventListener((error) =>
+            state.providerErrors.push({
+              name,
+              x: error.x,
+              y: error.y,
+              level: error.level,
+              message: error.message,
+            }),
+          );
+        }
+      });
+      assert.equal(
+        report.providers.statusColor,
+        report.scenes[0].statusColor,
+        "A successful provider retry must clear error styling",
+      );
+      await page.locator("#everest").click();
+      await page.waitForFunction(
+        () => {
+          const c = window.__demo.viewer.camera.positionCartographic;
+          return (
+            Math.abs(Cesium.Math.toDegrees(c.longitude) - 86.925) < 0.001 &&
+            Math.abs(Cesium.Math.toDegrees(c.latitude) - 27.9) < 0.001 &&
+            Math.abs(c.height - 18000) < 1
+          );
+        },
+        undefined,
+        { timeout: 45000 },
+      );
+      await settle(page);
+      report.scenes.push(await snapshot(page, output, "everest"));
+      assert.ok(Math.abs(report.scenes.at(-1).camera.pitch + 45) < 0.01);
+      report.liveTerrain = await page.evaluate(() => {
+        const draws = window.__demo.viewer.scene._renderer._draws;
+        const tiles = [...new Set(draws.map(({ tile }) => tile))];
+        return {
+          quantizedMeshes: tiles.filter(
+            (tile) =>
+              tile.data.terrainData instanceof Cesium.QuantizedMeshTerrainData,
+          ).length,
+          maximumHeight: Math.max(
+            ...tiles.map((tile) => tile.data.mesh.maximumHeight),
+          ),
+          levels: [...new Set(tiles.map((tile) => tile.level))],
+        };
+      });
+      assert.ok(report.liveTerrain.quantizedMeshes > 0);
+      assert.ok(report.liveTerrain.maximumHeight > 8000);
+      assert.ok(Math.max(...report.liveTerrain.levels) >= 9);
+      assert.ok(
+        report.network.terrainTiles > 10,
+        "Real terrain responses are required",
+      );
+      assert.ok(
+        report.network.imageryTiles > 10,
+        "Real imagery responses are required",
+      );
+      assert.match(
+        report.scenes.at(-1).credits,
+        /Esri|Earthstar|Maxar|Source/i,
+      );
+      report.terrainAttribution = await page.evaluate(() => {
+        const credits = window.__demo.viewer.scene._renderer._draws.flatMap(
+          ({ tile }) => tile.data.terrainData.credits ?? [],
+        );
+        return {
+          requiredText: [...new Set(credits)]
+            .map((credit) => {
+              const element = document.createElement("div");
+              element.innerHTML = credit.html;
+              return element.textContent.replace(/\s+/g, " ").trim();
+            })
+            .filter(Boolean),
+        };
+      });
+      report.terrainAttribution.visibleText = report.scenes
+        .at(-1)
+        .credits.replace(/\s+/g, " ")
+        .trim();
+      assert.ok(
+        report.terrainAttribution.requiredText.length > 0,
+        "Real World Terrain must supply native attribution for this check",
+      );
+      for (const credit of report.terrainAttribution.requiredText) {
+        assert.ok(
+          report.terrainAttribution.visibleText.includes(credit),
+          `The demo must display native terrain attribution: ${credit}`,
+        );
+      }
+      check(
+        "real World Terrain and ArcGIS load through the UI; Everest renders quantized mountains with attribution",
+      );
+      await page.locator("#orbit").click();
+      await page.waitForFunction(
+        () =>
+          Math.abs(
+            window.__demo.viewer.camera.positionCartographic.height - 20000000,
+          ) < 1,
+        undefined,
+        { timeout: 45000 },
+      );
+      await settle(page);
+      report.scenes.push(await snapshot(page, output, "live-orbit"));
+      const orbit = report.scenes.at(-1).camera;
+      assert.ok(Math.abs(orbit.longitude - 20) < 0.001);
+      assert.ok(Math.abs(orbit.latitude - 20) < 0.001);
+      assert.ok(Math.abs(orbit.pitch + 90) < 0.01);
+      report.providerErrors = await page.evaluate(
+        () => window.__demo.providerErrors,
+      );
+      for (const error of report.providerErrors) {
+        error.message = redact(error.message);
+      }
+      assert.deepEqual(report.providerErrors, []);
+      check("live Everest-to-Orbit flight retains tiled imagery");
+    }
+    await page.evaluate(() => {
+      window.__m1 = { adapterInfo: window.__demo.adapterInfo };
+    });
+    report.destroy = await lifecycle(page);
+    assertReleased(report.destroy);
+    check(
+      "pagehide releases every observed native GPU allocation and stops rendering",
+    );
+  },
+);

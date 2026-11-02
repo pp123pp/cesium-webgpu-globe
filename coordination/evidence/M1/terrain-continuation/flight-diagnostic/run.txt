@@ -1,0 +1,25 @@
+M1 himalaya-region: 5 terrain tiles, 10 imagery draws
+M1 everest-oblique: 12 terrain tiles, 24 imagery draws
+M1 everest-near: 19 terrain tiles, 42 imagery draws
+M1 everest-top-down: 12 terrain tiles, 24 imagery draws
+M1 base-camp-ground: 9 terrain tiles, 20 imagery draws
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+921600 !== 0
+
+    at file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-terrain-smoke.mjs:488:10
+    at async runM1BrowserSuite (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-terrain-smoke.mjs:15:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 921600,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

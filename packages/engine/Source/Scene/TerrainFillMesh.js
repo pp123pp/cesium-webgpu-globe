@@ -1300,10 +1300,11 @@ function createFillMesh(tileProvider, frameState, tile, vertexArraysToDestroy) {
 
   fill._destroyVertexArray(vertexArraysToDestroy);
 
-  fill.vertexArray = GlobeSurfaceTile._createVertexArrayForMesh(
-    context,
-    fill.mesh,
-  );
+  // The WebGPU surface adapter reuses this CPU fill/edge algorithm with its
+  // own resource owner. Native WebGL keeps its original allocation path.
+  fill.vertexArray = tileProvider.createFillMeshResources
+    ? tileProvider.createFillMeshResources(fill.mesh)
+    : GlobeSurfaceTile._createVertexArrayForMesh(context, fill.mesh);
   surfaceTile.processImagery(
     tile,
     tileProvider.terrainProvider,

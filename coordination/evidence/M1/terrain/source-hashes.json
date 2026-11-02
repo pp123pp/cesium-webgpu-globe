@@ -1,0 +1,23 @@
+{
+  "testedProductionCommit": "00eb8fddbb4ac123c875372d494415f185e1c284",
+  "equivalentPublishedCommit": "f78e42ee24f53851983e3e6729b8acbbf1da2ddc",
+  "testedProductionTree": "fc98b26f10dd4e890dceea2daf42d4971f93656d",
+  "bundleSha256": "01d4139ecbfb446548615cd64284c110ef2d2efd5502c924f210ce7b9087b405",
+  "productionFilesSha256": {
+    "packages/engine/Source/Scene/WebGPUGlobeMath.js": "595451d27df155e5cbfac90220b8fa871e71678fe839228ad777ff1e7c25d003",
+    "packages/engine/Source/Scene/WebGPUGlobeTileProvider.js": "7e798f6e87af32c944c54dc27a3d3bf24b25429b8407cd30121bf16d1e4942b1",
+    "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "027d17c00ef7fd705f294137f893e09ea085a9cc33ed90fc90e57e208568673c",
+    "packages/engine/Source/Scene/WebGPUImagery.js": "a7202a711ba6009225ac981273d47570259c25b56b2263ddb05880bec128c694",
+    "packages/engine/Source/Scene/WebGPUScene.js": "bbb0f3c1f80447dfc70122ddf7980dcfe692588cda7909a39173119a527dc521",
+    "packages/engine/Source/Renderer/WebGPUContext.js": "1590a9d88e0523b3a512da464beddbcd3a906e9912934a8c1ce8eef958612ee3",
+    "packages/engine/Source/Widget/WebGPUWidget.js": "a7fe1ac3a1b8ed7d9dd9d7f1b6be813aee52ebfb67b418a777ea5aa640660f32",
+    "packages/widgets/Source/Viewer/Viewer.js": "6cda42ca8f15e4ec673c7d900d6212794d36b4cd75c3e7681b4b2cee43e17172",
+    "coordination/ci/m1-browser-harness.mjs": "50f5a454f5f701ad46e85a351ab0a17857a3eeb2d3d32ed8f1a521944a0cf45a"
+  },
+  "checkpointTestFilesSha256": {
+    "coordination/ci/m1-terrain-smoke.mjs": "9eaa32745a6b5aec16a4abaf7dedb27295d05cc3d95168212a31031ecbc4e811",
+    "coordination/ci/m1-terrain-edges.mjs": "d9cff457605dab3e0a207db9ef23ef97baf11d52f8820bbb9484385f3ee52b13",
+    "coordination/ci/m1-terrain-edges.test.mjs": "c0df09c2266a749cd1902720b575cb0a8fe63756e77619f66576ac19d18a5134"
+  },
+  "note": "This PASS predates the newly added groundFlight block and the center-wheel guard. The original run recorded its parent and untracked test paths; no original harness byte hash was captured. Checkpoint test hashes describe the saved files, not a claim that the current entire terrain script passed. Rerun the current script before accepting the final A05 gate."
+}

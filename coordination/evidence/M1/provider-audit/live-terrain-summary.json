@@ -1,0 +1,84 @@
+{
+  "scope": "Prior isolated browser data probe, recorded as numeric evidence only; not rendering or GPU acceptance.",
+  "recordedDate": "2026-11-02",
+  "cesiumVersion": "1.146.0",
+  "browserVersion": "156.0.8078.4",
+  "providerApi": "Cesium.createWorldTerrainAsync()",
+  "providerType": "CesiumTerrainProvider",
+  "nativeBrowserWorkers": true,
+  "gpuDrawingTested": false,
+  "completedTerrainRequests": 15,
+  "failedRequestCount": 0,
+  "httpErrorCount": 0,
+  "allTilesAvailableBeforeAndAfter": true,
+  "allTilesFinitePositions": true,
+  "terrainPayloadsSaved": false,
+  "tileColumns": [
+    "level",
+    "x",
+    "y",
+    "minimumHeightMeters",
+    "maximumHeightMeters",
+    "sourceVertices"
+  ],
+  "tiles": [
+    [0, 0, 0, -2119.1943359375, 6969.12255859375, 226],
+    [0, 1, 0, -414.3872375488281, 8777.140625, 218],
+    [1, 2, 0, -414.3872375488281, 8777.140625, 138],
+    [2, 5, 1, -260.4971008300781, 8777.140625, 77],
+    [3, 11, 2, -260.4971008300781, 8777.140625, 46],
+    [4, 23, 5, -139.7662811279297, 8777.140625, 62],
+    [5, 47, 11, -139.7662811279297, 8777.140625, 142],
+    [6, 94, 22, -62.141639709472656, 8777.140625, 531],
+    [7, 189, 44, 5.983967304229736, 8777.140625, 2061],
+    [8, 379, 88, 310.0301208496094, 8777.140625, 3118],
+    [9, 759, 176, 3727.4921875, 8777.140625, 2460],
+    [9, 758, 176, 2715.5283203125, 8160.21435546875, 2858],
+    [9, 760, 176, 1695.110107421875, 5832.48828125, 2361],
+    [9, 759, 175, 3899.43798828125, 6653.96875, 1539],
+    [9, 759, 177, 310.0301208496094, 7213.896484375, 2342]
+  ],
+  "edgeComparisonMethod": "Separate five-tile mesh probe; five piecewise-linear decoded-height samples per shared ordered edge.",
+  "adjacentEdges": [
+    {
+      "side": "west",
+      "boundaryCoordinatesMatch": true,
+      "centerEdgeVertices": 50,
+      "neighborEdgeVertices": 50,
+      "maxSampledHeightDifferenceMeters": 0.08837890625
+    },
+    {
+      "side": "east",
+      "boundaryCoordinatesMatch": true,
+      "centerEdgeVertices": 45,
+      "neighborEdgeVertices": 45,
+      "maxSampledHeightDifferenceMeters": 0.15120883079089253
+    },
+    {
+      "side": "north",
+      "boundaryCoordinatesMatch": true,
+      "centerEdgeVertices": 33,
+      "neighborEdgeVertices": 33,
+      "maxSampledHeightDifferenceMeters": 0.1142578125
+    },
+    {
+      "side": "south",
+      "boundaryCoordinatesMatch": true,
+      "centerEdgeVertices": 39,
+      "neighborEdgeVertices": 39,
+      "maxSampledHeightDifferenceMeters": 0.2035415573609498
+    }
+  ],
+  "postMeshInterpolation": {
+    "centerBeforeMeshHeightMeters": 6142.144967542046,
+    "tilesWithoutNumericAfterMeshHeight": 5,
+    "upstreamLimitationNotRepaired": true
+  },
+  "limits": [
+    "Public/default provider was used through Cesium; no credentials, query strings, or tile binaries are included.",
+    "Live availability can change; this is observed resource access, not a reproducible offline pyramid.",
+    "Small shared-edge height differences do not establish rendered crack-free LOD behavior.",
+    "This report retains a completed prior probe; the CPU test slice launched no browser or server."
+  ],
+  "anyTileCreatedByUpsampling": false
+}

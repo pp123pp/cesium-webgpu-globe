@@ -1,0 +1,518 @@
+✖ a draft documentation update does not inherit an older Viewer change (40.311856ms)
+✖ opened checks the full PR difference conservatively (37.312534ms)
+✖ reopened checks the full PR difference conservatively (44.251064ms)
+✖ a newly changed shared Viewer forces Full on a draft (42.853383ms)
+✖ WebGPU-only production updates remain eligible for Fast on a draft (53.896036ms)
+✖ a change to packages/core/Source/Cartesian3.js forces the complete gate (69.852687ms)
+✖ a change to packages/engine/Source/Renderer/Context.js forces the complete gate (58.234073ms)
+✖ a change to packages/engine/Source/Scene/Globe.js forces the complete gate (57.869834ms)
+✖ a change to .github/workflows/m0-webgl-baseline.yml forces the complete gate (64.704062ms)
+✖ a change to coordination/ci/m1-terrain-smoke.mjs forces the complete gate (57.725166ms)
+✖ a change to package-lock.json forces the complete gate (60.083922ms)
+✖ a change to tsconfig.json forces the complete gate (59.763574ms)
+✖ a change to eslint.config.js forces the complete gate (54.885443ms)
+✖ renaming a shared file into a WebGPU path cannot hide the deletion (55.020017ms)
+✖ ready_for_review always runs Full on the exact PR head (38.56898ms)
+✖ a ready PR's later documentation commit still runs Full (42.557577ms)
+✖ ci:full is an immediate manual trigger without changing draft state (36.313676ms)
+✖ a retained ci:full label requests Full on later draft updates (36.388882ms)
+✖ an unrelated label does not restart Full even on a ready PR (40.237177ms)
+✖ an unavailable synchronize comparison fails closed (undefined) (47.566229ms)
+✖ an unavailable synchronize comparison fails closed (0000000000000000000000000000000000000000) (41.069716ms)
+✖ an unavailable synchronize comparison fails closed (ffffffffffffffffffffffffffffffffffffffff) (42.080832ms)
+✖ an unavailable synchronize comparison fails closed (--help) (35.325636ms)
+✖ manual dispatch selects Full when GitHub can deliver that event (33.219493ms)
+✔ Fast and Full avoid push/PR duplication and cover final acceptance events (6.816886ms)
+✔ new PR revisions cancel the same tier without cancelling the other tier (7.831537ms)
+✔ Full keeps every browser gate and both complete upstream suite commands (2.873187ms)
+✔ each tier builds the candidate once and retains lint and generated API checks (1.365859ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 4
+ℹ fail 24
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1225.120188
+
+✖ failing tests:
+
+test at coordination/ci/m1-ci-policy.test.mjs:112:1
+✖ a draft documentation update does not inherit an older Viewer change (40.311856ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:113:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:119:3
+✖ opened checks the full PR difference conservatively (37.312534ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:120:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:119:3
+✖ reopened checks the full PR difference conservatively (44.251064ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:120:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:124:1
+✖ a newly changed shared Viewer forces Full on a draft (42.853383ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:129:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:132:1
+✖ WebGPU-only production updates remain eligible for Fast on a draft (53.896036ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:141:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to packages/core/Source/Cartesian3.js forces the complete gate (69.852687ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to packages/engine/Source/Renderer/Context.js forces the complete gate (58.234073ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to packages/engine/Source/Scene/Globe.js forces the complete gate (57.869834ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to .github/workflows/m0-webgl-baseline.yml forces the complete gate (64.704062ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to coordination/ci/m1-terrain-smoke.mjs forces the complete gate (57.725166ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to package-lock.json forces the complete gate (60.083922ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to tsconfig.json forces the complete gate (59.763574ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:154:3
+✖ a change to eslint.config.js forces the complete gate (54.885443ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:161:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:165:1
+✖ renaming a shared file into a WebGPU path cannot hide the deletion (55.020017ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:177:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:180:1
+✖ ready_for_review always runs Full on the exact PR head (38.56898ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:181:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:186:1
+✖ a ready PR's later documentation commit still runs Full (42.557577ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:189:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:192:1
+✖ ci:full is an immediate manual trigger without changing draft state (36.313676ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:194:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:199:1
+✖ a retained ci:full label requests Full on later draft updates (36.388882ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:202:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:207:1
+✖ an unrelated label does not restart Full even on a ready PR (40.237177ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:210:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:214:3
+✖ an unavailable synchronize comparison fails closed (undefined) (47.566229ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:215:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:214:3
+✖ an unavailable synchronize comparison fails closed (0000000000000000000000000000000000000000) (41.069716ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:215:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:214:3
+✖ an unavailable synchronize comparison fails closed (ffffffffffffffffffffffffffffffffffffffff) (42.080832ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:215:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:214:3
+✖ an unavailable synchronize comparison fails closed (--help) (35.325636ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:215:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-ci-policy.test.mjs:219:1
+✖ manual dispatch selects Full when GitHub can deliver that event (33.219493ms)
+  AssertionError [ERR_ASSERTION]: ifError got unwanted exception: spawnSync /opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node EPERM
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:101:10)
+      at Object.spawnSync (node:internal/child_process:1191:20)
+      at spawnSync (node:child_process:929:24)
+      at runPolicy (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:90:18)
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-ci-policy.test.mjs:220:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: null,
+    operator: 'ifError',
+    diff: 'simple'
+  }

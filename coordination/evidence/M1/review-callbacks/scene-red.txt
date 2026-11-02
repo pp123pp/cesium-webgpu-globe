@@ -1,0 +1,120 @@
+✖ postUpdate can replace terrain before same-frame tile selection and drawing (13.310334ms)
+✖ postUpdate camera.setView updates same-frame culling and selected draws (2.299279ms)
+✖ preRender can replace terrain before same-frame tile selection and drawing (1.490904ms)
+✖ preRender camera.setView updates same-frame culling and selected draws (1.790646ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25.766286
+
+✖ failing tests:
+
+test at coordination/ci/m1-scene-events.test.mjs:183:3
+✖ postUpdate can replace terrain before same-frame tile selection and drawing (13.310334ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Cannot read properties of undefined (reading 'center')"
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot read properties of undefined (reading 'center')
+        at WebGPUGlobeRenderer._draw (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:448:24)
+        at file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:404:22
+        at Object.render (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:71:7)
+        at WebGPUGlobeRenderer.render (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:403:18)
+        at WebGPUScene._renderFrame (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUScene.js:337:20)
+        at WebGPUScene.render (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUScene.js:260:12)
+        at file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:39
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-scene-events.test.mjs:216:3
+✖ postUpdate camera.setView updates same-frame culling and selected draws (2.299279ms)
+  AssertionError [ERR_ASSERTION]: Draw selection must use the camera position established by the scene callback
+  + actual - expected
+
+    [
+  +   'south'
+  -   'north'
+    ]
+
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:230:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Array],
+    expected: [Array],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-scene-events.test.mjs:183:3
+✖ preRender can replace terrain before same-frame tile selection and drawing (1.490904ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Cannot read properties of undefined (reading 'center')"
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Cannot read properties of undefined (reading 'center')
+        at WebGPUGlobeRenderer._draw (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:448:24)
+        at file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:404:22
+        at Object.render (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:71:7)
+        at WebGPUGlobeRenderer.render (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUGlobeRenderer.js:403:18)
+        at WebGPUScene._renderFrame (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUScene.js:337:20)
+        at WebGPUScene.render (file:///workspace/scratch/3788b309ccca/m1-demo/packages/engine/Source/Scene/WebGPUScene.js:260:12)
+        at file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:39
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:202:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-scene-events.test.mjs:216:3
+✖ preRender camera.setView updates same-frame culling and selected draws (1.790646ms)
+  AssertionError [ERR_ASSERTION]: Draw selection must use the camera position established by the scene callback
+  + actual - expected
+
+    [
+  +   'south'
+  -   'north'
+    ]
+
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-scene-events.test.mjs:230:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [Array],
+    expected: [Array],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

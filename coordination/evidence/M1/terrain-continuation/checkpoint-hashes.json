@@ -1,0 +1,12 @@
+{
+  "note": "Source hashes recorded after diagnostic-only test formatting and fallback counters. readiness-green/result.json identifies actual run, parent source and dirty paths. Production adapter hash equals the tested candidate; final complete suite is still required.",
+  "parent": "811e6725a9c3dd9ed0cf6d8426a1ae1dee7b036f",
+  "hashes": {
+    "packages/engine/Source/Scene/WebGPUGlobeTileProvider.js": "2b437124a9961e4b7a0e6d35e5597ba74330bf4e974375eb635256196784a02d",
+    "packages/engine/Source/Scene/WebGPUScene.js": "917ffcea8af55cdd62b1d657762980e40bd30b7b78cb224299b1fbfaa7edd4ad",
+    "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "027d17c00ef7fd705f294137f893e09ea085a9cc33ed90fc90e57e208568673c",
+    "coordination/ci/m1-terrain-smoke.mjs": "30693a67fc4e71fd6ef4e77ccef1274621488e7a8cc6c206afa82b45454df1e1",
+    "coordination/ci/m1-tile-provider.test.mjs": "f60c002ce29e397ea98b250b4b788879690e642c864b05b5bfd7e7a1abf2907f",
+    "Build/CesiumUnminified/Cesium.js": "099de52da2d2ad722cf2d2cdb96ca70bd9bf4656cf767a5a13bd624d4b1126b1"
+  }
+}

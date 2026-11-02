@@ -57,6 +57,7 @@
       const status = document.getElementById("status");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
+        globe: false,
       });
       const showError = (error) => {
         status.style.color = "#ffb4b4";

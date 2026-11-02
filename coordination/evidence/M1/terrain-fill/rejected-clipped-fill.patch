@@ -1,0 +1,246 @@
+diff --git a/packages/engine/Source/Scene/WebGPUGlobeRenderer.js b/packages/engine/Source/Scene/WebGPUGlobeRenderer.js
+index f8c0c66..f1b66b6 100644
+--- a/packages/engine/Source/Scene/WebGPUGlobeRenderer.js
++++ b/packages/engine/Source/Scene/WebGPUGlobeRenderer.js
+@@ -25,11 +25,13 @@ struct VertexOutput {
+ fn outside(uv: vec2f, rectangle: vec4f) -> bool {
+   // Full tiles include native skirts. Do not clip their interpolated edge UVs:
+   // float interpolation can overshoot [0,1] and cut a one-pixel crack in a skirt.
+-  if (any(rectangle.xy > vec2f(0.0)) || any(rectangle.zw < vec2f(1.0))) {
+-    return any(uv < rectangle.xy - vec2f(0.000001)) ||
+-           any(uv > rectangle.zw + vec2f(0.000001));
+-  }
+-  return false;
++  // Internal boundaries are identical in geometry and imagery. Expanding only
++  // terrain coverage writes depth where its imagery is excluded, leaving a
++  // bare pixel that a neighboring tile's imagery cannot repair.
++  return (rectangle.x > 0.0 && uv.x < rectangle.x) ||
++         (rectangle.y > 0.0 && uv.y < rectangle.y) ||
++         (rectangle.z < 1.0 && uv.x >= rectangle.z) ||
++         (rectangle.w < 1.0 && uv.y >= rectangle.w);
+ }
+ @fragment fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
+   if (outside(input.uv, tile.clip)) { discard; }
+@@ -39,16 +41,8 @@ struct Image { rectangle: vec4f, mapping: vec4f, config: vec4f, mercator: vec4f
+ @group(1) @binding(0) var dayTexture: texture_2d<f32>;
+ @group(1) @binding(1) var daySampler: sampler;
+ @group(1) @binding(2) var<uniform> imagery: Image;
+-fn outsideImage(uv: vec2f, rectangle: vec4f) -> bool {
+-  // Half-open internal boundaries give one association ownership of each
+-  // fragment. Applying skirt tolerance here would blend alpha repeatedly.
+-  return (rectangle.x > 0.0 && uv.x < rectangle.x) ||
+-         (rectangle.y > 0.0 && uv.y < rectangle.y) ||
+-         (rectangle.z < 1.0 && uv.x >= rectangle.z) ||
+-         (rectangle.w < 1.0 && uv.y >= rectangle.w);
+-}
+ @fragment fn imageryMain(input: VertexOutput) -> @location(0) vec4f {
+-  if (outsideImage(input.uv, tile.clip)) { discard; }
++  if (outside(input.uv, tile.clip)) { discard; }
+   var t = input.uv.y;
+   if (imagery.config.y == 1.0) { t = input.mercatorT; }
+   var angle = 0.0;
+@@ -60,7 +54,7 @@ fn outsideImage(uv: vec2f, rectangle: vec4f) -> bool {
+       t = (angle - imagery.mercator.z) * imagery.mercator.w;
+     }
+   }
+-  if (outsideImage(vec2f(input.uv.x, t), imagery.rectangle)) { discard; }
++  if (outside(vec2f(input.uv.x, t), imagery.rectangle)) { discard; }
+   var uv = vec2f(input.uv.x, t) * imagery.mapping.zw + imagery.mapping.xy;
+   if (imagery.config.y == 2.0) {
+     // Polar terrain does not have a native Mercator attribute. Reproject its
+diff --git a/packages/engine/Source/Scene/WebGPUGlobeTileProvider.js b/packages/engine/Source/Scene/WebGPUGlobeTileProvider.js
+index c1279f5..541e58d 100644
+--- a/packages/engine/Source/Scene/WebGPUGlobeTileProvider.js
++++ b/packages/engine/Source/Scene/WebGPUGlobeTileProvider.js
+@@ -1,4 +1,7 @@
+-import { RuntimeError } from "@cesium/core";
++import {
++  BoundingSphere, Cartesian2, Cartesian3, IntersectionTests,
++  OrientedBoundingBox, Ray, RuntimeError, barycentricCoordinates,
++} from "@cesium/core";
+ import Request from "../Core/Request.js";
+ import RequestType from "../Core/RequestType.js";
+ import TileProviderError from "../Core/TileProviderError.js";
+@@ -10,16 +13,27 @@ import ImageryState from "./ImageryState.js";
+ 
+ // Retain native picking, bounds and imagery associations, with explicit GPU ownership.
+ class WebGPUSurfaceTile extends GlobeSurfaceTile {
+-  constructor(owner) {
++  constructor(owner, tile) {
+     super();
+     this.owner = owner;
++    this.tile = tile;
+     this.released = false;
+     this.gpu = undefined;
+     owner._tiles.add(this);
+   }
+ 
+   get renderedMesh() {
+-    return this.gpu ? this.mesh : undefined;
++    return this.released ? undefined : this.owner._renderSource(this.tile)?.data.mesh;
++  }
++
++  pick(ray, mode, projection, cullBackFaces, result) {
++    if (this.gpu) {
++      return super.pick(ray, mode, projection, cullBackFaces, result);
++    }
++    const source = this.released ? undefined : this.owner._renderSource(this.tile);
++    if (source) {
++      return pickClippedMesh(source, this.tile.rectangle, ray, cullBackFaces, result);
++    }
+   }
+ 
+   get eligibleForUnloading() {
+@@ -32,6 +46,9 @@ class WebGPUSurfaceTile extends GlobeSurfaceTile {
+       return;
+     }
+     this.released = true;
++    if (this.tile.data === this) {
++      this.tile.renderable = false;
++    }
+     this.request?.cancel();
+     this.request = undefined;
+     this.gpu?.destroy();
+@@ -70,11 +87,25 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
+ 
+   _ensureTile(tile) {
+     if (!(tile.data instanceof WebGPUSurfaceTile) || tile.data.released) {
+-      tile.data = new WebGPUSurfaceTile(this);
++      tile.data = new WebGPUSurfaceTile(this, tile);
+     }
++    // A clipped ancestor is real drawable coverage while this tile loads.
++    // Native sibling selection must not discard an already-ready fine tile
++    // merely because one of its siblings is still using that coverage.
++    tile.renderable = this._renderSource(tile) !== undefined;
+     return tile.data;
+   }
+ 
++  _renderSource(tile) {
++    if (this._destroyed) {
++      return undefined;
++    }
++    while (tile && (!tile.data?.gpu || tile.data.released)) {
++      tile = tile.parent;
++    }
++    return tile;
++  }
++
+   get terrainProvider() {
+     return super.terrainProvider;
+   }
+@@ -97,8 +128,30 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
+ 
+   computeDistanceToTile(tile, frameState) {
+     // The native bounds helper otherwise constructs a WebGL-owned surface tile.
+-    this._ensureTile(tile);
+-    return super.computeDistanceToTile(tile, frameState);
++    const data = this._ensureTile(tile);
++    if (data._fallbackBounds) {
++      data.tileBoundingRegion._orientedBoundingBox = undefined;
++      data.tileBoundingRegion._boundingSphere = undefined;
++      data.boundingVolumeIsFromMesh = false;
++      data._fallbackBounds = false;
++    }
++    const distance = super.computeDistanceToTile(tile, frameState);
++    const source = this._renderSource(tile);
++    if (source && source !== tile) {
++      // Received child heights can differ from the ancestor actually drawn.
++      // Keep independent conservative bounds around that real GPU geometry.
++      const mesh = source.data.mesh;
++      const region = data.tileBoundingRegion;
++      region.minimumHeight = mesh.minimumHeight;
++      region.maximumHeight = mesh.maximumHeight;
++      region._orientedBoundingBox = OrientedBoundingBox.clone(mesh.orientedBoundingBox, region._orientedBoundingBox);
++      region._boundingSphere = BoundingSphere.clone(mesh.boundingSphere3D, region._boundingSphere);
++      data.occludeePointInScaledSpace = Cartesian3.clone(source.data.occludeePointInScaledSpace);
++      data.boundingVolumeSourceTile = source;
++      data.boundingVolumeIsFromMesh = false;
++      data._fallbackBounds = true;
++    }
++    return distance;
+   }
+ 
+   computeTileLoadPriority(tile, frameState) {
+@@ -123,7 +176,10 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
+   endUpdate() {}
+ 
+   canRefine(tile) {
+-    return tile.level < 30 && super.canRefine(tile);
++    // Known availability alone must not expand an entirely unloaded subtree.
++    // Preserve paths to cached fine meshes, including gaps in their ancestry.
++    return tile.level < 30 && super.canRefine(tile) &&
++      (tile.data?.gpu !== undefined || hasLoadedDescendant(tile));
+   }
+ 
+   canRenderWithoutLosingDetail(tile) {
+@@ -131,10 +187,7 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
+   }
+ 
+   showTileThisFrame(tile, frameState) {
+-    let source = tile;
+-    while (source && !source.data?.gpu) {
+-      source = source.parent;
+-    }
++    const source = this._renderSource(tile);
+     if (source) {
+       // During rapid pans native traversal can select a not-yet-loaded child.
+       // Draw only its rectangle from a ready ancestor, retaining coverage.
+@@ -356,4 +409,58 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
+   }
+ }
+ 
++function hasLoadedDescendant(tile) {
++  for (const child of [tile._southwestChild, tile._southeastChild,
++    tile._northwestChild, tile._northeastChild]) {
++    if (child && ((child.data?.gpu && !child.data.released) || hasLoadedDescendant(child))) {
++      return true;
++    }
++  }
++  return false;
++}
++
++const pickPositions = [new Cartesian3(), new Cartesian3(), new Cartesian3()];
++const pickUvs = [new Cartesian2(), new Cartesian2(), new Cartesian2()];
++const pickPoint = new Cartesian3();
++const pickWeights = new Cartesian3();
++
++function pickClippedMesh(source, rectangle, ray, cullBackFaces, result) {
++  const mesh = source.data.mesh;
++  const { encoding, vertices, indices } = mesh;
++  const bounds = source.rectangle;
++  const west = (rectangle.west - bounds.west) / bounds.width;
++  const east = (rectangle.east - bounds.west) / bounds.width;
++  const south = (rectangle.south - bounds.south) / bounds.height;
++  const north = (rectangle.north - bounds.south) / bounds.height;
++  let nearest = Number.POSITIVE_INFINITY;
++  // Native intersection and barycentric algorithms, restricted by the same
++  // interpolated source UV as the GPU clip. Filter each hit before choosing
++  // the nearest: a closer triangle outside the clip must not hide a valid one.
++  for (let i = 0; i < indices.length; i += 3) {
++    for (let j = 0; j < 3; ++j) {
++      encoding.decodePosition(vertices, indices[i + j], pickPositions[j]);
++    }
++    const [a, b, c] = pickPositions;
++    const distance = IntersectionTests.rayTriangleParametric(ray, a, b, c, cullBackFaces);
++    if (distance === undefined || distance < 0 || distance >= nearest) {
++      continue;
++    }
++    Ray.getPoint(ray, distance, pickPoint);
++    const weights = barycentricCoordinates(pickPoint, a, b, c, pickWeights);
++    if (!weights) {
++      continue;
++    }
++    for (let j = 0; j < 3; ++j) {
++      encoding.decodeTextureCoordinates(vertices, indices[i + j], pickUvs[j]);
++    }
++    const u = pickUvs[0].x * weights.x + pickUvs[1].x * weights.y + pickUvs[2].x * weights.z;
++    const v = pickUvs[0].y * weights.x + pickUvs[1].y * weights.y + pickUvs[2].y * weights.z;
++    if (!(west > 0 && u < west) && !(east < 1 && u >= east) &&
++        !(south > 0 && v < south) && !(north < 1 && v >= north)) {
++      nearest = distance;
++    }
++  }
++  return Number.isFinite(nearest) ? Ray.getPoint(ray, nearest, result) : undefined;
++}
++
+ export default WebGPUGlobeTileProvider;

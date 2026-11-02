@@ -1,0 +1,7 @@
+M1 natural-earth-orbit: 2 terrain tiles, 2 imagery draws
+M1 natural-earth-dateline: 16 terrain tiles, 16 imagery draws
+M1 natural-earth-close: 14 terrain tiles, 14 imagery draws
+M1 geographic-coordinates: 7 terrain tiles, 28 imagery draws
+M1 mercator-polar-coordinates: 6 terrain tiles, 48 imagery draws
+M1 mercator-native-coordinates: 17 terrain tiles, 118 imagery draws
+M1 imagery PASS: real tiled Natural Earth and dynamic native imagery LOD, geographic and Mercator placement, north/south orientation and polar reprojection, layer rectangle, alpha, show, ordering and removal, late imagery cancellation and texture release, balanced GPU buffer/texture lifetimes

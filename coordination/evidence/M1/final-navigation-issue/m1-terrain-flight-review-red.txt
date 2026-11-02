@@ -1,0 +1,63 @@
+✔ a successful real terrain flight remains an actual passing observation (1.364016ms)
+✔ only the evidenced near-ground coarse-mesh collision is nonblocking (0.382525ms)
+✔ an excessive final height requires evidence of the native collision clamp (0.294656ms)
+✔ holes outside the diagnosed underground descent still fail (1.108227ms)
+✖ a READY ancestor does not authorize an unrelated fill-height failure (1.287012ms)
+✖ an earlier clamp cannot authorize an unrelated higher endpoint (0.279704ms)
+✔ the exception cannot waive imagery, settled coverage, completion, LOD or below-ground endpoints (0.327764ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.511719
+
+✖ failing tests:
+
+test at coordination/ci/m1-terrain-flight.test.mjs:68:1
+✖ a READY ancestor does not authorize an unrelated fill-height failure (1.287012ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'KNOWN_UNRESOLVED'
+  - 'FAIL'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-terrain-flight.test.mjs:76:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'KNOWN_UNRESOLVED',
+    expected: 'FAIL',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at coordination/ci/m1-terrain-flight.test.mjs:79:1
+✖ an earlier clamp cannot authorize an unrelated higher endpoint (0.279704ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'KNOWN_UNRESOLVED'
+  - 'FAIL'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-terrain-flight.test.mjs:83:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'KNOWN_UNRESOLVED',
+    expected: 'FAIL',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,19 @@
+M1 demo: actual demo initialization, automatic rendering and bundled Natural Earth
+M1 demo: Orbit button completes the actual native camera flight
+M1 demo: pagehide cancels pending initialization before readiness
+M1 demo: unsupported WebGPU gives visible feedback and clean teardown
+M1 demo: actual GPU device loss is visible and disables unavailable controls
+M1 demo: pagehide during provider loading releases resources and ignores late failures
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:434:18
+    at async runM1BrowserSuite (/workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:252:1 {
+  log: [],
+  name: 'TimeoutError'
+}
+
+Node.js v24.22.1

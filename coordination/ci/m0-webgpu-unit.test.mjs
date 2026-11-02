@@ -219,7 +219,10 @@ test("initial widget resize failure rejects readiness and releases resources", a
       throw new Error("layout unavailable");
     },
   };
-  const widget = new WebGPUWidget(container, { useDefaultRenderLoop: false });
+  const widget = new WebGPUWidget(container, {
+    useDefaultRenderLoop: false,
+    globe: false,
+  });
   const errors = [];
   widget.renderError.addEventListener((source, error) => errors.push(error));
   await assert.rejects(widget.readyPromise, /layout unavailable/);

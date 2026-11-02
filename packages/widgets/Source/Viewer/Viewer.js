@@ -68,12 +68,23 @@ function restrictWebGPUProof(viewer) {
   for (const [name, descriptor] of Object.entries(
     Object.getOwnPropertyDescriptors(Viewer.prototype),
   )) {
-    if (name.startsWith("_") || webgpuViewerMembers.has(name)) {
+    const globeMember =
+      viewer._webgpuProof.scene &&
+      [
+        "scene",
+        "camera",
+        "clock",
+        "imageryLayers",
+        "terrainProvider",
+        "ellipsoid",
+        "creditDisplay",
+      ].includes(name);
+    if (name.startsWith("_") || webgpuViewerMembers.has(name) || globeMember) {
       continue;
     }
     const unsupported = function () {
       throw new DeveloperError(
-        `Viewer.${name} is not available in the M0 WebGPU proof.`,
+        `Viewer.${name} is not available in this WebGPU configuration.`,
       );
     };
     Object.defineProperty(
@@ -361,7 +372,7 @@ function enableVRUI(viewer, enabled) {
  *
  * Initialization options for the Viewer constructor
  *
- * @property {string} [renderingBackend="webgl"] Fixed at creation: "webgl" or experimental "webgpu". The M0 WebGPU proof supports only canvas rendering and lifecycle APIs, not Scene, Globe, widgets, terrain or imagery. Await readyPromise before rendering.
+ * @property {string} [renderingBackend="webgl"] Fixed at creation: "webgl" or experimental "webgpu". WebGPU supports the M1 SCENE3D Globe and native camera/provider APIs; widgets and other scene primitives are not supported. Set globe:false for the M0 triangle proof. Await readyPromise before rendering.
  * @property {boolean} [animation=true] If set to false, the Animation widget will not be created.
  * @property {boolean} [baseLayerPicker=true] If set to false, the BaseLayerPicker widget will not be created.
  * @property {boolean} [fullscreenButton=true] If set to false, the FullscreenButton widget will not be created.
@@ -1081,7 +1092,7 @@ Object.defineProperties(Viewer.prototype, {
    */
   creditDisplay: {
     get: function () {
-      return this._cesiumWidget.creditDisplay;
+      return (this._webgpuProof ?? this._cesiumWidget).creditDisplay;
     },
   },
 
@@ -1311,7 +1322,7 @@ Object.defineProperties(Viewer.prototype, {
    */
   scene: {
     get: function () {
-      return this._cesiumWidget.scene;
+      return (this._webgpuProof ?? this._cesiumWidget).scene;
     },
   },
 
@@ -1431,7 +1442,7 @@ Object.defineProperties(Viewer.prototype, {
    */
   clock: {
     get: function () {
-      return this._clockViewModel.clock;
+      return this._webgpuProof?.scene?.clock ?? this._clockViewModel.clock;
     },
   },
 
@@ -1486,7 +1497,8 @@ Object.defineProperties(Viewer.prototype, {
    * as part of a custom render loop.  If an error occurs during rendering, {@link Scene}'s
    * <code>renderError</code> event will be raised and this property
    * will be set to false.  It must be set back to true to continue rendering
-   * after the error.
+   * after the error on the WebGL backend. WebGPU render errors and device loss
+   * are terminal: destroy the Viewer and create a new one to recover.
    * @memberof Viewer.prototype
    *
    * @type {boolean}

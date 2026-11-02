@@ -1,0 +1,9 @@
+✔ coordination/ci/m1-terrain-coverage.test.mjs (54.313401ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.245906

@@ -23,12 +23,13 @@ struct VertexOutput {
 }`;
 
 /**
- * A deliberately isolated M0 WebGPU proof, not a replacement for Context.
+ * Device/canvas owner for the isolated WebGPU backend, not a WebGL Context.
  * @private
  */
 class WebGPUContext {
-  constructor(canvas) {
+  constructor(canvas, options = {}) {
     this.canvas = canvas;
+    this._globe = options.globe ?? false;
     this.renderError = new Event();
     this._destroyed = false;
     this._ready = false;
@@ -102,26 +103,28 @@ class WebGPUContext {
         alphaMode: "opaque",
       });
       this._configured = true;
-      const shader = device.createShaderModule({
-        label: "M0 triangle WGSL",
-        code: triangleShader,
-      });
-      this._pipeline = await device.createRenderPipelineAsync({
-        label: "M0 color and depth proof",
-        layout: "auto",
-        vertex: { module: shader, entryPoint: "vertexMain" },
-        fragment: {
-          module: shader,
-          entryPoint: "fragmentMain",
-          targets: [{ format: this._format }],
-        },
-        primitive: { topology: "triangle-list" },
-        depthStencil: {
-          format: "depth24plus",
-          depthWriteEnabled: true,
-          depthCompare: "less",
-        },
-      });
+      if (!this._globe) {
+        const shader = device.createShaderModule({
+          label: "M0 triangle WGSL",
+          code: triangleShader,
+        });
+        this._pipeline = await device.createRenderPipelineAsync({
+          label: "M0 color and depth proof",
+          layout: "auto",
+          vertex: { module: shader, entryPoint: "vertexMain" },
+          fragment: {
+            module: shader,
+            entryPoint: "fragmentMain",
+            targets: [{ format: this._format }],
+          },
+          primitive: { topology: "triangle-list" },
+          depthStencil: {
+            format: "depth24plus",
+            depthWriteEnabled: true,
+            depthCompare: "less",
+          },
+        });
+      }
       this._checkAlive();
       this.resize(this.canvas.width, this.canvas.height);
     } finally {
@@ -154,9 +157,9 @@ class WebGPUContext {
       this.canvas.width = width;
       this.canvas.height = height;
       this._depthTexture = this._device.createTexture({
-        label: "M0 depth attachment",
+        label: this._globe ? "WGS84 reversed depth" : "M0 depth attachment",
         size: [width, height],
-        format: "depth24plus",
+        format: this._globe ? "depth32float" : "depth24plus",
         usage: GPUTextureUsage.RENDER_ATTACHMENT,
       });
     } catch (error) {
@@ -165,31 +168,52 @@ class WebGPUContext {
     }
   }
 
-  render() {
+  get drawingBufferWidth() {
+    return this.canvas.width;
+  }
+
+  get drawingBufferHeight() {
+    return this.canvas.height;
+  }
+
+  render(draw, backgroundColor) {
     this._checkAlive();
     if (!this._ready) {
       return;
     }
     try {
-      const encoder = this._device.createCommandEncoder({ label: "M0 frame" });
+      const encoder = this._device.createCommandEncoder({
+        label: this._globe ? "WGS84 frame" : "M0 frame",
+      });
       const pass = encoder.beginRenderPass({
         colorAttachments: [
           {
             view: this._canvasContext.getCurrentTexture().createView(),
-            clearValue: { r: 0.04, g: 0.06, b: 0.1, a: 1 },
+            clearValue: backgroundColor
+              ? {
+                  r: backgroundColor.red,
+                  g: backgroundColor.green,
+                  b: backgroundColor.blue,
+                  a: backgroundColor.alpha,
+                }
+              : { r: 0.04, g: 0.06, b: 0.1, a: 1 },
             loadOp: "clear",
             storeOp: "store",
           },
         ],
         depthStencilAttachment: {
           view: this._depthTexture.createView(),
-          depthClearValue: 1,
+          depthClearValue: this._globe ? 0 : 1,
           depthLoadOp: "clear",
           depthStoreOp: "store",
         },
       });
-      pass.setPipeline(this._pipeline);
-      pass.draw(3, 2);
+      if (this._globe) {
+        draw?.(pass);
+      } else {
+        pass.setPipeline(this._pipeline);
+        pass.draw(3, 2);
+      }
       pass.end();
       this._device.queue.submit([encoder.finish()]);
     } catch (error) {

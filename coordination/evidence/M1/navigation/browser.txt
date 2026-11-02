@@ -1,0 +1,15 @@
+M1 dateline-rotation: 7 terrain tiles, 7 imagery draws
+M1 north-pole-rotation: 8 terrain tiles, 8 imagery draws
+M1 south-pole-rotation: 8 terrain tiles, 8 imagery draws
+M1 navigation: real GPU depth positive and negative controls
+M1 depth-restored: 8 terrain tiles, 8 imagery draws
+M1 navigation: native orbit-to-ground flight
+M1 flight-ground: 12 terrain tiles, 12 imagery draws
+M1 ground-10m: 9 terrain tiles, 9 imagery draws
+M1 ground-1m: 8 terrain tiles, 8 imagery draws
+M1 navigation: real mouse controller and resize
+M1 mouse-navigation: 17 terrain tiles, 17 imagery draws
+M1 resized-960x540: 16 terrain tiles, 16 imagery draws
+M1 navigation: rapid churn and repeated waypoint resource bounds
+M1 churn-final: 4 terrain tiles, 4 imagery draws
+M1 navigation PASS: real ellipsoid provider and local NaturalEarthII imagery, native orbital rotations across dateline and both poles, reversed GPU depth preserves front imagery; always-depth negative control fails, real Camera.flyTo completes orbit-to-10m path and restores controller inputs, native flight also completes in the Viewer's default render loop, 10m and 1m surface views: native metre/submetre movement, finite reversed depth, RTC reference agreement, stationary pixels, actual Playwright mouse drag and wheel drive the native controller, viewport and resolutionScale recreate correctly sized depth attachments, rapid pending-request churn and three waypoint cycles keep actual GPU allocations bounded, balanced native GPU buffer/texture teardown, no hidden WebGL or browser/GPU errors

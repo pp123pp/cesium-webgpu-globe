@@ -1,0 +1,12 @@
+✔ postUpdate can replace terrain before same-frame tile selection and drawing (11.490781ms)
+✔ postUpdate camera.setView updates same-frame culling and selected draws (1.877793ms)
+✔ preRender can replace terrain before same-frame tile selection and drawing (1.730034ms)
+✔ preRender camera.setView updates same-frame culling and selected draws (1.388558ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22.508182

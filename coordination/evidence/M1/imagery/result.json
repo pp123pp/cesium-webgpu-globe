@@ -1,0 +1,997 @@
+{
+  "suite": "imagery",
+  "capturedAt": "2026-11-02T07:31:45.413Z",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "source": "c2f9a7e87e47dee3557b4cc3aab56e82a968fbaa",
+  "sourceStatus": "M coordination/ci/m1-tile-provider.test.mjs\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUGlobeTileProvider.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Widget/WebGPUWidget.js\n?? coordination/ci/m1-browser-harness.mjs\n?? coordination/ci/m1-imagery-renderer.test.mjs\n?? coordination/ci/m1-imagery-smoke.mjs",
+  "bundleSha256": "01d4139ecbfb446548615cd64284c110ef2d2efd5502c924f210ce7b9087b405",
+  "browserErrors": [],
+  "checks": [
+    "real tiled Natural Earth and dynamic native imagery LOD",
+    "geographic and Mercator placement, north/south orientation and polar reprojection",
+    "layer rectangle, alpha, show, ordering and removal",
+    "late imagery cancellation and texture release",
+    "balanced GPU buffer/texture lifetimes"
+  ],
+  "scenes": [
+    {
+      "name": "natural-earth-orbit",
+      "view": {
+        "name": "natural-earth-orbit",
+        "longitude": 20,
+        "latitude": 20,
+        "height": 40000000
+      },
+      "settled": {
+        "frames": 14,
+        "elapsedMs": 391.59999999962747,
+        "statistics": {
+          "frame": 15,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 2,
+          "loadedTiles": 2,
+          "terrain": {
+            "requests": 2,
+            "deferred": 0,
+            "meshes": 2,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 2,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 2,
+            "pendingRequests": 0,
+            "texturesCreated": 2,
+            "texturesDestroyed": 0,
+            "activeTextures": 2
+          },
+          "resources": {
+            "buffersCreated": 6,
+            "buffersDestroyed": 0,
+            "bufferBytes": 23224,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 2,
+            "texturesDestroyed": 0,
+            "textureBytes": 524288,
+            "imageryDrawCalls": 2
+          }
+        }
+      },
+      "statistics": {
+        "frame": 16,
+        "selectedTiles": 2,
+        "levels": [
+          0,
+          0
+        ],
+        "cacheTiles": 2,
+        "loadedTiles": 2,
+        "terrain": {
+          "requests": 2,
+          "deferred": 0,
+          "meshes": 2,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 2,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 2,
+          "pendingRequests": 0,
+          "texturesCreated": 2,
+          "texturesDestroyed": 0,
+          "activeTextures": 2
+        },
+        "resources": {
+          "buffersCreated": 6,
+          "buffersDestroyed": 0,
+          "bufferBytes": 23224,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 2,
+          "texturesDestroyed": 0,
+          "textureBytes": 524288,
+          "imageryDrawCalls": 2
+        }
+      },
+      "center": [
+        206,
+        195,
+        144,
+        255
+      ],
+      "distinctSampledColors": 691,
+      "backgroundPixels": 848053,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "natural-earth-dateline",
+      "view": {
+        "name": "natural-earth-dateline",
+        "longitude": 179.9,
+        "latitude": -20,
+        "height": 12000000
+      },
+      "settled": {
+        "frames": 11,
+        "elapsedMs": 386.09999999962747,
+        "statistics": {
+          "frame": 28,
+          "selectedTiles": 16,
+          "levels": [
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "cacheTiles": 26,
+          "loadedTiles": 26,
+          "terrain": {
+            "requests": 22,
+            "deferred": 0,
+            "meshes": 22,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 22,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 22,
+            "pendingRequests": 0,
+            "texturesCreated": 22,
+            "texturesDestroyed": 0,
+            "activeTextures": 22
+          },
+          "resources": {
+            "buffersCreated": 50,
+            "buffersDestroyed": 4,
+            "bufferBytes": 252392,
+            "drawCalls": 16,
+            "triangles": 9120,
+            "texturesCreated": 22,
+            "texturesDestroyed": 0,
+            "textureBytes": 5767168,
+            "imageryDrawCalls": 16
+          }
+        }
+      },
+      "statistics": {
+        "frame": 29,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 26,
+        "loadedTiles": 26,
+        "terrain": {
+          "requests": 22,
+          "deferred": 0,
+          "meshes": 22,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 22,
+          "pendingRequests": 0,
+          "texturesCreated": 22,
+          "texturesDestroyed": 0,
+          "activeTextures": 22
+        },
+        "resources": {
+          "buffersCreated": 50,
+          "buffersDestroyed": 4,
+          "bufferBytes": 252392,
+          "drawCalls": 16,
+          "triangles": 9120,
+          "texturesCreated": 22,
+          "texturesDestroyed": 0,
+          "textureBytes": 5767168,
+          "imageryDrawCalls": 16
+        }
+      },
+      "center": [
+        67,
+        113,
+        156,
+        255
+      ],
+      "distinctSampledColors": 1921,
+      "backgroundPixels": 420473,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "natural-earth-close",
+      "view": {
+        "name": "natural-earth-close",
+        "longitude": 86.925,
+        "latitude": 27.988,
+        "height": 200000
+      },
+      "settled": {
+        "frames": 16,
+        "elapsedMs": 697.8000000007451,
+        "statistics": {
+          "frame": 46,
+          "selectedTiles": 14,
+          "levels": [
+            8,
+            8,
+            8,
+            8,
+            7,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            8,
+            8
+          ],
+          "cacheTiles": 90,
+          "loadedTiles": 90,
+          "terrain": {
+            "requests": 51,
+            "deferred": 0,
+            "meshes": 50,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 24,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 24,
+            "pendingRequests": 0,
+            "texturesCreated": 24,
+            "texturesDestroyed": 0,
+            "activeTextures": 24
+          },
+          "resources": {
+            "buffersCreated": 106,
+            "buffersDestroyed": 4,
+            "bufferBytes": 563192,
+            "drawCalls": 14,
+            "triangles": 7980,
+            "texturesCreated": 24,
+            "texturesDestroyed": 0,
+            "textureBytes": 6291456,
+            "imageryDrawCalls": 14
+          }
+        }
+      },
+      "statistics": {
+        "frame": 47,
+        "selectedTiles": 14,
+        "levels": [
+          8,
+          8,
+          8,
+          8,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          7,
+          8,
+          8
+        ],
+        "cacheTiles": 90,
+        "loadedTiles": 90,
+        "terrain": {
+          "requests": 51,
+          "deferred": 0,
+          "meshes": 50,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 24,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 24,
+          "pendingRequests": 0,
+          "texturesCreated": 24,
+          "texturesDestroyed": 0,
+          "activeTextures": 24
+        },
+        "resources": {
+          "buffersCreated": 106,
+          "buffersDestroyed": 4,
+          "bufferBytes": 563192,
+          "drawCalls": 14,
+          "triangles": 7980,
+          "texturesCreated": 24,
+          "texturesDestroyed": 0,
+          "textureBytes": 6291456,
+          "imageryDrawCalls": 14
+        }
+      },
+      "center": [
+        173,
+        181,
+        170,
+        255
+      ],
+      "distinctSampledColors": 3617,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "geographic-coordinates",
+      "settled": {
+        "frames": 20,
+        "elapsedMs": 759,
+        "statistics": {
+          "frame": 68,
+          "selectedTiles": 7,
+          "levels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "cacheTiles": 90,
+          "loadedTiles": 90,
+          "terrain": {
+            "requests": 52,
+            "deferred": 0,
+            "meshes": 51,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 60,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 24,
+            "pendingRequests": 0,
+            "texturesCreated": 60,
+            "texturesDestroyed": 24,
+            "activeTextures": 36
+          },
+          "resources": {
+            "buffersCreated": 110,
+            "buffersDestroyed": 6,
+            "bufferBytes": 590676,
+            "drawCalls": 7,
+            "triangles": 3990,
+            "texturesCreated": 60,
+            "texturesDestroyed": 24,
+            "textureBytes": 2359296,
+            "imageryDrawCalls": 28
+          }
+        }
+      },
+      "modes": {
+        "geographic": 28,
+        "mercator": 0
+      },
+      "coordinates": {
+        "checked": 204,
+        "maximum": 3.057607884110894,
+        "errors": [],
+        "failures": 0
+      },
+      "statistics": {
+        "frame": 70,
+        "selectedTiles": 7,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 90,
+        "loadedTiles": 90,
+        "terrain": {
+          "requests": 52,
+          "deferred": 0,
+          "meshes": 51,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 60,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 24,
+          "pendingRequests": 0,
+          "texturesCreated": 60,
+          "texturesDestroyed": 24,
+          "activeTextures": 36
+        },
+        "resources": {
+          "buffersCreated": 110,
+          "buffersDestroyed": 6,
+          "bufferBytes": 590676,
+          "drawCalls": 7,
+          "triangles": 3990,
+          "texturesCreated": 60,
+          "texturesDestroyed": 24,
+          "textureBytes": 2359296,
+          "imageryDrawCalls": 28
+        }
+      },
+      "center": [
+        142,
+        170,
+        60,
+        255
+      ],
+      "distinctSampledColors": 2901,
+      "backgroundPixels": 581597,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mercator-polar-coordinates",
+      "settled": {
+        "frames": 12,
+        "elapsedMs": 698.7999999988824,
+        "statistics": {
+          "frame": 83,
+          "selectedTiles": 6,
+          "levels": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "cacheTiles": 90,
+          "loadedTiles": 90,
+          "terrain": {
+            "requests": 52,
+            "deferred": 0,
+            "meshes": 51,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 124,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 88,
+            "pendingRequests": 0,
+            "texturesCreated": 124,
+            "texturesDestroyed": 60,
+            "activeTextures": 64
+          },
+          "resources": {
+            "buffersCreated": 111,
+            "buffersDestroyed": 7,
+            "bufferBytes": 598868,
+            "drawCalls": 6,
+            "triangles": 3420,
+            "texturesCreated": 124,
+            "texturesDestroyed": 60,
+            "textureBytes": 4194304,
+            "imageryDrawCalls": 48
+          }
+        }
+      },
+      "modes": {
+        "geographic": 48,
+        "mercator": 0
+      },
+      "coordinates": {
+        "checked": 204,
+        "maximum": 2.8738388172809266,
+        "errors": [],
+        "failures": 0
+      },
+      "statistics": {
+        "frame": 85,
+        "selectedTiles": 6,
+        "levels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 90,
+        "loadedTiles": 90,
+        "terrain": {
+          "requests": 52,
+          "deferred": 0,
+          "meshes": 51,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 124,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 88,
+          "pendingRequests": 0,
+          "texturesCreated": 124,
+          "texturesDestroyed": 60,
+          "activeTextures": 64
+        },
+        "resources": {
+          "buffersCreated": 111,
+          "buffersDestroyed": 7,
+          "bufferBytes": 598868,
+          "drawCalls": 6,
+          "triangles": 3420,
+          "texturesCreated": 124,
+          "texturesDestroyed": 60,
+          "textureBytes": 4194304,
+          "imageryDrawCalls": 48
+        }
+      },
+      "center": [
+        142,
+        207,
+        60,
+        255
+      ],
+      "distinctSampledColors": 2996,
+      "backgroundPixels": 580849,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mercator-native-coordinates",
+      "nativeAssociations": 118,
+      "coordinates": {
+        "checked": 435,
+        "maximum": 0.5200830318742646,
+        "errors": [],
+        "failures": 0
+      },
+      "withoutOptionalAttribute": {
+        "checked": 435,
+        "maximum": 0.5292906771223613,
+        "errors": [],
+        "failures": 0
+      },
+      "replacedMeshes": 17,
+      "statistics": {
+        "frame": 119,
+        "selectedTiles": 17,
+        "levels": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2,
+          3,
+          3,
+          2,
+          3,
+          2
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 58,
+        "terrain": {
+          "requests": 72,
+          "deferred": 0,
+          "meshes": 71,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 274,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 238,
+          "pendingRequests": 0,
+          "texturesCreated": 274,
+          "texturesDestroyed": 60,
+          "activeTextures": 214
+        },
+        "resources": {
+          "buffersCreated": 220,
+          "buffersDestroyed": 142,
+          "bufferBytes": 470952,
+          "drawCalls": 17,
+          "triangles": 9690,
+          "texturesCreated": 274,
+          "texturesDestroyed": 60,
+          "textureBytes": 14024704,
+          "imageryDrawCalls": 118
+        }
+      },
+      "center": [
+        142,
+        165,
+        60,
+        255
+      ],
+      "distinctSampledColors": 867,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "provider": {
+    "nativeTms": true,
+    "minimumLevel": 0,
+    "maximumLevel": 2,
+    "projection": "GeographicProjection"
+  },
+  "naturalEarthRequests": [
+    {
+      "label": "NaturalEarthII",
+      "x": 1,
+      "y": 0,
+      "level": 0
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 0,
+      "level": 0
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 1,
+      "y": 1,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 2,
+      "y": 1,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 3,
+      "y": 1,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 1,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 0,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 7,
+      "y": 2,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 2,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 7,
+      "y": 1,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 1,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 7,
+      "y": 3,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 3,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 6,
+      "y": 2,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 1,
+      "y": 2,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 6,
+      "y": 1,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 6,
+      "y": 3,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 1,
+      "y": 1,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 1,
+      "y": 3,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 0,
+      "y": 0,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 7,
+      "y": 0,
+      "level": 2
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 3,
+      "y": 0,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 2,
+      "y": 0,
+      "level": 1
+    },
+    {
+      "label": "NaturalEarthII",
+      "x": 5,
+      "y": 1,
+      "level": 2
+    }
+  ],
+  "nativeMercator": {
+    "nativeAssociations": 118,
+    "coordinates": {
+      "checked": 435,
+      "maximum": 0.5200830318742646,
+      "errors": [],
+      "failures": 0
+    },
+    "withoutOptionalAttribute": {
+      "checked": 435,
+      "maximum": 0.5292906771223613,
+      "errors": [],
+      "failures": 0
+    },
+    "replacedMeshes": 17
+  },
+  "layers": {
+    "base": [
+      142,
+      170,
+      60
+    ],
+    "half": [
+      191,
+      95,
+      35
+    ],
+    "zero": [
+      142,
+      170,
+      60
+    ],
+    "hidden": [
+      142,
+      170,
+      60
+    ],
+    "shown": [
+      191,
+      95,
+      35
+    ],
+    "top": [
+      10,
+      40,
+      235
+    ],
+    "bottom": [
+      191,
+      95,
+      35
+    ],
+    "raised": [
+      10,
+      40,
+      235
+    ],
+    "removed": [
+      142,
+      170,
+      60
+    ],
+    "outsideChecked": 38,
+    "outsideChanged": 0,
+    "overblendPixels": 0,
+    "pending": 4,
+    "uploadsBefore": 362,
+    "uploadsAfter": 362,
+    "created": 362,
+    "imagery": {
+      "requests": 366,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 246,
+      "pendingRequests": 0,
+      "texturesCreated": 362,
+      "texturesDestroyed": 140,
+      "activeTextures": 222
+    }
+  },
+  "providerErrors": [],
+  "destroy": {
+    "resources": {
+      "buffersCreated": 220,
+      "buffersDestroyed": 220,
+      "bufferBytes": 0,
+      "drawCalls": 7,
+      "triangles": 3990,
+      "texturesCreated": 362,
+      "texturesDestroyed": 362,
+      "textureBytes": 0,
+      "imageryDrawCalls": 56
+    },
+    "imagery": {
+      "requests": 366,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 246,
+      "pendingRequests": 0,
+      "texturesCreated": 362,
+      "texturesDestroyed": 362,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "status": "PASS"
+}
