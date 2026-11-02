@@ -1,5 +1,6 @@
 /* global Cesium, window, document, navigator, HTMLCanvasElement, GPUDevice,
-          requestAnimationFrame, PageTransitionEvent, getComputedStyle, fetch */
+          requestAnimationFrame, PageTransitionEvent, getComputedStyle, fetch,
+          localStorage, sessionStorage */
 import assert from "node:assert/strict";
 import console from "node:console";
 import { createHash } from "node:crypto";
@@ -12,7 +13,8 @@ import { runM1BrowserSuite } from "./m1-browser-harness.mjs";
 // The default gate includes real remote providers. The explicitly named local
 // subset is useful for diagnosis; it never certifies live terrain or imagery.
 const localOnly = process.env.M1_DEMO_LOCAL_ONLY === "1";
-const remoteMatch = /^https:\/\//;
+const providerMetadataMatch =
+  /^https:\/\/api\.cesium\.com\/v1\/assets\/(1|3830182)\/endpoint(?:\?|$)/;
 
 function observeDemo({ unavailable = false, holdAdapter = false } = {}) {
   const state = (window.__demo = {
@@ -174,6 +176,12 @@ async function snapshot(page, output, name) {
       coloredPixels,
       sampledColors: colors.size,
       credits: viewer.creditDisplay.container.textContent,
+      creditImages: [...viewer.creditDisplay.container.querySelectorAll("img")]
+        .filter((image) => image.getClientRects().length > 0)
+        .map((image) => ({
+          alt: image.alt,
+          loaded: image.complete && image.naturalWidth > 0,
+        })),
     };
   });
   const attribution = page.getByRole("button", {
@@ -183,6 +191,19 @@ async function snapshot(page, output, name) {
   if (await attribution.isVisible()) {
     await attribution.click();
     observation.credits += ` ${await page.getByRole("dialog", { name: "Data attribution" }).innerText()}`;
+    observation.creditImages.push(
+      ...(await page
+        .getByRole("dialog", { name: "Data attribution" })
+        .locator("img")
+        .evaluateAll((images) =>
+          images
+            .filter((image) => image.getClientRects().length > 0)
+            .map((image) => ({
+              alt: image.alt,
+              loaded: image.complete && image.naturalWidth > 0,
+            })),
+        )),
+    );
     await page.getByRole("button", { name: "Close data attribution" }).click();
   }
   await page.screenshot({ path: path.join(output, `${name}.png`) });
@@ -237,25 +258,59 @@ function assertReleased(result) {
   assert.equal(result.imagery.pendingRequests, 0);
 }
 
-async function holdFailingProviders(page) {
+// Register before navigation: automatic provider loading must not race the
+// fallback/lifecycle checks. Only the network boundary is delayed or failed;
+// successful provider metadata and tiles always come from the real services.
+async function holdProviderMetadata(page) {
   let release;
-  let firstRequest;
   const hold = new Promise((resolve) => {
     release = resolve;
   });
-  const intercepted = new Promise((resolve) => {
-    firstRequest = resolve;
-  });
-  await page.route(remoteMatch, async (route) => {
-    firstRequest();
-    await hold;
-    await route.abort("failed");
-  });
-  await page.locator("#terrain").click();
-  await intercepted;
-  return async () => {
-    release();
-    await page.waitForLoadState("networkidle");
+  const requests = [];
+  const handled = [];
+  const handler = (route) => {
+    const url = new URL(route.request().url());
+    const asset = Number(url.pathname.match(/\/assets\/(\d+)\//)[1]);
+    const request = { asset, url: `${url.origin}${url.pathname}` };
+    requests.push(request);
+    const handling = (async () => {
+      const failedAssets = await hold;
+      request.aborted = failedAssets.includes(asset);
+      if (request.aborted) {
+        await route.abort("failed");
+      } else {
+        await route.continue();
+      }
+    })();
+    handled.push(handling);
+    return handling;
+  };
+  await page.route(providerMetadataMatch, handler);
+  const ready = Promise.all(
+    [1, 3830182].map((asset) =>
+      page.waitForRequest(
+        (request) => {
+          const url = new URL(request.url());
+          return (
+            url.hostname === "api.cesium.com" &&
+            url.pathname === `/v1/assets/${asset}/endpoint`
+          );
+        },
+        { timeout: 30000 },
+      ),
+    ),
+  );
+  return {
+    requests,
+    ready,
+    async release(failedAssets = [1, 3830182]) {
+      release(failedAssets);
+      // Finish each intercepted request before disabling interception; otherwise
+      // Chromium may resume it while its abort/continue operation is in flight.
+      await Promise.all(handled);
+      await page.unroute(providerMetadataMatch, handler);
+      await page.waitForLoadState("networkidle");
+    },
   };
 }
 
@@ -265,9 +320,17 @@ await runM1BrowserSuite(
     report.liveProvidersRequired = !localOnly;
     const redact = (message) =>
       message
-        .replace(/([?&](?:access_token|token)=)[^&\s)]+/gi, "$1[redacted]")
+        .replace(
+          /([?&](?:access_token|token|key|session)=)[^&\s)]+/gi,
+          "$1[redacted]",
+        )
         .replace(/eyJ[A-Za-z0-9._-]+/g, "[redacted-token]");
-    report.network = { terrainTiles: 0, imageryTiles: 0, failures: [] };
+    report.network = {
+      terrainTiles: 0,
+      imageryTiles: 0,
+      metadataAssets: [],
+      failures: [],
+    };
     report.consoleMessages = [];
     page.on("console", (message) => {
       if (["error", "warning"].includes(message.type())) {
@@ -289,11 +352,13 @@ await runM1BrowserSuite(
       if (url.pathname.endsWith(".terrain")) {
         ++report.network.terrainTiles;
       }
-      if (
-        url.hostname === "services.arcgisonline.com" &&
-        url.pathname.includes("/tile/")
-      ) {
+      if (/\/v1\/2dtiles\/\d+\/\d+\/\d+$/.test(url.pathname)) {
         ++report.network.imageryTiles;
+      }
+      if (providerMetadataMatch.test(response.url())) {
+        report.network.metadataAssets.push(
+          Number(url.pathname.match(/\/assets\/(\d+)\//)[1]),
+        );
       }
     });
     const check = (message) => {
@@ -310,16 +375,81 @@ await runM1BrowserSuite(
       await readFile("coordination/ci/m1-demo-smoke.mjs"),
     );
     await page.addInitScript(observeDemo, {});
-    await page.goto(url);
+    const initialMetadata = await holdProviderMetadata(page);
+    await page.goto(url, { waitUntil: "commit" });
+    await initialMetadata.ready;
     await settle(page);
     report.scenes.push(await snapshot(page, output, "natural-earth"));
     assert.equal(report.scenes[0].viewerIdentity, true);
     assert.equal(report.scenes[0].backend, "webgpu");
     assert.equal(await page.locator("#everest").isDisabled(), true);
-    assert.equal(await page.locator("#terrain").isEnabled(), true);
+    assert.equal(await page.locator("#terrain").isDisabled(), true);
+    assert.equal(await page.locator("#apply-token").isDisabled(), true);
     assert.match(report.scenes[0].credits, /Natural Earth/);
     check(
-      "actual demo initialization, automatic rendering and bundled Natural Earth",
+      "automatic provider loading retains a visible Natural Earth fallback while real metadata is pending",
+    );
+
+    // Fail World Terrain, while allowing the real Google metadata promise to
+    // complete. Native IonImageryProvider caches rejected promises; a failed
+    // Google endpoint cannot currently be recovered by this demo's token UI.
+    // Do not clear that native cache or claim that separate limitation fixed.
+    await initialMetadata.release(localOnly ? [1, 3830182] : [1]);
+    await page.waitForFunction(
+      () => !document.getElementById("terrain").disabled,
+    );
+    report.rejectedProviderRequests = initialMetadata.requests.filter(
+      (request) => request.aborted,
+    );
+    assert.deepEqual(
+      initialMetadata.requests
+        .map((request) => request.asset)
+        .sort((a, b) => a - b),
+      [1, 3830182],
+    );
+    assert.ok(
+      report.rejectedProviderRequests.some((request) => request.asset === 1),
+    );
+    report.providerFailure = await page.evaluate(() => ({
+      status: document.getElementById("status").textContent,
+      statusColor: getComputedStyle(document.getElementById("status")).color,
+      ellipsoid:
+        window.__demo.viewer.terrainProvider instanceof
+        Cesium.EllipsoidTerrainProvider,
+      naturalEarth:
+        window.__demo.viewer.imageryLayers.get(0).imageryProvider instanceof
+        Cesium.TileMapServiceImageryProvider,
+      orbitEnabled: !document.getElementById("orbit").disabled,
+      everestDisabled: document.getElementById("everest").disabled,
+      tokenEnabled: !document.getElementById("apply-token").disabled,
+    }));
+    report.providerFailure.status = redact(report.providerFailure.status);
+    assert.equal(report.providerFailure.ellipsoid, true);
+    assert.equal(report.providerFailure.naturalEarth, true);
+    assert.equal(report.providerFailure.orbitEnabled, true);
+    assert.equal(report.providerFailure.everestDisabled, true);
+    assert.equal(report.providerFailure.tokenEnabled, true);
+    assert.match(
+      report.providerFailure.status,
+      /Could not load Google satellite \/ Cesium World Terrain/,
+    );
+    assert.notEqual(
+      report.providerFailure.statusColor,
+      report.scenes[0].statusColor,
+    );
+    await page.screenshot({ path: path.join(output, "provider-error.png") });
+    check(
+      "automatic terrain metadata failure preserves the fallback and enables retry/token controls",
+    );
+
+    await page.locator("#ion-token").fill("   ");
+    await page.locator("#apply-token").click();
+    assert.match(
+      await page.locator("#status").textContent(),
+      /Enter a Cesium ion access token/,
+    );
+    check(
+      "the token form rejects blank input without replacing the working fallback",
     );
 
     await page.evaluate(() =>
@@ -344,7 +474,7 @@ await runM1BrowserSuite(
     report.scenes.push(await snapshot(page, output, "orbit-button"));
     check("Orbit button completes the actual native camera flight");
 
-    const secondary = async (options, run) => {
+    const secondary = async (options, run, beforeNavigation) => {
       const testPage = await page
         .context()
         .browser()
@@ -356,8 +486,9 @@ await runM1BrowserSuite(
       testPage.on("pageerror", (error) => errors.push(String(error)));
       try {
         await testPage.addInitScript(observeDemo, options);
-        await testPage.goto(url);
-        await run(testPage, errors);
+        const setup = await beforeNavigation?.(testPage);
+        await testPage.goto(url, { waitUntil: "commit" });
+        await run(testPage, errors, setup);
         assert.deepEqual(errors, []);
       } finally {
         await testPage.close();
@@ -393,127 +524,91 @@ await runM1BrowserSuite(
       check("unsupported WebGPU gives visible feedback and clean teardown");
     });
 
-    await secondary({}, async (testPage) => {
-      await settle(testPage);
-      const releaseProviders = await holdFailingProviders(testPage);
-      await testPage.evaluate(() =>
-        window.__demo.viewer._webgpuProof._context._device.destroy(),
-      );
-      await testPage.waitForFunction(() =>
-        /device lost/i.test(document.getElementById("status").textContent),
-      );
-      report.deviceLost = await testPage.evaluate(() => ({
-        status: document.getElementById("status").textContent,
-        disabled: [...document.querySelectorAll("nav button")].every(
-          (button) => button.disabled,
-        ),
-        errors: [...window.__demo.errors],
-      }));
-      assert.equal(
-        report.deviceLost.disabled,
-        true,
-        "Fatal rendering errors must disable controls",
-      );
-      await testPage.screenshot({ path: path.join(output, "device-lost.png") });
-      await releaseProviders();
-      report.deviceLost.afterProviderFailure = await testPage.evaluate(() => ({
-        status: document.getElementById("status").textContent,
-        disabled: [...document.querySelectorAll("nav button")].every(
-          (button) => button.disabled,
-        ),
-      }));
-      assert.equal(
-        report.deviceLost.afterProviderFailure.status,
-        report.deviceLost.status,
-        "A late provider failure must preserve the fatal renderer error",
-      );
-      assert.equal(report.deviceLost.afterProviderFailure.disabled, true);
-      report.deviceLost.cleanup = await lifecycle(testPage);
-      assertReleased(report.deviceLost.cleanup);
-      check(
-        "actual GPU device loss is visible and disables unavailable controls",
-      );
-    });
-
-    await secondary({}, async (testPage) => {
-      await settle(testPage);
-      const releaseProviders = await holdFailingProviders(testPage);
-      const before = await testPage.locator("#status").textContent();
-      report.pendingProviders = await lifecycle(testPage);
-      assertReleased(report.pendingProviders);
-      await releaseProviders();
-      report.pendingProviders.statusAfter = await testPage
-        .locator("#status")
-        .textContent();
-      assert.equal(
-        report.pendingProviders.statusAfter,
-        before,
-        "A provider completion must not mutate an exited demo",
-      );
-      check(
-        "pagehide during provider loading releases resources and ignores late failures",
-      );
-    });
-
-    // Abort only the network boundary to check recoverable provider failure. No
-    // fake successful metadata, imagery or terrain is supplied in any scenario.
-    report.rejectedProviderRequests = [];
-    const rejectProvider = (route) => {
-      const url = new URL(route.request().url());
-      report.rejectedProviderRequests.push(`${url.origin}${url.pathname}`);
-      return route.abort("failed");
-    };
-    await page.route(remoteMatch, rejectProvider);
-    await page.locator("#terrain").click();
-    try {
-      await page.waitForFunction(
-        () => !document.getElementById("terrain").disabled,
-      );
-    } finally {
-      report.providerFailureDiagnostic = await page.evaluate(() => ({
-        status: document.getElementById("status").textContent,
-        disabled: [...document.querySelectorAll("nav button")].map(
-          (button) => button.disabled,
-        ),
-        errors: [...window.__demo.errors],
-        destroyed: window.__demo.viewer.isDestroyed(),
-      }));
-      report.providerFailureDiagnostic.status = redact(
-        report.providerFailureDiagnostic.status,
-      );
-      await page.screenshot({ path: path.join(output, "provider-error.png") });
-    }
-    report.providerFailure = await page.evaluate(() => ({
-      status: document.getElementById("status").textContent,
-      statusColor: getComputedStyle(document.getElementById("status")).color,
-      ellipsoid:
-        window.__demo.viewer.terrainProvider instanceof
-        Cesium.EllipsoidTerrainProvider,
-      naturalEarth:
-        window.__demo.viewer.imageryLayers.get(0).imageryProvider instanceof
-        Cesium.TileMapServiceImageryProvider,
-      orbitEnabled: !document.getElementById("orbit").disabled,
-      everestDisabled: document.getElementById("everest").disabled,
-    }));
-    assert.equal(report.providerFailure.ellipsoid, true);
-    assert.equal(report.providerFailure.naturalEarth, true);
-    assert.equal(report.providerFailure.orbitEnabled, true);
-    assert.equal(report.providerFailure.everestDisabled, true);
-    assert.equal(
-      report.rejectedProviderRequests.length,
-      2,
-      "The negative control must actually reject both remote metadata requests",
+    await secondary(
+      {},
+      async (testPage, errors, metadata) => {
+        await metadata.ready;
+        await settle(testPage);
+        await testPage.evaluate(() =>
+          window.__demo.viewer._webgpuProof._context._device.destroy(),
+        );
+        await testPage.waitForFunction(() =>
+          /device lost/i.test(document.getElementById("status").textContent),
+        );
+        report.deviceLost = await testPage.evaluate(() => ({
+          status: document.getElementById("status").textContent,
+          disabled: [
+            ...document.querySelectorAll("nav button, #apply-token"),
+          ].every((button) => button.disabled),
+          errors: [...window.__demo.errors],
+        }));
+        report.deviceLost.browserErrors = errors;
+        assert.equal(
+          report.deviceLost.disabled,
+          true,
+          "Fatal rendering errors must disable controls",
+        );
+        await testPage.screenshot({
+          path: path.join(output, "device-lost.png"),
+        });
+        await metadata.release();
+        report.deviceLost.afterProviderFailure = await testPage.evaluate(
+          () => ({
+            status: document.getElementById("status").textContent,
+            disabled: [
+              ...document.querySelectorAll("nav button, #apply-token"),
+            ].every((button) => button.disabled),
+          }),
+        );
+        assert.equal(
+          report.deviceLost.afterProviderFailure.status,
+          report.deviceLost.status,
+          "A late provider failure must preserve the fatal renderer error",
+        );
+        assert.equal(report.deviceLost.afterProviderFailure.disabled, true);
+        report.deviceLost.cleanup = await lifecycle(testPage);
+        assertReleased(report.deviceLost.cleanup);
+        check(
+          "actual GPU device loss is visible and disables unavailable controls",
+        );
+      },
+      holdProviderMetadata,
     );
-    assert.notEqual(
-      report.providerFailure.statusColor,
-      report.scenes[0].statusColor,
+
+    await secondary(
+      {},
+      async (testPage, errors, metadata) => {
+        await metadata.ready;
+        await settle(testPage);
+        const before = await testPage.locator("#status").textContent();
+        report.pendingProviders = await lifecycle(testPage);
+        report.pendingProviders.browserErrors = errors;
+        assertReleased(report.pendingProviders);
+        await metadata.release();
+        report.pendingProviders.statusAfter = await testPage
+          .locator("#status")
+          .textContent();
+        assert.equal(
+          report.pendingProviders.statusAfter,
+          before,
+          "A provider completion must not mutate an exited demo",
+        );
+        check(
+          "pagehide during provider loading releases resources and ignores late failures",
+        );
+      },
+      holdProviderMetadata,
     );
-    await page.screenshot({ path: path.join(output, "provider-error.png") });
-    await page.unroute(remoteMatch, rejectProvider);
-    check("provider failure preserves the working globe and enables retry");
 
     if (!localOnly) {
-      await page.locator("#terrain").click();
+      const originalUrl = page.url();
+      // Exercise the real form with the current built-in token without exposing
+      // its value to logs, reports, URLs or a test-side replacement provider.
+      await page.evaluate(() => {
+        document.getElementById("ion-token").value =
+          Cesium.Ion.defaultAccessToken;
+      });
+      await page.locator("#apply-token").click();
       await page.waitForFunction(
         () =>
           !document.getElementById("everest").disabled ||
@@ -529,22 +624,85 @@ await runM1BrowserSuite(
           Cesium.CesiumTerrainProvider,
         imagery:
           window.__demo.viewer.imageryLayers.get(0).imageryProvider instanceof
-          Cesium.ArcGisMapServerImageryProvider,
+          Cesium.IonImageryProvider,
+        googleImagery:
+          window.__demo.viewer.imageryLayers.get(0).imageryProvider
+            ._imageryProvider instanceof Cesium.Google2DImageryProvider,
         everestEnabled: !document.getElementById("everest").disabled,
       }));
+      report.providers.status = redact(report.providers.status);
       assert.equal(
         report.providers.terrain,
         true,
         JSON.stringify(report.providers),
       );
       assert.equal(report.providers.imagery, true);
+      assert.equal(report.providers.googleImagery, true);
       assert.equal(report.providers.everestEnabled, true);
+      report.tokenForm = await page.evaluate(() => {
+        const token = Cesium.Ion.defaultAccessToken;
+        return {
+          inputCleared: document.getElementById("ion-token").value === "",
+          stored: [localStorage, sessionStorage].some((storage) =>
+            Object.values(storage).some((value) => value.includes(token)),
+          ),
+        };
+      });
+      assert.equal(report.tokenForm.inputCleared, true);
+      assert.equal(report.tokenForm.stored, false);
+      assert.equal(page.url(), originalUrl);
+      assert.deepEqual(
+        [...new Set(report.network.metadataAssets)].sort((a, b) => a - b),
+        [1, 3830182],
+      );
+      check(
+        "the actual token form retries failed terrain loading with real Google ion metadata and keeps the token transient",
+      );
+      await page.evaluate(() => {
+        const state = window.__demo;
+        state.beforeReload = {
+          terrain: state.viewer.terrainProvider,
+          imagery: state.viewer.imageryLayers.get(0).imageryProvider,
+        };
+      });
+      await page.locator("#terrain").click();
+      await page.waitForFunction(
+        () => !document.getElementById("terrain").disabled,
+      );
+      report.reload = await page.evaluate(() => {
+        const state = window.__demo;
+        const terrain = state.viewer.terrainProvider;
+        const imagery = state.viewer.imageryLayers.get(0).imageryProvider;
+        return {
+          replacedTerrain:
+            terrain !== state.beforeReload.terrain &&
+            terrain instanceof Cesium.CesiumTerrainProvider,
+          replacedImagery:
+            imagery !== state.beforeReload.imagery &&
+            imagery instanceof Cesium.IonImageryProvider,
+          googleImagery:
+            imagery._imageryProvider instanceof Cesium.Google2DImageryProvider,
+          everestEnabled: !document.getElementById("everest").disabled,
+        };
+      });
+      assert.deepEqual(report.reload, {
+        replacedTerrain: true,
+        replacedImagery: true,
+        googleImagery: true,
+        everestEnabled: true,
+      });
+      check(
+        "Reload imagery + terrain replaces both native providers and preserves the live controls",
+      );
       await page.evaluate(() => {
         const state = window.__demo;
         state.providerErrors = [];
         for (const [name, provider] of [
           ["World Terrain", state.viewer.terrainProvider],
-          ["ArcGIS", state.viewer.imageryLayers.get(0).imageryProvider],
+          [
+            "Google satellite",
+            state.viewer.imageryLayers.get(0).imageryProvider,
+          ],
         ]) {
           provider.errorEvent.addEventListener((error) =>
             state.providerErrors.push({
@@ -603,9 +761,14 @@ await runM1BrowserSuite(
         report.network.imageryTiles > 10,
         "Real imagery responses are required",
       );
-      assert.match(
-        report.scenes.at(-1).credits,
-        /Esri|Earthstar|Maxar|Source/i,
+      assert.ok(
+        /Google/i.test(report.scenes.at(-1).credits) ||
+          report.scenes
+            .at(-1)
+            .creditImages.some(
+              (image) => /Google/i.test(image.alt) && image.loaded,
+            ),
+        "The live demo must display native Google attribution",
       );
       report.terrainAttribution = await page.evaluate(() => {
         const credits = window.__demo.viewer.scene._renderer._draws.flatMap(
@@ -636,7 +799,7 @@ await runM1BrowserSuite(
         );
       }
       check(
-        "real World Terrain and ArcGIS load through the UI; Everest renders quantized mountains with attribution",
+        "real World Terrain and Google satellite load through the UI; Everest renders quantized mountains with attribution",
       );
       await page.locator("#orbit").click();
       await page.waitForFunction(
@@ -661,6 +824,67 @@ await runM1BrowserSuite(
       }
       assert.deepEqual(report.providerErrors, []);
       check("live Everest-to-Orbit flight retains tiled imagery");
+
+      await secondary(
+        {},
+        async (testPage, errors, metadataAssets) => {
+          await testPage.waitForFunction(
+            () =>
+              window.__demo?.ready &&
+              !document.getElementById("terrain").disabled,
+            undefined,
+            { timeout: 120000 },
+          );
+          report.automaticProviders = await testPage.evaluate(() => ({
+            terrain:
+              window.__demo.viewer.terrainProvider instanceof
+              Cesium.CesiumTerrainProvider,
+            imagery:
+              window.__demo.viewer.imageryLayers.get(0)
+                .imageryProvider instanceof Cesium.IonImageryProvider,
+            googleImagery:
+              window.__demo.viewer.imageryLayers.get(0).imageryProvider
+                ._imageryProvider instanceof Cesium.Google2DImageryProvider,
+            everestEnabled: !document.getElementById("everest").disabled,
+          }));
+          assert.deepEqual(report.automaticProviders, {
+            terrain: true,
+            imagery: true,
+            googleImagery: true,
+            everestEnabled: true,
+          });
+          report.automaticProviders.browserErrors = errors;
+          assert.deepEqual(
+            [...new Set(metadataAssets)].sort((a, b) => a - b),
+            [1, 3830182],
+          );
+          report.automaticProviders.metadataAssets = metadataAssets;
+          await settle(testPage);
+          report.scenes.push(
+            await snapshot(testPage, output, "automatic-google-orbit"),
+          );
+          report.automaticProviders.cleanup = await lifecycle(testPage);
+          assertReleased(report.automaticProviders.cleanup);
+          check(
+            "a fresh unmodified demo automatically loads real Google satellite and World Terrain without clicking controls",
+          );
+        },
+        (testPage) => {
+          const assets = [];
+          testPage.on("response", (response) => {
+            if (response.ok() && providerMetadataMatch.test(response.url())) {
+              assets.push(
+                Number(
+                  new URL(response.url()).pathname.match(
+                    /\/assets\/(\d+)\//,
+                  )[1],
+                ),
+              );
+            }
+          });
+          return assets;
+        },
+      );
     }
     await page.evaluate(() => {
       window.__m1 = { adapterInfo: window.__demo.adapterInfo };
