@@ -7,6 +7,7 @@ const base = "http://localhost:8080";
 const outputDir = "Build/m0-webgpu";
 await mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({
+  channel: "chromium",
   headless: true,
   args: [
     "--enable-unsafe-webgpu",
