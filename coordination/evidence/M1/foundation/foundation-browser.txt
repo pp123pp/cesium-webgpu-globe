@@ -1,0 +1,5 @@
+M1 orbit: 14 tiles; levels 1–2; silhouette 1589/1590
+M1 pole: 16 tiles; levels 2–2; silhouette 1589/1590
+M1 dateline: 16 tiles; levels 1–2; silhouette 1588/1590
+M1 surface: 28 tiles; levels 12–13; silhouette 1590/1590
+M1 foundation PASS: native WGS84/Camera/Globe, orbital/polar/dateline silhouettes, native quadtree LOD, no WebGL context, terrain worker meshes, exclusive Globe ownership before first render, direct Scene.render error event and rethrow policy

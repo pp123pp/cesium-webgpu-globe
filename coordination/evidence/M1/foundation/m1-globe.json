@@ -1,0 +1,344 @@
+{
+  "source": "30692fde1cf5255dcc52cea2159a81ac086f2745",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M Apps/WebGPUProof.html\n M coordination/STATUS.md\n M coordination/ci/m0-webgpu-smoke.mjs\n M coordination/ci/m0-webgpu-unit.test.mjs\n M packages/engine/Source/Renderer/WebGPUContext.js\n M packages/engine/Source/Widget/WebGPUWidget.js\n M packages/widgets/Source/Viewer/Viewer.js\n M tasks/M1.md\n?? coordination/ci/m1-globe-smoke.mjs\n?? coordination/ci/m1-renderer-lifecycle.test.mjs\n?? coordination/evidence/M1/\n?? coordination/handoffs/M1.1-gpu-globe.md\n?? packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n?? packages/engine/Source/Scene/WebGPUScene.js",
+  "bundleSha256": "3e160283286e15dd5e72eea4eb6fc440121e223e9878474f40fc549eca25830a",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "checks": [
+    "native WGS84/Camera/Globe",
+    "orbital/polar/dateline silhouettes",
+    "native quadtree LOD",
+    "no WebGL context",
+    "terrain worker meshes",
+    "exclusive Globe ownership before first render",
+    "direct Scene.render error event and rethrow policy"
+  ],
+  "scenes": [
+    {
+      "name": "orbit",
+      "frames": 17,
+      "elapsedMs": 498.3999999985099,
+      "statistics": {
+        "frame": 18,
+        "selectedTiles": 14,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 18,
+        "loadedTiles": 18,
+        "terrain": {
+          "requests": 18,
+          "deferred": 0,
+          "meshes": 18,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "resources": {
+          "buffersCreated": 38,
+          "buffersDestroyed": 1,
+          "bufferBytes": 203896,
+          "drawCalls": 14,
+          "triangles": 7980
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 416,
+        "agreement": 0.9993710691823899
+      },
+      "center": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "backgroundPixels": 682956,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "pole",
+      "frames": 7,
+      "elapsedMs": 169.2000000011176,
+      "statistics": {
+        "frame": 26,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 26,
+        "loadedTiles": 26,
+        "terrain": {
+          "requests": 26,
+          "deferred": 0,
+          "meshes": 26,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "resources": {
+          "buffersCreated": 54,
+          "buffersDestroyed": 1,
+          "bufferBytes": 292696,
+          "drawCalls": 16,
+          "triangles": 9120
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 655,
+        "agreement": 0.9993710691823899
+      },
+      "center": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "backgroundPixels": 544008,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "dateline",
+      "frames": 7,
+      "elapsedMs": 184.69999999925494,
+      "statistics": {
+        "frame": 34,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 34,
+        "loadedTiles": 34,
+        "terrain": {
+          "requests": 34,
+          "deferred": 0,
+          "meshes": 34,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "resources": {
+          "buffersCreated": 70,
+          "buffersDestroyed": 1,
+          "bufferBytes": 381496,
+          "drawCalls": 16,
+          "triangles": 9120
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1588,
+        "foreground": 868,
+        "agreement": 0.9987421383647799
+      },
+      "center": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "backgroundPixels": 420429,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "surface",
+      "frames": 22,
+      "elapsedMs": 669.9000000003725,
+      "statistics": {
+        "frame": 57,
+        "selectedTiles": 28,
+        "levels": [
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          12
+        ],
+        "cacheTiles": 142,
+        "loadedTiles": 142,
+        "terrain": {
+          "requests": 93,
+          "deferred": 0,
+          "meshes": 92,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "resources": {
+          "buffersCreated": 187,
+          "buffersDestroyed": 50,
+          "bufferBytes": 762992,
+          "drawCalls": 28,
+          "triangles": 15960
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1590,
+        "foreground": 1590,
+        "agreement": 1
+      },
+      "center": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "backgroundPixels": 0,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "environment": {
+    "cesium": "1.146.0",
+    "radii": [
+      6378137,
+      6378137,
+      6356752.314245179
+    ],
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    }
+  },
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "sceneErrorContract": {
+    "correctSource": true,
+    "errors": [
+      "DeveloperError: M1 WebGPU supports SCENE3D with unexaggerated terrain.\nError\n    at new DeveloperError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:14365:13)\n    at WebGPUScene._renderFrame (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:280892:15)\n    at WebGPUScene.render (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:280879:14)\n    at eval (eval at evaluate (:370:30), <anonymous>:10:11)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    ],
+    "sceneDestroyed": true
+  },
+  "destroy": {
+    "statistics": {
+      "buffersCreated": 187,
+      "buffersDestroyed": 187,
+      "bufferBytes": 0,
+      "drawCalls": 28,
+      "triangles": 15960
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "status": "PASS"
+}

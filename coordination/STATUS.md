@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1.1 in progress; M0.5 locally accepted under the explicit physical-GPU waiver**
+Current milestone: **M1.1 foundation verified; M1.2 imagery in progress; M0.5 accepted under the explicit physical-GPU waiver**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -18,7 +18,15 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## Active task
 
-M1.1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. PR #1 remains unmerged; the M1 PR will target `feat/m0-webgpu-backend`. The source/provider audit is complete and `coordination/M1-PLAN.md` defines the ordered A03–A06 slices. Root alone owns shared integration; independent numerical helper work uses its own worktree. No M2 work.
+M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) targets `feat/m0-webgpu-backend`; PR #1 remains unmerged and is ready for review. The user requested publishing verified progress incrementally. `coordination/M1-PLAN.md` defines A03–A06; root alone owns shared integration, and imagery state adaptation uses a disjoint worktree. No M2 work.
+
+### Verified M1 slices
+
+- RTC/depth math: 10 tests, including 180 orbit-to-1m projection samples; native NONE/BITS12 meshes and skirts retained.
+- Native terrain/quadtree adapter: 6 tests for deferral, unavailable-child upsampling, eviction and provider replacement with late completion. Real World Terrain data/adjacency was separately probed; this alone is not rendered A05 evidence.
+- Actual WGS84 WebGPU foundation: native Camera/Globe/Quadtree, depth32float, no hidden WebGL context. Orbit/pole/dateline silhouette agreement exceeds 99.8%; ground selects levels 12–13 with zero background crack pixels. All 187 allocated buffers are destroyed. Direct Scene error policy is checked separately from normal rendering.
+- Same M1 build: all 17 M0 WebGPU proof checks pass; three WebGL views have zero changed reference pixels and identical settled repeat captures. Foundation source hashes, screenshots and logs: `coordination/evidence/M1/foundation/`; details: `coordination/handoffs/M1.1-gpu-globe.md`.
+- Remaining: dynamic imagery A04, rendered quantized terrain and draping A05, flight/input/resource churn A06, final full regression. **M1 is not yet accepted.**
 
 ## M0.5 acceptance (2026-11-02)
 
@@ -28,12 +36,13 @@ M1.1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `
 - Full non-WebGL suite: 10,353 passed, 5,537 skipped. Full WebGL **no-new-regression gate passes**: baseline and candidate each execute 3,822 specs with 3,810 passed and the **same 12 inherited failures** (12,068 skipped). Exact execution order and assertion signatures match. The underlying suites still exit 1; those failures are not claimed passed.
 - Chromium 156.0.8078.4, Ubuntu 24.04, Google SwiftShader, headed Xvfb for screenshots. Source and served-bundle provenance, browser/GPU metadata, screenshots and compact differential report are preserved in `coordination/evidence/M0.5/`.
 - Concurrent remote `fda7f01` was integrated with a normal merge preserving repeatability checks. `main` remains unmerged. See `coordination/handoffs/M0.5-regression-gate.md` for commands, local certificate-trust diagnosis and retained upstream failures.
+- Published-head CI: [PR run 41400575907](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400575907) passed; [push run 41400570084 attempt 2](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400570084/attempts/2) passed. Push attempt 1 retained two extra native Cesium3DTileset async timeouts; rerunning only the failed job without any source or gate change passed. The original failure remains in Actions.
 
 ## Active branches / worktrees
 
 - `feat/m0-webgpu-backend`: M0 integration branch and PR #1; M0.4 product implementation is preserved. M0.5 adds only verification, CI and documentation.
 - Clean detached pre-WebGPU reference worktree at `724b5db`; independent differential-harness worktree was integrated after review. One integration owner edits shared Viewer/STATUS.
-- `main` remains `a7f4729`; no merge was performed. M1 will branch from the published, accepted M0 tree and target this branch while PR #1 remains unmerged.
+- `main` remains `a7f4729`; no merge was performed. M1 branches from the accepted M0 tree and targets it while PR #1 remains unmerged.
 
 ## Tests
 

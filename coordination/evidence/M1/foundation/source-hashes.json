@@ -1,0 +1,10 @@
+{
+  "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "f432c2194c4cb1bbdbad1e8b4930755debf4878d21962ac08faa9c0386610308",
+  "packages/engine/Source/Scene/WebGPUScene.js": "91bb91b9b06660ff99b96fe69fe53dc69c80701ba521d49ce76b075793115ce7",
+  "packages/engine/Source/Scene/WebGPUGlobeTileProvider.js": "951b5524013a6a00c5017b05e5654eb59dc7f2c6bcf8962868280e6710ee4aba",
+  "packages/engine/Source/Scene/WebGPUGlobeMath.js": "595451d27df155e5cbfac90220b8fa871e71678fe839228ad777ff1e7c25d003",
+  "packages/engine/Source/Renderer/WebGPUContext.js": "1590a9d88e0523b3a512da464beddbcd3a906e9912934a8c1ce8eef958612ee3",
+  "packages/engine/Source/Widget/WebGPUWidget.js": "4398adeaa7c0a44d6a050d701180ca4ef00133939ec46816bde7c28367b5ab69",
+  "packages/widgets/Source/Viewer/Viewer.js": "6cda42ca8f15e4ec673c7d900d6212794d36b4cd75c3e7681b4b2cee43e17172",
+  "coordination/ci/m1-globe-smoke.mjs": "6a00a2153f28be1d2b741f00a28fabdba39a02fc8ebeaf89b7b32a38cdffa796"
+}

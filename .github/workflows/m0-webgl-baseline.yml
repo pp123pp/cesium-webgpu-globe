@@ -75,6 +75,9 @@ jobs:
           node coordination/ci/m0-visual-checks.test.mjs
           node coordination/ci/m0-browser-config.test.mjs
           node coordination/ci/m0-webgl-regression.test.mjs
+          node coordination/ci/m1-globe-math.test.mjs
+          node coordination/ci/m1-tile-provider.test.mjs
+          node coordination/ci/m1-renderer-lifecycle.test.mjs
 
       - name: Install Chromium for real browser smoke
         run: npx playwright install --with-deps chromium
@@ -134,6 +137,7 @@ jobs:
             sleep 1
           done
           xvfb-run --auto-servernum node coordination/ci/m0-webgpu-smoke.mjs
+          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-globe-smoke.mjs
 
       - name: Upload WebGL smoke evidence
         if: always()
@@ -145,4 +149,5 @@ jobs:
             Build/m0-webgpu/
             Build/m0-negative/
             Build/m0-webgl-regression/
+            Build/m1-globe/
           if-no-files-found: warn
