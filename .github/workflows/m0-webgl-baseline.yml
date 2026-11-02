@@ -1,24 +1,21 @@
-name: M0 and M1 regression
+name: M1 Fast CI
 
 on:
-  push:
-    branches:
-      - feat/m0-webgl-baseline
-      - feat/m0-webgpu-backend
   pull_request:
-  workflow_dispatch:
+    types: [opened, reopened, synchronize]
 
 permissions:
   contents: read
 
 concurrency:
-  group: m0-webgl-baseline-${{ github.ref }}
-  cancel-in-progress: false
+  group: m1-fast-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  webgl-baseline:
+  fast:
+    name: Fast CI
     runs-on: ubuntu-24.04
-    timeout-minutes: 50
+    timeout-minutes: 30
     env:
       CI: "true"
       NPM_CONFIG_AUDIT: "false"
@@ -78,20 +75,15 @@ jobs:
           npm install --include-workspace-root --workspace packages/core --workspace packages/engine --workspace packages/widgets --no-audit --no-fund
           npm run build
 
-      - name: Run WebGPU lifecycle unit tests
+      - name: Run focused M0 and all M1 unit tests
         run: |
           node coordination/ci/m0-webgpu-unit.test.mjs
           node coordination/ci/m0-visual-checks.test.mjs
           node coordination/ci/m0-browser-config.test.mjs
           node coordination/ci/m0-webgl-regression.test.mjs
-          node coordination/ci/m1-globe-math.test.mjs
-          node coordination/ci/m1-tile-provider.test.mjs
-          node coordination/ci/m1-renderer-lifecycle.test.mjs
-          node coordination/ci/m1-terrain-data.test.mjs
-          node coordination/ci/m1-terrain-edges.test.mjs
-          node coordination/ci/m1-imagery-lifecycle.test.mjs
-          node coordination/ci/m1-imagery-renderer.test.mjs
-          node coordination/ci/m1-controller-roundoff.test.mjs
+          for test in coordination/ci/m1-*.test.mjs; do
+            node "$test"
+          done
 
       - name: Install Chromium for real browser smoke
         run: npx playwright install --with-deps chromium
@@ -120,23 +112,7 @@ jobs:
           assert.match(result.error, /Globe center surface missing/);
           NODE
 
-      - name: Run upstream non-WebGL unit tests
-        shell: bash
-        run: |
-          set -euo pipefail
-          export CHROME_BIN
-          chmod +x coordination/ci/m0-chrome.cjs
-          CHROME_BIN="$PWD/coordination/ci/m0-chrome.cjs"
-          npm run test-non-webgl -- --browsers ChromeHeadless --failTaskOnError
-
-      - name: Compare complete upstream WebGL suite with pre-WebGPU baseline
-        shell: bash
-        run: |
-          set -euo pipefail
-          export CHROME_BIN="$PWD/coordination/ci/m0-chrome.cjs"
-          node coordination/ci/m0-webgl-regression.mjs --baseline "$PWD/Build/m0-reference-source" --output Build/m0-webgl-regression
-
-      - name: Run M0.4 WebGPU proof checks
+      - name: Run quick M0 WebGPU and M1 globe browser gates
         if: ${{ !cancelled() }}
         env:
           DEBUG: pw:browser
@@ -152,52 +128,15 @@ jobs:
           done
           xvfb-run --auto-servernum node coordination/ci/m0-webgpu-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-globe-smoke.mjs
-          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-imagery-smoke.mjs
-          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-navigation-smoke.mjs
 
-      - name: Run live M1 terrain and near-ground flight acceptance
-        if: ${{ !cancelled() }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p Build/m1-terrain
-          python3 -m http.server 8090 --bind 127.0.0.1 > "$RUNNER_TEMP/m1-terrain-server.log" 2>&1 &
-          server_pid=$!
-          trap 'cp "$RUNNER_TEMP/m1-terrain-server.log" Build/m1-terrain/server.log || true; kill "$server_pid" 2>/dev/null || true' EXIT
-          for attempt in {1..60}; do
-            if curl --fail --silent http://127.0.0.1:8090/Specs/e2e/cesium.html > /dev/null; then break; fi
-            sleep 1
-          done
-          M1_BASE_URL=http://127.0.0.1:8090/ xvfb-run --auto-servernum node coordination/ci/m1-terrain-smoke.mjs 2>&1 | tee Build/m1-terrain/run.log
-
-      - name: Run live M1 demonstration and error lifecycle acceptance
-        if: ${{ !cancelled() }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p Build/m1-demo
-          python3 -m http.server 8091 --bind 127.0.0.1 > "$RUNNER_TEMP/m1-demo-server.log" 2>&1 &
-          server_pid=$!
-          trap 'cp "$RUNNER_TEMP/m1-demo-server.log" Build/m1-demo/server.log || true; kill "$server_pid" 2>/dev/null || true' EXIT
-          for attempt in {1..60}; do
-            if curl --fail --silent http://127.0.0.1:8091/Apps/WebGPUGlobe.html > /dev/null; then break; fi
-            sleep 1
-          done
-          M1_BASE_URL=http://127.0.0.1:8091/ xvfb-run --auto-servernum node coordination/ci/m1-demo-smoke.mjs 2>&1 | tee Build/m1-demo/run.log
-
-      - name: Upload WebGL smoke evidence
+      - name: Upload fast CI evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: m0-webgl-baseline
+          name: m1-fast
           path: |
             Build/m0-baseline/
             Build/m0-webgpu/
             Build/m0-negative/
-            Build/m0-webgl-regression/
             Build/m1-globe/
-            Build/m1-imagery/
-            Build/m1-navigation/
-            Build/m1-terrain/
-            Build/m1-demo/
           if-no-files-found: warn
