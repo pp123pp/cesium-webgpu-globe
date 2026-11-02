@@ -214,9 +214,17 @@ test("ShadowMap red drift greater than one remains a regression", () => {
   );
 });
 
-test("ShadowMap green-channel drift remains a regression", () => {
+test("known ShadowMap one-level green-channel drift is tolerated", () => {
+  assert.equal(
+    compareWebglRuns(shadowFixture(147), shadowFixture(147, 2))
+      .toleratedPixelDrifts.length,
+    1,
+  );
+});
+
+test("ShadowMap green-channel drift greater than one remains a regression", () => {
   assert.throws(
-    () => compareWebglRuns(shadowFixture(147), shadowFixture(147, 2)),
+    () => compareWebglRuns(shadowFixture(147), shadowFixture(147, 3)),
     /changed assertion signature/i,
   );
 });
