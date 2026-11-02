@@ -6,7 +6,7 @@ const { spawn } = require("node:child_process");
 const { chromium } = require("@playwright/test");
 
 const child = spawn(
-  chromium.executablePath(),
+  process.env.M0_BROWSER_EXECUTABLE || chromium.executablePath(),
   [
     "--no-sandbox",
     "--enable-webgl",

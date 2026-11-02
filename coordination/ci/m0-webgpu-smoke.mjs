@@ -1,35 +1,38 @@
+import { clearTimeout } from "node:timers";
+import process from "node:process";
 // Real-browser M0.4 acceptance checks. Run after build with the server on :8080.
 /* global Cesium, HTMLCanvasElement, GPUTextureUsage, GPUBufferUsage, GPUMapMode,
           window, document, navigator, requestAnimationFrame, setTimeout, console */
 /* eslint no-unused-vars: ["error", { "args": "after-used" }] */
 import assert from "node:assert/strict";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, rm } from "node:fs/promises";
 import { chromium } from "@playwright/test";
+import os from "node:os";
+import {
+  getBrowserConfiguration,
+  classifyGpu,
+  assertPhysicalGpu,
+} from "./m0-browser-config.mjs";
 
-const base = "http://localhost:8080";
-const outputDir = "Build/m0-webgpu";
+const base = process.env.M0_BASE_URL ?? "http://localhost:8080";
+const outputDir = process.env.M0_WEBGPU_OUTPUT ?? "Build/m0-webgpu";
 await mkdir(outputDir, { recursive: true });
-const browser = await chromium.launch({
-  channel: "chromium",
-  // Capture the actual browser presentation path; CI provides Xvfb.
-  headless: false,
-  // Linux CI needs Vulkan sharing between ANGLE, Skia and Dawn for the canvas.
-  // Chromium's WebGPU pixel tests use this SwiftShader software profile.
-  args: [
-    "--enable-unsafe-webgpu",
-    "--use-angle=swiftshader",
-    "--enable-unsafe-swiftshader",
-    "--enable-features=Vulkan,VulkanFromANGLE",
-    "--use-vulkan=swiftshader",
-    "--use-webgpu-adapter=swiftshader",
-    "--disable-vulkan-surface",
-  ],
-});
+await rm(`${outputDir}/webgpu-smoke.json`, { force: true });
+let browser;
+let config;
 const browserErrors = [];
 const browserMessages = [];
 const checks = [];
 let page;
+let timedOut = false;
+const deadline = setTimeout(() => {
+  timedOut = true;
+  browserErrors.push("Overall WebGPU deadline exceeded");
+  void browser?.close();
+}, 180000);
 try {
+  config = getBrowserConfiguration();
+  browser = await chromium.launch(config.launchOptions);
   page = await browser.newPage({
     viewport: { width: 1280, height: 720 },
     deviceScaleFactor: 2,
@@ -101,6 +104,9 @@ try {
       architecture: gpuContext._adapter.info.architecture,
       device: gpuContext._adapter.info.device,
       description: gpuContext._adapter.info.description,
+      isFallbackAdapter:
+        gpuContext._adapter.isFallbackAdapter ??
+        gpuContext._adapter.info.isFallbackAdapter,
     };
     gpuContext._device.lost.then((info) =>
       diagnostics.lost.push({ reason: info.reason, message: info.message }),
@@ -241,6 +247,9 @@ try {
         architecture: gpuContext._adapter.info.architecture,
         device: gpuContext._adapter.info.device,
         description: gpuContext._adapter.info.description,
+        isFallbackAdapter:
+          gpuContext._adapter.isFallbackAdapter ??
+          gpuContext._adapter.info.isFallbackAdapter,
       },
       format: gpuContext._format,
       canvas: [viewer.canvas.width, viewer.canvas.height],
@@ -250,6 +259,8 @@ try {
       validationErrors: errors,
     };
   });
+  const gpu = classifyGpu(drawing.adapter);
+  assertPhysicalGpu(gpu, config);
   checks.push(
     "Viewer selection and identity",
     "clear and depth-tested RGB pixels",
@@ -482,6 +493,9 @@ try {
   assert.deepEqual(browserErrors, [], "Unhandled browser errors");
   const result = {
     browser: browser.version(),
+    os: { platform: os.platform(), release: os.release(), arch: os.arch() },
+    config,
+    gpu,
     drawing,
     lifecycle,
     failures,
@@ -492,23 +506,30 @@ try {
     `${outputDir}/webgpu-smoke.json`,
     `${JSON.stringify(result, null, 2)}\n`,
   );
+  assert.equal(timedOut, false, "Overall WebGPU deadline exceeded");
   console.log("M0 WEBGPU SMOKE PASS", JSON.stringify(result));
 } catch (error) {
+  await rm(`${outputDir}/webgpu-smoke.json`, { force: true });
   const diagnostics = page
-    ? await page
-        .evaluate(() => globalThis.__m0Diagnostics)
-        .catch(() => undefined)
+    ? await Promise.race([
+        page.evaluate(() => globalThis.__m0Diagnostics).catch(() => undefined),
+        new Promise((resolve) => setTimeout(resolve, 5000)),
+      ])
     : undefined;
   await writeFile(
     `${outputDir}/webgpu-smoke-error.json`,
-    `${JSON.stringify({ error: String(error), checks, browserErrors, browserMessages, diagnostics }, null, 2)}\n`,
+    `${JSON.stringify({ error: String(error), config, checks, browserErrors, browserMessages, diagnostics }, null, 2)}\n`,
   );
   if (page) {
     await page
-      .screenshot({ path: `${outputDir}/webgpu-smoke-failure.png` })
+      .screenshot({
+        path: `${outputDir}/webgpu-smoke-failure.png`,
+        timeout: 5000,
+      })
       .catch(() => {});
   }
   throw error;
 } finally {
-  await browser.close();
+  clearTimeout(deadline);
+  await browser?.close();
 }
