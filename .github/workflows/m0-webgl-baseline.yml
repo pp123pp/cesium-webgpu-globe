@@ -75,10 +75,12 @@ jobs:
         run: |
           set -euo pipefail
           export CHROME_BIN
+          chmod +x coordination/ci/m0-chrome.cjs
           CHROME_BIN="$PWD/coordination/ci/m0-chrome.cjs"
           npm run test-non-webgl -- --browsers ChromeHeadless --failTaskOnError
 
       - name: Run M0.4 WebGPU proof checks
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           set -euo pipefail
