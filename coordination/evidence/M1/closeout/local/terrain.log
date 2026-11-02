@@ -1,0 +1,7 @@
+M1 himalaya-region: 5 terrain tiles, 10 imagery draws
+M1 everest-oblique: 12 terrain tiles, 24 imagery draws
+M1 everest-near: 19 terrain tiles, 42 imagery draws
+M1 everest-top-down: 12 terrain tiles, 24 imagery draws
+M1 base-camp-ground: 9 terrain tiles, 20 imagery draws
+M1 terrain-coordinate-drape: 15 terrain tiles, 60 imagery draws
+M1 terrain PASS_WITH_KNOWN_ISSUES: actual native quantized terrain and high-resolution provider imagery, coherent adjacent mesh edges, native skirts and mixed LOD, complete geometry during real LOD transitions; isolated evidenced software raster differences recorded, this run's real terrain flight passes; intermittent M1-NAV-001 remains documented, GPU imagery coordinates agree with independent native terrain ray picks, balanced terrain/imagery resource destruction

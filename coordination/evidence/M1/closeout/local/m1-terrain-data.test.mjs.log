@@ -1,0 +1,17 @@
+✔ native quantized fixture produces finite indexed terrain, skirts and ordered edges (27.32735ms)
+ℹ Observed upstream post-mesh interpolateHeight limitation; not a supported-height claim.
+✔ oct-encoded normals survive native decoding and worker transfer (3.751806ms)
+✔ native metadata parsing resolves unknown child availability (3.208702ms)
+✔ large native quantized fixture preserves indices above 65535 (111.162874ms)
+✔ all four native upsample children retain their quadrant, skirts and fallback identity (17.178079ms)
+✔ ellipsoid provider reaches the same mesh boundary with a zero-height surface (2.472141ms)
+✔ native parser rejects a truncated quantized-mesh header (7.869984ms)
+✔ native upsampling rejects skipping an intermediate level (1.708991ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.041003

@@ -1,0 +1,18 @@
+✔ rendered ancestor fallback preserves its native terrain data credits (4.806508ms)
+✔ an asynchronously published mesh is renderable before height queries can see it (0.440763ms)
+✔ deferred provider requests retry and native mesh deferral does not mark a tile ready (0.519088ms)
+✔ destroy cancels pending terrain and ignores late completion (0.382847ms)
+✔ unavailable child uses the native parent upsampler and retains its child coordinates (0.547441ms)
+✔ eviction frees GPU ownership once and a revisited tile gets a fresh generation (0.725114ms)
+✔ provider replacement cancels old terrain immediately before late resolve (0.59416ms)
+✔ provider replacement cancels old terrain immediately before late reject (0.350569ms)
+✔ terrain error callback can replace the owner without a stale fatal event (0.963437ms)
+✔ terrain error callback can destroy the owner without a stale fatal event (0.699756ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16.492264

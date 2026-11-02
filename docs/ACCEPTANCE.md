@@ -51,3 +51,18 @@ Exact pixel checks may remain useful diagnostics. If one reports a harmless diff
 On 2026-11-02 the user separately authorized the repeatedly unresolved rapid real-terrain descent issue to remain nonblocking for M1. `M1-NAV-001` is the fast space-to-near-ground collision/altitude problem documented in `coordination/evidence/M1/final-navigation-issue/`. It is a real navigation limitation, separate from the harmless image-difference policy above.
 
 The scenario still executes and retains its evidence. A diagnosed occurrence is `KNOWN_UNRESOLVED`; the terrain suite reports `PASS_WITH_KNOWN_ISSUES`. Do not describe A06 as unconditionally passed or the defect as fixed. A03/A04, ordinary terrain LOD and stable coverage, drape controls, other navigation, cleanup and final HEAD full regression remain required. This authorization does not extend to other failures or future milestones.
+
+## M1 source acceptance record — 2026-11-02
+
+Published source `03233dae8b524d6b3f4498a48a2fd7e89fffa806` passed [Fast CI](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449080) and the actually executed [Full regression](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094). Final publication and merge still require successful checks on the latest PR head under `CI.md`.
+
+| Gate | Verified result |
+| --- | --- |
+| A03 | PASS: native WGS84 Globe, horizon/rotations, native camera and reversed depth. |
+| A04 | PASS: real Provider imagery, geographic/Mercator placement, LOD, layers and disposal. |
+| A05 | PASS: actual quantized terrain, ordinary LOD/seams, 561/561 drape samples, 1 km offset negative control and balanced cleanup. |
+| A06 ordinary navigation | PASS: ellipsoid orbit-to-ground flight, depth/precision, real input, resize and bounded GPU lifetimes. |
+| A06 rapid real-terrain descent | KNOWN_UNRESOLVED: hosted run observed coarse-terrain collision leaving the camera above the requested height; specifically authorized nonblocking. Overall terrain report: PASS_WITH_KNOWN_ISSUES. |
+| Full upstream regression | Non-WebGL 10,353 passed / 5,537 skipped. WebGL baseline and candidate each 3,811 passed / the same 11 failed / 12,068 skipped; no new regression. Inherited failures are not passes. |
+
+The [acceptance handoff](../coordination/handoffs/M1-acceptance.md) and [evidence index](../coordination/evidence/M1/closeout/README.md) retain exact source identities, raw reports, screenshots, environment, local/hosted distinctions and limitations. All current GPU evidence is software SwiftShader. The user subsequently authorized merging to `main` after closeout; this changes integration permission only, not acceptance scope or M2 authorization.

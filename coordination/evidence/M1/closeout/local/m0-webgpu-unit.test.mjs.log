@@ -1,0 +1,17 @@
+✔ destroy while an adapter is pending never requests a device (2.758686ms)
+✔ destroy while a device is pending disposes the late device (0.58089ms)
+✔ destroy while a pipeline is pending never recreates attachments (0.679767ms)
+✔ pipeline rejection reports failure and releases the device (0.96575ms)
+✔ scoped validation errors reject readiness and dispose attachments (0.893012ms)
+✔ missing canvas context does not leak the acquired device (0.560971ms)
+✔ resize allocation failure is observable and releases GPU resources (0.566939ms)
+✔ resize clamps texture dimensions and destroys replaced attachments (1.15497ms)
+✔ initial widget resize failure rejects readiness and releases resources (1.15451ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17.1654

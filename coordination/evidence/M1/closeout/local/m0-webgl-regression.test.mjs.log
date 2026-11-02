@@ -1,0 +1,34 @@
+✔ identical failures remain visible while stack and build locations may change (13.780052ms)
+✔ a resolved baseline failure is reported as an improvement (6.141075ms)
+✔ zero executed tests in baseline cannot pass the differential gate (1.901436ms)
+✔ an incomplete baseline run cannot be accepted as known failures (3.083447ms)
+✔ zero executed tests in candidate cannot pass the differential gate (0.93192ms)
+✔ an incomplete candidate run cannot be accepted as known failures (1.733968ms)
+✔ browser errors fail even when all recorded spec outcomes match (1.544857ms)
+✔ a dropped executed test cannot be hidden by a smaller failure set (1.085126ms)
+✔ a changed skipped count fails (1.50619ms)
+✔ browser version changes require a new controlled baseline (1.728119ms)
+✔ a newly failed spec fails even if total failures stay unchanged (4.935019ms)
+✔ the same failed spec with changed assertion values is a regression (5.32067ms)
+✔ an extra assertion in an already failing spec cannot be ignored (5.307099ms)
+✔ identical selected specs executed in a different order are rejected (1.907204ms)
+✔ reported counters cannot hide missing spec result records (1.01281ms)
+✔ an unexplained process failure is not treated as a baseline assertion failure (0.925731ms)
+✔ a failed spec without assertion details cannot become an empty known signature (4.075796ms)
+✔ normalization preserves every assertion and numeric value (0.185495ms)
+✔ generated spec imports are sorted without changing VERSION or the import set (0.511978ms)
+✔ generated spec input with duplicate imports is rejected (0.216461ms)
+✔ generated spec input with unexpected code is not silently discarded (0.344771ms)
+✔ different generated import lists fail despite identical recorded results (1.323871ms)
+✔ the reporter preserves ordered raw failures, completion and browser diagnostics (0.434043ms)
+✔ only the pinned clean pre-WebGPU baseline is accepted (0.459891ms)
+✔ a separate candidate checkout cannot stand in for the pre-WebGPU baseline (0.336709ms)
+✔ a dirty baseline cannot generate accepted differential evidence (0.344711ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.340325

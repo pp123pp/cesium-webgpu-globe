@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1 native terrain flight fixed and verified; final committed-source acceptance in progress**
+Current milestone: **M1 A03–A06 closeout; verified source and documented navigation limitation**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -16,33 +16,32 @@ Import workflow result: SUCCESS; source presence verified.
 - M0.3: Viewer → CesiumWidget → Scene → Globe → QuadtreePrimitive → GlobeSurfaceTileProvider → Context pipeline audited; see `coordination/handoffs/M0.3-source-pipeline-audit.md`.
 - M0.4: Viewer selects an isolated WebGPU proof at construction while preserving Viewer identity. WebGPUContext/WebGPUWidget own device/canvas, WGSL color/depth drawing, sizing, errors/loss and disposal. The real-browser gate, standalone demo and screenshot inspection passed. Existing CesiumWidget, Scene, WebGL Context and Globe source remain unchanged.
 
-## Active task
+## M1 closeout and integration
 
-M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) targets `feat/m0-webgpu-backend`; PR #1 remains unmerged and is ready for review. The user requested publishing verified progress incrementally. `coordination/M1-PLAN.md` defines A03–A06; root alone owns shared integration, and imagery state adaptation uses a disjoint worktree. No M2 work.
+M1 covers the real WGS84 Globe, ImageryProvider and TerrainProvider, A03–A06. On 2026-11-02 the user additionally instructed **“收尾后合并到main”**. This supersedes the earlier no-merge instruction: finish the records and final PR checks, merge M0 dependency [PR #1](https://github.com/pp123pp/cesium-webgpu-globe/pull/1), then merge [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) into `main`. Stop at M1; M2 is not started.
 
-**Resumed on 2026-11-02 under explicit user authorization.** Remote checkpoint `8b37878` and its tree `cee28d7` were verified against the clean old local checkpoint. PR #2 still targets unmerged PR #1 and remains a draft. Root owns shared integration; the demo browser gate is isolated in a separate worktree. No M2 work or merge to main.
+Verified runtime source: `03233dae8b524d6b3f4498a48a2fd7e89fffa806`, tree `48142ced46a15cdf435db7902b9ba601449b5358`, identical to locally verified `f2b9921`. [Fast 41430449080](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449080) and [Full 41430449094](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094) both completed successfully. The actual Full regression job ran every required step; this was not a selector-only success.
 
-Current continuation findings: the expanded terrain script originally failed with a full-frame hole. Native fill geometry, conservative selection bounds and real-parent fallback now fix the actual transition and collision issues. The complete live candidate passes four LOD transitions and 18 ground-flight frames with zero background/untextured pixels, ends 33.579 m above real terrain at levels 19–20, passes 561 drape samples and balanced cleanup. Evidence and rejected candidates: `handoffs/M1-native-terrain-fill.md` and `evidence/M1/terrain-fill/`. Final committed-source A03–A06 and complete regression are next; **M1 is not yet declared complete**.
+This closeout changes documentation and evidence only. Its publication must also pass Fast and an executed Full on the latest PR head under `docs/CI.md`. The live PR checks and merge record are the final publication authority; the source report below does not claim to test a future commit SHA. See [M1 acceptance handoff](handoffs/M1-acceptance.md).
 
-Provider/imagery error reentrancy and Scene event ordering were also fixed with retained RED/GREEN tests. The real demo gate now verifies initialization, dynamic Providers, Everest/Orbit, retry/error and destruction; see `handoffs/M1-demo-acceptance.md` and `handoffs/M1-review-corrections.md`.
+### Verified hosted closeout evidence
 
-Fast/Full CI is integrated in the existing PR. Fast at published `6ffe437` actually passed in 147 seconds; Full remains a separate final gate. Its earlier terrain failure is retained and is not evidence against or acceptance of the later native-fill candidate. User clarification is now in `docs/ACCEPTANCE.md`: harmless visual differences are allowed; images need not be identical. All functional and regression gates remain.
+- Build, ESLint, generated declarations and TypeScript checks pass; all **160 focused tests** pass across 17 suites.
+- A03 WGS84 foundation, A04 imagery and ordinary A06 navigation/depth/precision/input/resource gates pass. All five M1 browser reports identify the exact verified source above.
+- A05 actual quantized World Terrain + ArcGIS imagery passes ordinary coverage, adjacent/mixed-LOD checks and four LOD transitions with zero background/untextured pixels. Drape passes **561/561** native-pick samples; a real 1 km GPU imagery offset fails **535/561**, as required.
+- The hosted rapid flight **observed `M1-NAV-001`**: coarse-terrain collision left the camera **2,098.890 m above terrain**, above its requested height. It is `KNOWN_UNRESOLVED`; the complete terrain result is `PASS_WITH_KNOWN_ISSUES`. The flight ran, and drape/error/cleanup checks continued afterwards. A06 is not unconditionally passed.
+- Hosted terrain releases **1,184/1,184 buffers and 424/424 imagery textures**; pending requests, retained bytes and canvases are zero. Ordinary navigation releases **2,608/2,608 actual GPU buffers and 68/68 actual GPU textures**.
+- All **10 live demo checks** pass, including native Providers, attribution, Everest/Orbit, retry, device loss and early exit. Demo teardown releases **884/884 buffers and 242/242 native GPU textures**, including depth textures.
+- Complete non-WebGL: **10,353 passed / 5,537 skipped**. Complete WebGL differential: both independent baseline and candidate execute **3,822 specs: 3,811 passed / the same 11 failed / 12,068 skipped**. No new failures or changed failure signatures; raw suites still exit 1. The historical 12-failure M0 result below is preserved as history, not reused as this run's count.
+- Independent source/acceptance review found no Critical/Important blocker and independently ran 51 focused cases. Hosted checks, source identities, reports, representative screenshots and checksums are in `coordination/evidence/M1/closeout/hosted/`.
 
-**Latest navigation decision:** committed-source `5877be7` reproduced an intermittent fast real-terrain descent failure after the passing native-fill candidate. The user explicitly authorizes this specific repeatedly unresolved problem to remain nonblocking. It is `M1-NAV-001 / KNOWN_UNRESOLVED`, with raw failure screenshots and frame evidence in `evidence/M1/final-navigation-issue/`; A06 is not claimed unconditionally passed. Ordinary LOD, imagery/drape, stable coverage, other navigation and lifecycle gates remain mandatory. Final source and hosted regression are being completed.
+Earlier local results remain separately in `coordination/evidence/M1/closeout/local/`, including the original sandbox `EPERM` and unchanged successful retry. That local rapid-flight sample passed at 33.579 m AGL; it does not negate the hosted occurrence or resolve the intermittent defect. Historical rejected candidates remain unchanged in their original evidence and handoffs.
 
-### Historical M1 slices (superseded by final continuation evidence below when available)
+### Acceptance decisions already authorized
 
-- RTC/depth math: 10 tests, including 180 orbit-to-1m projection samples; native NONE/BITS12 meshes and skirts retained.
-- Native terrain/quadtree adapter: 6 tests for deferral, unavailable-child upsampling, eviction and provider replacement with late completion. Real World Terrain data/adjacency was separately probed; this alone is not rendered A05 evidence.
-- Actual WGS84 WebGPU foundation: native Camera/Globe/Quadtree, depth32float, no hidden WebGL context. Orbit/pole/dateline silhouette agreement exceeds 99.8%; ground selects levels 12–13 with zero background crack pixels. All 187 allocated buffers are destroyed. Direct Scene error policy is checked separately from normal rendering.
-- Same M1 build: all 17 M0 WebGPU proof checks pass; three WebGL views have zero changed reference pixels and identical settled repeat captures. Foundation source hashes, screenshots and logs: `coordination/evidence/M1/foundation/`; details: `coordination/handoffs/M1.1-gpu-globe.md`.
-- M1.2/A04: real Natural Earth provider tiles and native LOD; geographic/Mercator/polar coordinate checks; alpha/show/order/coverage/removal and late-request cancellation all pass in the real browser. 220 buffers and 362 textures are fully released. All focused CPU suites total 62 passed; actual images, reports and source hashes: `coordination/evidence/M1/imagery/`, handoff `coordination/handoffs/M1.2-gpu-imagery.md`.
-- Hosted M1 foundation [run 41405352077](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41405352077) passes, including full non-WebGL/WebGL regression and browser gates.
-- The published imagery head `f78e42e` passes full hosted regression in [run 41407632894](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41407632894). This does not certify the later controller/navigation checkpoint; its new hosted run must be checked separately.
-- Live quantized terrain rendered with World Terrain + ArcGIS World Imagery: 110 terrain / 152 imagery requests, same-level edge gaps below 0.34 m, mixed LOD observed, four source/LOD transitions with zero holes/untextured pixels. Independent native-pick drape checks pass 561/561; an actual 1 km GPU mapping offset fails 535 samples. All 221 buffers / 304 imagery textures are released. Evidence: `coordination/evidence/M1/terrain/`; handoff `M1.3-live-terrain-checkpoint.md`. **This passing subset predates the newly added, unexecuted real-terrain near-ground flight.**
-- A03/A06 ellipsoid navigation gate passes: dateline/pole rotations, actual reversed-depth positive/negative control, native 40,000 km → 10 m flight, metre/submetre precision, real drag/wheel, resize and bounded churn. The deterministic native center-wheel roundoff error is fixed only around the WebGPU controller update; invalid direct Camera rotations still reject. Independent GPU observations release all 420 buffers / 49 textures. Evidence: `coordination/evidence/M1/navigation/`; handoff `M1.4-navigation-tests.md`.
-- Pause verification: build and all **67 focused CPU tests** pass. Current demo `Apps/WebGPUGlobe.html` is saved with lint/format checks only; its browser behavior is **unverified**. The newly added live-terrain `groundFlight` is also **unexecuted**. No claim is made that the current whole terrain script passed.
-- Remaining: execute and resolve the expanded live A05 flight, verify the demo, finish terrain CI wiring and capability docs, rerun the final complete browser/non-WebGL/WebGL gates and review. **M1 is not yet accepted.**
+- Harmless visual differences are allowed; WebGL/WebGPU images need not be pixel-identical. This applies to later acceptance too and does not waive functional regressions.
+- Physical GPU testing is unavailable and nonblocking. Current browser evidence is Chromium 156 / headed Xvfb / Google SwiftShader software rendering; no physical performance claim is made.
+- Only the repeatedly unresolved fast real-terrain descent collision/altitude problem is nonblocking as `M1-NAV-001`. The test still runs and retains its evidence. Ordinary terrain coverage/LOD, imagery/drape, other navigation, cleanup, browser errors and complete upstream regression remain mandatory.
 
 ## M0.5 acceptance (2026-11-02)
 
@@ -51,14 +50,15 @@ Fast/Full CI is integrated in the existing PR. Fast at published `6ffe437` actua
 - WebGPU: all 17 real-browser depth/lifecycle/demo checks pass; normal rendering has no unexpected validation/browser errors. Original lifecycle and new pixel/config tests: 13 passed; differential-runner tests: 26 passed; control-flow probes: 5 passed.
 - Full non-WebGL suite: 10,353 passed, 5,537 skipped. Full WebGL **no-new-regression gate passes**: baseline and candidate each execute 3,822 specs with 3,810 passed and the **same 12 inherited failures** (12,068 skipped). Exact execution order and assertion signatures match. The underlying suites still exit 1; those failures are not claimed passed.
 - Chromium 156.0.8078.4, Ubuntu 24.04, Google SwiftShader, headed Xvfb for screenshots. Source and served-bundle provenance, browser/GPU metadata, screenshots and compact differential report are preserved in `coordination/evidence/M0.5/`.
-- Concurrent remote `fda7f01` was integrated with a normal merge preserving repeatability checks. `main` remains unmerged. See `coordination/handoffs/M0.5-regression-gate.md` for commands, local certificate-trust diagnosis and retained upstream failures.
+- Concurrent remote `fda7f01` was integrated with a normal merge preserving repeatability checks. At that M0.5 checkpoint, `main` was unmerged. See `coordination/handoffs/M0.5-regression-gate.md` for commands, local certificate-trust diagnosis and retained upstream failures.
 - Published-head CI: [PR run 41400575907](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400575907) passed; [push run 41400570084 attempt 2](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400570084/attempts/2) passed. Push attempt 1 retained two extra native Cesium3DTileset async timeouts; rerunning only the failed job without any source or gate change passed. The original failure remains in Actions.
 
-## Active branches / worktrees
+## Branch dependencies and publication
 
-- `feat/m0-webgpu-backend`: M0 integration branch and PR #1; M0.4 product implementation is preserved. M0.5 adds only verification, CI and documentation.
-- Clean detached pre-WebGPU reference worktree at `724b5db`; independent differential-harness worktree was integrated after review. One integration owner edits shared Viewer/STATUS.
-- `main` remains `a7f4729`; no merge was performed. M1 branches from the accepted M0 tree and targets it while PR #1 remains unmerged.
+- `feat/m0-webgpu-backend` / PR #1 supplies M0; its verified head is `7a689426af4b4b5f9c510d91e68ff45623f20090`.
+- `feat/m1-wgs84-globe` / PR #2 supplies M1 and this closeout. Preserve both histories with normal merge commits; do not force-push or delete the branches during closeout.
+- The independent pre-WebGPU reference remains pinned at `724b5db`. One integration owner controls shared source and STATUS.
+- Before the newly authorized integration, `main` was `a7f4729`. Merge PR #1 first, retarget PR #2 to `main`, verify its final checks and prospective merge tree, then merge PR #2. GitHub records the resulting SHAs and actual merge state.
 
 ## Tests
 

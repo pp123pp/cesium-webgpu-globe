@@ -1,0 +1,87 @@
+[
+  {
+    "file": "m1-terrain-coverage.test.mjs.log",
+    "pass": 5,
+    "fail": 0
+  },
+  {
+    "file": "m0-browser-config.test.mjs.log",
+    "pass": 2,
+    "fail": 0
+  },
+  {
+    "file": "m1-imagery-lifecycle.test.mjs.log",
+    "pass": 27,
+    "fail": 0
+  },
+  {
+    "file": "m1-terrain-data.test.mjs.log",
+    "pass": 8,
+    "fail": 0
+  },
+  {
+    "file": "m1-tile-provider.test.mjs.log",
+    "pass": 10,
+    "fail": 0
+  },
+  {
+    "file": "m1-globe-math.test.mjs.log",
+    "pass": 10,
+    "fail": 0
+  },
+  {
+    "file": "m1-scene-events.test.mjs.log",
+    "pass": 4,
+    "fail": 0
+  },
+  {
+    "file": "m1-terrain-flight.test.mjs.log",
+    "pass": 7,
+    "fail": 0
+  },
+  {
+    "file": "m1-ci-policy-unsandboxed.log",
+    "pass": 28,
+    "fail": 0
+  },
+  {
+    "file": "m1-terrain-edges.test.mjs.log",
+    "pass": 3,
+    "fail": 0
+  },
+  {
+    "file": "m1-terrain-fill.test.mjs.log",
+    "pass": 8,
+    "fail": 0
+  },
+  {
+    "file": "m0-webgpu-unit.test.mjs.log",
+    "pass": 9,
+    "fail": 0
+  },
+  {
+    "file": "m1-controller-roundoff.test.mjs.log",
+    "pass": 2,
+    "fail": 0
+  },
+  {
+    "file": "m0-visual-checks.test.mjs.log",
+    "pass": 2,
+    "fail": 0
+  },
+  {
+    "file": "m0-webgl-regression.test.mjs.log",
+    "pass": 26,
+    "fail": 0
+  },
+  {
+    "file": "m1-renderer-lifecycle.test.mjs.log",
+    "pass": 6,
+    "fail": 0
+  },
+  {
+    "file": "m1-imagery-renderer.test.mjs.log",
+    "pass": 3,
+    "fail": 0
+  }
+]

@@ -1,0 +1,97 @@
+{
+  "source": "03233dae8b524d6b3f4498a48a2fd7e89fffa806",
+  "tree": "48142ced46a15cdf435db7902b9ba601449b5358",
+  "runId": 41430449094,
+  "jobId": 125227480660,
+  "artifactId": 13134792351,
+  "artifactSha256": "b9a525d9e9901c0782c1dfa92b6a2508375b9ef16f3df339b3eabb29d6da476a",
+  "artifactUrl": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094/artifacts/13134792351",
+  "note": "Copied original JSON reports and representative screenshots without changes. WebGL summary retains all failures and source/order identities; full 5.8MB reports remain in the original artifact. job-conclusions.log contains verbatim selected job log lines, not the whole log.",
+  "files": [
+    {
+      "path": "github-verification.json",
+      "bytes": 8162,
+      "sha256": "334763e794640a52849c379abf40c317b72b9d5173e7684a843d9bbc7ccfc623"
+    },
+    {
+      "path": "job-conclusions.log",
+      "bytes": 5020,
+      "sha256": "afa8190128e5aa0b701216f972b23a0f933c4044bfd8363f9847ca7ad7a8a838"
+    },
+    {
+      "path": "m0-baseline/webgl-smoke.json",
+      "bytes": 4210,
+      "sha256": "fae84d398fd11d96230a6116882ce584e1c49f04517f193f838db2720403c026"
+    },
+    {
+      "path": "m0-negative/webgl-smoke-error.json",
+      "bytes": 763,
+      "sha256": "3e035492fb8965d55c3ae35bd294d8a5ffe3ed2534e5f0c28e01077e0c4d6e60"
+    },
+    {
+      "path": "m0-webgl-regression/comparison.json",
+      "bytes": 365,
+      "sha256": "cc1a333f014d65c8e1aac3713c35314908d955116c5a1063ea9c01f7641cce49"
+    },
+    {
+      "path": "m0-webgl-regression/summary.json",
+      "bytes": 24986,
+      "sha256": "c7b3b20fae3a5262d55dd6598765ff8914dbfff3a6e10df274c8d1b9b2b8693f"
+    },
+    {
+      "path": "m0-webgpu/webgpu-smoke.json",
+      "bytes": 2913,
+      "sha256": "1cb09679c79a0dc9d4d1df47275754162d1500739f126f8ec09bee1ae63f7b6a"
+    },
+    {
+      "path": "m1-demo/everest.png",
+      "bytes": 1153076,
+      "sha256": "91fbdbc8e7be836b2a8d48cfdc129ef410c5f46cb74df49b2994ce3effbf3310"
+    },
+    {
+      "path": "m1-demo/result.json",
+      "bytes": 18347,
+      "sha256": "1b6907de3274b8d4bf09598d1a97091d17a2f0e6fc421140dd5da99f7827f130"
+    },
+    {
+      "path": "m1-globe/m1-globe.json",
+      "bytes": 9162,
+      "sha256": "d75af6e7400a4ef424b6a79c14d094e068828647ba4c392f6f4c90cfa8f040ed"
+    },
+    {
+      "path": "m1-globe/orbit.png",
+      "bytes": 10632,
+      "sha256": "a3cdf83b420e29e067c1e92e95e8bfa99490e6baa83af416e27fc8c2e5d4c639"
+    },
+    {
+      "path": "m1-imagery/geographic-coordinates.png",
+      "bytes": 83436,
+      "sha256": "c9ae0c0387e4975cb5ea8da657173d48d40aba70c8830698645a3f551b39a391"
+    },
+    {
+      "path": "m1-imagery/result.json",
+      "bytes": 21940,
+      "sha256": "b77a1ac174b14842ca798c8d0b0f65cc62218b88d13b33514c6365ac99e7c733"
+    },
+    {
+      "path": "m1-navigation/result.json",
+      "bytes": 108665,
+      "sha256": "2e5b4ccb8d148962344556e5345490b5adfb56798d1968cd8e187043504ac891"
+    },
+    {
+      "path": "m1-terrain/base-camp-ground.png",
+      "bytes": 666014,
+      "sha256": "5d6242b97bbacdbda80a746e3c17fbe6f4c4e74b36690f03451fb3088b9a574e"
+    },
+    {
+      "path": "m1-terrain/result.json",
+      "bytes": 384982,
+      "sha256": "330bade2fe9f1f4f2703866ce2fb5451759ce7ee79e18607c68f4478ac49c769"
+    },
+    {
+      "path": "m1-terrain/terrain-coordinate-drape.png",
+      "bytes": 498353,
+      "sha256": "38243a948ff3e509cde63e503acca04f67363bdafbbfa2b1b75545ef9418d77c"
+    }
+  ]
+}

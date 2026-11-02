@@ -1,0 +1,11 @@
+✔ image upload failure destroys its texture and restores memory accounting (1.689745ms)
+✔ native layer minification and magnification filters select a shared matching sampler (0.535634ms)
+✔ HTML images flip once; already flipped ImageBitmaps do not; teardown is idempotent (0.95155ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.619757

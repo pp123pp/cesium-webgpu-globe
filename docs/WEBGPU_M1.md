@@ -2,6 +2,8 @@
 
 M1 adds a separately selected WebGPU renderer to official CesiumJS 1.146.0. It reuses native WGS84 Globe, Camera, terrain/imagery Providers, quadtree traversal, workers, request scheduling and layer collections. WebGL remains the default. The supported WebGPU surface is listed below; this is not the complete Cesium Viewer/Scene API.
 
+The [M1 closeout record](../coordination/handoffs/M1-acceptance.md) contains the verified A03–A06 results, hosted reports and integration conditions. `M1-NAV-001` remains a real, specifically authorized navigation limitation; successful milestone checks do not guarantee every rapid real-terrain descent reaches its requested altitude.
+
 ## Run the demonstration
 
 Use Node 22 or newer and the repository's npm workspaces:

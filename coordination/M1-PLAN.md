@@ -1,6 +1,6 @@
 # M1 implementation and acceptance plan
 
-M0.5 is accepted locally at published commit `7a689426af4b4b5f9c510d91e68ff45623f20090`; PR #1 remains unmerged. Full WebGL comparison retains the same 12 inherited failures on both sides. The user waived unavailable physical GPU testing as a blocker; software evidence remains explicitly labeled.
+**Historical M1 planning baseline:** M0.5 was accepted locally at published commit `7a689426af4b4b5f9c510d91e68ff45623f20090`; PR #1 was then unmerged. That M0.5 WebGL comparison retained the same 12 inherited failures on both sides. The user waived unavailable physical GPU testing as a blocker; software evidence remains explicitly labeled.
 
 **Branch:** `feat/m1-wgs84-globe`, separate PR targeting `feat/m0-webgpu-backend` until M0 merges. **Owner:** root is the sole integrator for Viewer, widget, scene/globe submission and STATUS. At most one independent feature implementer and one read-only reviewer. No M2, sky, atmosphere, clouds, 3D Tiles or generic render graph.
 
@@ -31,9 +31,11 @@ Each slice ends in a small reviewable commit with commands/results, residual ris
 - [x] Create isolated M1 branch/worktree from the published accepted M0 tree.
 - [x] M1.1 / A03 accepted locally, including later native dateline/pole rotation and real reversed-depth controls.
 - [x] M1.2 / A04 accepted locally; actual provider/browser evidence in `coordination/evidence/M1/imagery/`.
-- [ ] M1.3 / A05 accepted.
-- [ ] M1.4 / A06 and WebGL regression accepted; evidence and dependent PR published.
+- [x] M1.3 / A05 verified on the published source: real terrain/imagery, seams, ordinary transitions, drape controls and cleanup.
+- [x] M1.4 / A06 verified under the specific known navigation exception; full WebGL/non-WebGL regression and closeout evidence recorded. Final publication uses the latest-head checks on PR #2.
 
-**Continuation:** the historical user pause checkpoint remains in `coordination/handoffs/M1-pause-checkpoint.md`. Work resumed under explicit authorization. The complete live terrain candidate, including the added near-ground flight, now passes after native fill/selection/bounds fixes; the demo and callback lifetimes also have real verification. Final committed-source acceptance and full regression are still required. No M2 work or main merge.
+**Closeout:** published source `03233da` passed [Full regression 41430449094](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094), including the demo, all browser gates, 160 focused cases, 10,353 non-WebGL cases and complete WebGL differential with the same 11 inherited failures on each side. The live terrain suite is `PASS_WITH_KNOWN_ISSUES` and actually observed the authorized navigation issue; it is not an unconditional flight pass. See `coordination/handoffs/M1-acceptance.md` for the source record and publication conditions. The historical pause and rejected candidates are preserved.
+
+**Latest integration authorization:** on 2026-11-02 the user instructed “收尾后合并到main”. After final PR checks, merge M0 dependency PR #1, then M1 PR #2 into `main`. This supersedes the earlier no-merge constraint and does not authorize M2 work.
 
 **Specific user-authorized exception:** repeated final-source testing did not reliably resolve fast space-to-real-terrain-ground collision/altitude behavior. Record `M1-NAV-001` as known unresolved and nonblocking, retain its evidence and do not call A06 fully passed. This exception does not extend to other scenarios or M2.
