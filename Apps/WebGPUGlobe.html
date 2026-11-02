@@ -61,6 +61,28 @@
         opacity: 0.5;
         cursor: wait;
       }
+      #ion-form {
+        margin: 14px 0;
+      }
+      #ion-form label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      .token-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      #ion-token {
+        flex: 1 1 180px;
+        min-width: 0;
+        padding: 8px 10px;
+        border: 1px solid #90b6d5;
+        border-radius: 6px;
+        background: #101b28;
+        color: inherit;
+        font: inherit;
+      }
       #status {
         color: #a4ddc3;
         white-space: pre-wrap;
@@ -77,13 +99,30 @@
       <p>Drag to orbit, scroll to zoom, Ctrl-drag to tilt.</p>
       <nav aria-label="Globe controls">
         <button id="orbit" disabled>Orbit</button>
-        <button id="terrain" disabled>Load real terrain</button>
+        <button id="terrain" disabled>Reload imagery + terrain</button>
         <button id="everest" disabled>Everest</button>
       </nav>
+      <form id="ion-form" autocomplete="off">
+        <label for="ion-token">Your Cesium ion access token</label>
+        <div class="token-controls">
+          <input
+            id="ion-token"
+            type="password"
+            placeholder="Paste your Cesium ion token"
+            aria-describedby="token-help"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button id="apply-token" type="submit" disabled>Use token</button>
+        </div>
+      </form>
       <p id="status" role="status">Initializing WebGPU…</p>
-      <small
-        >Starts with bundled Natural Earth tiles and ellipsoid terrain. Real
-        terrain loads Cesium World Terrain and ArcGIS World Imagery.</small
+      <small id="token-help"
+        >Uses Google Maps 2D Satellite (Cesium ion asset 3830182) and Cesium
+        World Terrain (asset 1). A demo token is tried first. For reliable
+        access, enter an ion token with permission to read both assets.
+        Your token is not saved by this page or added to the URL; it is
+        sent to Cesium ion to request the data.</small
       >
     </aside>
     <script type="module">
@@ -92,17 +131,29 @@
       const orbit = document.getElementById("orbit");
       const terrain = document.getElementById("terrain");
       const everest = document.getElementById("everest");
+      const ionForm = document.getElementById("ion-form");
+      const ionToken = document.getElementById("ion-token");
+      const applyToken = document.getElementById("apply-token");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
       let live = false;
+      let loading = false;
       let failed = false;
       const showError = (error, fatal = false) => {
+        // Cesium errors can include request URLs. Never show the user's token.
+        const rawMessage = String(error?.message ?? error);
+        const token = Cesium.Ion.defaultAccessToken;
+        const safeMessage =
+          typeof token === "string" && token.length > 0
+            ? rawMessage.replaceAll(token, "[redacted]")
+            : rawMessage;
         status.style.color = "#ffb4b4";
-        status.textContent = error.message ?? String(error);
+        status.textContent = safeMessage;
         if (fatal) {
           failed = true;
           orbit.disabled = terrain.disabled = everest.disabled = true;
+          applyToken.disabled = true;
         }
       };
       viewer.renderError.addEventListener((source, error) =>
@@ -120,7 +171,7 @@
       viewer.scene.globe.tileLoadProgressEvent.addEventListener((remaining) => {
         if (live && !failed && remaining === 0 && !viewer.isDestroyed()) {
           status.textContent =
-            "World Terrain + ArcGIS World Imagery · visible tiles ready.";
+            "Google satellite + Cesium World Terrain · visible tiles ready.";
         }
       });
       orbit.addEventListener("click", () => {
@@ -141,16 +192,20 @@
           duration: 3,
         });
       });
-      terrain.addEventListener("click", async () => {
-        terrain.disabled = true;
+      const loadGoogleAndTerrain = async () => {
+        if (loading || failed || viewer.isDestroyed()) {
+          return;
+        }
+        loading = true;
+        live = false;
+        terrain.disabled = applyToken.disabled = true;
         status.style.color = "";
-        status.textContent = "Loading World Terrain and ArcGIS imagery…";
+        status.textContent = "Loading Google satellite + Cesium World Terrain…";
         try {
+          // Build both providers before replacing the visible fallback.
           const [terrainProvider, imageryProvider] = await Promise.all([
             Cesium.createWorldTerrainAsync(),
-            Cesium.ArcGisMapServerImageryProvider.fromUrl(
-              "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
-            ),
+            Cesium.IonImageryProvider.fromAssetId(3830182),
           ]);
           if (failed || viewer.isDestroyed()) {
             return;
@@ -160,16 +215,43 @@
           viewer.imageryLayers.addImageryProvider(imageryProvider);
           live = true;
           everest.disabled = false;
-          terrain.textContent = "Real terrain loaded";
           status.textContent =
-            "World Terrain + ArcGIS World Imagery · fly to Everest or navigate freely.";
+            "Google satellite + Cesium World Terrain · fly to Everest or navigate freely.";
         } catch (error) {
-          if (failed || viewer.isDestroyed()) {
-            return;
+          if (!failed && !viewer.isDestroyed()) {
+            const reason = String(error?.message ?? error);
+            showError(
+              new Error(
+                "Could not load Google satellite / Cesium World Terrain. " +
+                  "Enter an ion token with assets:read access to assets " +
+                  "3830182 and 1, then select Use token. " +
+                  reason,
+              ),
+            );
           }
-          terrain.disabled = false;
-          showError(error);
+        } finally {
+          loading = false;
+          if (!failed && !viewer.isDestroyed()) {
+            terrain.disabled = applyToken.disabled = false;
+          }
         }
+      };
+      terrain.addEventListener("click", () => {
+        void loadGoogleAndTerrain();
+      });
+      ionForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (loading || failed || viewer.isDestroyed()) {
+          return;
+        }
+        const token = ionToken.value.trim();
+        if (!token) {
+          showError(new Error("Enter a Cesium ion access token."));
+          return;
+        }
+        Cesium.Ion.defaultAccessToken = token;
+        ionToken.value = "";
+        void loadGoogleAndTerrain();
       });
       try {
         await viewer.readyPromise;
@@ -177,8 +259,9 @@
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
           orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
         });
-        orbit.disabled = terrain.disabled = false;
-        status.textContent = "Natural Earth + WGS84 ellipsoid · ready.";
+        orbit.disabled = terrain.disabled = applyToken.disabled = false;
+        status.textContent = "Natural Earth fallback · connecting to Cesium ion…";
+        await loadGoogleAndTerrain();
       } catch (error) {
         if (!viewer.isDestroyed()) {
           showError(error, true);
