@@ -87,12 +87,49 @@ build and full runtime acceptance.
 
 ## Exact next action and remaining risk
 
-Root reviews and cherry-picks the dedicated CI commit after its production fixes,
-publishes the existing PR branch, then applies `ci:full` (creating the repository
-label if missing) or marks the PR ready. Do not create another PR. Leave the
-label attached through final acceptance so later commits automatically run Full.
-Verify both tiers on the latest PR head and inspect Full browser/differential
-artifacts. The source YAML and policy tests pass locally; GitHub event delivery,
-runner timing and hosted execution of the new tier split remain unverified until
-that publication. Default-main dispatch remains unavailable, and M1 is not marked
-complete by this work.
+The initial CI commit was integrated as `5617dfb` and published in the equivalent
+tree at `8316a5df890d14e095324e8ba8002c13a07a160e`. The first hosted attempt below
+found a test-import compatibility defect. Root must integrate the small follow-up
+fix, publish the existing PR branch, and verify both tiers on the latest head.
+The integration owner will apply `ci:full` on the final head to verify the manual
+entry. Leave that label attached through final acceptance so later commits also
+run Full. Default-main dispatch remains unavailable, and this work does not mark
+M1 complete.
+
+## First hosted attempt and compatibility follow-up
+
+At head `8316a5d`, tree `9de29f76367de66952879c8fd88f24d0d0071de5`:
+
+- [Fast run 41421978109](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41421978109)
+  and [Full run 41421978175](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41421978175)
+  were the only runs for this head; both were `pull_request`, with no duplicate
+  push run. The PR was a draft with no labels.
+- The hosted selector passed and reported `shared-code-update`, `before..head`,
+  `comparisonAvailable: true`, and exactly the six newly changed CI/docs files.
+  [Selection artifact](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41421978175/artifacts/13129738716).
+- Published YAML matches the reviewed workflow. Its actual PR context evaluates
+  to `m1-fast-2` and `m1-full-2`, each with cancellation enabled. Both jobs ran
+  simultaneously. Superseding-head cancellation and manual labels were not
+  exercised by this read-only verification.
+- Candidate build, lint/generated TypeScript checks and the independent reference
+  build passed in both tiers. The new policy test then failed during module import:
+  hosted `js-yaml` does not expose a default export. Chromium installation was
+  skipped after that failure; subsequent missing-browser errors are consequences
+  of the import failure, not executed terrain/demo acceptance results.
+- Fast elapsed **164 seconds (2m 44s)**, with a 160-second job; Full elapsed
+  176 seconds. These are **failed, incomplete runs**, not successful Fast timing
+  measurements or final acceptance. Successful Fast timing remains pending.
+
+The follow-up changes only the policy test's YAML import/calls to named `load`,
+which is supported by both the existing js-yaml 4.2.0 and current v5 API
+([upstream migration guide](https://github.com/nodeca/js-yaml/blob/master/docs/migrate_v4_to_v5.md)).
+An isolated, registry-integrity-verified js-yaml 5.5.0 fixture reproduced the exact
+default-export failure before the fix. After the fix, **28/28 tests pass under
+both 4.2.0 and 5.5.0**, and ESLint/Prettier pass. No dependency manifests,
+workflows, existing acceptance tests or assertions are changed by this fix.
+
+Evidence is under `Build/m1-ci/hosted-8316a5d/` (selection, final run/job metadata,
+failure excerpts, exact published YAML and concurrency evaluation), plus
+`Build/m1-ci/yaml-v5-red.log`, `yaml-v4-green.log`, `yaml-v5-green.log`, and
+`yaml-v5-compat/package-provenance.json`. No Actions rerun, PR state or label
+mutation was performed by this verification task.

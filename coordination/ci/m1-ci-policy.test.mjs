@@ -14,7 +14,7 @@ import process from "node:process";
 import { fileURLToPath, URL } from "node:url";
 import { runInNewContext } from "node:vm";
 import { after, before, test } from "node:test";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const script = join(root, "coordination/ci/m1-ci-policy.mjs");
@@ -225,8 +225,8 @@ function workflows() {
   const fullPath = join(root, ".github/workflows/m1-full-regression.yml");
   assert.equal(existsSync(fullPath), true, "Full must have its own workflow");
   return {
-    fast: yaml.load(readFileSync(fastPath, "utf8")),
-    full: yaml.load(readFileSync(fullPath, "utf8")),
+    fast: load(readFileSync(fastPath, "utf8")),
+    full: load(readFileSync(fullPath, "utf8")),
   };
 }
 
