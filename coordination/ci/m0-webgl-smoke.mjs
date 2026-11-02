@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
 
-const base = "http://127.0.0.1:8080";
+const base = "http://localhost:8080";
 const outputDir = "Build/m0-baseline";
 await mkdir(outputDir, { recursive: true });
 
