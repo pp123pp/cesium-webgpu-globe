@@ -311,6 +311,12 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
       tile.level,
       error,
     );
+    // Provider listeners may replace the terrain or destroy this scene while
+    // reportError is on the stack. A released generation cannot retry or fail
+    // the newly installed provider after that callback returns.
+    if (data.released || this._destroyed) {
+      return;
+    }
     if (this._requestError.retry) {
       data.terrainState = TerrainState.UNLOADED;
     } else if (tile.parent && !data._useParent) {

@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1 paused at the user's request; foundation/imagery/navigation verified, live terrain final gate pending**
+Current milestone: **M1 resumed; expanded live terrain flight reproduced a transient hole, final acceptance in progress**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -20,7 +20,9 @@ Import workflow result: SUCCESS; source presence verified.
 
 M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) targets `feat/m0-webgpu-backend`; PR #1 remains unmerged and is ready for review. The user requested publishing verified progress incrementally. `coordination/M1-PLAN.md` defines A03–A06; root alone owns shared integration, and imagery state adaptation uses a disjoint worktree. No M2 work.
 
-**Paused intentionally, not blocked:** the latest user instruction is “将当前的工作收尾并暂停，然后记录进度，方便后面的ai继续执行”. No further feature development or browser runs were started after that instruction. Current code, actual evidence and unfinished validation are saved in this branch. **Read `coordination/handoffs/M1-pause-checkpoint.md` first when asked to resume.** PR #2 remains a draft; M1 is not accepted and `main` is not merged.
+**Resumed on 2026-11-02 under explicit user authorization.** Remote checkpoint `8b37878` and its tree `cee28d7` were verified against the clean old local checkpoint. PR #2 still targets unmerged PR #1 and remains a draft. Root owns shared integration; the demo browser gate is isolated in a separate worktree. No M2 work or merge to main.
+
+Current continuation findings: the expanded live terrain gate was actually executed. Its original flight fails the unchanged zero-hole assertion with 921,600 background pixels during descent, although the settled camera is 33.58 m above real terrain at levels 19–20. Per-frame evidence is retained while root diagnoses the coarse/fine terrain transition. A separately reproduced reentrant provider-error lifetime bug is fixed with two RED→GREEN tests; see `handoffs/M1-provider-reentrancy.md`. Final A03–A06 acceptance has not been claimed.
 
 ### Verified M1 slices
 

@@ -125,8 +125,11 @@ test("unavailable child uses the native parent upsampler and retains its child c
   assert.equal(child.renderable, true);
   child.data.imagery.push({ readyImagery: {}, freeResources() {} });
   f.provider.loadTile(frame, child);
-  assert.equal(child.upsampledFromParent, false,
-    "Independent imagery must allow native quadtree refinement over upsampled terrain");
+  assert.equal(
+    child.upsampledFromParent,
+    false,
+    "Independent imagery must allow native quadtree refinement over upsampled terrain",
+  );
   f.provider.destroy();
 });
 
@@ -190,5 +193,49 @@ for (const outcome of ["resolve", "reject"]) {
     assert.equal(f.tile.renderable, true);
     assert.equal(f.counters.uploaded, 1);
     f.provider.destroy();
+  });
+}
+
+for (const action of ["replace", "destroy"]) {
+  test(`terrain error callback can ${action} the owner without a stale fatal event`, async () => {
+    const failure = new Error("old root provider failed");
+    const f = fixture(() => Promise.reject(failure));
+    const fatal = [];
+    const reported = [];
+    const next = {
+      ...f.terrainProvider,
+      errorEvent: new Event(),
+      requestTileGeometry: () => Promise.resolve(terrain()),
+    };
+    f.provider.errorEvent.addEventListener((error) => fatal.push(error));
+    f.terrainProvider.errorEvent.addEventListener((error) => {
+      reported.push(error.error);
+      if (action === "replace") {
+        f.provider.terrainProvider = next;
+      } else {
+        f.provider.destroy();
+      }
+    });
+    f.provider.loadTile(frame, f.tile);
+    const oldData = f.tile.data;
+    await setImmediate();
+    assert.deepEqual(reported, [failure]);
+    assert.equal(oldData.released, true);
+    assert.deepEqual(
+      fatal,
+      [],
+      "Released generation must not terminate its replacement",
+    );
+    if (action === "replace") {
+      for (let i = 0; i < 3; ++i) {
+        f.provider.loadTile(frame, f.tile);
+        await setImmediate();
+      }
+      assert.equal(f.provider.terrainProvider, next);
+      assert.equal(f.tile.renderable, true);
+      assert.equal(f.counters.uploaded, 1);
+      f.provider.destroy();
+      assert.equal(f.counters.destroyed, 1);
+    }
   });
 }
