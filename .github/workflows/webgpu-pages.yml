@@ -1,0 +1,112 @@
+name: Publish WebGPU demos to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/webgpu-pages.yml
+      - Apps/WebGPUGlobe.html
+      - Apps/WebGPUProof.html
+      - Apps/WebGPUIndex.html
+      - packages/**
+      - scripts/**
+      - Source/**
+      - gulpfile.js
+      - package.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: webgpu-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.repository == 'pp123pp/cesium-webgpu-globe'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CI: 'true'
+      NPM_CONFIG_AUDIT: 'false'
+      NPM_CONFIG_FUND: 'false'
+    steps:
+      - name: Check out current main
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Cesium workspaces
+        run: npm install --no-audit --no-fund
+
+      - name: Build minified Cesium release and runtime assets
+        run: npm run build-release
+
+      - name: Assemble static Pages site
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s Build/Cesium/Cesium.js
+          test -d Build/Cesium/Workers
+          test -d Build/Cesium/Assets
+          mkdir -p site/Apps site/Build/Cesium
+          cp Apps/WebGPUGlobe.html Apps/WebGPUProof.html site/Apps/
+          cp Apps/WebGPUIndex.html site/index.html
+          rsync -a Build/Cesium/ site/Build/Cesium/
+          sed -i 's#../Build/CesiumUnminified/Cesium.js#../Build/Cesium/Cesium.js#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUProof.html
+          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUGlobe.html
+          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUProof.html
+          touch site/.nojekyll
+          printf '%s\n' "$GITHUB_SHA" > site/source-commit.txt
+          if find site -type l -print -quit | grep -q .; then
+            echo 'Refusing to publish symlinks to Pages' >&2
+            exit 1
+          fi
+          du -sh site
+          find site/Build/Cesium -maxdepth 2 -type d | head -30
+
+      - name: Publish compiled content to gh-pages branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin gh-pages
+          git worktree add --detach "$RUNNER_TEMP/gh-pages-site" origin/gh-pages
+          rsync -a --delete --exclude='.git' site/ "$RUNNER_TEMP/gh-pages-site/"
+          cd "$RUNNER_TEMP/gh-pages-site"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add --all
+          if git diff --cached --quiet; then
+            echo 'The deployed files are already current.'
+          else
+            git commit -m "deploy: WebGPU demos from ${GITHUB_SHA:0:12}"
+            git push origin HEAD:gh-pages
+          fi
+
+      - name: Upload official Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Verify GitHub Pages is enabled
+        uses: actions/configure-pages@v5
+
+      - name: Deploy official Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
