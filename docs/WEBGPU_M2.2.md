@@ -263,10 +263,10 @@ enabled/disabled, correct real-depth interval termination, and an ellipsoid-only
 control that materially overestimates extinction. An analytic vertical exponential
 column also checks meter units and actual GPU quadrature independently of LUTs.
 
-Shared M1 provider/navigation fixtures explicitly disable atmosphere while
-preserving their existing functional/color assertions. The independent Globe
-gate and public live demo exercise the enabled default; the dedicated M2 gate
-also enables it. Navigation's strict native-buffer accounting includes both
+M1 Globe/provider/navigation fixtures explicitly disable atmosphere while
+preserving their existing time, geometry and color assertions. The public live
+demo exercises the enabled default; the dedicated M2 gate also enables it.
+Navigation's strict native-buffer accounting includes both
 terrain resources and the initialized atmosphere uniforms, even while disabled;
 its zero-resource teardown and working-set bounds remain unchanged.
 Fast and Full run both the retained

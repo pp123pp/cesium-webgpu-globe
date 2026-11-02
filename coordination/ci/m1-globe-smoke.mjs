@@ -71,6 +71,9 @@ try {
     const viewer = new Cesium.Viewer("cesiumContainer", {
       renderingBackend: "webgpu",
       baseLayer: false,
+      // This gate measures M1 geometry/LOD, with its original time and pixel
+      // bounds. M2's dedicated gate and the live demo cover enabled atmosphere.
+      skyAtmosphere: false,
       useDefaultRenderLoop: false,
       terrainProvider: new Cesium.EllipsoidTerrainProvider({
         ellipsoid: Cesium.Ellipsoid.WGS84,
@@ -108,6 +111,7 @@ try {
     const info = adapter.info;
     return {
       cesium: Cesium.VERSION,
+      atmosphereShown: viewer.scene.atmosphere.show,
       radii: [
         viewer.scene.globe.ellipsoid.radii.x,
         viewer.scene.globe.ellipsoid.radii.y,
@@ -124,6 +128,7 @@ try {
     };
   });
   report.gpu = classifyGpu(report.environment.adapter);
+  assert.equal(report.environment.atmosphereShown, false);
   assert.deepEqual(
     report.environment.radii,
     [6378137, 6378137, 6356752.314245179],

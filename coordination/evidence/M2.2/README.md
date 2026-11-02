@@ -39,3 +39,10 @@ the initial hosted Fast/Full artifacts and verified archive digests. The new
 strict equality includes the two initialized atmosphere uniforms; no allocation
 cap or zero-resource teardown assertion was relaxed. Final-head acceptance is
 recorded separately in the PR after the repaired head's CI completes.
+
+`globe-isolation.json` records the separate M1 Globe fixture's later software-GPU
+LOD timeout and the focused 7-check correction. This fixture now disables the
+new atmosphere explicitly; its original 60-second wait, geometry/coverage and
+error assertions remain unchanged. The dedicated M2 and enabled-default live
+demo gates retain the atmosphere acceptance. See the handoff for the failed
+Fast run, artifact and verified archive digest.

@@ -79,12 +79,12 @@ are uploaded from `Build/m2-atmosphere/` in both existing artifacts. The mountai
 fixture uses a documented fixed subpixel geometric bound; M2.1 numerical depth
 assertions remain unchanged. See [M2.2 contract](WEBGPU_M2.2.md).
 
-Shared M1 provider/navigation fixtures explicitly disable atmosphere so their
-retained color and functional assertions continue to isolate M1. Their native
+M1 Globe/provider/navigation fixtures explicitly disable atmosphere so their
+retained time, geometry and color assertions continue to isolate M1. Their native
 resource equality includes both renderer owners (terrain and the initialized
 atmosphere uniforms); allocation caps and zero-resource teardown remain strict.
-The M2.2 suite enables atmosphere, and the independent Globe and public live-demo
-gates exercise its enabled default, including device loss and early destruction.
+The M2.2 suite enables atmosphere, and the public live-demo gate exercises its
+enabled default, including device loss and early destruction.
 Final M2.2 acceptance still requires Fast and an
 executed Full on the same latest PR head; this is not M2.6 A07–A10 acceptance.
 
