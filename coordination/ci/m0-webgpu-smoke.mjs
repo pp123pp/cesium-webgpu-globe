@@ -1,4 +1,7 @@
 // Real-browser M0.4 acceptance checks. Run after build with the server on :8080.
+/* global Cesium, HTMLCanvasElement, GPUTextureUsage, GPUBufferUsage, GPUMapMode,
+          window, document, navigator, requestAnimationFrame, setTimeout, console */
+/* eslint no-unused-vars: ["error", { "args": "after-used" }] */
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { chromium } from "@playwright/test";
@@ -9,10 +12,16 @@ await mkdir(outputDir, { recursive: true });
 const browser = await chromium.launch({
   channel: "chromium",
   headless: true,
+  // Linux CI needs Vulkan sharing between ANGLE, Skia and Dawn for the canvas.
+  // Chromium's WebGPU pixel tests use this SwiftShader software profile.
   args: [
     "--enable-unsafe-webgpu",
     "--use-angle=swiftshader",
     "--enable-unsafe-swiftshader",
+    "--enable-features=Vulkan,VulkanFromANGLE",
+    "--use-vulkan=swiftshader",
+    "--use-webgpu-adapter=swiftshader",
+    "--disable-vulkan-surface",
   ],
 });
 const browserErrors = [];
@@ -27,13 +36,13 @@ try {
   page.on("pageerror", (error) => browserErrors.push(String(error)));
   page.on("console", (message) => {
     if (message.type() === "error" || message.type() === "warning")
-      browserMessages.push(message.text());
+      {browserMessages.push(message.text());}
   });
   await page.goto(`${base}/Specs/e2e/cesium.html`);
   await page.addScriptTag({ url: `${base}/Build/CesiumUnminified/Cesium.js` });
   const drawing = await page.evaluate(async () => {
     const check = (condition, message) => {
-      if (!condition) throw new Error(message);
+      if (!condition) {throw new Error(message);}
     };
     const requestedContexts = [];
     const original = HTMLCanvasElement.prototype.getContext;
@@ -103,11 +112,15 @@ try {
     const sample = async (manual = true) => {
       const device = gpuContext._device;
       device.pushErrorScope("validation");
-      if (manual) viewer.render();
+      if (manual) {viewer.render();}
       const buffer = device.createBuffer({
         size: 512,
         usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
       });
+      let pixels;
+      let readbackError;
+      let validation;
+      let scopeError;
       try {
         const texture = gpuContext._canvasContext.getCurrentTexture();
         const encoder = device.createCommandEncoder();
@@ -131,32 +144,35 @@ try {
         const rgba = (offset) => {
           const value = Array.from(bytes.slice(offset, offset + 4));
           if (gpuContext._format.startsWith("bgra"))
-            [value[0], value[2]] = [value[2], value[0]];
+            {[value[0], value[2]] = [value[2], value[0]];}
           return value;
         };
-        return { background: rgba(0), center: rgba(256) };
+        pixels = { background: rgba(0), center: rgba(256) };
+      } catch (error) {
+        readbackError = error;
       } finally {
         buffer.destroy();
-        let validation;
         try {
           validation = await device.popErrorScope();
         } catch (error) {
-          throw new Error(
-            `${error}; context error: ${gpuContext._error}; diagnostics: ${JSON.stringify(diagnostics)}`,
-          );
+          scopeError = error;
         }
-        check(
-          !validation,
-          `GPU draw/readback validation: ${validation?.message}`,
+      }
+      if (readbackError || scopeError) {
+        throw new Error(
+          `WebGPU readback: ${readbackError}; scope: ${scopeError}; context error: ${gpuContext._error}; diagnostics: ${JSON.stringify(diagnostics)}`,
+          { cause: readbackError ?? scopeError },
         );
       }
+      check(!validation, `GPU draw/readback validation: ${validation?.message}`);
+      return pixels;
     };
     const pixels = await sample();
     check(
-      pixels.background[0] < 30 &&
-        pixels.background[1] < 40 &&
-        pixels.background[2] < 55 &&
-        pixels.background[3] === 255,
+      pixels.background.every(
+        (component, index) =>
+          Math.abs(component - [10, 15, 26, 255][index]) <= 1,
+      ),
       `Clear color missing: ${JSON.stringify({ pixels, width: viewer.canvas.width, height: viewer.canvas.height, canRender: viewer._webgpuProof._canRender, errors })}`,
     );
     check(
@@ -251,25 +267,25 @@ try {
       requestAnimationFrame(() => requestAnimationFrame(resolve)),
     );
     if (viewer.canvas.width !== 800 || viewer.canvas.height !== 400)
-      throw new Error("Default loop did not resize");
+      {throw new Error("Default loop did not resize");}
     const automaticPixels = await new Promise((resolve, reject) =>
       requestAnimationFrame(() =>
         globalThis.__m0ReadPixels(false).then(resolve, reject),
       ),
     );
     if (automaticPixels.center[1] < 35)
-      throw new Error("Default loop did not draw the triangle");
+      {throw new Error("Default loop did not draw the triangle");}
     device.destroy();
     await device.lost;
     await new Promise((resolve) => setTimeout(resolve, 0));
     if (events.length !== 1 || viewer.useDefaultRenderLoop)
-      throw new Error("Device loss was not surfaced and stopped");
+      {throw new Error("Device loss was not surfaced and stopped");}
     viewer.destroy();
     if (
       !viewer.isDestroyed() ||
       document.querySelector("#cesiumContainer canvas")
     )
-      throw new Error("Viewer did not dispose its DOM");
+      {throw new Error("Viewer did not dispose its DOM");}
     return events;
   });
   checks.push(
@@ -297,10 +313,10 @@ try {
         rejected = true;
       }
       if (!rejected || viewer.useDefaultRenderLoop)
-        throw new Error(`${name}: startup did not fail explicitly`);
+        {throw new Error(`${name}: startup did not fail explicitly`);}
       viewer.destroy();
       if (container.querySelector("canvas"))
-        throw new Error(`${name}: leaked canvas`);
+        {throw new Error(`${name}: leaked canvas`);}
       results.push(name);
     };
     await expectFailure("WebGPU unavailable", undefined);
@@ -325,12 +341,13 @@ try {
     ]) {
       let rejected = false;
       try {
-        new Cesium.Viewer(container, options);
+        const unexpected = new Cesium.Viewer(container, options);
+        unexpected.destroy();
       } catch {
         rejected = true;
       }
       if (!rejected || container.querySelector("canvas"))
-        throw new Error("Unsupported options were accepted or leaked DOM");
+        {throw new Error("Unsupported options were accepted or leaked DOM");}
     }
     results.push("invalid backend and unsupported features");
 
@@ -361,7 +378,7 @@ try {
       () => "resolved",
       () => "rejected",
     );
-    while (!release) await new Promise((resolve) => setTimeout(resolve, 0));
+    while (!release) {await new Promise((resolve) => setTimeout(resolve, 0));}
     pending.destroy();
     await release();
     if (
@@ -369,7 +386,7 @@ try {
       destroyed !== 1 ||
       container.querySelector("canvas")
     )
-      throw new Error("Late device leaked or destroyed Viewer restarted");
+      {throw new Error("Late device leaked or destroyed Viewer restarted");}
     results.push("destroy while device request pending");
     setGpu(originalGpu);
 
@@ -393,7 +410,7 @@ try {
       ),
     ]);
     if (viewer.useDefaultRenderLoop || errors.length !== 1)
-      throw new Error("Validation error did not stop rendering");
+      {throw new Error("Validation error did not stop rendering");}
     viewer.destroy();
     results.push("uncaptured validation error");
     const webgl = new Cesium.Viewer(container, {
@@ -413,7 +430,7 @@ try {
       webgl.renderingBackend !== "webgl" ||
       webgl.scene.context._gl.isContextLost()
     )
-      throw new Error("Explicit WebGL selection failed");
+      {throw new Error("Explicit WebGL selection failed");}
     webgl.destroy();
     results.push("explicit WebGL selection");
     return { checks: results, expectedValidationErrors: errors };
@@ -444,9 +461,9 @@ try {
     `${JSON.stringify({ error: String(error), checks, browserErrors, browserMessages, diagnostics }, null, 2)}\n`,
   );
   if (page)
-    await page
+    {await page
       .screenshot({ path: `${outputDir}/webgpu-smoke-failure.png` })
-      .catch(() => {});
+      .catch(() => {});}
   throw error;
 } finally {
   await browser.close();
