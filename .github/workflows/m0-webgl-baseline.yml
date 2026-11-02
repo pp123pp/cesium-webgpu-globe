@@ -62,9 +62,9 @@ jobs:
       - name: Build official Cesium WebGL bundle
         run: npm run build
 
-      - name: Check M1 source and generated TypeScript APIs
+      - name: Check M1 and M2 source and generated TypeScript APIs
         run: |
-          npx eslint packages/engine/Source/Renderer/WebGPUContext.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs Apps/WebGPUGlobe.html
+          npx eslint packages/engine/Source/Renderer/WebGPU*.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs coordination/ci/m2-*.mjs Apps/WebGPUGlobe.html
           npm run build-ts
           npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json
           npm run tsc
@@ -75,13 +75,13 @@ jobs:
           npm install --include-workspace-root --workspace packages/core --workspace packages/engine --workspace packages/widgets --no-audit --no-fund
           npm run build
 
-      - name: Run focused M0 and all M1 unit tests
+      - name: Run focused M0 and all M1 and M2 unit tests
         run: |
           node coordination/ci/m0-webgpu-unit.test.mjs
           node coordination/ci/m0-visual-checks.test.mjs
           node coordination/ci/m0-browser-config.test.mjs
           node coordination/ci/m0-webgl-regression.test.mjs
-          for test in coordination/ci/m1-*.test.mjs; do
+          for test in coordination/ci/m1-*.test.mjs coordination/ci/m2-*.test.mjs; do
             node "$test"
           done
 
@@ -128,6 +128,7 @@ jobs:
           done
           xvfb-run --auto-servernum node coordination/ci/m0-webgpu-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-globe-smoke.mjs
+          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-foundation-smoke.mjs
 
       - name: Upload fast CI evidence
         if: always()
@@ -139,4 +140,5 @@ jobs:
             Build/m0-webgpu/
             Build/m0-negative/
             Build/m1-globe/
+            Build/m2-foundation/
           if-no-files-found: warn

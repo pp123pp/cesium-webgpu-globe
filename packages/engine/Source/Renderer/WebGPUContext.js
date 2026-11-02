@@ -1,4 +1,5 @@
 import { Event, RuntimeError } from "@cesium/core";
+import WebGPUDepth from "./WebGPUDepth.js";
 
 // Near RGB triangle first, far magenta triangle second: depth, not draw order,
 // must keep the RGB triangle visible. WebGPU clip-space depth is in [0, 1].
@@ -159,8 +160,10 @@ class WebGPUContext {
       this._depthTexture = this._device.createTexture({
         label: this._globe ? "WGS84 reversed depth" : "M0 depth attachment",
         size: [width, height],
-        format: this._globe ? "depth32float" : "depth24plus",
-        usage: GPUTextureUsage.RENDER_ATTACHMENT,
+        format: this._globe ? WebGPUDepth.format : "depth24plus",
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT |
+          (this._globe ? GPUTextureUsage.TEXTURE_BINDING : 0),
       });
     } catch (error) {
       this._fail(error);
@@ -174,6 +177,12 @@ class WebGPUContext {
 
   get drawingBufferHeight() {
     return this.canvas.height;
+  }
+
+  // Acquire again after resize. Read only in a subsequent pass, never while
+  // this texture is attached for depth writing. M0's proof is deliberately separate.
+  get sceneDepthTexture() {
+    return this._globe ? this._depthTexture : undefined;
   }
 
   render(draw, backgroundColor) {
@@ -203,7 +212,7 @@ class WebGPUContext {
         ],
         depthStencilAttachment: {
           view: this._depthTexture.createView(),
-          depthClearValue: this._globe ? 0 : 1,
+          depthClearValue: this._globe ? WebGPUDepth.clearValue : 1,
           depthLoadOp: "clear",
           depthStoreOp: "store",
         },

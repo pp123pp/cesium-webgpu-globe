@@ -1,6 +1,7 @@
 import { Matrix4, RuntimeError, WebMercatorProjection } from "@cesium/core";
 import TextureMinificationFilter from "../Renderer/TextureMinificationFilter.js";
 import TextureMagnificationFilter from "../Renderer/TextureMagnificationFilter.js";
+import WebGPUDepth from "../Renderer/WebGPUDepth.js";
 import {
   computeRelativeViewProjection,
   decodeTerrainMesh,
@@ -154,9 +155,9 @@ class WebGPUGlobeRenderer {
         },
         primitive: { topology: "triangle-list", cullMode: "back" },
         depthStencil: {
-          format: "depth32float",
+          format: WebGPUDepth.format,
           depthWriteEnabled: true,
-          depthCompare: "greater",
+          depthCompare: WebGPUDepth.compare,
         },
       };
       this._pipeline = await device.createRenderPipelineAsync(descriptor);
@@ -193,9 +194,9 @@ class WebGPUGlobeRenderer {
           ],
         },
         depthStencil: {
-          format: "depth32float",
+          format: WebGPUDepth.format,
           depthWriteEnabled: false,
-          depthCompare: "equal",
+          depthCompare: WebGPUDepth.imageryCompare,
         },
       };
       this._imagePipeline =

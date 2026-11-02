@@ -21,6 +21,8 @@ import TweenCollection from "./TweenCollection.js";
 import WebGPUGlobeRenderer from "./WebGPUGlobeRenderer.js";
 import WebGPUGlobeTileProvider from "./WebGPUGlobeTileProvider.js";
 import WebGPUImagery from "./WebGPUImagery.js";
+import WebGPUPlanetState from "./WebGPUPlanetState.js";
+import WebGPUDepth from "../Renderer/WebGPUDepth.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -133,8 +135,9 @@ class WebGPUScene {
     this._ready = false;
     this.creditDisplay = creditDisplay;
     this.camera = new Camera(this);
-    this.camera.frustum.near = 0.1;
-    this.camera.frustum.far = 500000000;
+    this.camera.frustum.near = WebGPUDepth.defaultNear;
+    this.camera.frustum.far = WebGPUDepth.defaultFar;
+    this._planetState = new WebGPUPlanetState(this.ellipsoid);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);
     const baseColor = Color.clone(globe.baseColor);
@@ -304,6 +307,7 @@ class WebGPUScene {
     ++frame.frameNumber;
     frame.newFrame = true;
     frame.time = JulianDate.clone(time, frame.time);
+    this._planetState.update(this.camera, frame.time);
     frame.pixelRatio = this.pixelRatio;
     frame.cameraUnderground = this.cameraUnderground;
     frame.cullingVolume = this.camera.frustum.computeCullingVolume(
