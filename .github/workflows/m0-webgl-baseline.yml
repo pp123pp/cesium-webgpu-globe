@@ -96,7 +96,7 @@ jobs:
             if curl --fail --silent http://localhost:8080/Specs/e2e/cesium.html > /dev/null; then break; fi
             sleep 1
           done
-          node coordination/ci/m0-webgpu-smoke.mjs
+          xvfb-run --auto-servernum node coordination/ci/m0-webgpu-smoke.mjs
 
       - name: Upload WebGL smoke evidence
         if: always()

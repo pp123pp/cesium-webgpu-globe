@@ -61,10 +61,16 @@ function fixture(t, overrides = {}) {
   const previousUsage = globalThis.GPUTextureUsage;
   globalThis.GPUTextureUsage = { RENDER_ATTACHMENT: 16 };
   t.after(() => {
-    if (previous) {Object.defineProperty(navigator, "gpu", previous);}
-    else {delete navigator.gpu;}
-    if (previousUsage) {globalThis.GPUTextureUsage = previousUsage;}
-    else {delete globalThis.GPUTextureUsage;}
+    if (previous) {
+      Object.defineProperty(navigator, "gpu", previous);
+    } else {
+      delete navigator.gpu;
+    }
+    if (previousUsage) {
+      globalThis.GPUTextureUsage = previousUsage;
+    } else {
+      delete globalThis.GPUTextureUsage;
+    }
   });
   return { device, gpu, canvas, canvasContext, textures };
 }
@@ -201,8 +207,11 @@ test("initial widget resize failure rejects readiness and releases resources", a
       name === "canvas" ? Object.assign(f.canvas, element()) : element(),
   };
   t.after(() => {
-    if (previousDocument) {globalThis.document = previousDocument;}
-    else {delete globalThis.document;}
+    if (previousDocument) {
+      globalThis.document = previousDocument;
+    } else {
+      delete globalThis.document;
+    }
   });
   const container = {
     appendChild() {},
