@@ -5,6 +5,30 @@ upstream and M0/M1/M2.1 acceptance gates and must pass on the latest PR head bef
 final acceptance. A successful Fast run or a skipped Full job does not satisfy that
 acceptance requirement.
 
+## Agent verification cadence
+
+The user's 2026-11-02 policy in [`AGENTS.md`](../AGENTS.md#risk-based-testing-and-verification)
+limits test authoring and local/manually requested execution to the smallest
+sufficient scope. Routine implementation work uses affected cases/modules and
+necessary rendering views. Documentation-only work needs content/diff checks;
+it does not reopen a completed milestone or require a manual Full run.
+Add tests only for a concrete coverage gap, critical new behavior or a regression.
+
+Full is not an automatic task-closing ritual. Run it when explicitly requested,
+required by the active acceptance/CI gate, or justified by a specific broad risk
+that targeted checks cannot cover. Batch related edits first. Reuse applicable
+CI results instead of repeating them locally, and coordinate shared checks
+through the integration owner. An old source result must never be presented
+as a passing result for a newly required final HEAD.
+
+**This policy does not change the workflow YAML or selector.** The trigger table
+below still applies: a ready PR automatically selects Full, including for a
+documentation update; every PR commit receives Fast. Assemble related changes
+before making a PR ready to avoid repeated automatic Full runs. Do not manually
+add `ci:full`, dispatch Full or rerun it for an isolated documentation update
+without one of the reasons above. Required final milestone acceptance still needs
+successful Fast and an actually executed Full on the specified latest PR head.
+
 ## What each tier runs
 
 | Gate                                                                                                     | Fast CI | Full regression |

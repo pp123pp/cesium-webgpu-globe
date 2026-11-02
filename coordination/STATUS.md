@@ -14,11 +14,17 @@ The current task authorizes M2.1 implementation, tests, feature-branch publicati
 and a PR to `main`, **not merging or M2.2**. The earlier M1 merge authorization
 below is historical and does not authorize this branch's merge.
 
-- Restored `main`: `c47ef56343343684f50992af8a3f32813402884f`.
+- Initially restored `main`: `c47ef56343343684f50992af8a3f32813402884f`.
   M0 [PR #1](https://github.com/pp123pp/cesium-webgpu-globe/pull/1) and M1
   [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) are merged, with
   merge commits `8a0c5f59bdea67e150faf3114fcdfa0d2b8748c8` and
   `676061f40cd2a885b58963bea833f551c4feb90c`, respectively.
+- During this task, [PR #7](https://github.com/pp123pp/cesium-webgpu-globe/pull/7)
+  updated `main` to `08dcf05d54ffc3ef62c12f76bda7ad0ac4243c1d`. Its risk-based
+  verification policy was integrated by a normal merge into the M2 branch,
+  preserving both histories. Only four rule/documentation files changed on main;
+  runtime evidence remains applicable. No extra runtime suite was run for this
+  documentation merge. The final-head acceptance/automatic CI gates still apply.
 - [PR #6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at
   `6788fbd174a1104688be34abbb40c8f9d305da7a`. Its
   [Fast](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41445066459)
