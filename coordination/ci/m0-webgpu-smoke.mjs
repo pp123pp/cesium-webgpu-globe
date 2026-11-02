@@ -15,6 +15,7 @@ const browser = await chromium.launch({
   ],
 });
 const browserErrors = [];
+const browserMessages = [];
 const checks = [];
 let page;
 try {
@@ -23,6 +24,10 @@ try {
     deviceScaleFactor: 2,
   });
   page.on("pageerror", (error) => browserErrors.push(String(error)));
+  page.on("console", (message) => {
+    if (message.type() === "error" || message.type() === "warning")
+      browserMessages.push(message.text());
+  });
   await page.goto(`${base}/Specs/e2e/cesium.html`);
   await page.addScriptTag({ url: `${base}/Build/CesiumUnminified/Cesium.js` });
   const drawing = await page.evaluate(async () => {
@@ -56,6 +61,7 @@ try {
     }
     check(viewer.renderingBackend === "webgpu", "Backend was hot-switched");
     const errors = [];
+    globalThis.__m0Diagnostics = { errors, stage: "initializing", lost: [] };
     viewer.renderError.addEventListener((source, error) =>
       errors.push(String(error)),
     );
@@ -74,6 +80,17 @@ try {
     check(sceneRejected, "WebGPU must not pretend to expose a Cesium Scene");
 
     const gpuContext = viewer._webgpuProof._context;
+    const diagnostics = globalThis.__m0Diagnostics;
+    diagnostics.stage = "drawing";
+    diagnostics.adapter = {
+      vendor: gpuContext._adapter.info.vendor,
+      architecture: gpuContext._adapter.info.architecture,
+      device: gpuContext._adapter.info.device,
+      description: gpuContext._adapter.info.description,
+    };
+    gpuContext._device.lost.then((info) =>
+      diagnostics.lost.push({ reason: info.reason, message: info.message }),
+    );
     // Read the submitted GPU texture directly instead of relying on Canvas2D
     // snapshot/presentation timing. COPY_SRC is enabled only by this test.
     gpuContext._canvasContext.configure({
@@ -119,7 +136,14 @@ try {
         return { background: rgba(0), center: rgba(256) };
       } finally {
         buffer.destroy();
-        const validation = await device.popErrorScope();
+        let validation;
+        try {
+          validation = await device.popErrorScope();
+        } catch (error) {
+          throw new Error(
+            `${error}; context error: ${gpuContext._error}; diagnostics: ${JSON.stringify(diagnostics)}`,
+          );
+        }
         check(
           !validation,
           `GPU draw/readback validation: ${validation?.message}`,
@@ -409,9 +433,14 @@ try {
   );
   console.log("M0 WEBGPU SMOKE PASS", JSON.stringify(result));
 } catch (error) {
+  const diagnostics = page
+    ? await page
+        .evaluate(() => globalThis.__m0Diagnostics)
+        .catch(() => undefined)
+    : undefined;
   await writeFile(
     `${outputDir}/webgpu-smoke-error.json`,
-    `${JSON.stringify({ error: String(error), checks, browserErrors }, null, 2)}\n`,
+    `${JSON.stringify({ error: String(error), checks, browserErrors, browserMessages, diagnostics }, null, 2)}\n`,
   );
   if (page)
     await page

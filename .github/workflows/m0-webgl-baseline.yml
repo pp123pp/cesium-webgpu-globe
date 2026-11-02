@@ -84,6 +84,8 @@ jobs:
 
       - name: Run M0.4 WebGPU proof checks
         if: ${{ !cancelled() }}
+        env:
+          DEBUG: pw:browser
         shell: bash
         run: |
           set -euo pipefail
