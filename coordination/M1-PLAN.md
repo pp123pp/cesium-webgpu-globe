@@ -27,7 +27,9 @@ Each slice ends in a small reviewable commit with commands/results, residual ris
 - [x] Read M1, REQUIREMENTS and ACCEPTANCE after the M0.5 local gate passed.
 - [x] Audit actual provider/mesh/imagery boundaries and existing offline assets.
 - [x] Create isolated M1 branch/worktree from the published accepted M0 tree.
-- [ ] M1.1 / A03 accepted.
+- [x] M1.1 / A03 accepted locally, including later native dateline/pole rotation and real reversed-depth controls.
 - [x] M1.2 / A04 accepted locally; actual provider/browser evidence in `coordination/evidence/M1/imagery/`.
 - [ ] M1.3 / A05 accepted.
 - [ ] M1.4 / A06 and WebGL regression accepted; evidence and dependent PR published.
+
+**User pause checkpoint:** A03/A06 ellipsoid navigation and the live A05 terrain/drape subset have actual passing browser evidence. The current terrain script additionally contains an unexecuted near-ground flight; the demo is unverified in the browser and final full regression remains pending. All work is saved for continuation; see `coordination/handoffs/M1-pause-checkpoint.md`. Do not continue automatically after the pause or start M2.

@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1.1 foundation and M1.2/A04 imagery verified; M1.3 terrain rendering in progress**
+Current milestone: **M1 paused at the user's request; foundation/imagery/navigation verified, live terrain final gate pending**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -20,6 +20,8 @@ Import workflow result: SUCCESS; source presence verified.
 
 M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) targets `feat/m0-webgpu-backend`; PR #1 remains unmerged and is ready for review. The user requested publishing verified progress incrementally. `coordination/M1-PLAN.md` defines A03–A06; root alone owns shared integration, and imagery state adaptation uses a disjoint worktree. No M2 work.
 
+**Paused intentionally, not blocked:** the latest user instruction is “将当前的工作收尾并暂停，然后记录进度，方便后面的ai继续执行”. No further feature development or browser runs were started after that instruction. Current code, actual evidence and unfinished validation are saved in this branch. **Read `coordination/handoffs/M1-pause-checkpoint.md` first when asked to resume.** PR #2 remains a draft; M1 is not accepted and `main` is not merged.
+
 ### Verified M1 slices
 
 - RTC/depth math: 10 tests, including 180 orbit-to-1m projection samples; native NONE/BITS12 meshes and skirts retained.
@@ -28,8 +30,11 @@ M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a
 - Same M1 build: all 17 M0 WebGPU proof checks pass; three WebGL views have zero changed reference pixels and identical settled repeat captures. Foundation source hashes, screenshots and logs: `coordination/evidence/M1/foundation/`; details: `coordination/handoffs/M1.1-gpu-globe.md`.
 - M1.2/A04: real Natural Earth provider tiles and native LOD; geographic/Mercator/polar coordinate checks; alpha/show/order/coverage/removal and late-request cancellation all pass in the real browser. 220 buffers and 362 textures are fully released. All focused CPU suites total 62 passed; actual images, reports and source hashes: `coordination/evidence/M1/imagery/`, handoff `coordination/handoffs/M1.2-gpu-imagery.md`.
 - Hosted M1 foundation [run 41405352077](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41405352077) passes, including full non-WebGL/WebGL regression and browser gates.
-- Live high-resolution ArcGIS World Imagery requests at Everest levels 0/5/10/14 all decode, pass the native discard policy and return HTTP 200; provider attribution is preserved. This prerequisite and live World Terrain data are now used for rendered A05 evidence.
-- Remaining: rendered quantized terrain and draping A05, rotation/flight/input/resource churn A03/A06, final full regression. **M1 is not yet accepted.**
+- The published imagery head `f78e42e` passes full hosted regression in [run 41407632894](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41407632894). This does not certify the later controller/navigation checkpoint; its new hosted run must be checked separately.
+- Live quantized terrain rendered with World Terrain + ArcGIS World Imagery: 110 terrain / 152 imagery requests, same-level edge gaps below 0.34 m, mixed LOD observed, four source/LOD transitions with zero holes/untextured pixels. Independent native-pick drape checks pass 561/561; an actual 1 km GPU mapping offset fails 535 samples. All 221 buffers / 304 imagery textures are released. Evidence: `coordination/evidence/M1/terrain/`; handoff `M1.3-live-terrain-checkpoint.md`. **This passing subset predates the newly added, unexecuted real-terrain near-ground flight.**
+- A03/A06 ellipsoid navigation gate passes: dateline/pole rotations, actual reversed-depth positive/negative control, native 40,000 km → 10 m flight, metre/submetre precision, real drag/wheel, resize and bounded churn. The deterministic native center-wheel roundoff error is fixed only around the WebGPU controller update; invalid direct Camera rotations still reject. Independent GPU observations release all 420 buffers / 49 textures. Evidence: `coordination/evidence/M1/navigation/`; handoff `M1.4-navigation-tests.md`.
+- Pause verification: build and all **67 focused CPU tests** pass. Current demo `Apps/WebGPUGlobe.html` is saved with lint/format checks only; its browser behavior is **unverified**. The newly added live-terrain `groundFlight` is also **unexecuted**. No claim is made that the current whole terrain script passed.
+- Remaining: execute and resolve the expanded live A05 flight, verify the demo, finish terrain CI wiring and capability docs, rerun the final complete browser/non-WebGL/WebGL gates and review. **M1 is not yet accepted.**
 
 ## M0.5 acceptance (2026-11-02)
 
