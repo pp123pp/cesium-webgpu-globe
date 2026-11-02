@@ -1,0 +1,48 @@
+name: Historical evidence archive
+
+on:
+  push:
+    branches:
+      - chore/evidence-artifact-trim-20261102
+    paths:
+      - .github/workflows/evidence-archive.yml
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: "Git ref containing original evidence (default: pre-trim M1 main)"
+        required: true
+        default: "676061f40cd2a885b58963bea833f551c4feb90c"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  snapshot:
+    name: Archive evidence before trimming
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.source_ref || github.sha }}
+          persist-credentials: false
+      - name: Record exact file checksums and inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d coordination/evidence
+          find coordination/evidence -type f -print0 | sort -z | xargs -0 sha256sum > evidence-archive-sha256.txt
+          echo "Source: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Files: $(wc -l < evidence-archive-sha256.txt)" >> "$GITHUB_STEP_SUMMARY"
+          echo "Bytes: $(du -sb coordination/evidence | cut -f1)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload historical evidence snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: historical-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            coordination/evidence/
+            evidence-archive-sha256.txt
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 1
