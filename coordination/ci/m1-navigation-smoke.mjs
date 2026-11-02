@@ -927,6 +927,9 @@ await runM1BrowserSuite("navigation", async ({ page, report, output }) => {
   assert.deepEqual(report.churn.errors, []);
   for (const sample of report.churn.samples) {
     const resources = sample.statistics.resources;
+    const atmosphere = sample.statistics.atmosphere;
+    assert.equal(atmosphere.frames, 0, "M1 navigation isolates terrain rendering");
+    assert.equal(atmosphere.texturesCreated, 0, "Disabled atmosphere allocates no LUTs");
     assert.ok(
       sample.gpu.activeBuffers <= 1026,
       "Bounded mesh working set must not grow without eviction",
@@ -937,7 +940,9 @@ await runM1BrowserSuite("navigation", async ({ page, report, output }) => {
     );
     assert.equal(
       sample.gpu.activeBuffers,
-      resources.buffersCreated - resources.buffersDestroyed,
+      resources.buffersCreated - resources.buffersDestroyed +
+        atmosphere.buffersCreated - atmosphere.buffersDestroyed,
+      "Actual buffers equal terrain resources plus owned atmosphere uniforms",
     );
     assert.equal(
       sample.gpu.activeTextures,

@@ -40,6 +40,15 @@ merge is authorized. Stop after M2.2; M2.3 and later work require a new instruct
   [compact evidence](evidence/M2.2/README.md). The new required browser gate runs
   production WGSL, real depth, actual canvas pixels and native resource tracking.
   Both workflows retain the foundation and all existing regression gates.
+- First published-head Full [41502541781](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41502541781)
+  exposed a navigation accounting mismatch: 98 actual buffers versus 96 terrain
+  buffers omitted two owned atmosphere uniforms. The strict equality now sums
+  both owners; original caps, repeat-visit bounds and zero-resource teardown stay
+  intact. Targeted navigation passed 10 checks and released 2,713/2,713 buffers
+  plus 68/68 textures. The same head's Fast M2.2 artifact passed all 8 atmosphere
+  checks with 3,666/3,666 releases. Full did not reach M2 after the navigation
+  failure. This test/documentation repair needs final-head Fast/Full; neither
+  the failed Full nor the older Fast certifies the new head.
 - This source snapshot does not certify a future or pending Actions run. Final
   acceptance requires successful Fast and an actually executed Full on the same
   latest PR head under [CI policy](../docs/CI.md). The PR body/checks provide the

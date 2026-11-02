@@ -263,9 +263,13 @@ enabled/disabled, correct real-depth interval termination, and an ellipsoid-only
 control that materially overestimates extinction. An analytic vertical exponential
 column also checks meter units and actual GPU quadrature independently of LUTs.
 
-M1-specific browser fixtures explicitly disable atmosphere while preserving their
-existing functional/color assertions. The dedicated M2 gate enables it, and the
-public live demo uses its enabled default. Fast and Full run both the retained
+Shared M1 provider/navigation fixtures explicitly disable atmosphere while
+preserving their existing functional/color assertions. The independent Globe
+gate and public live demo exercise the enabled default; the dedicated M2 gate
+also enables it. Navigation's strict native-buffer accounting includes both
+terrain resources and the initialized atmosphere uniforms, even while disabled;
+its zero-resource teardown and working-set bounds remain unchanged.
+Fast and Full run both the retained
 foundation gate and new atmosphere gate. See `docs/CI.md`, the M2.2 handoff and
 compact evidence for actual results; source documentation alone is not a pass.
 

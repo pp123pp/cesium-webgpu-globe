@@ -31,3 +31,11 @@ passed. Its diagnosis is retained in the handoff, including why the existing
 M2.1 precision assertions remain unchanged. Full M1/WebGL compatibility and
 device-loss/early-exit acceptance are supplied by final-head hosted Full; local
 atmosphere evidence alone does not certify those unexecuted suites.
+
+`navigation-accounting.json` records the first hosted Full failure's exact
+98-versus-96 ownership mismatch, its source/run, and the focused local correction
+result (10 checks, 2,713 buffers and 68 textures all destroyed). The handoff links
+the initial hosted Fast/Full artifacts and verified archive digests. The new
+strict equality includes the two initialized atmosphere uniforms; no allocation
+cap or zero-resource teardown assertion was relaxed. Final-head acceptance is
+recorded separately in the PR after the repaired head's CI completes.
