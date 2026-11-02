@@ -35,3 +35,5 @@ Each slice ends in a small reviewable commit with commands/results, residual ris
 - [ ] M1.4 / A06 and WebGL regression accepted; evidence and dependent PR published.
 
 **Continuation:** the historical user pause checkpoint remains in `coordination/handoffs/M1-pause-checkpoint.md`. Work resumed under explicit authorization. The complete live terrain candidate, including the added near-ground flight, now passes after native fill/selection/bounds fixes; the demo and callback lifetimes also have real verification. Final committed-source acceptance and full regression are still required. No M2 work or main merge.
+
+**Specific user-authorized exception:** repeated final-source testing did not reliably resolve fast space-to-real-terrain-ground collision/altitude behavior. Record `M1-NAV-001` as known unresolved and nonblocking, retain its evidence and do not call A06 fully passed. This exception does not extend to other scenarios or M2.

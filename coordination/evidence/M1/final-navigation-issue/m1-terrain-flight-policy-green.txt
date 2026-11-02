@@ -1,0 +1,13 @@
+✔ a successful real terrain flight remains an actual passing observation (1.213614ms)
+✔ only the evidenced near-ground coarse-mesh collision is nonblocking (0.217722ms)
+✔ an excessive final height requires evidence of the native collision clamp (0.209489ms)
+✔ holes outside the diagnosed underground descent still fail (0.165745ms)
+✔ the exception cannot waive imagery, settled coverage, completion, LOD or below-ground endpoints (1.58404ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.398092

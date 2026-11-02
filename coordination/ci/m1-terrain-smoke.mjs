@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { Buffer } from "node:buffer";
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
+import { assessTerrainFlight } from "./m1-terrain-flight.mjs";
 import {
   runM1BrowserSuite,
   installM1Scene,
@@ -501,6 +502,42 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     let firstBackgroundFrame;
     const renderer = state.viewer.scene._renderer;
     const render = renderer.render;
+    const globe = state.viewer.scene.globe;
+    const surfacePrototype = Object.getPrototypeOf(
+      globe._surface._levelZeroTiles.find((tile) => tile.data).data,
+    );
+    const nativePick = surfacePrototype.pick;
+    const ownedPick = Object.hasOwn(surfacePrototype, "pick");
+    const nativeGetHeight = globe.getHeight;
+    const ownedGetHeight = Object.hasOwn(globe, "getHeight");
+    let samplingHeight = false;
+    let heightSource;
+    // Observe the native pick that actually supplies Globe.getHeight. A READY
+    // ancestor alone is not proof: the sampled descendant could be a fill.
+    surfacePrototype.pick = function (...args) {
+      const result = nativePick.apply(this, args);
+      if (samplingHeight && result) {
+        heightSource = {
+          key: `${this.tile.level}/${this.tile.x}/${this.tile.y}`,
+          gpu: !!this.gpu,
+          terrainState: this.terrainState,
+        };
+      }
+      return result;
+    };
+    globe.getHeight = function (...args) {
+      samplingHeight = true;
+      heightSource = undefined;
+      try {
+        const height = nativeGetHeight.apply(this, args);
+        if (heightSource) {
+          heightSource.height = height;
+        }
+        return height;
+      } finally {
+        samplingHeight = false;
+      }
+    };
     let beforeDraw;
     renderer.render = function (scene) {
       const heightSources = [];
@@ -547,83 +584,99 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       };
       return render.call(this, scene);
     };
-    while (!complete && performance.now() - start < 30000) {
-      const coverage = state.terrainCoverage();
-      ++frames;
-      const camera = state.viewer.camera;
-      fillDraws = Math.max(
-        fillDraws,
-        state.viewer.scene._renderer._draws.filter(
-          ({ tile }) => !tile.data.gpu && tile.data.fill?.vertexArray,
-        ).length,
-      );
-      const heightSources = [];
-      const visitHeightSources = (tile) => {
-        if (
-          !Cesium.Rectangle.contains(
-            tile.rectangle,
-            camera.positionCartographic,
-          )
-        ) {
-          return;
-        }
-        if (tile.data?.gpu) {
-          heightSources.push({
-            key: `${tile.level}/${tile.x}/${tile.y}`,
-            renderable: tile.renderable,
-            state: tile.state,
-            terrainState: tile.data.terrainState,
-          });
-        }
-        for (const child of [
-          tile._southwestChild,
-          tile._southeastChild,
-          tile._northwestChild,
-          tile._northeastChild,
-        ]) {
-          if (child) {
-            visitHeightSources(child);
+    try {
+      while (!complete && performance.now() - start < 30000) {
+        const coverage = state.terrainCoverage();
+        ++frames;
+        const camera = state.viewer.camera;
+        fillDraws = Math.max(
+          fillDraws,
+          state.viewer.scene._renderer._draws.filter(
+            ({ tile }) => !tile.data.gpu && tile.data.fill?.vertexArray,
+          ).length,
+        );
+        const heightSources = [];
+        const visitHeightSources = (tile) => {
+          if (
+            !Cesium.Rectangle.contains(
+              tile.rectangle,
+              camera.positionCartographic,
+            )
+          ) {
+            return;
           }
+          if (tile.data?.gpu) {
+            heightSources.push({
+              key: `${tile.level}/${tile.x}/${tile.y}`,
+              renderable: tile.renderable,
+              state: tile.state,
+              terrainState: tile.data.terrainState,
+            });
+          }
+          for (const child of [
+            tile._southwestChild,
+            tile._southeastChild,
+            tile._northwestChild,
+            tile._northeastChild,
+          ]) {
+            if (child) {
+              visitHeightSources(child);
+            }
+          }
+        };
+        state.viewer.scene.globe._surface._levelZeroTiles.forEach(
+          visitHeightSources,
+        );
+        observations.push({
+          frame: frames,
+          beforeDraw,
+          coverage,
+          longitude: Cesium.Math.toDegrees(
+            camera.positionCartographic.longitude,
+          ),
+          latitude: Cesium.Math.toDegrees(camera.positionCartographic.latitude),
+          height: camera.positionCartographic.height,
+          pitch: Cesium.Math.toDegrees(camera.pitch),
+          heading: Cesium.Math.toDegrees(camera.heading),
+          globeHeight: state.viewer.scene.globeHeight,
+          heightSource,
+          cameraUnderground: state.viewer.scene.cameraUnderground,
+          heightSources,
+          statistics: state.viewer.scene.debugStatistics,
+          draws: state.viewer.scene._renderer._draws.map(
+            ({ tile, rectangle }) => ({
+              key: `${tile.level}/${tile.x}/${tile.y}`,
+              rectangle,
+              sourceRectangle: tile.rectangle,
+              gpu: !!tile.data?.gpu,
+              minimumHeight: tile.data?.renderedMesh?.minimumHeight,
+              maximumHeight: tile.data?.renderedMesh?.maximumHeight,
+            }),
+          ),
+        });
+        if (coverage.background > 0 && !firstBackgroundFrame) {
+          firstBackgroundFrame = state.viewer.canvas.toDataURL();
         }
-      };
-      state.viewer.scene.globe._surface._levelZeroTiles.forEach(
-        visitHeightSources,
-      );
-      observations.push({
-        frame: frames,
-        beforeDraw,
-        coverage,
-        longitude: Cesium.Math.toDegrees(camera.positionCartographic.longitude),
-        latitude: Cesium.Math.toDegrees(camera.positionCartographic.latitude),
-        height: camera.positionCartographic.height,
-        pitch: Cesium.Math.toDegrees(camera.pitch),
-        heading: Cesium.Math.toDegrees(camera.heading),
-        globeHeight: state.viewer.scene.globeHeight,
-        cameraUnderground: state.viewer.scene.cameraUnderground,
-        heightSources,
-        statistics: state.viewer.scene.debugStatistics,
-        draws: state.viewer.scene._renderer._draws.map(
-          ({ tile, rectangle }) => ({
-            key: `${tile.level}/${tile.x}/${tile.y}`,
-            rectangle,
-            sourceRectangle: tile.rectangle,
-            gpu: !!tile.data?.gpu,
-            minimumHeight: tile.data?.renderedMesh?.minimumHeight,
-            maximumHeight: tile.data?.renderedMesh?.maximumHeight,
-          }),
-        ),
-      });
-      if (coverage.background > 0 && !firstBackgroundFrame) {
-        firstBackgroundFrame = state.viewer.canvas.toDataURL();
+        maximumBackground = Math.max(maximumBackground, coverage.background);
+        maximumUntextured = Math.max(maximumUntextured, coverage.untextured);
+        if (state.errors.length) {
+          throw new Error(state.errors.join("\n"));
+        }
+        await new Promise(requestAnimationFrame);
       }
-      maximumBackground = Math.max(maximumBackground, coverage.background);
-      maximumUntextured = Math.max(maximumUntextured, coverage.untextured);
-      if (state.errors.length) {
-        throw new Error(state.errors.join("\n"));
+    } finally {
+      renderer.render = render;
+      if (ownedPick) {
+        surfacePrototype.pick = nativePick;
+      } else {
+        delete surfacePrototype.pick;
       }
-      await new Promise(requestAnimationFrame);
+      if (ownedGetHeight) {
+        globe.getHeight = nativeGetHeight;
+      } else {
+        delete globe.getHeight;
+      }
     }
-    renderer.render = render;
     if (!complete) {
       throw new Error("Live terrain flight failed to complete");
     }
@@ -631,9 +684,13 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     const camera = state.viewer.camera.positionCartographic;
     const terrainHeight = state.viewer.scene.globe.getHeight(camera);
     return {
+      scenario: "space-to-real-terrain-ground",
       complete,
       frames,
       initialTerrainHeight,
+      requestedHeight: initialTerrainHeight + 50,
+      minimumZoomDistance:
+        state.viewer.scene.screenSpaceCameraController.minimumZoomDistance,
       maximumBackground,
       maximumUntextured,
       fillDraws,
@@ -660,24 +717,31 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
   await captureM1Scene(page, report, output, "base-camp-ground", {
     groundFlight: report.groundFlight,
   });
-  assert.equal(report.groundFlight.complete, true);
-  assert.ok(report.groundFlight.frames > 2);
-  assert.ok(
-    report.groundFlight.observations.every(({ coverage }) => coverage.accepted),
-    "Flight must retain geometry coverage; only evidenced software fill raster differences are allowed",
+  report.groundFlight.acceptance = assessTerrainFlight(report.groundFlight);
+  assert.notEqual(
+    report.groundFlight.acceptance.status,
+    "FAIL",
+    JSON.stringify(report.groundFlight.acceptance),
   );
-  assert.equal(report.groundFlight.maximumUntextured, 0);
-  assert.equal(report.groundFlight.final.background, 0);
-  assert.equal(report.groundFlight.final.untextured, 0);
-  assert.ok(
-    report.groundFlight.aboveGround >= 0.8 &&
-      report.groundFlight.aboveGround < 150,
-    JSON.stringify(report.groundFlight),
-  );
-  assert.ok(Math.max(...report.groundFlight.settled.statistics.levels) >= 14);
-  report.checks.push(
-    "native flight from space to within 150m of real terrain with finer LOD",
-  );
+  report.knownIssues = [
+    {
+      id: "M1-NAV-001",
+      status: "KNOWN_UNRESOLVED",
+      blocking: false,
+      scenario: "fast space-to-real-terrain-ground flight",
+      authorization:
+        "User explicitly permits this repeatedly unresolved navigation issue to remain nonblocking (2026-11-02).",
+      observedThisRun:
+        report.groundFlight.acceptance.status === "KNOWN_UNRESOLVED",
+      evidence: "coordination/evidence/M1/final-navigation-issue/",
+      detail: report.groundFlight.acceptance,
+    },
+  ];
+  if (report.groundFlight.acceptance.status === "PASS") {
+    report.checks.push(
+      "this run's real terrain flight passes; intermittent M1-NAV-001 remains documented",
+    );
+  }
 
   report.drape = await page.evaluate(async () => {
     const state = window.__m1;

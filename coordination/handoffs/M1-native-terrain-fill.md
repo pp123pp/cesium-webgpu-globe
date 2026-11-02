@@ -44,3 +44,7 @@ xvfb-run -a node coordination/evidence/M1/terrain-fill/m1-fill-replay.mjs
 It writes `Build/m1-fill-replay-combined.json` and does not alter production rendering. The variant named `cpu-clip` performs CPU matrix projection into clip coordinates, not geometric clipping.
 
 Next: run final build/lint/types, all focused suites, M0/M1 browser gates and complete non-WebGL/WebGL differential on the committed final source; publish evidence and update A03–A06. Retain the same inherited WebGL baseline failures. Only then make PR #2 ready for review and stop at M1.
+
+## Subsequent committed-source repeat
+
+The candidate PASS above was not the final conclusion: `5877be7` later reproduced an intermittent fast descent into a coarse real mesh, despite four normal LOD transitions remaining fully covered. The user explicitly permits this repeatedly unresolved navigation issue to remain nonblocking. `M1-NAV-001` and the original failed report/screenshots are retained in `../evidence/M1/final-navigation-issue/`; do not describe A06 as unconditionally passed. The native-fill corrections and their actual tests remain valid, and the remaining final gates continue.

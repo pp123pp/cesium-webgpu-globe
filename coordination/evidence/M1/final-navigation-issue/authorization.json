@@ -1,0 +1,8 @@
+{
+  "issue": "M1-NAV-001",
+  "status": "KNOWN_UNRESOLVED",
+  "scope": "Fast space-to-real-terrain-ground descent may enter a loaded coarse terrain mesh or remain at its clamped elevation.",
+  "userInstruction": "如果这个导航问题多次修复仍无法解决，则允许跳过",
+  "date": "2026-11-02",
+  "effect": "Nonblocking for M1 completion after repeated unsuccessful fixes; this is not a passing navigation observation and does not relax other gates."
+}

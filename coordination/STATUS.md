@@ -28,6 +28,8 @@ Provider/imagery error reentrancy and Scene event ordering were also fixed with 
 
 Fast/Full CI is integrated in the existing PR. Fast at published `6ffe437` actually passed in 147 seconds; Full remains a separate final gate. Its earlier terrain failure is retained and is not evidence against or acceptance of the later native-fill candidate. User clarification is now in `docs/ACCEPTANCE.md`: harmless visual differences are allowed; images need not be identical. All functional and regression gates remain.
 
+**Latest navigation decision:** committed-source `5877be7` reproduced an intermittent fast real-terrain descent failure after the passing native-fill candidate. The user explicitly authorizes this specific repeatedly unresolved problem to remain nonblocking. It is `M1-NAV-001 / KNOWN_UNRESOLVED`, with raw failure screenshots and frame evidence in `evidence/M1/final-navigation-issue/`; A06 is not claimed unconditionally passed. Ordinary LOD, imagery/drape, stable coverage, other navigation and lifecycle gates remain mandatory. Final source and hosted regression are being completed.
+
 ### Historical M1 slices (superseded by final continuation evidence below when available)
 
 - RTC/depth math: 10 tests, including 180 orbit-to-1m projection samples; native NONE/BITS12 meshes and skirts retained.

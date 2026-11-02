@@ -45,3 +45,9 @@ The following remain required:
 - Full non-WebGL and WebGL regression on the final HEAD before merge, including the existing comparison against the pinned WebGL baseline. Report inherited baseline failures separately; do not claim that every upstream test passed. An accepted visual difference does not automatically waive a newly failing functional test.
 
 Exact pixel checks may remain useful diagnostics. If one reports a harmless difference, qualify that specific comparison with evidence instead of requiring identical images. Future work must use this policy when deciding visual acceptance.
+
+## M1-specific known navigation issue
+
+On 2026-11-02 the user separately authorized the repeatedly unresolved rapid real-terrain descent issue to remain nonblocking for M1. `M1-NAV-001` is the fast space-to-near-ground collision/altitude problem documented in `coordination/evidence/M1/final-navigation-issue/`. It is a real navigation limitation, separate from the harmless image-difference policy above.
+
+The scenario still executes and retains its evidence. A diagnosed occurrence is `KNOWN_UNRESOLVED`; the terrain suite reports `PASS_WITH_KNOWN_ISSUES`. Do not describe A06 as unconditionally passed or the defect as fixed. A03/A04, ordinary terrain LOD and stable coverage, drape controls, other navigation, cleanup and final HEAD full regression remain required. This authorization does not extend to other failures or future milestones.

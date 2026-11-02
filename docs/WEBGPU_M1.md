@@ -70,6 +70,8 @@ Provider replacement cancels/releases the previous terrain generation and guards
 
 The verified terrain paths are native ellipsoid terrain and CesiumTerrainProvider quantized-mesh terrain, including native skirts, quantization, availability/upsampling and GPU index width handling. CPU fixture coverage also exercises other mesh encodings; it is not a claim of rendered acceptance for every TerrainProvider implementation.
 
+**Known M1 navigation limitation (`M1-NAV-001`):** a rapid flight from space to a low target over real terrain can briefly enter a coarse mesh before its height/LOD settles, or remain above the requested altitude after a coarse-terrain collision clamp. Repeated fixes did not eliminate this reliably. The user explicitly permits this specific issue to remain nonblocking for M1; it is recorded as `KNOWN_UNRESOLVED`, not a passing fast-flight guarantee. Normal ellipsoid navigation and the separate imagery, LOD, stable terrain, depth and resource gates remain required. Original failures and screenshots are in `coordination/evidence/M1/final-navigation-issue/`.
+
 Imagery uses real Provider tile requests, native geographic/Web Mercator tiling and level selection. The tested paths include local TileMapServiceImageryProvider and live ArcGisMapServerImageryProvider, polar/Mercator mapping, rectangle coverage, multiple layers, ordering, `show`, numeric `alpha`, removal and cancellation. Call the normal `ImageryLayerCollection` add/remove/raise/lower methods. Arbitrary imagery color adjustments and every third-party provider are not certified by M1.
 
 ## Supported runtime surface

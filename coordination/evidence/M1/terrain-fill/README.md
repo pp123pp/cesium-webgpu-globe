@@ -15,3 +15,5 @@ See `../../../handoffs/M1-native-terrain-fill.md` for the correction and actual 
 | `candidate-source.json` | Exact candidate source/bundle hashes; final HEAD verification is recorded separately. |
 
 Screenshots are actual browser output. Historical failed comparisons are preserved. Pixel-identical images are not required by `docs/ACCEPTANCE.md`; no terrain test is omitted on that basis.
+
+`m1-fill-ci-policy.txt` retains an environment-only sandbox `spawnSync EPERM` failure. The subsequent committed-source focused run used the authorized execution environment and passed all 153 checks, including the same 28 policy tests; see the final acceptance records. Raw transcript whitespace is preserved intentionally.
