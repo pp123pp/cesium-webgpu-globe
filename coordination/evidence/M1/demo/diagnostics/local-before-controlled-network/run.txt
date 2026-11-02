@@ -1,8 +1,0 @@
-M1 demo: actual demo initialization, automatic rendering and bundled Natural Earth
-M1 demo: Orbit button completes the actual native camera flight
-M1 demo: pagehide cancels pending initialization before readiness
-M1 demo: unsupported WebGPU gives visible feedback and clean teardown
-M1 demo: actual GPU device loss is visible and disables unavailable controls
-M1 demo: provider failure preserves the working globe and enables retry
-M1 demo: pagehide releases every observed native GPU allocation and stops rendering
-M1 demo-local PASS: actual demo initialization, automatic rendering and bundled Natural Earth, Orbit button completes the actual native camera flight, pagehide cancels pending initialization before readiness, unsupported WebGPU gives visible feedback and clean teardown, actual GPU device loss is visible and disables unavailable controls, provider failure preserves the working globe and enables retry, pagehide releases every observed native GPU allocation and stops rendering
