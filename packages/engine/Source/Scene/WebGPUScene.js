@@ -26,6 +26,36 @@ import WebGPUImagery from "./WebGPUImagery.js";
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
 const ownedGlobes = new WeakSet();
 
+// Native center-wheel zoom can compute acos(dot(n,n)) > 0 through rounding
+// while cross(n,n) is exactly zero. Only that negligible controller rotation is
+// a no-op. Preserve the native Camera API, including errors for invalid public
+// rotate calls, and leave the default WebGL controller/prototypes unchanged.
+export function updateCameraController(camera, controller) {
+  const rotate = camera.rotate;
+  const ownRotate = Object.hasOwn(camera, "rotate");
+  camera.rotate = function (axis, angle) {
+    if (
+      Number.isFinite(angle) &&
+      Math.abs(angle) < 1e-7 &&
+      axis?.x === 0 &&
+      axis.y === 0 &&
+      axis.z === 0
+    ) {
+      return;
+    }
+    return rotate.call(this, axis, angle);
+  };
+  try {
+    controller.update();
+  } finally {
+    if (ownRotate) {
+      camera.rotate = rotate;
+    } else {
+      delete camera.rotate;
+    }
+  }
+}
+
 /**
  * M1 SCENE3D orchestration using native Globe/Camera/provider CPU contracts.
  * It never constructs the WebGL Scene, Context or shader resource path.
@@ -216,7 +246,7 @@ class WebGPUScene {
     this.cameraUnderground =
       this.globeHeight !== undefined &&
       this.camera.positionCartographic.height < this.globeHeight;
-    this.screenSpaceCameraController.update();
+    updateCameraController(this.camera, this.screenSpaceCameraController);
     this.camera.update(SceneMode.SCENE3D);
     this.camera._updateCameraChanged();
   }
