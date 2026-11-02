@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1.1 foundation verified; M1.2 imagery in progress; M0.5 accepted under the explicit physical-GPU waiver**
+Current milestone: **M1.1 foundation and M1.2/A04 imagery verified; M1.3 terrain rendering in progress**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -26,7 +26,10 @@ M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a
 - Native terrain/quadtree adapter: 6 tests for deferral, unavailable-child upsampling, eviction and provider replacement with late completion. Real World Terrain data/adjacency was separately probed; this alone is not rendered A05 evidence.
 - Actual WGS84 WebGPU foundation: native Camera/Globe/Quadtree, depth32float, no hidden WebGL context. Orbit/pole/dateline silhouette agreement exceeds 99.8%; ground selects levels 12–13 with zero background crack pixels. All 187 allocated buffers are destroyed. Direct Scene error policy is checked separately from normal rendering.
 - Same M1 build: all 17 M0 WebGPU proof checks pass; three WebGL views have zero changed reference pixels and identical settled repeat captures. Foundation source hashes, screenshots and logs: `coordination/evidence/M1/foundation/`; details: `coordination/handoffs/M1.1-gpu-globe.md`.
-- Remaining: dynamic imagery A04, rendered quantized terrain and draping A05, flight/input/resource churn A06, final full regression. **M1 is not yet accepted.**
+- M1.2/A04: real Natural Earth provider tiles and native LOD; geographic/Mercator/polar coordinate checks; alpha/show/order/coverage/removal and late-request cancellation all pass in the real browser. 220 buffers and 362 textures are fully released. All focused CPU suites total 62 passed; actual images, reports and source hashes: `coordination/evidence/M1/imagery/`, handoff `coordination/handoffs/M1.2-gpu-imagery.md`.
+- Hosted M1 foundation [run 41405352077](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41405352077) passes, including full non-WebGL/WebGL regression and browser gates.
+- Live high-resolution ArcGIS World Imagery requests at Everest levels 0/5/10/14 all decode, pass the native discard policy and return HTTP 200; provider attribution is preserved. This prerequisite and live World Terrain data are now used for rendered A05 evidence.
+- Remaining: rendered quantized terrain and draping A05, rotation/flight/input/resource churn A03/A06, final full regression. **M1 is not yet accepted.**
 
 ## M0.5 acceptance (2026-11-02)
 

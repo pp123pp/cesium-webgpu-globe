@@ -1,0 +1,10 @@
+{
+  "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "027d17c00ef7fd705f294137f893e09ea085a9cc33ed90fc90e57e208568673c",
+  "packages/engine/Source/Scene/WebGPUScene.js": "bbb0f3c1f80447dfc70122ddf7980dcfe692588cda7909a39173119a527dc521",
+  "packages/engine/Source/Scene/WebGPUImagery.js": "a7202a711ba6009225ac981273d47570259c25b56b2263ddb05880bec128c694",
+  "packages/engine/Source/Scene/WebGPUGlobeTileProvider.js": "7e798f6e87af32c944c54dc27a3d3bf24b25429b8407cd30121bf16d1e4942b1",
+  "packages/engine/Source/Scene/WebGPUGlobeMath.js": "595451d27df155e5cbfac90220b8fa871e71678fe839228ad777ff1e7c25d003",
+  "packages/engine/Source/Widget/WebGPUWidget.js": "a7fe1ac3a1b8ed7d9dd9d7f1b6be813aee52ebfb67b418a777ea5aa640660f32",
+  "coordination/ci/m1-browser-harness.mjs": "50f5a454f5f701ad46e85a351ab0a17857a3eeb2d3d32ed8f1a521944a0cf45a",
+  "coordination/ci/m1-imagery-smoke.mjs": "ba51e58a164c9568c9e2199a5e4a43b5ada7bf66b9112fcce78f6be70f50ce75"
+}

@@ -123,6 +123,10 @@ test("unavailable child uses the native parent upsampler and retains its child c
   assert.deepEqual(calls[0].slice(1), [0, 0, 0, 1, 0, 1]);
   assert.equal(child.upsampledFromParent, true);
   assert.equal(child.renderable, true);
+  child.data.imagery.push({ readyImagery: {}, freeResources() {} });
+  f.provider.loadTile(frame, child);
+  assert.equal(child.upsampledFromParent, false,
+    "Independent imagery must allow native quadtree refinement over upsampled terrain");
   f.provider.destroy();
 });
 

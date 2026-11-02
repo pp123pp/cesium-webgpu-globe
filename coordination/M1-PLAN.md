@@ -28,6 +28,6 @@ Each slice ends in a small reviewable commit with commands/results, residual ris
 - [x] Audit actual provider/mesh/imagery boundaries and existing offline assets.
 - [x] Create isolated M1 branch/worktree from the published accepted M0 tree.
 - [ ] M1.1 / A03 accepted.
-- [ ] M1.2 / A04 accepted.
+- [x] M1.2 / A04 accepted locally; actual provider/browser evidence in `coordination/evidence/M1/imagery/`.
 - [ ] M1.3 / A05 accepted.
 - [ ] M1.4 / A06 and WebGL regression accepted; evidence and dependent PR published.

@@ -6,6 +6,7 @@ import GlobeSurfaceTile from "./GlobeSurfaceTile.js";
 import GlobeSurfaceTileProvider from "./GlobeSurfaceTileProvider.js";
 import QuadtreeTileLoadState from "./QuadtreeTileLoadState.js";
 import TerrainState from "./TerrainState.js";
+import ImageryState from "./ImageryState.js";
 
 // Retain native picking, bounds and imagery associations, with explicit GPU ownership.
 class WebGPUSurfaceTile extends GlobeSurfaceTile {
@@ -186,7 +187,16 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
       ? this._imagery.updateTile(tile, frameState)
       : true;
     tile.renderable = true;
-    tile.upsampledFromParent = data.terrainData.wasCreatedByUpsampling();
+    // Match native GlobeSurfaceTile.processImagery: independent or still-loading
+    // imagery can justify finer quadtree LOD even when terrain is upsampled.
+    tile.upsampledFromParent =
+      data.terrainData.wasCreatedByUpsampling() &&
+      data.imagery.every(
+        ({ loadingImagery }) =>
+          loadingImagery &&
+          (loadingImagery.state === ImageryState.FAILED ||
+            loadingImagery.state === ImageryState.INVALID),
+      );
     if (imageryReady) {
       tile.state = QuadtreeTileLoadState.DONE;
       for (const [key, callback] of Object.entries(tile._loadedCallbacks)) {

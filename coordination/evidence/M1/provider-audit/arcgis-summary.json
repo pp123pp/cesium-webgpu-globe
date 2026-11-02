@@ -1,0 +1,168 @@
+{
+  "service": "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+  "scope": "Native ArcGIS imagery-provider metadata and decoded-image requests; no renderer or GPU acceptance.",
+  "imagerySaved": false,
+  "network": {
+    "responses": [
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/",
+        "status": 200,
+        "contentType": "application/json"
+      },
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/23/0/0",
+        "status": 200,
+        "contentType": "image/jpeg"
+      },
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/0/0/0",
+        "status": 200,
+        "contentType": "image/jpeg"
+      },
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/5/13/23",
+        "status": 200,
+        "contentType": "image/jpeg"
+      },
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/10/429/759",
+        "status": 200,
+        "contentType": "image/jpeg"
+      },
+      {
+        "path": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/14/6864/12148",
+        "status": 200,
+        "contentType": "image/jpeg"
+      }
+    ],
+    "failedRequests": []
+  },
+  "browserVersion": "156.0.8078.4",
+  "metadata": {
+    "currentVersion": 11.3,
+    "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -22041259.214859996,
+      "falseY": -32754895.973320004,
+      "xyUnits": 142980504.00783738,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    },
+    "tileRows": 256,
+    "tileColumns": 256,
+    "format": "JPEG",
+    "lodCount": 24,
+    "lodMinimum": 0,
+    "lodMaximum": 23,
+    "singleFusedMapCache": true,
+    "errorCode": null
+  },
+  "provider": {
+    "cesiumVersion": "1.146.0",
+    "nativeType": true,
+    "tilingScheme": "WebMercatorTilingScheme",
+    "projection": "WebMercatorProjection",
+    "rectangleDegrees": [
+      -179.99999000000003,
+      -85.00000000000003,
+      179.99999000000003,
+      84.99999999999999
+    ],
+    "tileWidth": 256,
+    "tileHeight": 256,
+    "minimumLevel": 0,
+    "maximumLevel": 23,
+    "usingPrecachedTiles": true,
+    "hasAlphaChannel": true,
+    "providerCredit": "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community",
+    "locationDegrees": [
+      86.925,
+      27.988
+    ],
+    "tiles": [
+      {
+        "level": 0,
+        "x": 0,
+        "y": 0,
+        "tileCredits": [],
+        "width": 256,
+        "height": 256,
+        "imageType": "ImageBitmap",
+        "elapsedMs": 175,
+        "discardPolicyReady": true,
+        "shouldDiscard": false,
+        "readablePixelSummary": {
+          "minimumMeanRgb": 10.333333333333334,
+          "maximumMeanRgb": 255,
+          "opaqueFraction": 1
+        },
+        "success": true
+      },
+      {
+        "level": 5,
+        "x": 23,
+        "y": 13,
+        "tileCredits": [],
+        "width": 256,
+        "height": 256,
+        "imageType": "ImageBitmap",
+        "elapsedMs": 156,
+        "discardPolicyReady": true,
+        "shouldDiscard": false,
+        "readablePixelSummary": {
+          "minimumMeanRgb": 0,
+          "maximumMeanRgb": 255,
+          "opaqueFraction": 1
+        },
+        "success": true
+      },
+      {
+        "level": 10,
+        "x": 759,
+        "y": 429,
+        "tileCredits": [],
+        "width": 256,
+        "height": 256,
+        "imageType": "ImageBitmap",
+        "elapsedMs": 162,
+        "discardPolicyReady": true,
+        "shouldDiscard": false,
+        "readablePixelSummary": {
+          "minimumMeanRgb": 0,
+          "maximumMeanRgb": 255,
+          "opaqueFraction": 1
+        },
+        "success": true
+      },
+      {
+        "level": 14,
+        "x": 12148,
+        "y": 6864,
+        "tileCredits": [],
+        "width": 256,
+        "height": 256,
+        "imageType": "ImageBitmap",
+        "elapsedMs": 134,
+        "discardPolicyReady": true,
+        "shouldDiscard": false,
+        "readablePixelSummary": {
+          "minimumMeanRgb": 41.666666666666664,
+          "maximumMeanRgb": 255,
+          "opaqueFraction": 1
+        },
+        "success": true
+      }
+    ],
+    "errors": []
+  },
+  "pageErrors": [],
+  "status": "PASS",
+  "browserClosed": true,
+  "timedOut": false
+}

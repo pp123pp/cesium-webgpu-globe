@@ -1,4 +1,6 @@
-import { Matrix4, RuntimeError } from "@cesium/core";
+import { Matrix4, RuntimeError, WebMercatorProjection } from "@cesium/core";
+import TextureMinificationFilter from "../Renderer/TextureMinificationFilter.js";
+import TextureMagnificationFilter from "../Renderer/TextureMagnificationFilter.js";
 import {
   computeRelativeViewProjection,
   decodeTerrainMesh,
@@ -8,7 +10,7 @@ const shader = `
 struct Tile { matrix: mat4x4f, clip: vec4f, color: vec4f }
 @group(0) @binding(0) var<uniform> tile: Tile;
 struct VertexOutput {
-  @builtin(position) position: vec4f,
+  @builtin(position) @invariant position: vec4f,
   @location(0) uv: vec2f,
   @location(1) mercatorT: f32,
 }
@@ -20,14 +22,53 @@ struct VertexOutput {
   output.mercatorT = mercatorT;
   return output;
 }
-@fragment fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
+fn outside(uv: vec2f, rectangle: vec4f) -> bool {
   // Full tiles include native skirts. Do not clip their interpolated edge UVs:
   // float interpolation can overshoot [0,1] and cut a one-pixel crack in a skirt.
-  if (any(tile.clip.xy > vec2f(0.0)) || any(tile.clip.zw < vec2f(1.0))) {
-    if (any(input.uv < tile.clip.xy - vec2f(0.000001)) ||
-        any(input.uv > tile.clip.zw + vec2f(0.000001))) { discard; }
+  if (any(rectangle.xy > vec2f(0.0)) || any(rectangle.zw < vec2f(1.0))) {
+    return any(uv < rectangle.xy - vec2f(0.000001)) ||
+           any(uv > rectangle.zw + vec2f(0.000001));
   }
+  return false;
+}
+@fragment fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
+  if (outside(input.uv, tile.clip)) { discard; }
   return tile.color;
+}
+struct Image { rectangle: vec4f, mapping: vec4f, config: vec4f, mercator: vec4f }
+@group(1) @binding(0) var dayTexture: texture_2d<f32>;
+@group(1) @binding(1) var daySampler: sampler;
+@group(1) @binding(2) var<uniform> imagery: Image;
+fn outsideImage(uv: vec2f, rectangle: vec4f) -> bool {
+  // Half-open internal boundaries give one association ownership of each
+  // fragment. Applying skirt tolerance here would blend alpha repeatedly.
+  return (rectangle.x > 0.0 && uv.x < rectangle.x) ||
+         (rectangle.y > 0.0 && uv.y < rectangle.y) ||
+         (rectangle.z < 1.0 && uv.x >= rectangle.z) ||
+         (rectangle.w < 1.0 && uv.y >= rectangle.w);
+}
+@fragment fn imageryMain(input: VertexOutput) -> @location(0) vec4f {
+  if (outsideImage(input.uv, tile.clip)) { discard; }
+  var t = input.uv.y;
+  if (imagery.config.y == 1.0) { t = input.mercatorT; }
+  var angle = 0.0;
+  if (imagery.config.y >= 2.0) {
+    let latitude = clamp(imagery.config.z + input.uv.y * imagery.config.w,
+                         -1.4844222297453324, 1.4844222297453324);
+    angle = log(tan(0.7853981633974483 + latitude * 0.5));
+    if (imagery.config.y == 3.0) {
+      t = (angle - imagery.mercator.z) * imagery.mercator.w;
+    }
+  }
+  if (outsideImage(vec2f(input.uv.x, t), imagery.rectangle)) { discard; }
+  var uv = vec2f(input.uv.x, t) * imagery.mapping.zw + imagery.mapping.xy;
+  if (imagery.config.y == 2.0) {
+    // Polar terrain does not have a native Mercator attribute. Reproject its
+    // geographic latitude, clamping the base layer to the Mercator edge.
+    uv.y = (angle - imagery.mercator.x) * imagery.mercator.y;
+  }
+  let texel = textureSample(dayTexture, daySampler, uv);
+  return vec4f(texel.rgb, texel.a * imagery.config.x);
 }`;
 
 /** Mesh upload and one opaque Globe pass; deliberately not a general renderer. @private */
@@ -35,6 +76,8 @@ class WebGPUGlobeRenderer {
   constructor(context) {
     this.context = context;
     this._draws = [];
+    this._textures = new Set();
+    this._samplers = new Map();
     this._destroyed = false;
     this._matrix = new Matrix4();
     this.statistics = {
@@ -43,6 +86,10 @@ class WebGPUGlobeRenderer {
       bufferBytes: 0,
       drawCalls: 0,
       triangles: 0,
+      texturesCreated: 0,
+      texturesDestroyed: 0,
+      textureBytes: 0,
+      imageryDrawCalls: 0,
     };
   }
 
@@ -64,6 +111,21 @@ class WebGPUGlobeRenderer {
               type: "uniform",
               hasDynamicOffset: true,
               minBindingSize: 96,
+            },
+          },
+        ],
+      });
+      this._imageLayout = device.createBindGroupLayout({
+        entries: [
+          { binding: 0, visibility: GPUShaderStage.FRAGMENT, texture: {} },
+          { binding: 1, visibility: GPUShaderStage.FRAGMENT, sampler: {} },
+          {
+            binding: 2,
+            visibility: GPUShaderStage.FRAGMENT,
+            buffer: {
+              type: "uniform",
+              hasDynamicOffset: true,
+              minBindingSize: 64,
             },
           },
         ],
@@ -107,6 +169,45 @@ class WebGPUGlobeRenderer {
       this._pipelineNoCull = await device.createRenderPipelineAsync({
         ...descriptor,
         label: "WGS84 two-sided terrain",
+        primitive: { topology: "triangle-list", cullMode: "none" },
+      });
+      const imageDescriptor = {
+        ...descriptor,
+        label: "Provider imagery draped on native terrain",
+        layout: device.createPipelineLayout({
+          bindGroupLayouts: [this._tileLayout, this._imageLayout],
+        }),
+        fragment: {
+          module,
+          entryPoint: "imageryMain",
+          targets: [
+            {
+              format: this.context._format,
+              blend: {
+                color: {
+                  srcFactor: "src-alpha",
+                  dstFactor: "one-minus-src-alpha",
+                  operation: "add",
+                },
+                alpha: {
+                  srcFactor: "one",
+                  dstFactor: "one-minus-src-alpha",
+                  operation: "add",
+                },
+              },
+            },
+          ],
+        },
+        depthStencil: {
+          format: "depth32float",
+          depthWriteEnabled: false,
+          depthCompare: "equal",
+        },
+      };
+      this._imagePipeline =
+        await device.createRenderPipelineAsync(imageDescriptor);
+      this._imagePipelineNoCull = await device.createRenderPipelineAsync({
+        ...imageDescriptor,
         primitive: { topology: "triangle-list", cullMode: "none" },
       });
     } finally {
@@ -196,10 +297,102 @@ class WebGPUGlobeRenderer {
     };
   }
 
+  createImageryTexture(image) {
+    const width = image.naturalWidth ?? image.width;
+    const height = image.naturalHeight ?? image.height;
+    const maximum = this._device.limits.maxTextureDimension2D;
+    if (
+      !Number.isInteger(width) ||
+      !Number.isInteger(height) ||
+      width < 1 ||
+      height < 1 ||
+      width > maximum ||
+      height > maximum
+    ) {
+      throw new RuntimeError(
+        "Imagery must have valid WebGPU texture dimensions.",
+      );
+    }
+    const texture = this._device.createTexture({
+      label: "ImageryProvider tile",
+      size: [width, height],
+      format: "rgba8unorm",
+      usage:
+        GPUTextureUsage.TEXTURE_BINDING |
+        GPUTextureUsage.COPY_DST |
+        GPUTextureUsage.RENDER_ATTACHMENT,
+    });
+    const bytes = width * height * 4;
+    ++this.statistics.texturesCreated;
+    this.statistics.textureBytes += bytes;
+    let destroyed = false;
+    const resource = {
+      texture,
+      width,
+      height,
+      destroy: () => {
+        if (!destroyed) {
+          destroyed = true;
+          texture.destroy();
+          resource.bindings = undefined;
+          resource.bindingBuffer = undefined;
+          this._textures.delete(resource);
+          ++this.statistics.texturesDestroyed;
+          this.statistics.textureBytes -= bytes;
+        }
+      },
+    };
+    this._textures.add(resource);
+    try {
+      resource.view = texture.createView();
+      // Cesium's ImageBitmap loader already applies flipY; HTML images/canvas
+      // retain their normal top-left origin and must be flipped at upload.
+      const bitmap =
+        typeof ImageBitmap !== "undefined" && image instanceof ImageBitmap;
+      this._device.queue.copyExternalImageToTexture(
+        { source: image, flipY: !bitmap },
+        { texture, premultipliedAlpha: false },
+        [width, height],
+      );
+    } catch (error) {
+      resource.destroy();
+      throw error;
+    }
+    return resource;
+  }
+
+  _getSampler(layer) {
+    const min = layer.minificationFilter;
+    const mag = layer.magnificationFilter;
+    if (
+      (min !== TextureMinificationFilter.NEAREST &&
+        min !== TextureMinificationFilter.LINEAR) ||
+      (mag !== TextureMagnificationFilter.NEAREST &&
+        mag !== TextureMagnificationFilter.LINEAR)
+    ) {
+      throw new RuntimeError("ImageryLayer filters must be NEAREST or LINEAR.");
+    }
+    const key = `${min}:${mag}`;
+    let sampler = this._samplers.get(key);
+    if (!sampler) {
+      sampler = this._device.createSampler({
+        minFilter:
+          min === TextureMinificationFilter.NEAREST ? "nearest" : "linear",
+        magFilter:
+          mag === TextureMagnificationFilter.NEAREST ? "nearest" : "linear",
+        addressModeU: "clamp-to-edge",
+        addressModeV: "clamp-to-edge",
+      });
+      this._samplers.set(key, sampler);
+    }
+    return sampler;
+  }
+
   beginFrame() {
     this._draws.length = 0;
     this.statistics.drawCalls = 0;
     this.statistics.triangles = 0;
+    this.statistics.imageryDrawCalls = 0;
   }
 
   addTile(tile, rectangle) {
@@ -296,16 +489,187 @@ class WebGPUGlobeRenderer {
       ++this.statistics.drawCalls;
       this.statistics.triangles += indexCount / 3;
     }
+    this._drawImagery(pass, scene);
+  }
+
+  _drawImagery(pass, scene) {
+    const draws = [];
+    for (let i = 0; i < this._draws.length; ++i) {
+      const { tile } = this._draws[i];
+      for (const association of tile.data.imagery) {
+        const image = association.readyImagery;
+        const layer = image?.imageryLayer;
+        if (!image?.texture || !layer.show || layer.alpha === 0) {
+          continue;
+        }
+        if (!Number.isFinite(layer.alpha)) {
+          throw new RuntimeError(
+            "WebGPU imagery alpha must be a finite number.",
+          );
+        }
+        draws.push({ tile, association, image, drawIndex: i });
+      }
+    }
+    if (draws.length === 0) {
+      return;
+    }
+    const stride = this._uniformStride;
+    if (
+      !this._imageUniformBuffer ||
+      this._imageUniformBuffer.size < draws.length * stride
+    ) {
+      const capacity = 2 ** Math.ceil(Math.log2(draws.length));
+      const replacement = this._createBuffer(
+        capacity * stride,
+        GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+        undefined,
+        "Imagery per-draw uniforms",
+      );
+      let values;
+      try {
+        values = new Float32Array(replacement.size / 4);
+      } catch (error) {
+        this._destroyBuffer(replacement);
+        throw error;
+      }
+      this._destroyBuffer(this._imageUniformBuffer);
+      this._imageUniformBuffer = replacement;
+      this._imageUniformValues = values;
+    }
+    for (let i = 0; i < draws.length; ++i) {
+      const { tile, association, image } = draws[i];
+      const layer = image.imageryLayer;
+      const provider = layer.imageryProvider;
+      const rectangle = association.textureCoordinateRectangle;
+      const mapping =
+        association.textureTranslationAndScale ??
+        layer._calculateTextureTranslationAndScale(tile, association);
+      const mercator =
+        provider.tilingScheme.projection instanceof WebMercatorProjection;
+      const mode = mercator
+        ? association.useWebMercatorT
+          ? tile.data.mesh.encoding.hasWebMercatorT
+            ? 1
+            : 3
+          : 2
+        : 0;
+      let south = 0;
+      let inverseHeight = 1;
+      let terrainSouth = 0;
+      let terrainInverseHeight = 1;
+      if (mode === 2) {
+        south = WebMercatorProjection.geodeticLatitudeToMercatorAngle(
+          image.rectangle.south,
+        );
+        inverseHeight =
+          1 /
+          (WebMercatorProjection.geodeticLatitudeToMercatorAngle(
+            image.rectangle.north,
+          ) -
+            south);
+      }
+      if (mode === 3) {
+        terrainSouth = WebMercatorProjection.geodeticLatitudeToMercatorAngle(
+          tile.rectangle.south,
+        );
+        terrainInverseHeight =
+          1 /
+          (WebMercatorProjection.geodeticLatitudeToMercatorAngle(
+            tile.rectangle.north,
+          ) -
+            terrainSouth);
+      }
+      this._imageUniformValues.set(
+        [
+          rectangle.x,
+          rectangle.y,
+          rectangle.z,
+          rectangle.w,
+          mapping.x,
+          mapping.y,
+          mapping.z,
+          mapping.w,
+          layer.alpha,
+          mode,
+          tile.rectangle.south,
+          tile.rectangle.height,
+          south,
+          inverseHeight,
+          terrainSouth,
+          terrainInverseHeight,
+        ],
+        (i * stride) / 4,
+      );
+      if (provider.credit) {
+        scene.creditDisplay?.addCreditToNextFrame(provider.credit);
+      }
+      for (const credit of image.credits ?? []) {
+        scene.creditDisplay?.addCreditToNextFrame(credit);
+      }
+    }
+    this._device.queue.writeBuffer(
+      this._imageUniformBuffer,
+      0,
+      this._imageUniformValues.buffer,
+      0,
+      draws.length * stride,
+    );
+    pass.setPipeline(
+      scene.globe.backFaceCulling && !scene.cameraUnderground
+        ? this._imagePipeline
+        : this._imagePipelineNoCull,
+    );
+    for (let i = 0; i < draws.length; ++i) {
+      const { tile, image, drawIndex } = draws[i];
+      const texture = image.texture;
+      const sampler = this._getSampler(image.imageryLayer);
+      if (
+        texture.bindingBuffer !== this._imageUniformBuffer ||
+        texture.bindingSampler !== sampler
+      ) {
+        texture.bindings = this._device.createBindGroup({
+          layout: this._imageLayout,
+          entries: [
+            { binding: 0, resource: texture.view },
+            { binding: 1, resource: sampler },
+            {
+              binding: 2,
+              resource: { buffer: this._imageUniformBuffer, size: 64 },
+            },
+          ],
+        });
+        texture.bindingBuffer = this._imageUniformBuffer;
+        texture.bindingSampler = sampler;
+      }
+      const gpu = tile.data.gpu;
+      pass.setBindGroup(0, this._tileBindings, [drawIndex * stride]);
+      pass.setBindGroup(1, texture.bindings, [i * stride]);
+      pass.setVertexBuffer(0, gpu.vertex);
+      pass.setIndexBuffer(gpu.index, gpu.indexFormat);
+      pass.drawIndexed(
+        scene.globe.showSkirts ? gpu.indexCount : gpu.indexCountWithoutSkirts,
+      );
+      ++this.statistics.imageryDrawCalls;
+    }
   }
 
   destroy() {
     if (!this._destroyed) {
       this._destroyed = true;
       this._destroyBuffer(this._uniformBuffer);
+      this._destroyBuffer(this._imageUniformBuffer);
+      for (const texture of this._textures) {
+        texture.destroy();
+      }
       this._uniformBuffer = undefined;
       this._tileBindings = undefined;
       this._pipeline = undefined;
       this._pipelineNoCull = undefined;
+      this._imagePipeline = undefined;
+      this._imagePipelineNoCull = undefined;
+      this._imageUniformBuffer = undefined;
+      this._imageUniformValues = undefined;
+      this._samplers.clear();
       this._draws.length = 0;
     }
   }

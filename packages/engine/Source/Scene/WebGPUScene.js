@@ -8,15 +8,19 @@ import {
   JulianDate,
 } from "@cesium/core";
 import RequestScheduler from "../Core/RequestScheduler.js";
+import buildModuleUrl from "../Core/buildModuleUrl.js";
 import Camera from "./Camera.js";
 import FrameState from "./FrameState.js";
 import Globe from "./Globe.js";
+import ImageryLayer from "./ImageryLayer.js";
+import TileMapServiceImageryProvider from "./TileMapServiceImageryProvider.js";
 import QuadtreePrimitive from "./QuadtreePrimitive.js";
 import SceneMode from "./SceneMode.js";
 import ScreenSpaceCameraController from "./ScreenSpaceCameraController.js";
 import TweenCollection from "./TweenCollection.js";
 import WebGPUGlobeRenderer from "./WebGPUGlobeRenderer.js";
 import WebGPUGlobeTileProvider from "./WebGPUGlobeTileProvider.js";
+import WebGPUImagery from "./WebGPUImagery.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -63,6 +67,15 @@ class WebGPUScene {
     if (options.clock !== undefined && !(options.clock instanceof Clock)) {
       throw new DeveloperError("WebGPU clock must be a Cesium Clock.");
     }
+    if (
+      options.baseLayer !== undefined &&
+      options.baseLayer !== false &&
+      !(options.baseLayer instanceof ImageryLayer)
+    ) {
+      throw new DeveloperError(
+        "WebGPU baseLayer must be an ImageryLayer or false.",
+      );
+    }
     this._globe = globe;
     this.context = context;
     this.canvas = context.canvas;
@@ -104,6 +117,19 @@ class WebGPUScene {
     globe._surface = new QuadtreePrimitive({
       tileProvider: this._tileProvider,
     });
+    this._imagery = new WebGPUImagery(this._tileProvider, this._renderer);
+    this._tileProvider._imagery = this._imagery;
+    if (options.baseLayer !== false) {
+      const layer =
+        options.baseLayer ??
+        ImageryLayer.fromProviderAsync(
+          TileMapServiceImageryProvider.fromUrl(
+            buildModuleUrl("Assets/Textures/NaturalEarthII"),
+            { credit: "Natural Earth" },
+          ),
+        );
+      globe.imageryLayers.add(layer, 0);
+    }
     this._tileProvider.errorEvent.addEventListener((error) =>
       context._fail(error),
     );
@@ -300,6 +326,7 @@ class WebGPUScene {
       cacheTiles: surface._tileReplacementQueue.count,
       loadedTiles: this._tileProvider._tiles.size,
       terrain: { ...this._tileProvider.statistics },
+      imagery: { ...this._imagery.statistics },
       resources: { ...this._renderer.statistics },
     };
   }

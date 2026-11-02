@@ -12,6 +12,7 @@ const supportedOptions = new Set([
   "globe",
   "terrainProvider",
   "clock",
+  "baseLayer",
 ]);
 const disabledOptions = new Set([
   "globe",
@@ -41,10 +42,12 @@ class WebGPUWidget {
   constructor(container, options) {
     if (
       options.globe === false &&
-      (options.terrainProvider !== undefined || options.clock !== undefined)
+      (options.terrainProvider !== undefined ||
+        options.clock !== undefined ||
+        (options.baseLayer !== undefined && options.baseLayer !== false))
     ) {
       throw new DeveloperError(
-        "The globe:false proof does not accept terrainProvider or clock.",
+        "The globe:false proof does not accept terrainProvider, clock or imagery.",
       );
     }
     if (
