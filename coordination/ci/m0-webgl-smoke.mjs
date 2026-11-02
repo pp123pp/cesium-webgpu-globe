@@ -212,6 +212,7 @@ try {
         ),
         vendor: gl.getParameter(debug?.UNMASKED_VENDOR_WEBGL ?? gl.VENDOR),
         sceneMode: scene.mode,
+        terrainProvider: scene.globe.terrainProvider.constructor.name,
       };
     },
     { colors },
@@ -294,10 +295,16 @@ try {
     );
     const pixels = Buffer.from(rendered.pixels, "base64");
     delete rendered.pixels;
-    await page.screenshot({
-      path: path.join(outputDir, `webgl-${fixture.name}.png`),
-      scale: "css",
-    });
+    // Retain fda7f01's settled-frame repeatability check alongside the
+    // independently built, spatial pixel reference comparison.
+    const first = await page.locator("#cesiumContainer canvas").screenshot();
+    const second = await page.locator("#cesiumContainer canvas").screenshot();
+    assert.ok(first.length > 1000, "Globe screenshot unexpectedly small");
+    assert.ok(first.equals(second), "Repeated settled screenshots differ");
+    await writeFile(path.join(outputDir, `webgl-${fixture.name}.png`), first);
+    rendered.repeatCaptureEqual = true;
+    rendered.repeatCaptureDifferenceBytes = 0;
+    rendered.screenshotSha256 = hash(first);
     await writeFile(
       path.join(outputDir, `${fixture.name}.rgba.gz`),
       gzipSync(pixels),
