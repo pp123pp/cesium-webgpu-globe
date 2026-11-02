@@ -1,0 +1,20 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Natural Earth/. Input:
+
+'Data attribution'
+
+    at file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:250:12
+    at async runM1BrowserSuite (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:229:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'Data attribution',
+  expected: /Natural Earth/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

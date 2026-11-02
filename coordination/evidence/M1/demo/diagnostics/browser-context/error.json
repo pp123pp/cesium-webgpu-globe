@@ -1,0 +1,185 @@
+{
+  "suite": "demo-local",
+  "capturedAt": "2026-11-02T08:41:52.811Z",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "source": "52f4874e6105e7964776d72137446a9e3c8f0b40",
+  "sourceStatus": "?? coordination/ci/m1-demo-smoke.mjs",
+  "bundleSha256": "b0083886cf58c65f06b2ed177e734d960995b56acd2159bb39d00c4ed6657bae",
+  "browserErrors": [],
+  "checks": [
+    "actual demo initialization, automatic rendering and bundled Natural Earth",
+    "Orbit button completes the actual native camera flight"
+  ],
+  "scenes": [
+    {
+      "name": "natural-earth",
+      "status": "Natural Earth + WGS84 ellipsoid · ready.",
+      "statusColor": "rgb(164, 221, 195)",
+      "viewerIdentity": true,
+      "backend": "webgpu",
+      "camera": {
+        "longitude": 20,
+        "latitude": 20,
+        "height": 20000000,
+        "pitch": -90
+      },
+      "canvas": [
+        1280,
+        720
+      ],
+      "statistics": {
+        "frame": 19,
+        "selectedTiles": 10,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 14,
+        "loadedTiles": 14,
+        "terrain": {
+          "requests": 13,
+          "deferred": 0,
+          "meshes": 13,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 13,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 13,
+          "pendingRequests": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "activeTextures": 13
+        },
+        "resources": {
+          "buffersCreated": 33,
+          "buffersDestroyed": 5,
+          "bufferBytes": 152492,
+          "drawCalls": 10,
+          "triangles": 5700,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "textureBytes": 3407872,
+          "imageryDrawCalls": 10
+        }
+      },
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": [],
+      "frames": 18,
+      "coloredPixels": 238522,
+      "sampledColors": 1993,
+      "credits": "Data attribution Data provided by:\n×\nNatural Earth"
+    },
+    {
+      "name": "orbit-button",
+      "status": "Natural Earth + WGS84 ellipsoid · ready.",
+      "statusColor": "rgb(164, 221, 195)",
+      "viewerIdentity": true,
+      "backend": "webgpu",
+      "camera": {
+        "longitude": 19.99999700399287,
+        "latitude": 19.999998501996455,
+        "height": 19999999.733688258,
+        "pitch": -90
+      },
+      "canvas": [
+        1280,
+        720
+      ],
+      "statistics": {
+        "frame": 114,
+        "selectedTiles": 10,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 38,
+        "loadedTiles": 38,
+        "terrain": {
+          "requests": 35,
+          "deferred": 0,
+          "meshes": 35,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 35,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 35,
+          "pendingRequests": 0,
+          "texturesCreated": 35,
+          "texturesDestroyed": 0,
+          "activeTextures": 35
+        },
+        "resources": {
+          "buffersCreated": 79,
+          "buffersDestroyed": 7,
+          "bufferBytes": 404884,
+          "drawCalls": 10,
+          "triangles": 5700,
+          "texturesCreated": 35,
+          "texturesDestroyed": 0,
+          "textureBytes": 9175040,
+          "imageryDrawCalls": 10
+        }
+      },
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": [],
+      "frames": 113,
+      "coloredPixels": 238522,
+      "sampledColors": 1993,
+      "credits": "Data attribution Data provided by:\n×\nNatural Earth"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "liveProvidersRequired": false,
+  "demoSha256": "8877112321020b5727dea7c5e91b9e7beb6f16f4c9b3d808aa7d68bebb638e0d",
+  "testSha256": "fb1c54861d52e82d0ae8f700702c3e1c49788e53d2cdef7206a980761fa53510",
+  "status": "FAIL",
+  "error": "Error: Please use browser.newContext()",
+  "timedOut": false
+}

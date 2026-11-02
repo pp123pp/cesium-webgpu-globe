@@ -130,7 +130,7 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
     return tile.renderable && tile.state === QuadtreeTileLoadState.DONE;
   }
 
-  showTileThisFrame(tile) {
+  showTileThisFrame(tile, frameState) {
     let source = tile;
     while (source && !source.data?.gpu) {
       source = source.parent;
@@ -139,6 +139,11 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
       // During rapid pans native traversal can select a not-yet-loaded child.
       // Draw only its rectangle from a ready ancestor, retaining coverage.
       this._renderer.addTile(source, tile.rectangle);
+      // Match native GlobeSurfaceTileProvider: dataset credits belong to the
+      // terrain data actually drawn, including an ancestor used as a fill.
+      for (const credit of source.data.terrainData.credits ?? []) {
+        frameState.creditDisplay.addCreditToNextFrame(credit);
+      }
     }
   }
 

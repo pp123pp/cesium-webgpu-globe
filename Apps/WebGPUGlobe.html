@@ -96,11 +96,33 @@
         renderingBackend: "webgpu",
       });
       let live = false;
-      const showError = (error) => {
+      let failed = false;
+      const showError = (error, fatal = false) => {
         status.style.color = "#ffb4b4";
         status.textContent = error.message ?? String(error);
+        if (fatal) {
+          failed = true;
+          orbit.disabled = terrain.disabled = everest.disabled = true;
+        }
       };
-      viewer.renderError.addEventListener((source, error) => showError(error));
+      viewer.renderError.addEventListener((source, error) =>
+        showError(error, true),
+      );
+      window.addEventListener(
+        "pagehide",
+        () => {
+          if (!viewer.isDestroyed()) {
+            viewer.destroy();
+          }
+        },
+        { once: true },
+      );
+      viewer.scene.globe.tileLoadProgressEvent.addEventListener((remaining) => {
+        if (live && !failed && remaining === 0 && !viewer.isDestroyed()) {
+          status.textContent =
+            "World Terrain + ArcGIS World Imagery · visible tiles ready.";
+        }
+      });
       orbit.addEventListener("click", () => {
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
@@ -121,6 +143,7 @@
       });
       terrain.addEventListener("click", async () => {
         terrain.disabled = true;
+        status.style.color = "";
         status.textContent = "Loading World Terrain and ArcGIS imagery…";
         try {
           const [terrainProvider, imageryProvider] = await Promise.all([
@@ -129,7 +152,7 @@
               "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
             ),
           ]);
-          if (viewer.isDestroyed()) {
+          if (failed || viewer.isDestroyed()) {
             return;
           }
           viewer.terrainProvider = terrainProvider;
@@ -141,6 +164,9 @@
           status.textContent =
             "World Terrain + ArcGIS World Imagery · fly to Everest or navigate freely.";
         } catch (error) {
+          if (failed || viewer.isDestroyed()) {
+            return;
+          }
           terrain.disabled = false;
           showError(error);
         }
@@ -154,17 +180,10 @@
         orbit.disabled = terrain.disabled = false;
         status.textContent = "Natural Earth + WGS84 ellipsoid · ready.";
       } catch (error) {
-        showError(error);
-      }
-      viewer.scene.globe.tileLoadProgressEvent.addEventListener((remaining) => {
-        if (live && remaining === 0 && !viewer.isDestroyed()) {
-          status.textContent =
-            "World Terrain + ArcGIS World Imagery · visible tiles ready.";
+        if (!viewer.isDestroyed()) {
+          showError(error, true);
         }
-      });
-      window.addEventListener("pagehide", () => viewer.destroy(), {
-        once: true,
-      });
+      }
     </script>
   </body>
 </html>

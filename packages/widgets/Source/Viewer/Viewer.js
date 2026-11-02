@@ -1497,7 +1497,8 @@ Object.defineProperties(Viewer.prototype, {
    * as part of a custom render loop.  If an error occurs during rendering, {@link Scene}'s
    * <code>renderError</code> event will be raised and this property
    * will be set to false.  It must be set back to true to continue rendering
-   * after the error.
+   * after the error on the WebGL backend. WebGPU render errors and device loss
+   * are terminal: destroy the Viewer and create a new one to recover.
    * @memberof Viewer.prototype
    *
    * @type {boolean}

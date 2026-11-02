@@ -1,0 +1,16 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: TypeError: Cannot read properties of undefined (reading 'textContent')
+    at eval (eval at evaluate (:370:30), <anonymous>:39:48)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at snapshot (/workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:135:34)
+    at /workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:234:28
+    at async runM1BrowserSuite (/workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:222:1 {
+  log: []
+}
+
+Node.js v24.22.1

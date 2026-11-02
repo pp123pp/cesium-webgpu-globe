@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { setImmediate } from "node:timers/promises";
 import { Cartesian3, Event } from "@cesium/core";
+import Credit from "../../packages/engine/Source/Core/Credit.js";
 import GeographicTilingScheme from "../../packages/engine/Source/Core/GeographicTilingScheme.js";
 import ImageryLayerCollection from "../../packages/engine/Source/Scene/ImageryLayerCollection.js";
 import QuadtreeTile from "../../packages/engine/Source/Scene/QuadtreeTile.js";
@@ -49,6 +50,22 @@ const terrain = (createMesh = () => Promise.resolve(mesh)) => ({
   createMesh,
   wasCreatedByUpsampling: () => false,
   isChildAvailable: () => true,
+});
+
+test("rendered ancestor fallback preserves its native terrain data credits", async () => {
+  const credit = new Credit("Terrain dataset attribution");
+  const f = fixture(() => Promise.resolve({ ...terrain(), credits: [credit] }));
+  f.provider.loadTile(frame, f.tile);
+  await setImmediate();
+  f.provider.loadTile(frame, f.tile);
+  await setImmediate();
+  const published = [];
+  f.provider.showTileThisFrame(f.tile.northeastChild, {
+    ...frame,
+    creditDisplay: { addCreditToNextFrame: (value) => published.push(value) },
+  });
+  assert.deepEqual(published, [credit]);
+  f.provider.destroy();
 });
 
 test("an asynchronously published mesh is renderable before height queries can see it", async () => {

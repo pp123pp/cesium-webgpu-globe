@@ -1,0 +1,30 @@
+M1 demo: actual demo initialization, automatic rendering and bundled Natural Earth
+M1 demo: Orbit button completes the actual native camera flight
+M1 demo: pagehide cancels pending initialization before readiness
+M1 demo: unsupported WebGPU gives visible feedback and clean teardown
+M1 demo: actual GPU device loss is visible and disables unavailable controls
+M1 demo: pagehide during provider loading releases resources and ignores late failures
+M1 demo: provider failure preserves the working globe and enables retry
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: A successful provider retry must clear error styling
++ actual - expected
+
++ 'rgb(255, 180, 180)'
+- 'rgb(164, 221, 195)'
+       ^
+
+    at file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:510:14
+    at async runM1BrowserSuite (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:255:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'rgb(255, 180, 180)',
+  expected: 'rgb(164, 221, 195)',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

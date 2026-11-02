@@ -1,0 +1,26 @@
+M1 demo: actual demo initialization, automatic rendering and bundled Natural Earth
+M1 demo: Orbit button completes the actual native camera flight
+M1 demo: pagehide cancels pending initialization before readiness
+M1 demo: unsupported WebGPU gives visible feedback and clean teardown
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Fatal rendering errors must disable controls
+
+false !== true
+
+    at file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:394:14
+    at async secondary (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:338:9)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:378:5
+    at async runM1BrowserSuite (file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-browser-harness.mjs:50:5)
+    at async file:///workspace/scratch/3788b309ccca/m1-demo/coordination/ci/m1-demo-smoke.mjs:252:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

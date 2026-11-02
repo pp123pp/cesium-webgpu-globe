@@ -1,0 +1,38 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> cesium@1.146.0 build
+> gulp build
+
+[16:54:40] Using gulpfile /workspace/scratch/3788b309ccca/m1-demo/gulpfile.js
+[16:54:40] Starting 'build'...
+
+  [37mpackages/core/Build/Unminified/[0m[1mindex.js[0m      [33m1.6mb ⚠️[0m
+  [37mpackages/core/Build/Unminified/[0m[1mindex.js.map[0m  [36m3.1mb[0m
+
+⚡ [32mDone in 83ms[0m
+
+  [37mpackages/engine/Build/Unminified/[0m[1mindex.js[0m       [33m9.0mb ⚠️[0m
+  [37mpackages/engine/Build/Unminified/[0m[1mindex.js.map[0m  [36m17.2mb[0m
+
+⚡ [32mDone in 444ms[0m
+
+  [37mpackages/widgets/Build/Unminified/[0m[1mindex.js[0m      [36m537.2kb[0m
+  [37mpackages/widgets/Build/Unminified/[0m[1mindex.js.map[0m  [36m926.2kb[0m
+
+⚡ [32mDone in 26ms[0m
+
+  [37mBuild/CesiumUnminified/[0m[1mindex.js[0m      [33m10.9mb ⚠️[0m
+  [37mBuild/CesiumUnminified/[0m[1mindex.js.map[0m  [36m20.9mb[0m
+
+⚡ [32mDone in 444ms[0m
+
+  [37mBuild/CesiumUnminified/[0m[1mCesium.js[0m      [33m15.2mb ⚠️[0m
+  [37mBuild/CesiumUnminified/[0m[1mCesium.js.map[0m  [36m24.7mb[0m
+
+⚡ [32mDone in 496ms[0m
+
+  [37mBuild/CesiumUnminified/[0m[1mindex.cjs[0m      [33m11.0mb ⚠️[0m
+  [37mBuild/CesiumUnminified/[0m[1mindex.cjs.map[0m  [36m21.0mb[0m
+
+⚡ [32mDone in 355ms[0m
+[16:54:46] Finished 'build' after 6.25 s

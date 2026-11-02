@@ -65,6 +65,13 @@ jobs:
       - name: Build official Cesium WebGL bundle
         run: npm run build
 
+      - name: Check M1 source and generated TypeScript APIs
+        run: |
+          npx eslint packages/engine/Source/Renderer/WebGPUContext.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs Apps/WebGPUGlobe.html
+          npm run build-ts
+          npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json
+          npm run tsc
+
       - name: Build independent pre-WebGPU comparison bundle
         working-directory: Build/m0-reference-source
         run: |
@@ -163,6 +170,21 @@ jobs:
           done
           M1_BASE_URL=http://127.0.0.1:8090/ xvfb-run --auto-servernum node coordination/ci/m1-terrain-smoke.mjs 2>&1 | tee Build/m1-terrain/run.log
 
+      - name: Run live M1 demonstration and error lifecycle acceptance
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Build/m1-demo
+          python3 -m http.server 8091 --bind 127.0.0.1 > "$RUNNER_TEMP/m1-demo-server.log" 2>&1 &
+          server_pid=$!
+          trap 'cp "$RUNNER_TEMP/m1-demo-server.log" Build/m1-demo/server.log || true; kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:8091/Apps/WebGPUGlobe.html > /dev/null; then break; fi
+            sleep 1
+          done
+          M1_BASE_URL=http://127.0.0.1:8091/ xvfb-run --auto-servernum node coordination/ci/m1-demo-smoke.mjs 2>&1 | tee Build/m1-demo/run.log
+
       - name: Upload WebGL smoke evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -177,4 +199,5 @@ jobs:
             Build/m1-imagery/
             Build/m1-navigation/
             Build/m1-terrain/
+            Build/m1-demo/
           if-no-files-found: warn
