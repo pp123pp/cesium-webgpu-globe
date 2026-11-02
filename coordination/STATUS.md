@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1 A03–A06 closeout; verified source and documented navigation limitation**
+Current milestone: **M1 merged; CI baseline tolerance closeout pending verification; M2 not started**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -15,6 +15,14 @@ Import workflow result: SUCCESS; source presence verified.
 - Historical M0.2 WebGL smoke verified initialization; M0.5 below supersedes it with visible Globe readiness and independent visual comparison.
 - M0.3: Viewer → CesiumWidget → Scene → Globe → QuadtreePrimitive → GlobeSurfaceTileProvider → Context pipeline audited; see `coordination/handoffs/M0.3-source-pipeline-audit.md`.
 - M0.4: Viewer selects an isolated WebGPU proof at construction while preserving Viewer identity. WebGPUContext/WebGPUWidget own device/canvas, WGSL color/depth drawing, sizing, errors/loss and disposal. The real-browser gate, standalone demo and screenshot inspection passed. Existing CesiumWidget, Scene, WebGL Context and Globe source remain unchanged.
+
+## Integration update (2026-11-02)
+
+- M0 PR #1 merged into `main` as `8a0c5f5`; M1 PR #2 merged as `676061f`. The historical pre-merge instructions below are retained as a record, not pending actions.
+- GitHub Pages demo deployment succeeded in Actions run [41441429581](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41441429581); this is a deployment result, not an independent browser visual inspection.
+- Evidence cleanup and Actions artifact archiving were integrated after M1; historical verification records remain preserved.
+- Full regression [41440785982](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41440785982) failed only at the strict inherited ShadowMap assertion signature comparison: RGB values `[163,2,2,255]` versus `[163,3,3,255]`. The underlying suites each executed 3,822 specs with the same 11 failures; later M1 browser gates continued to pass. The dedicated comparison rule is being narrowed to tolerate at most one unit per RGB channel for that specific inherited failure, preserving identical-pixel, alpha, failure identity and other regression checks. **The fix is not yet verified by a fresh Full run.**
+- `M1-NAV-001` remains known unresolved and explicitly nonblocking for M1 only. M2 work has not started.
 
 ## M1 closeout and integration
 
