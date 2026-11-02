@@ -1,4 +1,4 @@
-name: M0 WebGL regression
+name: M0 and M1 regression
 
 on:
   push:
@@ -25,6 +25,8 @@ jobs:
       NPM_CONFIG_FUND: "false"
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Check out the pinned pre-WebGPU comparison source
         uses: actions/checkout@v4
@@ -146,6 +148,21 @@ jobs:
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-imagery-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m1-navigation-smoke.mjs
 
+      - name: Run live M1 terrain and near-ground flight acceptance
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Build/m1-terrain
+          python3 -m http.server 8090 --bind 127.0.0.1 > "$RUNNER_TEMP/m1-terrain-server.log" 2>&1 &
+          server_pid=$!
+          trap 'cp "$RUNNER_TEMP/m1-terrain-server.log" Build/m1-terrain/server.log || true; kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..60}; do
+            if curl --fail --silent http://127.0.0.1:8090/Specs/e2e/cesium.html > /dev/null; then break; fi
+            sleep 1
+          done
+          M1_BASE_URL=http://127.0.0.1:8090/ xvfb-run --auto-servernum node coordination/ci/m1-terrain-smoke.mjs 2>&1 | tee Build/m1-terrain/run.log
+
       - name: Upload WebGL smoke evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -159,4 +176,5 @@ jobs:
             Build/m1-globe/
             Build/m1-imagery/
             Build/m1-navigation/
+            Build/m1-terrain/
           if-no-files-found: warn

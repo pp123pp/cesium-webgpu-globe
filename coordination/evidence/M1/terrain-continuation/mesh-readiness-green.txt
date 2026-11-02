@@ -1,0 +1,17 @@
+✔ an asynchronously published mesh is renderable before height queries can see it (4.955124ms)
+✔ deferred provider requests retry and native mesh deferral does not mark a tile ready (0.623091ms)
+✔ destroy cancels pending terrain and ignores late completion (0.397147ms)
+✔ unavailable child uses the native parent upsampler and retains its child coordinates (1.272922ms)
+✔ eviction frees GPU ownership once and a revisited tile gets a fresh generation (0.666024ms)
+✔ provider replacement cancels old terrain immediately before late resolve (0.558746ms)
+✔ provider replacement cancels old terrain immediately before late reject (0.395605ms)
+✔ terrain error callback can replace the owner without a stale fatal event (1.336025ms)
+✔ terrain error callback can destroy the owner without a stale fatal event (0.503084ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26.021831

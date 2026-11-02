@@ -1,0 +1,2154 @@
+{
+  "suite": "terrain",
+  "capturedAt": "2026-11-02T08:37:55.753Z",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface",
+        "--ignore-certificate-errors-spki-list=n9jEr2dCP1tg9exQzr7xEpZ4TjG2QWO02LUFhmAzII4="
+      ]
+    }
+  },
+  "source": "8b37878ef1423237a29fd6c8b73260309e4f18cb",
+  "sourceStatus": "",
+  "bundleSha256": "404be4bca21a368893faf8014f101752b268d85f62373a4224626d652b4aeeca",
+  "browserErrors": [],
+  "checks": [
+    "actual native quantized terrain and high-resolution provider imagery",
+    "coherent adjacent mesh edges, native skirts and mixed LOD",
+    "no geometry holes during real neighboring/parent-child LOD transitions"
+  ],
+  "scenes": [
+    {
+      "name": "himalaya-region",
+      "settled": {
+        "frames": 27,
+        "elapsedMs": 905,
+        "statistics": {
+          "frame": 28,
+          "selectedTiles": 5,
+          "levels": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "cacheTiles": 46,
+          "loadedTiles": 46,
+          "terrain": {
+            "requests": 15,
+            "deferred": 0,
+            "meshes": 15,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 26,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 26,
+            "pendingRequests": 0,
+            "texturesCreated": 26,
+            "texturesDestroyed": 0,
+            "activeTextures": 26
+          },
+          "resources": {
+            "buffersCreated": 34,
+            "buffersDestroyed": 2,
+            "bufferBytes": 65336,
+            "drawCalls": 5,
+            "triangles": 425,
+            "texturesCreated": 26,
+            "texturesDestroyed": 0,
+            "textureBytes": 6815744,
+            "imageryDrawCalls": 10
+          }
+        }
+      },
+      "statistics": {
+        "frame": 29,
+        "selectedTiles": 5,
+        "levels": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "cacheTiles": 46,
+        "loadedTiles": 46,
+        "terrain": {
+          "requests": 15,
+          "deferred": 0,
+          "meshes": 15,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 26,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 26,
+          "pendingRequests": 0,
+          "texturesCreated": 26,
+          "texturesDestroyed": 0,
+          "activeTextures": 26
+        },
+        "resources": {
+          "buffersCreated": 34,
+          "buffersDestroyed": 2,
+          "bufferBytes": 65336,
+          "drawCalls": 5,
+          "triangles": 425,
+          "texturesCreated": 26,
+          "texturesDestroyed": 0,
+          "textureBytes": 6815744,
+          "imageryDrawCalls": 10
+        }
+      },
+      "center": [
+        254,
+        252,
+        249,
+        255
+      ],
+      "distinctSampledColors": 8756,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "everest-oblique",
+      "view": {
+        "name": "everest-oblique",
+        "range": 35000,
+        "heading": 0,
+        "pitch": -45
+      },
+      "settled": {
+        "frames": 21,
+        "elapsedMs": 1888,
+        "statistics": {
+          "frame": 51,
+          "selectedTiles": 12,
+          "levels": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            9,
+            9,
+            9,
+            9
+          ],
+          "cacheTiles": 118,
+          "loadedTiles": 118,
+          "terrain": {
+            "requests": 46,
+            "deferred": 27,
+            "meshes": 46,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 74,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 74,
+            "pendingRequests": 0,
+            "texturesCreated": 74,
+            "texturesDestroyed": 2,
+            "activeTextures": 72
+          },
+          "resources": {
+            "buffersCreated": 98,
+            "buffersDestroyed": 8,
+            "bufferBytes": 1964348,
+            "drawCalls": 12,
+            "triangles": 45174,
+            "texturesCreated": 74,
+            "texturesDestroyed": 2,
+            "textureBytes": 18874368,
+            "imageryDrawCalls": 24
+          }
+        }
+      },
+      "mesh": {
+        "tiles": [
+          {
+            "x": 1518,
+            "y": 353,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4301.64697265625,
+            "maximumHeight": 7358.19482421875,
+            "vertices": 1962,
+            "indices": 12213,
+            "skirtIndices": 894,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1519,
+            "y": 353,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3727.4921875,
+            "maximumHeight": 8400.4638671875,
+            "vertices": 1797,
+            "indices": 11181,
+            "skirtIndices": 810,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1518,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5065.75830078125,
+            "maximumHeight": 8777.140625,
+            "vertices": 1755,
+            "indices": 10911,
+            "skirtIndices": 774,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1519,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3916.80908203125,
+            "maximumHeight": 6909.8203125,
+            "vertices": 1712,
+            "indices": 10641,
+            "skirtIndices": 750,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1517,
+            "y": 353,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 2715.5283203125,
+            "maximumHeight": 6696.85107421875,
+            "vertices": 2278,
+            "indices": 14088,
+            "skirtIndices": 852,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1517,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4686.02294921875,
+            "maximumHeight": 8160.21435546875,
+            "vertices": 2093,
+            "indices": 12954,
+            "skirtIndices": 804,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1516,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4501.78515625,
+            "maximumHeight": 8151.1748046875,
+            "vertices": 2107,
+            "indices": 12999,
+            "skirtIndices": 726,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1520,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3438.994384765625,
+            "maximumHeight": 5832.48828125,
+            "vertices": 1851,
+            "indices": 11493,
+            "skirtIndices": 786,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 759,
+            "y": 175,
+            "level": 9,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3899.43798828125,
+            "maximumHeight": 6653.96875,
+            "vertices": 1539,
+            "indices": 9606,
+            "skirtIndices": 756,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 758,
+            "y": 175,
+            "level": 9,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4414.8369140625,
+            "maximumHeight": 7235.53466796875,
+            "vertices": 1200,
+            "indices": 7527,
+            "skirtIndices": 666,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 757,
+            "y": 175,
+            "level": 9,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3838.929931640625,
+            "maximumHeight": 7308.07666015625,
+            "vertices": 1917,
+            "indices": 11877,
+            "skirtIndices": 762,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 760,
+            "y": 175,
+            "level": 9,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3554.3828125,
+            "maximumHeight": 6404.435546875,
+            "vertices": 1613,
+            "indices": 10032,
+            "skirtIndices": 720,
+            "quantization": 0,
+            "mercatorT": true
+          }
+        ],
+        "adjacent": [
+          {
+            "first": "10/1518/353",
+            "second": "10/1519/353",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 80,
+            "maximumHeightDifference": 0.16298597582499497,
+            "coordinateAtMaximum": 0.4858753415324895
+          },
+          {
+            "first": "10/1518/353",
+            "second": "10/1518/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 74,
+            "maximumHeightDifference": 0.3057439881413302,
+            "coordinateAtMaximum": 1.5164438674652616
+          },
+          {
+            "first": "10/1517/353",
+            "second": "10/1518/353",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 72,
+            "maximumHeightDifference": 0.2182919393198972,
+            "coordinateAtMaximum": 0.48644264336692383
+          },
+          {
+            "first": "10/1517/352",
+            "second": "10/1518/353",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 2,
+            "maximumHeightDifference": 0.011083461671660189,
+            "coordinateAtMaximum": 0.4878058904772289
+          },
+          {
+            "first": "10/1519/353",
+            "second": "10/1519/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 56,
+            "maximumHeightDifference": 0.2691965335416171,
+            "coordinateAtMaximum": 1.5190036075251636
+          },
+          {
+            "first": "10/1518/352",
+            "second": "10/1519/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 58,
+            "maximumHeightDifference": 0.27338914827396366,
+            "coordinateAtMaximum": 0.4879503610019085
+          },
+          {
+            "first": "10/1517/352",
+            "second": "10/1518/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 72,
+            "maximumHeightDifference": 0.2671737192058572,
+            "coordinateAtMaximum": 0.48824126825137887
+          },
+          {
+            "first": "10/1518/352",
+            "second": "9/759/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 45,
+            "maximumHeightDifference": 107.39839974606093,
+            "coordinateAtMaximum": 1.5184702932159904
+          },
+          {
+            "first": "10/1519/352",
+            "second": "10/1520/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 80,
+            "maximumHeightDifference": 0.1515187810337011,
+            "coordinateAtMaximum": 0.4882848996437096
+          },
+          {
+            "first": "10/1519/352",
+            "second": "9/759/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 43,
+            "maximumHeightDifference": 96.10722890855686,
+            "coordinateAtMaximum": 1.520174913980187
+          },
+          {
+            "first": "10/1519/352",
+            "second": "9/760/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 2,
+            "maximumHeightDifference": 0.022755877413146663,
+            "coordinateAtMaximum": 0.4908738520365973
+          },
+          {
+            "first": "10/1517/353",
+            "second": "10/1517/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 70,
+            "maximumHeightDifference": 0.20829853740815452,
+            "coordinateAtMaximum": 1.5130259183983237
+          },
+          {
+            "first": "10/1516/352",
+            "second": "10/1517/352",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 68,
+            "maximumHeightDifference": 0.19717079981455754,
+            "coordinateAtMaximum": 0.4887018323432233
+          },
+          {
+            "first": "10/1517/352",
+            "second": "9/758/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 49,
+            "maximumHeightDifference": 106.70108470310515,
+            "coordinateAtMaximum": 1.5149214499353325
+          },
+          {
+            "first": "10/1516/352",
+            "second": "9/758/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 42,
+            "maximumHeightDifference": 84.63061050560555,
+            "coordinateAtMaximum": 1.5125050567904605
+          },
+          {
+            "first": "10/1520/352",
+            "second": "9/760/175",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 34,
+            "maximumHeightDifference": 103.23472276419943,
+            "coordinateAtMaximum": 1.5246904830248356
+          },
+          {
+            "first": "9/758/175",
+            "second": "9/759/175",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 60,
+            "maximumHeightDifference": 0.07783882478543092,
+            "coordinateAtMaximum": 0.49225545065515053
+          },
+          {
+            "first": "9/759/175",
+            "second": "9/760/175",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 76,
+            "maximumHeightDifference": 0.10307076412573224,
+            "coordinateAtMaximum": 0.49400557546794965
+          },
+          {
+            "first": "9/757/175",
+            "second": "9/758/175",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 66,
+            "maximumHeightDifference": 0.19670281183971383,
+            "coordinateAtMaximum": 0.49087385215158846
+          }
+        ],
+        "centerHeight": 8772.186763308493
+      },
+      "coverage": {
+        "background": 0,
+        "untextured": 0
+      },
+      "cameraHeight": 30796.802214160507,
+      "statistics": {
+        "frame": 53,
+        "selectedTiles": 12,
+        "levels": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9
+        ],
+        "cacheTiles": 118,
+        "loadedTiles": 118,
+        "terrain": {
+          "requests": 46,
+          "deferred": 27,
+          "meshes": 46,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 74,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 74,
+          "pendingRequests": 0,
+          "texturesCreated": 74,
+          "texturesDestroyed": 2,
+          "activeTextures": 72
+        },
+        "resources": {
+          "buffersCreated": 98,
+          "buffersDestroyed": 8,
+          "bufferBytes": 1964348,
+          "drawCalls": 12,
+          "triangles": 45174,
+          "texturesCreated": 74,
+          "texturesDestroyed": 2,
+          "textureBytes": 18874368,
+          "imageryDrawCalls": 24
+        }
+      },
+      "center": [
+        254,
+        254,
+        254,
+        255
+      ],
+      "distinctSampledColors": 7302,
+      "backgroundPixels": 2446,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "everest-near",
+      "view": {
+        "name": "everest-near",
+        "range": 14000,
+        "heading": 35,
+        "pitch": -40
+      },
+      "settled": {
+        "frames": 19,
+        "elapsedMs": 1046.6000000014901,
+        "statistics": {
+          "frame": 73,
+          "selectedTiles": 19,
+          "levels": [
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            12,
+            11,
+            11,
+            11,
+            11,
+            11,
+            11,
+            10,
+            10
+          ],
+          "cacheTiles": 142,
+          "loadedTiles": 142,
+          "terrain": {
+            "requests": 72,
+            "deferred": 27,
+            "meshes": 70,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 109,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 109,
+            "pendingRequests": 0,
+            "texturesCreated": 109,
+            "texturesDestroyed": 7,
+            "activeTextures": 102
+          },
+          "resources": {
+            "buffersCreated": 148,
+            "buffersDestroyed": 18,
+            "bufferBytes": 3248192,
+            "drawCalls": 19,
+            "triangles": 56036,
+            "texturesCreated": 109,
+            "texturesDestroyed": 7,
+            "textureBytes": 26738688,
+            "imageryDrawCalls": 42
+          }
+        }
+      },
+      "mesh": {
+        "tiles": [
+          {
+            "x": 6073,
+            "y": 1412,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4814.10400390625,
+            "maximumHeight": 6422.30615234375,
+            "vertices": 1044,
+            "indices": 6582,
+            "skirtIndices": 648,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6074,
+            "y": 1412,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5079.0478515625,
+            "maximumHeight": 7269.9326171875,
+            "vertices": 1397,
+            "indices": 8688,
+            "skirtIndices": 624,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6075,
+            "y": 1412,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5317.134765625,
+            "maximumHeight": 7358.19482421875,
+            "vertices": 1149,
+            "indices": 7131,
+            "skirtIndices": 486,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6072,
+            "y": 1411,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5065.75830078125,
+            "maximumHeight": 7634.84326171875,
+            "vertices": 1549,
+            "indices": 9546,
+            "skirtIndices": 516,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6073,
+            "y": 1411,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5682.0263671875,
+            "maximumHeight": 8693.806640625,
+            "vertices": 1661,
+            "indices": 10398,
+            "skirtIndices": 876,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6072,
+            "y": 1410,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5196.43408203125,
+            "maximumHeight": 6651.62646484375,
+            "vertices": 869,
+            "indices": 5469,
+            "skirtIndices": 522,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6073,
+            "y": 1410,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5672.9716796875,
+            "maximumHeight": 8294.744140625,
+            "vertices": 1070,
+            "indices": 6702,
+            "skirtIndices": 576,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6074,
+            "y": 1411,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5423.0361328125,
+            "maximumHeight": 8777.140625,
+            "vertices": 1544,
+            "indices": 9660,
+            "skirtIndices": 804,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6075,
+            "y": 1411,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5239.7041015625,
+            "maximumHeight": 7386.9921875,
+            "vertices": 1111,
+            "indices": 6954,
+            "skirtIndices": 588,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6074,
+            "y": 1410,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5579.58984375,
+            "maximumHeight": 8501.1083984375,
+            "vertices": 1166,
+            "indices": 7281,
+            "skirtIndices": 582,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 6075,
+            "y": 1410,
+            "level": 12,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5219.03515625,
+            "maximumHeight": 6842.2236328125,
+            "vertices": 977,
+            "indices": 6075,
+            "skirtIndices": 438,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3036,
+            "y": 704,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5180.02099609375,
+            "maximumHeight": 7006.81982421875,
+            "vertices": 1987,
+            "indices": 12288,
+            "skirtIndices": 744,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3037,
+            "y": 704,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5776.671875,
+            "maximumHeight": 7161.4091796875,
+            "vertices": 1280,
+            "indices": 7965,
+            "skirtIndices": 582,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3038,
+            "y": 705,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4660.43359375,
+            "maximumHeight": 6909.8203125,
+            "vertices": 1541,
+            "indices": 9663,
+            "skirtIndices": 846,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3039,
+            "y": 705,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3916.80908203125,
+            "maximumHeight": 6306.1591796875,
+            "vertices": 2470,
+            "indices": 15240,
+            "skirtIndices": 852,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3038,
+            "y": 704,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 5180.05419921875,
+            "maximumHeight": 6370.00244140625,
+            "vertices": 726,
+            "indices": 4641,
+            "skirtIndices": 582,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 3039,
+            "y": 704,
+            "level": 11,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4413.72314453125,
+            "maximumHeight": 6103.69482421875,
+            "vertices": 2455,
+            "indices": 15105,
+            "skirtIndices": 762,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1520,
+            "y": 352,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 3438.994384765625,
+            "maximumHeight": 5832.48828125,
+            "vertices": 1851,
+            "indices": 11493,
+            "skirtIndices": 786,
+            "quantization": 0,
+            "mercatorT": true
+          },
+          {
+            "x": 1518,
+            "y": 351,
+            "level": 10,
+            "quantized": true,
+            "upsampled": false,
+            "minimumHeight": 4388.1318359375,
+            "maximumHeight": 6653.96875,
+            "vertices": 1156,
+            "indices": 7227,
+            "skirtIndices": 594,
+            "quantization": 0,
+            "mercatorT": true
+          }
+        ],
+        "adjacent": [
+          {
+            "first": "12/6073/1412",
+            "second": "12/6074/1412",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 50,
+            "maximumHeightDifference": 0.16811079936724127,
+            "coordinateAtMaximum": 0.48731044944322216
+          },
+          {
+            "first": "12/6073/1412",
+            "second": "12/6073/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 108,
+            "maximumHeightDifference": 0.2685322375727992,
+            "coordinateAtMaximum": 1.5170110756894697
+          },
+          {
+            "first": "12/6074/1412",
+            "second": "12/6075/1412",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 52,
+            "maximumHeightDifference": 0.09381153397134767,
+            "coordinateAtMaximum": 0.4877419415231039
+          },
+          {
+            "first": "12/6074/1412",
+            "second": "12/6074/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 72,
+            "maximumHeightDifference": 0.33955306403368013,
+            "coordinateAtMaximum": 1.517345614287159
+          },
+          {
+            "first": "12/6075/1412",
+            "second": "12/6075/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 54,
+            "maximumHeightDifference": 0.2180555758804985,
+            "coordinateAtMaximum": 1.5181310263158267
+          },
+          {
+            "first": "12/6072/1411",
+            "second": "12/6073/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 38,
+            "maximumHeightDifference": 0.13227265685964085,
+            "coordinateAtMaximum": 0.4880231112583692
+          },
+          {
+            "first": "12/6072/1411",
+            "second": "12/6072/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 40,
+            "maximumHeightDifference": 0.22573385994382988,
+            "coordinateAtMaximum": 1.5159057312660837
+          },
+          {
+            "first": "12/6073/1411",
+            "second": "12/6073/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 74,
+            "maximumHeightDifference": 0.16250246832350967,
+            "coordinateAtMaximum": 1.5163400088239967
+          },
+          {
+            "first": "12/6073/1411",
+            "second": "12/6074/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 72,
+            "maximumHeightDifference": 0.30094353233835136,
+            "coordinateAtMaximum": 0.488255804248087
+          },
+          {
+            "first": "12/6072/1410",
+            "second": "12/6073/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 28,
+            "maximumHeightDifference": 0.1105534861671913,
+            "coordinateAtMaximum": 0.48904123968055896
+          },
+          {
+            "first": "12/6072/1410",
+            "second": "11/3036/704",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 63,
+            "maximumHeightDifference": 23.104775313320715,
+            "coordinateAtMaximum": 1.5157796589925934
+          },
+          {
+            "first": "12/6073/1410",
+            "second": "12/6074/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 46,
+            "maximumHeightDifference": 0.1288932143497732,
+            "coordinateAtMaximum": 0.48924970600545326
+          },
+          {
+            "first": "12/6073/1410",
+            "second": "11/3036/704",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 38,
+            "maximumHeightDifference": 26.350061568833553,
+            "coordinateAtMaximum": 1.5169674442721865
+          },
+          {
+            "first": "12/6074/1411",
+            "second": "12/6075/1411",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 56,
+            "maximumHeightDifference": 0.19192018216563156,
+            "coordinateAtMaximum": 0.4878922170542614
+          },
+          {
+            "first": "12/6074/1411",
+            "second": "12/6074/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 68,
+            "maximumHeightDifference": 0.1442187360544267,
+            "coordinateAtMaximum": 1.5178739895956854
+          },
+          {
+            "first": "12/6075/1411",
+            "second": "12/6075/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 22,
+            "maximumHeightDifference": 0.10323990688448248,
+            "coordinateAtMaximum": 1.5182716111778414
+          },
+          {
+            "first": "12/6075/1411",
+            "second": "11/3038/705",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 56,
+            "maximumHeightDifference": 18.557457026620796,
+            "coordinateAtMaximum": 0.48837705460584563
+          },
+          {
+            "first": "12/6074/1410",
+            "second": "12/6075/1410",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 44,
+            "maximumHeightDifference": 0.14798914611128566,
+            "coordinateAtMaximum": 0.4886921884736358
+          },
+          {
+            "first": "12/6074/1410",
+            "second": "11/3037/704",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 33,
+            "maximumHeightDifference": 24.420302342208743,
+            "coordinateAtMaximum": 1.51767528416653
+          },
+          {
+            "first": "12/6075/1410",
+            "second": "11/3037/704",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 33,
+            "maximumHeightDifference": 22.01130359516992,
+            "coordinateAtMaximum": 1.5179855493033707
+          },
+          {
+            "first": "12/6075/1410",
+            "second": "11/3038/705",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 30,
+            "maximumHeightDifference": 23.723555896414837,
+            "coordinateAtMaximum": 0.48907033508080133
+          },
+          {
+            "first": "11/3036/704",
+            "second": "11/3037/704",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 44,
+            "maximumHeightDifference": 0.07599845364165958,
+            "coordinateAtMaximum": 0.4903211565104854
+          },
+          {
+            "first": "11/3036/704",
+            "second": "10/1518/351",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 36,
+            "maximumHeightDifference": 46.72217815449039,
+            "coordinateAtMaximum": 1.516657155726064
+          },
+          {
+            "first": "11/3037/704",
+            "second": "11/3038/704",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 44,
+            "maximumHeightDifference": 0.08094385874210275,
+            "coordinateAtMaximum": 0.4897199607414005
+          },
+          {
+            "first": "11/3037/704",
+            "second": "10/1518/351",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 41,
+            "maximumHeightDifference": 49.36100917589192,
+            "coordinateAtMaximum": 1.5181552295748673
+          },
+          {
+            "first": "11/3038/705",
+            "second": "11/3039/705",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 72,
+            "maximumHeightDifference": 0.12075437084604346,
+            "coordinateAtMaximum": 0.4881104208588865
+          },
+          {
+            "first": "11/3038/705",
+            "second": "11/3038/704",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 50,
+            "maximumHeightDifference": 0.1739988543195068,
+            "coordinateAtMaximum": 1.5201090455614665
+          },
+          {
+            "first": "11/3039/705",
+            "second": "11/3039/704",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 78,
+            "maximumHeightDifference": 0.16050950530370756,
+            "coordinateAtMaximum": 1.5208362199508336
+          },
+          {
+            "first": "11/3039/705",
+            "second": "10/1520/352",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 49,
+            "maximumHeightDifference": 49.28193183576013,
+            "coordinateAtMaximum": 0.48785827629385664
+          },
+          {
+            "first": "11/3038/704",
+            "second": "11/3039/704",
+            "levelDifference": 0,
+            "overlap": true,
+            "knots": 60,
+            "maximumHeightDifference": 0.10096230849558196,
+            "coordinateAtMaximum": 0.49027265637179374
+          },
+          {
+            "first": "11/3039/704",
+            "second": "10/1520/352",
+            "levelDifference": 1,
+            "overlap": true,
+            "knots": 59,
+            "maximumHeightDifference": 49.20671880635291,
+            "coordinateAtMaximum": 0.4895648633086959
+          }
+        ],
+        "centerHeight": 8772.219290337589
+      },
+      "coverage": {
+        "background": 0,
+        "untextured": 0
+      },
+      "cameraHeight": 15008.069969485503,
+      "statistics": {
+        "frame": 75,
+        "selectedTiles": 19,
+        "levels": [
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          10,
+          10
+        ],
+        "cacheTiles": 142,
+        "loadedTiles": 142,
+        "terrain": {
+          "requests": 72,
+          "deferred": 27,
+          "meshes": 70,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 109,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 109,
+          "pendingRequests": 0,
+          "texturesCreated": 109,
+          "texturesDestroyed": 7,
+          "activeTextures": 102
+        },
+        "resources": {
+          "buffersCreated": 148,
+          "buffersDestroyed": 18,
+          "bufferBytes": 3248192,
+          "drawCalls": 19,
+          "triangles": 56036,
+          "texturesCreated": 109,
+          "texturesDestroyed": 7,
+          "textureBytes": 26738688,
+          "imageryDrawCalls": 42
+        }
+      },
+      "center": [
+        251,
+        251,
+        251,
+        255
+      ],
+      "distinctSampledColors": 4656,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "everest-top-down",
+      "transitions": [
+        {
+          "height": 70000,
+          "frames": 13,
+          "sourceChanges": 13,
+          "fallbackDraws": 0,
+          "finalSources": "9/758/175|9/758/176|9/759/175|9/759/176|9/760/175|9/760/176",
+          "maximumBackground": 0,
+          "maximumUntextured": 0,
+          "final": {
+            "background": 0,
+            "untextured": 0
+          },
+          "statistics": {
+            "frame": 94,
+            "selectedTiles": 6,
+            "levels": [
+              9,
+              9,
+              9,
+              9,
+              9,
+              9
+            ],
+            "cacheTiles": 100,
+            "loadedTiles": 100,
+            "terrain": {
+              "requests": 75,
+              "deferred": 27,
+              "meshes": 73,
+              "upsampled": 0,
+              "failed": 0
+            },
+            "imagery": {
+              "requests": 112,
+              "deferred": 0,
+              "failed": 0,
+              "discarded": 0,
+              "imagesClosed": 112,
+              "pendingRequests": 0,
+              "texturesCreated": 112,
+              "texturesDestroyed": 44,
+              "activeTextures": 68
+            },
+            "resources": {
+              "buffersCreated": 154,
+              "buffersDestroyed": 68,
+              "bufferBytes": 1833076,
+              "drawCalls": 6,
+              "triangles": 24866,
+              "texturesCreated": 112,
+              "texturesDestroyed": 44,
+              "textureBytes": 17825792,
+              "imageryDrawCalls": 12
+            }
+          }
+        },
+        {
+          "height": 15000,
+          "frames": 14,
+          "sourceChanges": 14,
+          "fallbackDraws": 0,
+          "finalSources": "12/6072/1410|12/6072/1411|12/6073/1410|12/6073/1411|12/6074/1410|12/6074/1411|12/6075/1410|12/6075/1411",
+          "maximumBackground": 0,
+          "maximumUntextured": 0,
+          "final": {
+            "background": 0,
+            "untextured": 0
+          },
+          "statistics": {
+            "frame": 109,
+            "selectedTiles": 8,
+            "levels": [
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12,
+              12
+            ],
+            "cacheTiles": 100,
+            "loadedTiles": 97,
+            "terrain": {
+              "requests": 85,
+              "deferred": 27,
+              "meshes": 83,
+              "upsampled": 0,
+              "failed": 0
+            },
+            "imagery": {
+              "requests": 132,
+              "deferred": 0,
+              "failed": 0,
+              "discarded": 0,
+              "imagesClosed": 132,
+              "pendingRequests": 0,
+              "texturesCreated": 132,
+              "texturesDestroyed": 52,
+              "activeTextures": 80
+            },
+            "resources": {
+              "buffersCreated": 174,
+              "buffersDestroyed": 80,
+              "bufferBytes": 1907560,
+              "drawCalls": 8,
+              "triangles": 20695,
+              "texturesCreated": 132,
+              "texturesDestroyed": 52,
+              "textureBytes": 20971520,
+              "imageryDrawCalls": 20
+            }
+          }
+        },
+        {
+          "height": 50000,
+          "frames": 13,
+          "sourceChanges": 13,
+          "fallbackDraws": 0,
+          "finalSources": "10/1518/352|10/1518/353|10/1519/352|10/1519/353|9/758/176|9/760/176",
+          "maximumBackground": 0,
+          "maximumUntextured": 0,
+          "final": {
+            "background": 0,
+            "untextured": 0
+          },
+          "statistics": {
+            "frame": 123,
+            "selectedTiles": 6,
+            "levels": [
+              10,
+              10,
+              10,
+              10,
+              9,
+              9
+            ],
+            "cacheTiles": 100,
+            "loadedTiles": 97,
+            "terrain": {
+              "requests": 88,
+              "deferred": 27,
+              "meshes": 86,
+              "upsampled": 0,
+              "failed": 0
+            },
+            "imagery": {
+              "requests": 135,
+              "deferred": 0,
+              "failed": 0,
+              "discarded": 0,
+              "imagesClosed": 135,
+              "pendingRequests": 0,
+              "texturesCreated": 135,
+              "texturesDestroyed": 64,
+              "activeTextures": 71
+            },
+            "resources": {
+              "buffersCreated": 180,
+              "buffersDestroyed": 94,
+              "bufferBytes": 1796204,
+              "drawCalls": 6,
+              "triangles": 25712,
+              "texturesCreated": 135,
+              "texturesDestroyed": 64,
+              "textureBytes": 18612224,
+              "imageryDrawCalls": 12
+            }
+          }
+        },
+        {
+          "height": 25000,
+          "frames": 14,
+          "sourceChanges": 14,
+          "fallbackDraws": 0,
+          "finalSources": "11/3035/704|11/3035/705|11/3035/706|11/3036/704|11/3036/705|11/3036/706|11/3037/704|11/3037/705|11/3037/706|11/3038/704|11/3038/705|11/3038/706",
+          "maximumBackground": 0,
+          "maximumUntextured": 0,
+          "final": {
+            "background": 0,
+            "untextured": 0
+          },
+          "statistics": {
+            "frame": 138,
+            "selectedTiles": 12,
+            "levels": [
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11,
+              11
+            ],
+            "cacheTiles": 100,
+            "loadedTiles": 97,
+            "terrain": {
+              "requests": 101,
+              "deferred": 27,
+              "meshes": 99,
+              "upsampled": 0,
+              "failed": 0
+            },
+            "imagery": {
+              "requests": 152,
+              "deferred": 0,
+              "failed": 0,
+              "discarded": 0,
+              "imagesClosed": 152,
+              "pendingRequests": 0,
+              "texturesCreated": 152,
+              "texturesDestroyed": 80,
+              "activeTextures": 72
+            },
+            "resources": {
+              "buffersCreated": 206,
+              "buffersDestroyed": 116,
+              "bufferBytes": 2247956,
+              "drawCalls": 12,
+              "triangles": 55649,
+              "texturesCreated": 152,
+              "texturesDestroyed": 80,
+              "textureBytes": 18874368,
+              "imageryDrawCalls": 24
+            }
+          }
+        }
+      ],
+      "statistics": {
+        "frame": 139,
+        "selectedTiles": 12,
+        "levels": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 97,
+        "terrain": {
+          "requests": 101,
+          "deferred": 27,
+          "meshes": 99,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 152,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 152,
+          "pendingRequests": 0,
+          "texturesCreated": 152,
+          "texturesDestroyed": 80,
+          "activeTextures": 72
+        },
+        "resources": {
+          "buffersCreated": 206,
+          "buffersDestroyed": 116,
+          "bufferBytes": 2247956,
+          "drawCalls": 12,
+          "triangles": 55649,
+          "texturesCreated": 152,
+          "texturesDestroyed": 80,
+          "textureBytes": 18874368,
+          "imageryDrawCalls": 24
+        }
+      },
+      "center": [
+        220,
+        220,
+        220,
+        255
+      ],
+      "distinctSampledColors": 4635,
+      "backgroundPixels": 24,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "providers": {
+    "terrain": "Cesium.createWorldTerrainAsync",
+    "nativeTerrain": true,
+    "imagery": "ArcGIS World Imagery",
+    "nativeImagery": true,
+    "imageryMaximumLevel": 23,
+    "imageryCredit": "Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community",
+    "ellipsoidRadii": [
+      6378137,
+      6378137,
+      6356752.314245179
+    ]
+  },
+  "transitions": [
+    {
+      "height": 70000,
+      "frames": 13,
+      "sourceChanges": 13,
+      "fallbackDraws": 0,
+      "finalSources": "9/758/175|9/758/176|9/759/175|9/759/176|9/760/175|9/760/176",
+      "maximumBackground": 0,
+      "maximumUntextured": 0,
+      "final": {
+        "background": 0,
+        "untextured": 0
+      },
+      "statistics": {
+        "frame": 94,
+        "selectedTiles": 6,
+        "levels": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 100,
+        "terrain": {
+          "requests": 75,
+          "deferred": 27,
+          "meshes": 73,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 112,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 112,
+          "pendingRequests": 0,
+          "texturesCreated": 112,
+          "texturesDestroyed": 44,
+          "activeTextures": 68
+        },
+        "resources": {
+          "buffersCreated": 154,
+          "buffersDestroyed": 68,
+          "bufferBytes": 1833076,
+          "drawCalls": 6,
+          "triangles": 24866,
+          "texturesCreated": 112,
+          "texturesDestroyed": 44,
+          "textureBytes": 17825792,
+          "imageryDrawCalls": 12
+        }
+      }
+    },
+    {
+      "height": 15000,
+      "frames": 14,
+      "sourceChanges": 14,
+      "fallbackDraws": 0,
+      "finalSources": "12/6072/1410|12/6072/1411|12/6073/1410|12/6073/1411|12/6074/1410|12/6074/1411|12/6075/1410|12/6075/1411",
+      "maximumBackground": 0,
+      "maximumUntextured": 0,
+      "final": {
+        "background": 0,
+        "untextured": 0
+      },
+      "statistics": {
+        "frame": 109,
+        "selectedTiles": 8,
+        "levels": [
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12,
+          12
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 97,
+        "terrain": {
+          "requests": 85,
+          "deferred": 27,
+          "meshes": 83,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 132,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 132,
+          "pendingRequests": 0,
+          "texturesCreated": 132,
+          "texturesDestroyed": 52,
+          "activeTextures": 80
+        },
+        "resources": {
+          "buffersCreated": 174,
+          "buffersDestroyed": 80,
+          "bufferBytes": 1907560,
+          "drawCalls": 8,
+          "triangles": 20695,
+          "texturesCreated": 132,
+          "texturesDestroyed": 52,
+          "textureBytes": 20971520,
+          "imageryDrawCalls": 20
+        }
+      }
+    },
+    {
+      "height": 50000,
+      "frames": 13,
+      "sourceChanges": 13,
+      "fallbackDraws": 0,
+      "finalSources": "10/1518/352|10/1518/353|10/1519/352|10/1519/353|9/758/176|9/760/176",
+      "maximumBackground": 0,
+      "maximumUntextured": 0,
+      "final": {
+        "background": 0,
+        "untextured": 0
+      },
+      "statistics": {
+        "frame": 123,
+        "selectedTiles": 6,
+        "levels": [
+          10,
+          10,
+          10,
+          10,
+          9,
+          9
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 97,
+        "terrain": {
+          "requests": 88,
+          "deferred": 27,
+          "meshes": 86,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 135,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 135,
+          "pendingRequests": 0,
+          "texturesCreated": 135,
+          "texturesDestroyed": 64,
+          "activeTextures": 71
+        },
+        "resources": {
+          "buffersCreated": 180,
+          "buffersDestroyed": 94,
+          "bufferBytes": 1796204,
+          "drawCalls": 6,
+          "triangles": 25712,
+          "texturesCreated": 135,
+          "texturesDestroyed": 64,
+          "textureBytes": 18612224,
+          "imageryDrawCalls": 12
+        }
+      }
+    },
+    {
+      "height": 25000,
+      "frames": 14,
+      "sourceChanges": 14,
+      "fallbackDraws": 0,
+      "finalSources": "11/3035/704|11/3035/705|11/3035/706|11/3036/704|11/3036/705|11/3036/706|11/3037/704|11/3037/705|11/3037/706|11/3038/704|11/3038/705|11/3038/706",
+      "maximumBackground": 0,
+      "maximumUntextured": 0,
+      "final": {
+        "background": 0,
+        "untextured": 0
+      },
+      "statistics": {
+        "frame": 138,
+        "selectedTiles": 12,
+        "levels": [
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11,
+          11
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 97,
+        "terrain": {
+          "requests": 101,
+          "deferred": 27,
+          "meshes": 99,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 152,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 152,
+          "pendingRequests": 0,
+          "texturesCreated": 152,
+          "texturesDestroyed": 80,
+          "activeTextures": 72
+        },
+        "resources": {
+          "buffersCreated": 206,
+          "buffersDestroyed": 116,
+          "bufferBytes": 2247956,
+          "drawCalls": 12,
+          "triangles": 55649,
+          "texturesCreated": 152,
+          "texturesDestroyed": 80,
+          "textureBytes": 18874368,
+          "imageryDrawCalls": 24
+        }
+      }
+    }
+  ],
+  "groundFlight": {
+    "complete": true,
+    "frames": 13,
+    "initialTerrainHeight": 5249.681557823904,
+    "maximumBackground": 921600,
+    "maximumUntextured": 0,
+    "cameraHeight": 5299.681557821519,
+    "terrainHeight": 5266.102216138821,
+    "aboveGround": 33.579341682698214,
+    "final": {
+      "background": 0,
+      "untextured": 0
+    },
+    "settled": {
+      "frames": 28,
+      "elapsedMs": 1509.699999999255,
+      "statistics": {
+        "frame": 192,
+        "selectedTiles": 9,
+        "levels": [
+          19,
+          20,
+          20,
+          19,
+          19,
+          20,
+          20,
+          19,
+          19
+        ],
+        "cacheTiles": 178,
+        "loadedTiles": 178,
+        "terrain": {
+          "requests": 181,
+          "deferred": 59,
+          "meshes": 154,
+          "upsampled": 32,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 241,
+          "deferred": 8,
+          "failed": 0,
+          "discarded": 28,
+          "imagesClosed": 229,
+          "pendingRequests": 0,
+          "texturesCreated": 201,
+          "texturesDestroyed": 127,
+          "activeTextures": 74
+        },
+        "resources": {
+          "buffersCreated": 316,
+          "buffersDestroyed": 188,
+          "bufferBytes": 1051492,
+          "drawCalls": 9,
+          "triangles": 351,
+          "texturesCreated": 201,
+          "texturesDestroyed": 127,
+          "textureBytes": 19398656,
+          "imageryDrawCalls": 20
+        }
+      }
+    },
+    "mesh": {
+      "tiles": [
+        {
+          "x": 777264,
+          "y": 180580,
+          "level": 19,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5265.275453229968,
+          "maximumHeight": 5273.652264156915,
+          "vertices": 14,
+          "indices": 117,
+          "skirtIndices": 78,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 1554530,
+          "y": 361161,
+          "level": 20,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5268.015460242877,
+          "maximumHeight": 5271.844735205608,
+          "vertices": 10,
+          "indices": 84,
+          "skirtIndices": 60,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 1554530,
+          "y": 361160,
+          "level": 20,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5270.834939795836,
+          "maximumHeight": 5274.297913907047,
+          "vertices": 11,
+          "indices": 93,
+          "skirtIndices": 66,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 777264,
+          "y": 180579,
+          "level": 19,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5267.811483755824,
+          "maximumHeight": 5278.068714365984,
+          "vertices": 16,
+          "indices": 138,
+          "skirtIndices": 96,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 777265,
+          "y": 180579,
+          "level": 19,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5273.647824119651,
+          "maximumHeight": 5278.168870701959,
+          "vertices": 15,
+          "indices": 126,
+          "skirtIndices": 84,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 1554527,
+          "y": 361161,
+          "level": 20,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5264.285001986674,
+          "maximumHeight": 5266.708320873583,
+          "vertices": 15,
+          "indices": 129,
+          "skirtIndices": 90,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 1554527,
+          "y": 361160,
+          "level": 20,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5263.570598432337,
+          "maximumHeight": 5267.823947486357,
+          "vertices": 11,
+          "indices": 93,
+          "skirtIndices": 66,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 777263,
+          "y": 180579,
+          "level": 19,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5262.080880428728,
+          "maximumHeight": 5271.318239142137,
+          "vertices": 15,
+          "indices": 129,
+          "skirtIndices": 90,
+          "quantization": 1,
+          "mercatorT": true
+        },
+        {
+          "x": 777262,
+          "y": 180578,
+          "level": 19,
+          "quantized": true,
+          "upsampled": true,
+          "minimumHeight": 5253.434689662953,
+          "maximumHeight": 5265.099375435832,
+          "vertices": 17,
+          "indices": 144,
+          "skirtIndices": 96,
+          "quantization": 1,
+          "mercatorT": true
+        }
+      ],
+      "adjacent": [
+        {
+          "first": "19/777264/180580",
+          "second": "20/1554530/361161",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 2,
+          "maximumHeightDifference": 0.0028293884024606086,
+          "coordinateAtMaximum": 0.4887346679770611
+        },
+        {
+          "first": "19/777264/180580",
+          "second": "20/1554530/361160",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 4,
+          "maximumHeightDifference": 0.00438607754313125,
+          "coordinateAtMaximum": 0.4887406593589879
+        },
+        {
+          "first": "19/777264/180580",
+          "second": "19/777264/180579",
+          "levelDifference": 0,
+          "overlap": true,
+          "knots": 6,
+          "maximumHeightDifference": 0.004203177918498113,
+          "coordinateAtMaximum": 1.5158666304847714
+        },
+        {
+          "first": "20/1554527/361161",
+          "second": "19/777264/180580",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 6,
+          "maximumHeightDifference": 0.0193028214671358,
+          "coordinateAtMaximum": 0.48873697995154636
+        },
+        {
+          "first": "20/1554527/361160",
+          "second": "19/777264/180580",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 2,
+          "maximumHeightDifference": 0.017126417661529558,
+          "coordinateAtMaximum": 0.4887376640340239
+        },
+        {
+          "first": "20/1554530/361161",
+          "second": "20/1554530/361160",
+          "levelDifference": 0,
+          "overlap": true,
+          "knots": 10,
+          "maximumHeightDifference": 0.0009860623913482414,
+          "coordinateAtMaximum": 1.5158693938748506
+        },
+        {
+          "first": "20/1554530/361160",
+          "second": "19/777265/180579",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 4,
+          "maximumHeightDifference": 0.010129067389243573,
+          "coordinateAtMaximum": 1.5158683900669043
+        },
+        {
+          "first": "19/777264/180579",
+          "second": "19/777265/180579",
+          "levelDifference": 0,
+          "overlap": true,
+          "knots": 12,
+          "maximumHeightDifference": 0.004642531006538775,
+          "coordinateAtMaximum": 0.488745301600144
+        },
+        {
+          "first": "19/777263/180579",
+          "second": "19/777264/180579",
+          "levelDifference": 0,
+          "overlap": true,
+          "knots": 4,
+          "maximumHeightDifference": 0.03425214874641824,
+          "coordinateAtMaximum": 0.48874665074011026
+        },
+        {
+          "first": "20/1554527/361161",
+          "second": "20/1554527/361160",
+          "levelDifference": 0,
+          "overlap": true,
+          "knots": 10,
+          "maximumHeightDifference": 0.0026199789172096644,
+          "coordinateAtMaximum": 1.515859155336138
+        },
+        {
+          "first": "20/1554527/361160",
+          "second": "19/777263/180579",
+          "levelDifference": 1,
+          "overlap": true,
+          "knots": 2,
+          "maximumHeightDifference": 0.019035281649848912,
+          "coordinateAtMaximum": 1.5158606390991587
+        }
+      ],
+      "centerHeight": 8772.186763308493
+    }
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n921600 !== 0\n",
+  "timedOut": false
+}

@@ -176,6 +176,10 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
             data.gpu = this._renderer.createTile(mesh);
             data.terrainState = TerrainState.READY;
             ++this.statistics.meshes;
+            // Native getHeight can observe renderedMesh as soon as gpu exists.
+            // Initialize imagery fallback and renderability in the same turn,
+            // before the next camera collision query and quadtree selection.
+            this.loadTile(frameState, tile);
           })
           .catch((error) => this._terrainFailure(tile, data, error));
       }

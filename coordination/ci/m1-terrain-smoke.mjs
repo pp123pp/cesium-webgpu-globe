@@ -1,6 +1,9 @@
 /* global Cesium, window, document, requestAnimationFrame, performance */
 import { URL } from "node:url";
 import assert from "node:assert/strict";
+import { Buffer } from "node:buffer";
+import { writeFile } from "node:fs/promises";
+import path from "node:path";
 import {
   runM1BrowserSuite,
   installM1Scene,
@@ -414,9 +417,78 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     let frames = 0;
     let maximumBackground = 0;
     let maximumUntextured = 0;
+    let fallbackDraws = 0;
+    const observations = [];
+    let firstBackgroundFrame;
     while (!complete && performance.now() - start < 30000) {
       const coverage = state.terrainCoverage();
       ++frames;
+      const camera = state.viewer.camera;
+      fallbackDraws = Math.max(
+        fallbackDraws,
+        state.viewer.scene._renderer._draws.filter(
+          ({ tile, rectangle }) =>
+            !Cesium.Rectangle.equals(tile.rectangle, rectangle),
+        ).length,
+      );
+      const heightSources = [];
+      const visitHeightSources = (tile) => {
+        if (
+          !Cesium.Rectangle.contains(
+            tile.rectangle,
+            camera.positionCartographic,
+          )
+        ) {
+          return;
+        }
+        if (tile.data?.gpu) {
+          heightSources.push({
+            key: `${tile.level}/${tile.x}/${tile.y}`,
+            renderable: tile.renderable,
+            state: tile.state,
+            terrainState: tile.data.terrainState,
+          });
+        }
+        for (const child of [
+          tile._southwestChild,
+          tile._southeastChild,
+          tile._northwestChild,
+          tile._northeastChild,
+        ]) {
+          if (child) {
+            visitHeightSources(child);
+          }
+        }
+      };
+      state.viewer.scene.globe._surface._levelZeroTiles.forEach(
+        visitHeightSources,
+      );
+      observations.push({
+        frame: frames,
+        coverage,
+        longitude: Cesium.Math.toDegrees(camera.positionCartographic.longitude),
+        latitude: Cesium.Math.toDegrees(camera.positionCartographic.latitude),
+        height: camera.positionCartographic.height,
+        pitch: Cesium.Math.toDegrees(camera.pitch),
+        heading: Cesium.Math.toDegrees(camera.heading),
+        globeHeight: state.viewer.scene.globeHeight,
+        cameraUnderground: state.viewer.scene.cameraUnderground,
+        heightSources,
+        statistics: state.viewer.scene.debugStatistics,
+        draws: state.viewer.scene._renderer._draws.map(
+          ({ tile, rectangle }) => ({
+            key: `${tile.level}/${tile.x}/${tile.y}`,
+            rectangle,
+            sourceRectangle: tile.rectangle,
+            gpu: !!tile.data?.gpu,
+            minimumHeight: tile.data?.mesh?.minimumHeight,
+            maximumHeight: tile.data?.mesh?.maximumHeight,
+          }),
+        ),
+      });
+      if (coverage.background > 0 && !firstBackgroundFrame) {
+        firstBackgroundFrame = state.viewer.canvas.toDataURL();
+      }
       maximumBackground = Math.max(maximumBackground, coverage.background);
       maximumUntextured = Math.max(maximumUntextured, coverage.untextured);
       if (state.errors.length) {
@@ -436,17 +508,34 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       initialTerrainHeight,
       maximumBackground,
       maximumUntextured,
+      fallbackDraws,
       cameraHeight: camera.height,
       terrainHeight,
       aboveGround: camera.height - terrainHeight,
       final: state.terrainCoverage(),
       settled,
       mesh: state.meshEvidence(),
+      observations,
+      firstBackgroundFrame,
     };
+  });
+  if (report.groundFlight.firstBackgroundFrame) {
+    await writeFile(
+      path.join(output, "flight-first-background.png"),
+      Buffer.from(
+        report.groundFlight.firstBackgroundFrame.split(",")[1],
+        "base64",
+      ),
+    );
+    report.groundFlight.firstBackgroundFrame = "flight-first-background.png";
+  }
+  await captureM1Scene(page, report, output, "base-camp-ground", {
+    groundFlight: report.groundFlight,
   });
   assert.equal(report.groundFlight.complete, true);
   assert.ok(report.groundFlight.frames > 2);
   assert.equal(report.groundFlight.maximumBackground, 0);
+  assert.equal(report.groundFlight.maximumUntextured, 0);
   assert.equal(report.groundFlight.final.background, 0);
   assert.equal(report.groundFlight.final.untextured, 0);
   assert.ok(
@@ -455,9 +544,6 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     JSON.stringify(report.groundFlight),
   );
   assert.ok(Math.max(...report.groundFlight.settled.statistics.levels) >= 14);
-  await captureM1Scene(page, report, output, "base-camp-ground", {
-    groundFlight: report.groundFlight,
-  });
   report.checks.push(
     "native flight from space to within 150m of real terrain with finer LOD",
   );

@@ -51,6 +51,22 @@ const terrain = (createMesh = () => Promise.resolve(mesh)) => ({
   isChildAvailable: () => true,
 });
 
+test("an asynchronously published mesh is renderable before height queries can see it", async () => {
+  const f = fixture(() => Promise.resolve(terrain()));
+  f.provider.loadTile(frame, f.tile);
+  await setImmediate();
+  f.provider.loadTile(frame, f.tile);
+  await setImmediate();
+  assert.equal(f.tile.data.renderedMesh, mesh);
+  assert.equal(
+    f.tile.renderable,
+    true,
+    "A height-query mesh cannot precede quadtree render readiness by a frame",
+  );
+  f.provider.destroy();
+  assert.equal(f.counters.destroyed, 1);
+});
+
 test("deferred provider requests retry and native mesh deferral does not mark a tile ready", async () => {
   let requests = 0;
   let transforms = 0;
