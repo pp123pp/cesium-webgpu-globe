@@ -1,8 +1,8 @@
-# M1 CI: Fast feedback and complete regression
+# WebGPU CI: Fast feedback and complete regression
 
 Every PR commit receives **Fast CI**. **Full regression** retains the complete
-upstream and M1 acceptance gates and must pass on the latest PR head before final
-M1 acceptance. A successful Fast run or a skipped Full job does not satisfy that
+upstream and M0/M1/M2.1 acceptance gates and must pass on the latest PR head before
+final acceptance. A successful Fast run or a skipped Full job does not satisfy that
 acceptance requirement.
 
 ## What each tier runs
@@ -11,10 +11,11 @@ acceptance requirement.
 | -------------------------------------------------------------------------------------------------------- | ------- | --------------- |
 | Pinned Cesium version, license and upstream revision checks                                              | Yes     | Yes             |
 | Candidate build                                                                                          | Once    | Once            |
-| M1/Viewer lint, generated declarations and all TypeScript projects                                       | Yes     | Yes             |
-| M0 focused tests and every `coordination/ci/m1-*.test.mjs`                                               | Yes     | Yes             |
+| WebGPU/Viewer lint, generated declarations and all TypeScript projects                                   | Yes     | Yes             |
+| M0 focused tests and every `coordination/ci/m1-*.test.mjs` / `m2-*.test.mjs`                             | Yes     | Yes             |
 | Visible WebGL comparison against independently built `724b5db`, including missing-Globe negative control | Yes     | Yes             |
 | M0 WebGPU proof and M1 real globe browser smoke                                                          | Yes     | Yes             |
+| M2.1 actual WGSL, high/low/ground depth, boundary rays and resource cleanup                              | Yes     | Yes             |
 | Complete upstream non-WebGL suite with `--failTaskOnError`                                               | —       | Yes             |
 | Complete upstream WebGL differential against `724b5db`                                                   | —       | Yes             |
 | M1 imagery and navigation browser acceptance                                                             | —       | Yes             |
@@ -34,8 +35,15 @@ then run `npm run tsc`. The template generation is required by the upstream
 Sandcastle gallery imports; omitting it can produce a TypeScript resolver failure
 on a fresh checkout.
 
-The focused-test glob automatically includes new M1 tests, including the scene
-callback suite. No acceptance test or assertion is removed. Full preserves the
+The focused-test globs include new M1/M2 tests and the same-frame scene callback
+suite. M2.1 adds 27 dedicated unit cases and the required
+`coordination/ci/m2-foundation-smoke.mjs` browser gate. The browser report executes
+the real shared WGSL, reads native terrain depth and checks 35,786 km / 400 km /
+2 m cameras, off-axis rays, boundary contacts, sky, resize and resource cleanup.
+Its `Build/m2-foundation/` reports and screenshots are included in `m1-fast` and
+`m1-full-regression` artifacts; the historical workflow/artifact names remain.
+
+No acceptance test or assertion is removed. Full preserves the
 upstream WebGL differential policy: identical inherited failures are recorded;
 new failures, missing execution or changed assertion signatures fail the gate.
 
@@ -49,7 +57,7 @@ new failures, missing execution or changed assertion signatures fail the gate.
 | `ready_for_review`                            | Existing commit's Fast result remains applicable | Always                                                                                 |
 | Add `ci:full` label                           | No additional Fast run                           | Immediately, on current head                                                           |
 | Other label added                             | No                                               | Selection records a skip; active Full is preserved                                     |
-| Future `workflow_dispatch`                    | No                                               | Always, once dispatch is available                                                     |
+| `workflow_dispatch`                           | No                                               | Always; workflow is now present on `main`                                              |
 
 There is no `push` trigger. A branch push associated with a PR produces the PR's
 `synchronize` event without a second push workflow run. A branch without a PR does
@@ -114,13 +122,22 @@ automatically receives Full again. A maintainer's label action is required;
 GitHub normally suppresses new workflow runs from events created with a workflow's
 own `GITHUB_TOKEN` ([GitHub trigger documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)).
 
-Before final M1 acceptance, verify the latest PR head SHA, a successful Fast job,
+Before final milestone acceptance, verify the latest PR head SHA, a successful Fast job,
 and a successful **executed** `Full regression` job for that same head. Check the
 selection evidence and the uploaded `m1-full-regression` browser/differential
 artifacts. A selector-only success, skipped Full, older passing head or cancelled
-run is insufficient. Final M1 status remains the integration owner's decision.
+run is insufficient. Final status remains the integration owner's decision.
 
-### Why the dispatch button is currently unavailable
+### Historical dispatch limitation and current state
+
+The limitation below applied before M0/M1 integration. It no longer describes
+current `main`: both workflows are present at
+`c47ef56343343684f50992af8a3f32813402884f`, and the
+[`workflow_dispatch` run 41439499307](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41439499307)
+demonstrates that manual dispatch is available. That historical run failed and
+is not M2.1 acceptance evidence. A ready M2 PR selects Full without a label or
+additional dispatch; do not start a duplicate Full while its final-head run is
+already executing.
 
 On 2026-11-02, default `main` was
 `a7f472990cc4cb9fa6628181952fa8be7ad43eda`; its workflow directory contained only
@@ -130,11 +147,10 @@ before it can be manually dispatched
 ([GitHub manual-run documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)).
 An Actions workflow registry entry alone does not meet that requirement.
 
-The Full YAML includes dispatch for future use, but this change does not merge
-anything to `main` and does not claim dispatch is currently usable. The label and
-ready-for-review PR events provide the immediate manual routes. Actual hosted
-execution must be verified after integration; local policy tests cannot prove
-GitHub delivered an event.
+At that earlier checkpoint the Full YAML's dispatch was not yet usable. Label
+and ready-for-review PR events supplied the immediate routes. Actual hosted
+execution must always be verified; local policy tests cannot prove GitHub
+delivered an event.
 
 ## Required status checks: observed state
 

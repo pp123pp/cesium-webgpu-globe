@@ -1,12 +1,65 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1 A03–A06 closeout; verified source and documented navigation limitation**
+Current milestone: **M2.1 mathematical foundation and final-head verification; M2.2 not started**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
+
+## M2.1 implementation and verification
+
+The current task authorizes M2.1 implementation, tests, feature-branch publication
+and a PR to `main`, **not merging or M2.2**. The earlier M1 merge authorization
+below is historical and does not authorize this branch's merge.
+
+- Restored `main`: `c47ef56343343684f50992af8a3f32813402884f`.
+  M0 [PR #1](https://github.com/pp123pp/cesium-webgpu-globe/pull/1) and M1
+  [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) are merged, with
+  merge commits `8a0c5f59bdea67e150faf3114fcdfa0d2b8748c8` and
+  `676061f40cd2a885b58963bea833f551c4feb90c`, respectively.
+- [PR #6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at
+  `6788fbd174a1104688be34abbb40c8f9d305da7a`. Its
+  [Fast](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41445066459)
+  passed and its
+  [Full](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41445066455)
+  failed. M2.1 includes bounded prerequisite repairs for two observed inherited
+  ShadowMap pixel signatures and stale demo expectations; it does not merge or
+  rewrite PR #6. See [prerequisite evidence](handoffs/M2.1-prerequisite-gates.md).
+- Branch: `feat/m2-physical-atmosphere`, isolated worktree `cesium-m2`, based on
+  the restored main. Runtime commit
+  [`5eca1d0`](https://github.com/pp123pp/cesium-webgpu-globe/commit/5eca1d0ff0cdb5697126a60433713fcbedb9de3a)
+  has tree `3d4c8d71e94b982e00031010142a63723d142ec0`, identical to local
+  `1435343546a00031d37a3b0504b266ff321edfe9`. GitHub publication uses the
+  authorized connector because local Git has no GitHub push credential; commit
+  identities differ, and each published tree was explicitly checked.
+- Implemented native ECEF/meters/WGS84 parameters, native time-dependent
+  Earth-to-Sun direction, forward ellipsoid/atmosphere ray intervals, a 192-byte
+  CPU/WGSL state interface, shared finite reversed-Z reconstruction and readable
+  Globe depth. M1 terrain RTC/matrices, depth ordering and camera behavior remain
+  intact. No atmosphere, Sun disk, sky or HDR rendering is added.
+- Local verification: **224 focused tests passed** across all 20 M0/M1/M2 files;
+  build, ESLint, generated declarations and TypeScript passed. Real WebGPU
+  verification passed 9 asymmetric-camera probes, 23 boundary cases and 8
+  aggregate checks, including 35,786 km / 400 km / 2 m scenes, native mesh-pick
+  depth comparisons, sky, resize and **456/456** released native GPU resources.
+  Independent review found no blocking code issue.
+- These local reports identify the actual working tree and bundle; they are not
+  relabeled as a later clean commit. **Final acceptance requires successful Fast
+  and an actually executed Full on the current M2 PR head.** The PR checks/body
+  and Actions artifacts record that final result; this publication snapshot does
+  not claim that a future or pending run passed. No redundant complete local
+  upstream run was added before the hosted final-head regression.
+- `M1-NAV-001` remains **KNOWN_UNRESOLVED**. The inherited rejected Google ion
+  endpoint-promise retry limitation is documented, not repaired. Physical GPU
+  testing remains unavailable and nonblocking; observed results use Chromium 156,
+  headed Xvfb and Google SwiftShader software rendering.
+
+Read [M2.1 contracts](../docs/WEBGPU_M2.1.md),
+[handoff](handoffs/M2.1-mathematical-foundation.md) and
+[compact evidence](evidence/M2.1/README.md). After final-head verification, stop
+and wait for explicit M2.2 authorization; leave the PR unmerged.
 
 ## Completed
 
@@ -16,9 +69,9 @@ Import workflow result: SUCCESS; source presence verified.
 - M0.3: Viewer → CesiumWidget → Scene → Globe → QuadtreePrimitive → GlobeSurfaceTileProvider → Context pipeline audited; see `coordination/handoffs/M0.3-source-pipeline-audit.md`.
 - M0.4: Viewer selects an isolated WebGPU proof at construction while preserving Viewer identity. WebGPUContext/WebGPUWidget own device/canvas, WGSL color/depth drawing, sizing, errors/loss and disposal. The real-browser gate, standalone demo and screenshot inspection passed. Existing CesiumWidget, Scene, WebGL Context and Globe source remain unchanged.
 
-## M1 closeout and integration
+## Historical M1 closeout and integration
 
-M1 covers the real WGS84 Globe, ImageryProvider and TerrainProvider, A03–A06. On 2026-11-02 the user additionally instructed **“收尾后合并到main”**. This supersedes the earlier no-merge instruction: finish the records and final PR checks, merge M0 dependency [PR #1](https://github.com/pp123pp/cesium-webgpu-globe/pull/1), then merge [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2) into `main`. Stop at M1; M2 is not started.
+M1 covers the real WGS84 Globe, ImageryProvider and TerrainProvider, A03–A06. On 2026-11-02 the user additionally instructed **“收尾后合并到main”** for that closeout. M0 dependency [PR #1](https://github.com/pp123pp/cesium-webgpu-globe/pull/1), then [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2), were merged into `main`. M2 had not started at that historical checkpoint; the current M2.1 task is recorded above.
 
 Verified runtime source: `03233dae8b524d6b3f4498a48a2fd7e89fffa806`, tree `48142ced46a15cdf435db7902b9ba601449b5358`, identical to locally verified `f2b9921`. [Fast 41430449080](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449080) and [Full 41430449094](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094) both completed successfully. The actual Full regression job ran every required step; this was not a selector-only success.
 
@@ -53,7 +106,7 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - Concurrent remote `fda7f01` was integrated with a normal merge preserving repeatability checks. At that M0.5 checkpoint, `main` was unmerged. See `coordination/handoffs/M0.5-regression-gate.md` for commands, local certificate-trust diagnosis and retained upstream failures.
 - Published-head CI: [PR run 41400575907](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400575907) passed; [push run 41400570084 attempt 2](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41400570084/attempts/2) passed. Push attempt 1 retained two extra native Cesium3DTileset async timeouts; rerunning only the failed job without any source or gate change passed. The original failure remains in Actions.
 
-## Branch dependencies and publication
+## Historical M1 branch dependencies and publication
 
 - `feat/m0-webgpu-backend` / PR #1 supplies M0; its verified head is `7a689426af4b4b5f9c510d91e68ff45623f20090`.
 - `feat/m1-wgs84-globe` / PR #2 supplies M1 and this closeout. Preserve both histories with normal merge commits; do not force-push or delete the branches during closeout.

@@ -1,0 +1,64 @@
+{
+  "scope": "M2.1 mathematical foundation only",
+  "evidenceKind": "local working-tree verification; final hosted head is checked independently",
+  "source": "8ade9f9416d33ade34c0c6ae0997de3a8175615d",
+  "sourceStatus": "M coordination/ci/m1-scene-events.test.mjs\n M packages/engine/Source/Renderer/WebGPUContext.js\n M packages/engine/Source/Scene/WebGPUGlobeMath.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n?? coordination/ci/m2-depth.test.mjs\n?? coordination/ci/m2-foundation-smoke.mjs\n?? coordination/ci/m2-planet-math.test.mjs\n?? coordination/ci/m2-planet-state.test.mjs\n?? packages/engine/Source/Renderer/WebGPUDepth.js\n?? packages/engine/Source/Scene/WebGPUPlanetMath.js\n?? packages/engine/Source/Scene/WebGPUPlanetShader.js\n?? packages/engine/Source/Scene/WebGPUPlanetState.js",
+  "bundleSha256": "8d022079511467bcd443b013b3fb8532f08968ccddae45866ea3632d15997726",
+  "browser": "156.0.8078.4",
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "viewport": [960, 540],
+  "status": "PASS",
+  "checks": [
+    "WGSL unit rays, asymmetric projection, meter intervals, noncentral depth and split-coordinate precision at three altitudes",
+    "WGSL generic/polar ground contacts, centimeter heights, high-orbit hits, exterior tangent/near-miss and atmosphere boundary",
+    "high-orbit: actual terrain depth, native mesh pick, visible surface and finite camera state",
+    "low-orbit: actual terrain depth, native mesh pick, visible surface and finite camera state",
+    "ground: actual terrain depth, native mesh pick, visible surface and finite camera state",
+    "ground-to-sky miss, cleared depth and unoccluded atmosphere segment",
+    "resized depth remains readable with no stale texture binding",
+    "all native GPU buffers/textures released, including readback buffers and resized depth"
+  ],
+  "numericCases": 9,
+  "boundaryCases": 23,
+  "nativeResources": {
+    "created": 456,
+    "destroyed": 456,
+    "buffers": 453,
+    "textures": 3
+  },
+  "scenes": [
+    {
+      "name": "high-orbit",
+      "cameraHeight": 35786000,
+      "geocentricDistance": 42156261.47690921,
+      "maxDepthVsRenderedMeshPickErrorMeters": 68.23640997707844,
+      "centerRgba": [51, 115, 178, 255],
+      "selectedTiles": 2
+    },
+    {
+      "name": "low-orbit",
+      "cameraHeight": 399999.99999937986,
+      "geocentricDistance": 6770287.85387722,
+      "maxDepthVsRenderedMeshPickErrorMeters": 0.04771584825357422,
+      "centerRgba": [51, 115, 178, 255],
+      "selectedTiles": 15
+    },
+    {
+      "name": "ground",
+      "cameraHeight": 2.0000000004204455,
+      "geocentricDistance": 6370291.827000332,
+      "maxDepthVsRenderedMeshPickErrorMeters": 1.3519583053067663e-7,
+      "centerRgba": [51, 115, 178, 255],
+      "selectedTiles": 8
+    }
+  ],
+  "maxLocalEncodedOffsetErrorMeters": 0.0017187499999999998,
+  "maxHighOrbitAnalyticEntryErrorMeters": 20.000000029802322,
+  "knownIssues": [
+    "M1-NAV-001 remains KNOWN_UNRESOLVED",
+    "Inherited Google rejected endpoint promise retry limitation; see prerequisite handoff"
+  ]
+}
