@@ -1,9 +1,11 @@
-name: M0 WebGL baseline (official Cesium, no renderer edits)
+name: M0 WebGL regression
 
 on:
   push:
     branches:
       - feat/m0-webgl-baseline
+      - feat/m0-webgpu-backend
+  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -73,13 +75,28 @@ jobs:
         run: |
           set -euo pipefail
           export CHROME_BIN
-          CHROME_BIN="$(node --input-type=module -e "import {chromium} from '@playwright/test'; console.log(chromium.executablePath())")"
-          npm run test-non-webgl -- --browsers ChromeHeadless
+          CHROME_BIN="$PWD/coordination/ci/m0-chrome.cjs"
+          npm run test-non-webgl -- --browsers ChromeHeadless --failTaskOnError
+
+      - name: Run M0.4 WebGPU proof checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run start -- --production > "$RUNNER_TEMP/m0-webgpu-server.log" 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..60}; do
+            if curl --fail --silent http://localhost:8080/Specs/e2e/cesium.html > /dev/null; then break; fi
+            sleep 1
+          done
+          node coordination/ci/m0-webgpu-smoke.mjs
 
       - name: Upload WebGL smoke evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: m0-webgl-baseline
-          path: Build/m0-baseline/
+          path: |
+            Build/m0-baseline/
+            Build/m0-webgpu/
           if-no-files-found: warn
