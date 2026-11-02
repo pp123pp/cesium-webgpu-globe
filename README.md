@@ -1,8 +1,16 @@
 # Cesium WebGPU Globe
 
-**Current state:** official CesiumJS **1.146.0** is pinned at upstream `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`. M0 is accepted. M1 implements a separately selected WebGPU WGS84 Globe with dynamic imagery and quantized terrain; its final A03–A06 acceptance is in progress on [PR #2](https://github.com/pp123pp/cesium-webgpu-globe/pull/2), dependent on unmerged PR #1. WebGL remains the default.
+**Current state:** CesiumJS **1.146.0**, with M0 and M1 merged to `main`. M1 provides the experimental WebGPU WGS84 Globe, imagery, quantized terrain and camera navigation. WebGL remains the default; rapid real-terrain descent is still a known M1 limitation (`M1-NAV-001`).
 
 Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. Current evidence is explicitly labeled software GPU.
+
+## Online WebGPU demos
+
+- [Interactive WebGPU Globe](https://pp123pp.github.io/cesium-webgpu-globe/Apps/WebGPUGlobe.html)
+- [WebGPU Proof (WGSL triangle)](https://pp123pp.github.io/cesium-webgpu-globe/Apps/WebGPUProof.html)
+- [Demo landing page](https://pp123pp.github.io/cesium-webgpu-globe/)
+
+The published assets are generated on the `gh-pages` branch; [deployment guide](docs/GITHUB_PAGES.md).
 
 ## Purpose
 
