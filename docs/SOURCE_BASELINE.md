@@ -1,18 +1,26 @@
-# Upstream source baseline
+# Source baseline and provenance
 
-Target: official `CesiumGS/cesium` tag `1.146` (verify the actual tag is `1.146` or `1.146.0` against upstream before checkout). **Never use an unpinned `main` checkout**. Snapshot original tag and upstream commit SHA in `coordination/STATUS.md` after import. Preserve package notices and license texts. This planning repository is initially empty of Cesium sources.
+**Imported:** official `CesiumGS/cesium` tagged version `1.146`, package version `1.146.0` on 2026-11-02.
 
-## Preferred upstream strategy
-Option A (recommended if continuing to pull upstream fixes): use an **upstream remote** and a clearly documented import/merge of the Cesium tag into your existing repository with a clean commit history.
+- Official source: https://github.com/CesiumGS/cesium
+- Release: https://github.com/CesiumGS/cesium/releases/tag/1.146
+- Pinned commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
+- GitHub Actions import: `.github/workflows/import-cesium.yml`; report: `coordination/UPSTREAM_REVISION.txt`.
+- Pinned source copied into **repository root** (not a submodule). Git metadata and upstream CI workflows excluded; Codex plan README/AGENTS/ROADMAP preserved.
+- Cesium Apache-2.0 and other source notices retained. Review `LICENSE.md` and upstream third-party notices before adapting source.
+- Original upstream README preserved at `docs/UPSTREAM_CESIUM_README.md`.
 
-Option B: copy source from a verified official tag snapshot into a separate tree and record exact commit SHA. Both must avoid silently replacing the planning files. These operations are destructive if performed incorrectly: inspect `git status` and remotes, **backup current work**, and merge planning docs back intentionally. Do not automatically force-push history.
+## Actual startup gate
 
-## Research tasks for M0 (do not assume file paths)
-1. Enumerate actual `packages/engine` scene/renderer/globe modules in pinned source.
-2. Trace Viewer -> Scene frame -> Globe imagery/terrain tile update -> draw submission.
-3. Document which internal parts require WebGL and which are CPU-side shared geospatial providers.
-4. Inventory existing precision strategies, view frustums and depth policy using upstream code/tests.
-5. Measure normal WebGL build/test commands and keep logs.
+1. Check `node --version` (Cesium requires Node >=22), `npm --version`, root `package.json`, `.npmrc`, and `packages/engine/package.json`. The upstream monorepo uses **npm workspaces**.
+2. Use upstream documented install/build/test commands. Do not silently substitute pnpm or introduce a new package manager.
+3. Run original WebGL scene and official build/tests without changing source. Record commands, pass/fail and environment in `coordination/STATUS.md`.
+4. Trace Viewer/Scene/Globe -> tile providers -> draw command -> WebGL renderer in **actual source**, including precision/depth and resource lifecycle.
+5. Introduce WebGPU backend only after WebGL baseline is verified.
 
-## Windows installation
-Prefer manual, audited source import. A helper `scripts/import-cesium-1.146.ps1` **only fetches upstream into a distinct directory**; it never overwrites this repository. Developer chooses a safe merge method after verifying tag and commit.
+## Development caveats
+
+- The official Cesium monorepo includes many modules and examples; do not reformat or mass-rewrite upstream code.
+- The import workflow is **one-time guarded**: it refuses to run if `package.json` already exists.
+- The existing `scripts/import-cesium-1.146.ps1` clones to an **independent directory for audit**, never overwriting the repo.
+- Historical upstream git metadata was not imported as a merge history. Instead, a fixed commit SHA and tag are recorded so future updates can be considered explicitly.
