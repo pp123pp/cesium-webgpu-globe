@@ -1,0 +1,175 @@
+{
+  "comparison": {
+    "status": "no-new-failures",
+    "message": "WEBGL REGRESSION: no new failures (baseline 12 failures, current 12 failures)",
+    "baselineFailures": 12,
+    "candidateFailures": 12,
+    "unchangedFailures": 12,
+    "fixedFailures": [],
+    "executed": 3822,
+    "skipped": 12068,
+    "executionOrderSha256": "4136196a828a59bef065c9ea2ef2015da0b76f114d4329b4e18ef1e329ec4b37"
+  },
+  "baseline": {
+    "source": {
+      "commit": "724b5db8f258d0ce00c4f6b774bd38529e24252b",
+      "treeHash": "0a1f974e2a13557bbf6189b25b7ea1ed775b48b7",
+      "trackedSourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": ""
+    },
+    "counts": {
+      "passed": 3810,
+      "failed": 12,
+      "skipped": 12068,
+      "executed": 3822,
+      "total": 15890
+    },
+    "exitCode": 1,
+    "bundleHashes": {
+      "Build/CesiumUnminified/Cesium.js": "b04685b8f7057739719900ad5fc81272ac6f7f1f1cae57148c81eb3e4de4b0ae",
+      "Build/Specs/karma-main.js": "c64554deed88d4496c91616e136fece261250d83923289802793d8f28ec1bbf9",
+      "Build/Specs/SpecList.js": "c05cb8707f76709e03e3bbe09111591a2fc87e4dfa3fe08981d7ff323a569305",
+      "Specs/karma.conf.cjs": "f450fb0d2dd0b5f7d1a49f9d6ef85c60211628c04957072b41518265bc8bb194"
+    },
+    "executionOrderSha256": "4136196a828a59bef065c9ea2ef2015da0b76f114d4329b4e18ef1e329ec4b37",
+    "environment": {
+      "node": "v24.22.1",
+      "os": {
+        "platform": "linux",
+        "release": "6.18.57",
+        "arch": "x64"
+      },
+      "karma": "6.4.4",
+      "esbuild": "0.28.2",
+      "chromeBin": "/tmp/cesium-m0-trusted-chrome.sh",
+      "browserExecutable": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome"
+    }
+  },
+  "candidate": {
+    "source": {
+      "commit": "6cd21cfd666d7f8042af1c60d97b22bedc5b4074",
+      "treeHash": "68d3ee6fc940c77e506ff058281435ec7fd201ac",
+      "trackedSourceDiffSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": " M .github/workflows/m0-webgl-baseline.yml\n M coordination/M0.5-PLAN.md\n?? coordination/evidence/\n?? coordination/handoffs/M0.5-regression-gate.md\n"
+    },
+    "counts": {
+      "passed": 3810,
+      "failed": 12,
+      "skipped": 12068,
+      "executed": 3822,
+      "total": 15890
+    },
+    "exitCode": 1,
+    "bundleHashes": {
+      "Build/CesiumUnminified/Cesium.js": "bdaaa75af68f3dbac856e76676924e2c2beda926c6211eccb79dfa8a239b4145",
+      "Build/Specs/karma-main.js": "c64554deed88d4496c91616e136fece261250d83923289802793d8f28ec1bbf9",
+      "Build/Specs/SpecList.js": "c05cb8707f76709e03e3bbe09111591a2fc87e4dfa3fe08981d7ff323a569305",
+      "Specs/karma.conf.cjs": "f450fb0d2dd0b5f7d1a49f9d6ef85c60211628c04957072b41518265bc8bb194"
+    },
+    "executionOrderSha256": "4136196a828a59bef065c9ea2ef2015da0b76f114d4329b4e18ef1e329ec4b37",
+    "environment": {
+      "node": "v24.22.1",
+      "os": {
+        "platform": "linux",
+        "release": "6.18.57",
+        "arch": "x64"
+      },
+      "karma": "6.4.4",
+      "esbuild": "0.28.2",
+      "chromeBin": "/tmp/cesium-m0-trusted-chrome.sh",
+      "browserExecutable": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome"
+    }
+  },
+  "inheritedFailures": [
+    {
+      "suite": ["Renderer/AutomaticUniforms"],
+      "description": "has czm_pass and czm_passOverlay",
+      "errorMessages": [
+        "Expected context to render 255,255,255,255, but rendered: 0,0,0,255"
+      ]
+    },
+    {
+      "suite": ["Scene/Cesium3DTileset"],
+      "description": "renders i3dm tileset when back-face culling is disabled",
+      "errorMessages": [
+        "Expected Uint8Array [ 113, 113, 113, 255 ] to equal [ 0, 0, 255, 255 ]."
+      ]
+    },
+    {
+      "suite": ["Scene/Cesium3DTileset"],
+      "description": "applies color style to a tileset with translucent tiles",
+      "errorMessages": [
+        "Expected 0 to be greater than 0.",
+        "Expected 0 to be greater than 0.",
+        "Expected 0 to be greater than 0."
+      ]
+    },
+    {
+      "suite": ["Scene/GeometryRenderingSpec", "WallGeometry"],
+      "description": "3D",
+      "errorMessages": [
+        "Expected not to render [0,0,0,255], but actually rendered [0,0,0,255]."
+      ]
+    },
+    {
+      "suite": ["Scene/GeometryRenderingSpec", "WallGeometry"],
+      "description": "Columbus view",
+      "errorMessages": [
+        "Expected not to render [0,0,0,255], but actually rendered [0,0,0,255]."
+      ]
+    },
+    {
+      "suite": ["Scene/GeometryRenderingSpec", "WallGeometry"],
+      "description": "pick",
+      "errorMessages": [
+        "TypeError: Cannot read properties of undefined (reading 'primitive')"
+      ]
+    },
+    {
+      "suite": ["Scene/GeometryRenderingSpec", "WallGeometry"],
+      "description": "async",
+      "errorMessages": [
+        "Expected not to render [0,0,0,255], but actually rendered [0,0,0,255]."
+      ]
+    },
+    {
+      "suite": ["Scene/GroundPrimitive"],
+      "description": "picks the correct instance",
+      "errorMessages": [
+        "Expected Uint8Array [ 0, 0, 255, 255 ] to equal Uint8Array [ 255, 0, 0, 255 ].",
+        "Expected Uint8Array [ 0, 0, 255, 255 ] to equal Uint8Array [ 255, 0, 0, 255 ].",
+        "Expected Uint8Array [ 0, 0, 255, 255 ] to equal Uint8Array [ 255, 0, 0, 255 ].",
+        "Expected Uint8Array [ 0, 0, 255, 255 ] to equal Uint8Array [ 255, 0, 0, 255 ].",
+        "Expected 'depth rectangle' to equal 'left'."
+      ]
+    },
+    {
+      "suite": ["Scene/Model/Model"],
+      "description": "renders Draco-compressed model",
+      "errorMessages": [
+        "Expected Uint8Array [ 0, 0, 0, 255 ] not to equal [ 0, 0, 0, 255 ]."
+      ]
+    },
+    {
+      "suite": ["Scene/Model/Model"],
+      "description": "adds animation to draco-compressed model",
+      "errorMessages": [
+        "Expected Uint8Array [ 0, 0, 0, 255 ] not to equal [ 0, 0, 0, 255 ]."
+      ]
+    },
+    {
+      "suite": ["Scene/ShadowMap"],
+      "description": "Model with cutout texture casts shadows onto another model",
+      "errorMessages": [
+        "Expected Uint8Array [ 143, 0, 0, 255 ] not to equal Uint8Array [ 143, 0, 0, 255 ]."
+      ]
+    },
+    {
+      "suite": ["Scene/ShadowMap"],
+      "description": "enable soft shadows",
+      "errorMessages": [
+        "Expected Uint8Array [ 143, 0, 0, 255 ] not to equal Uint8Array [ 143, 0, 0, 255 ]."
+      ]
+    }
+  ]
+}
