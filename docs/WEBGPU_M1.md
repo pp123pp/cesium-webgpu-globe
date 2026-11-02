@@ -14,7 +14,7 @@ python3 -m http.server 8090 --bind 127.0.0.1
 
 Open `http://127.0.0.1:8090/Apps/WebGPUGlobe.html` in a browser that exposes WebGPU. A secure context (HTTPS or localhost) is required. The default scene requests the bundled Natural Earth TMS tiles and uses native ellipsoid terrain, without external credentials. Drag to orbit, scroll to zoom and Ctrl-drag to tilt. **Load real terrain** requests Cesium World Terrain and ArcGIS World Imagery; **Everest** and **Orbit** navigate with native `camera.flyTo`.
 
-Real services require network access and applicable service credentials/authorization. The upstream development ion token is intended for evaluation and may display its notice; use your own authorized `Cesium.Ion.defaultAccessToken` for an application. The demo preserves native provider and per-tile attributions. Service failures remain visible and retryable; device loss is terminal and requires a fresh Viewer.
+Real services require network access and applicable service credentials/authorization. The upstream development ion token is intended for evaluation and may display its notice; use your own authorized `Cesium.Ion.defaultAccessToken` for an application. The demo preserves native provider and per-tile attributions. Provider-initialization failures remain visible and retryable in the demo. Subsequent tile failures are reported through the native Provider error events described below. Device loss is terminal and requires a fresh Viewer.
 
 ## Create a Globe
 

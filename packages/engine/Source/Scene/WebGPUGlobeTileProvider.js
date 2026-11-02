@@ -195,6 +195,9 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
     const imageryReady = this._imagery
       ? this._imagery.updateTile(tile, frameState)
       : true;
+    if (data.released || this._destroyed) {
+      return;
+    }
     tile.renderable = true;
     // Match native GlobeSurfaceTile.processImagery: independent or still-loading
     // imagery can justify finer quadtree LOD even when terrain is upsampled.

@@ -14,6 +14,7 @@ import ImageryState from "../../packages/engine/Source/Scene/ImageryState.js";
 import QuadtreePrimitive from "../../packages/engine/Source/Scene/QuadtreePrimitive.js";
 import QuadtreeTile from "../../packages/engine/Source/Scene/QuadtreeTile.js";
 import QuadtreeTileLoadState from "../../packages/engine/Source/Scene/QuadtreeTileLoadState.js";
+import TerrainState from "../../packages/engine/Source/Scene/TerrainState.js";
 import TileImagery from "../../packages/engine/Source/Scene/TileImagery.js";
 import WebGPUGlobeTileProvider from "../../packages/engine/Source/Scene/WebGPUGlobeTileProvider.js";
 import WebGPUImagery from "../../packages/engine/Source/Scene/WebGPUImagery.js";
@@ -359,6 +360,109 @@ test("an upload failure closes the image and reports failure through the native 
   assert.equal(image.closed, 1);
   assert.equal(f.imagery.statistics.activeTextures, 0);
 });
+
+for (const failureStage of ["request", "upload"]) {
+  for (const mutation of [
+    "remove layer",
+    "replace terrain",
+    "destroy adapter",
+  ]) {
+    test(`${failureStage} error callback can ${mutation} while a READY terrain tile advances native imagery`, async (t) => {
+      const f = fixture(t);
+      const failure = new Error(`${failureStage} outage`);
+      const image = bitmap("callback-owned image");
+      const provider = imageProvider(
+        () => {
+          if (failureStage === "request") {
+            throw failure;
+          }
+          return Promise.resolve(image);
+        },
+        { maximumLevel: 4 },
+      );
+      if (failureStage === "upload") {
+        f.renderer.createImageryTexture = () => {
+          throw failure;
+        };
+      }
+      const layer = f.addLayer(provider);
+
+      // Keep a real parent chain and replacement queue so native collection
+      // callbacks and provider invalidation own this tile exactly as in a tree.
+      const root = f.tile();
+      f.adapter.quadtree._levelZeroTiles = [root];
+      let tile = root;
+      for (let level = 0; level < 4; ++level) {
+        tile = tile.northwestChild;
+      }
+      const data = f.adapter._ensureTile(tile);
+      tile.state = QuadtreeTileLoadState.LOADING;
+      f.adapter.quadtree._tileReplacementQueue.markTileRendered(tile);
+      data.terrainData = await f.adapter.terrainProvider.requestTileGeometry(
+        tile.x,
+        tile.y,
+        tile.level,
+      );
+      data.terrainState = TerrainState.READY;
+      let destroyedTerrain = 0;
+      data.gpu = { destroy: () => ++destroyedTerrain };
+      const reported = [];
+      const replacement = new EllipsoidTerrainProvider();
+      provider.errorEvent.addEventListener((error) => {
+        reported.push(error.error);
+        if (mutation === "remove layer") {
+          f.layers.remove(layer);
+        } else if (mutation === "replace terrain") {
+          f.adapter.terrainProvider = replacement;
+        } else {
+          f.adapter.destroy();
+        }
+      });
+
+      if (failureStage === "upload") {
+        f.adapter.loadTile(frame, tile);
+        await setImmediate();
+        assert.equal(
+          tile.data.imagery[0].loadingImagery.state,
+          ImageryState.RECEIVED,
+        );
+      }
+      assert.doesNotThrow(() => f.adapter.loadTile(frame, tile));
+      await setImmediate();
+      assert.deepEqual(reported, [failure]);
+      assert.equal(f.imagery.statistics.pendingRequests, 0);
+      assert.equal(f.imagery.statistics.activeTextures, 0);
+      assert.equal(image.closed, failureStage === "upload" ? 1 : 0);
+      assert.equal(f.uploads.length, 0);
+
+      if (mutation === "remove layer") {
+        assert.equal(layer.isDestroyed(), true);
+        assert.equal(data.released, false);
+        assert.equal(data.imagery.length, 0);
+        assert.equal(destroyedTerrain, 0);
+        assert.doesNotThrow(() => f.adapter.loadTile(frame, tile));
+        assert.equal(tile.state, QuadtreeTileLoadState.DONE);
+        assert.equal(tile.renderable, true);
+      } else {
+        assert.equal(data.released, true);
+        assert.equal(data.terrainData, undefined);
+        assert.equal(data.gpu, undefined);
+        assert.equal(destroyedTerrain, 1);
+        assert.equal(
+          tile.renderable,
+          false,
+          "Released data cannot be republished as renderable",
+        );
+        assert.notEqual(tile.state, QuadtreeTileLoadState.DONE);
+        if (mutation === "replace terrain") {
+          assert.equal(f.adapter.terrainProvider, replacement);
+        } else {
+          assert.equal(f.adapter.isDestroyed(), true);
+        }
+      }
+    });
+  }
+}
 
 for (const teardown of ["tile", "layer", "provider", "manager"]) {
   for (const completion of ["resolve", "reject"]) {

@@ -293,6 +293,13 @@ class WebGPUScene {
     this.preUpdate.raiseEvent(this, time);
     this.initializeFrame();
     this.resize();
+    // Match native Scene: supported event callbacks can change the camera or
+    // replace a Provider before culling, tile selection and draw preparation.
+    this.postUpdate.raiseEvent(this, time);
+    this.preRender.raiseEvent(this, time);
+    if (this._destroyed) {
+      return;
+    }
     const frame = this._frameState;
     ++frame.frameNumber;
     frame.newFrame = true;
@@ -332,8 +339,6 @@ class WebGPUScene {
       surface.beginFrame(frame);
       surface.render(frame);
     }
-    this.postUpdate.raiseEvent(this, time);
-    this.preRender.raiseEvent(this, time);
     this._renderer.render(this);
     if (globe.show) {
       surface.endFrame(frame);

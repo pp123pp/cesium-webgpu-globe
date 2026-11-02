@@ -16,6 +16,7 @@ class WebGPUImagery {
     this._renderer = renderer;
     this._records = new Map();
     this._initializedTiles = new WeakSet();
+    this._processingAssociations = 0;
     this._destroyed = false;
     this.statistics = {
       requests: 0,
@@ -96,7 +97,13 @@ class WebGPUImagery {
         continue;
       }
       this._decorate(loading);
-      const done = association.processStateMachine(tile, frameState, false);
+      let done;
+      ++this._processingAssociations;
+      try {
+        done = association.processStateMachine(tile, frameState, false);
+      } finally {
+        --this._processingAssociations;
+      }
       complete = complete && done;
     }
     return complete;
@@ -244,6 +251,15 @@ class WebGPUImagery {
 
   _failure(record, error) {
     if (!this._isActive(record)) {
+      return;
+    }
+    if (this._processingAssociations > 0) {
+      // A synchronous request/upload failure is still inside TileImagery's
+      // native state machine. Its error listener may remove the layer or
+      // destroy the provider. Finish that stack before notifying the listener,
+      // and keep this tile loading so a listener-requested retry is not lost.
+      record.imagery.state = ImageryState.TRANSITIONING;
+      queueMicrotask(() => this._failure(record, error));
       return;
     }
     const { imagery, provider } = record;
