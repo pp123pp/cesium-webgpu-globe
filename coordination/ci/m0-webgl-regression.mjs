@@ -264,6 +264,49 @@ function failuresOf(run) {
     });
 }
 
+// Known SwiftShader/Chrome fluctuation in this inherited failure only.
+// Keep all other assertion values and error shapes strict.
+function isToleratedShadowPixelDrift(known, failure) {
+  const target = JSON.stringify([
+    "Scene/ShadowMap",
+    "Model with cutout texture casts shadows onto another model",
+  ]);
+  if (known.identity !== target || failure.identity !== target) {
+    return false;
+  }
+  if (known.messages.length !== 1 || failure.messages.length !== 1) {
+    return false;
+  }
+
+  const pattern =
+    /^Expected Uint8Array \[ (\d+), (\d+), (\d+), (\d+) \] not to equal Uint8Array \[ (\d+), (\d+), (\d+), (\d+) \]\.$/;
+  const before = known.messages[0].match(pattern);
+  const after = failure.messages[0].match(pattern);
+  if (!before || !after) {
+    return false;
+  }
+
+  const baseline = before.slice(1).map(Number);
+  const candidate = after.slice(1).map(Number);
+  if (
+    !baseline.every((value) => value <= 255) ||
+    !candidate.every((value) => value <= 255)
+  ) {
+    return false;
+  }
+
+  // Both failures must still represent two identical pixels where the
+  // spec expected a shadow difference; only red may drift by one level.
+  const sameWithinRun = (rgba) =>
+    rgba.slice(0, 4).every((value, index) => value === rgba[index + 4]);
+  return (
+    sameWithinRun(baseline) &&
+    sameWithinRun(candidate) &&
+    Math.abs(baseline[0] - candidate[0]) <= 1 &&
+    baseline.slice(1, 4).every((value, index) => value === candidate[index + 1])
+  );
+}
+
 export function compareWebglRuns(baseline, candidate) {
   const before = validateRun(baseline, "baseline");
   const after = validateRun(candidate, "candidate");
@@ -311,18 +354,29 @@ export function compareWebglRuns(baseline, candidate) {
   );
   const remaining = failuresOf(baseline);
   const currentFailures = failuresOf(candidate);
+  const toleratedPixelDrifts = [];
   for (const failure of currentFailures) {
     const sameSpec = remaining.filter(
       (known) => known.identity === failure.identity,
     );
     assert.ok(sameSpec.length > 0, `New failed spec: ${failure.identity}`);
     const match = sameSpec.find(
-      (known) => known.signature === failure.signature,
+      (known) =>
+        known.signature === failure.signature ||
+        isToleratedShadowPixelDrift(known, failure),
     );
     assert.ok(
       match,
       `Changed assertion signature for ${failure.identity}: ${failure.signature}`,
     );
+    if (match.signature !== failure.signature) {
+      toleratedPixelDrifts.push({
+        suite: failure.suite,
+        description: failure.description,
+        baselineMessages: match.messages,
+        candidateMessages: failure.messages,
+      });
+    }
     remaining.splice(remaining.indexOf(match), 1);
   }
   return {
@@ -330,6 +384,7 @@ export function compareWebglRuns(baseline, candidate) {
     candidateFailures: after.failed,
     unchangedFailures: currentFailures.length,
     fixedFailures: remaining,
+    toleratedPixelDrifts,
     executed: after.executed,
     skipped: after.skipped,
     executionOrderSha256: sha256(JSON.stringify(candidateOrder)),

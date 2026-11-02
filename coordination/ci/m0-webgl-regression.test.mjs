@@ -176,6 +176,84 @@ test("a newly failed spec fails even if total failures stay unchanged", () => {
   );
 });
 
+function shadowFixture(red = 147, green = 1) {
+  const run = fixture();
+  run.specs[0].suite = ["Scene/ShadowMap"];
+  run.specs[0].description =
+    "Model with cutout texture casts shadows onto another model";
+  const value = `${red}, ${green}, 1, 255`;
+  run.specs[0].errors = [
+    `Expected Uint8Array [ ${value} ] not to equal Uint8Array [ ${value} ].`,
+  ];
+  return run;
+}
+
+test("known ShadowMap one-level red drift is tolerated and recorded", () => {
+  const baseline = shadowFixture(147);
+  const candidate = shadowFixture(148);
+  const comparison = compareWebglRuns(baseline, candidate);
+  assert.equal(comparison.baselineFailures, 1);
+  assert.equal(comparison.candidateFailures, 1);
+  assert.equal(comparison.toleratedPixelDrifts.length, 1);
+  assert.deepEqual(comparison.toleratedPixelDrifts[0].suite, ["Scene/ShadowMap"]);
+  assert.deepEqual(comparison.fixedFailures, []);
+});
+
+test("known ShadowMap one-level red drift in the opposite direction is tolerated", () => {
+  assert.equal(
+    compareWebglRuns(shadowFixture(148), shadowFixture(147))
+      .toleratedPixelDrifts.length,
+    1,
+  );
+});
+
+test("ShadowMap red drift greater than one remains a regression", () => {
+  assert.throws(
+    () => compareWebglRuns(shadowFixture(147), shadowFixture(149)),
+    /changed assertion signature/i,
+  );
+});
+
+test("ShadowMap green-channel drift remains a regression", () => {
+  assert.throws(
+    () => compareWebglRuns(shadowFixture(147), shadowFixture(147, 2)),
+    /changed assertion signature/i,
+  );
+});
+
+test("ShadowMap changed failure semantics remain a regression", () => {
+  const candidate = shadowFixture(148);
+  candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
+    "not to equal",
+    "to equal",
+  );
+  assert.throws(
+    () => compareWebglRuns(shadowFixture(147), candidate),
+    /changed assertion signature/i,
+  );
+});
+
+test("ShadowMap unequal expected and actual pixels remain a regression", () => {
+  const candidate = shadowFixture(148);
+  candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
+    "not to equal Uint8Array [ 148",
+    "not to equal Uint8Array [ 147",
+  );
+  assert.throws(
+    () => compareWebglRuns(shadowFixture(147), candidate),
+    /changed assertion signature/i,
+  );
+});
+
+test("ShadowMap extra assertion remains a regression", () => {
+  const candidate = shadowFixture(148);
+  candidate.specs[0].errors.push("New unrelated assertion failed.");
+  assert.throws(
+    () => compareWebglRuns(shadowFixture(147), candidate),
+    /changed assertion signature/i,
+  );
+});
+
 test("the same failed spec with changed assertion values is a regression", () => {
   const candidate = fixture();
   candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
