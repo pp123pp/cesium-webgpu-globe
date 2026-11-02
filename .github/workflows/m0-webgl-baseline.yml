@@ -1,0 +1,85 @@
+name: M0 WebGL baseline (official Cesium, no renderer edits)
+
+on:
+  push:
+    branches:
+      - feat/m0-webgl-baseline
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: m0-webgl-baseline-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  webgl-baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      CI: "true"
+      NPM_CONFIG_AUDIT: "false"
+      NPM_CONFIG_FUND: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Node 22 and npm workspaces
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Verify pinned source and record versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --version
+          npm --version
+          test -f LICENSE.md
+          test -f packages/engine/Source/Scene/Globe.js
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync } from 'node:fs';
+          const p = JSON.parse(readFileSync('package.json'));
+          assert.equal(p.version, '1.146.0');
+          assert.deepEqual(p.workspaces, [
+            'packages/core', 'packages/engine',
+            'packages/widgets', 'packages/sandcastle',
+          ]);
+          assert.match(readFileSync('coordination/UPSTREAM_REVISION.txt', 'utf8'), /b8d3a36fe98a3e432eb89253c95d5f20e605e0f1/);
+          NODE
+
+      - name: Install unmodified upstream npm dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build official Cesium WebGL bundle
+        run: npm run build
+
+      - name: Install Chromium for real browser smoke
+        run: npx playwright install --with-deps chromium
+
+      - name: Run original WebGL Viewer smoke (offline ellipsoid)
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Build/m0-baseline
+          npm run start -- --production > "$RUNNER_TEMP/m0-server.log" 2>&1 &
+          server_pid=$!
+          trap 'cp "$RUNNER_TEMP/m0-server.log" Build/m0-baseline/server.log || true; kill "$server_pid" 2>/dev/null || true' EXIT
+          node coordination/ci/m0-webgl-smoke.mjs
+
+      - name: Run upstream non-WebGL unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          export CHROME_BIN
+          CHROME_BIN="$(node --input-type=module -e "import {chromium} from '@playwright/test'; console.log(chromium.executablePath())")"
+          npm run test-non-webgl -- --browsers ChromeHeadless
+
+      - name: Upload WebGL smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: m0-webgl-baseline
+          path: Build/m0-baseline/
+          if-no-files-found: warn
