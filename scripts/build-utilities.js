@@ -468,7 +468,9 @@ export async function bundleWorkers(options) {
   const workers = await globby(["packages/engine/Source/Workers/**"]);
   const workerConfig = defaultESBuildOptions();
   workerConfig.bundle = true;
-  workerConfig.external = ["fs", "path"];
+  // Browser worker bundles can include node-prefixed imports in Node-only dependency branches.
+  // Keep those Node built-ins external instead of failing esbuild resolution.
+  workerConfig.external = ["fs", "path", "node:fs", "node:path"];
 
   if (options.iife) {
     let contents = ``;
