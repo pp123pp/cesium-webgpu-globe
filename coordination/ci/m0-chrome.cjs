@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+/* eslint n/hashbang: "off", n/no-unpublished-require: "off" -- CI executable uses a dev dependency. */
+"use strict";
 // Chromium launcher for the isolated M0 test environment. Production is unaffected.
 const { spawn } = require("node:child_process");
 const { chromium } = require("@playwright/test");

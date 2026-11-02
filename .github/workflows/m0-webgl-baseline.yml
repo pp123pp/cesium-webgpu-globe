@@ -57,6 +57,9 @@ jobs:
       - name: Build official Cesium WebGL bundle
         run: npm run build
 
+      - name: Run WebGPU lifecycle unit tests
+        run: node coordination/ci/m0-webgpu-unit.test.mjs
+
       - name: Install Chromium for real browser smoke
         run: npx playwright install --with-deps chromium
 

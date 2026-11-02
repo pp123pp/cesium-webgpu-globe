@@ -23,6 +23,7 @@ import {
   Property,
   ScreenSpaceEventType,
   IonGeocoderService,
+  WebGPUWidget,
 } from "@cesium/engine";
 import Animation from "../Animation/Animation.js";
 import AnimationViewModel from "../Animation/AnimationViewModel.js";
@@ -43,6 +44,56 @@ import Timeline from "../Timeline/Timeline.js";
 import VRButton from "../VRButton/VRButton.js";
 
 const boundingSphereScratch = new BoundingSphere();
+
+const webgpuViewerMembers = new Set([
+  "constructor",
+  "container",
+  "canvas",
+  "renderingBackend",
+  "readyPromise",
+  "renderError",
+  "useDefaultRenderLoop",
+  "resolutionScale",
+  "useBrowserRecommendedResolution",
+  "resize",
+  "forceResize",
+  "render",
+  "destroy",
+  "isDestroyed",
+]);
+
+function restrictWebGPUProof(viewer) {
+  // Keep this a real Viewer while making its experimental capability boundary
+  // explicit. No stub Scene/CesiumWidget is supplied to the WebGL APIs.
+  for (const [name, descriptor] of Object.entries(
+    Object.getOwnPropertyDescriptors(Viewer.prototype),
+  )) {
+    if (name.startsWith("_") || webgpuViewerMembers.has(name)) {
+      continue;
+    }
+    const unsupported = function () {
+      throw new DeveloperError(
+        `Viewer.${name} is not available in the M0 WebGPU proof.`,
+      );
+    };
+    Object.defineProperty(
+      viewer,
+      name,
+      descriptor.get
+        ? {
+            get: unsupported,
+            set: descriptor.set ? unsupported : undefined,
+            configurable: true,
+          }
+        : {
+            value: unsupported,
+            writable: true,
+            configurable: true,
+            enumerable: descriptor.enumerable,
+          },
+    );
+  }
+}
 
 function onTimelineScrubfunction(e) {
   const clock = e.clock;
@@ -310,6 +361,7 @@ function enableVRUI(viewer, enabled) {
  *
  * Initialization options for the Viewer constructor
  *
+ * @property {string} [renderingBackend="webgl"] Fixed at creation: "webgl" or experimental "webgpu". The M0 WebGPU proof supports only canvas rendering and lifecycle APIs, not Scene, Globe, widgets, terrain or imagery. Await readyPromise before rendering.
  * @property {boolean} [animation=true] If set to false, the Animation widget will not be created.
  * @property {boolean} [baseLayerPicker=true] If set to false, the BaseLayerPicker widget will not be created.
  * @property {boolean} [fullscreenButton=true] If set to false, the FullscreenButton widget will not be created.
@@ -435,6 +487,18 @@ function Viewer(container, options) {
 
   container = getElement(container);
   options = options ?? Frozen.EMPTY_OBJECT;
+
+  const renderingBackend = options.renderingBackend ?? "webgl";
+  if (renderingBackend !== "webgl" && renderingBackend !== "webgpu") {
+    throw new DeveloperError('renderingBackend must be "webgl" or "webgpu".');
+  }
+  this._renderingBackend = renderingBackend;
+  if (renderingBackend === "webgpu") {
+    this._container = container;
+    this._webgpuProof = new WebGPUWidget(container, options);
+    restrictWebGPUProof(this);
+    return;
+  }
 
   //>>includeStart('debug', pragmas.debug);
   if (
@@ -964,6 +1028,40 @@ Either specify options.terrainProvider instead or set options.baseLayerPicker to
 
 Object.defineProperties(Viewer.prototype, {
   /**
+   * Rendering backend selected at creation; it cannot be hot-switched.
+   * @memberof Viewer.prototype
+   * @type {string}
+   * @readonly
+   */
+  renderingBackend: {
+    get: function () {
+      return this._renderingBackend;
+    },
+  },
+  /**
+   * WebGPU initialization promise. Undefined for the synchronous WebGL path.
+   * Rejection is explicit; no WebGL fallback is attempted.
+   * @memberof Viewer.prototype
+   * @type {Promise<void>|undefined}
+   * @readonly
+   */
+  readyPromise: {
+    get: function () {
+      return this._webgpuProof?.readyPromise;
+    },
+  },
+  /**
+   * Receives (rendering source, error). WebGPU failures stop its default loop.
+   * @memberof Viewer.prototype
+   * @type {Event}
+   * @readonly
+   */
+  renderError: {
+    get: function () {
+      return this._webgpuProof?.renderError ?? this.scene.renderError;
+    },
+  },
+  /**
    * Gets the parent container.
    * @memberof Viewer.prototype
    * @type {Element}
@@ -1201,7 +1299,7 @@ Object.defineProperties(Viewer.prototype, {
    */
   canvas: {
     get: function () {
-      return this._cesiumWidget.canvas;
+      return (this._webgpuProof ?? this._cesiumWidget).canvas;
     },
   },
 
@@ -1395,10 +1493,10 @@ Object.defineProperties(Viewer.prototype, {
    */
   useDefaultRenderLoop: {
     get: function () {
-      return this._cesiumWidget.useDefaultRenderLoop;
+      return (this._webgpuProof ?? this._cesiumWidget).useDefaultRenderLoop;
     },
     set: function (value) {
-      this._cesiumWidget.useDefaultRenderLoop = value;
+      (this._webgpuProof ?? this._cesiumWidget).useDefaultRenderLoop = value;
     },
   },
 
@@ -1416,10 +1514,10 @@ Object.defineProperties(Viewer.prototype, {
    */
   resolutionScale: {
     get: function () {
-      return this._cesiumWidget.resolutionScale;
+      return (this._webgpuProof ?? this._cesiumWidget).resolutionScale;
     },
     set: function (value) {
-      this._cesiumWidget.resolutionScale = value;
+      (this._webgpuProof ?? this._cesiumWidget).resolutionScale = value;
     },
   },
 
@@ -1437,10 +1535,13 @@ Object.defineProperties(Viewer.prototype, {
    */
   useBrowserRecommendedResolution: {
     get: function () {
-      return this._cesiumWidget.useBrowserRecommendedResolution;
+      return (this._webgpuProof ?? this._cesiumWidget)
+        .useBrowserRecommendedResolution;
     },
     set: function (value) {
-      this._cesiumWidget.useBrowserRecommendedResolution = value;
+      (
+        this._webgpuProof ?? this._cesiumWidget
+      ).useBrowserRecommendedResolution = value;
     },
   },
 
@@ -1573,6 +1674,10 @@ Viewer.prototype.extend = function (mixin, options) {
  * <code>useDefaultRenderLoop</code> is set to false.
  */
 Viewer.prototype.resize = function () {
+  if (this._webgpuProof) {
+    this._webgpuProof.resize();
+    return;
+  }
   const cesiumWidget = this._cesiumWidget;
   const container = this._container;
   const width = container.clientWidth;
@@ -1691,7 +1796,7 @@ Viewer.prototype.forceResize = function () {
  * unless <code>useDefaultRenderLoop</code> is set to false;
  */
 Viewer.prototype.render = function () {
-  this._cesiumWidget.render();
+  (this._webgpuProof ?? this._cesiumWidget).render();
 };
 
 /**
@@ -1706,6 +1811,10 @@ Viewer.prototype.isDestroyed = function () {
  * removing the widget from layout.
  */
 Viewer.prototype.destroy = function () {
+  if (this._webgpuProof) {
+    this._webgpuProof.destroy();
+    return destroyObject(this);
+  }
   if (
     defined(this.screenSpaceEventHandler) &&
     !this.screenSpaceEventHandler.isDestroyed()
