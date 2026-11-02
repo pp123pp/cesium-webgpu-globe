@@ -1,4 +1,9 @@
-import { RuntimeError } from "@cesium/core";
+import {
+  BoundingSphere,
+  Cartesian3,
+  OrientedBoundingBox,
+  RuntimeError,
+} from "@cesium/core";
 import Request from "../Core/Request.js";
 import RequestType from "../Core/RequestType.js";
 import TileProviderError from "../Core/TileProviderError.js";
@@ -7,19 +12,35 @@ import GlobeSurfaceTileProvider from "./GlobeSurfaceTileProvider.js";
 import QuadtreeTileLoadState from "./QuadtreeTileLoadState.js";
 import TerrainState from "./TerrainState.js";
 import ImageryState from "./ImageryState.js";
+import TerrainFillMesh from "./TerrainFillMesh.js";
 
 // Retain native picking, bounds and imagery associations, with explicit GPU ownership.
 class WebGPUSurfaceTile extends GlobeSurfaceTile {
-  constructor(owner) {
+  constructor(owner, tile) {
     super();
     this.owner = owner;
+    this.tile = tile;
     this.released = false;
     this.gpu = undefined;
     owner._tiles.add(this);
   }
 
   get renderedMesh() {
-    return this.gpu ? this.mesh : undefined;
+    return this.gpu ? this.mesh : this.fill?.mesh;
+  }
+
+  get gpu() {
+    return this.vertexArray;
+  }
+
+  set gpu(value) {
+    // Native fill propagation uses this field only to identify real geometry.
+    // Fill resources remain separate, in fill.vertexArray.
+    this.vertexArray = value;
+  }
+
+  processImagery(tile, terrainProvider, frameState, skipLoading) {
+    return this.owner._imagery?.updateTile(tile, frameState, skipLoading);
   }
 
   get eligibleForUnloading() {
@@ -32,6 +53,9 @@ class WebGPUSurfaceTile extends GlobeSurfaceTile {
       return;
     }
     this.released = true;
+    if (this.tile.data === this) {
+      this.tile.renderable = false;
+    }
     this.request?.cancel();
     this.request = undefined;
     this.gpu?.destroy();
@@ -59,10 +83,12 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
     this._tiles = new Set();
     this._destroyed = false;
     this._imagery = undefined;
+    this._frameTiles = [];
     this.statistics = {
       requests: 0,
       deferred: 0,
       meshes: 0,
+      fills: 0,
       upsampled: 0,
       failed: 0,
     };
@@ -70,9 +96,20 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
 
   _ensureTile(tile) {
     if (!(tile.data instanceof WebGPUSurfaceTile) || tile.data.released) {
-      tile.data = new WebGPUSurfaceTile(this);
+      tile.data = new WebGPUSurfaceTile(this, tile);
     }
+    // Native traversal's renderable flag means independently loaded terrain.
+    // A temporary fill must not replace every real mesh in a pending subtree.
+    tile.renderable = !!tile.data.gpu;
     return tile.data;
+  }
+
+  _ancestorSource(tile) {
+    let source = tile.parent;
+    while (source && (!source.data?.gpu || source.data.released)) {
+      source = source.parent;
+    }
+    return source;
   }
 
   get terrainProvider() {
@@ -97,8 +134,72 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
 
   computeDistanceToTile(tile, frameState) {
     // The native bounds helper otherwise constructs a WebGL-owned surface tile.
-    this._ensureTile(tile);
-    return super.computeDistanceToTile(tile, frameState);
+    const data = this._ensureTile(tile);
+    if (data._fillBounds) {
+      data.tileBoundingRegion._orientedBoundingBox = undefined;
+      data.tileBoundingRegion._boundingSphere = undefined;
+      data.boundingVolumeIsFromMesh = false;
+      data._fillBounds = false;
+    }
+    let distance = super.computeDistanceToTile(tile, frameState);
+    if (!data.gpu) {
+      const source = this._ancestorSource(tile);
+      const region = data.tileBoundingRegion;
+      for (const mesh of [source?.data.mesh, data.fill?.mesh]) {
+        if (!mesh) {
+          continue;
+        }
+        // A previous fill is rebuilt only after selection. It must not replace
+        // the native current/ancestor bounds and cull its own future update.
+        region._boundingSphere = region._boundingSphere
+          ? BoundingSphere.union(
+              region._boundingSphere,
+              mesh.boundingSphere3D,
+              region._boundingSphere,
+            )
+          : BoundingSphere.clone(mesh.boundingSphere3D);
+        region.minimumHeight = Math.min(
+          region.minimumHeight,
+          mesh.minimumHeight,
+        );
+        region.maximumHeight = Math.max(
+          region.maximumHeight,
+          mesh.maximumHeight,
+        );
+        region._orientedBoundingBox = undefined;
+        data.boundingVolumeSourceTile = source ?? tile;
+        data.boundingVolumeIsFromMesh = false;
+        // There is no single native horizon point for this union. Its sphere
+        // remains available for conservative native frustum culling.
+        data.occludeePointInScaledSpace = undefined;
+        data._fillBounds = true;
+      }
+      if (data._fillBounds) {
+        distance = Math.min(distance, region.distanceToCamera(frameState));
+      }
+    }
+    return distance;
+  }
+
+  _setFillBounds(tile, mesh, source) {
+    const data = tile.data;
+    const region = data.tileBoundingRegion;
+    region.minimumHeight = mesh.minimumHeight;
+    region.maximumHeight = mesh.maximumHeight;
+    region._orientedBoundingBox = OrientedBoundingBox.clone(
+      mesh.orientedBoundingBox,
+      region._orientedBoundingBox,
+    );
+    region._boundingSphere = BoundingSphere.clone(
+      mesh.boundingSphere3D,
+      region._boundingSphere,
+    );
+    data.occludeePointInScaledSpace = Cartesian3.clone(
+      mesh.occludeePointInScaledSpace,
+    );
+    data.boundingVolumeSourceTile = source;
+    data.boundingVolumeIsFromMesh = false;
+    data._fillBounds = true;
   }
 
   computeTileLoadPriority(tile, frameState) {
@@ -119,28 +220,78 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
     }
   }
 
-  beginUpdate() {}
-  endUpdate() {}
+  beginUpdate() {
+    this._frameTiles.length = 0;
+  }
+
+  createFillMeshResources(mesh) {
+    const gpu = this._renderer.createTile(mesh);
+    ++this.statistics.fills;
+    return gpu;
+  }
+
+  endUpdate(frameState) {
+    // Native propagation needs the complete current selection and its neighbor
+    // flags. Fill edges then match the real selected meshes, rather than a
+    // clipped coarse triangle that has no skirt along an internal child edge.
+    for (const tile of this._frameTiles) {
+      if (tile.state === QuadtreeTileLoadState.START) {
+        // This adapter owns initialization/availability/upsampling. Avoid the
+        // WebGL initializer changing unavailable tiles to FAILED before our
+        // _requestTerrain can use the native parent upsampler.
+        tile.state = QuadtreeTileLoadState.LOADING;
+      }
+    }
+    if (
+      this._frameTiles.some((tile) => tile.data.gpu) &&
+      this._frameTiles.some((tile) => !tile.data.gpu)
+    ) {
+      TerrainFillMesh.updateFillTiles(this, this._frameTiles, frameState);
+    }
+    for (const tile of this._frameTiles) {
+      const data = tile.data;
+      if (!data.gpu) {
+        data.fill ??= new TerrainFillMesh(tile);
+        data.fill.update(this, frameState);
+        this._setFillBounds(tile, data.fill.mesh, tile);
+      }
+      this._renderer.addTile(tile, tile.rectangle);
+    }
+  }
 
   canRefine(tile) {
-    return tile.level < 30 && super.canRefine(tile);
+    // Availability alone must not expand an entirely unloaded subtree. Keep
+    // paths to cached fine meshes even when intermediate meshes were evicted.
+    return (
+      tile.level < 30 &&
+      super.canRefine(tile) &&
+      (tile.data?.gpu !== undefined || hasLoadedDescendant(tile))
+    );
   }
 
   canRenderWithoutLosingDetail(tile) {
     return tile.renderable && tile.state === QuadtreeTileLoadState.DONE;
   }
 
-  showTileThisFrame(tile, frameState) {
-    let source = tile;
-    while (source && !source.data?.gpu) {
-      source = source.parent;
+  canRenderWithFills(tiles, firstIndex) {
+    // A real selected descendant anchors native edge propagation. Retain that
+    // detail and fill its pending neighbors. With no real descendant, keep the
+    // native parent fallback instead of selecting unrelated flat fill meshes.
+    for (let i = firstIndex; i < tiles.length; ++i) {
+      if (tiles[i].data?.gpu) {
+        return true;
+      }
     }
+    return false;
+  }
+
+  showTileThisFrame(tile, frameState) {
+    this._ensureTile(tile);
+    this._frameTiles.push(tile);
+    const source = tile.data.gpu ? tile : this._ancestorSource(tile);
     if (source) {
-      // During rapid pans native traversal can select a not-yet-loaded child.
-      // Draw only its rectangle from a ready ancestor, retaining coverage.
-      this._renderer.addTile(source, tile.rectangle);
       // Match native GlobeSurfaceTileProvider: dataset credits belong to the
-      // terrain data actually drawn, including an ancestor used as a fill.
+      // terrain data used for coverage, including the ancestor of a fill.
       for (const credit of source.data.terrainData.credits ?? []) {
         frameState.creditDisplay.addCreditToNextFrame(credit);
       }
@@ -179,6 +330,7 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
             }
             data.mesh = mesh;
             data.gpu = this._renderer.createTile(mesh);
+            data.fill = data.fill?.destroy();
             data.terrainState = TerrainState.READY;
             ++this.statistics.meshes;
             // Native getHeight can observe renderedMesh as soon as gpu exists.
@@ -354,6 +506,23 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
     this._imagery?.destroy();
     return super.destroy();
   }
+}
+
+function hasLoadedDescendant(tile) {
+  for (const child of [
+    tile._southwestChild,
+    tile._southeastChild,
+    tile._northwestChild,
+    tile._northeastChild,
+  ]) {
+    if (
+      child &&
+      ((child.data?.gpu && !child.data.released) || hasLoadedDescendant(child))
+    ) {
+      return true;
+    }
+  }
+  return false;
 }
 
 export default WebGPUGlobeTileProvider;

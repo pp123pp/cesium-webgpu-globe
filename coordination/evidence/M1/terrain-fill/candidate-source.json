@@ -1,0 +1,21 @@
+{
+  "baselineLocalHead": "fd0cae8ac25b68fb986964a1a380262567b31a2a",
+  "note": "Native-fill candidate was tested as a dirty working tree; file hashes below identify exact candidate source, and final committed-HEAD gates are recorded separately.",
+  "bundleSha256": "b4a2b86768a281478ace49e8246149283cc770009fbefe5e696b4542f9c5caaf",
+  "sha256": {
+    "coordination/ci/m1-terrain-coverage.mjs": "96ddb32a47d0f6bc094dd798664713cd80e7b8743f3f5b5aa47d36865a2b012a",
+    "coordination/ci/m1-terrain-coverage.test.mjs": "63b76453b13b397e5e6a70c1008cafdff8c14c6c734a0f924e8c89577f8ee6ca",
+    "coordination/ci/m1-terrain-data.test.mjs": "0130eec288df97ca1e1bc7d375cd4cbf1572b4e06719acb5ba680515691133fe",
+    "coordination/ci/m1-terrain-edges.mjs": "d9cff457605dab3e0a207db9ef23ef97baf11d52f8820bbb9484385f3ee52b13",
+    "coordination/ci/m1-terrain-edges.test.mjs": "c0df09c2266a749cd1902720b575cb0a8fe63756e77619f66576ac19d18a5134",
+    "coordination/ci/m1-terrain-fill.test.mjs": "3bd80b139bbf8cf69f8cd26e8438336e2623035f961d9532ac7f7c8bd62ca9ce",
+    "coordination/ci/m1-terrain-smoke.mjs": "17ff40b243c67028ab8893714d578d63fdaf93dae9470c7a3e442f7828631ec6",
+    "packages/engine/Source/Scene/QuadtreePrimitive.js": "f476120700c0bf6243b01fd573b66e8267914bf73481017bef15e7b455a46cf8",
+    "packages/engine/Source/Scene/TerrainFillMesh.js": "1f2847eed63a716e1eaa0dd817b9f9838655fdce91154efa12d9e9ce9ac968a7",
+    "packages/engine/Source/Scene/WebGPUGlobeMath.js": "595451d27df155e5cbfac90220b8fa871e71678fe839228ad777ff1e7c25d003",
+    "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "b3b899f8da2d03d13033af77e5a73cf8d2ade350db0b05f98fa591b6d36b44cc",
+    "packages/engine/Source/Scene/WebGPUGlobeTileProvider.js": "3bcfc6e1e51fa2140fb9402c9e9effd2180c2387eaf3eaadd4bea935d0dd5876",
+    "packages/engine/Source/Scene/WebGPUImagery.js": "61a7b9d8d7211528dae49f2ce285cdc1e42823f23ba0a8161f717530bba332c0",
+    "packages/engine/Source/Scene/WebGPUScene.js": "84abc932227893076d537db105325c3d5cb38b047270c8b092dbc923aecd6ef2"
+  }
+}

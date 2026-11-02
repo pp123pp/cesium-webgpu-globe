@@ -31,7 +31,7 @@ class WebGPUImagery {
     };
   }
 
-  updateTile(tile, frameState) {
+  updateTile(tile, frameState, skipLoading = false) {
     const data = tile.data;
     if (this._destroyed || data.released) {
       return false;
@@ -100,7 +100,7 @@ class WebGPUImagery {
       let done;
       ++this._processingAssociations;
       try {
-        done = association.processStateMachine(tile, frameState, false);
+        done = association.processStateMachine(tile, frameState, skipLoading);
       } finally {
         --this._processingAssociations;
       }

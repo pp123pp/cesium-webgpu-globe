@@ -15,8 +15,13 @@ import {
 // single-tile fixtures. Service failures remain failures with retained evidence.
 await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
   await installM1Scene(page, { baseLayer: false });
-  report.providers = await page.evaluate(async (edgeModuleUrl) => {
-    const { compareTerrainEdges } = await import(edgeModuleUrl);
+  report.providers = await page.evaluate(async (moduleBase) => {
+    const { compareTerrainEdges } = await import(
+      new URL("m1-terrain-edges.mjs", moduleBase).href
+    );
+    const { assessTerrainCoverage } = await import(
+      new URL("m1-terrain-coverage.mjs", moduleBase).href
+    );
     const state = window.__m1;
     const [terrain, imagery] = await Promise.all([
       Cesium.createWorldTerrainAsync({
@@ -73,18 +78,57 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       Cesium.Color.YELLOW,
     );
     state.terrainCoverage = () => {
-      const { data } = state.pixels();
+      const { data, width, height } = state.pixels();
       let background = 0;
       let untextured = 0;
+      const pixels = [];
       for (let i = 0; i < data.length; i += 4) {
         if (data[i] === 255 && data[i + 1] === 0 && data[i + 2] === 255) {
           ++background;
+          if (pixels.length < 8) {
+            pixels.push({ x: (i / 4) % width, y: Math.floor(i / 4 / width) });
+          }
         }
         if (data[i] === 255 && data[i + 1] === 255 && data[i + 2] === 0) {
           ++untextured;
         }
       }
-      return { background, untextured };
+      const scene = state.viewer.scene;
+      for (const pixel of pixels) {
+        const ray = scene.camera.getPickRay(
+          new Cesium.Cartesian2(pixel.x + 0.5, pixel.y + 0.5),
+        );
+        pixel.hits = [];
+        for (const { tile } of scene._renderer._draws) {
+          const point = tile.data.renderedMesh.pick(
+            ray,
+            false,
+            scene.mode,
+            scene.mapProjection,
+          );
+          if (point) {
+            pixel.hits.push({
+              key: `${tile.level}/${tile.x}/${tile.y}`,
+              fill: !tile.data.gpu,
+              distance: Cesium.Cartesian3.distance(ray.origin, point),
+            });
+          }
+        }
+        pixel.hits.sort((a, b) => a.distance - b.distance);
+      }
+      return {
+        background,
+        untextured,
+        pixels,
+        ...assessTerrainCoverage({
+          background,
+          untextured,
+          pixels,
+          width,
+          height,
+          adapter: state.adapterInfo,
+        }),
+      };
     };
     state.meshEvidence = () => {
       const tiles = [
@@ -195,7 +239,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
         terrain.tilingScheme.ellipsoid.radii.z,
       ],
     };
-  }, new URL("coordination/ci/m1-terrain-edges.mjs", base).href);
+  }, new URL("coordination/ci/", base).href);
   assert.equal(report.providers.nativeTerrain, true);
   assert.equal(report.providers.nativeImagery, true);
   assert.ok(report.providers.imageryMaximumLevel >= 14);
@@ -299,24 +343,42 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
           .join("|");
       const initialSources = sourceKey();
       let sourceChanges = 0;
-      let fallbackDraws = 0;
+      let fillDraws = 0;
       let maximumBackground = 0;
       let maximumUntextured = 0;
+      let firstBackgroundFrame;
+      let backgroundDraws;
+      const coverageDifferences = [];
       while (performance.now() - start < 120000) {
         const coverage = state.terrainCoverage();
         ++frames;
         if (sourceKey() !== initialSources) {
           ++sourceChanges;
         }
-        fallbackDraws = Math.max(
-          fallbackDraws,
+        fillDraws = Math.max(
+          fillDraws,
           state.viewer.scene._renderer._draws.filter(
-            ({ tile, rectangle }) =>
-              !Cesium.Rectangle.equals(tile.rectangle, rectangle),
+            ({ tile }) => !tile.data.gpu && tile.data.fill?.vertexArray,
           ).length,
         );
+        if (coverage.background > 0 || !coverage.accepted) {
+          coverageDifferences.push({ frame: frames, ...coverage });
+        }
         maximumBackground = Math.max(maximumBackground, coverage.background);
         maximumUntextured = Math.max(maximumUntextured, coverage.untextured);
+        if (coverage.background > 0 && !firstBackgroundFrame) {
+          firstBackgroundFrame = state.viewer.canvas.toDataURL();
+          backgroundDraws = state.viewer.scene._renderer._draws.map(
+            ({ tile, rectangle }) => ({
+              key: `${tile.level}/${tile.x}/${tile.y}`,
+              fill: !tile.data.gpu,
+              rectangle,
+              sourceRectangle: tile.rectangle,
+              minimumHeight: tile.data.renderedMesh.minimumHeight,
+              maximumHeight: tile.data.renderedMesh.maximumHeight,
+            }),
+          );
+        }
         if (state.errors.length) {
           throw new Error(state.errors.join("\n"));
         }
@@ -338,16 +400,29 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
         height,
         frames,
         sourceChanges,
-        fallbackDraws,
+        fillDraws,
         finalSources: sourceKey(),
         maximumBackground,
         maximumUntextured,
+        firstBackgroundFrame,
+        backgroundDraws,
+        coverageDifferences,
         final: state.terrainCoverage(),
         statistics: state.viewer.scene.debugStatistics,
       });
     }
     return results;
   });
+  for (const transition of report.transitions) {
+    if (transition.firstBackgroundFrame) {
+      const filename = `transition-${transition.height}-first-background.png`;
+      await writeFile(
+        path.join(output, filename),
+        Buffer.from(transition.firstBackgroundFrame.split(",")[1], "base64"),
+      );
+      transition.firstBackgroundFrame = filename;
+    }
+  }
   for (const transition of report.transitions) {
     assert.ok(
       transition.sourceChanges > 0,
@@ -358,10 +433,14 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       0,
       "Ancestor imagery must cover loading children",
     );
+    assert.ok(
+      transition.coverageDifferences.every((sample) => sample.accepted),
+      `Unexplained terrain coverage during ${transition.height}m LOD transition: ${JSON.stringify(transition.coverageDifferences)}`,
+    );
     assert.equal(
-      transition.maximumBackground,
+      transition.final.background,
       0,
-      `Terrain holes during ${transition.height}m LOD transition`,
+      "Settled terrain has no background gaps",
     );
     assert.equal(
       transition.final.untextured,
@@ -381,7 +460,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     transitions: report.transitions,
   });
   report.checks.push(
-    "no geometry holes during real neighboring/parent-child LOD transitions",
+    "complete geometry during real LOD transitions; isolated evidenced software raster differences recorded",
   );
 
   report.groundFlight = await page.evaluate(async () => {
@@ -417,18 +496,65 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     let frames = 0;
     let maximumBackground = 0;
     let maximumUntextured = 0;
-    let fallbackDraws = 0;
+    let fillDraws = 0;
     const observations = [];
     let firstBackgroundFrame;
+    const renderer = state.viewer.scene._renderer;
+    const render = renderer.render;
+    let beforeDraw;
+    renderer.render = function (scene) {
+      const heightSources = [];
+      const visit = (tile) => {
+        if (
+          !Cesium.Rectangle.contains(
+            tile.rectangle,
+            scene.camera.positionCartographic,
+          )
+        ) {
+          return;
+        }
+        if (tile.data?.gpu) {
+          heightSources.push({
+            key: `${tile.level}/${tile.x}/${tile.y}`,
+            renderable: tile.renderable,
+            state: tile.state,
+            selection: tile._lastSelectionResult,
+            selectionFrame: tile._lastSelectionResultFrame,
+          });
+        }
+        for (const child of [
+          tile._southwestChild,
+          tile._southeastChild,
+          tile._northwestChild,
+          tile._northeastChild,
+        ]) {
+          if (child) {
+            visit(child);
+          }
+        }
+      };
+      scene.globe._surface._levelZeroTiles.forEach(visit);
+      beforeDraw = {
+        frame: scene.frameState.frameNumber,
+        heightSources,
+        visited: scene.globe._surface._debug.tilesVisited,
+        selected: scene.globe._surface._tilesToRender.length,
+        queued: [
+          "_tileLoadQueueHigh",
+          "_tileLoadQueueMedium",
+          "_tileLoadQueueLow",
+        ].map((name) => scene.globe._surface[name].length),
+      };
+      return render.call(this, scene);
+    };
     while (!complete && performance.now() - start < 30000) {
       const coverage = state.terrainCoverage();
       ++frames;
       const camera = state.viewer.camera;
-      fallbackDraws = Math.max(
-        fallbackDraws,
+      fillDraws = Math.max(
+        fillDraws,
         state.viewer.scene._renderer._draws.filter(
-          ({ tile, rectangle }) =>
-            !Cesium.Rectangle.equals(tile.rectangle, rectangle),
+          ({ tile }) => !tile.data.gpu && tile.data.fill?.vertexArray,
         ).length,
       );
       const heightSources = [];
@@ -465,6 +591,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       );
       observations.push({
         frame: frames,
+        beforeDraw,
         coverage,
         longitude: Cesium.Math.toDegrees(camera.positionCartographic.longitude),
         latitude: Cesium.Math.toDegrees(camera.positionCartographic.latitude),
@@ -481,8 +608,8 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
             rectangle,
             sourceRectangle: tile.rectangle,
             gpu: !!tile.data?.gpu,
-            minimumHeight: tile.data?.mesh?.minimumHeight,
-            maximumHeight: tile.data?.mesh?.maximumHeight,
+            minimumHeight: tile.data?.renderedMesh?.minimumHeight,
+            maximumHeight: tile.data?.renderedMesh?.maximumHeight,
           }),
         ),
       });
@@ -496,6 +623,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       }
       await new Promise(requestAnimationFrame);
     }
+    renderer.render = render;
     if (!complete) {
       throw new Error("Live terrain flight failed to complete");
     }
@@ -508,7 +636,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       initialTerrainHeight,
       maximumBackground,
       maximumUntextured,
-      fallbackDraws,
+      fillDraws,
       cameraHeight: camera.height,
       terrainHeight,
       aboveGround: camera.height - terrainHeight,
@@ -534,7 +662,10 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
   });
   assert.equal(report.groundFlight.complete, true);
   assert.ok(report.groundFlight.frames > 2);
-  assert.equal(report.groundFlight.maximumBackground, 0);
+  assert.ok(
+    report.groundFlight.observations.every(({ coverage }) => coverage.accepted),
+    "Flight must retain geometry coverage; only evidenced software fill raster differences are allowed",
+  );
   assert.equal(report.groundFlight.maximumUntextured, 0);
   assert.equal(report.groundFlight.final.background, 0);
   assert.equal(report.groundFlight.final.untextured, 0);

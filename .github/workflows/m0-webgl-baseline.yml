@@ -64,7 +64,7 @@ jobs:
 
       - name: Check M1 source and generated TypeScript APIs
         run: |
-          npx eslint packages/engine/Source/Renderer/WebGPUContext.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs Apps/WebGPUGlobe.html
+          npx eslint packages/engine/Source/Renderer/WebGPUContext.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs Apps/WebGPUGlobe.html
           npm run build-ts
           npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json
           npm run tsc

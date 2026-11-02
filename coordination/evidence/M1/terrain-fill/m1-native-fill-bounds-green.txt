@@ -1,0 +1,14 @@
+✔ native selection retains a ready fine descendant beside pending siblings (19.839839ms)
+✔ fill resources have independent ownership and are released exactly once (2.404374ms)
+✔ native fill matches a loaded near-ground neighbor edge within one centimetre (14.566554ms)
+✔ selection bounds retain current terrain and ancestors despite a lower previous fill (2.119813ms)
+✔ native fill picking includes its child and excludes neighboring rectangles (3.386295ms)
+✔ unavailable terrain can generate a fill before native upsampling supplies its own mesh (4.393866ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.831862

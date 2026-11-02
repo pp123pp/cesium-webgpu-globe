@@ -25,11 +25,13 @@ struct VertexOutput {
 fn outside(uv: vec2f, rectangle: vec4f) -> bool {
   // Full tiles include native skirts. Do not clip their interpolated edge UVs:
   // float interpolation can overshoot [0,1] and cut a one-pixel crack in a skirt.
-  if (any(rectangle.xy > vec2f(0.0)) || any(rectangle.zw < vec2f(1.0))) {
-    return any(uv < rectangle.xy - vec2f(0.000001)) ||
-           any(uv > rectangle.zw + vec2f(0.000001));
-  }
-  return false;
+  // Internal boundaries are identical in geometry and imagery. Expanding only
+  // terrain coverage writes depth where its imagery is excluded, leaving a
+  // bare pixel that a neighboring tile's imagery cannot repair.
+  return (rectangle.x > 0.0 && uv.x < rectangle.x) ||
+         (rectangle.y > 0.0 && uv.y < rectangle.y) ||
+         (rectangle.z < 1.0 && uv.x >= rectangle.z) ||
+         (rectangle.w < 1.0 && uv.y >= rectangle.w);
 }
 @fragment fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
   if (outside(input.uv, tile.clip)) { discard; }
@@ -39,16 +41,8 @@ struct Image { rectangle: vec4f, mapping: vec4f, config: vec4f, mercator: vec4f 
 @group(1) @binding(0) var dayTexture: texture_2d<f32>;
 @group(1) @binding(1) var daySampler: sampler;
 @group(1) @binding(2) var<uniform> imagery: Image;
-fn outsideImage(uv: vec2f, rectangle: vec4f) -> bool {
-  // Half-open internal boundaries give one association ownership of each
-  // fragment. Applying skirt tolerance here would blend alpha repeatedly.
-  return (rectangle.x > 0.0 && uv.x < rectangle.x) ||
-         (rectangle.y > 0.0 && uv.y < rectangle.y) ||
-         (rectangle.z < 1.0 && uv.x >= rectangle.z) ||
-         (rectangle.w < 1.0 && uv.y >= rectangle.w);
-}
 @fragment fn imageryMain(input: VertexOutput) -> @location(0) vec4f {
-  if (outsideImage(input.uv, tile.clip)) { discard; }
+  if (outside(input.uv, tile.clip)) { discard; }
   var t = input.uv.y;
   if (imagery.config.y == 1.0) { t = input.mercatorT; }
   var angle = 0.0;
@@ -60,7 +54,7 @@ fn outsideImage(uv: vec2f, rectangle: vec4f) -> bool {
       t = (angle - imagery.mercator.z) * imagery.mercator.w;
     }
   }
-  if (outsideImage(vec2f(input.uv.x, t), imagery.rectangle)) { discard; }
+  if (outside(vec2f(input.uv.x, t), imagery.rectangle)) { discard; }
   var uv = vec2f(input.uv.x, t) * imagery.mapping.zw + imagery.mapping.xy;
   if (imagery.config.y == 2.0) {
     // Polar terrain does not have a native Mercator attribute. Reproject its
@@ -287,6 +281,7 @@ class WebGPUGlobeRenderer {
       indexFormat: indices instanceof Uint32Array ? "uint32" : "uint16",
       indexCount: indices.length,
       indexCountWithoutSkirts: mesh.indexCountWithoutSkirts,
+      isDestroyed: () => destroyed,
       destroy: () => {
         if (!destroyed) {
           destroyed = true;
@@ -445,7 +440,7 @@ class WebGPUGlobeRenderer {
       const offset = (i * this._uniformStride) / 4;
       const matrix = computeRelativeViewProjection(
         scene.camera,
-        tile.data.mesh.center,
+        tile.data.renderedMesh.center,
         this._matrix,
       );
       for (let j = 0; j < 16; ++j) {
@@ -478,7 +473,8 @@ class WebGPUGlobeRenderer {
         : this._pipelineNoCull,
     );
     for (let i = 0; i < count; ++i) {
-      const gpu = this._draws[i].tile.data.gpu;
+      const data = this._draws[i].tile.data;
+      const gpu = data.gpu ?? data.fill?.vertexArray;
       pass.setBindGroup(0, this._tileBindings, [i * this._uniformStride]);
       pass.setVertexBuffer(0, gpu.vertex);
       pass.setIndexBuffer(gpu.index, gpu.indexFormat);
@@ -548,7 +544,7 @@ class WebGPUGlobeRenderer {
         provider.tilingScheme.projection instanceof WebMercatorProjection;
       const mode = mercator
         ? association.useWebMercatorT
-          ? tile.data.mesh.encoding.hasWebMercatorT
+          ? tile.data.renderedMesh.encoding.hasWebMercatorT
             ? 1
             : 3
           : 2
@@ -641,7 +637,7 @@ class WebGPUGlobeRenderer {
         texture.bindingBuffer = this._imageUniformBuffer;
         texture.bindingSampler = sampler;
       }
-      const gpu = tile.data.gpu;
+      const gpu = tile.data.gpu ?? tile.data.fill?.vertexArray;
       pass.setBindGroup(0, this._tileBindings, [drawIndex * stride]);
       pass.setBindGroup(1, texture.bindings, [i * stride]);
       pass.setVertexBuffer(0, gpu.vertex);

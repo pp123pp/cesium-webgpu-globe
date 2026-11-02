@@ -1,0 +1,183 @@
+// Native quadtree, bounds, terrain encoding and ray tests; GPU ownership alone
+// is a CPU fixture. No Provider data or quadtree selection rule is replaced.
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import {
+  BoundingSphere, Cartesian2, Cartesian3, Ellipsoid, Event, GeographicProjection,
+  Ray, Rectangle,
+} from "@cesium/core";
+import GeographicTilingScheme from "../../packages/engine/Source/Core/GeographicTilingScheme.js";
+import HeightmapTerrainData from "../../packages/engine/Source/Core/HeightmapTerrainData.js";
+import TaskProcessor from "../../packages/engine/Source/Core/TaskProcessor.js";
+import TerrainEncoding from "../../packages/engine/Source/Core/TerrainEncoding.js";
+import Camera from "../../packages/engine/Source/Scene/Camera.js";
+import FrameState from "../../packages/engine/Source/Scene/FrameState.js";
+import ImageryLayerCollection from "../../packages/engine/Source/Scene/ImageryLayerCollection.js";
+import QuadtreePrimitive from "../../packages/engine/Source/Scene/QuadtreePrimitive.js";
+import QuadtreeTile from "../../packages/engine/Source/Scene/QuadtreeTile.js";
+import QuadtreeTileLoadState from "../../packages/engine/Source/Scene/QuadtreeTileLoadState.js";
+import SceneMode from "../../packages/engine/Source/Scene/SceneMode.js";
+import TerrainState from "../../packages/engine/Source/Scene/TerrainState.js";
+import WebGPUGlobeTileProvider from "../../packages/engine/Source/Scene/WebGPUGlobeTileProvider.js";
+
+function fixture(t) {
+  const scheme = new GeographicTilingScheme();
+  const terrain = {
+    tilingScheme: scheme,
+    errorEvent: new Event(),
+    requestTileGeometry: () => undefined,
+    getTileDataAvailable: () => true,
+    getLevelMaximumGeometricError: (level) => level < 2 ? 100000 : 1,
+  };
+  const draws = [];
+  const destroyed = [];
+  const adapter = new WebGPUGlobeTileProvider({
+    globe: { terrainProvider: terrain, imageryLayers: new ImageryLayerCollection(),
+      _surfaceShaderSet: {}, vectorProvider: {} },
+    renderer: { addTile: (tile, rectangle) => draws.push({ tile, rectangle }) },
+  });
+  const surface = new QuadtreePrimitive({ tileProvider: adapter });
+  const context = { drawingBufferWidth: 1280, drawingBufferHeight: 720 };
+  const scene = { ...context, mode: SceneMode.SCENE3D, scene3DOnly: true,
+    mapProjection: new GeographicProjection(), ellipsoid: Ellipsoid.WGS84 };
+  const camera = new Camera(scene);
+  camera.setView({ destination: Cartesian3.fromDegrees(-67.5, 22.5, 10000),
+    orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 } });
+  camera.update(SceneMode.SCENE3D);
+  const frame = new FrameState(context, { addCreditToNextFrame() {} });
+  Object.assign(frame, { camera, mapProjection: scene.mapProjection, frameNumber: 1,
+    pixelRatio: 1, verticalExaggeration: 1, verticalExaggerationRelativeHeight: 0,
+    globeTranslucencyState: { translucent: false },
+    cullingVolume: camera.frustum.computeCullingVolume(camera.positionWC, camera.directionWC, camera.upWC) });
+  frame.fog.enabled = false;
+  frame.passes.render = true;
+  // Create the actual native roots/traversal scratch before installing fixtures.
+  surface.render(frame);
+  const root = surface._levelZeroTiles.find((tile) => tile.x === 0);
+  function ready(tile, height = 1000) {
+    const data = adapter._ensureTile(tile);
+    data.terrainData = new HeightmapTerrainData({ buffer: new Float32Array(9).fill(height), width: 3, height: 3 });
+    data.mesh = data.terrainData._createMeshSync({ tilingScheme: scheme, x: tile.x, y: tile.y, level: tile.level });
+    data.terrainState = TerrainState.READY;
+    data.gpu = { destroy: () => destroyed.push(data) };
+    tile.state = QuadtreeTileLoadState.DONE;
+    tile.renderable = true;
+    return data;
+  }
+  // TerrainPicker's CPU intersection remains real; skip only its optional
+  // asynchronous acceleration-worker transport in this Node environment.
+  const schedule = TaskProcessor.prototype.scheduleTask;
+  TaskProcessor.prototype.scheduleTask = () => undefined;
+  t.after(() => { adapter.destroy(); TaskProcessor.prototype.scheduleTask = schedule; });
+  return { adapter, surface, terrain, scheme, root, ready, frame, draws, destroyed };
+}
+
+test("native selection retains a ready fine descendant beside pending siblings", (t) => {
+  const f = fixture(t);
+  f.ready(f.root, 7000);
+  const branch = f.root.northeastChild;
+  const fine = branch.southwestChild;
+  f.ready(fine, 5000);
+  f.surface.beginFrame(f.frame);
+  f.surface.render(f.frame);
+  assert.ok(f.draws.some(({ tile }) => tile === fine), "Pending siblings must not kick a ready fine mesh back to the coarse root");
+  assert.ok(f.draws.some(({ tile, rectangle }) => tile === f.root && !Rectangle.equals(tile.rectangle, rectangle)), "Unready siblings retain clipped real ancestor coverage");
+  assert.ok(f.surface._debug.tilesVisited < 30, "Known availability must not expand wholly unloaded branches");
+  assert.ok(f.surface._tileLoadQueueHigh.length + f.surface._tileLoadQueueMedium.length + f.surface._tileLoadQueueLow.length < 40);
+  assert.equal(branch.data.terrainState, TerrainState.UNLOADED);
+  assert.notEqual(branch.state, QuadtreeTileLoadState.DONE);
+  assert.ok(f.surface._tileReplacementQueue.count > 0);
+});
+
+test("fallback exposes a live ancestor mesh and loses it after ancestor release", (t) => {
+  const f = fixture(t);
+  const source = f.ready(f.root);
+  const child = f.root.northeastChild;
+  f.adapter.computeDistanceToTile(child, f.frame);
+  assert.equal(child.renderable, true);
+  assert.equal(child.data.renderedMesh, source.mesh);
+  assert.equal(child.data.mesh, undefined, "Fallback must not take mesh ownership");
+  source.freeResources();
+  f.adapter.computeDistanceToTile(child, f.frame);
+  assert.equal(child.renderable, false);
+  assert.equal(child.data.renderedMesh, undefined);
+  child.freeResources();
+  assert.equal(f.destroyed.length, 1);
+});
+
+test("fallback bounds retain the actual coarse geometry despite lower received child data", (t) => {
+  const f = fixture(t);
+  const source = f.ready(f.root.northeastChild, 9000);
+  const child = f.root.northeastChild.southwestChild;
+  const data = f.adapter._ensureTile(child);
+  data.terrainData = { _minimumHeight: -1000, _maximumHeight: 0 };
+  data.terrainState = TerrainState.RECEIVED;
+  f.adapter.computeDistanceToTile(child, f.frame);
+  const sphere = data.tileBoundingRegion.boundingSphere;
+  const ancestor = source.mesh.boundingSphere3D;
+  assert.ok(Cartesian3.distance(sphere.center, ancestor.center) + ancestor.radius <= sphere.radius + 1e-6,
+    "Culling and picking bounds must contain the GPU geometry, not only pending child data");
+  assert.notEqual(sphere, ancestor);
+  assert.equal(data.terrainData._maximumHeight, 0);
+  const own = f.ready(child, 3000);
+  f.adapter.computeDistanceToTile(child, f.frame);
+  assert.ok(BoundingSphere.equals(data.tileBoundingRegion.boundingSphere, own.mesh.boundingSphere3D));
+});
+
+test("fallback picking includes its clipped child and excludes neighboring rectangles", (t) => {
+  const f = fixture(t);
+  const tile = new QuadtreeTile({ tilingScheme: f.scheme, x: 15, y: 11, level: 5 });
+  const source = f.ready(tile, 3000);
+  const child = tile.northeastChild;
+  f.adapter.computeDistanceToTile(child, f.frame);
+  for (const [rectangle, inside] of [[child.rectangle, true], [tile.southwestChild.rectangle, false]]) {
+    const coordinate = Rectangle.center(rectangle);
+    const origin = Cartesian3.fromRadians(coordinate.longitude, coordinate.latitude, 100000);
+    const direction = Ellipsoid.WGS84.geodeticSurfaceNormal(origin);
+    Cartesian3.negate(direction, direction);
+    const ray = new Ray(origin, direction);
+    const actual = child.data.pick(ray, SceneMode.SCENE3D, f.frame.mapProjection, false);
+    if (inside) {
+      const expected = source.mesh.pick(ray, false, SceneMode.SCENE3D, f.frame.mapProjection);
+      assert.ok(actual && Cartesian3.distance(actual, expected) < 1e-6);
+    } else {
+      assert.equal(actual, undefined);
+    }
+  }
+});
+
+function overlappingTriangles(layers) {
+  const encoding = new TerrainEncoding(Cartesian3.ZERO);
+  const vertices = new Float32Array(encoding.stride * 3 * layers.length);
+  const indices = [];
+  for (const [index, { height, u }] of layers.entries()) {
+    for (const [j, position] of [new Cartesian3(0, 0, height), new Cartesian3(2, 0, height), new Cartesian3(0, 2, height)].entries()) {
+      const vertex = index * 3 + j;
+      encoding.encode(vertices, vertex * encoding.stride, position, new Cartesian2(u, 0.75), height);
+      indices.push(vertex);
+    }
+  }
+  return { encoding, vertices, indices: Uint16Array.from(indices) };
+}
+
+test("clipped picking considers a farther valid triangle behind a nearer excluded one", (t) => {
+  const f = fixture(t);
+  const source = f.ready(f.root);
+  source.mesh = overlappingTriangles([{ height: 2, u: 0.25 }, { height: 1, u: 0.75 }]);
+  const child = f.root.northeastChild;
+  const data = f.adapter._ensureTile(child);
+  const point = data.pick(new Ray(new Cartesian3(0.5, 0.5, 3), new Cartesian3(0, 0, -1)), SceneMode.SCENE3D, f.frame.mapProjection, true);
+  assert.ok(point && Cartesian3.distance(point, new Cartesian3(0.5, 0.5, 1)) < 1e-10);
+});
+
+test("clipped picking follows the same exact half-open UV boundary as terrain and imagery", (t) => {
+  const f = fixture(t);
+  const source = f.ready(f.root);
+  const data = f.adapter._ensureTile(f.root.northeastChild);
+  const ray = new Ray(new Cartesian3(0.5, 0.5, 3), new Cartesian3(0, 0, -1));
+  for (const [u, inside] of [[0.5 - 2e-6, false], [0.5 - 0.5e-6, false], [0.5, true], [0.5 + 2e-6, true]]) {
+    source.mesh = overlappingTriangles([{ height: 1, u }]);
+    const point = data.pick(ray, SceneMode.SCENE3D, f.frame.mapProjection, true);
+    assert.equal(point !== undefined, inside, `source U=${u}`);
+  }
+});

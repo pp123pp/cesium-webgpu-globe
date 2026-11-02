@@ -66,7 +66,7 @@ if (!viewer.isDestroyed()) {
 }
 ```
 
-Provider replacement cancels/releases the previous terrain generation and guards late completions. New root data must load; replacement itself does not promise a continuous picture across different datasets. In ordinary terrain LOD transitions, native parent imagery and terrain fallback preserve coverage while descendants load. Per-tile dataset credits are published for the source terrain actually drawn, including an ancestor fallback.
+Provider replacement cancels/releases the previous terrain generation and guards late completions. New root data must load; replacement itself does not promise a continuous picture across different datasets. In ordinary terrain LOD transitions, native parent imagery and connected `TerrainFillMesh` geometry preserve coverage while descendants load. Loaded parent terrain stays visible until a selected finer real mesh can anchor the neighboring fills. The adapter uses conservative current/ancestor/fill bounds during selection and releases temporary fill buffers when real terrain arrives. Per-tile dataset credits are published for the terrain providing coverage, including an ancestor fallback.
 
 The verified terrain paths are native ellipsoid terrain and CesiumTerrainProvider quantized-mesh terrain, including native skirts, quantization, availability/upsampling and GPU index width handling. CPU fixture coverage also exercises other mesh encodings; it is not a claim of rendered acceptance for every TerrainProvider implementation.
 

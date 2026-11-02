@@ -1,0 +1,39 @@
+✔ an entirely unloaded child subtree keeps its real parent mesh (12.144889ms)
+✔ native selection retains a ready fine descendant beside pending siblings (7.964571ms)
+✖ previous fills do not survive as a disconnected all-fill selection after eviction (10.113556ms)
+✔ fill resources have independent ownership and are released exactly once (0.992116ms)
+✔ native fill matches a loaded near-ground neighbor edge within one centimetre (11.938874ms)
+✔ selection bounds retain current terrain and ancestors despite a lower previous fill (1.527417ms)
+✔ native fill picking includes its child and excludes neighboring rectangles (3.033593ms)
+✔ unavailable terrain can generate a fill before native upsampling supplies its own mesh (4.342598ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 7
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 57.29816
+
+✖ failing tests:
+
+test at coordination/ci/m1-terrain-fill.test.mjs:194:1
+✖ previous fills do not survive as a disconnected all-fill selection after eviction (10.113556ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(f.draws.some(({ tile }) => tile === f.root))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/3788b309ccca/cesium-webgpu-globe/coordination/ci/m1-terrain-fill.test.mjs:208:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

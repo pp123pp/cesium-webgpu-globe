@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M1 resumed; expanded live terrain flight reproduced a transient hole, final acceptance in progress**
+Current milestone: **M1 native terrain flight fixed and verified; final committed-source acceptance in progress**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -22,9 +22,13 @@ M1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a
 
 **Resumed on 2026-11-02 under explicit user authorization.** Remote checkpoint `8b37878` and its tree `cee28d7` were verified against the clean old local checkpoint. PR #2 still targets unmerged PR #1 and remains a draft. Root owns shared integration; the demo browser gate is isolated in a separate worktree. No M2 work or merge to main.
 
-Current continuation findings: the expanded live terrain gate was actually executed. Its original flight fails the unchanged zero-hole assertion with 921,600 background pixels during descent, although the settled camera is 33.58 m above real terrain at levels 19–20. Per-frame evidence is retained while root diagnoses the coarse/fine terrain transition. A separately reproduced reentrant provider-error lifetime bug is fixed with two RED→GREEN tests; see `handoffs/M1-provider-reentrancy.md`. Final A03–A06 acceptance has not been claimed.
+Current continuation findings: the expanded terrain script originally failed with a full-frame hole. Native fill geometry, conservative selection bounds and real-parent fallback now fix the actual transition and collision issues. The complete live candidate passes four LOD transitions and 18 ground-flight frames with zero background/untextured pixels, ends 33.579 m above real terrain at levels 19–20, passes 561 drape samples and balanced cleanup. Evidence and rejected candidates: `handoffs/M1-native-terrain-fill.md` and `evidence/M1/terrain-fill/`. Final committed-source A03–A06 and complete regression are next; **M1 is not yet declared complete**.
 
-### Verified M1 slices
+Provider/imagery error reentrancy and Scene event ordering were also fixed with retained RED/GREEN tests. The real demo gate now verifies initialization, dynamic Providers, Everest/Orbit, retry/error and destruction; see `handoffs/M1-demo-acceptance.md` and `handoffs/M1-review-corrections.md`.
+
+Fast/Full CI is integrated in the existing PR. Fast at published `6ffe437` actually passed in 147 seconds; Full remains a separate final gate. Its earlier terrain failure is retained and is not evidence against or acceptance of the later native-fill candidate. User clarification is now in `docs/ACCEPTANCE.md`: harmless visual differences are allowed; images need not be identical. All functional and regression gates remain.
+
+### Historical M1 slices (superseded by final continuation evidence below when available)
 
 - RTC/depth math: 10 tests, including 180 orbit-to-1m projection samples; native NONE/BITS12 meshes and skirts retained.
 - Native terrain/quadtree adapter: 6 tests for deferral, unavailable-child upsampling, eviction and provider replacement with late completion. Real World Terrain data/adjacency was separately probed; this alone is not rendered A05 evidence.

@@ -160,6 +160,7 @@ function fixture(t) {
   // old roots. This deterministic dataset immediately supplies a new generation
   // after invalidation; it never submits a previously released fixture tile.
   surface.render = (frame) => {
+    adapter.beginUpdate(frame);
     surface._levelZeroTiles ??= regions.map(readyTile);
     surface._tilesToRender.length = 0;
     for (const tile of surface._levelZeroTiles) {
@@ -172,6 +173,7 @@ function fixture(t) {
         adapter.showTileThisFrame(tile, frame);
       }
     }
+    adapter.endUpdate(frame);
   };
   surface.endFrame = () => {};
   setView(scene.camera, regions[0]);

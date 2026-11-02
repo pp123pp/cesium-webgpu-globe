@@ -133,6 +133,30 @@ async function settle(f, tile, count = 4) {
   return complete;
 }
 
+test("native fill skipLoading reuses cached imagery without starting new requests", async (t) => {
+  const f = fixture(t);
+  let requests = 0;
+  f.addLayer(
+    imageProvider(() => {
+      ++requests;
+      return Promise.resolve(bitmap());
+    }),
+  );
+  const tile = f.tile();
+  assert.equal(f.imagery.updateTile(tile, frame, true), false);
+  await setImmediate();
+  assert.equal(requests, 0);
+  assert.equal(f.imagery.statistics.pendingRequests, 0);
+  assert.equal(await settle(f, tile), true);
+  const loadedRequests = requests;
+  const child = f.tile(0, 0, 1);
+  assert.equal(f.imagery.updateTile(child, frame, true), true);
+  assert.ok(
+    child.data.imagery.every((association) => association.readyImagery),
+  );
+  assert.equal(requests, loadedRequests);
+});
+
 test("deferred requests retry with native scheduling and produce one credited texture", async (t) => {
   const f = fixture(t);
   const image = bitmap();

@@ -13,6 +13,8 @@ M0.5 is accepted locally at published commit `7a689426af4b4b5f9c510d91e68ff45623
 - Preserve M0's triangle proof through explicit `globe: false`; the WebGPU Globe path exposes the supported native camera/globe APIs. WebGL remains the default. Unsupported features fail explicitly.
 - Real offline Natural Earth TMS supplies geographic imagery at levels 0–2. Native quantized fixtures provide parser/encoding/upsample coverage. A coherent real terrain service is probed before selecting A05 evidence; a single duplicated test tile cannot prove adjacent-LOD correctness.
 
+Visual acceptance does not require identical WebGL/WebGPU images. Record and accept differences that do not materially affect rendering or use, following `docs/ACCEPTANCE.md`; retain all functional and regression gates.
+
 ## Ordered slices and gates
 
 1. **M1.1 — source audit, WGS84/precision foundation (A03).** Root owns new `WebGPUScene`, `WebGPUGlobeTileProvider`, `WebGPUGlobeRenderer` and the small Viewer/widget/context integration. Independent owner may implement only `WebGPUGlobeMath` and its numerical tests in a separate worktree. Output: real WGS84 terrain meshes, native camera/frustum/navigation, horizon and reversed depth. Tests: numerical RED/GREEN cases, native CPU mesh decoding, browser orbital silhouettes/rotations, zero WebGL contexts, original M0 proof and WebGL smoke.
@@ -32,4 +34,4 @@ Each slice ends in a small reviewable commit with commands/results, residual ris
 - [ ] M1.3 / A05 accepted.
 - [ ] M1.4 / A06 and WebGL regression accepted; evidence and dependent PR published.
 
-**User pause checkpoint:** A03/A06 ellipsoid navigation and the live A05 terrain/drape subset have actual passing browser evidence. The current terrain script additionally contains an unexecuted near-ground flight; the demo is unverified in the browser and final full regression remains pending. All work is saved for continuation; see `coordination/handoffs/M1-pause-checkpoint.md`. Do not continue automatically after the pause or start M2.
+**Continuation:** the historical user pause checkpoint remains in `coordination/handoffs/M1-pause-checkpoint.md`. Work resumed under explicit authorization. The complete live terrain candidate, including the added near-ground flight, now passes after native fill/selection/bounds fixes; the demo and callback lifetimes also have real verification. Final committed-source acceptance and full regression are still required. No M2 work or main merge.
