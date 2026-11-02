@@ -31,6 +31,14 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 - V1.0 = M0–M5 gates; **A19 is not a blocker for V1.0**.
 - Performance is observational until test GPU/resolution agreed; capture baseline data and regression trends.
 
+## Verification scope and cadence
+
+Follow the user's 2026-11-02 risk-based testing policy in [`AGENTS.md`](../AGENTS.md#risk-based-testing-and-verification). Ordinary subtasks use the smallest checks that cover the changed behavior and its effects. Documentation-only updates use content/diff checks and do not reopen completed milestone acceptance.
+
+Keep the required numerical, functional and view-based checks for the active task. In particular, M2.1 verifies its math/depth foundation at high orbit, low orbit and ground; A07–A10 remain final M2 acceptance. Full regression is required when the active milestone acceptance or CI gate specifies it, not after every individual edit or ordinary task handoff. Exact final-HEAD requirements cannot be satisfied with an older passing result.
+
+Automatic workflow selection remains governed by [`CI.md`](CI.md#trigger-policy); this policy does not disable an automatically selected or required gate. Historical acceptance evidence and known-issue decisions below remain unchanged.
+
 ## Visual acceptance policy
 
 **Pixel-identical images are not required.** This applies to subsequent milestone acceptance as well as M1, following the user's explicit clarification on 2026-11-02. Assess correct rendering and normal use at comparable camera positions, provider data, viewport sizes and scene settings. WebGL and WebGPU may differ in rasterization, antialiasing, color rounding and transient provider/LOD timing without failing acceptance.
@@ -42,7 +50,7 @@ The following remain required:
 - Correct WGS84 coordinates, horizon, terrain coverage and imagery placement, with usable navigation from orbit to the ground.
 - No significant terrain holes, visible tile seams, obvious coordinate jitter, serious depth errors, incorrect collision heights, unhandled provider failures or resource/lifecycle regressions.
 - Actual browser runs and evidence for A03–A06. A visual exception cannot substitute for running terrain, imagery, navigation or lifecycle acceptance.
-- Full non-WebGL and WebGL regression on the final HEAD before merge, including the existing comparison against the pinned WebGL baseline. Report inherited baseline failures separately; do not claim that every upstream test passed. An accepted visual difference does not automatically waive a newly failing functional test.
+- For final milestone implementation acceptance, full non-WebGL and WebGL regression on the required final HEAD before merge, including the existing comparison against the pinned WebGL baseline. This final acceptance requirement does not mandate repeated full suites for ordinary subtasks or reopen acceptance for an isolated documentation update. Report inherited baseline failures separately; do not claim that every upstream test passed. An accepted visual difference does not automatically waive a newly failing functional test.
 
 Exact pixel checks may remain useful diagnostics. If one reports a harmless difference, qualify that specific comparison with evidence instead of requiring identical images. Future work must use this policy when deciding visual acceptance.
 
