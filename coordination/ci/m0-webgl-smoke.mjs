@@ -84,7 +84,7 @@ try {
     globalThis.__m0Viewer = viewer;
     return response;
   });
-  assert.equal(result.cesiumVersion, "1.146");
+  assert.equal(result.cesiumVersion, "1.146.0");
   assert.ok(result.webglVersion?.includes("WebGL"), "WebGL was not initialized");
   assert.ok(result.canvasWidth > 0 && result.canvasHeight > 0);
   assert.equal(result.sceneMode, 3, "WebGL Viewer should start in 3D");
