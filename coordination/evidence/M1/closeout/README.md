@@ -51,3 +51,7 @@ The closeout commit changes only records/evidence. Under `docs/CI.md`, its final
 Original navigation failures remain unchanged in `../final-navigation-issue/`; previous attempted terrain corrections and controls remain in `../terrain-fill/`. The original failed run stops before drape/cleanup and does not prove those checks passed. The new complete local report does execute them.
 
 The navigation classifier does not waive ordinary coverage/LOD, imagery, settled-frame holes, below-ground endpoints, insufficient LOD, incomplete flight, browser/provider errors, drape controls, timeouts or resource leaks. The broad visual policy allows harmless differences only and does not supply a general exception for functional failures.
+
+## Post-acceptance evidence archive (2026-11-02)
+
+The original complete local and hosted capture is retained in [GitHub Actions artifact `historical-evidence-41437576266-1`](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41437576266) through 2027-01-31 and forever in Git history at `676061f40cd2a885b58963bea833f551c4feb90c`. To avoid committing duplicate imagery and large local raw outputs, the current tree was trimmed **after** archival. The existing `local/manifest.json` and `hosted/manifest.json` intentionally remain authentic inventories of the **original full captured set**, not of the smaller checkout. See [archive path map](../ARCHIVE_MAP.md). This changes no test conclusion and does not resolve `M1-NAV-001`.

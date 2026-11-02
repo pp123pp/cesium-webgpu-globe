@@ -17,3 +17,7 @@ See `../../../handoffs/M1-native-terrain-fill.md` for the correction and actual 
 Screenshots are actual browser output. Historical failed comparisons are preserved. Pixel-identical images are not required by `docs/ACCEPTANCE.md`; no terrain test is omitted on that basis.
 
 `m1-fill-ci-policy.txt` retains an environment-only sandbox `spawnSync EPERM` failure. The subsequent committed-source focused run used the authorized execution environment and passed all 153 checks, including the same 28 policy tests; see the final acceptance records. Raw transcript whitespace is preserved intentionally.
+
+## Archived historical captures (2026-11-02)
+
+A full snapshot was uploaded to [Actions run 41437576266](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41437576266) before the evidence-size cleanup. Large pixel-identical screenshot copies and verbose raw historical error dumps have been removed from the *current checkout*; see [the exact file map](../ARCHIVE_MAP.md). Original copies remain at [pre-trim Git commit `676061f`](https://github.com/pp123pp/cesium-webgpu-globe/tree/676061f40cd2a885b58963bea833f551c4feb90c/coordination/evidence/M1/terrain-fill). Accepted and rejected results are otherwise unchanged.
