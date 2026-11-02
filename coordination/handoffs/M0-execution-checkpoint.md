@@ -3,16 +3,18 @@
 Date: 2026-11-02
 Checkpoint type: task close / handoff before M0.4 implementation.
 
+**Historical checkpoint, superseded by `M0.4-webgpu-proof.md`.** The unit-test PASS statements in the original checkpoint were not supported: job 125088335375 failed to start Chrome, and gulp suppressed its exit code. Build and WebGL smoke did pass. The first verified non-WebGL unit baseline is run 41389237203: 10,353 passed / 5,537 skipped. Keep this record for chronology; use current STATUS for task state.
+
 ## State at close
 - M0.1 COMPLETE.
-- M0.2 COMPLETE: official baseline CI run 41386475484 passed all steps.
+- M0.2 had passed build and WebGL smoke; its unit-test evidence was corrected during M0.4 (see note above).
 - M0.3 COMPLETE: source pipeline audit recorded.
 - M0.4 NOT STARTED: branch prepared; no WebGPU implementation or Cesium renderer integration changes have been made.
 - M0.5 NOT STARTED.
 
 ## Verified WebGL baseline
 - CesiumJS 1.146.0, Node v22.23.4.
-- npm install, `npm run build`, Chromium installation, WebGL Viewer smoke, and upstream non-WebGL tests all passed.
+- npm install, `npm run build`, Chromium installation and WebGL Viewer smoke passed. Non-WebGL tests did not start in that run.
 - Smoke: WebGL 2.0, 1280x720, SceneMode 3D, Globe present, contextLost=false.
 - CI: https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41386475484
 

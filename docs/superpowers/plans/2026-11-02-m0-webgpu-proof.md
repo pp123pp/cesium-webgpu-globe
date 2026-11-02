@@ -41,10 +41,10 @@ The proof draws the nearer RGB triangle before a farther magenta triangle coveri
 
 **Interfaces:** A Chrome wrapper launches the Playwright-installed Chromium with the headless CI flags; existing npm test commands receive `--failTaskOnError` so browser/test failures return nonzero.
 
-- [ ] Verify historical job 125088335375: WebGL smoke passed, Karma browser failed to start, and the gulp default suppressed the exit code.
-- [ ] Add the narrow CI browser wrapper and propagate failures in the workflow, including the M0.4 branch/PR trigger.
-- [ ] Build and run the original WebGL smoke plus upstream non-WebGL tests; retain actual results without relabeling failures as success.
-- [ ] Commit the validation fix separately.
+- [x] Verify historical job 125088335375: WebGL smoke passed, Karma browser failed to start, and the gulp default suppressed the exit code.
+- [x] Add the narrow CI browser wrapper and propagate failures in the workflow, including the M0.4 branch/PR trigger.
+- [x] Build and run the original WebGL smoke plus upstream non-WebGL tests; retain actual results without relabeling failures as success.
+- [x] Commit the validation fix separately.
 
 ## Task 2: Add and integrate the minimal WebGPU proof
 
@@ -52,11 +52,11 @@ The proof draws the nearer RGB triangle before a farther magenta triangle coveri
 
 **Interfaces:** WebGPUContext exposes async initialization, `render`, `resize`, `destroy`, and an error event. WebGPUWidget owns the DOM/render loop and forwards failures. Viewer forwards the narrow public surface documented above. Tests use the real built Viewer and real browser GPU, with API failure injection only for exceptional acquisition branches.
 
-- [ ] Write a browser assertion that a WebGPU Viewer acquires only a WebGPU context, has the same Viewer identity, exposes readiness, and draws depth-tested pixels. Run it against the baseline and observe the missing-selection failure.
-- [ ] Implement device/canvas initialization, one isolated WGSL pipeline and the lifecycle guards.
-- [ ] Test resize, hidden-to-visible layout, manual/default rendering, loss, validation error and destruction during startup; assert resource disposal and no WebGL fallback.
-- [ ] Rebuild and rerun the unchanged WebGL smoke, the new WebGPU smoke and upstream tests with failure propagation.
-- [ ] Commit the implementation and tests after review.
+- [x] Write a browser assertion that a WebGPU Viewer acquires only a WebGPU context, has the same Viewer identity, exposes readiness, and draws depth-tested pixels. Run it against the baseline and observe the missing-selection failure.
+- [x] Implement device/canvas initialization, one isolated WGSL pipeline and the lifecycle guards.
+- [x] Test resize, hidden-to-visible layout, manual/default rendering, loss, validation error and destruction during startup; assert resource disposal and no WebGL fallback.
+- [x] Rebuild and rerun the unchanged WebGL smoke, the new WebGPU smoke and upstream tests with failure propagation.
+- [x] Commit the implementation and tests after review.
 
 ## Task 3: Review and hand off
 
@@ -64,7 +64,11 @@ The proof draws the nearer RGB triangle before a farther magenta triangle coveri
 
 **Interfaces:** Final handoff uses `coordination/HANDOFF_TEMPLATE.md`; current status must distinguish implementation, local verification, remote CI and pending M0.5.
 
-- [ ] Review the diff, run lint/format checks for changed code, and obtain one independent whole-change review.
-- [ ] Fix material findings with reproducing tests, then run the affected required gates.
-- [ ] Record commands/results, browser/adapter, screenshots, commits, residual limitations and the next M0.5 action.
-- [ ] Commit synchronized docs; keep main unchanged and do not mark M0.5 complete.
+- [x] Review the diff, run lint/format checks for changed code, and obtain one independent whole-change review.
+- [x] Fix material findings with reproducing tests, then run the affected required gates.
+- [x] Record commands/results, browser/adapter, screenshots, commits, residual limitations and the next M0.5 action.
+- [x] Commit synchronized docs; keep main unchanged and do not mark M0.5 complete.
+
+## Execution result
+
+M0.4 verified on commit `3798477` / CI run [41392263849](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41392263849): 9 lifecycle tests, 17 WebGPU browser checks, 10,353 non-WebGL tests and original WebGL smoke passed. Headed Chromium + Xvfb produced inspected, correct proof/demo screenshots. See `coordination/handoffs/M0.4-webgpu-proof.md` for diagnostics, API, exact commands and remaining M0.5 hardware/visual gate.

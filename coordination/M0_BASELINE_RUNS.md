@@ -18,3 +18,9 @@ Scope: **original imported CesiumJS 1.146.0, no engine/renderer edits**. Source 
 This build failure is **not** a WebGL regression from a WebGPU change: the WebGPU backend has not been started and no upstream runtime renderer source was modified. To unblock M0.2, try the minimal bundler-only change of treating the Node built-in `node:fs` (and counterpart `node:path`) as external for browser worker bundling. Keep this change isolated in `scripts/build-utilities.js`; do not change Cesium core or renderer behavior. Re-run the entire M0 baseline workflow, not just the failing build step.
 
 **Gate:** Until a real browser screenshot and tests pass, the WebGL baseline remains **BLOCKED / NOT VERIFIED**. Any subsequent failure must be appended with run ID and diagnostic; do not relabel M0 complete.
+
+## Subsequent verified baseline
+
+The build-only blocker above was resolved by the isolated worker externals fix. Run [41386475484](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41386475484) passed the build and original WebGL smoke, but its non-WebGL tests failed to launch Chrome; the gulp default incorrectly left the job green.
+
+The corrected launcher and `--failTaskOnError` produced the first verified non-WebGL baseline in run [41389237203](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41389237203): **10,353 passed, 5,537 skipped**. That run passed WebGL smoke and deliberately failed the new WebGPU assertion before implementation. Current M0.4 state and later results are recorded in `coordination/STATUS.md` and `coordination/handoffs/M0.4-webgpu-proof.md`.
