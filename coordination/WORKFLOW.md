@@ -41,10 +41,12 @@ A worktree branch can only be checked out in one worktree; check repository stat
 - Avoid subagent chains and nested delegation unless a specific Codex version supports them and resulting source ownership remains clear.
 
 ## Submission contract
-Every subtask response must contain: goal, owned files, commits/PR, tests actually executed with pass/fail, evidence/screenshot locations, residual risk, exact next action. Integration owner rejects untested 'done' claims.
+Every subtask response must contain: goal, owned files, commits/PR, verification actually executed with results, relevant evidence locations, residual risk, exact next action. Integration owner rejects unsupported 'done' claims. For documentation-only tasks, content and diff checks satisfy verification; do not manufacture runtime tests or screenshots.
+
+Follow the risk-based testing policy in `AGENTS.md`. The integration owner chooses and coordinates shared/full checks; workers run only their relevant focused checks and share applicable results. Do not let multiple agents repeat the same full suite or duplicate equivalent CI verification. Stop once the concrete change risks and applicable gates are covered.
 
 ## Quality checkpoints
-1. Code builds locally; validation errors are surfaced.
+1. Runtime/build changes receive the relevant build or validation checks; errors are surfaced. Documentation-only changes require content/diff review, not a build. Equivalent applicable CI results need not be repeated locally.
 2. Scope does not jump to future milestones.
 3. WebGL smoke must remain unaffected by WebGPU changes.
 4. Code touching common renderer files has single owner and is integrated only after review.
