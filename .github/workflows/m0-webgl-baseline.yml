@@ -79,6 +79,7 @@ jobs:
           node coordination/ci/m1-tile-provider.test.mjs
           node coordination/ci/m1-renderer-lifecycle.test.mjs
           node coordination/ci/m1-terrain-data.test.mjs
+          node coordination/ci/m1-terrain-edges.test.mjs
           node coordination/ci/m1-imagery-lifecycle.test.mjs
           node coordination/ci/m1-imagery-renderer.test.mjs
           node coordination/ci/m1-controller-roundoff.test.mjs
