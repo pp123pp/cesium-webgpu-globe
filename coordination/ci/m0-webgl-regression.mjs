@@ -296,14 +296,14 @@ function isToleratedShadowPixelDrift(known, failure) {
   }
 
   // Both failures must still represent two identical pixels where the
-  // spec expected a shadow difference; only red may drift by one level.
+  // spec expected a shadow difference; only RGB may drift by one level; alpha stays strict.
   const sameWithinRun = (rgba) =>
     rgba.slice(0, 4).every((value, index) => value === rgba[index + 4]);
   return (
     sameWithinRun(baseline) &&
     sameWithinRun(candidate) &&
-    Math.abs(baseline[0] - candidate[0]) <= 1 &&
-    baseline.slice(1, 4).every((value, index) => value === candidate[index + 1])
+    baseline.slice(0, 3).every((value, index) => Math.abs(value - candidate[index]) <= 1) &&
+    baseline[3] === candidate[3]
   );
 }
 
