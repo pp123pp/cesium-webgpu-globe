@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-02
-Current milestone: **M0 complete under the user's software-GPU acceptance waiver; M1 is next**
+Current milestone: **M1.1 in progress; M0.5 locally accepted under the explicit physical-GPU waiver**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -16,9 +16,9 @@ Import workflow result: SUCCESS; source presence verified.
 - M0.3: Viewer → CesiumWidget → Scene → Globe → QuadtreePrimitive → GlobeSurfaceTileProvider → Context pipeline audited; see `coordination/handoffs/M0.3-source-pipeline-audit.md`.
 - M0.4: Viewer selects an isolated WebGPU proof at construction while preserving Viewer identity. WebGPUContext/WebGPUWidget own device/canvas, WGSL color/depth drawing, sizing, errors/loss and disposal. The real-browser gate, standalone demo and screenshot inspection passed. Existing CesiumWidget, Scene, WebGL Context and Globe source remain unchanged.
 
-## Next task
+## Active task
 
-M1: read `tasks/M1.md`, REQUIREMENTS and ACCEPTANCE; audit and implement the WGS84/imagery/terrain slice on a separate branch/PR dependent on the accepted M0 integration branch. Do not enter M2. WebGL remains default; M0 itself is still a triangle/depth proof and makes no WebGPU Globe claim.
+M1.1 on independent branch `feat/m1-wgs84-globe`, based on published M0 commit `7a689426af4b4b5f9c510d91e68ff45623f20090`. PR #1 remains unmerged; the M1 PR will target `feat/m0-webgpu-backend`. The source/provider audit is complete and `coordination/M1-PLAN.md` defines the ordered A03–A06 slices. Root alone owns shared integration; independent numerical helper work uses its own worktree. No M2 work.
 
 ## M0.5 acceptance (2026-11-02)
 
