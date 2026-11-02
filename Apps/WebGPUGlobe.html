@@ -222,10 +222,7 @@
             const reason = String(error?.message ?? error);
             showError(
               new Error(
-                "Could not load Google satellite / Cesium World Terrain. " +
-                  "Enter an ion token with assets:read access to assets " +
-                  "3830182 and 1, then select Use token. " +
-                  reason,
+                `Could not load Google satellite / Cesium World Terrain. Enter an ion token with assets:read access to assets 3830182 and 1, then select Use token. ${reason}`,
               ),
             );
           }
