@@ -40,6 +40,7 @@ successful Fast and an actually executed Full on the specified latest PR head.
 | Visible WebGL comparison against independently built `724b5db`, including missing-Globe negative control | Yes     | Yes             |
 | M0 WebGPU proof and M1 real globe browser smoke                                                          | Yes     | Yes             |
 | M2.1 actual WGSL, high/low/ground depth, boundary rays and resource cleanup                              | Yes     | Yes             |
+| M2.2 physical scattering, real-depth aerial perspective, representative views and native resource cleanup | Yes | Yes |
 | Complete upstream non-WebGL suite with `--failTaskOnError`                                               | —       | Yes             |
 | Complete upstream WebGL differential against `724b5db`                                                   | —       | Yes             |
 | M1 imagery and navigation browser acceptance                                                             | —       | Yes             |
@@ -66,6 +67,23 @@ the real shared WGSL, reads native terrain depth and checks 35,786 km / 400 km /
 2 m cameras, off-axis rays, boundary contacts, sky, resize and resource cleanup.
 Its `Build/m2-foundation/` reports and screenshots are included in `m1-fast` and
 `m1-full-regression` artifacts; the historical workflow/artifact names remain.
+
+M2.2 adds the focused physical-model and composite-lifecycle files and the
+required `coordination/ci/m2-atmosphere-smoke.mjs` browser gate. Its eight
+aggregate checks execute production WGSL and read actual LUTs, depth and canvas
+pixels: transmittance/phase/shadow conventions, approximate multiple scattering,
+parameter invalidation, 2 m / 400 km / 35,786 km views, day/night/terminator and
+time changes, atmosphere-boundary continuity, mountainous real-depth aerial
+perspective, resize and every native buffer/texture release. Reports and captures
+are uploaded from `Build/m2-atmosphere/` in both existing artifacts. The mountain
+fixture uses a documented fixed subpixel geometric bound; M2.1 numerical depth
+assertions remain unchanged. See [M2.2 contract](WEBGPU_M2.2.md).
+
+M1-only fixtures explicitly disable atmosphere so their retained color and
+functional assertions continue to isolate M1. The M2.2 suite enables atmosphere,
+and the public live-demo gate exercises its enabled default, including device
+loss and early destruction. Final M2.2 acceptance still requires Fast and an
+executed Full on the same latest PR head; this is not M2.6 A07–A10 acceptance.
 
 No acceptance test or assertion is removed. Full preserves the
 upstream WebGL differential policy: identical inherited failures are recorded;

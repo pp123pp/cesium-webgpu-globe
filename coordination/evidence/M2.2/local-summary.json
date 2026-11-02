@@ -1,0 +1,391 @@
+{
+  "suite": "m2-atmosphere",
+  "capturedAt": "2026-11-02T14:29:20.851Z",
+  "status": "PASS",
+  "source": "183f4dc6b67f94f270d4b669820aa796bda59838",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M .github/workflows/m1-full-regression.yml\n M coordination/ci/m1-browser-harness.mjs\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M docs/CI.md\n M docs/WEBGPU_M2.1.md\n M packages/engine/Source/Renderer/WebGPUContext.js\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n?? coordination/M2.2-plan.md\n?? coordination/ci/m2-atmosphere-lifecycle.test.mjs\n?? docs/WEBGPU_M2.2.md\n?? packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n?? packages/engine/Source/Scene/WebGPUAtmosphereShader.js",
+  "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+  "browser": "156.0.8078.4",
+  "configuration": {
+    "mode": "software",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "/workspace/scratch/74d641ebe31c/pw-browsers/chromium-1248/chrome-linux64/chrome",
+      "args": [
+        "--enable-unsafe-webgpu",
+        "--use-angle=swiftshader",
+        "--enable-unsafe-swiftshader",
+        "--enable-features=Vulkan,VulkanFromANGLE",
+        "--use-vulkan=swiftshader",
+        "--use-webgpu-adapter=swiftshader",
+        "--disable-vulkan-surface"
+      ]
+    }
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "viewport": [
+      768,
+      432
+    ]
+  },
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "checks": [
+    "production WGSL compiles and actual transmittance/multiple-scattering LUT values are finite and physical",
+    "GPU zero-path identity, finite nonnegative scattering, path-length attenuation and increased-extinction response",
+    "GPU Rayleigh/Mie phase direction and real Earth solar occlusion distinguish day, terminator and deep night",
+    "multiple scattering and solar intensity affect GPU radiance; medium edits invalidate LUTs while view/time changes reuse them",
+    "actual ground/400 km/35,786 km and day/night/terminator screenshots; fixed camera visibly responds to +12 h scene time",
+    "finite continuous GPU radiance/transmittance across the actual outer atmosphere boundary",
+    "actual mountain depth, off-axis ray meters and clear sky drive correct linear aerial-perspective pixels; disabled atmosphere restores surface and no Sun disk is added",
+    "resize reacquires readable color/depth; destruction releases every actual GPU buffer/texture including LUTs, intermediate targets and probe readbacks"
+  ],
+  "browserErrors": [],
+  "setup": {
+    "settings": {
+      "show": true,
+      "rayleighScattering": [
+        5.802e-06,
+        1.3558e-05,
+        3.31e-05
+      ],
+      "mieScattering": 3.996e-06,
+      "mieExtinction": 4.44e-06,
+      "rayleighScaleHeight": 8000,
+      "mieScaleHeight": 1200,
+      "mieAnisotropy": 0.8,
+      "lightIntensity": 10,
+      "multipleScatteringStrength": 1
+    },
+    "shaderDiagnostics": [],
+    "buffers": [
+      192,
+      64
+    ],
+    "sceneColorFormat": "rgba8unorm",
+    "lutFormats": [
+      "rgba16float",
+      "rgba16float"
+    ]
+  },
+  "nativeResources": {
+    "created": 3678,
+    "destroyed": 3678,
+    "buffers": 3644,
+    "textures": 34,
+    "live": [],
+    "atmosphere": {
+      "frames": 313,
+      "lutBuilds": 5,
+      "buffersCreated": 2,
+      "buffersDestroyed": 2,
+      "texturesCreated": 2,
+      "texturesDestroyed": 2,
+      "maxFeedback": 0.33370226933715824
+    }
+  },
+  "verticalTransmittance": [
+    0.9497478604316711,
+    0.8927358984947205,
+    0.7638048529624939
+  ],
+  "timeChange": {
+    "beforeSun": [
+      0.9994703641024076,
+      0.03253340922813717,
+      -0.0007540324896109544
+    ],
+    "afterSun": [
+      -0.999487737062338,
+      -0.03189034162548988,
+      0.0026962145716176544
+    ],
+    "beforeBuilds": 5,
+    "afterBuilds": 5,
+    "beforePixel": [
+      106,
+      151,
+      205,
+      255
+    ],
+    "afterPixel": [
+      0,
+      0,
+      0,
+      255
+    ]
+  },
+  "boundary": [
+    {
+      "height": 99900,
+      "radiance": [
+        0.06739894300699234,
+        0.1578441709280014,
+        0.3771968185901642
+      ],
+      "transmittance": [
+        0.9154931306838989,
+        0.8234388828277588,
+        0.6304784417152405
+      ]
+    },
+    {
+      "height": 99999,
+      "radiance": [
+        0.06740077584981918,
+        0.15784816443920135,
+        0.3772040009498596
+      ],
+      "transmittance": [
+        0.9154908061027527,
+        0.8234342932701111,
+        0.6304700374603271
+      ]
+    },
+    {
+      "height": 100000,
+      "radiance": [
+        0.0674007385969162,
+        0.15784823894500732,
+        0.3772040903568268
+      ],
+      "transmittance": [
+        0.915490984916687,
+        0.8234341144561768,
+        0.6304699778556824
+      ]
+    },
+    {
+      "height": 100001,
+      "radiance": [
+        0.06740304827690125,
+        0.15785211324691772,
+        0.37721145153045654
+      ],
+      "transmittance": [
+        0.9154866933822632,
+        0.8234285116195679,
+        0.6304604411125183
+      ]
+    },
+    {
+      "height": 100100,
+      "radiance": [
+        0.06740477681159973,
+        0.15785640478134155,
+        0.3772203028202057
+      ],
+      "transmittance": [
+        0.915484607219696,
+        0.8234236240386963,
+        0.6304517984390259
+      ]
+    }
+  ],
+  "solar": [
+    {
+      "name": "day",
+      "earthOccludesSun": false,
+      "radiance": [
+        0.23898738622665405,
+        0.3035558760166168,
+        0.46122094988822937
+      ]
+    },
+    {
+      "name": "terminator",
+      "earthOccludesSun": false,
+      "radiance": [
+        0.0145233990624547,
+        0.01928946003317833,
+        0.021997885778546333
+      ]
+    },
+    {
+      "name": "night",
+      "earthOccludesSun": true,
+      "radiance": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "terrain": [
+    {
+      "pixel": [
+        480,
+        270
+      ],
+      "pickedDistance": 41320.93332574979,
+      "gpuDistance": 41318.9296875,
+      "pickedHeight": 5962.092557206988,
+      "rasterPickDistances": [
+        41329.279370524804,
+        41312.60461322006,
+        41329.28017128111,
+        41312.60542055879
+      ],
+      "displayed": [
+        76,
+        122,
+        174,
+        255
+      ],
+      "expectedComposite": [
+        76,
+        122,
+        174
+      ],
+      "disabledPixel": [
+        53,
+        95,
+        133,
+        255
+      ],
+      "depthUnchanged": true
+    },
+    {
+      "pixel": [
+        748,
+        297
+      ],
+      "pickedDistance": 40510.561196709015,
+      "gpuDistance": 40511.12890625,
+      "pickedHeight": 5736.431474263295,
+      "rasterPickDistances": [
+        40516.91513675518,
+        40501.951600346925,
+        40519.174502825896,
+        40504.20993678606
+      ],
+      "displayed": [
+        76,
+        122,
+        174,
+        255
+      ],
+      "expectedComposite": [
+        76,
+        122,
+        174
+      ],
+      "disabledPixel": [
+        53,
+        95,
+        133,
+        255
+      ],
+      "depthUnchanged": true
+    },
+    {
+      "pixel": [
+        240,
+        351
+      ],
+      "pickedDistance": 34709.49948492886,
+      "gpuDistance": 34709.38671875,
+      "pickedHeight": 5662.096451385686,
+      "rasterPickDistances": [
+        34715.45692895169,
+        34705.1781992389,
+        34713.82241947435,
+        34703.544290765385
+      ],
+      "displayed": [
+        75,
+        121,
+        173,
+        255
+      ],
+      "expectedComposite": [
+        75,
+        121,
+        173
+      ],
+      "disabledPixel": [
+        55,
+        97,
+        137,
+        255
+      ],
+      "depthUnchanged": true
+    }
+  ],
+  "resize": {
+    "replacedDepth": true,
+    "replacedColor": true,
+    "oldDepthDestroyed": true,
+    "oldColorDestroyed": true,
+    "depthSize": [
+      768,
+      432
+    ],
+    "colorSize": [
+      768,
+      432
+    ]
+  },
+  "scenes": [
+    {
+      "name": "ground-day",
+      "image": "ground-day.png"
+    },
+    {
+      "name": "ground-12h-later",
+      "image": "ground-12h-later.png"
+    },
+    {
+      "name": "ground-terminator",
+      "image": "ground-terminator.png"
+    },
+    {
+      "name": "ground-night",
+      "image": "ground-night.png"
+    },
+    {
+      "name": "low-orbit",
+      "image": "low-orbit.png"
+    },
+    {
+      "name": "low-orbit-atmosphere-disabled",
+      "image": "low-orbit-atmosphere-disabled.png"
+    },
+    {
+      "name": "high-orbit",
+      "image": "high-orbit.png"
+    },
+    {
+      "name": "high-orbit-terminator",
+      "image": "high-orbit-terminator.png"
+    },
+    {
+      "name": "mountain-atmosphere-disabled",
+      "image": "mountain-atmosphere-disabled.png"
+    },
+    {
+      "name": "mountain-aerial-perspective",
+      "image": "mountain-aerial-perspective.png"
+    }
+  ],
+  "runtimeSourcesSha256": {
+    "packages/engine/Source/Scene/WebGPUAtmosphereShader.js": "607c6dce04b080c4d012c2b1ab3a10645ef10408244327f8de91891322bef209",
+    "packages/engine/Source/Scene/WebGPUAtmosphereModel.js": "5eaddd6a164f91aa4445c7692f4770183f096d8e92d2fd40ea3ebd24ee8d6341",
+    "packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js": "8ade77e26814e68be68ae87462f1c5ae0d5bc12b92dbc796e3258841a565d50e",
+    "packages/engine/Source/Renderer/WebGPUContext.js": "296155e76146cff0569968cd120228fa43c32dd6150f564b36e78c98feef0841",
+    "packages/engine/Source/Scene/WebGPUScene.js": "89ab95d26d5f949c746f9ad03d4d6f44a6ca788691f493db7aa67daf27828091",
+    "packages/engine/Source/Scene/WebGPUGlobeRenderer.js": "c67247ab332e5788f6dc210c96c1f435e1c4c32c66a3a0953d18984458e325c2"
+  }
+}

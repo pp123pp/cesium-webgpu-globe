@@ -1,5 +1,11 @@
 # M2.1 — shared planet mathematics and depth
 
+**M2.2 continuation:** the historical foundation contract below remains in
+force. [Physical atmosphere](WEBGPU_M2.2.md) now consumes these helpers and
+readable depth, adds its own LUTs/uniforms and a separate color-composite pass.
+Its radial density height and spherical LUT approximation supplement the
+boundary error discussion below. M2.1's acceptance record is preserved.
+
 This is the foundation for task 1 in `tasks/M2.md`. It supplies coordinates,
 units, time-dependent solar direction, ray intervals, a CPU/WGSL frame interface
 and readable scene depth. It does not render atmosphere, a Sun disk, stars, the
