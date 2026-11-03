@@ -63,6 +63,47 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   await captureM1Scene(page, report, output, "night-sky-moon-stars", report.sky);
   report.checks.push("real WebGPU night sky displays the native-ephemeris Moon and procedural stars");
 
+  report.altitudes = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    const scene = viewer.scene;
+    const time = viewer.clock.currentTime;
+    const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(time);
+    const moonPosition = Cesium.Simon1994PlanetaryPositions.computeMoonPositionInEarthInertialFrame(time, new Cesium.Cartesian3());
+    const rotation = Cesium.CelestialFrameTransforms.computeIcrfToCentralBodyFixedMatrix(time, new Cesium.Matrix3());
+    Cesium.Matrix3.multiplyByVector(rotation, moonPosition, moonPosition);
+    const views = [];
+    for (const [name, height] of [["ground", 2], ["low-orbit", 400000], ["high-orbit", 35786000]]) {
+      const origin = Cesium.Cartesian3.multiplyByScalar(sun,
+        -(Cesium.Ellipsoid.WGS84.maximumRadius + height), new Cesium.Cartesian3());
+      const direction = Cesium.Cartesian3.normalize(
+        Cesium.Cartesian3.subtract(moonPosition, origin, new Cesium.Cartesian3()), new Cesium.Cartesian3());
+      let right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Z, new Cesium.Cartesian3());
+      if (Cesium.Cartesian3.magnitude(right) < 1e-5) { right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Y, right); }
+      Cesium.Cartesian3.normalize(right, right);
+      const up = Cesium.Cartesian3.normalize(Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()), new Cesium.Cartesian3());
+      viewer.camera.setView({ destination: origin, orientation: { direction, up } });
+      viewer.camera.update(Cesium.SceneMode.SCENE3D);
+      for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
+      await scene.context._device.queue.onSubmittedWorkDone();
+      const pixels = window.__m1.pixels();
+      const center = ((pixels.height >> 1) * pixels.width + (pixels.width >> 1)) * 4;
+      views.push({
+        name, height, center: Array.from(pixels.data.slice(center, center + 4)),
+        moonDistance: scene._planetState.moonDistance,
+        moonAngularRadius: scene._planetState.moonAngularRadius,
+        moonIllumination: scene._planetState.moonIllumination,
+      });
+    }
+    return views;
+  });
+  for (const view of report.altitudes) {
+    assert.ok(Math.max(...view.center.slice(0, 3)) > 35, `${view.name}: Moon remains visible in the real browser`);
+    assert.ok(view.moonDistance > 3.4e8 && view.moonDistance < 4.1e8);
+    assert.ok(view.moonAngularRadius > 0.0035 && view.moonAngularRadius < 0.0055);
+    await captureM1Scene(page, report, output, `moon-stars-${view.name}`, view);
+  }
+  report.checks.push("ground, low-orbit and high-orbit browser views preserve lunar visibility and angular size");
+
   report.translation = await page.evaluate(async () => {
     const { viewer } = window.__m1;
     const camera = viewer.camera;
