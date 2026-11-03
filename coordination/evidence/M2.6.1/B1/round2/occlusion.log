@@ -1,0 +1,8 @@
+M1 limb-1.5: 12 terrain tiles, 0 imagery draws
+M1 limb-0.4: 12 terrain tiles, 0 imagery draws
+M1 limb-0: 12 terrain tiles, 0 imagery draws
+M1 limb--0.4: 12 terrain tiles, 0 imagery draws
+M1 limb--1.5: 14 terrain tiles, 0 imagery draws
+M1 real-mountain-occluder: 76 terrain tiles, 0 imagery draws
+M1 mountain-removed: 24 terrain tiles, 0 imagery draws
+M1 m2-solar-occlusion PASS: actual partial/full Earth occultation and real terrain depth constrain Rays/Halo/Corona/Bloom together

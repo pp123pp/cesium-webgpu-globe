@@ -1,0 +1,22 @@
+{
+  "runtimeCommit": "274d9397300b09843d2e3b517a55ed634b94639c",
+  "unmodifiedCapturedFilesCopied": 487,
+  "comparisonPngHashesChecked": 199,
+  "staticPairs": 18,
+  "brokenRelativeLinks": 0,
+  "copyMethod": "Byte-exact source directory copy, excluding redundant APNG viewing derivative. Originals and lossless WebP retained.",
+  "review": "All eight ordered native-pixel contact sheets and key full canvases inspected; visual acceptance remains pending.",
+  "knownMotionReadinessExceptions": [
+    131,
+    132
+  ],
+  "consecutiveSegment": [
+    0,
+    119
+  ],
+  "limbSegment": [
+    120,
+    159
+  ],
+  "sceneTransitionUnsavedSetupFrames": 16
+}

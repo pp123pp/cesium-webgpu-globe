@@ -1,0 +1,208 @@
+{
+  "status": "PASS",
+  "preview": false,
+  "beforeCommit": "f92e2a3f769a3bf64a28626496a20142d27020d9",
+  "b1RuntimeCommit": "59f6089bfa63212f74a2913c6d11a6d13ec0a5d9",
+  "outputRoot": "D:\\github\\cesium-webgpu-globe\\Build\\B1-round2\\verified\\comparison",
+  "pairs": [
+    {
+      "id": "disc-low-1080-e0.5",
+      "identicalControls": true,
+      "before": "before/disc-low-1080-e0.5.png",
+      "after": "after/disc-low-1080-e0.5.png",
+      "beforeMetadata": "before/disc-low-1080-e0.5.json",
+      "afterMetadata": "after/disc-low-1080-e0.5.json",
+      "beforePngSha256": "9f44b4efb59109172ca521a334c88bb83a248d68a7d4d477b42006e64beb38a9",
+      "afterPngSha256": "9f44b4efb59109172ca521a334c88bb83a248d68a7d4d477b42006e64beb38a9",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "disc-zoom-1080-e0.5",
+      "identicalControls": true,
+      "before": "before/disc-zoom-1080-e0.5.png",
+      "after": "after/disc-zoom-1080-e0.5.png",
+      "beforeMetadata": "before/disc-zoom-1080-e0.5.json",
+      "afterMetadata": "after/disc-zoom-1080-e0.5.json",
+      "beforePngSha256": "dfa23f2481d70e3ceeb9be64ce2570b868d6e78377586ff791f36f3657e2ba0c",
+      "afterPngSha256": "dfa23f2481d70e3ceeb9be64ce2570b868d6e78377586ff791f36f3657e2ba0c",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "disc-low-1080-e1",
+      "identicalControls": true,
+      "before": "before/disc-low-1080-e1.png",
+      "after": "after/disc-low-1080-e1.png",
+      "beforeMetadata": "before/disc-low-1080-e1.json",
+      "afterMetadata": "after/disc-low-1080-e1.json",
+      "beforePngSha256": "b4b94d90cd5f807ac18c080151829738ed8f1a5c753fad5d84f1b11089875efa",
+      "afterPngSha256": "b4b94d90cd5f807ac18c080151829738ed8f1a5c753fad5d84f1b11089875efa",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "disc-zoom-1080-e1",
+      "identicalControls": true,
+      "before": "before/disc-zoom-1080-e1.png",
+      "after": "after/disc-zoom-1080-e1.png",
+      "beforeMetadata": "before/disc-zoom-1080-e1.json",
+      "afterMetadata": "after/disc-zoom-1080-e1.json",
+      "beforePngSha256": "22ea041ddb47975418029857d5db371712653ab2192478aa0bdf86052caf50ee",
+      "afterPngSha256": "22ea041ddb47975418029857d5db371712653ab2192478aa0bdf86052caf50ee",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "disc-low-1080-e2",
+      "identicalControls": true,
+      "before": "before/disc-low-1080-e2.png",
+      "after": "after/disc-low-1080-e2.png",
+      "beforeMetadata": "before/disc-low-1080-e2.json",
+      "afterMetadata": "after/disc-low-1080-e2.json",
+      "beforePngSha256": "69561c57984bc699065ecc49c89fb6408d6546514731f753b3fd7569fd78e60b",
+      "afterPngSha256": "69561c57984bc699065ecc49c89fb6408d6546514731f753b3fd7569fd78e60b",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "disc-zoom-1080-e2",
+      "identicalControls": true,
+      "before": "before/disc-zoom-1080-e2.png",
+      "after": "after/disc-zoom-1080-e2.png",
+      "beforeMetadata": "before/disc-zoom-1080-e2.json",
+      "afterMetadata": "after/disc-zoom-1080-e2.json",
+      "beforePngSha256": "eb7de399cf89db87dbcce4dbb70be836f136ed358c721657e90430f3f6203076",
+      "afterPngSha256": "eb7de399cf89db87dbcce4dbb70be836f136ed358c721657e90430f3f6203076",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "rays-low-1080-e1",
+      "identicalControls": true,
+      "before": "before/rays-low-1080-e1.png",
+      "after": "after/rays-low-1080-e1.png",
+      "beforeMetadata": "before/rays-low-1080-e1.json",
+      "afterMetadata": "after/rays-low-1080-e1.json",
+      "beforePngSha256": "f010ec0ce767560fa1c01e884c2771f09c8ce736cbba5c5ec3cdfbdfe67d7be6",
+      "afterPngSha256": "afae9538bb77e36c854fce98ee65b363c9cfa1f70e222bbefde7b09455e6837c",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-low-1080-e1",
+      "identicalControls": true,
+      "before": "before/combined-low-1080-e1.png",
+      "after": "after/combined-low-1080-e1.png",
+      "beforeMetadata": "before/combined-low-1080-e1.json",
+      "afterMetadata": "after/combined-low-1080-e1.json",
+      "beforePngSha256": "76d6b1f89bab459749c609e73a6019a253da22badb84442ea571539ba613c7f2",
+      "afterPngSha256": "78387b27df6b1533cb9f835ca487900d8e291fb4212d72115f15b68951f2163b",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "diagnostic-corona-off-1080-e1",
+      "identicalControls": true,
+      "before": "before/diagnostic-corona-off-1080-e1.png",
+      "after": "after/diagnostic-corona-off-1080-e1.png",
+      "beforeMetadata": "before/diagnostic-corona-off-1080-e1.json",
+      "afterMetadata": "after/diagnostic-corona-off-1080-e1.json",
+      "beforePngSha256": "4d667d1dddc68815004f5f3a9a25ba49bc319e2dd6d3d047b90940b0b5539048",
+      "afterPngSha256": "be442c855408816d59845227b6fa286b588c6ecda678b853e9e7c8c1957915f6",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "diagnostic-rays-off-1080-e1",
+      "identicalControls": true,
+      "before": "before/diagnostic-rays-off-1080-e1.png",
+      "after": "after/diagnostic-rays-off-1080-e1.png",
+      "beforeMetadata": "before/diagnostic-rays-off-1080-e1.json",
+      "afterMetadata": "after/diagnostic-rays-off-1080-e1.json",
+      "beforePngSha256": "3f2c55e4de0487679a4494a45055e0fac50832b93bde8e44fab4139caa3764a3",
+      "afterPngSha256": "3f2c55e4de0487679a4494a45055e0fac50832b93bde8e44fab4139caa3764a3",
+      "pixelFileIdentical": true
+    },
+    {
+      "id": "rays-low-720-e1",
+      "identicalControls": true,
+      "before": "before/rays-low-720-e1.png",
+      "after": "after/rays-low-720-e1.png",
+      "beforeMetadata": "before/rays-low-720-e1.json",
+      "afterMetadata": "after/rays-low-720-e1.json",
+      "beforePngSha256": "87657dc586254613f19f3c07accf7745f70cb79ecab344fa2a2db3438fb54f83",
+      "afterPngSha256": "7e6d867851bea057a7c9ef756683c4c7bbec7a0ecd92ead09f842e2e6b3418e7",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-low-1080-e0.5",
+      "identicalControls": true,
+      "before": "before/combined-low-1080-e0.5.png",
+      "after": "after/combined-low-1080-e0.5.png",
+      "beforeMetadata": "before/combined-low-1080-e0.5.json",
+      "afterMetadata": "after/combined-low-1080-e0.5.json",
+      "beforePngSha256": "c971acc133f4a2cc683fbaf6ffa6a5eca26a130ea28afe194b4b20ee167e0dbe",
+      "afterPngSha256": "801b44aac377a92c2c8b2379331f82f43bdf01af869ae27a3c0bb1159f029372",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-low-1080-e2",
+      "identicalControls": true,
+      "before": "before/combined-low-1080-e2.png",
+      "after": "after/combined-low-1080-e2.png",
+      "beforeMetadata": "before/combined-low-1080-e2.json",
+      "afterMetadata": "after/combined-low-1080-e2.json",
+      "beforePngSha256": "26efd85e1a9d2034f7f1cd40ccf0ee851603c2690cc5d35f9e39605d00937196",
+      "afterPngSha256": "61e15c4c29abf65d56a6b49bb16051ae1e0b367e344e5e3695dc3b479adcbca7",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-off-axis-1080-e1",
+      "identicalControls": true,
+      "before": "before/combined-off-axis-1080-e1.png",
+      "after": "after/combined-off-axis-1080-e1.png",
+      "beforeMetadata": "before/combined-off-axis-1080-e1.json",
+      "afterMetadata": "after/combined-off-axis-1080-e1.json",
+      "beforePngSha256": "56eef6784e569958f778e83ebad83845b6254fe3aae8a04e9ef811a83864cceb",
+      "afterPngSha256": "f3024d7330e889c82f76cb839edb7531439438f832f94a35df6317b35d149f3a",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-low-720-e1",
+      "identicalControls": true,
+      "before": "before/combined-low-720-e1.png",
+      "after": "after/combined-low-720-e1.png",
+      "beforeMetadata": "before/combined-low-720-e1.json",
+      "afterMetadata": "after/combined-low-720-e1.json",
+      "beforePngSha256": "fa332588ab07d415d3fe023f3865974283871e28507b929eb12f67a75995c965",
+      "afterPngSha256": "bf2f80aa02fd93c5e89103d6eecdcd0b34e8bca82dbde2c1d1ac83ce3dc3702d",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-high-1080-e1",
+      "identicalControls": true,
+      "before": "before/combined-high-1080-e1.png",
+      "after": "after/combined-high-1080-e1.png",
+      "beforeMetadata": "before/combined-high-1080-e1.json",
+      "afterMetadata": "after/combined-high-1080-e1.json",
+      "beforePngSha256": "0d039a9a163a89dd659e6363a8a27fe01fa86d4975851c1ee690fc7ddfcdc3d9",
+      "afterPngSha256": "05b1bafc610971b7bc5ebee67d02a8236387082b0d1f288d6f484982c4dbdee9",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-limb-1080-e1",
+      "identicalControls": true,
+      "before": "before/combined-limb-1080-e1.png",
+      "after": "after/combined-limb-1080-e1.png",
+      "beforeMetadata": "before/combined-limb-1080-e1.json",
+      "afterMetadata": "after/combined-limb-1080-e1.json",
+      "beforePngSha256": "8dbf587ac79f8940e119787a3344c3527fdcefa602332ce710cb67d9a80702cc",
+      "afterPngSha256": "ff0c7fe41fed2ac28db9ddceee404d858c8ed91e584bbdaea5b98cfb98961955",
+      "pixelFileIdentical": false
+    },
+    {
+      "id": "combined-normal60-1080-e1",
+      "identicalControls": true,
+      "before": "before/combined-normal60-1080-e1.png",
+      "after": "after/combined-normal60-1080-e1.png",
+      "beforeMetadata": "before/combined-normal60-1080-e1.json",
+      "afterMetadata": "after/combined-normal60-1080-e1.json",
+      "beforePngSha256": "224902f0bd0966100273c6e6f6aaf405402c9ed56c869e3932056ed35736ed92",
+      "afterPngSha256": "5b72a7bdb8f71761719323581ac6ad1bb166f02bc831f642cc8cd3864fa99dc8",
+      "pixelFileIdentical": false
+    }
+  ],
+  "limitation": "Automated evidence checks do not constitute visual acceptance. Disc pairs may be identical; B01 is allowed to remain unchanged. Rays-only retains the physical analytic disc."
+}

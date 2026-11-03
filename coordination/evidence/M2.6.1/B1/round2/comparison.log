@@ -1,0 +1,48 @@
+B1 round2 before: disc-low-1080-e0.5
+B1 round2 before: disc-zoom-1080-e0.5
+B1 round2 before: disc-low-1080-e1
+B1 round2 before: disc-zoom-1080-e1
+B1 round2 before: disc-low-1080-e2
+B1 round2 before: disc-zoom-1080-e2
+B1 round2 before: rays-low-1080-e1
+B1 round2 before: combined-low-1080-e1
+B1 round2 before: diagnostic-corona-off-1080-e1
+B1 round2 before: diagnostic-rays-off-1080-e1
+B1 round2 before: rays-low-720-e1
+B1 round2 before: combined-low-1080-e0.5
+B1 round2 before: combined-low-1080-e2
+B1 round2 before: combined-off-axis-1080-e1
+B1 round2 before: combined-low-720-e1
+B1 round2 before: combined-high-1080-e1
+B1 round2 before: combined-limb-1080-e1
+B1 round2 before: combined-normal60-1080-e1
+M1 m2-b1-round2-before PASS: complete independent state reset per image; exact before/after controls; previous B1 source replay; PNG and source provenance
+B1 round2 after: disc-low-1080-e0.5
+B1 round2 after: disc-zoom-1080-e0.5
+B1 round2 after: disc-low-1080-e1
+B1 round2 after: disc-zoom-1080-e1
+B1 round2 after: disc-low-1080-e2
+B1 round2 after: disc-zoom-1080-e2
+B1 round2 after: rays-low-1080-e1
+B1 round2 after: combined-low-1080-e1
+B1 round2 after: diagnostic-corona-off-1080-e1
+B1 round2 after: diagnostic-rays-off-1080-e1
+B1 round2 after: rays-low-720-e1
+B1 round2 after: combined-low-1080-e0.5
+B1 round2 after: combined-low-1080-e2
+B1 round2 after: combined-off-axis-1080-e1
+B1 round2 after: combined-low-720-e1
+B1 round2 after: combined-high-1080-e1
+B1 round2 after: combined-limb-1080-e1
+B1 round2 after: combined-normal60-1080-e1
+B1 round2 after: saved motion frame 0/159
+B1 round2 after: saved motion frame 20/159
+B1 round2 after: saved motion frame 40/159
+B1 round2 after: saved motion frame 60/159
+B1 round2 after: saved motion frame 80/159
+B1 round2 after: saved motion frame 100/159
+B1 round2 after: saved motion frame 120/159
+B1 round2 after: saved motion frame 140/159
+B1 round2 after: saved motion frame 159/159
+M1 m2-b1-round2-after PASS: complete independent state reset per image; exact before/after controls; previous B1 source replay; PNG and source provenance
+B1 round2 complete capture: D:\github\cesium-webgpu-globe\Build\B1-round2\verified\comparison
