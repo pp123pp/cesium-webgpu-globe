@@ -46,3 +46,14 @@ new atmosphere explicitly; its original 60-second wait, geometry/coverage and
 error assertions remain unchanged. The dedicated M2 and enabled-default live
 demo gates retain the atmosphere acceptance. See the handoff for the failed
 Fast run, artifact and verified archive digest.
+
+`demo-readiness.json` preserves the next head's two failed hosted Full runs and
+the focused software-GPU readiness diagnosis, including exact script/bundle
+identities for CPU-stress controls. The modified demo fixture retains its
+original shared 90-second Everest budget, native SSE/LOD and enabled atmosphere,
+then restores and verifies original-size output before the retained assertions.
+Diagnostic subsets are distinguished from the complete 14-check demo. This
+test budget does not claim to fix default full-resolution loading performance.
+The new hosted report records its actual budget and restoration state; failures
+also capture sanitized queue/tile/request diagnostics. Final-head Fast/Full
+remain separate required acceptance evidence in PR #8.

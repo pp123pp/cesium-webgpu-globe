@@ -56,6 +56,26 @@ merge is authorized. Stop after M2.2; M2.3 and later work require a new instruct
   atmosphere like the shared M1 fixtures. Its unchanged time/pixel/error bounds
   pass all 7 checks in the targeted rerun, including 4 camera views. M2's own
   atmosphere gate and the enabled-default live demo retain atmosphere coverage.
+- Head `a7839cf56edda42236433128768e1929e7e18231` passed
+  [Fast 41507084728](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41507084728),
+  including all 8 atmosphere checks and 3,670/3,670 native releases. Its
+  [Full 41507084724](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41507084724)
+  and one unchanged-head [retry 41511999042](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41511999042)
+  both passed preceding gates but failed the enabled-default demo's Everest
+  90-second readiness wait. They remain failed, not acceptance evidence.
+  Targeted CPU stress reproduced slow finite frame/mesh progress without
+  pending HTTP or renderer errors. The software-only fixture now keeps native
+  SSE/LOD constant while using the existing resolution scale during streaming,
+  then restores 1280×720 and verifies three actual frames, GPU completion and
+  identical tiles inside the same original 90-second budget. Atmosphere stays
+  enabled. This is a functional-test load budget, not a product loading-speed
+  fix; exact hosted timeout state was unavailable in the old reports. Failure
+  diagnostics now retain sanitized queue/request/tile state. See the handoff
+  and `demo-readiness.json` for controls and actual source identities.
+  The modified complete demo passed all 14 checks under four-CPU affinity:
+  43,851 ms shared Everest budget, identical 31 tiles at LOD 11/12 after
+  restoration, 769/769 buffers and 185/185 textures released, no unexpected
+  browser or provider errors. This targeted local result is not final-head CI.
 - This source snapshot does not certify a future or pending Actions run. Final
   acceptance requires successful Fast and an actually executed Full on the same
   latest PR head under [CI policy](../docs/CI.md). The PR body/checks provide the

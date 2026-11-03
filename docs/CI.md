@@ -85,6 +85,19 @@ resource equality includes both renderer owners (terrain and the initialized
 atmosphere uniforms); allocation caps and zero-resource teardown remain strict.
 The M2.2 suite enables atmosphere, and the public live-demo gate exercises its
 enabled default, including device loss and early destruction.
+For a classified software GPU, the live demo's Everest streaming phase uses the
+existing `resolutionScale=0.75` API after its original camera-arrival assertion.
+The CSS viewport stays 1280×720, so native terrain SSE remains
+`drawingBufferHeight / pixelRatio = 540 / 0.75 = 720`; terrain LOD is not lowered.
+Streaming, restoration to scale 1 / 1280×720, at least three actual restored
+rendered frames and GPU completion share the **original 90-second deadline**.
+The selected tile set must match before/after restoration, atmosphere remains
+enabled, and original mountain, imagery, attribution, navigation and native
+resource assertions still run. Physical GPU runs retain full resolution
+throughout. This controls software fragment work for functional acceptance;
+it does not certify the default full-resolution streaming performance or its
+resource peaks. Timeout reports include sanitized request/queue/tile state and
+a bounded screenshot attempt. See the [M2.2 diagnosis](../coordination/handoffs/M2.2-physical-atmosphere.md#enabled-default-demo-readiness-on-software-gpu).
 Final M2.2 acceptance still requires Fast and an
 executed Full on the same latest PR head; this is not M2.6 A07–A10 acceptance.
 

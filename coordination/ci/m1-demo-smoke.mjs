@@ -9,6 +9,7 @@ import path from "node:path";
 import process from "node:process";
 import { URL } from "node:url";
 import { runM1BrowserSuite } from "./m1-browser-harness.mjs";
+import { classifyGpu } from "./m0-browser-config.mjs";
 
 // The default gate includes real remote providers. The explicitly named local
 // subset is useful for diagnosis; it never certifies live terrain or imagery.
@@ -105,9 +106,9 @@ function observeDemo({ unavailable = false, holdAdapter = false } = {}) {
   });
 }
 
-async function settle(page) {
+async function settle(page, { timeout = 90000, minimumFrames = 0 } = {}) {
   await page.waitForFunction(
-    () => {
+    (minimumFrames) => {
       const state = window.__demo;
       if (!state?.ready || state.viewer.isDestroyed()) {
         return false;
@@ -129,11 +130,36 @@ async function settle(page) {
       state.stable =
         loaded && state.signature === signature ? state.stable + 1 : 0;
       state.signature = signature;
-      return state.stable >= 3;
+      return state.stable >= 3 && state.frames >= minimumFrames;
     },
-    undefined,
-    { timeout: 90000, polling: "raf" },
+    minimumFrames,
+    { timeout, polling: "raf" },
   );
+}
+
+async function terrainRenderState(page) {
+  return page.evaluate(() => {
+    const { viewer, frames, adapterInfo } = window.__demo;
+    const scene = viewer.scene;
+    return {
+      frames,
+      adapterInfo,
+      css: [viewer.canvas.clientWidth, viewer.canvas.clientHeight],
+      canvas: [viewer.canvas.width, viewer.canvas.height],
+      scale: viewer.resolutionScale,
+      pixelRatio: scene.pixelRatio,
+      sseHeight: scene.drawingBufferHeight / scene.pixelRatio,
+      atmosphereShown: scene.atmosphere.show,
+      lutBuilds: scene.debugStatistics.atmosphere.lutBuilds,
+      tiles: [
+        ...new Set(
+          scene._renderer._draws.map(
+            ({ tile }) => `${tile.level}/${tile.x}/${tile.y}`,
+          ),
+        ),
+      ].sort(),
+    };
+  });
 }
 
 async function snapshot(page, output, name) {
@@ -330,7 +356,19 @@ await runM1BrowserSuite(
       imageryTiles: 0,
       metadataAssets: [],
       failures: [],
+      httpErrors: [],
     };
+    const pendingRequests = new Map();
+    page.on("request", (request) => {
+      const url = new URL(request.url());
+      if (url.protocol === "http:" || url.protocol === "https:") {
+        pendingRequests.set(request, {
+          url: `${url.origin}${url.pathname}`,
+          startedAt: Date.now(),
+        });
+      }
+    });
+    page.on("requestfinished", (request) => pendingRequests.delete(request));
     report.consoleMessages = [];
     page.on("console", (message) => {
       if (["error", "warning"].includes(message.type())) {
@@ -338,6 +376,7 @@ await runM1BrowserSuite(
       }
     });
     page.on("requestfailed", (request) => {
+      pendingRequests.delete(request);
       const url = new URL(request.url());
       report.network.failures.push({
         url: `${url.origin}${url.pathname}`,
@@ -345,10 +384,16 @@ await runM1BrowserSuite(
       });
     });
     page.on("response", (response) => {
+      const url = new URL(response.url());
       if (!response.ok()) {
+        if (response.status() >= 400) {
+          report.network.httpErrors.push({
+            url: `${url.origin}${url.pathname}`,
+            status: response.status(),
+          });
+        }
         return;
       }
-      const url = new URL(response.url());
       if (url.pathname.endsWith(".terrain")) {
         ++report.network.terrainTiles;
       }
@@ -365,6 +410,93 @@ await runM1BrowserSuite(
       report.checks.push(message);
       console.log(`M1 demo: ${message}`);
     };
+    const captureReadinessFailure = async (target, error, options = {}) => {
+      if (report.readinessFailure) {
+        return;
+      }
+      const state = await target
+        .evaluate(() => {
+          const state = window.__demo;
+          const viewer = state?.viewer;
+          const destroyed = viewer?.isDestroyed();
+          const scene = destroyed ? undefined : viewer?.scene;
+          const surface = scene?.globe?._surface;
+          const queues = surface
+            ? [
+                surface._tileLoadQueueHigh,
+                surface._tileLoadQueueMedium,
+                surface._tileLoadQueueLow,
+              ]
+            : [];
+          return {
+            ready: state?.ready,
+            destroyed,
+            frames: state?.frames,
+            stable: state?.stable,
+            hardwareConcurrency: navigator.hardwareConcurrency,
+            useDefaultRenderLoop: scene && viewer.useDefaultRenderLoop,
+            canvas: scene && [viewer.canvas.width, viewer.canvas.height],
+            pixelRatio: scene?.pixelRatio,
+            tilesLoaded: scene?.globe.tilesLoaded,
+            statistics: scene?.debugStatistics,
+            queues: queues.map((queue) => queue.length),
+            queueSamples: queues.map((queue) =>
+              queue.slice(0, 12).map((tile) => ({
+                id: `${tile.level}/${tile.x}/${tile.y}`,
+                state: tile.state,
+                renderable: tile.renderable,
+                terrainState: tile.data?.terrainState,
+                mesh: !!tile.data?.mesh,
+                imagery: tile.data?.imagery?.slice(0, 4).map((imagery) => ({
+                  ready: imagery.readyImagery?.state,
+                  loading: imagery.loadingImagery?.state,
+                })),
+              })),
+            ),
+            requests: Cesium.RequestScheduler.statistics,
+            renderErrors: state?.errors,
+            providerErrors: state?.providerErrors,
+          };
+        })
+        .catch((captureError) => ({ captureError: redact(String(captureError)) }));
+      state.renderErrors = state.renderErrors?.map(redact);
+      state.providerErrors = state.providerErrors?.map((error) => ({
+        ...error,
+        message: redact(error.message),
+      }));
+      report.readinessFailure = {
+        ...state,
+        error: redact(String(error)),
+        timeoutMs: options.timeout ?? 90000,
+        minimumFrames: options.minimumFrames ?? 0,
+        phase: report.terrainLoadBudget?.phase ?? "scene",
+        pendingRequests:
+          target === page
+            ? [...pendingRequests.values()].map((request) => ({
+                url: request.url,
+                ageMs: Date.now() - request.startedAt,
+              }))
+            : undefined,
+      };
+      await target
+        .screenshot({
+          path: path.join(output, "readiness-failure.png"),
+          timeout: 5000,
+        })
+        .catch((screenshotError) => {
+          report.readinessFailure.screenshotError = redact(
+            String(screenshotError),
+          );
+        });
+    };
+    const waitForScene = async (target, options) => {
+      try {
+        await settle(target, options);
+      } catch (error) {
+        await captureReadinessFailure(target, error, options);
+        throw error;
+      }
+    };
     const url = new URL("Apps/WebGPUGlobe.html", base).href;
     const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
     const html = await readFile("Apps/WebGPUGlobe.html");
@@ -378,7 +510,7 @@ await runM1BrowserSuite(
     const initialMetadata = await holdProviderMetadata(page);
     await page.goto(url, { waitUntil: "commit" });
     await initialMetadata.ready;
-    await settle(page);
+    await waitForScene(page);
     report.scenes.push(await snapshot(page, output, "natural-earth"));
     assert.equal(report.scenes[0].viewerIdentity, true);
     assert.equal(report.scenes[0].backend, "webgpu");
@@ -470,7 +602,7 @@ await runM1BrowserSuite(
       undefined,
       { timeout: 45000 },
     );
-    await settle(page);
+    await waitForScene(page);
     report.scenes.push(await snapshot(page, output, "orbit-button"));
     check("Orbit button completes the actual native camera flight");
 
@@ -528,7 +660,7 @@ await runM1BrowserSuite(
       {},
       async (testPage, errors, metadata) => {
         await metadata.ready;
-        await settle(testPage);
+        await waitForScene(testPage);
         await testPage.evaluate(() =>
           window.__demo.viewer._webgpuProof._context._device.destroy(),
         );
@@ -579,7 +711,7 @@ await runM1BrowserSuite(
       {},
       async (testPage, errors, metadata) => {
         await metadata.ready;
-        await settle(testPage);
+        await waitForScene(testPage);
         const before = await testPage.locator("#status").textContent();
         report.pendingProviders = await lifecycle(testPage);
         report.pendingProviders.browserErrors = errors;
@@ -733,7 +865,83 @@ await runM1BrowserSuite(
         undefined,
         { timeout: 45000 },
       );
-      await settle(page);
+      const readinessStart = Date.now();
+      const deadline = readinessStart + 90000;
+      const remaining = () => {
+        const milliseconds = deadline - Date.now();
+        assert.ok(
+          milliseconds > 0,
+          "Everest shared 90-second readiness budget exhausted",
+        );
+        return milliseconds;
+      };
+      const before = await terrainRenderState(page);
+      const software = classifyGpu(before.adapterInfo).kind === "software";
+      report.terrainLoadBudget = {
+        applied: software,
+        budgetMs: 90000,
+        before,
+        phase: "streaming",
+      };
+      try {
+        if (software) {
+          // Keep the CSS viewport and native SSE budget: 540 / 0.75 = 720.
+          // This bounds software fragment work during streaming. Restore the
+          // original targets and verify actual rendered frames in the SAME
+          // 90-second budget before the original full-resolution assertions.
+          await page.evaluate(() => {
+            window.__demo.viewer.resolutionScale = 0.75;
+          });
+        }
+        await waitForScene(page, { timeout: remaining() });
+        if (software) {
+          const reduced = await terrainRenderState(page);
+          report.terrainLoadBudget.reduced = reduced;
+          assert.deepEqual(reduced.css, before.css);
+          assert.equal(reduced.sseHeight, before.sseHeight);
+          assert.equal(reduced.atmosphereShown, true);
+          report.terrainLoadBudget.phase = "restored frames";
+          const minimumFrames = await page.evaluate(() => {
+            const state = window.__demo;
+            state.viewer.resolutionScale = 1;
+            state.stable = 0;
+            state.signature = undefined;
+            return state.frames + 3;
+          });
+          await waitForScene(page, { timeout: remaining(), minimumFrames });
+          report.terrainLoadBudget.phase = "GPU completion";
+          await page.evaluate(() => {
+            const state = window.__demo;
+            state.restoredGpuDone = false;
+            state.viewer._webgpuProof._context._device.queue
+              .onSubmittedWorkDone()
+              .then(() => {
+                state.restoredGpuDone = true;
+              });
+          });
+          await page.waitForFunction(
+            () => window.__demo.restoredGpuDone,
+            undefined,
+            { timeout: remaining() },
+          );
+          const restored = await terrainRenderState(page);
+          report.terrainLoadBudget.restored = restored;
+          assert.deepEqual(restored.canvas, before.canvas);
+          assert.deepEqual(restored.canvas, [1280, 720]);
+          assert.equal(restored.scale, 1);
+          assert.equal(restored.sseHeight, before.sseHeight);
+          assert.equal(restored.atmosphereShown, true);
+          assert.ok(restored.frames >= minimumFrames);
+          assert.deepEqual(restored.tiles, reduced.tiles);
+          assert.equal(restored.lutBuilds, reduced.lutBuilds);
+        }
+        report.terrainLoadBudget.elapsedMs = Date.now() - readinessStart;
+        assert.ok(report.terrainLoadBudget.elapsedMs <= 90000);
+        report.terrainLoadBudget.phase = "complete";
+      } catch (error) {
+        await captureReadinessFailure(page, error);
+        throw error;
+      }
       report.scenes.push(await snapshot(page, output, "everest"));
       assert.ok(Math.abs(report.scenes.at(-1).camera.pitch + 45) < 0.01);
       report.liveTerrain = await page.evaluate(() => {
@@ -810,7 +1018,7 @@ await runM1BrowserSuite(
         undefined,
         { timeout: 45000 },
       );
-      await settle(page);
+      await waitForScene(page);
       report.scenes.push(await snapshot(page, output, "live-orbit"));
       const orbit = report.scenes.at(-1).camera;
       assert.ok(Math.abs(orbit.longitude - 20) < 0.001);
@@ -859,7 +1067,7 @@ await runM1BrowserSuite(
             [1, 3830182],
           );
           report.automaticProviders.metadataAssets = metadataAssets;
-          await settle(testPage);
+          await waitForScene(testPage);
           report.scenes.push(
             await snapshot(testPage, output, "automatic-google-orbit"),
           );
