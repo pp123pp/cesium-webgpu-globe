@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-03
-Current milestone: **M2.6 CLOSEOUT — A07–A10 local visual/functional acceptance passed on cf2c1d1; publication Fast/Full and WebGL differential are tracked below and in PR #18. No merge or M3 work authorized.**
+Current milestone: **M2.6 accepted and merged; M2.6.1 Solar Visual Polish is the next requirements-defined task. No M2.6.1 engine implementation has started.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -16,7 +16,7 @@ Import workflow result: SUCCESS; source presence verified.
 - PR [#10](https://github.com/pp123pp/cesium-webgpu-globe/pull/10) merged the public Moon / Stars / moonlight demo controls at `d52bdb43ce8c76f9e7f3b32c247200c974d6d9cb`. Its final head `482ce2b438c64070c996426276074ee91c5c415a` passed Fast [41585321728](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321728) and Full [41585321714](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321714).
 - PR [#11](https://github.com/pp123pp/cesium-webgpu-globe/pull/11) merged native Cesium Timeline integration, configured default ion token usage and Pages stylesheet-path handling. Its head `b46f97ab29e8486bcd3715efc348b033d7734bf7` passed Fast [41588524382](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524382) and Full [41588524350](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524350). The main push Pages workflow [41588552188](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588552188) and Pages deployment [41588680662](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588680662) succeeded.
 - PR [#6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at `6788fbd174a1104688be34abbb40c8f9d305da7a`, with an obsolete base SHA from before the current M2 integration. It is a historical M1 regression-closeout proposal, not an active M2 dependency. Do not merge or close it without separately reviewing whether its changes are already superseded.
-- The user authorized M2.5 focused visual acceptance, STATUS updates and merging PR #14 only after acceptance/checks pass. Do not push directly to `main`. M2.6 and M3 implementation are not part of this task.
+- PR [#18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18) merged M2.6 into `main` at `cf4f56cebd7ee37f761bb6668770d78c5081533e`. Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356), executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341), and the separate WebGL differential passed with no new failures. M2.6 is accepted and merged; M2.6.1 is requirements-only at this checkpoint.
 
 ## Accepted milestones
 
@@ -45,16 +45,24 @@ The following known limitations remain recorded and are not silently waived by M
 - Local build, targeted lint, commit-hook types, focused lifecycle tests, hardware M2 space smoke and 17 M0 proof checks passed. The 20-frame capture has no browser errors and clean source identity. Original source `c11494b` passed Fast [41596565861](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565861) and executed Full [41596565848](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565848); those historical runs do not certify the later fix. Final PR CI must pass before the authorized merge.
 - NaturalEarth coarse imagery/seam, live terrain/navigation limitations and high-exposure calibration remain explicit. This is M2.5 acceptance only; M2.6 A07–A10, continuous-animation quality and complete WebGL differential are not claimed complete.
 
-## M2.6 closeout — 2026-11-03
+## M2.6 closeout — 2026-11-03 (accepted and merged)
 
 - Runtime/harness revision: `cf2c1d1bc4f368a02d126bab203ee32da5d4064c`, clean for all seven hardware browser suites. [Closeout evidence](evidence/M2.6/closeout/README.md) records the bundle, actual screenshots, raw reports and limitations. Earlier preliminary records below are historical.
 - Fixed post-blur Earth/terrain leakage, small-highlight loss during downsampling, pending-load destruction and failed-upload cleanup. Solar defaults now match the accepted visible rays/halo configuration. No WebGL implementation was changed.
 - A07–A10 local acceptance passed: partial/hidden Sun and actual mesh occlusion, coherent ground/orbital views, fixed-camera ground day/terminator/night, 120-frame moving-time/camera sunset, independent effect controls and exposure comparisons. UTC orbital filenames are not local-daytime assertions.
 - Build, targeted lint, commit-hook types and 7 focused unit tests passed. Production-WGSL Bloom, solar occlusion, Sun, atmosphere, visual/lifecycle, 404 and corrupt-payload browser suites passed on Intel Xe-LPG / Chromium 156. The main scene released 6,896/6,896 native buffers/textures; loss stops drawing and three explicit recreations succeed.
 - Corrected capability diagnosis: the adapter supports timestamp queries; the old device had not requested them. Benchmark-only GPU timestamps measure all-enabled render-pass sum mean 16.80 ms at 1920 x 1080, with approximately 0.27 ms Bloom increment. Performance remains observational; this is not a pre-M2.6 comparison or a resident-VRAM measurement.
-- Final publication Fast/Full and separate WebGL differential must be read from the closeout regression record and [PR #18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18). The old `67151df` Full selector succeeded but the regression job was **skipped**; it is not passing Full evidence.
-- WebGL differential now passed on runtime `cf2c1d1`: baseline/candidate each 3,811 pass, the same 11 inherited failures and 12,068 skipped. No new failures, changed signatures or tolerated pixel drift; raw suites still exit 1. The archived comparison and full raw evidence are in the closeout directory. Final publication CI is tracked by PR #18.
-- Existing `M1-NAV-001`, NaturalEarth detail/seams and exposure-2 low-Sun contrast tradeoffs remain. No merge, production deployment, M3 or multi-device performance claim is included.
+- Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356) and executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341) passed on publication HEAD `3bcaac3`. The separate WebGL differential passed on runtime `cf2c1d1`: baseline/candidate each 3,811 pass, the same 11 inherited failures and 12,068 skipped, with no new failures or changed signatures. Raw suites retain exit 1; the comparison runner passes.
+- PR #18 merged as `cf4f56cebd7ee37f761bb6668770d78c5081533e`. M2.6 A07–A10 is accepted and integrated into `main`. Existing `M1-NAV-001`, NaturalEarth detail/seams, exposure-2 low-Sun contrast, resident VRAM and multi-device / long-duration coverage limitations remain.
+
+## Next task — M2.6.1 Solar Visual Polish
+
+- Requirements are defined in [tasks/M2.6.1.md](../tasks/M2.6.1.md) and summarized in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md#m26.1-solar-visual-polish).
+- Scope is limited to refining the existing M2.6 Sun disk, radial rays, halo, corona, authored tint and linear-HDR Bloom presentation. The target is to reduce the decorative / regular golden starburst, improve multi-scale glow and corona detail, and preserve disk readability and black-space contrast.
+- This checkpoint changes planning and acceptance documentation only. No engine source, WGSL, GPU assets, demo runtime, build configuration or rendering pipeline is modified.
+- SVP-01–SVP-10 require matched baseline / polished captures, effect isolation, exposure and viewport comparisons, partial / full Earth and terrain occultation, a 120-frame temporal sequence, same-adapter GPU timestamps, and resource-lifecycle evidence.
+- Cinematic Lens Ghosts, Lens Dirt, Anamorphic Streaks, exaggerated Lens Flare, volumetric clouds and detailed star catalogs remain outside M2.6.1.
+- M2.6.1 implementation has not started. It requires a separate explicit development instruction and must not be inferred from this documentation update.
 
 ## Historical M2.6 implementation checkpoint — superseded by closeout
 
