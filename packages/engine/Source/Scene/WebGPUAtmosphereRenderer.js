@@ -84,7 +84,7 @@ class WebGPUAtmosphereRenderer {
           "Atmosphere initialization cancelled by destroy().",
         );
       }
-      this._planetBuffer = this._createBuffer(192, "M2 planet state");
+      this._planetBuffer = this._createBuffer(224, "M2 planet and Moon state");
       this._parametersBuffer = this._createBuffer(
         80,
         "M2 atmosphere and Sun parameters",
