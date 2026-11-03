@@ -42,7 +42,7 @@ fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   let grid = direction * 1800.0;
   let cell = floor(grid);
   let seed = spaceHash(cell);
-  if (seed < 0.9965) { return vec3f(0.0); }
+  if (planet.moon.z <= 0.0 || seed < 0.9965) { return vec3f(0.0); }
   let offset = vec3f(spaceHash(cell + vec3f(17.0, 3.0, 11.0)),
                     spaceHash(cell + vec3f(5.0, 29.0, 7.0)),
                     spaceHash(cell + vec3f(13.0, 19.0, 31.0)));
