@@ -177,26 +177,36 @@ class WebGPUAtmosphereRenderer {
       ++this.statistics.lutBuilds;
       this.statistics.maxFeedback = tables.maxFeedback;
     }
-    this._parametersValues.set([
-      ...parameters.rayleighScattering,
-      parameters.rayleighScaleHeight,
-      parameters.mieScattering,
-      parameters.mieExtinction,
-      parameters.mieScaleHeight,
-      parameters.mieAnisotropy,
-      parameters.lightIntensity,
-      parameters.multipleScatteringStrength,
-      state.planet.maximumRadius,
-      state.planet.atmosphereHeight,
-      this.context.drawingBufferWidth,
-      this.context.drawingBufferHeight,
-      parameters.show ? 1 : 0,
-      sun.show ? 1 : 0,
-      solar.angularRadius,
-      radiance,
-      solar.glowStrength,
-      solar.glowRadius,
-    ]);
+    // Keep the ABI fixed even during partial edits of a hidden medium. Its
+    // unused fields must never shift the visible Sun's viewport/parameter rows.
+    this._parametersValues.fill(0, 0, 12);
+    if (parameters.show) {
+      this._parametersValues.set([
+        ...parameters.rayleighScattering,
+        parameters.rayleighScaleHeight,
+        parameters.mieScattering,
+        parameters.mieExtinction,
+        parameters.mieScaleHeight,
+        parameters.mieAnisotropy,
+        parameters.lightIntensity,
+        parameters.multipleScatteringStrength,
+        state.planet.maximumRadius,
+        state.planet.atmosphereHeight,
+      ]);
+    }
+    this._parametersValues.set(
+      [
+        this.context.drawingBufferWidth,
+        this.context.drawingBufferHeight,
+        parameters.show ? 1 : 0,
+        sun.show ? 1 : 0,
+        solar.angularRadius,
+        radiance,
+        solar.glowStrength,
+        solar.glowRadius,
+      ],
+      12,
+    );
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
     this._sunShown = sun.show;

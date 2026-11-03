@@ -43,6 +43,10 @@ fn sunSourceVisibility() -> f32 {
                     dot(direction, planet.cameraUpWC.xyz)) / forward;
     let ndc = eye * planet.projection.xy - planet.projection.zw;
     let pixel = vec2f(ndc.x + 1.0, 1.0 - ndc.y) * 0.5 * atmosphere.viewport.xy - 0.5;
+    // A covered source sample cannot borrow visibility from a clear texel
+    // outside the disk. Without this conservative test a fully hidden small
+    // Sun can leave a detached halo along a subpixel mountain edge.
+    if (sunSkyAtPixel(vec2i(floor(pixel + 0.5))) == 0.0) { continue; }
     let base = vec2i(floor(pixel));
     let weight = fract(pixel);
     let upper = mix(sunSkyAtPixel(base), sunSkyAtPixel(base + vec2i(1, 0)), weight.x);

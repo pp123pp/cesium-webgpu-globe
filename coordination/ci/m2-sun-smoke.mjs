@@ -143,7 +143,26 @@ await runM1BrowserSuite("m2-sun", async ({ page, report, output }) => {
   assert.ok(areas[2] / areas[0] > 0.3 && areas[2] / areas[0] < 0.7, "central limb view contains about half a disk");
   assert.equal(areas[4], 0, "disk fully disappears behind Earth");
   assert.ok(report.limb[4].observation.maxDelta <= 2, "fully hidden Sun changes no actual canvas pixels");
-  report.checks.push("five WGS84 limb positions give a whole disk, progressive partial occultation and complete disappearance");
+  report.horizon = [];
+  for (const offset of [1.2, 0, -1.2]) {
+    const observation = await page.evaluate(async (offset) => {
+      const state = window.__m2Sun;
+      const radius = Cesium.Math.toDegrees(window.__m1.viewer.scene.sun.angularRadius);
+      state.setElevation(2, state.limbElevation(2) + offset * radius);
+      return state.observe();
+    }, offset);
+    report.horizon.push({ offset, observation });
+    assert.equal(observation.reference.mismatches, 0, `2 m horizon ${offset}: native WGS84 mask agrees`);
+    for (const sample of observation.samples) { assertComposite(sample, `ground horizon ${offset}`); }
+    if (offset === 0) {
+      await captureM1Scene(page, report, output, "ground-horizon-half-sun", { offset, observation });
+    }
+  }
+  const horizonAreas = report.horizon.map(({ observation }) => observation.mask.count);
+  assert.ok(horizonAreas[0] > 500 && horizonAreas[1] > horizonAreas[0] * 0.3 && horizonAreas[1] < horizonAreas[0] * 0.7,
+    "a camera only 2 m above Earth sees a whole and partially occulted disk without a center visibility switch");
+  assert.equal(horizonAreas[2], 0, "Sun disappears below the actual ground horizon");
+  report.checks.push("orbital limb and 2 m ground horizon give whole disks, progressive partial occultation and complete disappearance");
 
   report.terrain = {};
   report.terrain.view = await page.evaluate(() => {
@@ -194,7 +213,47 @@ await runM1BrowserSuite("m2-sun", async ({ page, report, output }) => {
   assert.equal(clearMountain.gpu[7], 0);
   assert.ok(clearMountain.gpu[0] > 0.9 && solarDelta(clearMountain)[0] > 0.8,
     "removing only the real elevated terrain restores the visible disk");
-  report.checks.push("real heightmap depth hides a Sun ray that misses analytic Earth; restoring terrain reveals the same ray");
+  // Regression for a real subpixel ridge: bilinear source-visibility alone
+  // borrowed sky outside the hidden disk and produced a 13/255 detached halo.
+  await page.setViewportSize({ width: 320, height: 180 });
+  report.terrain.haloView = await page.evaluate(() => {
+    const { viewer } = window.__m1;
+    const state = window.__m2Sun;
+    viewer.resize();
+    state.reset();
+    const view = state.prepareMountain(3500);
+    viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
+    return view;
+  });
+  report.terrain.haloSettled = await page.evaluate(() => window.__m1.settle());
+  report.terrain.haloPhases = await page.evaluate(async () => {
+    const state = window.__m2Sun;
+    const { viewer } = window.__m1;
+    const phases = [];
+    for (const offset of [-0.5, -0.25, 0, 0.25, 0.45]) {
+      const frustum = viewer.camera.frustum;
+      frustum.yOffset = offset * 2 * frustum.near * Math.tan(frustum.fovy / 2) / viewer.canvas.height;
+      viewer.scene.sun.glowStrength = 0;
+      const disk = await state.observe({ geometry: false });
+      viewer.scene.sun.glowStrength = 0.25;
+      const halo = await state.observe({ geometry: false });
+      phases.push({ offset, diskDelta: disk.maxDelta, haloDelta: halo.maxDelta, center: disk.samples[0] });
+    }
+    return phases;
+  });
+  const hiddenPhases = report.terrain.haloPhases.filter((phase) => phase.diskDelta === 0);
+  assert.ok(hiddenPhases.length > 0, "real mountain completely hides the disk in a resolved subpixel alignment");
+  for (const phase of hiddenPhases) {
+    assert.equal(phase.center.ellipsoid, null, "this halo regression needs actual mountain depth, not analytic Earth");
+    assert.ok(phase.center.gpu[7] > 0 && phase.center.pickedDistance > 0, "real terrain blocks the source");
+    assert.equal(phase.haloDelta, 0, "a fully hidden disk cannot borrow adjacent sky to produce a detached halo");
+  }
+  await page.setViewportSize({ width: 640, height: 360 });
+  await page.evaluate(() => {
+    window.__m1.viewer.resize();
+    window.__m1.viewer.terrainProvider = window.__m2Sun.originalTerrain;
+  });
+  report.checks.push("real heightmap depth hides a ray that misses Earth, restoring terrain reveals it, and fully hidden subpixel disks produce no detached halo");
 
   report.photometry = await page.evaluate(async () => {
     const state = window.__m2Sun;
@@ -238,6 +297,14 @@ await runM1BrowserSuite("m2-sun", async ({ page, report, output }) => {
       "changing irradiance visibly changes the unsaturated actual Sun");
   }
   assert.ok(report.photometry.zero.maxDelta <= 1, "zero shared irradiance contributes no solar pixels");
+  await page.evaluate(() => {
+    const state = window.__m2Sun;
+    state.reset();
+    window.__m1.viewer.scene.atmosphere.show = true;
+    window.__m1.viewer.scene.atmosphere.lightIntensity = 1;
+    state.setElevation(2, 5);
+  });
+  await captureM1Scene(page, report, output, "ground-low-sun-atmosphere", report.photometry.low);
   report.checks.push("actual atmosphere reddens and attenuates the disk; shared irradiance visibly scales it and zero removes it");
 
   report.controls = await page.evaluate(async () => {

@@ -150,7 +150,7 @@ export async function installSunProbe(page) {
       return state.project(direction).map(Math.floor);
     };
     state.centerPixel = () => state.project(state.nativeSun()).map(Math.floor);
-    state.prepareMountain = () => {
+    state.prepareMountain = (minimumHeight = 5500) => {
       const height = 20000;
       const direction = state.nativeSun();
       let low = state.limbElevation(height);
@@ -162,7 +162,7 @@ export async function installSunProbe(page) {
         const distance = -Cesium.Cartesian3.dot(origin, direction);
         closest = Cesium.Ray.getPoint(new Cesium.Ray(origin, direction), distance);
         const altitude = Cesium.Ellipsoid.WGS84.cartesianToCartographic(closest).height;
-        if (altitude < 3000) { low = middle; } else { high = middle; }
+        if (altitude < minimumHeight) { low = middle; } else { high = middle; }
       }
       const elevation = (low + high) / 2;
       state.setElevation(height, elevation);

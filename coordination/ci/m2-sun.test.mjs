@@ -33,6 +33,10 @@ test("Sun-only updates use the existing uniforms without creating medium resourc
   assert.equal(renderer.statistics.lutBuilds, 0);
   assert.equal(renderer.statistics.texturesCreated, 0);
   assert.equal(renderer._activePipeline, renderer._sunPipeline);
+  // A hidden, partially edited medium must not shift the visible Sun ABI.
+  atmosphere.rayleighScattering = [];
+  assert.equal(renderer.update(state, atmosphere, sun), true);
+  assert.deepEqual(Array.from(renderer._parametersValues.slice(12, 16)), [640, 360, 0, 1]);
   const before = writes.length;
   sun.show = false;
   assert.equal(renderer.update(state, atmosphere, sun), false);
