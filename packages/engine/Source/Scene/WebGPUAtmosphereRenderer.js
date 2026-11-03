@@ -8,6 +8,8 @@ import {
 } from "./WebGPUAtmosphereModel.js";
 
 const hiddenSun = createSunParameters({ show: false });
+const hiddenMoon = { show: false, moonlightIntensity: 0 };
+const hiddenStars = { show: false, intensity: 0 };
 
 // The LUTs contain nonnegative finite radiance/transmittance. Convert to IEEE
 // binary16 with rounding, including subnormals, without an optional GPU feature
@@ -41,6 +43,8 @@ class WebGPUAtmosphereRenderer {
     this.statistics = {
       frames: 0,
       sunFrames: 0,
+      moonFrames: 0,
+      starFrames: 0,
       lutBuilds: 0,
       buffersCreated: 0,
       buffersDestroyed: 0,
@@ -145,8 +149,8 @@ class WebGPUAtmosphereRenderer {
     return texture;
   }
 
-  update(state, parameters, sun = hiddenSun) {
-    if (this._destroyed || (!parameters.show && !sun.show)) {
+  update(state, parameters, sun = hiddenSun, moon = hiddenMoon, stars = hiddenStars) {
+    if (this._destroyed || (!parameters.show && !sun.show && !moon.show && !stars.show)) {
       return false;
     }
     // A hidden medium neither validates unused coefficients nor builds LUTs.
@@ -210,6 +214,8 @@ class WebGPUAtmosphereRenderer {
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
     this._sunShown = sun.show;
+    this._moonShown = moon.show;
+    this._starsShown = stars.show;
     this._device.queue.writeBuffer(this._planetBuffer, 0, state.uniformValues);
     this._device.queue.writeBuffer(
       this._parametersBuffer,
@@ -264,6 +270,12 @@ class WebGPUAtmosphereRenderer {
     }
     if (this._sunShown) {
       ++this.statistics.sunFrames;
+    }
+    if (this._moonShown) {
+      ++this.statistics.moonFrames;
+    }
+    if (this._starsShown) {
+      ++this.statistics.starFrames;
     }
   }
 
