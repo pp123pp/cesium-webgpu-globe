@@ -157,7 +157,7 @@ class WebGPUPlanetState {
     );
     values.set([ellipsoidC, atmosphereC, planet.atmosphereHeight, 0], 44);
     write(48, this.moonDirectionWC, this.moonAngularRadius);
-    values.set([this.moonIllumination, this.moonDistance, stars.show ? stars.intensity : 0, moon.moonlightIntensity], 52);
+    values.set([moon.show ? this.moonIllumination : 0, this.moonDistance, stars.show ? stars.intensity : 0, moon.show ? moon.moonlightIntensity : 0], 52);
     // Inverse ICRF-to-ECEF rotation is the transpose of the orthonormal
     // celestial matrix. Pack its three rows for a per-ray inertial star lookup.
     values.set([this._moonRotation[0], this._moonRotation[1], this._moonRotation[2], 0], 56);
