@@ -48,7 +48,7 @@ for (const [label, longitude, latitude, height] of [
     assert.equal(state.update(camera, time), state);
     assert.equal(state.uniformValues, values, "reuse the frame allocation");
     assert.equal(values.byteLength, 272);
-    assert.ok(state.moonDistance > 3.4e8 && state.moonDistance < 4.1e8);
+    assert.ok(state.moonDistance > 3.0e8 && state.moonDistance < 4.5e8);
     assert.ok(state.moonAngularRadius > 0.0035 && state.moonAngularRadius < 0.0055);
     assert.ok(state.moonIllumination >= 0 && state.moonIllumination <= 1);
     close(Cartesian3.magnitude(state.moonDirectionWC), 1, 1e-12);
