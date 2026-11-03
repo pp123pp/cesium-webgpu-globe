@@ -29,6 +29,25 @@ const energy = (row) => row[0] + row[1] + row[2];
 const near = (actual, expected, absolute, relative = 0) =>
   Math.abs(actual - expected) <= absolute + relative * Math.abs(expected);
 
+async function settleAtmosphereView(page, view) {
+  return page.evaluate(async (view) => {
+    const state = window.__m1;
+    const atmosphere = state.viewer.scene.atmosphere;
+    const show = atmosphere.show;
+    let settled;
+    // Loading is gated by terrain/imagery, not intermediate sky pixels. Keep
+    // full-resolution transport for the actual numerical/pixel assertions.
+    atmosphere.show = false;
+    try {
+      settled = await state.settle(view);
+    } finally {
+      atmosphere.show = show;
+    }
+    state.viewer.render();
+    return { ...settled, atmosphereDuringLoad: false };
+  }, view);
+}
+
 // Independent IEC sRGB transfer: the intermediate retains the M1 encoded
 // surface appearance, while scattering and attenuation compose in linear RGB.
 const decodeSrgb = (value) =>
@@ -252,7 +271,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
     ["high-orbit-terminator", locations.terminator, 35786000, -90, 0],
   ]) {
     const view = { ...location, height, pitch, heading, imagery: true };
-    const settled = await page.evaluate((view) => window.__m1.settle(view), view);
+    const settled = await settleAtmosphereView(page, view);
     const pixels = await page.evaluate(async (highOrbit) => {
       const fractions = highOrbit ? [[0.5, 0.5], [0.1, 0.1]] : [[0.5, 0.2], [0.5, 0.75]];
       return window.__m2Atmosphere.pixelSamples(fractions);
@@ -336,7 +355,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
     heading: 90,
     imagery: true,
   };
-  const mountainSettled = await page.evaluate((view) => window.__m1.settle(view), mountainView);
+  const mountainSettled = await settleAtmosphereView(page, mountainView);
   report.terrain = await page.evaluate(async () => {
     const state = window.__m2Atmosphere;
     const { viewer } = window.__m1;

@@ -34,6 +34,7 @@ fn spaceHash(p: vec3f) -> f32 {
 
 // Star positions are indexed only by the world-space ray, never camera position.
 fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
+  if (planet.moon.z <= 0.0) { return vec3f(0.0); }
   let observer = normalize((planet.cameraHigh.xyz + planet.cameraLow.xyz) * planet.inverseRadii.xyz);
   let earth = webgpuRayEllipsoid(direction, planet);
   if (earth.x >= 0.0 && earth.y > earth.x) { return vec3f(0.0); }
@@ -42,7 +43,7 @@ fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   let grid = normalize(vec3f(dot(planet.starRotation0.xyz, direction), dot(planet.starRotation1.xyz, direction), dot(planet.starRotation2.xyz, direction))) * 1800.0;
   let cell = floor(grid);
   let seed = spaceHash(cell);
-  if (planet.moon.z <= 0.0 || seed < 0.9965) { return vec3f(0.0); }
+  if (seed < 0.9965) { return vec3f(0.0); }
   let offset = vec3f(spaceHash(cell + vec3f(17.0, 3.0, 11.0)),
                     spaceHash(cell + vec3f(5.0, 29.0, 7.0)),
                     spaceHash(cell + vec3f(13.0, 19.0, 31.0)));
@@ -201,20 +202,24 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
       direct = atmosphereSunTransmittance(height, muSun);
     }
     let multiple = atmosphereMultipleScattering(height, muSun) * atmosphere.light.y;
-    let moonDirection = planet.moonDirectionWC.xyz;
-    let moonMu = max(dot(normal, moonDirection), 0.0);
-    let moonScaled = moonDirection * planet.inverseRadii.xyz;
-    let moonB = dot(scaledPosition, moonScaled);
-    let moonRound = 4.76837158203125e-7 * dot(abs(scaledPosition * moonScaled), vec3f(1.0));
-    let moonEarth = webgpuForwardInterval(dot(moonScaled, moonScaled), moonB, sampleC, moonRound);
-    var moonDirect = 0.0;
-    if (!(moonEarth.x >= 0.0 && moonEarth.y > moonEarth.x)) {
-      moonDirect = planet.moon.w * moonMu * planet.moon.x;
+    var moonScattering = vec3f(0.0);
+    if (planet.moon.x > 0.0 && planet.moon.w > 0.0) {
+      let moonDirection = planet.moonDirectionWC.xyz;
+      let moonMu = max(dot(normal, moonDirection), 0.0);
+      let moonScaled = moonDirection * planet.inverseRadii.xyz;
+      let moonB = dot(scaledPosition, moonScaled);
+      let moonRound = 4.76837158203125e-7 * dot(abs(scaledPosition * moonScaled), vec3f(1.0));
+      let moonEarth = webgpuForwardInterval(dot(moonScaled, moonScaled), moonB, sampleC, moonRound);
+      var moonDirect = 0.0;
+      if (!(moonEarth.x >= 0.0 && moonEarth.y > moonEarth.x)) {
+        moonDirect = planet.moon.w * moonMu * planet.moon.x;
+      }
+      let moonPhaseRayleigh = atmosphereRayleighPhase(dot(direction, moonDirection));
+      let moonPhaseMie = atmosphereMiePhase(dot(direction, moonDirection));
+      moonScattering = moonDirect * (rayleigh * moonPhaseRayleigh + vec3f(mie * moonPhaseMie));
     }
-    let moonPhaseRayleigh = atmosphereRayleighPhase(dot(direction, moonDirection));
-    let moonPhaseMie = atmosphereMiePhase(dot(direction, moonDirection));
     let source = atmosphere.light.x * (direct * (rayleigh * phaseRayleigh + vec3f(mie * phaseMie)) +
-      scattering * multiple + moonDirect * (rayleigh * moonPhaseRayleigh + vec3f(mie * moonPhaseMie)));
+      scattering * multiple + moonScattering);
     result.radiance += result.transmittance * source * step * phi;
     result.transmittance *= segmentT;
   }
