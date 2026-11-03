@@ -16,8 +16,8 @@
       "colorSpace": "linear scalar coverage",
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
-      "alphaMax": 235,
-      "alphaNonZeroCoverage": 0.2380828857421875,
+      "alphaMax": 84,
+      "alphaNonZeroCoverage": 0.21509170532226562,
       "byteLength": 262144
     },
     {
@@ -35,8 +35,8 @@
       "colorSpace": "linear scalar coverage",
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
-      "alphaMax": 235,
-      "alphaNonZeroCoverage": 0.273193359375,
+      "alphaMax": 30,
+      "alphaNonZeroCoverage": 0.19586563110351562,
       "byteLength": 262144
     },
     {
@@ -54,8 +54,8 @@
       "colorSpace": "linear scalar coverage",
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
-      "alphaMax": 235,
-      "alphaNonZeroCoverage": 0.22313308715820312,
+      "alphaMax": 49,
+      "alphaNonZeroCoverage": 0.20174407958984375,
       "byteLength": 262144
     },
     {
