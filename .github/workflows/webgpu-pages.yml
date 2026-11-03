@@ -61,9 +61,11 @@ jobs:
           cp Apps/WebGPUGlobe.html Apps/WebGPUProof.html site/Apps/
           cp Apps/WebGPUIndex.html site/index.html
           rsync -a Build/Cesium/ site/Build/Cesium/
-          sed -i 's#../Build/CesiumUnminified/Cesium.js#../Build/Cesium/Cesium.js#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUProof.html
+          sed -i 's#../Build/CesiumUnminified/#../Build/Cesium/#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUProof.html
           grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUGlobe.html
           grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUProof.html
+          test -s site/Build/Cesium/Widgets/Timeline/Timeline.css
+          grep -q '../Build/Cesium/Widgets/Timeline/Timeline.css' site/Apps/WebGPUGlobe.html
           touch site/.nojekyll
           printf '%s\n' "$GITHUB_SHA" > site/source-commit.txt
           if find site -type l -print -quit | grep -q .; then
