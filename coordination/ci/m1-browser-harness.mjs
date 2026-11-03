@@ -42,6 +42,7 @@ export async function runM1BrowserSuite(name, run) {
   );
   const report = {
     suite: name,
+    browserConsole: [],
     capturedAt: new Date().toISOString(),
     configuration,
     source: execFileSync("git", ["rev-parse", "HEAD"], {
@@ -69,6 +70,11 @@ export async function runM1BrowserSuite(name, run) {
       deviceScaleFactor: 1,
     });
     page.on("pageerror", (error) => report.browserErrors.push(String(error)));
+    page.on("console", (message) => {
+      if (message.type() === "error" || message.type() === "warning") {
+        report.browserConsole.push({ type: message.type(), text: message.text() });
+      }
+    });
     await page.goto(new URL("Specs/e2e/cesium.html", base).href);
     await page.addScriptTag({
       url: new URL("Build/CesiumUnminified/Cesium.js", base).href,

@@ -27,6 +27,7 @@ import WebGPUAtmosphereRenderer from "./WebGPUAtmosphereRenderer.js";
 import { createAtmosphereParameters } from "./WebGPUAtmosphereModel.js";
 import { createSunParameters } from "./WebGPUSun.js";
 import { createMoonParameters, createStarParameters } from "./WebGPUSpace.js";
+import { DEFAULT_EXPOSURE, validateExposure } from "./WebGPUColorPipeline.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -127,6 +128,7 @@ class WebGPUScene {
     this.cameraUnderground = false;
     this.globeHeight = undefined;
     this.backgroundColor = Color.clone(Color.BLACK);
+    this.exposure = validateExposure(options.exposure ?? DEFAULT_EXPOSURE);
     this.clock = options.clock ?? new Clock();
     this.tweens = new TweenCollection();
     this.preUpdate = new Event();

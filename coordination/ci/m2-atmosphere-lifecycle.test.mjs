@@ -73,6 +73,7 @@ test("resize and failure release the atmosphere color attachment with scene dept
   context.render(() => {}, undefined, () => {});
   const color = context.sceneColorTexture;
   assert.ok(color, "composition allocates a readable color attachment");
+  assert.equal(color.descriptor.format, "rgba16float", "scene composition retains linear HDR precision");
   assert.equal(color.descriptor.usage & 4, 4);
   const depth = context.sceneDepthTexture;
   context.resize(640, 480);

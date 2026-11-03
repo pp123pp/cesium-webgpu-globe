@@ -83,6 +83,34 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.ok(report.sky.moonAngularRadius > 0.0035 && report.sky.moonAngularRadius < 0.0055);
   assert.ok(report.sky.moonIllumination > 0.8, "full-Moon date produces a mostly illuminated lunar disk");
   assert.ok(report.sky.starPixels.length >= 8, "actual canvas contains resolved procedural stars");
+  report.exposure = await page.evaluate(async () => {
+    const { viewer, pixels } = window.__m1;
+    const scene = viewer.scene;
+    const measurements = [];
+    for (const exposure of [0.5, 1.0, 2.0]) {
+      scene.exposure = exposure;
+      for (let i = 0; i < 2; ++i) {
+        await new Promise(requestAnimationFrame);
+        viewer.render();
+      }
+      await scene.context._device.queue.onSubmittedWorkDone();
+      const frame = pixels();
+      let sum = 0;
+      for (let i = 0; i < frame.data.length; i += 4) {
+        sum += frame.data[i] + frame.data[i + 1] + frame.data[i + 2];
+      }
+      measurements.push({ exposure, meanRgb: sum / (frame.width * frame.height * 3) });
+    }
+    scene.exposure = 1.0;
+    viewer.render();
+    await scene.context._device.queue.onSubmittedWorkDone();
+    return measurements;
+  });
+  assert.ok(report.exposure[0].meanRgb < report.exposure[1].meanRgb,
+    "raising exposure from 0.5 to 1.0 raises actual GPU output");
+  assert.ok(report.exposure[1].meanRgb < report.exposure[2].meanRgb,
+    "raising exposure from 1.0 to 2.0 raises actual GPU output");
+  report.checks.push("manual exposure monotonically changes the actual HDR-to-display GPU output");
   await captureM1Scene(page, report, output, "night-sky-moon-stars", report.sky);
   report.checks.push("real WebGPU night sky displays the native-ephemeris Moon and procedural stars");
 

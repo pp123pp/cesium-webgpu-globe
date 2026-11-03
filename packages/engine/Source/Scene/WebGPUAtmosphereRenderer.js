@@ -1,6 +1,7 @@
 import { RuntimeError } from "@cesium/core";
 import WebGPUAtmosphereShader from "./WebGPUAtmosphereShader.js";
 import { createSunParameters, sunDisplayRadiance } from "./WebGPUSun.js";
+import { DEFAULT_EXPOSURE, validateExposure } from "./WebGPUColorPipeline.js";
 import {
   validateAtmosphereParameters,
   atmosphereLutKey,
@@ -39,7 +40,7 @@ class WebGPUAtmosphereRenderer {
   constructor(context) {
     this.context = context;
     this._destroyed = false;
-    this._parametersValues = new Float32Array(20);
+    this._parametersValues = new Float32Array(24);
     this.statistics = {
       frames: 0,
       sunFrames: 0,
@@ -88,9 +89,12 @@ class WebGPUAtmosphereRenderer {
           "Atmosphere initialization cancelled by destroy().",
         );
       }
-      this._planetBuffer = this._createBuffer(272, "M2 planet, Moon and inertial star state");
+      this._planetBuffer = this._createBuffer(
+        272,
+        "M2 planet, Moon and inertial star state",
+      );
       this._parametersBuffer = this._createBuffer(
-        80,
+        96,
         "M2 atmosphere and Sun parameters",
       );
       this._sampler = device.createSampler({
@@ -149,10 +153,18 @@ class WebGPUAtmosphereRenderer {
     return texture;
   }
 
-  update(state, parameters, sun = hiddenSun, moon = hiddenMoon, stars = hiddenStars) {
-    if (this._destroyed || (!parameters.show && !sun.show && !moon.show && !stars.show)) {
+  update(
+    state,
+    parameters,
+    sun = hiddenSun,
+    moon = hiddenMoon,
+    stars = hiddenStars,
+    exposure = DEFAULT_EXPOSURE,
+  ) {
+    if (this._destroyed) {
       return false;
     }
+    validateExposure(exposure);
     // A hidden medium neither validates unused coefficients nor builds LUTs.
     // The single light intensity still drives the visible Sun in vacuum.
     const solar = sun.show ? sun : hiddenSun;
@@ -211,6 +223,7 @@ class WebGPUAtmosphereRenderer {
       ],
       12,
     );
+    this._parametersValues.set([exposure, 0, 0, 0], 20);
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
     this._sunShown = sun.show;

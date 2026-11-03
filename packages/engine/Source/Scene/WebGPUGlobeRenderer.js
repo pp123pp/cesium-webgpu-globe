@@ -8,6 +8,10 @@ import {
 } from "./WebGPUGlobeMath.js";
 
 const shader = `
+fn srgbToLinear(value: vec3f) -> vec3f {
+  return select(pow((value + 0.055) / 1.055, vec3f(2.4)), value / 12.92,
+                value <= vec3f(0.04045));
+}
 struct Tile { matrix: mat4x4f, clip: vec4f, color: vec4f }
 @group(0) @binding(0) var<uniform> tile: Tile;
 struct VertexOutput {
@@ -36,7 +40,7 @@ fn outside(uv: vec2f, rectangle: vec4f) -> bool {
 }
 @fragment fn fragmentMain(input: VertexOutput) -> @location(0) vec4f {
   if (outside(input.uv, tile.clip)) { discard; }
-  return tile.color;
+  return vec4f(srgbToLinear(tile.color.rgb), tile.color.a);
 }
 struct Image { rectangle: vec4f, mapping: vec4f, config: vec4f, mercator: vec4f }
 @group(1) @binding(0) var dayTexture: texture_2d<f32>;
@@ -63,7 +67,7 @@ struct Image { rectangle: vec4f, mapping: vec4f, config: vec4f, mercator: vec4f 
     uv.y = (angle - imagery.mercator.x) * imagery.mercator.y;
   }
   let texel = textureSample(dayTexture, daySampler, uv);
-  return vec4f(texel.rgb, texel.a * imagery.config.x);
+  return vec4f(srgbToLinear(texel.rgb), texel.a * imagery.config.x);
 }`;
 
 /** Mesh upload and one opaque Globe pass; deliberately not a general renderer. @private */
@@ -151,7 +155,7 @@ class WebGPUGlobeRenderer {
         fragment: {
           module,
           entryPoint: "fragmentMain",
-          targets: [{ format: this.context._format }],
+          targets: [{ format: "rgba16float" }],
         },
         primitive: { topology: "triangle-list", cullMode: "back" },
         depthStencil: {
@@ -177,7 +181,7 @@ class WebGPUGlobeRenderer {
           entryPoint: "imageryMain",
           targets: [
             {
-              format: this.context._format,
+              format: "rgba16float",
               blend: {
                 color: {
                   srcFactor: "src-alpha",
@@ -403,6 +407,7 @@ class WebGPUGlobeRenderer {
       scene.sun,
       scene.moon,
       scene.stars,
+      scene.exposure,
     )
       ? atmosphere.composite
       : undefined;

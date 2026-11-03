@@ -198,7 +198,7 @@ class WebGPUContext {
       this._sceneColorTexture = this._device.createTexture({
         label: "M2 completed terrain color",
         size: [this.canvas.width, this.canvas.height],
-        format: this._format,
+        format: "rgba16float",
         usage:
           GPUTextureUsage.RENDER_ATTACHMENT |
           GPUTextureUsage.TEXTURE_BINDING |
