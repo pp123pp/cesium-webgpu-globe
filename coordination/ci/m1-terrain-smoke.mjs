@@ -500,6 +500,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
     let fillDraws = 0;
     const observations = [];
     let firstBackgroundFrame;
+    let firstUnexplainedGeometry;
     const renderer = state.viewer.scene._renderer;
     const render = renderer.render;
     const globe = state.viewer.scene.globe;
@@ -654,6 +655,38 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
             }),
           ),
         });
+        // Preserve the exact submitted geometry for a failing frame so a
+        // transient fill crack can be replayed without live provider timing.
+        if (!coverage.accepted && !firstUnexplainedGeometry) {
+          firstUnexplainedGeometry = {
+            frame: frames,
+            width: state.viewer.canvas.width,
+            height: state.viewer.canvas.height,
+            coverage,
+            cameraUnderground: state.viewer.scene.cameraUnderground,
+            draws: renderer._draws.map(({ tile, rectangle }, index) => {
+              const mesh = tile.data.renderedMesh;
+              const gpu = tile.data.gpu ?? tile.data.fill?.vertexArray;
+              return {
+                key: `${tile.level}/${tile.x}/${tile.y}`,
+                fill: !tile.data.gpu,
+                rectangle,
+                center: mesh.center,
+                vertices: Array.from(mesh.vertices),
+                indices: Array.from(mesh.indices),
+                encoding: mesh.encoding,
+                indexCount: gpu.indexCount,
+                indexCountWithoutSkirts: gpu.indexCountWithoutSkirts,
+                uniform: Array.from(
+                  renderer._uniformValues.slice(
+                    (index * renderer._uniformStride) / 4,
+                    (index * renderer._uniformStride) / 4 + 24,
+                  ),
+                ),
+              };
+            }),
+          };
+        }
         if (coverage.background > 0 && !firstBackgroundFrame) {
           firstBackgroundFrame = state.viewer.canvas.toDataURL();
         }
@@ -702,6 +735,7 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
       mesh: state.meshEvidence(),
       observations,
       firstBackgroundFrame,
+      firstUnexplainedGeometry,
     };
   });
   if (report.groundFlight.firstBackgroundFrame) {
@@ -717,6 +751,14 @@ await runM1BrowserSuite("terrain", async ({ page, report, output, base }) => {
   await captureM1Scene(page, report, output, "base-camp-ground", {
     groundFlight: report.groundFlight,
   });
+  if (report.groundFlight.firstUnexplainedGeometry) {
+    await writeFile(
+      path.join(output, "flight-first-unexplained-geometry.json"),
+      JSON.stringify(report.groundFlight.firstUnexplainedGeometry),
+    );
+    report.groundFlight.firstUnexplainedGeometry =
+      "flight-first-unexplained-geometry.json";
+  }
   report.groundFlight.acceptance = assessTerrainFlight(report.groundFlight);
   assert.notEqual(
     report.groundFlight.acceptance.status,

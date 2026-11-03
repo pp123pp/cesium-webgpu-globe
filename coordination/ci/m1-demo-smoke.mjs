@@ -458,7 +458,9 @@ await runM1BrowserSuite(
             providerErrors: state?.providerErrors,
           };
         })
-        .catch((captureError) => ({ captureError: redact(String(captureError)) }));
+        .catch((captureError) => ({
+          captureError: redact(String(captureError)),
+        }));
       state.renderErrors = state.renderErrors?.map(redact);
       state.providerErrors = state.providerErrors?.map((error) => ({
         ...error,
@@ -641,8 +643,8 @@ await runM1BrowserSuite(
       await testPage.waitForFunction(() => window.__demo.readyError);
       report.unavailable = await testPage.evaluate(() => ({
         status: document.getElementById("status").textContent,
-        disabled: [...document.querySelectorAll("nav button")].every(
-          (button) => button.disabled,
+        disabled: [...document.querySelectorAll("nav button")].every((button) =>
+          button.matches(":disabled"),
         ),
       }));
       report.unavailable.browserErrors = errors;
@@ -671,7 +673,7 @@ await runM1BrowserSuite(
           status: document.getElementById("status").textContent,
           disabled: [
             ...document.querySelectorAll("nav button, #apply-token"),
-          ].every((button) => button.disabled),
+          ].every((button) => button.matches(":disabled")),
           errors: [...window.__demo.errors],
         }));
         report.deviceLost.browserErrors = errors;
@@ -689,7 +691,7 @@ await runM1BrowserSuite(
             status: document.getElementById("status").textContent,
             disabled: [
               ...document.querySelectorAll("nav button, #apply-token"),
-            ].every((button) => button.disabled),
+            ].every((button) => button.matches(":disabled")),
           }),
         );
         assert.equal(
