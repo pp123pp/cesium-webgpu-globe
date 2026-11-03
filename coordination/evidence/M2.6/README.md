@@ -1,6 +1,6 @@
 # M2.6 preliminary evidence — IN PROGRESS
 
-This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The capture was built from commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee with a clean source worktree. The report is tied to that exact implementation commit and bundle; later evidence-only commits do not alter the built source. It remains preliminary acceptance evidence, not final PR-head acceptance.
+This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The capture was built from commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee with a clean source worktree. The report is tied to that exact implementation commit and bundle; later evidence-only commits do not alter the built source. It remains preliminary acceptance evidence, not final PR-head acceptance. Draft PR #18 currently targets main; Fast CI and Full regression have been triggered on PR HEAD 3795696cb67e472170b66f0c78e3471dd8c9113c and are running.
 
 ## Environment
 
@@ -71,6 +71,6 @@ The browser harness now disables each of the five solar artwork controls indepen
 5. Verify missing/corrupt texture fallback and resource disposal; Device Lost and repeated scene creation/destruction.
 6. Review all screenshots, including clipping/black-space detail and the A07–A10 intended visual outcomes.
 7. Measure GPU frame time and memory with a real GPU profiler/timestamp query. Current GPU performance is not accepted.
-8. Run Fast, Full, WebGL differential and the required final-HEAD CI gates. They have not yet been run for this branch.
+8. Wait for Fast CI and Full regression on PR #18 final HEAD, then run/record WebGL differential if not covered by those jobs. Current GitHub Actions runs are in progress; no final CI result is claimed.
 
 No A07–A10 gate is marked ACCEPTED in this evidence checkpoint. Overall M2.6 remains IN PROGRESS.
