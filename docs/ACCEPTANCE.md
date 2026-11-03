@@ -69,6 +69,16 @@ performance remain unverified. The performance-observational policy above is
 unchanged. NaturalEarth detail/seams and high-exposure low-Sun contrast remain
 explicit limitations, not silently fixed by this acceptance.
 
+### M2.6.1 — Solar Visual Polish
+
+M2.6.1 is a separate visual-polish gate after the merged M2.6 implementation. It does not reopen or replace the accepted M2.6 A07–A10 results. The full task contract is in [tasks/M2.6.1.md](../tasks/M2.6.1.md).
+
+The required review covers the solar disk highlight roll-off and edge readability; less regular radial rays without aliasing or temporal shimmer; multi-scale halo and restrained irregular corona; linear-HDR Bloom while preserving disk boundary, black-space contrast and Earth / terrain occlusion; coherent appearance from high orbit through ground views; exposure 0.5 / 1.0 / 2.0; 1920×1080 and 1280×720 (or equivalent); visible, partial and fully hidden Sun; same-state baseline and per-effect isolation captures; at least 120 frames of camera / time progression; and same-adapter GPU timestamp mean / p95 with stable native resource counts.
+
+Acceptance IDs SVP-01–SVP-10 and the evidence package are defined in the task file. Pixel-identical reference matching is not required. Cinematic Lens Ghosts, Lens Dirt, Anamorphic Streaks and exaggerated Lens Flare remain out of scope and require a separate future task.
+
+This task is visual refinement only. Preserve the M2.6 physical Sun, WGS84 / terrain depth and occultation, atmospheric transport, linear-HDR → ACES → sRGB pipeline, asset fallback and lifecycle behavior. This planning entry does not authorize runtime implementation.
+
 ### M2.6 implementation checkpoint 闁?not accepted
 
 A preliminary headed Chromium 156.0.8078.4 run on an Intel Xe-LPG non-fallback adapter produced actual WebGPU scenario screenshots for A07闁炽儲寮?0 at 1920閼?080. The script also tested 1280閼?20 target recreation, exposure 0.5/1/2, enabled/disabled Bloom and one renderer teardown. These are implementation checks, not final PASS decisions for the acceptance matrix. Partial Earth/terrain occultation, animation stability, independent per-effect visual isolation, device-loss recovery, repeated create/destroy soak, final-head Fast/Full, and WebGL differential remain outstanding.
