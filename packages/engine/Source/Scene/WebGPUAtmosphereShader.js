@@ -51,7 +51,7 @@ fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   let brightness = mix(0.12, 0.85, spaceHash(cell + vec3f(41.0)));
   let tint = mix(vec3f(0.72, 0.82, 1.0), vec3f(1.0, 0.88, 0.70),
                  spaceHash(cell + vec3f(71.0)));
-  return tint * point * brightness * night;
+  return tint * point * brightness * night * planet.moon.z;
 }
 
 fn moonRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
@@ -85,7 +85,7 @@ fn moonTerrainLight(direction: vec3f, sceneDistance: f32) -> vec3f {
   let sunElevation = dot(normal, planet.sunDirectionWC.xyz);
   let moonElevation = max(dot(normal, planet.moonDirectionWC.xyz), 0.0);
   let night = 1.0 - smoothstep(-0.015, 0.04, sunElevation);
-  return vec3f(0.0025 * moonElevation * night * planet.moon.x);
+  return vec3f(planet.moon.w * moonElevation * night * planet.moon.x);
 }
 
 fn atmosphereRayleighPhase(cosine: f32) -> f32 {
@@ -208,7 +208,7 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
     let moonEarth = webgpuForwardInterval(dot(moonScaled, moonScaled), moonB, sampleC, moonRound);
     var moonDirect = 0.0;
     if (!(moonEarth.x >= 0.0 && moonEarth.y > moonEarth.x)) {
-      moonDirect = 0.0025 * moonMu * planet.moon.x;
+      moonDirect = planet.moon.w * moonMu * planet.moon.x;
     }
     let moonPhaseRayleigh = atmosphereRayleighPhase(dot(direction, moonDirection));
     let moonPhaseMie = atmosphereMiePhase(dot(direction, moonDirection));
