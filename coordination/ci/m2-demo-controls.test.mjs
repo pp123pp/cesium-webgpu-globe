@@ -12,9 +12,8 @@ test("public WebGPU globe demo exposes Moon and star controls", () => {
     "show-stars",
     "moonlight",
     "look-moon",
-    "advance-day",
     "moon-readout",
-    "space-time",
+    "timeline",
   ]) {
     assert.match(demo, new RegExp(`id=["']${id}["']`), `missing demo control: ${id}`);
   }
@@ -36,6 +35,6 @@ test("Look at Moon uses the current ephemeris position and camera-relative direc
 });
 
 test("expanded control panel remains usable on short viewports", () => {
-  assert.match(demo, /max-height: calc\(100vh - 40px\)/);
+  assert.match(demo, /max-height: calc\(100vh - 70px\)/);
   assert.match(demo, /overflow-y: auto/);
 });

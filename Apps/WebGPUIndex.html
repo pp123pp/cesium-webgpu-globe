@@ -6,43 +6,133 @@
     <meta name="color-scheme" content="dark" />
     <title>Cesium WebGPU Globe demos</title>
     <style>
-      :root { color-scheme: dark; font: 16px system-ui, sans-serif; }
-      * { box-sizing: border-box; }
-      body { margin: 0; min-height: 100vh; padding: min(9vw, 72px) 24px; background: #0b1322; color: #e9f1fb; }
-      main { max-width: 980px; margin: 0 auto; }
-      .eyebrow { color: #88c0fa; font-size: .85rem; letter-spacing: .14em; text-transform: uppercase; }
-      h1 { font-size: clamp(2.4rem, 6vw, 4.6rem); line-height: 1.08; margin: 16px 0 20px; }
-      .lead { color: #b9c7d9; max-width: 690px; font-size: 1.05rem; line-height: 1.7; }
-      .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 18px; margin: 38px 0 26px; }
-      a.card { display: block; padding: 26px; min-height: 190px; color: inherit; text-decoration: none; background: #162338; border: 1px solid #334761; border-radius: 14px; }
-      a.card:hover,a.card:focus-visible { border-color: #76bdfb; background: #1c2d46; outline-offset: 4px; }
-      a.card strong { display: block; font-size: 1.3rem; margin-bottom: 13px; }
-      a.card span { display: block; line-height: 1.6; color: #b9c7d9; }
-      a.card em { display: inline-block; color: #8ed3ff; font-size: .85rem; margin-top: 24px; font-style: normal; }
-      footer { margin-top: 36px; font-size: .85rem; color: #9cacc0; line-height: 1.7; }
-      footer a { color: #9bd3ff; }
+      :root {
+        color-scheme: dark;
+        font:
+          16px system-ui,
+          sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        padding: min(9vw, 72px) 24px;
+        background: #0b1322;
+        color: #e9f1fb;
+      }
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+      }
+      .eyebrow {
+        color: #88c0fa;
+        font-size: 0.85rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-size: clamp(2.4rem, 6vw, 4.6rem);
+        line-height: 1.08;
+        margin: 16px 0 20px;
+      }
+      .lead {
+        color: #b9c7d9;
+        max-width: 690px;
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+        margin: 38px 0 26px;
+      }
+      a.card {
+        display: block;
+        padding: 26px;
+        min-height: 190px;
+        color: inherit;
+        text-decoration: none;
+        background: #162338;
+        border: 1px solid #334761;
+        border-radius: 14px;
+      }
+      a.card:hover,
+      a.card:focus-visible {
+        border-color: #76bdfb;
+        background: #1c2d46;
+        outline-offset: 4px;
+      }
+      a.card strong {
+        display: block;
+        font-size: 1.3rem;
+        margin-bottom: 13px;
+      }
+      a.card span {
+        display: block;
+        line-height: 1.6;
+        color: #b9c7d9;
+      }
+      a.card em {
+        display: inline-block;
+        color: #8ed3ff;
+        font-size: 0.85rem;
+        margin-top: 24px;
+        font-style: normal;
+      }
+      footer {
+        margin-top: 36px;
+        font-size: 0.85rem;
+        color: #9cacc0;
+        line-height: 1.7;
+      }
+      footer a {
+        color: #9bd3ff;
+      }
     </style>
   </head>
   <body>
     <main>
       <div class="eyebrow">CesiumJS 1.146.0 · M1</div>
       <h1>WebGPU Globe</h1>
-      <p class="lead">Try the experimental WGS84 Globe renderer directly in your browser. The globe demo includes native imagery, terrain and navigation; no local development server is required.</p>
+      <p class="lead">
+        Try the experimental WGS84 Globe renderer directly in your browser. The
+        globe demo includes native imagery, terrain and navigation; no local
+        development server is required.
+      </p>
       <div class="grid">
         <a class="card" href="./Apps/WebGPUGlobe.html">
           <strong>WebGPU Globe</strong>
-          <span>Interactive Earth with Google Maps 2D Satellite imagery and Cesium World Terrain through Cesium ion. Enter your own read-only ion token when prompted; orbit and Everest controls are included.</span>
+          <span
+            >Interactive Earth with Google Maps 2D Satellite imagery and Cesium
+            World Terrain through Cesium ion. Enter your own read-only ion token
+            when prompted; orbit and Everest controls are included.</span
+          >
           <em>Open globe demo →</em>
         </a>
         <a class="card" href="./Apps/WebGPUProof.html">
           <strong>WebGPU Proof</strong>
-          <span>Minimal WGSL triangle and depth-testing renderer. Use this if you want to verify that your browser can initialize WebGPU.</span>
+          <span
+            >Minimal WGSL triangle and depth-testing renderer. Use this if you
+            want to verify that your browser can initialize WebGPU.</span
+          >
           <em>Open proof demo →</em>
         </a>
       </div>
       <footer>
-        Requires a browser with WebGPU support and a secure context. Google satellite and Cesium World Terrain require an ion token with access to imagery asset 3830182 and terrain asset 1. The demo attempts Cesium\u2019s bundled evaluation token first; you can enter your own token on the Globe page. No token is saved by the demo. Experimental M1: fast ground-descent navigation has a known limitation.
-        <p><a href="https://github.com/pp123pp/cesium-webgpu-globe">Source and documentation</a></p>
+        Requires a browser with WebGPU support and a secure context. Google
+        satellite and Cesium World Terrain require an ion token with access to
+        imagery asset 3830182 and terrain asset 1. The demo uses its configured
+        default token first; you can enter another token on the Globe page.
+        Manually entered tokens are not saved by the demo. Experimental M1: fast
+        ground-descent navigation has a known limitation.
+        <p>
+          <a href="https://github.com/pp123pp/cesium-webgpu-globe"
+            >Source and documentation</a
+          >
+        </p>
       </footer>
     </main>
   </body>

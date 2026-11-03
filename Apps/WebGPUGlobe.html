@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Cesium · WebGPU Globe</title>
     <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <link
+      rel="stylesheet"
+      href="../Build/CesiumUnminified/Widgets/Timeline/Timeline.css"
+    />
     <style>
       html,
       body,
@@ -21,12 +25,22 @@
           14px system-ui,
           sans-serif;
       }
+      #cesiumContainer {
+        height: calc(100% - 30px);
+      }
+      #timeline {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 30px;
+      }
       aside {
         position: absolute;
         top: 20px;
         left: 20px;
         max-width: 380px;
-        max-height: calc(100vh - 40px);
+        max-height: calc(100vh - 70px);
         overflow-y: auto;
         box-sizing: border-box;
         padding: 18px;
@@ -100,11 +114,6 @@
         display: inline-block;
         margin: 4px 12px 4px 0;
       }
-      #sun-time {
-        display: block;
-        font-size: 12px;
-        color: #b4c3d3;
-      }
       #space-controls {
         margin: 12px 0;
         padding: 10px;
@@ -129,6 +138,7 @@
   </head>
   <body>
     <div id="cesiumContainer"></div>
+    <div id="timeline" role="region" aria-label="Scene timeline"></div>
     <aside>
       <h1>WebGPU · WGS84 Earth</h1>
       <p>Drag to orbit, scroll to zoom, Ctrl-drag to tilt.</p>
@@ -156,9 +166,7 @@
         /></label>
         <nav aria-label="Sun controls">
           <button id="look-sun" type="button">Look at Sun</button>
-          <button id="advance-time" type="button">Time +10 min</button>
         </nav>
-        <time id="sun-time"></time>
       </fieldset>
       <fieldset id="space-controls" disabled>
         <legend>Moon &amp; stars</legend>
@@ -166,14 +174,21 @@
         <label><input id="show-stars" type="checkbox" checked /> Stars</label>
         <label>
           Moonlight
-          <input id="moonlight" type="range" min="0" max="0.02" step="0.0005" value="0.0025" />
+          <input
+            id="moonlight"
+            type="range"
+            min="0"
+            max="0.02"
+            step="0.0005"
+            value="0.0025"
+          />
         </label>
         <nav aria-label="Moon controls">
           <button id="look-moon" type="button">Look at Moon</button>
-          <button id="advance-day" type="button">Time +1 day</button>
         </nav>
-        <output id="moon-readout" aria-live="polite">Moon phase: waiting for scene…</output>
-        <time id="space-time"></time>
+        <output id="moon-readout" aria-live="polite"
+          >Moon phase: waiting for scene…</output
+        >
       </fieldset>
       <form id="ion-form" autocomplete="off">
         <label for="ion-token">Your Cesium ion access token</label>
@@ -192,14 +207,16 @@
       <p id="status" role="status">Initializing WebGPU…</p>
       <small id="token-help"
         >Uses Google Maps 2D Satellite (Cesium ion asset 3830182) and Cesium
-        World Terrain (asset 1). A demo token is tried first. For reliable
-        access, enter an ion token with permission to read both assets. Your
-        token is not saved by this page or added to the URL; it is sent to
-        Cesium ion to request the data.</small
+        World Terrain (asset 1). The configured default token is used first. You
+        can enter another ion token with permission to read both assets. Your
+        entered token is not saved by this page or added to the URL; it is sent
+        to Cesium ion to request the data.</small
       >
     </aside>
     <script type="module">
       /* global Cesium */
+      Cesium.Ion.defaultAccessToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZjVlOTZhNC0zNjJmLTQxODYtYjFlNS1kYzljZGZlYjI5ZDEiLCJpZCI6MTExNSwiaWF0IjoxNzY4MjA0OTM4fQ.EfH_dMcNYE2K23Ceq9cv8kZ8ycmYX5zYUxBhr1vGraQ";
       const status = document.getElementById("status");
       const orbit = document.getElementById("orbit");
       const terrain = document.getElementById("terrain");
@@ -210,11 +227,18 @@
       const sunControls = document.getElementById("sun-controls");
       const spaceControls = document.getElementById("space-controls");
       const moonReadout = document.getElementById("moon-readout");
-      const spaceTime = document.getElementById("space-time");
-      const sunTime = document.getElementById("sun-time");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
+      // WebGPU Viewer does not create widgets; share its clock with the native Timeline.
+      const timeline = new Cesium.Timeline("timeline", viewer.clock);
+      const scrubTime = (event) => {
+        event.clock.currentTime = event.timeJulian;
+        event.clock.shouldAnimate = false;
+      };
+      timeline.addEventListener("settime", scrubTime, false);
+      const resizeTimeline = () => timeline.resize();
+      window.addEventListener("resize", resizeTimeline);
       let live = false;
       let loading = false;
       let failed = false;
@@ -253,14 +277,6 @@
         // One irradiance source drives both the disk and atmospheric scattering.
         viewer.scene.atmosphere.lightIntensity = Number(event.target.value);
       });
-      document.getElementById("advance-time").addEventListener("click", () => {
-        viewer.clock.shouldAnimate = false;
-        viewer.clock.currentTime = Cesium.JulianDate.addMinutes(
-          viewer.clock.currentTime,
-          10,
-          new Cesium.JulianDate(),
-        );
-      });
       document.getElementById("look-sun").addEventListener("click", () => {
         viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
         const direction = Cesium.WebGPUPlanetMath.computeSunDirectionWC(
@@ -273,23 +289,21 @@
         viewer.camera.cancelFlight();
         viewer.camera.setView({ orientation: { direction, up } });
       });
-      document.getElementById("show-moon").addEventListener("change", (event) => {
-        viewer.scene.moon.show = event.target.checked;
-      });
-      document.getElementById("show-stars").addEventListener("change", (event) => {
-        viewer.scene.stars.show = event.target.checked;
-      });
-      document.getElementById("moonlight").addEventListener("input", (event) => {
-        viewer.scene.moon.moonlightIntensity = Number(event.target.value);
-      });
-      document.getElementById("advance-day").addEventListener("click", () => {
-        viewer.clock.shouldAnimate = false;
-        viewer.clock.currentTime = Cesium.JulianDate.addDays(
-          viewer.clock.currentTime,
-          1,
-          new Cesium.JulianDate(),
-        );
-      });
+      document
+        .getElementById("show-moon")
+        .addEventListener("change", (event) => {
+          viewer.scene.moon.show = event.target.checked;
+        });
+      document
+        .getElementById("show-stars")
+        .addEventListener("change", (event) => {
+          viewer.scene.stars.show = event.target.checked;
+        });
+      document
+        .getElementById("moonlight")
+        .addEventListener("input", (event) => {
+          viewer.scene.moon.moonlightIntensity = Number(event.target.value);
+        });
       document.getElementById("look-moon").addEventListener("click", () => {
         const scene = viewer.scene;
         const moonPosition = scene._planetState?._moonPosition;
@@ -305,11 +319,16 @@
           ),
           new Cesium.Cartesian3(),
         );
-        const reference = Math.abs(direction.z) < 0.9
-          ? Cesium.Cartesian3.UNIT_Z
-          : Cesium.Cartesian3.UNIT_Y;
+        const reference =
+          Math.abs(direction.z) < 0.9
+            ? Cesium.Cartesian3.UNIT_Z
+            : Cesium.Cartesian3.UNIT_Y;
         const right = Cesium.Cartesian3.normalize(
-          Cesium.Cartesian3.cross(direction, reference, new Cesium.Cartesian3()),
+          Cesium.Cartesian3.cross(
+            direction,
+            reference,
+            new Cesium.Cartesian3(),
+          ),
           new Cesium.Cartesian3(),
         );
         const up = Cesium.Cartesian3.normalize(
@@ -320,24 +339,29 @@
         viewer.camera.frustum.fov = Cesium.Math.toRadians(8);
         viewer.camera.setView({ orientation: { direction, up } });
       });
-      viewer.scene.postRender.addEventListener((scene, time) => {
-        const iso = Cesium.JulianDate.toIso8601(time, 0);
-        sunTime.dateTime = iso;
-        sunTime.textContent = iso.replace("T", " ").replace("Z", " UTC");
-        spaceTime.dateTime = iso;
-        spaceTime.textContent = iso.replace("T", " ").replace("Z", " UTC");
+      viewer.scene.postRender.addEventListener((scene) => {
         const illumination = scene._planetState?.moonIllumination;
         if (Number.isFinite(illumination)) {
           const percent = Math.round(illumination * 100);
-          const phase = percent >= 95 ? "Full" : percent <= 5 ? "New" :
-            percent >= 45 && percent <= 55 ? "Quarter" :
-            percent > 50 ? "Gibbous" : "Crescent";
+          const phase =
+            percent >= 95
+              ? "Full"
+              : percent <= 5
+                ? "New"
+                : percent >= 45 && percent <= 55
+                  ? "Quarter"
+                  : percent > 50
+                    ? "Gibbous"
+                    : "Crescent";
           moonReadout.textContent = `Illuminated: ${percent}% · ${phase} Moon`;
         }
       });
       window.addEventListener(
         "pagehide",
         () => {
+          window.removeEventListener("resize", resizeTimeline);
+          timeline.removeEventListener("settime", scrubTime, false);
+          timeline.destroy();
           if (!viewer.isDestroyed()) {
             viewer.destroy();
           }
