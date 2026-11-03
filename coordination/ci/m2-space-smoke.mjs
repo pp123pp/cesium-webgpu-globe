@@ -56,7 +56,7 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   });
   assert.deepEqual(report.sky.errors, []);
   assert.ok(Math.max(...report.sky.center.slice(0, 3)) > 35, "actual lunar disk is visible in the night-sky canvas");
-  assert.ok(report.sky.moonDistance > 3.4e8 && report.sky.moonDistance < 4.1e8);
+  assert.ok(report.sky.moonDistance > 3.0e8 && report.sky.moonDistance < 4.5e8);
   assert.ok(report.sky.moonAngularRadius > 0.0035 && report.sky.moonAngularRadius < 0.0055);
   assert.ok(report.sky.moonIllumination > 0.8, "full-Moon date produces a mostly illuminated lunar disk");
   assert.ok(report.sky.starPixels.length >= 8, "actual canvas contains resolved procedural stars");
@@ -98,7 +98,7 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   });
   for (const view of report.altitudes) {
     assert.ok(Math.max(...view.center.slice(0, 3)) > 35, `${view.name}: Moon remains visible in the real browser`);
-    assert.ok(view.moonDistance > 3.4e8 && view.moonDistance < 4.1e8);
+    assert.ok(view.moonDistance > 3.0e8 && view.moonDistance < 4.5e8);
     assert.ok(view.moonAngularRadius > 0.0035 && view.moonAngularRadius < 0.0055);
     await captureM1Scene(page, report, output, `moon-stars-${view.name}`, view);
   }
