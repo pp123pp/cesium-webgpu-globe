@@ -35,19 +35,19 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     await scene.context._device.queue.onSubmittedWorkDone();
     const pixels = window.__m1.pixels();
     const center = ((pixels.height >> 1) * pixels.width + (pixels.width >> 1)) * 4;
-    let stars = 0;
+    const starPixels = [];
     for (let y = 0; y < pixels.height; ++y) {
       for (let x = 0; x < pixels.width; ++x) {
         if ((x - pixels.width / 2) ** 2 + (y - pixels.height / 2) ** 2 < 32 ** 2) continue;
         const offset = (y * pixels.width + x) * 4;
-        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) ++stars;
+        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) starPixels.push(y * pixels.width + x);
       }
     }
     return {
       center: Array.from(pixels.data.slice(center, center + 4)),
       width: pixels.width,
       height: pixels.height,
-      stars,
+      starPixels,
       moonDistance: scene._planetState.moonDistance,
       moonAngularRadius: scene._planetState.moonAngularRadius,
       moonIllumination: scene._planetState.moonIllumination,
@@ -60,7 +60,7 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.ok(report.sky.moonDistance > 3.4e8 && report.sky.moonDistance < 4.1e8);
   assert.ok(report.sky.moonAngularRadius > 0.0035 && report.sky.moonAngularRadius < 0.0055);
   assert.ok(report.sky.moonIllumination > 0.8, "full-Moon date produces a mostly illuminated lunar disk");
-  assert.ok(report.sky.stars >= 8, "actual canvas contains resolved procedural stars");
+  assert.ok(report.sky.starPixels.length >= 8, "actual canvas contains resolved procedural stars");
   await captureM1Scene(page, report, output, "night-sky-moon-stars", report.sky);
   report.checks.push("real WebGPU night sky displays the native-ephemeris Moon and procedural stars");
 
@@ -76,18 +76,20 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
     await viewer.scene.context._device.queue.onSubmittedWorkDone();
     const pixels = window.__m1.pixels();
-    let stars = 0;
+    const starPixels = [];
     for (let y = 0; y < pixels.height; ++y) {
       for (let x = 0; x < pixels.width; ++x) {
         if ((x - pixels.width / 2) ** 2 + (y - pixels.height / 2) ** 2 < 32 ** 2) continue;
         const offset = (y * pixels.width + x) * 4;
-        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) ++stars;
+        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) starPixels.push(y * pixels.width + x);
       }
     }
-    return { stars, moonIllumination: viewer.scene._planetState.moonIllumination };
+    return { starPixels, moonIllumination: viewer.scene._planetState.moonIllumination };
   });
-  assert.ok(Math.abs(report.translation.stars - report.sky.stars) < Math.max(4, report.sky.stars * 0.2),
-    "100 km camera translation with fixed orientation preserves star coverage");
+  const movedSet = new Set(report.translation.starPixels);
+  const stableStars = report.sky.starPixels.filter((pixel) => movedSet.has(pixel)).length;
+  assert.ok(stableStars / report.sky.starPixels.length > 0.9,
+    "100 km camera translation with fixed orientation preserves star screen positions");
   report.checks.push("100 km camera translation does not introduce star-field parallax");
 
   report.phase = await page.evaluate(async () => {
