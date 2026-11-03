@@ -27,7 +27,7 @@ test("Sun-only updates use the existing uniforms without creating medium resourc
   renderer._sunPipeline = {};
   const sun = { show: true, angularRadius: 0.00465, displayScale: 6.792859e-6, glowStrength: 0.025, glowRadius: 0.025 };
   const atmosphere = createAtmosphereParameters({ show: false });
-  const state = { uniformValues: new Float32Array(48), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
+  const state = { uniformValues: new Float32Array(68), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
   assert.equal(renderer.update(state, atmosphere, sun), true);
   assert.equal(writes.length, 2);
   assert.equal(renderer.statistics.lutBuilds, 0);
