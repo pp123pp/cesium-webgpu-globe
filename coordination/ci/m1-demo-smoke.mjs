@@ -430,6 +430,8 @@ await runM1BrowserSuite(
             : [];
           return {
             ready: state?.ready,
+            readyError: state?.readyError,
+            status: document.getElementById("status")?.textContent,
             destroyed,
             frames: state?.frames,
             stable: state?.stable,
@@ -462,6 +464,8 @@ await runM1BrowserSuite(
           captureError: redact(String(captureError)),
         }));
       state.renderErrors = state.renderErrors?.map(redact);
+      state.readyError = state.readyError && redact(state.readyError);
+      state.status = state.status && redact(state.status);
       state.providerErrors = state.providerErrors?.map((error) => ({
         ...error,
         message: redact(error.message),
@@ -618,14 +622,28 @@ await runM1BrowserSuite(
         });
       const errors = [];
       testPage.on("pageerror", (error) => errors.push(String(error)));
+      // These are single-page lifecycle checks. An unrelated full-screen
+      // atmosphere must not compete with the new page's GPU initialization.
+      const mainRenderLoop = await page.evaluate(() => {
+        const viewer = window.__demo.viewer;
+        const enabled = viewer.useDefaultRenderLoop;
+        viewer.useDefaultRenderLoop = false;
+        return enabled;
+      });
       try {
         await testPage.addInitScript(observeDemo, options);
         const setup = await beforeNavigation?.(testPage);
         await testPage.goto(url, { waitUntil: "commit" });
         await run(testPage, errors, setup);
         assert.deepEqual(errors, []);
+      } catch (error) {
+        await captureReadinessFailure(testPage, error, { timeout: 30000 });
+        throw error;
       } finally {
         await testPage.close();
+        await page.evaluate((enabled) => {
+          window.__demo.viewer.useDefaultRenderLoop = enabled;
+        }, mainRenderLoop);
         await page.bringToFront();
       }
     };

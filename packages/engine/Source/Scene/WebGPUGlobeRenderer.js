@@ -401,6 +401,8 @@ class WebGPUGlobeRenderer {
       scene._planetState,
       scene.atmosphere,
       scene.sun,
+      scene.moon,
+      scene.stars,
     )
       ? atmosphere.composite
       : undefined;

@@ -1,6 +1,6 @@
 /**
  * Shared M2.1 WGSL math, without bindings, entry points or visible effects.
- * WebGPUPlanetState supplies exactly twelve vec4 values (192 bytes).
+ * WebGPUPlanetState supplies seventeen vec4 values (272 bytes).
  * ECEF positions, radii, distances and ray intervals are meters. Callers supply
  * normalized ECEF directions. vec2(-1) is a miss; [0,0] is surface contact.
  * GPU float32 grazing contacts have a relative rounding band; real terrain
@@ -21,6 +21,11 @@ struct WebGPUPlanet {
   projection: vec4f,            // native column-major [0], [5], [8], [9]
   depth: vec4f,                 // near, far, reversed A, reversed B: z = B/d - A
   surface: vec4f,               // CPU-double ellipsoid c, atmosphere c, height, reserved
+  moonDirectionWC: vec4f,       // camera-to-Moon unit direction, angular radius rad
+  moon: vec4f,                  // phase fraction, camera distance, star intensity, moonlight intensity
+  starRotation0: vec4f,         // ICRF-from-ECEF rotation row 0
+  starRotation1: vec4f,         // ICRF-from-ECEF rotation row 1
+  starRotation2: vec4f,         // ICRF-from-ECEF rotation row 2
 }
 
 fn webgpuRelativePosition(high: vec3f, low: vec3f, planet: WebGPUPlanet) -> vec3f {

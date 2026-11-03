@@ -279,7 +279,7 @@ test("new PR revisions cancel the same tier without cancelling the other tier", 
   assert.equal(expression(full.concurrency.group, context), fullKey);
 });
 
-test("Full keeps every browser gate and both complete upstream suite commands", () => {
+test("Full excludes rendering gates and retains the complete non-WebGL suite", () => {
   const { fast, full } = workflows();
   const commands = (workflow) =>
     Object.values(workflow.jobs)
@@ -295,16 +295,33 @@ test("Full keeps every browser gate and both complete upstream suite commands", 
     "m1-navigation-smoke.mjs",
     "m1-terrain-smoke.mjs",
     "m1-demo-smoke.mjs",
+    "m2-foundation-smoke.mjs",
+    "m2-atmosphere-smoke.mjs",
+    "m2-sun-smoke.mjs",
+    "m2-space-smoke.mjs",
     "m0-webgl-regression.mjs",
   ]) {
-    assert.ok(fullCommands.includes(`node coordination/ci/${gate}`), gate);
+    assert.equal(
+      fullCommands.includes(`node coordination/ci/${gate}`),
+      false,
+      gate,
+    );
   }
+  assert.equal(fullCommands.includes("xvfb-run"), false);
+  assert.equal(fullCommands.includes("M0_NEGATIVE_CONTROL"), false);
+  assert.equal(
+    full.jobs.regression.steps.some(
+      (step) => step.with?.path === "Build/m0-reference-source",
+    ),
+    false,
+  );
   assert.ok(
     fullCommands.includes(
       "npm run test-non-webgl -- --browsers ChromeHeadless --failTaskOnError",
     ),
   );
   const fastCommands = commands(fast);
+  assert.ok(fastCommands.includes("M0_NEGATIVE_CONTROL=missing-globe"));
   for (const gate of [
     "m0-webgl-smoke.mjs",
     "m0-webgpu-smoke.mjs",
@@ -333,7 +350,6 @@ test("each tier builds the candidate once and retains lint and generated API che
       "npm run build-ts",
       "packages/sandcastle/templates/tsconfig.lib.json",
       "npm run tsc",
-      "M0_NEGATIVE_CONTROL=missing-globe",
     ]) {
       assert.ok(commands.includes(command), command);
     }

@@ -27,6 +27,76 @@ struct AtmosphereParameters {
 
 ${WebGPUSunShader}
 
+
+fn spaceHash(p: vec3f) -> f32 {
+  // Cell coordinates are integral. Integer mixing keeps rare star selection
+  // independent of backend-specific sine approximations and float rounding.
+  let cell = bitcast<vec3u>(vec3i(p));
+  var hash = (cell.x * 1597334677u) ^ (cell.y * 3812015801u) ^ (cell.z * 2798796415u);
+  hash = (hash ^ (hash >> 16u)) * 2146121005u;
+  hash = (hash ^ (hash >> 15u)) * 2221713035u;
+  hash = hash ^ (hash >> 16u);
+  return f32(hash >> 8u) * (1.0 / 16777216.0);
+}
+
+// Star positions are indexed only by the world-space ray, never camera position.
+fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
+  if (planet.moon.z <= 0.0) { return vec3f(0.0); }
+  let observer = normalize((planet.cameraHigh.xyz + planet.cameraLow.xyz) * planet.inverseRadii.xyz);
+  let earth = webgpuRayEllipsoid(direction, planet);
+  if (earth.x >= 0.0 && earth.y > earth.x) { return vec3f(0.0); }
+  let solarElevation = dot(observer, planet.sunDirectionWC.xyz);
+  let night = 1.0 - smoothstep(-0.08, 0.035, solarElevation);
+  let grid = normalize(vec3f(dot(planet.starRotation0.xyz, direction), dot(planet.starRotation1.xyz, direction), dot(planet.starRotation2.xyz, direction))) * 1800.0;
+  let cell = floor(grid);
+  let seed = spaceHash(cell);
+  if (seed < 0.9965) { return vec3f(0.0); }
+  let offset = vec3f(spaceHash(cell + vec3f(17.0, 3.0, 11.0)),
+                    spaceHash(cell + vec3f(5.0, 29.0, 7.0)),
+                    spaceHash(cell + vec3f(13.0, 19.0, 31.0)));
+  let radius = length(fract(grid) - offset);
+  let point = 1.0 - smoothstep(0.006, 0.035 + pixelWidth * 900.0, radius);
+  let brightness = mix(0.12, 0.85, spaceHash(cell + vec3f(41.0)));
+  let tint = mix(vec3f(0.72, 0.82, 1.0), vec3f(1.0, 0.88, 0.70),
+                 spaceHash(cell + vec3f(71.0)));
+  return tint * point * brightness * night * planet.moon.z;
+}
+
+fn moonRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
+  if (planet.moon.x <= 0.0 || planet.moonDirectionWC.w <= 0.0 ||
+      textureLoad(sceneDepth, pixel, 0) != 0.0) { return vec3f(0.0); }
+  let moonDirection = planet.moonDirectionWC.xyz;
+  let chord = length(direction - moonDirection);
+  let radius = 2.0 * sin(0.5 * planet.moonDirectionWC.w);
+  let halfWidth = max(pixelWidth * 0.5, 1.0e-7);
+  if (chord > radius + halfWidth) { return vec3f(0.0); }
+  let earth = webgpuRayEllipsoid(direction, planet);
+  if (earth.x >= 0.0 && earth.y > earth.x) { return vec3f(0.0); }
+  let cosine = clamp(dot(direction, moonDirection), -1.0, 1.0);
+  let tangent = direction - moonDirection * cosine;
+  let radial = clamp(chord / max(radius, 1.0e-7), 0.0, 1.0);
+  var tangentDirection = vec3f(1.0, 0.0, 0.0);
+  if (length(tangent) > 1.0e-7) { tangentDirection = normalize(tangent); }
+  let surfaceNormal = normalize(-moonDirection * sqrt(max(0.0, 1.0 - radial * radial)) +
+                                tangentDirection * radial);
+  let phase = max(dot(surfaceNormal, planet.sunDirectionWC.xyz), 0.0);
+  let coverage = 1.0 - smoothstep(radius - halfWidth, radius + halfWidth, chord);
+  return vec3f(0.72, 0.76, 0.84) * (0.16 * phase * coverage);
+}
+
+fn moonTerrainLight(direction: vec3f, sceneDistance: f32) -> vec3f {
+  if (sceneDistance < 0.0 || planet.moon.x <= 0.0) { return vec3f(0.0); }
+  let inverseRadii = planet.inverseRadii.xyz;
+  let scaledPosition = planet.cameraHigh.xyz * inverseRadii +
+                       planet.cameraLow.xyz * inverseRadii +
+                       direction * sceneDistance * inverseRadii;
+  let normal = normalize(scaledPosition * inverseRadii);
+  let sunElevation = dot(normal, planet.sunDirectionWC.xyz);
+  let moonElevation = max(dot(normal, planet.moonDirectionWC.xyz), 0.0);
+  let night = 1.0 - smoothstep(-0.015, 0.04, sunElevation);
+  return vec3f(planet.moon.w * moonElevation * night * planet.moon.x);
+}
+
 fn atmosphereRayleighPhase(cosine: f32) -> f32 {
   let mu = clamp(cosine, -1.0, 1.0);
   return 0.05968310365946075 * (1.0 + mu * mu); // 3/(16 pi)
@@ -139,7 +209,24 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
       direct = atmosphereSunTransmittance(height, muSun);
     }
     let multiple = atmosphereMultipleScattering(height, muSun) * atmosphere.light.y;
-    let source = atmosphere.light.x * (direct * (rayleigh * phaseRayleigh + vec3f(mie * phaseMie)) + scattering * multiple);
+    var moonScattering = vec3f(0.0);
+    if (planet.moon.x > 0.0 && planet.moon.w > 0.0) {
+      let moonDirection = planet.moonDirectionWC.xyz;
+      let moonMu = max(dot(normal, moonDirection), 0.0);
+      let moonScaled = moonDirection * planet.inverseRadii.xyz;
+      let moonB = dot(scaledPosition, moonScaled);
+      let moonRound = 4.76837158203125e-7 * dot(abs(scaledPosition * moonScaled), vec3f(1.0));
+      let moonEarth = webgpuForwardInterval(dot(moonScaled, moonScaled), moonB, sampleC, moonRound);
+      var moonDirect = 0.0;
+      if (!(moonEarth.x >= 0.0 && moonEarth.y > moonEarth.x)) {
+        moonDirect = planet.moon.w * moonMu * planet.moon.x;
+      }
+      let moonPhaseRayleigh = atmosphereRayleighPhase(dot(direction, moonDirection));
+      let moonPhaseMie = atmosphereMiePhase(dot(direction, moonDirection));
+      moonScattering = moonDirect * (rayleigh * moonPhaseRayleigh + vec3f(mie * moonPhaseMie));
+    }
+    let source = atmosphere.light.x * (direct * (rayleigh * phaseRayleigh + vec3f(mie * phaseMie)) +
+      scattering * multiple + moonScattering);
     result.radiance += result.transmittance * source * step * phi;
     result.transmittance *= segmentT;
   }
@@ -173,8 +260,12 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let sceneDistance = webgpuSceneRayDistance(depth, direction, planet);
   let transport = atmosphereIntegrate(direction, sceneDistance);
   let background = atmosphereDecodeSrgb(textureLoad(sceneColor, coordinate, 0).rgb);
+  let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let solar = sunRadiance(direction, coordinate, pixelWidth);
-  let linear = (background + solar) * transport.transmittance + transport.radiance;
+  let moon = moonRadiance(direction, coordinate, pixelWidth);
+  let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  let linear = (background + stars + solar + moon) * transport.transmittance +
+               transport.radiance + moonTerrain;
   // A display-referred LDR output only. HDR, exposure and tone mapping are M2.5.
   return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), 1.0);
 }
@@ -188,9 +279,14 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let direction = webgpuRayDirection(ndc, planet);
   let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
   let source = textureLoad(sceneColor, coordinate, 0);
+  let sceneDistance = webgpuSceneRayDistance(textureLoad(sceneDepth, coordinate, 0), direction, planet);
   let solar = sunRadiance(direction, coordinate, pixelWidth);
-  if (all(solar == vec3f(0.0))) { return source; }
-  let linear = atmosphereDecodeSrgb(source.rgb) + solar;
+  let moon = moonRadiance(direction, coordinate, pixelWidth);
+  let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
+  let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  if (all(solar == vec3f(0.0)) && all(moon == vec3f(0.0)) && all(stars == vec3f(0.0)) &&
+      all(moonTerrain == vec3f(0.0))) { return source; }
+  let linear = atmosphereDecodeSrgb(source.rgb) + solar + moon + stars + moonTerrain;
   return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), source.a);
 }
 `;

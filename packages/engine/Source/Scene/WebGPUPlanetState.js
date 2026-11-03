@@ -5,6 +5,7 @@ import {
   Ellipsoid,
   EncodedCartesian3,
   JulianDate,
+  Matrix3,
   Matrix4,
 } from "@cesium/core";
 import WebGPUDepth from "../Renderer/WebGPUDepth.js";
@@ -12,6 +13,9 @@ import {
   createPlanetParameters,
   computeSunDirectionWC,
 } from "./WebGPUPlanetMath.js";
+import CelestialFrameTransforms from "../Core/CelestialFrameTransforms.js";
+import Simon1994PlanetaryPositions from "../Core/Simon1994PlanetaryPositions.js";
+import { validateMoonParameters, validateStarParameters } from "./WebGPUSpace.js";
 
 /**
  * Double-precision planet/camera state with the vec4-aligned WebGPUPlanet WGSL
@@ -27,8 +31,15 @@ class WebGPUPlanetState {
     this.cameraHeight = 0;
     this.sunDirectionWC = new Cartesian3();
     this.sunDirectionEC = new Cartesian3();
+    this.moonDirectionWC = new Cartesian3();
+    this.moonDistance = 0;
+    this.moonAngularRadius = 0;
+    this.moonIllumination = 0;
+    this._moonPosition = new Cartesian3();
+    this._moonRotation = new Matrix3();
     this.time = new JulianDate();
-    this.uniformValues = new Float32Array(48);
+    // Seventeen vec4 records: M2.1 planet state, lunar data and ICRF star-frame rotation.
+    this.uniformValues = new Float32Array(68);
     this._encodedCamera = new EncodedCartesian3();
     this._cartographic = new Cartographic();
     this._projection = new Matrix4();
@@ -41,8 +52,10 @@ class WebGPUPlanetState {
    * @param {JulianDate} time Actual scene render time.
    * @returns {WebGPUPlanetState} This reused frame record.
    */
-  update(camera, time) {
+  update(camera, time, moon = { show: true, moonlightIntensity: 0.0025 }, stars = { show: true, intensity: 1 }) {
     const planet = this.planet;
+    validateMoonParameters(moon);
+    validateStarParameters(stars);
     const position = Cartesian3.clone(camera.positionWC, this.cameraPositionWC);
     this.cameraGeocentricDistance = Cartesian3.magnitude(position);
     const cartographic = planet.ellipsoid.cartesianToCartographic(
@@ -57,6 +70,39 @@ class WebGPUPlanetState {
     this.cameraHeight = cartographic.height;
     JulianDate.clone(time, this.time);
     computeSunDirectionWC(time, this.sunDirectionWC);
+    CelestialFrameTransforms.computeIcrfToCentralBodyFixedMatrix(
+      time,
+      this._moonRotation,
+    );
+    Simon1994PlanetaryPositions.computeMoonPositionInEarthInertialFrame(
+      time,
+      this._moonPosition,
+    );
+    Matrix3.multiplyByVector(
+      this._moonRotation,
+      this._moonPosition,
+      this._moonPosition,
+    );
+    Cartesian3.subtract(
+      this._moonPosition,
+      position,
+      this.moonDirectionWC,
+    );
+    this.moonDistance = Cartesian3.magnitude(this.moonDirectionWC);
+    if (!(this.moonDistance > 1)) {
+      throw new DeveloperError("Moon ephemeris produced an invalid camera distance.");
+    }
+    Cartesian3.divideByScalar(
+      this.moonDirectionWC,
+      this.moonDistance,
+      this.moonDirectionWC,
+    );
+    this.moonAngularRadius = moon.show ? Math.asin(Math.min(1, 1737400 / this.moonDistance)) : 0;
+    // Full Moon occurs when the Moon lies opposite the Sun as seen from Earth.
+    this.moonIllumination = Math.max(
+      0,
+      Math.min(1, (1 - Cartesian3.dot(this.moonDirectionWC, this.sunDirectionWC)) * 0.5),
+    );
     Matrix4.multiplyByPointAsVector(
       camera.viewMatrix,
       this.sunDirectionWC,
@@ -110,6 +156,13 @@ class WebGPUPlanetState {
       40,
     );
     values.set([ellipsoidC, atmosphereC, planet.atmosphereHeight, 0], 44);
+    write(48, this.moonDirectionWC, this.moonAngularRadius);
+    values.set([moon.show ? this.moonIllumination : 0, this.moonDistance, stars.show ? stars.intensity : 0, moon.show ? moon.moonlightIntensity : 0], 52);
+    // Inverse ICRF-to-ECEF rotation is the transpose of the orthonormal
+    // celestial matrix. Pack its three rows for a per-ray inertial star lookup.
+    values.set([this._moonRotation[0], this._moonRotation[1], this._moonRotation[2], 0], 56);
+    values.set([this._moonRotation[3], this._moonRotation[4], this._moonRotation[5], 0], 60);
+    values.set([this._moonRotation[6], this._moonRotation[7], this._moonRotation[8], 0], 64);
     if (!values.every(Number.isFinite)) {
       throw new DeveloperError(
         "Planet state exceeds finite float32 shader precision.",

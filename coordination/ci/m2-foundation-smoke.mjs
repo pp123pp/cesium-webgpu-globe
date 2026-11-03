@@ -93,7 +93,7 @@ await runM1BrowserSuite("m2-foundation", async ({ page, report, output }) => {
       let values;
       let validation;
       try {
-        const uniform = buffer(192, GPUBufferUsage.UNIFORM, state.uniformValues);
+        const uniform = buffer(state.uniformValues.byteLength, GPUBufferUsage.UNIFORM, state.uniformValues);
         const input = buffer(rows.length * 64, GPUBufferUsage.STORAGE, rows.flat());
         const size = rows.length * 96;
         const output = buffer(size, GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC);
