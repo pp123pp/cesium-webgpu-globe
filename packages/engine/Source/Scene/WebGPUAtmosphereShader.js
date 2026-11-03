@@ -271,8 +271,9 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let solar = sunRadiance(direction, coordinate, pixelWidth);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
-  if (all(solar == vec3f(0.0)) && all(moon == vec3f(0.0)) && all(stars == vec3f(0.0))) { return source; }
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  if (all(solar == vec3f(0.0)) && all(moon == vec3f(0.0)) && all(stars == vec3f(0.0)) &&
+      all(moonTerrain == vec3f(0.0))) { return source; }
   let linear = atmosphereDecodeSrgb(source.rgb) + solar + moon + stars + moonTerrain;
   return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), source.a);
 }

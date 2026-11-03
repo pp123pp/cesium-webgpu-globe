@@ -1,12 +1,28 @@
 /* global Cesium, window, requestAnimationFrame */
 import assert from "node:assert/strict";
+import process from "node:process";
 import { runM1BrowserSuite, installM1Scene, captureM1Scene, destroyM1Scene } from "./m1-browser-harness.mjs";
 import { trackAtmosphereResources } from "./m2-atmosphere-fixtures.mjs";
+
+process.env.M1_OUTPUT ??= "Build/m2-space";
 
 await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   await page.setViewportSize({ width: 800, height: 450 });
   await trackAtmosphereResources(page);
   await installM1Scene(page, { baseLayer: false });
+  await page.evaluate(() => {
+    window.__m1.setSpaceView = ({ destination, direction, up }) => {
+      const camera = window.__m1.viewer.camera;
+      // Keep exact ECEF rays: setView's heading/roll conversion snaps near zenith.
+      camera.lookAtTransform(Cesium.Matrix4.IDENTITY);
+      Cesium.Cartesian3.clone(destination, camera.position);
+      Cesium.Cartesian3.clone(direction, camera.direction);
+      Cesium.Cartesian3.clone(up, camera.up);
+      Cesium.Cartesian3.cross(direction, up, camera.right);
+      Cesium.Cartesian3.normalize(camera.right, camera.right);
+      camera.update(Cesium.SceneMode.SCENE3D);
+    };
+  });
   report.sky = await page.evaluate(async () => {
     const { viewer } = window.__m1;
     const scene = viewer.scene;
@@ -18,6 +34,12 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     scene.moon.moonlightIntensity = 0;
     scene.stars.show = true;
     const time = viewer.clock.currentTime;
+    // Freeze the reference transform before aiming; its first call otherwise
+    // falls back to TEME while the ICRF samples load asynchronously.
+    await Cesium.CelestialFrameTransforms.preloadIcrfFixed(new Cesium.TimeInterval({
+      start: time,
+      stop: Cesium.JulianDate.addDays(time, 8, new Cesium.JulianDate()),
+    }));
     const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(time);
     const moonPosition = Cesium.Simon1994PlanetaryPositions.computeMoonPositionInEarthInertialFrame(time, new Cesium.Cartesian3());
     const rotation = Cesium.CelestialFrameTransforms.computeIcrfToCentralBodyFixedMatrix(time, new Cesium.Matrix3());
@@ -29,8 +51,7 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     Cesium.Cartesian3.normalize(right, right);
     const up = Cesium.Cartesian3.normalize(Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()), new Cesium.Cartesian3());
     viewer.camera.frustum = new Cesium.PerspectiveFrustum({ fov: Cesium.Math.toRadians(12), aspectRatio: 800 / 450, near: 0.1, far: 1e9 });
-    viewer.camera.setView({ destination: origin, orientation: { direction, up } });
-    viewer.camera.update(Cesium.SceneMode.SCENE3D);
+    window.__m1.setSpaceView({ destination: origin, direction, up });
     for (let i = 0; i < 4; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
     await scene.context._device.queue.onSubmittedWorkDone();
     const pixels = window.__m1.pixels();
@@ -51,10 +72,12 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
       moonDistance: scene._planetState.moonDistance,
       moonAngularRadius: scene._planetState.moonAngularRadius,
       moonIllumination: scene._planetState.moonIllumination,
+      aimError: Cesium.Cartesian3.angleBetween(viewer.camera.directionWC, scene._planetState.moonDirectionWC),
       errors: [...window.__m1.errors],
     };
   });
   assert.deepEqual(report.sky.errors, []);
+  assert.ok(report.sky.aimError < report.sky.moonAngularRadius, "camera remains aimed inside the lunar disk after ICRF data loads");
   assert.ok(Math.max(...report.sky.center.slice(0, 3)) > 35, "actual lunar disk is visible in the night-sky canvas");
   assert.ok(report.sky.moonDistance > 3.0e8 && report.sky.moonDistance < 4.5e8);
   assert.ok(report.sky.moonAngularRadius > 0.0035 && report.sky.moonAngularRadius < 0.0055);
@@ -63,40 +86,40 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   await captureM1Scene(page, report, output, "night-sky-moon-stars", report.sky);
   report.checks.push("real WebGPU night sky displays the native-ephemeris Moon and procedural stars");
 
-  report.altitudes = await page.evaluate(async () => {
-    const { viewer } = window.__m1;
-    const scene = viewer.scene;
-    const time = viewer.clock.currentTime;
-    const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(time);
-    const moonPosition = Cesium.Simon1994PlanetaryPositions.computeMoonPositionInEarthInertialFrame(time, new Cesium.Cartesian3());
-    const rotation = Cesium.CelestialFrameTransforms.computeIcrfToCentralBodyFixedMatrix(time, new Cesium.Matrix3());
-    Cesium.Matrix3.multiplyByVector(rotation, moonPosition, moonPosition);
-    const views = [];
-    for (const [name, height] of [["ground", 2], ["low-orbit", 400000], ["high-orbit", 35786000]]) {
-      const origin = Cesium.Cartesian3.multiplyByScalar(sun,
-        -(Cesium.Ellipsoid.WGS84.maximumRadius + height), new Cesium.Cartesian3());
+  report.altitudes = [];
+  for (const [name, height] of [["ground", 2], ["low-orbit", 400000], ["high-orbit", 35786000]]) {
+    const view = await page.evaluate(async ({ name, height }) => {
+      const { viewer } = window.__m1;
+      const scene = viewer.scene;
+      const time = viewer.clock.currentTime;
+      const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(time);
+      const moonPosition = Cesium.Simon1994PlanetaryPositions.computeMoonPositionInEarthInertialFrame(time, new Cesium.Cartesian3());
+      const rotation = Cesium.CelestialFrameTransforms.computeIcrfToCentralBodyFixedMatrix(time, new Cesium.Matrix3());
+      Cesium.Matrix3.multiplyByVector(rotation, moonPosition, moonPosition);
+      const origin = Cesium.Cartesian3.fromRadians(
+        Math.atan2(-sun.y, -sun.x), Math.asin(-sun.z), height);
       const direction = Cesium.Cartesian3.normalize(
         Cesium.Cartesian3.subtract(moonPosition, origin, new Cesium.Cartesian3()), new Cesium.Cartesian3());
       let right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Z, new Cesium.Cartesian3());
       if (Cesium.Cartesian3.magnitude(right) < 1e-5) { right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Y, right); }
       Cesium.Cartesian3.normalize(right, right);
       const up = Cesium.Cartesian3.normalize(Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()), new Cesium.Cartesian3());
-      viewer.camera.setView({ destination: origin, orientation: { direction, up } });
-      viewer.camera.update(Cesium.SceneMode.SCENE3D);
+      window.__m1.setSpaceView({ destination: origin, direction, up });
       for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
       await scene.context._device.queue.onSubmittedWorkDone();
       const pixels = window.__m1.pixels();
       const center = ((pixels.height >> 1) * pixels.width + (pixels.width >> 1)) * 4;
-      views.push({
+      return {
         name, height, center: Array.from(pixels.data.slice(center, center + 4)),
+        cameraHeight: scene._planetState.cameraHeight,
         moonDistance: scene._planetState.moonDistance,
         moonAngularRadius: scene._planetState.moonAngularRadius,
         moonIllumination: scene._planetState.moonIllumination,
-      });
-    }
-    return views;
-  });
-  for (const view of report.altitudes) {
+      };
+    }, { name, height });
+    report.altitudes.push(view);
+    assert.ok(Math.abs(view.cameraHeight - height) < 0.01,
+      `${name}: camera remains at the requested WGS84 geodetic height`);
     assert.ok(Math.max(...view.center.slice(0, 3)) > 35, `${view.name}: Moon remains visible in the real browser`);
     assert.ok(view.moonDistance > 3.0e8 && view.moonDistance < 4.5e8);
     assert.ok(view.moonAngularRadius > 0.0035 && view.moonAngularRadius < 0.0055);
@@ -107,12 +130,20 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   report.translation = await page.evaluate(async () => {
     const { viewer } = window.__m1;
     const camera = viewer.camera;
+    const before = window.__m1.pixels();
+    const baselineStars = [];
+    for (let y = 0; y < before.height; ++y) {
+      for (let x = 0; x < before.width; ++x) {
+        if ((x - before.width / 2) ** 2 + (y - before.height / 2) ** 2 < 32 ** 2) { continue; }
+        const offset = (y * before.width + x) * 4;
+        if (before.data[offset] > 24 || before.data[offset + 1] > 24 || before.data[offset + 2] > 24) { baselineStars.push(y * before.width + x); }
+      }
+    }
     const direction = Cesium.Cartesian3.clone(camera.directionWC);
     const up = Cesium.Cartesian3.clone(camera.upWC);
     const destination = Cesium.Cartesian3.add(camera.positionWC,
       Cesium.Cartesian3.multiplyByScalar(direction, 100000, new Cesium.Cartesian3()), new Cesium.Cartesian3());
-    camera.setView({ destination, orientation: { direction, up } });
-    camera.update(Cesium.SceneMode.SCENE3D);
+    window.__m1.setSpaceView({ destination, direction, up });
     for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
     await viewer.scene.context._device.queue.onSubmittedWorkDone();
     const pixels = window.__m1.pixels();
@@ -124,11 +155,12 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
         if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) { starPixels.push(y * pixels.width + x); }
       }
     }
-    return { starPixels, moonIllumination: viewer.scene._planetState.moonIllumination };
+    return { baselineStars, starPixels, moonIllumination: viewer.scene._planetState.moonIllumination };
   });
   const movedSet = new Set(report.translation.starPixels);
-  const stableStars = report.sky.starPixels.filter((pixel) => movedSet.has(pixel)).length;
-  assert.ok(stableStars / report.sky.starPixels.length > 0.9,
+  assert.ok(report.translation.baselineStars.length >= 8, "translation starts with resolved stars");
+  const stableStars = report.translation.baselineStars.filter((pixel) => movedSet.has(pixel)).length;
+  assert.ok(stableStars / report.translation.baselineStars.length > 0.9,
     "100 km camera translation with fixed orientation preserves star screen positions");
   report.checks.push("100 km camera translation does not introduce star-field parallax");
 
@@ -180,8 +212,7 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     Cesium.Cartesian3.normalize(right, right);
     const up = Cesium.Cartesian3.normalize(Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()), new Cesium.Cartesian3());
     viewer.camera.frustum = new Cesium.PerspectiveFrustum({ fov: Cesium.Math.toRadians(8), aspectRatio: 800 / 450, near: 0.1, far: 1000000 });
-    viewer.camera.setView({ destination: origin, orientation: { direction, up } });
-    viewer.camera.update(Cesium.SceneMode.SCENE3D);
+    window.__m1.setSpaceView({ destination: origin, direction, up });
     scene.globe.baseColor = new Cesium.Color(0.2, 0.2, 0.2, 1);
     scene.atmosphere.show = false;
     scene.sun.show = false;
