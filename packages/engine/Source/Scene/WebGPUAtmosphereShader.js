@@ -39,7 +39,7 @@ fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   if (earth.x >= 0.0 && earth.y > earth.x) { return vec3f(0.0); }
   let solarElevation = dot(observer, planet.sunDirectionWC.xyz);
   let night = 1.0 - smoothstep(-0.08, 0.035, solarElevation);
-  let grid = direction * 1800.0;
+  let grid = normalize(vec3f(dot(planet.starRotation0.xyz, direction), dot(planet.starRotation1.xyz, direction), dot(planet.starRotation2.xyz, direction))) * 1800.0;
   let cell = floor(grid);
   let seed = spaceHash(cell);
   if (planet.moon.z <= 0.0 || seed < 0.9965) { return vec3f(0.0); }
