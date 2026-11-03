@@ -41,6 +41,7 @@ successful Fast and an actually executed Full on the specified latest PR head.
 | M0 WebGPU proof and M1 real globe browser smoke                                                          | Yes     | Yes             |
 | M2.1 actual WGSL, high/low/ground depth, boundary rays and resource cleanup                              | Yes     | Yes             |
 | M2.2 physical scattering, real-depth aerial perspective, representative views and native resource cleanup | Yes | Yes |
+| M2.3 actual Sun disk, time/altitude/partial occultation, terrain depth, attenuation and native resource cleanup | Yes | Yes |
 | Complete upstream non-WebGL suite with `--failTaskOnError`                                               | —       | Yes             |
 | Complete upstream WebGL differential against `724b5db`                                                   | —       | Yes             |
 | M1 imagery and navigation browser acceptance                                                             | —       | Yes             |
@@ -78,6 +79,18 @@ perspective, resize and every native buffer/texture release. Reports and capture
 are uploaded from `Build/m2-atmosphere/` in both existing artifacts. The mountain
 fixture uses a documented fixed subpixel geometric bound; M2.1 numerical depth
 assertions remain unchanged. See [M2.2 contract](WEBGPU_M2.2.md).
+
+M2.3 adds `coordination/ci/m2-sun-smoke.mjs` to both tiers and uploads
+`Build/m2-sun/`. It exercises production Sun WGSL, actual rendered pixels and
+native geometry/depth across ground and orbital views, partial Earth/terrain
+occultation, time, RGB transmittance, restrained glare, mode/resize changes and
+native teardown. Existing M1/M2.2 fixtures also use `skyBox:false` to isolate
+their original geometry/atmosphere assertions; this follows Viewer's existing
+Sun-hiding convention. The public demo keeps Sun and atmosphere enabled.
+The shared parameter buffer is now 80 bytes, while the M2.1 planet ABI remains
+192 bytes. See [M2.3 contract](WEBGPU_M2.3.md). Final M2.3 acceptance likewise
+requires successful Fast and executed Full on the same latest published head,
+and does not claim M2.6 A07–A10 completion.
 
 M1 Globe/provider/navigation fixtures explicitly disable atmosphere so their
 retained time, geometry and color assertions continue to isolate M1. Their native

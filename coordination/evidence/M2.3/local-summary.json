@@ -1,0 +1,923 @@
+{
+  "scope": "M2.3 local evidence; not a final hosted-head certificate",
+  "capturedAt": "2026-11-03T00:58:04.280Z",
+  "status": "PASS",
+  "source": "32231cae872d9aef7ba6cab6dca89e5834d1ce17",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M .github/workflows/m1-full-regression.yml\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/ci/m2-sun.test.mjs\n M docs/CI.md\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/M2.3-plan.md\n?? docs/WEBGPU_M2.3.md",
+  "bundleSha256": "745d32e5835c10f48697bcbaf882c06a701f5aee11771a8b8d29cd42e6e5d197",
+  "filesSha256": {
+    "coordination/ci/m2-sun-smoke.mjs": "b59ba6282d08c4b7edebec239257c82bd360e2c9cb761f59404e46ae4ddfabbf",
+    "coordination/ci/m2-sun-fixtures.mjs": "eb89ecb62831542ee2256dd1e0f0e15f463c3d108328e3dd22663f84af67c095",
+    "packages/engine/Source/Scene/WebGPUSun.js": "3d043fae708d5b08c8416808d76c634795ab9fa51c69ec41bc7cdf586773d234",
+    "packages/engine/Source/Scene/WebGPUSunShader.js": "c1890f550161d37137ec226dac4a7e3a59d7b5dc8f5faf2addce432c207a0b32",
+    "packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js": "713ca33410044192f8e385f74ff0b209a3197437dc6fd3e4c36a77773b57bd37"
+  },
+  "browser": "156.0.8078.4",
+  "gpu": {
+    "kind": "software",
+    "reason": "google swiftshader"
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "google",
+      "architecture": "swiftshader",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": true
+    },
+    "viewport": [
+      800,
+      450
+    ]
+  },
+  "browserErrors": [],
+  "checks": [
+    "production WGSL and actual canvas show native solar position and a 0.53-degree disk at 2 m, 400 km and 35,786 km",
+    "fixed camera and a four-minute scene-time advance visibly follow independent native solar projection",
+    "orbital limb and 2 m ground horizon give whole disks, progressive partial occultation and complete disappearance",
+    "real heightmap depth hides a ray that misses Earth, restoring terrain reveals it, and fully hidden subpixel disks produce no detached halo",
+    "actual atmosphere reddens and attenuates the disk; shared irradiance visibly scales it and zero removes it",
+    "independent atmosphere/Sun controls, camera rotation and resize preserve position, angular size and current color/depth bindings",
+    "real solar highlights and restrained finite glare have bounded support and vanish when the entire source is occulted",
+    "actual GPU loss stops rendering and teardown releases every native buffer/texture, resized target and probe readback"
+  ],
+  "altitudes": [
+    {
+      "name": "ground",
+      "heightMeters": 2,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        180.0000000000006
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238325335789,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "name": "low-orbit",
+      "heightMeters": 400000,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238325335789,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "name": "high-orbit",
+      "heightMeters": 35786000,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999963
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238359053962,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    }
+  ],
+  "time": {
+    "before": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999963
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238359053962,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    "after": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.1274478400921,
+        233.1543609978597
+      ],
+      "mask": {
+        "count": 634,
+        "centroid": [
+          320.13564668769715,
+          233.13564668769715
+        ],
+        "diameterDegrees": 0.5268436268655546,
+        "bounds": [
+          306,
+          219,
+          333,
+          246
+        ]
+      },
+      "reference": {
+        "visible": 466,
+        "hidden": 548,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    }
+  },
+  "orbitalLimb": [
+    {
+      "offsetRadii": 1.2,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.00000000000057,
+        179.99999999999997
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238327052603,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": 0.6,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.99999999999994,
+        179.9999999999997
+      ],
+      "mask": {
+        "count": 534,
+        "centroid": [
+          320,
+          178.05430711610487
+        ],
+        "diameterDegrees": 0.5269237254043798,
+        "bounds": [
+          306,
+          166,
+          333,
+          188
+        ]
+      },
+      "reference": {
+        "visible": 374,
+        "hidden": 569,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": 0,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.99999999999983,
+        179.9999999999995
+      ],
+      "mask": {
+        "count": 316,
+        "centroid": [
+          320,
+          173.96835443037975
+        ],
+        "diameterDegrees": 0.5269227982285741,
+        "bounds": [
+          306,
+          166,
+          333,
+          179
+        ]
+      },
+      "reference": {
+        "visible": 186,
+        "hidden": 735,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": -0.6,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.0000000000005,
+        179.99999999999955
+      ],
+      "mask": {
+        "count": 102,
+        "centroid": [
+          320,
+          169.48039215686273
+        ],
+        "diameterDegrees": 0.4140102287122357,
+        "bounds": [
+          309,
+          166,
+          330,
+          171
+        ]
+      },
+      "reference": {
+        "visible": 20,
+        "hidden": 923,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": -1.2,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.99999999999915,
+        179.99999999999974
+      ],
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 1017,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 0
+    }
+  ],
+  "groundHorizon": [
+    {
+      "offsetRadii": 1.2,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.00000000000034,
+        179.99999999999957
+      ],
+      "mask": {
+        "count": 632,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238315107051,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": 0,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.0000000000003,
+        179.99999999999974
+      ],
+      "mask": {
+        "count": 316,
+        "centroid": [
+          320,
+          173.96835443037975
+        ],
+        "diameterDegrees": 0.5269227975369096,
+        "bounds": [
+          306,
+          166,
+          333,
+          179
+        ]
+      },
+      "reference": {
+        "visible": 186,
+        "hidden": 735,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    {
+      "offsetRadii": -1.2,
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999999,
+        179.99999999999986
+      ],
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 1017,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 0
+    }
+  ],
+  "terrain": {
+    "view": {
+      "height": 20000,
+      "elevation": -3.858130543161609,
+      "rayMinimumHeight": 5500.000000001778,
+      "longitude": 91.86435874719605,
+      "latitude": -0.0029331796488252654
+    },
+    "blocked": {
+      "pixel": [
+        320,
+        179
+      ],
+      "unattenuatedSolar": [
+        0,
+        0,
+        0
+      ],
+      "viewTransmittance": [
+        1,
+        1,
+        1
+      ],
+      "depth": 2.42857481680403e-07,
+      "canvas": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "withoutSun": [
+        51,
+        115,
+        178,
+        255
+      ],
+      "expectedComposite": [
+        51,
+        115,
+        178
+      ],
+      "ellipsoid": null,
+      "pickedHeight": 5596.005616813652
+    },
+    "clear": {
+      "pixel": [
+        320,
+        179
+      ],
+      "unattenuatedSolar": [
+        1,
+        1,
+        1
+      ],
+      "viewTransmittance": [
+        1,
+        1,
+        1
+      ],
+      "depth": 0,
+      "canvas": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "withoutSun": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "expectedComposite": [
+        255,
+        255,
+        255
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    },
+    "haloPhases": [
+      {
+        "offset": -0.5,
+        "diskDelta": 0,
+        "haloDelta": 0
+      },
+      {
+        "offset": -0.25,
+        "diskDelta": 0,
+        "haloDelta": 0
+      },
+      {
+        "offset": 0,
+        "diskDelta": 94,
+        "haloDelta": 94
+      },
+      {
+        "offset": 0.25,
+        "diskDelta": 0,
+        "haloDelta": 0
+      },
+      {
+        "offset": 0.45,
+        "diskDelta": 0,
+        "haloDelta": 0
+      }
+    ]
+  },
+  "photometry": {
+    "high": {
+      "pixel": [
+        319,
+        180
+      ],
+      "unattenuatedSolar": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "viewTransmittance": [
+        0.9422183036804199,
+        0.8772368431091309,
+        0.7326920628547668
+      ],
+      "depth": 0,
+      "canvas": [
+        98,
+        98,
+        99,
+        255
+      ],
+      "withoutSun": [
+        46,
+        52,
+        64,
+        255
+      ],
+      "expectedComposite": [
+        98,
+        98,
+        99
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    },
+    "low": {
+      "pixel": [
+        319,
+        180
+      ],
+      "unattenuatedSolar": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "viewTransmittance": [
+        0.5886845588684082,
+        0.31379973888397217,
+        0.06430158019065857
+      ],
+      "depth": 0,
+      "canvas": [
+        130,
+        107,
+        64,
+        255
+      ],
+      "withoutSun": [
+        112,
+        96,
+        59,
+        255
+      ],
+      "expectedComposite": [
+        130,
+        107,
+        64
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    },
+    "one": {
+      "pixel": [
+        319,
+        179
+      ],
+      "unattenuatedSolar": [
+        0.10000000149011612,
+        0.10000000149011612,
+        0.10000000149011612
+      ],
+      "viewTransmittance": [
+        1,
+        1,
+        1
+      ],
+      "depth": 0,
+      "canvas": [
+        89,
+        89,
+        89,
+        255
+      ],
+      "withoutSun": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "expectedComposite": [
+        89,
+        89,
+        89
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    },
+    "two": {
+      "pixel": [
+        319,
+        179
+      ],
+      "unattenuatedSolar": [
+        0.20000000298023224,
+        0.20000000298023224,
+        0.20000000298023224
+      ],
+      "viewTransmittance": [
+        1,
+        1,
+        1
+      ],
+      "depth": 0,
+      "canvas": [
+        124,
+        124,
+        124,
+        255
+      ],
+      "withoutSun": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "expectedComposite": [
+        124,
+        124,
+        124
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    },
+    "zero": {
+      "pixel": [
+        319,
+        179
+      ],
+      "unattenuatedSolar": [
+        0,
+        0,
+        0
+      ],
+      "viewTransmittance": [
+        1,
+        1,
+        1
+      ],
+      "depth": 0,
+      "canvas": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "withoutSun": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "expectedComposite": [
+        0,
+        0,
+        0
+      ],
+      "ellipsoid": null,
+      "pickedHeight": null
+    }
+  },
+  "resize": {
+    "observation": {
+      "size": [
+        800,
+        450
+      ],
+      "expectedCenter": [
+        304.9256008657897,
+        220.88358657934523
+      ],
+      "mask": {
+        "count": 997,
+        "centroid": [
+          304.9052156469408,
+          220.79689067201605
+        ],
+        "diameterDegrees": 0.541640749088199,
+        "bounds": [
+          287,
+          203,
+          322,
+          238
+        ]
+      },
+      "reference": {
+        "visible": 778,
+        "hidden": 628,
+        "mismatches": 0,
+        "examples": []
+      },
+      "maxDelta": 255
+    },
+    "replacedDepth": true,
+    "replacedColor": true,
+    "oldDepthDestroyed": true,
+    "oldColorDestroyed": true,
+    "depthSize": [
+      800,
+      450
+    ],
+    "colorSize": [
+      800,
+      450
+    ]
+  },
+  "nativeResources": {
+    "created": 1582,
+    "destroyed": 1582,
+    "buffers": 1571,
+    "textures": 11,
+    "live": [],
+    "atmosphere": {
+      "frames": 8,
+      "sunFrames": 164,
+      "lutBuilds": 1,
+      "buffersCreated": 2,
+      "buffersDestroyed": 2,
+      "texturesCreated": 2,
+      "texturesDestroyed": 2,
+      "maxFeedback": 0.33370226933715824
+    }
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 1458,
+      "buffersDestroyed": 1458,
+      "bufferBytes": 0,
+      "drawCalls": 4,
+      "triangles": 2280,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "deviceLoss": {
+    "beforeErrors": [],
+    "observedErrorCount": 1,
+    "expectedReason": "destroyed",
+    "stopped": true
+  },
+  "earlierAtmosphereRegression": {
+    "status": "PASS",
+    "source": "03c4a4bca9aea04abf295302a15b023371c495ce",
+    "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M .github/workflows/m1-full-regression.yml\n M Apps/WebGPUGlobe.html\n M coordination/ci/m1-browser-harness.mjs\n M coordination/ci/m1-globe-smoke.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M packages/engine/Source/Renderer/WebGPUContext.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n?? coordination/M2.3-plan.md\n?? coordination/ci/m2-sun.test.mjs\n?? packages/engine/Source/Scene/WebGPUSun.js\n?? packages/engine/Source/Scene/WebGPUSunShader.js",
+    "bundleSha256": "43e490832037877012da107da09fce840802f2278cac2872b877a9f0e4e28ca2",
+    "browser": "156.0.8078.4",
+    "gpu": {
+      "kind": "software",
+      "reason": "google swiftshader"
+    },
+    "checks": [
+      "production WGSL compiles and actual transmittance/multiple-scattering LUT values are finite and physical",
+      "GPU zero-path identity, finite nonnegative scattering, path-length attenuation and increased-extinction response",
+      "GPU Rayleigh/Mie phase direction and real Earth solar occlusion distinguish day, terminator and deep night",
+      "multiple scattering and solar intensity affect GPU radiance; medium edits invalidate LUTs while view/time changes reuse them",
+      "actual ground/400 km/35,786 km and day/night/terminator screenshots; fixed camera visibly responds to +12 h scene time",
+      "finite continuous GPU radiance/transmittance across the actual outer atmosphere boundary",
+      "actual mountain depth, off-axis ray meters and clear sky drive correct linear aerial-perspective pixels; disabled atmosphere restores surface and no Sun disk is added",
+      "resize reacquires readable color/depth; destruction releases every actual GPU buffer/texture including LUTs, intermediate targets and probe readbacks"
+    ],
+    "nativeResources": {
+      "created": 3650,
+      "destroyed": 3650,
+      "buffers": 3616,
+      "textures": 34,
+      "live": [],
+      "atmosphere": {
+        "frames": 311,
+        "sunFrames": 0,
+        "lutBuilds": 5,
+        "buffersCreated": 2,
+        "buffersDestroyed": 2,
+        "texturesCreated": 2,
+        "texturesDestroyed": 2,
+        "maxFeedback": 0.33370226933715824
+      }
+    },
+    "browserErrors": []
+  },
+  "focusedChecks": {
+    "nodeCases": 23,
+    "ciPolicyCases": 28,
+    "reviewedSolarNodeCases": 2,
+    "build": "PASS",
+    "lint": "PASS",
+    "declarationsAndTypes": "PASS",
+    "notes": "Categories record their actual local snapshots. Hosted final-head Fast/Full remain required; original EPERM was a sandbox child-process restriction, not a passing test."
+  },
+  "diagnoses": [
+    {
+      "issue": "new mountain test targeted the front slope",
+      "observedHeightMeters": 3310,
+      "fix": "ray minimum target 3000 -> 5500 m; unchanged 6000 m terrain, native SSE and >5000 m assertion",
+      "targetedResult": "remaining five groups passed; final complete eight groups passed"
+    },
+    {
+      "issue": "hidden medium short array shifted visible solar uniforms",
+      "before": "focused actual update test failed",
+      "fix": "fixed offsets; unused hidden medium fields zeroed",
+      "after": "same test passed"
+    },
+    {
+      "issue": "fully hidden small disk borrowed neighboring clear sky for glare",
+      "before": {
+        "diskDelta": 0,
+        "haloDelta": 13,
+        "phasePixels": 0.25
+      },
+      "fix": "require source sample owning depth texel to be clear before bilinear interpolation",
+      "after": {
+        "diagnosticPhases": 20,
+        "fullyHiddenPhases": 15,
+        "allFullyHiddenHaloDelta": 0
+      },
+      "permanentCoverage": "five actual mountain subpixel phases inside the existing terrain group"
+    }
+  ],
+  "hostedAcceptance": "PR #8 records actual published SHA/tree and same-head Fast plus executed Full; no future result is inferred here",
+  "limits": [
+    "SwiftShader software GPU only",
+    "Fixed mean angular size; no refraction, topocentric parallax or limb darkening",
+    "LDR output and bounded 16-sample angular glare, not scene HDR/Bloom",
+    "M1-NAV-001 KNOWN_UNRESOLVED and existing M2.2 limits retained",
+    "M2.4+ and whole-M2 A07-A10 acceptance excluded"
+  ]
+}

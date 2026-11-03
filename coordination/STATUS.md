@@ -1,14 +1,65 @@
 # Single source of truth — status
 
-Last updated: 2026-11-02
-Current milestone: **M2.2 physical atmosphere; final published-head acceptance is recorded in PR #8**
+Last updated: 2026-11-03
+Current milestone: **M2.3 Sun rendering; final published-head acceptance is recorded in PR #8**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
 
-## M2.2 implementation and verification
+## M2.3 implementation and verification
+
+The user explicitly authorized M2.3 implementation, necessary fixes/tests,
+commits, publication of `feat/m2-physical-atmosphere` and updates to existing
+[PR #8](https://github.com/pp123pp/cesium-webgpu-globe/pull/8). No main push,
+merge, force push or M2.4+ work is authorized. Stop after M2.3.
+
+- Rechecked remote main `08dcf05d54ffc3ef62c12f76bda7ad0ac4243c1d`, feature and
+  ready PR head `03c4a4bca9aea04abf295302a15b023371c495ce`; main is an ancestor.
+  Existing workspaces/worktrees were clean and preserved. The accepted M2.2
+  checkpoint's [Fast 41549627634](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41549627634)
+  and [executed Full 41549627624](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41549627624)
+  passed; those historical results do not certify M2.3.
+- Added a distant Sun disk using the existing per-frame geocentric direction,
+  fixed mean 0.00465 rad angular radius and one shared normalized irradiance.
+  Each fragment obeys real completed terrain depth and the existing WGS84 ray
+  intersection. Partial occultation does not gate on the Sun center. The same
+  M2.2 RGB view transmittance attenuates the Sun once, before existing LDR output.
+- A weak finite angular glare uses bounded source-visibility samples; fully
+  hidden sources do not leave detached glare. The LUT-free Sun-only path works
+  with atmosphere disabled. Existing uniform ownership grows from 64 to 80
+  bytes, with no new per-frame buffers/textures. Demo controls expose Sun,
+  atmosphere, common intensity, Look at Sun and scene-time advancement.
+- The complete local production solar gate passed all **8 aggregate checks**,
+  including 2 m / 400 km / 35,786 km, time, ground/orbital partial occultation,
+  actual mountain depth, attenuation, halo, mode/resize, actual device loss and
+  **1,582/1,582 native GPU resources released**. Build, lint, types, 23 focused
+  Node cases, 28 CI-policy cases and the existing 8-check M2.2 browser gate
+  passed on their recorded source snapshots. See the
+  [M2.3 handoff](handoffs/M2.3-sun-rendering.md) and
+  [compact evidence](evidence/M2.3/README.md) for exact identities and diagnosis.
+- Independent review found hidden-medium uniform packing and subpixel halo
+  interpolation defects. Both were reproduced before repair. The latter used
+  real mountain depth: an invisible disk left a 13/255 halo; the same diagnostic
+  passed after a conservative source-texel check. The permanent browser gate
+  retains several subpixel alignments without weakening terrain precision.
+- Both workflows retain all earlier gates and require the new solar browser
+  gate. Final acceptance needs successful Fast and an actually executed Full
+  on the same latest PR head. PR #8 records the actual published SHA/tree and
+  run/artifact links; this source snapshot does not mark future CI as passed.
+- M2.2 navigation accounting, M1 geometry isolation and the software-only
+  Everest loading/restoration fixture remain intact. Its original 90-second
+  deadline, native SSE/LOD, enabled atmosphere, restored resolution and real
+  frames/GPU completion are unchanged. This remains a CI load budget, not a
+  product full-resolution loading optimization. `M1-NAV-001` stays
+  **KNOWN_UNRESOLVED**; no waiver is expanded. Physical-GPU performance is
+  unverified; local browser evidence uses Chromium 156 and SwiftShader.
+
+Read [M2.3 units, approximations and lifecycle](../docs/WEBGPU_M2.3.md).
+M2.4/M2.5 and whole-M2 A07–A10 acceptance remain outside this checkpoint.
+
+## Historical M2.2 implementation and verification
 
 The user explicitly authorized M2.2 implementation, necessary fixes/tests,
 commits, publication of `feat/m2-physical-atmosphere` and updates to existing
@@ -88,8 +139,9 @@ merge is authorized. Stop after M2.2; M2.3 and later work require a new instruct
   cloud, PBR or general RenderGraph work is included.
 
 Read [M2.2 model, units, approximations and lifecycle](../docs/WEBGPU_M2.2.md).
-The continuation point is M2.3 only after explicit authorization; no A07–A10 or
-whole-M2 acceptance is claimed.
+At that checkpoint the continuation point required explicit M2.3 authorization;
+the later authorization is recorded above. No A07–A10 or whole-M2 acceptance is
+claimed.
 
 ## Historical M2.1 implementation and verification
 
