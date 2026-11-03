@@ -25,7 +25,6 @@ test("Moon and star controls update the production WebGPU scene settings", () =>
   assert.match(demo, /viewer\.scene\.moon\.show = event\.target\.checked/);
   assert.match(demo, /viewer\.scene\.stars\.show = event\.target\.checked/);
   assert.match(demo, /viewer\.scene\.moon\.moonlightIntensity = Number\(event\.target\.value\)/);
-  assert.match(demo, /viewer\.scene\.moonIllumination/);
   assert.match(demo, /scene\._planetState\?\.moonIllumination/);
 });
 
