@@ -1,0 +1,28 @@
+{
+  "lifecycle": {
+    "destroyed": true,
+    "frames": 96,
+    "sunFrames": 98,
+    "moonFrames": 0,
+    "starFrames": 0,
+    "lutBuilds": 1,
+    "buffersCreated": 3,
+    "buffersDestroyed": 3,
+    "texturesCreated": 16,
+    "texturesDestroyed": 16,
+    "solarAssetBytes": 0,
+    "solarAssetsLoaded": true,
+    "bloomFrames": 98,
+    "bloomPasses": 212,
+    "bloomTextureBytes": 0,
+    "bloomWidth": 0,
+    "bloomHeight": 0,
+    "maxFeedback": 0.33370226933715824
+  },
+  "resize": {
+    "width": 1280,
+    "height": 720,
+    "bloomWidth": 320,
+    "bloomHeight": 180
+  }
+}

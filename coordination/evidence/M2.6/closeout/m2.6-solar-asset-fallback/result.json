@@ -1,0 +1,62 @@
+{
+  "suite": "m2.6-solar-asset-fallback",
+  "browserConsole": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "capturedAt": "2026-11-03T11:03:27.416Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "cf2c1d1bc4f368a02d126bab203ee32da5d4064c",
+  "sourceStatus": "",
+  "bundleSha256": "554479fae644de144388930d5777eb98bf1f04086e327e3545d69356f4e9a876",
+  "browserErrors": [],
+  "checks": [
+    "single failed solar payload falls back to neutral textures and releases every partial/fallback allocation"
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.4",
+  "fallback": {
+    "solarAssetsLoaded": false,
+    "solarAssetError": "Solar texture glow-gradient returned HTTP 404.",
+    "textureCount": 8,
+    "texturesCreated": 18,
+    "texturesDestroyed": 7
+  },
+  "lifecycle": {
+    "destroyed": true,
+    "texturesCreated": 18,
+    "texturesDestroyed": 18,
+    "buffersCreated": 3,
+    "buffersDestroyed": 3
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

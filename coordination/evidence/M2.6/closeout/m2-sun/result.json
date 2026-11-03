@@ -1,0 +1,5821 @@
+{
+  "suite": "m2-sun",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T11:03:33.135Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "cf2c1d1bc4f368a02d126bab203ee32da5d4064c",
+  "sourceStatus": "",
+  "bundleSha256": "554479fae644de144388930d5777eb98bf1f04086e327e3545d69356f4e9a876",
+  "browserErrors": [],
+  "checks": [
+    "production WGSL and actual canvas show native solar position and a 0.53-degree disk at 2 m, 400 km and 35,786 km",
+    "fixed camera and a four-minute scene-time advance visibly follow independent native solar projection",
+    "orbital limb and 2 m ground horizon give whole disks, progressive partial occultation and complete disappearance",
+    "real heightmap depth hides a ray that misses Earth, restoring terrain reveals it, and fully hidden subpixel disks produce no detached halo",
+    "actual atmosphere reddens and attenuates the disk; shared irradiance visibly scales it and zero removes it",
+    "independent atmosphere/Sun controls, camera rotation and resize preserve position, angular size and current color/depth bindings",
+    "real solar highlights and restrained finite glare have bounded support and vanish when the entire source is occulted",
+    "actual GPU loss stops rendering and teardown releases every native buffer/texture, resized target and probe readback"
+  ],
+  "scenes": [
+    {
+      "name": "ground-sun",
+      "height": 2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          180.0000000000006
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606601038036,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              180
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994755387306213,
+              0.03236947953701019,
+              -0.0009184696828015149,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994755490773561,
+              0.032369479536612615,
+              -0.0009184721260692717
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 6,
+        "selectedTiles": 2,
+        "levels": [
+          1,
+          1
+        ],
+        "cacheTiles": 14,
+        "loadedTiles": 14,
+        "terrain": {
+          "requests": 14,
+          "deferred": 0,
+          "meshes": 6,
+          "fills": 0,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 14,
+          "buffersDestroyed": 1,
+          "bufferBytes": 67112,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 5,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 6,
+          "bloomPasses": 8,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        253,
+        253,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 229720,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "low-orbit-sun",
+      "height": 400000,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          179.99999999999997
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606601038036,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.032697759568691254,
+              -0.0009180406923405826,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648639097241,
+              0.03269775231813959,
+              -0.000918043167896781
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 9,
+        "selectedTiles": 5,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 22,
+        "loadedTiles": 22,
+        "terrain": {
+          "requests": 22,
+          "deferred": 0,
+          "meshes": 11,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 31,
+          "buffersDestroyed": 2,
+          "bufferBytes": 136028,
+          "drawCalls": 5,
+          "triangles": 1716,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 7,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 9,
+          "bloomPasses": 11,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        253,
+        253,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 229720,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "high-orbit-sun",
+      "height": 35786000,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          179.99999999999963
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606658595137,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.032697759568691254,
+              -0.0009180406923405826,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.999464863403361,
+              0.03269776779483576,
+              -0.0009180432102042755
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 12,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 22,
+        "loadedTiles": 22,
+        "terrain": {
+          "requests": 22,
+          "deferred": 0,
+          "meshes": 14,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 37,
+          "buffersDestroyed": 8,
+          "bufferBytes": 157448,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 9,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 12,
+          "bloomPasses": 14,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        253,
+        253,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 229720,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "sun-four-minutes-later",
+      "before": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          179.99999999999963
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606658595137,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.032697759568691254,
+              -0.0009180406923405826,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.999464863403361,
+              0.03269776779483576,
+              -0.0009180432102042755
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "after": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.1274478400921,
+          233.1543609978597
+        ],
+        "nativeSun": [
+          0.9998859942850122,
+          0.015081724411026681,
+          -0.0007348615259971765
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 672,
+        "mask": {
+          "count": 662,
+          "centroid": [
+            320.12688821752266,
+            233.1858006042296
+          ],
+          "diameterDegrees": 0.5456589775085788,
+          "bounds": [
+            306,
+            219,
+            334,
+            247
+          ]
+        },
+        "reference": {
+          "visible": 466,
+          "hidden": 548,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              233
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9998877644538879,
+              0.014968087896704674,
+              -0.0006126647931523621,
+              0.00032845072564668953,
+              0.9998859763145447,
+              0.015081724151968956,
+              -0.0007348615326918662,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9998877845301752,
+              0.014968065749037003,
+              -0.0006126622808217891
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 17,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 22,
+        "loadedTiles": 22,
+        "terrain": {
+          "requests": 22,
+          "deferred": 0,
+          "meshes": 14,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 37,
+          "buffersDestroyed": 8,
+          "bufferBytes": 157448,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 12,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 17,
+          "bloomPasses": 19,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "distinctSampledColors": 3,
+      "backgroundPixels": 229726,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb-1.2",
+      "offset": 1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.00000000000057,
+          179.99999999999997
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606602765403,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994651079177856,
+              0.03269759565591812,
+              -0.0005898534436710179,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651168171514,
+              0.03269758923179911,
+              -0.0005898509188565183
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 20,
+        "selectedTiles": 4,
+        "levels": [
+          1,
+          2,
+          1,
+          2
+        ],
+        "cacheTiles": 38,
+        "loadedTiles": 38,
+        "terrain": {
+          "requests": 38,
+          "deferred": 0,
+          "meshes": 14,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 37,
+          "buffersDestroyed": 8,
+          "bufferBytes": 157448,
+          "drawCalls": 4,
+          "triangles": 2280,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 14,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 20,
+          "bloomPasses": 22,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        253,
+        253,
+        255
+      ],
+      "distinctSampledColors": 3,
+      "backgroundPixels": 131907,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb-0",
+      "offset": 0,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.99999999999983,
+          179.9999999999995
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 340,
+        "mask": {
+          "count": 328,
+          "centroid": [
+            320,
+            173.8658536585366
+          ],
+          "diameterDegrees": 0.5645595137602002,
+          "bounds": [
+            305,
+            165,
+            334,
+            179
+          ]
+        },
+        "reference": {
+          "visible": 186,
+          "hidden": 735,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.03269749879837036,
+              -0.0009182998910546303,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648720566788,
+              0.032697496013941646,
+              -0.0009183023168250714
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 25,
+        "selectedTiles": 6,
+        "levels": [
+          3,
+          3,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 54,
+        "loadedTiles": 54,
+        "terrain": {
+          "requests": 54,
+          "deferred": 0,
+          "meshes": 29,
+          "fills": 8,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 77,
+          "buffersDestroyed": 14,
+          "bufferBytes": 331868,
+          "drawCalls": 6,
+          "triangles": 2664,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 17,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 25,
+          "bloomPasses": 27,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "distinctSampledColors": 3,
+      "backgroundPixels": 117635,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb--1.2",
+      "offset": -1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.99999999999915,
+          179.99999999999974
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 0,
+        "changedPixels": 0,
+        "mask": {
+          "count": 0,
+          "centroid": null,
+          "diameterDegrees": null,
+          "bounds": null
+        },
+        "reference": {
+          "visible": 0,
+          "hidden": 1017,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              5.1398423295268e-8,
+              0,
+              0,
+              0,
+              1938043.875,
+              0.0330810546875,
+              0.1705322265625,
+              0.44775390625,
+              1,
+              0.9994648694992065,
+              0.03269749879837036,
+              -0.0009183006477542222,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "withoutSun": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648720559612,
+              0.03269749601391817,
+              -0.0009183030985521674
+            ],
+            "ellipsoid": [
+              1929127.7681501606,
+              2727921.735913773
+            ],
+            "pickedDistance": 1931004.4112254386,
+            "pickedHeight": -117.2398093847776,
+            "expectedComposite": [
+              42,
+              137,
+              200
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 30,
+        "selectedTiles": 7,
+        "levels": [
+          4,
+          4,
+          4,
+          4,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 74,
+        "loadedTiles": 74,
+        "terrain": {
+          "requests": 74,
+          "deferred": 0,
+          "meshes": 44,
+          "fills": 12,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 115,
+          "buffersDestroyed": 22,
+          "bufferBytes": 498368,
+          "drawCalls": 7,
+          "triangles": 3234,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 20,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 30,
+          "bloomPasses": 32,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 105696,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-horizon-half-sun",
+      "offset": 0,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.0000000000003,
+          179.99999999999974
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 340,
+        "mask": {
+          "count": 328,
+          "centroid": [
+            320,
+            173.8658536585366
+          ],
+          "diameterDegrees": 0.5645595134431443,
+          "bounds": [
+            305,
+            165,
+            334,
+            179
+          ]
+        },
+        "reference": {
+          "visible": 186,
+          "hidden": 735,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994651079177856,
+              0.03269755095243454,
+              -0.0005898097879253328,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651183674796,
+              0.032697542630698656,
+              -0.0005898072510455793
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 35,
+        "selectedTiles": 2,
+        "levels": [
+          5,
+          5
+        ],
+        "cacheTiles": 82,
+        "loadedTiles": 82,
+        "terrain": {
+          "requests": 82,
+          "deferred": 0,
+          "meshes": 58,
+          "fills": 14,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 147,
+          "buffersDestroyed": 30,
+          "bufferBytes": 645848,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 23,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 35,
+          "bloomPasses": 37,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "distinctSampledColors": 3,
+      "backgroundPixels": 115247,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "sun-behind-real-mountain",
+      "view": {
+        "height": 20000,
+        "elevation": -3.858130543161609,
+        "rayMinimumHeight": 5500.000000001778,
+        "longitude": 91.86435874719605,
+        "latitude": -0.0029331796488252654
+      },
+      "settled": {
+        "frames": 48,
+        "elapsedMs": 786.2000000476837,
+        "statistics": {
+          "frame": 86,
+          "selectedTiles": 56,
+          "levels": [
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            10,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9,
+            9
+          ],
+          "cacheTiles": 198,
+          "loadedTiles": 198,
+          "terrain": {
+            "requests": 288,
+            "deferred": 0,
+            "meshes": 264,
+            "fills": 84,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 702,
+            "buffersDestroyed": 305,
+            "bufferBytes": 8555728,
+            "drawCalls": 56,
+            "triangles": 129024,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 1,
+            "sunFrames": 73,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 1,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 13,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 2883584,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 86,
+            "bloomPasses": 88,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "maxFeedback": 0.33370226933715824
+          }
+        }
+      },
+      "blocked": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.0000000000018,
+          179.9999999999998
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 224,
+        "mask": {
+          "count": 214,
+          "centroid": [
+            320,
+            171.64953271028037
+          ],
+          "diameterDegrees": 0.5269218499252765,
+          "bounds": [
+            306,
+            165,
+            333,
+            175
+          ]
+        },
+        "reference": {
+          "visible": 0,
+          "hidden": 0,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              2.428408549803862e-7,
+              0,
+              0,
+              0,
+              411453.53125,
+              0.0330810546875,
+              0.1705322265625,
+              0.44775390625,
+              1,
+              0.9994651079177856,
+              0.032697562128305435,
+              -0.0005898180534131825,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "withoutSun": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651180579466,
+              0.032697551943319095,
+              -0.0005898155042440073
+            ],
+            "ellipsoid": null,
+            "pickedDistance": 411451.89567793143,
+            "pickedHeight": 5596.005616813652,
+            "expectedComposite": [
+              42,
+              137,
+              200
+            ]
+          }
+        ]
+      },
+      "statistics": {
+        "frame": 89,
+        "selectedTiles": 56,
+        "levels": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "cacheTiles": 198,
+        "loadedTiles": 198,
+        "terrain": {
+          "requests": 288,
+          "deferred": 0,
+          "meshes": 264,
+          "fills": 84,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 702,
+          "buffersDestroyed": 305,
+          "bufferBytes": 8555728,
+          "drawCalls": 56,
+          "triangles": 129024,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 75,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 89,
+          "bloomPasses": 91,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "distinctSampledColors": 3,
+      "backgroundPixels": 116159,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-low-sun-atmosphere",
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999982,
+        180.0000000000002
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 70,
+      "changedPixels": 656,
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            180
+          ],
+          "gpu": [
+            0.5,
+            0.5,
+            0.5,
+            1,
+            0.5886844396591187,
+            0.31379956007003784,
+            0.06430163979530334,
+            0,
+            0.16347621381282806,
+            0.11602526158094406,
+            0.04435492306947708,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994755387306213,
+            0.03236927464604378,
+            -0.0009182661306113005,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            201,
+            170,
+            82,
+            255
+          ],
+          "withoutSun": [
+            134,
+            110,
+            54,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994755557477101,
+            0.032369279348631104,
+            -0.0009182686188848759
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            201,
+            171,
+            82
+          ]
+        }
+      ],
+      "statistics": {
+        "frame": 184,
+        "selectedTiles": 2,
+        "levels": [
+          1,
+          1
+        ],
+        "cacheTiles": 14,
+        "loadedTiles": 14,
+        "terrain": {
+          "requests": 530,
+          "deferred": 0,
+          "meshes": 498,
+          "fills": 194,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 1390,
+          "buffersDestroyed": 1377,
+          "bufferBytes": 82984,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 6,
+          "sunFrames": 154,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 19,
+          "texturesDestroyed": 6,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 184,
+          "bloomPasses": 186,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        201,
+        170,
+        82,
+        255
+      ],
+      "distinctSampledColors": 619,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "resized-off-axis-sun",
+      "observation": {
+        "size": [
+          800,
+          450
+        ],
+        "expectedCenter": [
+          304.9256008657897,
+          220.88358657934523
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.00026276058816419114,
+        "radiusPixels": 17.696845435051344,
+        "maxDelta": 253,
+        "changedPixels": 1037,
+        "mask": {
+          "count": 1029,
+          "centroid": [
+            304.9256559766764,
+            220.90233236151605
+          ],
+          "diameterDegrees": 0.5416407682946334,
+          "bounds": [
+            287,
+            203,
+            322,
+            238
+          ]
+        },
+        "reference": {
+          "visible": 778,
+          "hidden": 628,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              304,
+              220
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.999467134475708,
+              0.032629337161779404,
+              -0.0008699254249222577,
+              0.0002627605863381177,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994671429027536,
+              0.03262933489807028,
+              -0.0008699206379089702
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      },
+      "replacedDepth": true,
+      "replacedColor": true,
+      "oldDepthDestroyed": true,
+      "oldColorDestroyed": true,
+      "depthSize": [
+        800,
+        450
+      ],
+      "colorSize": [
+        800,
+        450
+      ],
+      "statistics": {
+        "frame": 194,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 26,
+        "loadedTiles": 26,
+        "terrain": {
+          "requests": 542,
+          "deferred": 0,
+          "meshes": 518,
+          "fills": 194,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 1430,
+          "buffersDestroyed": 1377,
+          "bufferBytes": 304984,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 8,
+          "sunFrames": 159,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 22,
+          "texturesDestroyed": 9,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 194,
+          "bloomPasses": 196,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "distinctSampledColors": 4,
+      "backgroundPixels": 358963,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "setup": {
+    "coldSun": {
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "corner": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "errors": []
+    },
+    "atmosphere": {
+      "settings": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
+      "shaderDiagnostics": [],
+      "buffers": [
+        272,
+        112
+      ],
+      "sceneColorFormat": "rgba16float",
+      "lutFormats": [
+        "rgba16float",
+        "rgba16float"
+      ]
+    },
+    "sun": {
+      "settings": {
+        "show": true,
+        "angularRadius": 0.00465,
+        "displayScale": 0.00003396429877738057,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
+      },
+      "shaderDiagnostics": []
+    }
+  },
+  "altitudes": [
+    {
+      "name": "ground",
+      "height": 2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          180.0000000000006
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606601038036,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              180
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994755387306213,
+              0.03236947953701019,
+              -0.0009184696828015149,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994755490773561,
+              0.032369479536612615,
+              -0.0009184721260692717
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "low-orbit",
+      "height": 400000,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          179.99999999999997
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606601038036,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.032697759568691254,
+              -0.0009180406923405826,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648639097241,
+              0.03269775231813959,
+              -0.000918043167896781
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "high-orbit",
+      "height": 35786000,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999997,
+          179.99999999999963
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606658595137,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.032697759568691254,
+              -0.0009180406923405826,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.999464863403361,
+              0.03269776779483576,
+              -0.0009180432102042755
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "time": {
+    "before": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999963
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 680,
+      "mask": {
+        "count": 656,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5645606658595137,
+        "bounds": [
+          305,
+          165,
+          334,
+          194
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.999464863403361,
+            0.03269776779483576,
+            -0.0009180432102042755
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    },
+    "after": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.1274478400921,
+        233.1543609978597
+      ],
+      "nativeSun": [
+        0.9998859942850122,
+        0.015081724411026681,
+        -0.0007348615259971765
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 672,
+      "mask": {
+        "count": 662,
+        "centroid": [
+          320.12688821752266,
+          233.1858006042296
+        ],
+        "diameterDegrees": 0.5456589775085788,
+        "bounds": [
+          306,
+          219,
+          334,
+          247
+        ]
+      },
+      "reference": {
+        "visible": 466,
+        "hidden": 548,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            320,
+            233
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9998877644538879,
+            0.014968087896704674,
+            -0.0006126647931523621,
+            0.00032845072564668953,
+            0.9998859763145447,
+            0.015081724151968956,
+            -0.0007348615326918662,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9998877845301752,
+            0.014968065749037003,
+            -0.0006126622808217891
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    }
+  },
+  "limb": [
+    {
+      "offset": 1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.00000000000057,
+          179.99999999999997
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606602765403,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994651079177856,
+              0.03269759565591812,
+              -0.0005898534436710179,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651168171514,
+              0.03269758923179911,
+              -0.0005898509188565183
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": 0.6,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.99999999999994,
+          179.9999999999997
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 570,
+        "mask": {
+          "count": 552,
+          "centroid": [
+            320,
+            177.9746376811594
+          ],
+          "diameterDegrees": 0.5645605361662115,
+          "bounds": [
+            305,
+            165,
+            334,
+            188
+          ]
+        },
+        "reference": {
+          "visible": 374,
+          "hidden": 569,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.03269749879837036,
+              -0.0009182994836010039,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648720570364,
+              0.032697496013953345,
+              -0.0009183019271385978
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": 0,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.99999999999983,
+          179.9999999999995
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 340,
+        "mask": {
+          "count": 328,
+          "centroid": [
+            320,
+            173.8658536585366
+          ],
+          "diameterDegrees": 0.5645595137602002,
+          "bounds": [
+            305,
+            165,
+            334,
+            179
+          ]
+        },
+        "reference": {
+          "visible": 186,
+          "hidden": 735,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994648694992065,
+              0.03269749879837036,
+              -0.0009182998910546303,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648720566788,
+              0.032697496013941646,
+              -0.0009183023168250714
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": -0.6,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.0000000000005,
+          179.99999999999955
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 116,
+        "mask": {
+          "count": 110,
+          "centroid": [
+            320,
+            169.37272727272727
+          ],
+          "diameterDegrees": 0.45164709270906156,
+          "bounds": [
+            308,
+            165,
+            331,
+            171
+          ]
+        },
+        "reference": {
+          "visible": 20,
+          "hidden": 923,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              4.884602233801161e-8,
+              0,
+              0,
+              0,
+              2038901.625,
+              0.0330810546875,
+              0.1705322265625,
+              0.44775390625,
+              1,
+              0.9994651079177856,
+              0.03269759565591812,
+              -0.0005898546078242362,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "withoutSun": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651168164618,
+              0.03269758923177655,
+              -0.000589852088556559
+            ],
+            "ellipsoid": [
+              2033118.8678040812,
+              2588392.4796508006
+            ],
+            "pickedDistance": 2064549.745848296,
+            "pickedHeight": -1290.8552626238525,
+            "expectedComposite": [
+              42,
+              137,
+              200
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": -1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.99999999999915,
+          179.99999999999974
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 0,
+        "changedPixels": 0,
+        "mask": {
+          "count": 0,
+          "centroid": null,
+          "diameterDegrees": null,
+          "bounds": null
+        },
+        "reference": {
+          "visible": 0,
+          "hidden": 1017,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              5.1398423295268e-8,
+              0,
+              0,
+              0,
+              1938043.875,
+              0.0330810546875,
+              0.1705322265625,
+              0.44775390625,
+              1,
+              0.9994648694992065,
+              0.03269749879837036,
+              -0.0009183006477542222,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "withoutSun": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648720559612,
+              0.03269749601391817,
+              -0.0009183030985521674
+            ],
+            "ellipsoid": [
+              1929127.7681501606,
+              2727921.735913773
+            ],
+            "pickedDistance": 1931004.4112254386,
+            "pickedHeight": -117.2398093847776,
+            "expectedComposite": [
+              42,
+              137,
+              200
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "horizon": [
+    {
+      "offset": 1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.00000000000034,
+          179.99999999999957
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 680,
+        "mask": {
+          "count": 656,
+          "centroid": [
+            320,
+            180
+          ],
+          "diameterDegrees": 0.5645606593278876,
+          "bounds": [
+            305,
+            165,
+            334,
+            194
+          ]
+        },
+        "reference": {
+          "visible": 468,
+          "hidden": 549,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994651079177856,
+              0.03269755095243454,
+              -0.0005898090894334018,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651183678871,
+              0.03269754263071198,
+              -0.0005898065600638882
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": 0,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          320.0000000000003,
+          179.99999999999974
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 253,
+        "changedPixels": 340,
+        "mask": {
+          "count": 328,
+          "centroid": [
+            320,
+            173.8658536585366
+          ],
+          "diameterDegrees": 0.5645595134431443,
+          "bounds": [
+            305,
+            165,
+            334,
+            179
+          ]
+        },
+        "reference": {
+          "visible": 186,
+          "hidden": 735,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              320,
+              179
+            ],
+            "gpu": [
+              5,
+              5,
+              5,
+              1,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              -1,
+              0,
+              0,
+              0,
+              1,
+              0.9994651079177856,
+              0.03269755095243454,
+              -0.0005898097879253328,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              253,
+              253,
+              253,
+              255
+            ],
+            "withoutSun": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994651183674796,
+              0.032697542630698656,
+              -0.0005898072510455793
+            ],
+            "ellipsoid": null,
+            "pickedDistance": null,
+            "pickedHeight": null,
+            "expectedComposite": [
+              253,
+              253,
+              253
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "offset": -1.2,
+      "observation": {
+        "size": [
+          640,
+          360
+        ],
+        "expectedCenter": [
+          319.9999999999999,
+          179.99999999999986
+        ],
+        "nativeSun": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ],
+        "pixelWidth": 0.0003284507352052389,
+        "radiusPixels": 14.157476348041076,
+        "maxDelta": 0,
+        "changedPixels": 0,
+        "mask": {
+          "count": 0,
+          "centroid": null,
+          "diameterDegrees": null,
+          "bounds": null
+        },
+        "reference": {
+          "visible": 0,
+          "hidden": 1017,
+          "mismatches": 0,
+          "examples": []
+        },
+        "samples": [
+          {
+            "pixel": [
+              319,
+              179
+            ],
+            "gpu": [
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              0.00009239464998245239,
+              0,
+              0,
+              0,
+              1082.3114013671875,
+              0.0330810546875,
+              0.1705322265625,
+              0.44775390625,
+              1,
+              0.9994648694992065,
+              0.03269754350185394,
+              -0.0009182561188936234,
+              0.00032845072564668953,
+              0.9994703531265259,
+              0.03253341093659401,
+              -0.0007540325168520212,
+              0
+            ],
+            "displayed": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "withoutSun": [
+              42,
+              137,
+              200,
+              255
+            ],
+            "exposure": 1,
+            "nativeRay": [
+              0.9994648708765976,
+              0.03269753331392914,
+              -0.000918258575014653
+            ],
+            "ellipsoid": [
+              323.5038284777063,
+              78863.21464915601
+            ],
+            "pickedDistance": 1082.262191457012,
+            "pickedHeight": -4.626505350396154,
+            "expectedComposite": [
+              42,
+              137,
+              200
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "terrain": {
+    "view": {
+      "height": 20000,
+      "elevation": -3.858130543161609,
+      "rayMinimumHeight": 5500.000000001778,
+      "longitude": 91.86435874719605,
+      "latitude": -0.0029331796488252654
+    },
+    "settled": {
+      "frames": 48,
+      "elapsedMs": 786.2000000476837,
+      "statistics": {
+        "frame": 86,
+        "selectedTiles": 56,
+        "levels": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "cacheTiles": 198,
+        "loadedTiles": 198,
+        "terrain": {
+          "requests": 288,
+          "deferred": 0,
+          "meshes": 264,
+          "fills": 84,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 702,
+          "buffersDestroyed": 305,
+          "bufferBytes": 8555728,
+          "drawCalls": 56,
+          "triangles": 129024,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 73,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 86,
+          "bloomPasses": 88,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "maxFeedback": 0.33370226933715824
+        }
+      }
+    },
+    "blocked": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.0000000000018,
+        179.9999999999998
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 224,
+      "mask": {
+        "count": 214,
+        "centroid": [
+          320,
+          171.64953271028037
+        ],
+        "diameterDegrees": 0.5269218499252765,
+        "bounds": [
+          306,
+          165,
+          333,
+          175
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            320,
+            179
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.428408549803862e-7,
+            0,
+            0,
+            0,
+            411453.53125,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994651079177856,
+            0.032697562128305435,
+            -0.0005898180534131825,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994651180579466,
+            0.032697551943319095,
+            -0.0005898155042440073
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 411451.89567793143,
+          "pickedHeight": 5596.005616813652,
+          "expectedComposite": [
+            42,
+            137,
+            200
+          ]
+        }
+      ]
+    },
+    "controlSettled": {
+      "frames": 34,
+      "elapsedMs": 546.8999999761581
+    },
+    "clear": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        320.0000000000018,
+        179.9999999999998
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 680,
+      "mask": {
+        "count": 656,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.564560659618501,
+        "bounds": [
+          305,
+          165,
+          334,
+          194
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            320,
+            179
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994651079177856,
+            0.032697562128305435,
+            -0.0005898180534131825,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994651180579466,
+            0.032697551943319095,
+            -0.0005898155042440073
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    },
+    "haloView": {
+      "height": 20000,
+      "elevation": -4.115723706705254,
+      "rayMinimumHeight": 3499.9999999986408,
+      "longitude": 91.86435889436626,
+      "latitude": -0.0031296779963970144
+    },
+    "haloSettled": {
+      "frames": 27,
+      "elapsedMs": 448.8000000715256,
+      "statistics": {
+        "frame": 153,
+        "selectedTiles": 20,
+        "levels": [
+          9,
+          9,
+          9,
+          9,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6,
+          9,
+          9,
+          9,
+          9,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6
+        ],
+        "cacheTiles": 94,
+        "loadedTiles": 94,
+        "terrain": {
+          "requests": 516,
+          "deferred": 0,
+          "meshes": 492,
+          "fills": 194,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 1378,
+          "buffersDestroyed": 1189,
+          "bufferBytes": 4070416,
+          "drawCalls": 20,
+          "triangles": 46080,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 138,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 16,
+          "texturesDestroyed": 3,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 153,
+          "bloomPasses": 155,
+          "bloomTextureBytes": 518400,
+          "bloomWidth": 80,
+          "bloomHeight": 45,
+          "maxFeedback": 0.33370226933715824
+        }
+      }
+    },
+    "haloPhases": [
+      {
+        "offset": -0.5,
+        "diskDelta": 0,
+        "haloDelta": 0,
+        "center": {
+          "pixel": [
+            159,
+            89
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.442563413751486e-7,
+            0,
+            0,
+            0,
+            409071.6875,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994673728942871,
+            0.032533202320337296,
+            -0.0025582541711628437,
+            0.003608439350500703,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994070567928874,
+            0.03433641977891341,
+            -0.002558341131384134
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 418984.9096040231,
+          "pickedHeight": 4382.698607149794
+        }
+      },
+      {
+        "offset": -0.25,
+        "diskDelta": 0,
+        "haloDelta": 0,
+        "center": {
+          "pixel": [
+            159,
+            89
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.414226401015185e-7,
+            0,
+            0,
+            0,
+            413869.34375,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994376301765442,
+            0.03343481943011284,
+            -0.0025583021342754364,
+            0.003608439350500703,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994070567928874,
+            0.03433641977891341,
+            -0.002558341131384134
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 418984.9096040231,
+          "pickedHeight": 4382.698607149794
+        }
+      },
+      {
+        "offset": 0,
+        "diskDelta": 211,
+        "haloDelta": 211,
+        "center": {
+          "pixel": [
+            159,
+            89
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.384729782534123e-7,
+            0,
+            0,
+            0,
+            418984.75,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994070529937744,
+            0.034336406737565994,
+            -0.002558348001912236,
+            0.003608439350500703,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994070567928874,
+            0.03433641977891341,
+            -0.002558341131384134
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 418984.9096040231,
+          "pickedHeight": 4382.698607149794
+        }
+      },
+      {
+        "offset": 0.25,
+        "diskDelta": 0,
+        "haloDelta": 0,
+        "center": {
+          "pixel": [
+            159,
+            90
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.4703012968529947e-7,
+            0,
+            0,
+            0,
+            404482.3125,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.999496340751648,
+            0.03163154795765877,
+            -0.0025582043454051018,
+            0.003608439350500703,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9995244513897431,
+            0.03072990345620041,
+            -0.0025581453449137967
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 399926.0759638733,
+          "pickedHeight": 3053.817356080284
+        }
+      },
+      {
+        "offset": 0.45,
+        "diskDelta": 0,
+        "haloDelta": 0,
+        "center": {
+          "pixel": [
+            159,
+            90
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            2.447993381338165e-7,
+            0,
+            0,
+            0,
+            408165.0625,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994732141494751,
+            0.03235286474227905,
+            -0.0025582443922758102,
+            0.003608439350500703,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9995244513897431,
+            0.03072990345620041,
+            -0.0025581453449137967
+          ],
+          "ellipsoid": null,
+          "pickedDistance": 399926.0759638733,
+          "pickedHeight": 3053.817356080284
+        }
+      }
+    ]
+  },
+  "photometry": {
+    "high": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        180.0000000000006
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 171,
+      "changedPixels": 680,
+      "mask": {
+        "count": 624,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238325335789,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            180
+          ],
+          "gpu": [
+            0.5,
+            0.5,
+            0.5,
+            1,
+            0.9422199130058289,
+            0.877237856388092,
+            0.7326929569244385,
+            0,
+            0.027378849685192108,
+            0.03444048762321472,
+            0.05108415707945824,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994755387306213,
+            0.03236947953701019,
+            -0.0009184696828015149,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            206,
+            203,
+            197,
+            255
+          ],
+          "withoutSun": [
+            35,
+            43,
+            60,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994755490773561,
+            0.032369479536612615,
+            -0.0009184721260692717
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            206,
+            203,
+            197
+          ]
+        }
+      ]
+    },
+    "low": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999982,
+        180.0000000000002
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 70,
+      "changedPixels": 656,
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            180
+          ],
+          "gpu": [
+            0.5,
+            0.5,
+            0.5,
+            1,
+            0.5886844396591187,
+            0.31379956007003784,
+            0.06430163979530334,
+            0,
+            0.16347621381282806,
+            0.11602526158094406,
+            0.04435492306947708,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994755387306213,
+            0.03236927464604378,
+            -0.0009182661306113005,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            201,
+            170,
+            82,
+            255
+          ],
+          "withoutSun": [
+            134,
+            110,
+            54,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994755557477101,
+            0.032369279348631104,
+            -0.0009182686188848759
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            201,
+            171,
+            82
+          ]
+        }
+      ]
+    },
+    "one": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 206,
+      "changedPixels": 680,
+      "mask": {
+        "count": 624,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238325335789,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            0.5,
+            0.5,
+            0.5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            206,
+            206,
+            206,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994648639097241,
+            0.03269775231813959,
+            -0.000918043167896781
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            206,
+            206,
+            206
+          ]
+        }
+      ]
+    },
+    "two": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 232,
+      "changedPixels": 680,
+      "mask": {
+        "count": 648,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5269238325335789,
+        "bounds": [
+          306,
+          166,
+          333,
+          193
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            232,
+            232,
+            232,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994648639097241,
+            0.03269775231813959,
+            -0.000918043167896781
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            232,
+            232,
+            232
+          ]
+        }
+      ]
+    },
+    "zero": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 0,
+      "changedPixels": 0,
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994648639097241,
+            0.03269775231813959,
+            -0.000918043167896781
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "controls": {
+    "atmosphereOn": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 680,
+      "mask": {
+        "count": 656,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5645606601038036,
+        "bounds": [
+          305,
+          165,
+          334,
+          194
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994648639097241,
+            0.03269775231813959,
+            -0.000918043167896781
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    },
+    "sunOnly": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        319.9999999999997,
+        179.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 680,
+      "mask": {
+        "count": 656,
+        "centroid": [
+          320,
+          180
+        ],
+        "diameterDegrees": 0.5645606601038036,
+        "bounds": [
+          305,
+          165,
+          334,
+          194
+        ]
+      },
+      "reference": {
+        "visible": 468,
+        "hidden": 549,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            319,
+            179
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994648694992065,
+            0.032697759568691254,
+            -0.0009180406923405826,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994648639097241,
+            0.03269775231813959,
+            -0.000918043167896781
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    },
+    "disabledPixel": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "rotated": {
+      "size": [
+        640,
+        360
+      ],
+      "expectedCenter": [
+        243.94048069263178,
+        176.7068692634762
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.0003284507352052389,
+      "radiusPixels": 14.157476348041076,
+      "maxDelta": 253,
+      "changedPixels": 673,
+      "mask": {
+        "count": 661,
+        "centroid": [
+          243.8767019667171,
+          176.70574886535553
+        ],
+        "diameterDegrees": 0.5453976216570144,
+        "bounds": [
+          229,
+          162,
+          257,
+          190
+        ]
+      },
+      "reference": {
+        "visible": 464,
+        "hidden": 548,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            243,
+            176
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994681477546692,
+            0.03259516507387161,
+            -0.0009013375383801758,
+            0.00032845072564668953,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994682298997866,
+            0.03259516849012742,
+            -0.0009013390526025816
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    }
+  },
+  "resize": {
+    "observation": {
+      "size": [
+        800,
+        450
+      ],
+      "expectedCenter": [
+        304.9256008657897,
+        220.88358657934523
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.00026276058816419114,
+      "radiusPixels": 17.696845435051344,
+      "maxDelta": 253,
+      "changedPixels": 1037,
+      "mask": {
+        "count": 1029,
+        "centroid": [
+          304.9256559766764,
+          220.90233236151605
+        ],
+        "diameterDegrees": 0.5416407682946334,
+        "bounds": [
+          287,
+          203,
+          322,
+          238
+        ]
+      },
+      "reference": {
+        "visible": 778,
+        "hidden": 628,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            304,
+            220
+          ],
+          "gpu": [
+            5,
+            5,
+            5,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.999467134475708,
+            0.032629337161779404,
+            -0.0008699254249222577,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            253,
+            253,
+            253,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994671429027536,
+            0.03262933489807028,
+            -0.0008699206379089702
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            253,
+            253,
+            253
+          ]
+        }
+      ]
+    },
+    "replacedDepth": true,
+    "replacedColor": true,
+    "oldDepthDestroyed": true,
+    "oldColorDestroyed": true,
+    "depthSize": [
+      800,
+      450
+    ],
+    "colorSize": [
+      800,
+      450
+    ]
+  },
+  "halo": {
+    "visible": {
+      "size": [
+        800,
+        450
+      ],
+      "expectedCenter": [
+        399.99999999999966,
+        224.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.00026276058816419114,
+      "radiusPixels": 17.696845435051344,
+      "maxDelta": 255,
+      "changedPixels": 100960,
+      "mask": {
+        "count": 1849,
+        "centroid": [
+          399.5,
+          224.5
+        ],
+        "diameterDegrees": 0.6473612238683515,
+        "bounds": [
+          378,
+          203,
+          420,
+          245
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            399,
+            224
+          ],
+          "gpu": [
+            6.003566741943359,
+            6.927574157714844,
+            7.596579074859619,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994659423828125,
+            0.03266488388180733,
+            -0.0008852440514601767,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            254,
+            255,
+            255,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994659681865851,
+            0.03266488611896388,
+            -0.00088524103357545
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            254,
+            255,
+            255
+          ]
+        },
+        {
+          "pixel": [
+            435,
+            224
+          ],
+          "gpu": [
+            0.3339149057865143,
+            0.5323792099952698,
+            0.6243577003479004,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994300007820129,
+            0.032651353627443314,
+            0.00857375655323267,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            184,
+            209,
+            216,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994300276017596,
+            0.032651349590278954,
+            0.008573756345934477
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            184,
+            209,
+            216
+          ]
+        },
+        {
+          "pixel": [
+            628,
+            224
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9977172613143921,
+            0.03252924233675003,
+            0.05918029323220253,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9977171651418332,
+            0.03252924013384098,
+            0.05918029163208677
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "bright": {
+      "size": [
+        800,
+        450
+      ],
+      "expectedCenter": [
+        399.99999999999966,
+        224.99999999999997
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.00026276058816419114,
+      "radiusPixels": 17.696845435051344,
+      "maxDelta": 255,
+      "changedPixels": 103555,
+      "mask": {
+        "count": 1849,
+        "centroid": [
+          399.5,
+          224.5
+        ],
+        "diameterDegrees": 0.6473612238683515,
+        "bounds": [
+          378,
+          203,
+          420,
+          245
+        ]
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            399,
+            224
+          ],
+          "gpu": [
+            12.007133483886719,
+            13.855148315429688,
+            15.193158149719238,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994659423828125,
+            0.03266488388180733,
+            -0.0008852440514601767,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994659681865851,
+            0.03266488611896388,
+            -0.00088524103357545
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "pixel": [
+            435,
+            224
+          ],
+          "gpu": [
+            0.6678298115730286,
+            1.0647584199905396,
+            1.2487154006958008,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9994300007820129,
+            0.032651353627443314,
+            0.00857375655323267,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            218,
+            233,
+            237,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994300276017596,
+            0.032651349590278954,
+            0.008573756345934477
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            218,
+            233,
+            237
+          ]
+        },
+        {
+          "pixel": [
+            628,
+            224
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9977172613143921,
+            0.03252924233675003,
+            0.05918029323220253,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "withoutSun": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9977171651418332,
+            0.03252924013384098,
+            0.05918029163208677
+          ],
+          "ellipsoid": null,
+          "pickedDistance": null,
+          "pickedHeight": null,
+          "expectedComposite": [
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "hidden": {
+      "size": [
+        800,
+        450
+      ],
+      "expectedCenter": [
+        399.9999999999983,
+        225
+      ],
+      "nativeSun": [
+        0.9994703641024076,
+        0.03253340922813717,
+        -0.0007540324896109544
+      ],
+      "pixelWidth": 0.00026276058816419114,
+      "radiusPixels": 17.696845435051344,
+      "maxDelta": 0,
+      "changedPixels": 0,
+      "mask": {
+        "count": 0,
+        "centroid": null,
+        "diameterDegrees": null,
+        "bounds": null
+      },
+      "reference": {
+        "visible": 0,
+        "hidden": 0,
+        "mismatches": 0,
+        "examples": []
+      },
+      "samples": [
+        {
+          "pixel": [
+            399,
+            225
+          ],
+          "gpu": [
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            5.2621032864408335e-8,
+            0,
+            0,
+            0,
+            1893185.25,
+            0.0330810546875,
+            0.1705322265625,
+            0.44775390625,
+            1,
+            0.9994745254516602,
+            0.03240205720067024,
+            -0.0008853793842718005,
+            0.0002627605863381177,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          "displayed": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "withoutSun": [
+            42,
+            137,
+            200,
+            255
+          ],
+          "exposure": 1,
+          "nativeRay": [
+            0.9994745231720337,
+            0.03240206226181269,
+            -0.0008853763139827677
+          ],
+          "ellipsoid": [
+            1881313.6286899848,
+            2797252.6706578042
+          ],
+          "pickedDistance": 1903581.6454645537,
+          "pickedHeight": -1560.2295620721652,
+          "expectedComposite": [
+            42,
+            137,
+            200
+          ]
+        }
+      ]
+    }
+  },
+  "loss": {
+    "beforeErrors": [],
+    "errors": [
+      "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:20319:13)\n    at http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:76325:13"
+    ],
+    "stopped": true
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 1442,
+      "buffersDestroyed": 1442,
+      "bufferBytes": 0,
+      "drawCalls": 4,
+      "triangles": 2280,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "nativeResources": {
+    "created": 1587,
+    "destroyed": 1587,
+    "buffers": 1556,
+    "textures": 31,
+    "live": [],
+    "atmosphere": {
+      "frames": 8,
+      "sunFrames": 163,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 22,
+      "texturesDestroyed": 22,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 201,
+      "bloomPasses": 203,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33370226933715824
+    }
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      800,
+      450
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

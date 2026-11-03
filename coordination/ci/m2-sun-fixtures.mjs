@@ -63,6 +63,7 @@ export async function installSunProbe(page) {
       window.__m2Atmosphere.restore();
       Object.assign(scene.sun, state.defaults, { show: true, glowStrength: 0 });
       scene.atmosphere.show = false;
+      scene._atmosphere.bloomStrength = 0;
       viewer.camera.frustum = new Cesium.PerspectiveFrustum({
         fov: Cesium.Math.toRadians(12),
         aspectRatio: viewer.canvas.width / viewer.canvas.height,
@@ -183,8 +184,8 @@ export async function installSunProbe(page) {
     };
 
     const code = `${Cesium.WebGPUAtmosphereShader}
-      @group(0) @binding(7) var<storage, read> solarPixels: array<vec4f>;
-      @group(0) @binding(8) var<storage, read_write> solarResults: array<vec4f>;
+      @group(0) @binding(16) var<storage, read> solarPixels: array<vec4f>;
+      @group(0) @binding(17) var<storage, read_write> solarResults: array<vec4f>;
       @compute @workgroup_size(1)
       fn solarProbeMain(@builtin(global_invocation_id) id: vec3u) {
         let pixel = vec2i(solarPixels[id.x].xy);
@@ -262,8 +263,13 @@ export async function installSunProbe(page) {
             { binding: 4, resource: renderer._sampler },
             { binding: 5, resource: scene.context.sceneColorTexture.createView() },
             { binding: 6, resource: scene.context.sceneDepthTexture.createView() },
-            { binding: 7, resource: { buffer: input } },
-            { binding: 8, resource: { buffer: output } },
+            ...renderer._solarTextures.map((texture, index) => ({
+              binding: 7 + index,
+              resource: texture.createView(),
+            })),
+            { binding: 15, resource: renderer._sampler },
+            { binding: 16, resource: { buffer: input } },
+            { binding: 17, resource: { buffer: output } },
           ],
         });
         const encoder = device.createCommandEncoder();

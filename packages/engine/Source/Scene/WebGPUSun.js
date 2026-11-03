@@ -17,8 +17,8 @@ export function createSunParameters(options = {}) {
     show: true,
     angularRadius,
     displayScale,
-    glowStrength: 0.025,
-    glowRadius: 0.025,
+    glowStrength: 0.08,
+    glowRadius: 0.05,
     ...options,
   };
   sunDisplayRadiance(parameters, 10);

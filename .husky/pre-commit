@@ -1,1 +1,2 @@
-npx lint-staged
+# Serialize staged checks to avoid concurrent ESLint/TypeScript/Markdown workers exhausting memory on Windows.
+npx lint-staged --concurrent false
