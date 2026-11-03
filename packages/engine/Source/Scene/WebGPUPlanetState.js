@@ -15,6 +15,7 @@ import {
 } from "./WebGPUPlanetMath.js";
 import CelestialFrameTransforms from "../Core/CelestialFrameTransforms.js";
 import Simon1994PlanetaryPositions from "../Core/Simon1994PlanetaryPositions.js";
+import { validateMoonParameters, validateStarParameters } from "./WebGPUSpace.js";
 
 /**
  * Double-precision planet/camera state with the vec4-aligned WebGPUPlanet WGSL
@@ -51,8 +52,10 @@ class WebGPUPlanetState {
    * @param {JulianDate} time Actual scene render time.
    * @returns {WebGPUPlanetState} This reused frame record.
    */
-  update(camera, time) {
+  update(camera, time, moon, stars) {
     const planet = this.planet;
+    validateMoonParameters(moon);
+    validateStarParameters(stars);
     const position = Cartesian3.clone(camera.positionWC, this.cameraPositionWC);
     this.cameraGeocentricDistance = Cartesian3.magnitude(position);
     const cartographic = planet.ellipsoid.cartesianToCartographic(
@@ -94,9 +97,7 @@ class WebGPUPlanetState {
       this.moonDistance,
       this.moonDirectionWC,
     );
-    this.moonAngularRadius = Math.asin(
-      Math.min(1, 1737400 / this.moonDistance),
-    );
+    this.moonAngularRadius = moon.show ? Math.asin(Math.min(1, 1737400 / this.moonDistance)) : 0;
     // Full Moon occurs when the Moon lies opposite the Sun as seen from Earth.
     this.moonIllumination = Math.max(
       0,
@@ -156,7 +157,7 @@ class WebGPUPlanetState {
     );
     values.set([ellipsoidC, atmosphereC, planet.atmosphereHeight, 0], 44);
     write(48, this.moonDirectionWC, this.moonAngularRadius);
-    values.set([this.moonIllumination, this.moonDistance, 0, 0], 52);
+    values.set([this.moonIllumination, this.moonDistance, stars.show ? stars.intensity : 0, moon.moonlightIntensity], 52);
     if (!values.every(Number.isFinite)) {
       throw new DeveloperError(
         "Planet state exceeds finite float32 shader precision.",
