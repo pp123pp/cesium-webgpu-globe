@@ -262,6 +262,7 @@
         );
       });
       document.getElementById("look-sun").addEventListener("click", () => {
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
         const direction = Cesium.WebGPUPlanetMath.computeSunDirectionWC(
           viewer.clock.currentTime,
         );
@@ -350,6 +351,7 @@
         }
       });
       orbit.addEventListener("click", () => {
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
           orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
