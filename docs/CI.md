@@ -1,281 +1,150 @@
-# WebGPU CI: Fast feedback and complete regression
+# WebGPU CI: Fast and non-rendering Full regression
 
-Every PR commit receives **Fast CI**. **Full regression** retains the complete
-upstream and M0/M1/M2.1 acceptance gates and must pass on the latest PR head before
-final acceptance. A successful Fast run or a skipped Full job does not satisfy that
-acceptance requirement.
+The user's 2026-11-03 instruction removes software-GPU rendering tests from
+**Full regression**. Full now checks source, builds, types and unit tests, including
+the complete upstream non-WebGL suite. **A passing Full does not certify rendering
+acceptance or complete WebGL no-regression.** Fast retains its existing rendering
+checks. Rendering scripts and their assertions remain in the repository for
+separately authorized execution.
 
 ## Agent verification cadence
 
-The user's 2026-11-02 policy in [`AGENTS.md`](../AGENTS.md#risk-based-testing-and-verification)
-limits test authoring and local/manually requested execution to the smallest
-sufficient scope. Routine implementation work uses affected cases/modules and
-necessary rendering views. Documentation-only work needs content/diff checks;
-it does not reopen a completed milestone or require a manual Full run.
-Add tests only for a concrete coverage gap, critical new behavior or a regression.
+Use the smallest sufficient checks under
+[AGENTS.md](../AGENTS.md#risk-based-testing-and-verification). Batch related edits
+before verification and publication; do not push frequent intermediate changes to
+trigger repeated CI. Reuse still-applicable evidence and identify its tested source.
+Documentation-only work needs content/diff checks, not runtime suites.
 
-Full is not an automatic task-closing ritual. Run it when explicitly requested,
-required by the active acceptance/CI gate, or justified by a specific broad risk
-that targeted checks cannot cover. Batch related edits first. Reuse applicable
-CI results instead of repeating them locally, and coordinate shared checks
-through the integration owner. An old source result must never be presented
-as a passing result for a newly required final HEAD.
+**Do not manually execute, dispatch or rerun Full without explicit user
+authorization.** An older milestone's Full requirement, task completion or a failed
+run does not supply that authorization. Do not add or toggle `ci:full`, mark a PR
+ready, or make an extra push solely to cause another Full run without authorization.
+Coordinate any authorized verification through the integration owner.
 
-**This policy does not change the workflow YAML or selector.** The trigger table
-below still applies: a ready PR automatically selects Full, including for a
-documentation update; every PR commit receives Fast. Assemble related changes
-before making a PR ready to avoid repeated automatic Full runs. Do not manually
-add `ci:full`, dispatch Full or rerun it for an isolated documentation update
-without one of the reasons above. Required final milestone acceptance still needs
-successful Fast and an actually executed Full on the specified latest PR head.
+The automatic event triggers and selector are unchanged. Consequently, an
+otherwise authorized update to a ready PR still automatically selects Full;
+draft shared-code updates can also select it. The table below describes that
+existing behavior, not permission to initiate more runs. This change does not
+disable Fast's software-GPU checks.
 
 ## What each tier runs
 
-| Gate                                                                                                     | Fast CI | Full regression |
-| -------------------------------------------------------------------------------------------------------- | ------- | --------------- |
-| Pinned Cesium version, license and upstream revision checks                                              | Yes     | Yes             |
-| Candidate build                                                                                          | Once    | Once            |
-| WebGPU/Viewer lint, generated declarations and all TypeScript projects                                   | Yes     | Yes             |
-| M0 focused tests and every `coordination/ci/m1-*.test.mjs` / `m2-*.test.mjs`                             | Yes     | Yes             |
-| Visible WebGL comparison against independently built `724b5db`, including missing-Globe negative control | Yes     | Yes             |
-| M0 WebGPU proof and M1 real globe browser smoke                                                          | Yes     | Yes             |
-| M2.1 actual WGSL, high/low/ground depth, boundary rays and resource cleanup                              | Yes     | Yes             |
-| M2.2 physical scattering, real-depth aerial perspective, representative views and native resource cleanup | Yes | Yes |
-| M2.3 actual Sun disk, time/altitude/partial occultation, terrain depth, attenuation and native resource cleanup | Yes | Yes |
-| Complete upstream non-WebGL suite with `--failTaskOnError`                                               | —       | Yes             |
-| Complete upstream WebGL differential against `724b5db`                                                   | —       | Yes             |
-| M1 imagery and navigation browser acceptance                                                             | —       | Yes             |
-| Live M1 terrain, draping, seams and near-ground flight                                                   | —       | Yes             |
-| Live demo, provider errors and lifecycle acceptance                                                      | —       | Yes             |
+| Gate | Fast CI | Full regression |
+| --- | --- | --- |
+| Pinned Cesium version, license and upstream revision | Yes | Yes |
+| Candidate build | Once | Once |
+| WebGPU/Viewer lint, generated declarations and TypeScript | Yes | Yes |
+| Focused M0 tests and all `m1-*.test.mjs` / `m2-*.test.mjs` | Yes | Yes |
+| Visible WebGL comparison with `724b5db`, including missing-Globe negative control | Yes | No |
+| M0 WebGPU proof and M1 Globe browser smoke | Yes | No |
+| M2.1 WGSL, depth, representative views and resource cleanup | Yes | No |
+| M2.2 atmosphere, real-depth aerial perspective and resource cleanup | Yes | No |
+| M2.3 Sun, occultation, transmittance and resource cleanup | Yes | No |
+| M2.4 Moon, stars, moonlight and resource cleanup | Yes | No |
+| Complete upstream non-WebGL suite with `--failTaskOnError` | No | Yes |
+| Complete upstream WebGL differential | No | No |
+| M1 imagery/navigation browser acceptance | No | No |
+| Live terrain, draping, seams and near-ground flight | No | No |
+| Live demo, provider errors and lifecycle acceptance | No | No |
 
-The workflows are `.github/workflows/m0-webgl-baseline.yml` (Fast) and
-`.github/workflows/m1-full-regression.yml` (Full). Each builds its own candidate and
-independent reference once. Full does not depend on a Fast artifact or a previous
-commit's result. The reference build is necessary for the visible WebGL comparison
-even in Fast.
+The workflows are
+[Fast](../.github/workflows/m0-webgl-baseline.yml) and
+[Full](../.github/workflows/m1-full-regression.yml). Each builds its own candidate;
+Full does not reuse Fast artifacts or results. Only Fast checks out and builds the
+independent pre-WebGPU reference for its visible WebGL comparison. Full still uses
+Chromium for upstream **non-WebGL** unit tests; installing a browser does not mean
+that Full runs a rendering gate.
 
 Both tiers generate declarations with `npm run build-ts`, compile the Sandcastle
-template declaration with
+template declaration using
 `npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json`,
-then run `npm run tsc`. The template generation is required by the upstream
-Sandcastle gallery imports; omitting it can produce a TypeScript resolver failure
-on a fresh checkout.
+then run `npm run tsc`. Focused tests of rendering helpers remain unit tests; their
+presence does not restore the removed real-browser rendering gates.
 
-The focused-test globs include new M1/M2 tests and the same-frame scene callback
-suite. M2.1 adds 27 dedicated unit cases and the required
-`coordination/ci/m2-foundation-smoke.mjs` browser gate. The browser report executes
-the real shared WGSL, reads native terrain depth and checks 35,786 km / 400 km /
-2 m cameras, off-axis rays, boundary contacts, sky, resize and resource cleanup.
-Its `Build/m2-foundation/` reports and screenshots are included in `m1-fast` and
-`m1-full-regression` artifacts; the historical workflow/artifact names remain.
+## Rendering evidence and acceptance limits
 
-M2.2 adds the focused physical-model and composite-lifecycle files and the
-required `coordination/ci/m2-atmosphere-smoke.mjs` browser gate. Its eight
-aggregate checks execute production WGSL and read actual LUTs, depth and canvas
-pixels: transmittance/phase/shadow conventions, approximate multiple scattering,
-parameter invalidation, 2 m / 400 km / 35,786 km views, day/night/terminator and
-time changes, atmosphere-boundary continuity, mountainous real-depth aerial
-perspective, resize and every native buffer/texture release. Reports and captures
-are uploaded from `Build/m2-atmosphere/` in both existing artifacts. The mountain
-fixture uses a documented fixed subpixel geometric bound; M2.1 numerical depth
-assertions remain unchanged. See [M2.2 contract](WEBGPU_M2.2.md).
+Fast uploads its existing `m1-fast` artifact: visible WebGL/negative-control,
+M0 WebGPU, M1 Globe and M2 foundation/atmosphere/Sun/space reports and captures.
+These are the checks actually executed by Fast, not complete upstream WebGL or
+live terrain/demo acceptance. Full retains its `m1-full-selection` selection
+artifact; its non-WebGL test results are in Actions logs. It no longer uploads
+`m1-full-regression` rendering reports, screenshots or complete WebGL differential
+evidence. Historical rendering artifacts do not describe the new Full scope.
 
-M2.3 adds `coordination/ci/m2-sun-smoke.mjs` to both tiers and uploads
-`Build/m2-sun/`. It exercises production Sun WGSL, actual rendered pixels and
-native geometry/depth across ground and orbital views, partial Earth/terrain
-occultation, time, RGB transmittance, restrained glare, mode/resize changes and
-native teardown. Existing M1/M2.2 fixtures also use `skyBox:false` to isolate
-their original geometry/atmosphere assertions; this follows Viewer's existing
-Sun-hiding convention. The public demo keeps Sun and atmosphere enabled.
-The shared parameter buffer is now 80 bytes, while the M2.1 planet ABI remains
-192 bytes. See [M2.3 contract](WEBGPU_M2.3.md). Final M2.3 acceptance likewise
-requires successful Fast and executed Full on the same latest published head,
-and does not claim M2.6 A07–A10 completion.
-
-M1 Globe/provider/navigation fixtures explicitly disable atmosphere so their
-retained time, geometry and color assertions continue to isolate M1. Their native
-resource equality includes both renderer owners (terrain and the initialized
-atmosphere uniforms); allocation caps and zero-resource teardown remain strict.
-The M2.2 suite enables atmosphere, and the public live-demo gate exercises its
-enabled default, including device loss and early destruction.
-For a classified software GPU, the live demo's Everest streaming phase uses the
-existing `resolutionScale=0.75` API after its original camera-arrival assertion.
-The CSS viewport stays 1280×720, so native terrain SSE remains
-`drawingBufferHeight / pixelRatio = 540 / 0.75 = 720`; terrain LOD is not lowered.
-Streaming, restoration to scale 1 / 1280×720, at least three actual restored
-rendered frames and GPU completion share the **original 90-second deadline**.
-The selected tile set must match before/after restoration, atmosphere remains
-enabled, and original mountain, imagery, attribution, navigation and native
-resource assertions still run. Physical GPU runs retain full resolution
-throughout. This controls software fragment work for functional acceptance;
-it does not certify the default full-resolution streaming performance or its
-resource peaks. Timeout reports include sanitized request/queue/tile state and
-a bounded screenshot attempt. See the [M2.2 diagnosis](../coordination/handoffs/M2.2-physical-atmosphere.md#enabled-default-demo-readiness-on-software-gpu).
-Final M2.2 acceptance still requires Fast and an
-executed Full on the same latest PR head; this is not M2.6 A07–A10 acceptance.
-
-No acceptance test or assertion is removed. Full preserves the
-upstream WebGL differential policy: identical inherited failures are recorded;
-new failures, missing execution or changed assertion signatures fail the gate.
+The complete WebGL differential, imagery/navigation, live terrain and demo scripts
+remain under `coordination/ci/`, with their assertions intact. Run them only under
+separate authorization and report the actual GPU, source and result. Their absence
+from Full does not convert unexecuted checks into passes or resolve previously
+observed rendering defects. Applicable rendering requirements in
+[ACCEPTANCE.md](ACCEPTANCE.md) need their own evidence or an explicit scope decision;
+a green Full alone cannot satisfy them. Historical final-head Full requirements
+and selector-summary wording do not authorize a new run or imply rendering coverage.
 
 ## Trigger policy
 
-| PR event or state                             | Fast                                             | Full                                                                                   |
-| --------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| Draft opened/reopened                         | Yes                                              | If shared changes, `ci:full`, or unavailable comparison                                |
-| Draft receives a commit                       | Yes                                              | If this update changes shared code/configuration, `ci:full`, or unavailable comparison |
-| Ready PR opened/reopened or receives a commit | Yes                                              | Always                                                                                 |
-| `ready_for_review`                            | Existing commit's Fast result remains applicable | Always                                                                                 |
-| Add `ci:full` label                           | No additional Fast run                           | Immediately, on current head                                                           |
-| Other label added                             | No                                               | Selection records a skip; active Full is preserved                                     |
-| `workflow_dispatch`                           | No                                               | Always; workflow is now present on `main`                                              |
+| PR event or state | Fast | Full |
+| --- | --- | --- |
+| Draft opened/reopened | Yes | Shared changes, `ci:full`, or unavailable comparison |
+| Draft receives a commit | Yes | This update changes shared code/configuration, `ci:full`, or unavailable comparison |
+| Ready PR opened/reopened or receives a commit | Yes | Always |
+| `ready_for_review` | Existing commit's result remains applicable | Always |
+| Add `ci:full` label | No additional run | Current head |
+| Other label added | No | Selector records a skip; active Full is preserved |
+| `workflow_dispatch` | No | Always |
 
-There is no `push` trigger. A branch push associated with a PR produces the PR's
-`synchronize` event without a second push workflow run. A branch without a PR does
-not receive these PR gates.
+There is no `push` trigger. A push to a branch with a PR produces the PR's
+`synchronize` event; a branch without a PR does not receive these PR gates.
+Manual dispatch is available with the workflow on `main`; it is not an instruction
+to dispatch. The `ci:full` label persists: later draft updates also select Full
+while attached. Removing it disables only that override for later updates, not
+shared-code/ready-PR triggers or an already running job.
 
-### What counts as a shared change
+### Shared changes and exact source
 
-`coordination/ci/m1-ci-policy.mjs` selects Full for changes under `packages/core`,
-`packages/engine`, `packages/widgets`, `Specs`, `scripts`, `.github/workflows` or
-`coordination/ci`, and for package manifests/locks, root gulpfiles, TypeScript
-configuration, `eslint.config.js` and `server.js`. Isolated `WebGPU*.js` modules
-under `packages/engine/Source` are eligible for Fast-only iteration while a PR is
-a draft. A shared `Viewer.js`, native Globe, renderer, core or test-harness edit
-still selects Full.
+[m1-ci-policy.mjs](../coordination/ci/m1-ci-policy.mjs) selects Full for changes
+under `packages/core`, `packages/engine`, `packages/widgets`, `Specs`, `scripts`,
+`.github/workflows` or `coordination/ci`, and for package manifests/locks, root
+gulpfiles, TypeScript configuration, `eslint.config.js` and `server.js`. Isolated
+`WebGPU*.js` modules under `packages/engine/Source` are eligible for Fast-only draft
+iteration. Shared Viewer, native Globe, renderer, core or test-harness edits still
+select Full.
 
-For `synchronize`, the selector compares the event's previous head (`before`) with
-the current PR head. An older Viewer change in the cumulative PR diff therefore
-does not force Full for every later documentation-only update. Opened/reopened
-events conservatively use the complete base-to-head merge-base diff. Renames are
-read as separate deletion/addition paths so renaming a shared file cannot hide its
-removal. Missing/invalid SHAs or unavailable Git history select Full. A malformed
-event that prevents selection fails the workflow.
+For `synchronize`, selection compares the previous event head (`before`) with the
+current head. Opened/reopened events use the base-to-head merge-base diff. Renames
+are treated as deletion/addition paths. Missing/invalid SHAs or unavailable history
+select Full; a malformed event that prevents selection fails the workflow.
 
-The selector checks out the exact PR head with full Git history, reads the local
-diff without a paginated API/file-count limit, and saves its reason and head in
-`m1-full-selection/full-selection.json` and the Actions summary. Candidate jobs
-also check out that same event head explicitly.
+The selector checks out the event head with full Git history and reads the local
+diff. It records its reason and head in the `m1-full-selection` artifact's
+`full-selection.json` and Actions summary. Candidate jobs check out that same head.
+A selection-only success or skipped job does not mean the Full tests executed.
+Older passing revisions and cancelled runs do not certify a new revision.
 
 ### Cancellation
 
-Fast uses `m1-fast-<PR number>`; Full uses `m1-full-<PR number>`. Both set
-`cancel-in-progress: true`. A newer revision cancels obsolete work in its own tier
-without cancelling the other tier. An eligible Fast-only update also cancels an
-older Full for an obsolete head before recording the new Full skip.
+Fast uses concurrency group `m1-fast-<PR number>` and Full uses
+`m1-full-<PR number>`, both with `cancel-in-progress: true`. New revisions cancel
+obsolete work within their own tier. A Fast-only update can cancel an older Full
+before recording the new skip. Unrelated label events use a separate group with
+the run ID, so they cannot cancel a real Full run. Adding `ci:full` or marking a PR
+ready uses the normal Full group. Evidence uploads use `always()`.
 
-Unrelated label events use a separate Full group containing the run ID. They
-cannot cancel a real Full run. Adding `ci:full` or marking the PR ready uses the
-normal Full group and can replace an older run for the same PR. Evidence upload
-steps use `always()`, including cancellation paths.
+## Local policy checks and repository settings
 
-## Manual Full and final acceptance
-
-**Current route: apply the `ci:full` PR label after these workflows are published
-on the PR branch.** A maintainer can create the label if necessary and add it in
-GitHub's PR interface. With GitHub CLI and an authorized user session:
-
-```bash
-gh label create ci:full --repo pp123pp/cesium-webgpu-globe --color B60205 --description "Run complete M1 regression"
-gh pr edit 2 --repo pp123pp/cesium-webgpu-globe --add-label ci:full
-```
-
-Only create the label if it is missing. If already attached and a new run is
-needed for the same head, remove and re-add it, or rerun the previous Full run
-after verifying that run targets the current head. Adding an already attached
-label does not reliably create another `labeled` event.
-
-**The label is persistent:** later draft commits also run Full while it remains
-attached. Removing it disables this override for subsequent updates; it does not
-cancel an already running Full. Shared-code and ready-PR triggers continue to
-apply. Leave the label attached through final verification so any later commit
-automatically receives Full again. A maintainer's label action is required;
-GitHub normally suppresses new workflow runs from events created with a workflow's
-own `GITHUB_TOKEN` ([GitHub trigger documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)).
-
-Before final milestone acceptance, verify the latest PR head SHA, a successful Fast job,
-and a successful **executed** `Full regression` job for that same head. Check the
-selection evidence and the uploaded `m1-full-regression` browser/differential
-artifacts. A selector-only success, skipped Full, older passing head or cancelled
-run is insufficient. Final status remains the integration owner's decision.
-
-### Historical dispatch limitation and current state
-
-The limitation below applied before M0/M1 integration. It no longer describes
-current `main`: both workflows are present at
-`c47ef56343343684f50992af8a3f32813402884f`, and the
-[`workflow_dispatch` run 41439499307](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41439499307)
-demonstrates that manual dispatch is available. That historical run failed and
-is not M2.1 acceptance evidence. A ready M2 PR selects Full without a label or
-additional dispatch; do not start a duplicate Full while its final-head run is
-already executing.
-
-On 2026-11-02, default `main` was
-`a7f472990cc4cb9fa6628181952fa8be7ad43eda`; its workflow directory contained only
-`import-cesium.yml` ([recorded revision](https://github.com/pp123pp/cesium-webgpu-globe/tree/a7f472990cc4cb9fa6628181952fa8be7ad43eda/.github/workflows)).
-GitHub requires a `workflow_dispatch` workflow to exist on the default branch
-before it can be manually dispatched
-([GitHub manual-run documentation](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)).
-An Actions workflow registry entry alone does not meet that requirement.
-
-At that earlier checkpoint the Full YAML's dispatch was not yet usable. Label
-and ready-for-review PR events supplied the immediate routes. Actual hosted
-execution must always be verified; local policy tests cannot prove GitHub
-delivered an event.
-
-## Required status checks: observed state
-
-The 2026-11-02 read-only repository audit found both `main` and PR #2's base,
-`feat/m0-webgpu-backend`, with `protected: false`, protection disabled, and empty
-required-check contexts/checks. Repository rulesets were empty. Sources:
-[main branch API](https://api.github.com/repos/pp123pp/cesium-webgpu-globe/branches/main),
-[PR base branch API](https://api.github.com/repos/pp123pp/cesium-webgpu-globe/branches/feat%2Fm0-webgpu-backend),
-and [repository rulesets API](https://api.github.com/repos/pp123pp/cesium-webgpu-globe/rulesets).
-The dedicated protection endpoint required authenticated access; the stated
-observation comes from the public branch metadata and ruleset response.
-
-This change does not alter branch protection or required checks. The visible jobs
-are `Fast CI`, `Select Full regression`, and `Full regression`. There was no
-required `webgl-baseline` context to preserve in the observed settings. If an owner
-later configures protection, verify the current settings and check names then;
-branch protection cannot replace the explicit final-head Full acceptance rule.
-
-## Expected time benefit and limits
-
-Historical successful workflow runs provide a reference, not a benchmark of the
-new tiers:
-
-| Original run                                                                           | Run elapsed | Complete non-WebGL | Complete WebGL differential |
-| -------------------------------------------------------------------------------------- | ----------- | ------------------ | --------------------------- |
-| [41407632894](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41407632894) | 10m 16s     | 60s                | 386s                        |
-| [41413125879](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41413125879) | 10m 54s     | 61s                | 386s                        |
-| [41415613101](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41415613101) | 10m 29s     | 59s                | 370s                        |
-
-Moving just the two complete upstream suites out of ordinary draft iterations
-removes approximately **429–447 seconds (7.2–7.5 minutes)** of work from their Fast
-path, based on those step timestamps. This is an estimate of omitted work, not a
-measured Fast wall-clock improvement. Current type generation, browser setup,
-live service latency, runner queues and the newer acceptance coverage affect
-actual timing. Historical successful runs predate the latest full terrain/demo
-acceptance and do not certify it.
-
-Ready/shared/manual Full events run both independent tiers, so they deliberately
-retain duplicate setup across workflows. Cancellation saves obsolete-run work;
-it does not reduce the selected Full gate itself. Compare new hosted timing only
-after successful runs of the integrated head.
-
-## Local verification of the policy
-
-After installing the existing repository dependencies:
+For a related workflow/selector change, the focused check is:
 
 ```bash
 node coordination/ci/m1-ci-policy.test.mjs
-actionlint .github/workflows/m0-webgl-baseline.yml .github/workflows/m1-full-regression.yml
 ```
 
-The tests execute the selector against temporary Git histories and real event
-files, inspect the actual YAML, exercise cancellation expressions, and check that
-both complete upstream suites and all browser gates remain wired into Full.
-They also check exact-head checkout, one candidate build per tier, lint/types,
-focused-test discovery and the WebGL negative control. Browser/acceptance results
-remain the responsibility of the hosted workflows and integration verification.
+It checks selector decisions against temporary Git histories/events and inspects
+the actual workflows: checkout, builds, lint/types, unit-test discovery, unchanged
+Fast rendering gates, and Full's retained non-WebGL suite and excluded rendering
+gates. This is configuration verification, not a rendering test or authorization
+to execute Full.
+
+This change does not alter branch protection or required-check settings. Visible
+job names remain `Fast CI`, `Select Full regression`, and `Full regression`. Inspect
+current repository settings when those settings matter; historical observations
+are not proof of current protection. Report each executed check within its actual
+scope rather than treating the name "Full" as a complete rendering acceptance.
