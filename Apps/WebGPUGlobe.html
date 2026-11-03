@@ -104,13 +104,15 @@
         color: #a4ddc3;
         white-space: pre-wrap;
       }
-      #sun-controls {
+      #sun-controls,
+      #exposure-controls {
         margin: 12px 0;
         padding: 10px;
         border: 1px solid #ffffff25;
         border-radius: 6px;
       }
-      #sun-controls label {
+      #sun-controls label,
+      #exposure-controls label {
         display: inline-block;
         margin: 4px 12px 4px 0;
       }
@@ -167,6 +169,27 @@
         <nav aria-label="Sun controls">
           <button id="look-sun" type="button">Look at Sun</button>
         </nav>
+      </fieldset>
+      <fieldset id="exposure-controls" disabled>
+        <legend>Exposure</legend>
+        <label for="exposure">Image exposure</label>
+        <input
+          id="exposure"
+          type="range"
+          min="0.25"
+          max="4"
+          step="0.05"
+          value="1"
+          aria-describedby="exposure-help"
+        />
+        <output id="exposure-value" for="exposure">1.00</output>
+        <nav aria-label="Exposure controls">
+          <button id="reset-exposure" type="button">Restore default</button>
+        </nav>
+        <small id="exposure-help"
+          >Brighten dark detail or lower exposure to retain highlight contrast.
+          Sunlight intensity is unchanged.</small
+        >
       </fieldset>
       <fieldset id="space-controls" disabled>
         <legend>Moon &amp; stars</legend>
@@ -225,11 +248,28 @@
       const ionToken = document.getElementById("ion-token");
       const applyToken = document.getElementById("apply-token");
       const sunControls = document.getElementById("sun-controls");
+      const exposureControls = document.getElementById("exposure-controls");
+      const exposure = document.getElementById("exposure");
+      const exposureValue = document.getElementById("exposure-value");
       const spaceControls = document.getElementById("space-controls");
       const moonReadout = document.getElementById("moon-readout");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
+      const defaultExposure = viewer.scene.exposure;
+      const updateExposure = (value) => {
+        viewer.scene.exposure = value;
+        exposure.value = String(value);
+        exposureValue.value = value.toFixed(2);
+      };
+      exposure.addEventListener("input", () => {
+        updateExposure(exposure.valueAsNumber);
+      });
+      document
+        .getElementById("reset-exposure")
+        .addEventListener("click", () => {
+          updateExposure(defaultExposure);
+        });
       // WebGPU Viewer does not create widgets; share its clock with the native Timeline.
       const timeline = new Cesium.Timeline("timeline", viewer.clock);
       const scrubTime = (event) => {
@@ -257,6 +297,7 @@
           orbit.disabled = terrain.disabled = everest.disabled = true;
           applyToken.disabled = true;
           sunControls.disabled = true;
+          exposureControls.disabled = true;
           spaceControls.disabled = true;
         }
       };
@@ -454,6 +495,8 @@
       try {
         await viewer.readyPromise;
         sunControls.disabled = false;
+        updateExposure(defaultExposure);
+        exposureControls.disabled = false;
         spaceControls.disabled = false;
         viewer.camera.setView({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
