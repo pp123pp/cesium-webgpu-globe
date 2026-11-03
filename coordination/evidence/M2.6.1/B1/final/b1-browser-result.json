@@ -1,0 +1,138 @@
+{
+  "suite": "m2.6.1-b1-solar-disc-rays",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T12:24:25.410Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "5cb8eda655314119fa5567e1b4c023e2c4217906",
+  "sourceStatus": "M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/manifest.json\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/radial-rays-01.r8\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/radial-rays-02.r8\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/radial-rays-03.r8\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/Rays/radial-rays-01.svg\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/Rays/radial-rays-02.svg\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/Rays/radial-rays-03.svg\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b1-solar-disc-rays-smoke.mjs\n?? coordination/ci/m2.6.1-b1-solar.test.mjs\n?? coordination/evidence/M2.6.1/",
+  "bundleSha256": "465ce843e64ae88f7e3a9e372b6c405ef220c5ea5cc57e48de454dc865b3a1ec",
+  "browserErrors": [],
+  "checks": [
+    "B01-disk-only-1920x1080.png: actual WebGPU canvas capture",
+    "B02-rays-only-1920x1080.png: actual WebGPU canvas capture",
+    "B01-B02-combined-1920x1080.png: actual WebGPU canvas capture",
+    "B01-B02-off-axis-1920x1080.png: actual WebGPU canvas capture",
+    "B01-B02-combined-1280x720.png: actual WebGPU canvas capture",
+    "1920x1080 and 1280x720 actual WebGPU captures completed"
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.4",
+  "diskProfile": {
+    "center": [
+      959,
+      539
+    ],
+    "radiusPixels": 127.83315601373536,
+    "points": [
+      {
+        "pixel": [
+          972,
+          539
+        ],
+        "radiance": [
+          6.232573986053467,
+          6.231973648071289,
+          6.230571746826172
+        ],
+        "coverage": 1
+      },
+      {
+        "pixel": [
+          1010,
+          539
+        ],
+        "radiance": [
+          5.954226493835449,
+          5.944517135620117,
+          5.921864032745361
+        ],
+        "coverage": 1
+      },
+      {
+        "pixel": [
+          1048,
+          539
+        ],
+        "radiance": [
+          5.233776569366455,
+          5.204678535461426,
+          5.13678503036499
+        ],
+        "coverage": 1
+      },
+      {
+        "pixel": [
+          1074,
+          539
+        ],
+        "radiance": [
+          4.211838722229004,
+          4.165375709533691,
+          4.056962013244629
+        ],
+        "coverage": 1
+      },
+      {
+        "pixel": [
+          1112,
+          539
+        ],
+        "radiance": [
+          0,
+          0,
+          0
+        ],
+        "coverage": 0
+      }
+    ],
+    "exposure": 0.5
+  },
+  "setup": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "cameraHeight": 399999.9999999993,
+    "time": "2026-03-20T12:00:00Z",
+    "angularRadius": 0.00465,
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    }
+  },
+  "resize": [
+    1280,
+    720
+  ],
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}
