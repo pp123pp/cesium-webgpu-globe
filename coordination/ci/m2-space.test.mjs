@@ -28,7 +28,7 @@ test("star settings validate visibility and bounded intensity", () => {
 
 test("production WGSL contains direction-anchored stars, lunar disk, phase and night lighting", () => {
   assert.match(WebGPUAtmosphereShader, /fn starRadiance/);
-  assert.match(WebGPUAtmosphereShader, /let grid = direction \* 1800\.0/);
+  assert.match(WebGPUAtmosphereShader, /dot\\(planet\\.starRotation0\\.xyz, direction\\)/);
   assert.match(WebGPUAtmosphereShader, /fn moonRadiance/);
   assert.match(WebGPUAtmosphereShader, /planet\.moonDirectionWC\.w/);
   assert.match(WebGPUAtmosphereShader, /fn moonTerrainLight/);
