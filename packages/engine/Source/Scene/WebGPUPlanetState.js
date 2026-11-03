@@ -38,7 +38,7 @@ class WebGPUPlanetState {
     this._moonRotation = new Matrix3();
     this.time = new JulianDate();
     // Fourteen vec4 records: the original 192-byte M2.1 ABI plus camera-relative Moon data.
-    this.uniformValues = new Float32Array(52);
+    this.uniformValues = new Float32Array(56);
     this._encodedCamera = new EncodedCartesian3();
     this._cartographic = new Cartographic();
     this._projection = new Matrix4();
