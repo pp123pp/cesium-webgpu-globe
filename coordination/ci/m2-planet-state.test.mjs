@@ -131,3 +131,13 @@ test("Moon direction includes camera parallax and follows native lunar ephemeris
   assert.ok(state.moonIllumination >= 0 && state.moonIllumination <= 1);
   assert.ok(Number.isFinite(firstPhase));
 });
+
+test("hiding Moon disables both lunar disk and night-side moonlight uniforms", () => {
+  const camera = cameraAt(0, 0, 400000);
+  const state = new PlanetState().update(camera, time,
+    { show: false, moonlightIntensity: 0.05 },
+    { show: true, intensity: 1 });
+  assert.equal(state.uniformValues[51], 0, "hidden Moon has no apparent angular radius");
+  assert.equal(state.uniformValues[52], 0, "hidden Moon contributes no phase radiance");
+  assert.equal(state.uniformValues[55], 0, "hidden Moon contributes no moonlight");
+});
