@@ -148,8 +148,8 @@ class WebGPUScene {
     // Viewer already defines skyBox:false as hiding the Sun as well. This is
     // WebGPU settings, not an instance of the separate native WebGL Sun class.
     this.sun = createSunParameters({ show: options.skyBox !== false });
-    this.moon = createMoonParameters();
-    this.stars = createStarParameters();
+    this.moon = createMoonParameters({ show: options.skyBox !== false });
+    this.stars = createStarParameters({ show: options.skyBox !== false });
     this._atmosphere = new WebGPUAtmosphereRenderer(context);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);
