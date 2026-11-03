@@ -29,7 +29,14 @@ ${WebGPUSunShader}
 
 
 fn spaceHash(p: vec3f) -> f32 {
-  return fract(sin(dot(p, vec3f(127.1, 311.7, 74.7))) * 43758.5453);
+  // Cell coordinates are integral. Integer mixing keeps rare star selection
+  // independent of backend-specific sine approximations and float rounding.
+  let cell = bitcast<vec3u>(vec3i(p));
+  var hash = (cell.x * 1597334677u) ^ (cell.y * 3812015801u) ^ (cell.z * 2798796415u);
+  hash = (hash ^ (hash >> 16u)) * 2146121005u;
+  hash = (hash ^ (hash >> 15u)) * 2221713035u;
+  hash = hash ^ (hash >> 16u);
+  return f32(hash >> 8u) * (1.0 / 16777216.0);
 }
 
 // Star positions are indexed only by the world-space ray, never camera position.
