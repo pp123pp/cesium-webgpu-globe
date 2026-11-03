@@ -13,7 +13,7 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 | A07 | M2    | orbital sunrise                 | Sun correctly occludes/appears at limb, physically plausible scattering  |
 | A08 | M2    | twilight, noon, night           | smoothly varying sky and sunlight, believable night background           |
 | A09 | M2    | horizon / aerial perspective    | terrain and atmosphere visually coherent at several altitudes            |
-| A10 | M2    | HDR + solar glow                 | HDR Sun/highlights retain detail; restrained bloom, visible but subtle radial Sun Rays and atmospheric glow; no whole-image clipping or glow leaking through Earth/terrain occlusion |
+| A10 | M2    | HDR + solar glow                | HDR detail; subtle bloom/rays; no clipping or Earth/terrain leaks        |
 | A11 | M3    | orbital global clouds           | curved global coverage, meaningful shapes, no planar seam/edge           |
 | A12 | M3    | cloud fly-through               | near-cloud detail and interior density, coherent with distance           |
 | A13 | M3    | sunset/side lighting            | self-shadow and silver lining, no severe temporal ghosting               |
@@ -28,14 +28,14 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 
 - **M1 is the first shipping-quality vertical slice.** A mapped sphere with a static texture does NOT pass M1.
 - M2 must be stable before M3 lighting integration. M4 must NOT depend on M6.
-- V1.0 = M0–M5 gates; **A19 is not a blocker for V1.0**.
+- V1.0 = M0闁炽儲褰? gates; **A19 is not a blocker for V1.0**.
 - Performance is observational until test GPU/resolution agreed; capture baseline data and regression trends.
 
 ## Verification scope and cadence
 
 Follow the user's 2026-11-02 risk-based testing policy in [`AGENTS.md`](../AGENTS.md#risk-based-testing-and-verification). Ordinary subtasks use the smallest checks that cover the changed behavior and its effects. Documentation-only updates use content/diff checks and do not reopen completed milestone acceptance.
 
-Keep the required numerical, functional and view-based checks for the active task. In particular, M2.1 verifies its math/depth foundation at high orbit, low orbit and ground; A07–A10 remain final M2 acceptance. M2.6's A10 includes the explicit supplemental solar-appearance requirement below; this is not satisfied by a bright Sun disk or the existing small analytic aureole alone. Full regression is required when the active milestone acceptance or CI gate specifies it, not after every individual edit or ordinary task handoff. Exact final-HEAD requirements cannot be satisfied with an older passing result.
+Keep the required numerical, functional and view-based checks for the active task. In particular, M2.1 verifies its math/depth foundation at high orbit, low orbit and ground; A07闁炽儲寮?0 remain final M2 acceptance. M2.6's A10 includes the explicit supplemental solar-appearance requirement below; this is not satisfied by a bright Sun disk or the existing small analytic aureole alone. Full regression is required when the active milestone acceptance or CI gate specifies it, not after every individual edit or ordinary task handoff. Exact final-HEAD requirements cannot be satisfied with an older passing result.
 
 Automatic workflow selection remains governed by [`CI.md`](CI.md#trigger-policy); this policy does not disable an automatically selected or required gate. Historical acceptance evidence and known-issue decisions below remain unchanged.
 
@@ -45,11 +45,17 @@ A10 additionally requires a restrained, HDR-aware solar glow treatment that visi
 
 - Add a controlled HDR bloom around the solar source, composed in linear HDR before the single ACES tone-map and final sRGB encode. Keep the highlight core and surrounding gradation legible; do not use exposure increase as a substitute for bloom.
 - Add subtle, clearly visible radial Sun Rays around the Sun, comparable in character to the project's reference screenshots, but restrained enough to avoid an exaggerated starburst. Their placement must follow the actual scene-time Sun direction and camera projection, not a fixed screen coordinate.
-- Preserve per-fragment Sun disk occultation and prevent bloom/rays from visibly bleeding through the Earth or real terrain. Respect atmospheric attenuation and the existing linear-HDR → ACES → sRGB pipeline.
+- Preserve per-fragment Sun disk occultation and prevent bloom/rays from visibly bleeding through the Earth or real terrain. Respect atmospheric attenuation and the existing linear-HDR 闁?ACES 闁?sRGB pipeline.
 - Verify day, low-Sun/orbital sunrise, twilight and night-adjacent views at more than one exposure. The glow must not wash out the whole image, erase the solar disk boundary, or create distracting temporal flicker when time/camera moves.
 - Record screenshots and observations showing both the effect enabled and a disabled/baseline comparison. Pixel-identical matching to a reference is not required.
 
 This is a bounded visual rendering requirement, not a claim that screen-space radial rays are a physically exact atmospheric phenomenon. Cinematic lens ghosts, dirt, anamorphic streaks and exaggerated flare remain out of scope.
+
+### M2.6 implementation checkpoint 闁?not accepted
+
+A preliminary headed Chromium 156.0.8078.4 run on an Intel Xe-LPG non-fallback adapter produced actual WebGPU scenario screenshots for A07闁炽儲寮?0 at 1920閼?080. The script also tested 1280閼?20 target recreation, exposure 0.5/1/2, enabled/disabled Bloom and one renderer teardown. These are implementation checks, not final PASS decisions for the acceptance matrix. Partial Earth/terrain occultation, animation stability, independent per-effect visual isolation, device-loss recovery, repeated create/destroy soak, final-head Fast/Full, and WebGL differential remain outstanding.
+
+The first 30-sample wall-clock render-plus-queue-completion measurements varied materially between runs (including approximately 11闁?8 ms means); they are not GPU timestamp measurements. Record GPU frame time as UNVERIFIED and do not claim a performance pass. See `coordination/evidence/M2.6/README.md` for the exact run identity and outstanding acceptance matrix.
 
 ## Visual acceptance policy
 
@@ -61,7 +67,7 @@ The following remain required:
 
 - Correct WGS84 coordinates, horizon, terrain coverage and imagery placement, with usable navigation from orbit to the ground.
 - No significant terrain holes, visible tile seams, obvious coordinate jitter, serious depth errors, incorrect collision heights, unhandled provider failures or resource/lifecycle regressions.
-- Actual browser runs and evidence for A03–A06. A visual exception cannot substitute for running terrain, imagery, navigation or lifecycle acceptance.
+- Actual browser runs and evidence for A03闁炽儲寮?6. A visual exception cannot substitute for running terrain, imagery, navigation or lifecycle acceptance.
 - For final milestone implementation acceptance, full non-WebGL and WebGL regression on the required final HEAD before merge, including the existing comparison against the pinned WebGL baseline. This final acceptance requirement does not mandate repeated full suites for ordinary subtasks or reopen acceptance for an isolated documentation update. Report inherited baseline failures separately; do not claim that every upstream test passed. An accepted visual difference does not automatically waive a newly failing functional test.
 
 Exact pixel checks may remain useful diagnostics. If one reports a harmless difference, qualify that specific comparison with evidence instead of requiring identical images. Future work must use this policy when deciding visual acceptance.
@@ -72,7 +78,7 @@ On 2026-11-02 the user separately authorized the repeatedly unresolved rapid rea
 
 The scenario still executes and retains its evidence. A diagnosed occurrence is `KNOWN_UNRESOLVED`; the terrain suite reports `PASS_WITH_KNOWN_ISSUES`. Do not describe A06 as unconditionally passed or the defect as fixed. A03/A04, ordinary terrain LOD and stable coverage, drape controls, other navigation, cleanup and final HEAD full regression remain required. This authorization does not extend to other failures or future milestones.
 
-## M1 source acceptance record — 2026-11-02
+## M1 source acceptance record 闁?2026-11-02
 
 Published source `03233dae8b524d6b3f4498a48a2fd7e89fffa806` passed [Fast CI](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449080) and the actually executed [Full regression](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41430449094). Final publication and merge still require successful checks on the latest PR head under `CI.md`.
 

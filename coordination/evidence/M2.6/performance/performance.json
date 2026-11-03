@@ -1,0 +1,19 @@
+{
+  "resolution": "1920x1080",
+  "endToEndRenderAndQueueCompletionMs": {
+    "bloomDisabled": {
+      "meanMs": 9.439999997615814,
+      "p50Ms": 8.899999976158142,
+      "p95Ms": 15.299999952316284,
+      "samples": 30
+    },
+    "bloomEnabled": {
+      "meanMs": 9.27333333492279,
+      "p50Ms": 8.899999976158142,
+      "p95Ms": 14.400000095367432,
+      "samples": 30
+    }
+  },
+  "initializationMs": 2632.0067000000004,
+  "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
+}

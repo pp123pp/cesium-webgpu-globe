@@ -2,8 +2,8 @@ import WebGPUPlanetShader from "./WebGPUPlanetShader.js";
 import WebGPUSunShader from "./WebGPUSunShader.js";
 
 /**
- * Meter-based radiative transfer and M2.5 scene-linear HDR composition.
- * Atmosphere, Sun, Moon and stars remain linear until the final ACES/sRGB output.
+ * Meter-based radiative transfer and M2.6 scene-linear HDR solar composition.
+ * Atmosphere, Sun, Moon, stars and solar artwork remain linear until ACES/sRGB output.
  * The completed terrain attachment is RGBA16Float; only this final pass writes
  * the display-referred canvas format.
  * @private
@@ -16,6 +16,7 @@ struct AtmosphereParameters {
   viewport: vec4f, // width, height, atmosphere enabled, Sun enabled
   sun: vec4f,      // angular radius rad, displayed L, glare strength/radius rad
   exposure: vec4f, // manual scene-referred exposure multiplier
+  solarEffects: vec4f, // rays, soft halo, wide halo and corona controls
 }
 @group(0) @binding(0) var<uniform> planet: WebGPUPlanet;
 @group(0) @binding(1) var<uniform> atmosphere: AtmosphereParameters;
@@ -24,6 +25,15 @@ struct AtmosphereParameters {
 @group(0) @binding(4) var atmosphereSampler: sampler;
 @group(0) @binding(5) var sceneColor: texture_2d<f32>;
 @group(0) @binding(6) var sceneDepth: texture_depth_2d;
+@group(0) @binding(7) var solarRaysPrimary: texture_2d<f32>;
+@group(0) @binding(8) var solarRaysFine: texture_2d<f32>;
+@group(0) @binding(9) var solarRaysBroad: texture_2d<f32>;
+@group(0) @binding(10) var solarSoftHalo: texture_2d<f32>;
+@group(0) @binding(11) var solarWideHalo: texture_2d<f32>;
+@group(0) @binding(12) var solarCorona: texture_2d<f32>;
+@group(0) @binding(13) var solarNoise: texture_2d<f32>;
+@group(0) @binding(14) var solarGlowGradient: texture_2d<f32>;
+@group(0) @binding(15) var solarSampler: sampler;
 
 ${WebGPUSunShader}
 
@@ -275,6 +285,26 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   return atmosphereDisplayOutput(linear);
 }
 
+// Scene-linear entry point feeds HDR bloom before the final ACES/sRGB pass.
+@fragment fn atmosphereLinearFragment(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  let coordinate = vec2i(pixel.xy);
+  let ndc = vec2f(2.0 * pixel.x / atmosphere.viewport.x - 1.0,
+                 1.0 - 2.0 * pixel.y / atmosphere.viewport.y);
+  let direction = webgpuRayDirection(ndc, planet);
+  let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
+  let depth = textureLoad(sceneDepth, coordinate, 0);
+  let sceneDistance = webgpuSceneRayDistance(depth, direction, planet);
+  let transport = atmosphereIntegrate(direction, sceneDistance);
+  let background = textureLoad(sceneColor, coordinate, 0).rgb;
+  let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
+  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let moon = moonRadiance(direction, coordinate, pixelWidth);
+  let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  let linear = (background + stars + solar + moon) * transport.transmittance +
+               transport.radiance + moonTerrain;
+  return vec4f(linear, 1.0);
+}
+
 // Separate entry point keeps disabled atmosphere independent of LUT resources
 // and their expensive quadrature. The same real completed depth still occludes.
 @fragment fn sunOnlyFragment(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
@@ -291,6 +321,21 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
   let linear = source.rgb + solar + moon + stars + moonTerrain;
   return atmosphereDisplayOutput(linear);
+}
+
+@fragment fn sunOnlyLinearFragment(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  let coordinate = vec2i(pixel.xy);
+  let ndc = vec2f(2.0 * pixel.x / atmosphere.viewport.x - 1.0,
+                 1.0 - 2.0 * pixel.y / atmosphere.viewport.y);
+  let direction = webgpuRayDirection(ndc, planet);
+  let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
+  let source = textureLoad(sceneColor, coordinate, 0);
+  let sceneDistance = webgpuSceneRayDistance(textureLoad(sceneDepth, coordinate, 0), direction, planet);
+  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let moon = moonRadiance(direction, coordinate, pixelWidth);
+  let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
+  let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  return vec4f(source.rgb + solar + moon + stars + moonTerrain, 1.0);
 }
 `;
 

@@ -1,7 +1,6 @@
 /**
- * Distant solar disk and restrained angular glare. Shares the planet record,
- * atmosphere parameter record and completed real depth with the compositor.
- * There is no new texture, postprocess blur or scene HDR/exposure system.
+ * Distant solar disk and texture-driven solar rays/halo/corona. Shares the
+ * planet record, solar effect controls and completed real depth with the HDR compositor.
  * @private
  */
 const WebGPUSunShader = `
@@ -54,7 +53,7 @@ fn sunSourceVisibility() -> f32 {
     visible += mix(upper, lower, weight.y);
   }
   // Offscreen samples contribute zero: no artificial glare from an unobserved
-  // terrain-occluded source outside the viewport. This is a bounded LDR effect.
+  // terrain-occluded source outside the viewport. The resulting radiance remains linear HDR.
   return visible / 16.0;
 }
 
@@ -70,13 +69,33 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
     return vec3f(0.0);
   }
   let disk = sunDiskCoverage(direction, pixelWidth);
-  var halo = 0.0;
-  if (atmosphere.sun.z > 0.0 && chord < outer) {
-    let r = chord / outer;
-    let profile = exp(-6.0 * r * r) * (1.0 - smoothstep(0.7, 1.0, r));
-    halo = atmosphere.sun.z * profile * sunSourceVisibility();
-  }
-  return vec3f(atmosphere.sun.y * (disk + halo));
+  let visibility = sunSourceVisibility();
+  let r = clamp(chord / max(outer, 1.0e-7), 0.0, 1.0);
+  let axis = select(vec3f(0.0, 1.0, 0.0), vec3f(0.0, 0.0, 1.0),
+                    abs(planet.sunDirectionWC.z) < 0.9);
+  let right = normalize(cross(planet.sunDirectionWC.xyz, axis));
+  let up = cross(right, planet.sunDirectionWC.xyz);
+  // Angular tangent coordinates are projected through the actual camera basis;
+  // the pattern follows the real solar ray and never uses a fixed screen point.
+  let local = vec2f(dot(direction - planet.sunDirectionWC.xyz, right),
+                    -dot(direction - planet.sunDirectionWC.xyz, up));
+  let uv = clamp(vec2f(0.5) + local / max(2.0 * tan(atmosphere.sun.w), 1.0e-6),
+                 vec2f(0.0), vec2f(1.0));
+  let soft = textureSampleLevel(solarSoftHalo, solarSampler, uv, 0.0).r;
+  let wide = textureSampleLevel(solarWideHalo, solarSampler, uv, 0.0).r;
+  let corona = textureSampleLevel(solarCorona, solarSampler, uv, 0.0).r;
+  let noise = textureSampleLevel(solarNoise, solarSampler, uv, 0.0).r;
+  let rays = textureSampleLevel(solarRaysPrimary, solarSampler, uv, 0.0).r * 0.48 +
+             textureSampleLevel(solarRaysFine, solarSampler, uv, 0.0).r * 0.30 +
+             textureSampleLevel(solarRaysBroad, solarSampler, uv, 0.0).r * 0.22;
+  let tint = mix(vec3f(1.0), textureSampleLevel(solarGlowGradient, solarSampler,
+                                vec2f(1.0 - r, 0.5), 0.0).rgb, atmosphere.exposure.w);
+  let radialFade = 1.0 - smoothstep(0.82, 1.0, r);
+  let halo = atmosphere.sun.z * radialFade * (0.28 * soft * atmosphere.solarEffects.y +
+                0.10 * wide * atmosphere.solarEffects.z);
+  let coronaDetail = atmosphere.sun.z * 1.8 * corona * mix(0.75, 1.15, noise) * atmosphere.solarEffects.w;
+  let rayDetail = atmosphere.sun.z * 4.8 * rays * radialFade * atmosphere.solarEffects.x;
+  return atmosphere.sun.y * (vec3f(disk) + tint * (halo + coronaDetail + rayDetail) * visibility);
 }
 `;
 

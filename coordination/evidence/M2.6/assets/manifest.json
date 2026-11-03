@@ -1,0 +1,157 @@
+{
+  "textureSize": 512,
+  "assets": [
+    {
+      "source": "Rays/radial-rays-01.svg",
+      "payload": "GPU/radial-rays-01.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 235,
+      "alphaNonZeroCoverage": 0.2380828857421875,
+      "byteLength": 262144
+    },
+    {
+      "source": "Rays/radial-rays-02.svg",
+      "payload": "GPU/radial-rays-02.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 235,
+      "alphaNonZeroCoverage": 0.273193359375,
+      "byteLength": 262144
+    },
+    {
+      "source": "Rays/radial-rays-03.svg",
+      "payload": "GPU/radial-rays-03.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 235,
+      "alphaNonZeroCoverage": 0.22313308715820312,
+      "byteLength": 262144
+    },
+    {
+      "source": "Halo/soft-halo.svg",
+      "payload": "GPU/soft-halo.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 254,
+      "alphaNonZeroCoverage": 0.7418212890625,
+      "byteLength": 262144
+    },
+    {
+      "source": "Halo/wide-halo.svg",
+      "payload": "GPU/wide-halo.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 205,
+      "alphaNonZeroCoverage": 0.740753173828125,
+      "byteLength": 262144
+    },
+    {
+      "source": "Corona/corona-fine.svg",
+      "payload": "GPU/corona-fine.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 176,
+      "alphaNonZeroCoverage": 0.711761474609375,
+      "byteLength": 262144
+    },
+    {
+      "source": "Noise/radial-noise.svg",
+      "payload": "GPU/radial-noise.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 108,
+      "alphaNonZeroCoverage": 0.7663726806640625,
+      "byteLength": 262144
+    },
+    {
+      "source": "Atmosphere/glow-gradient.svg",
+      "payload": "GPU/glow-gradient.rgba8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "rgba8unorm-srgb",
+      "colorSpace": "sRGB source, decoded to linear on GPU sampling",
+      "channelSemantic": "authored RGBA tint ramp",
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "alphaNonZeroCoverage": 1,
+      "byteLength": 1048576
+    }
+  ]
+}

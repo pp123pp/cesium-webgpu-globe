@@ -1,0 +1,623 @@
+{
+  "suite": "m2.6-solar-visual",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T09:36:15.442Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "1869091d0d4a95250e2c56f51cb574ab23598718",
+  "sourceStatus": "M coordination/STATUS.md\n M coordination/ci/m1-browser-harness.mjs\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M docs/ACCEPTANCE.md\n M package.json\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n M tasks/M2.md\n?? coordination/ci/build-solar-textures.mjs\n?? coordination/ci/m2-solar-assets.test.mjs\n?? coordination/ci/m2.6-solar-asset-fallback-smoke.mjs\n?? coordination/ci/m2.6-solar-visual-smoke.mjs\n?? coordination/evidence/M2.6/\n?? coordination/handoffs/M2.6-solar-visual-enhancement.md\n?? packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/\n?? packages/engine/Source/Scene/WebGPUSolarBloomShader.js",
+  "bundleSha256": "7da2bb6b31c68cd0143e30a2730cd65abe4aa2888fe3235c865e0bebf661e120",
+  "browserErrors": [],
+  "checks": [
+    "A07/orbital-sunrise.png: actual WebGPU frame 4",
+    "A08/morning.png: actual WebGPU frame 5",
+    "A08/noon.png: actual WebGPU frame 6",
+    "A08/evening.png: actual WebGPU frame 7",
+    "A08/night.png: actual WebGPU frame 8",
+    "A09/high-orbit.png: actual WebGPU frame 9",
+    "A09/low-orbit.png: actual WebGPU frame 10",
+    "A09/near-ground.png: actual WebGPU frame 11",
+    "A10/bloom-disabled.png: actual WebGPU frame 12",
+    "A10/bloom-enabled.png: actual WebGPU frame 13",
+    "A10/exposure-0.5.png: actual WebGPU frame 19",
+    "A10/exposure-1.0.png: actual WebGPU frame 20",
+    "A10/exposure-2.0.png: actual WebGPU frame 21",
+    "HDR and bloom render targets are recreated at 1280x720 after viewport resize",
+    "solar asset and HDR bloom GPU resources are balanced after viewer destruction"
+  ],
+  "scenes": [
+    {
+      "name": "orbital-sunrise",
+      "directory": "A07",
+      "frame": 4,
+      "atmosphere": {
+        "frames": 2,
+        "sunFrames": 4,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 4,
+        "bloomPasses": 8,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "morning",
+      "directory": "A08",
+      "frame": 5,
+      "atmosphere": {
+        "frames": 3,
+        "sunFrames": 5,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 5,
+        "bloomPasses": 11,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "noon",
+      "directory": "A08",
+      "frame": 6,
+      "atmosphere": {
+        "frames": 4,
+        "sunFrames": 6,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 6,
+        "bloomPasses": 14,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T12:00:00Z",
+      "nativeSun": {
+        "x": 0.9994703641024076,
+        "y": 0.03253340922813717,
+        "z": -0.0007540324896109544
+      },
+      "sunProjection": [
+        -1312.329009614792,
+        3010941.9912680043
+      ]
+    },
+    {
+      "name": "evening",
+      "directory": "A08",
+      "frame": 7,
+      "atmosphere": {
+        "frames": 5,
+        "sunFrames": 7,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 7,
+        "bloomPasses": 17,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T18:00:00Z",
+      "nativeSun": {
+        "x": 0.032212212411884066,
+        "y": -0.9994805801443081,
+        "z": 0.000971229081735634
+      },
+      "sunProjection": [
+        958.552022653122,
+        539.3835602496428
+      ]
+    },
+    {
+      "name": "night",
+      "directory": "A08",
+      "frame": 8,
+      "atmosphere": {
+        "frames": 6,
+        "sunFrames": 8,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 8,
+        "bloomPasses": 20,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T23:00:00Z",
+      "nativeSun": {
+        "x": -0.9571623472729011,
+        "y": -0.28954177409495097,
+        "z": 0.0024087376317939732
+      },
+      "sunProjection": [
+        966.5843558161989,
+        -3055.787552048976
+      ]
+    },
+    {
+      "name": "high-orbit",
+      "directory": "A09",
+      "frame": 9,
+      "atmosphere": {
+        "frames": 7,
+        "sunFrames": 9,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 9,
+        "bloomPasses": 23,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 35786000.00000092,
+      "time": "2026-03-20T12:00:00Z",
+      "nativeSun": {
+        "x": 0.9994703641024076,
+        "y": 0.03253340922813717,
+        "z": -0.0007540324896109544
+      },
+      "sunProjection": [
+        960.0000425728244,
+        110545.63502083473
+      ]
+    },
+    {
+      "name": "low-orbit",
+      "directory": "A09",
+      "frame": 10,
+      "atmosphere": {
+        "frames": 8,
+        "sunFrames": 10,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 10,
+        "bloomPasses": 26,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.0000009308,
+      "time": "2026-03-20T12:00:00Z",
+      "nativeSun": {
+        "x": 0.9994703641024076,
+        "y": 0.03253340922813717,
+        "z": -0.0007540324896109544
+      },
+      "sunProjection": [
+        960.0000000000002,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "near-ground",
+      "directory": "A09",
+      "frame": 11,
+      "atmosphere": {
+        "frames": 9,
+        "sunFrames": 11,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 11,
+        "bloomPasses": 29,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 2.0000009290063043,
+      "time": "2026-03-20T12:00:00Z",
+      "nativeSun": {
+        "x": 0.9994703641024076,
+        "y": 0.03253340922813717,
+        "z": -0.0007540324896109544
+      },
+      "sunProjection": [
+        960.0000000000002,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "bloom-disabled",
+      "directory": "A10",
+      "frame": 12,
+      "atmosphere": {
+        "frames": 10,
+        "sunFrames": 12,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 12,
+        "bloomPasses": 30,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "bloom-enabled",
+      "directory": "A10",
+      "frame": 13,
+      "atmosphere": {
+        "frames": 11,
+        "sunFrames": 13,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 13,
+        "bloomPasses": 33,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "exposure-0.5",
+      "directory": "A10",
+      "frame": 19,
+      "atmosphere": {
+        "frames": 17,
+        "sunFrames": 19,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 19,
+        "bloomPasses": 51,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 0.5,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "exposure-1.0",
+      "directory": "A10",
+      "frame": 20,
+      "atmosphere": {
+        "frames": 18,
+        "sunFrames": 20,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 20,
+        "bloomPasses": 54,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 1,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    },
+    {
+      "name": "exposure-2.0",
+      "directory": "A10",
+      "frame": 21,
+      "atmosphere": {
+        "frames": 19,
+        "sunFrames": 21,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 13,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 2883584,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 21,
+        "bloomPasses": 57,
+        "bloomTextureBytes": 18662400,
+        "bloomWidth": 480,
+        "bloomHeight": 270,
+        "maxFeedback": 0.33370226933715824
+      },
+      "exposure": 2,
+      "cameraHeight": 400000.00001006195,
+      "time": "2026-03-20T06:00:00Z",
+      "nativeSun": {
+        "x": -0.032853910919320016,
+        "y": 0.9994570888442769,
+        "z": -0.0024795354864456066
+      },
+      "sunProjection": [
+        960.0000000000005,
+        539.9999999999999
+      ]
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "performance": {
+    "resolution": "1920x1080",
+    "endToEndRenderAndQueueCompletionMs": {
+      "bloomDisabled": {
+        "meanMs": 9.439999997615814,
+        "p50Ms": 8.899999976158142,
+        "p95Ms": 15.299999952316284,
+        "samples": 30
+      },
+      "bloomEnabled": {
+        "meanMs": 9.27333333492279,
+        "p50Ms": 8.899999976158142,
+        "p95Ms": 14.400000095367432,
+        "samples": 30
+      }
+    },
+    "initializationMs": 2632.0067000000004,
+    "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
+  },
+  "effectIsolation": {
+    "rays": {
+      "disabledScreenshotSha256": "f7ccf910ccb4b2b3748ae28036584970830395d14fd781155515b8d4ce1d0818",
+      "differsFromEnabled": true
+    },
+    "softHalo": {
+      "disabledScreenshotSha256": "6f9435f2778c612653033cd9c1805542db28e162770f05e88e82750c55342124",
+      "differsFromEnabled": true
+    },
+    "wideHalo": {
+      "disabledScreenshotSha256": "b1d50a8737612192eca9e1553b234873967ac07b9050a0e692a85919b22f776b",
+      "differsFromEnabled": true
+    },
+    "corona": {
+      "disabledScreenshotSha256": "eb8d229c938e1c1b1e25010ab46566559ad5ba13ca2a8bbdd2ea9b80a3180fb4",
+      "differsFromEnabled": true
+    },
+    "tint": {
+      "disabledScreenshotSha256": "b275c25304a2eec183814916b8fe46880b775275cb88e1d7f641f59b0d21fef5",
+      "differsFromEnabled": true
+    }
+  },
+  "bloom": {
+    "enabledScreenshotSha256": "87d0acb55a8b8081faf90a9db9bc900ee595e64285b99466dd4e962b85562add",
+    "disabledScreenshotSha256": "2eca8882211931a66612df72304afd2dd3a2fdf313d81a9e9b22aa104a4bc92c",
+    "enabledDiffersFromDisabled": true,
+    "exposure": [
+      0.5,
+      1,
+      2
+    ],
+    "lastFrameStatistics": {
+      "frames": 19,
+      "sunFrames": 21,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 0,
+      "texturesCreated": 13,
+      "texturesDestroyed": 0,
+      "solarAssetBytes": 2883584,
+      "solarAssetsLoaded": true,
+      "bloomFrames": 21,
+      "bloomPasses": 57,
+      "bloomTextureBytes": 18662400,
+      "bloomWidth": 480,
+      "bloomHeight": 270,
+      "maxFeedback": 0.33370226933715824
+    },
+    "gpuFrameTime": "UNVERIFIED: browser queue completion is not a GPU timestamp query"
+  },
+  "resize": {
+    "width": 1280,
+    "height": 720,
+    "bloomWidth": 320,
+    "bloomHeight": 180
+  },
+  "lifecycle": {
+    "destroyed": true,
+    "frames": 96,
+    "sunFrames": 98,
+    "moonFrames": 0,
+    "starFrames": 0,
+    "lutBuilds": 1,
+    "buffersCreated": 3,
+    "buffersDestroyed": 3,
+    "texturesCreated": 16,
+    "texturesDestroyed": 16,
+    "solarAssetBytes": 0,
+    "solarAssetsLoaded": true,
+    "bloomFrames": 98,
+    "bloomPasses": 212,
+    "bloomTextureBytes": 0,
+    "bloomWidth": 0,
+    "bloomHeight": 0,
+    "maxFeedback": 0.33370226933715824
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

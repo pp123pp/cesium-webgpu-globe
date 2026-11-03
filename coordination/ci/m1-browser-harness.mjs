@@ -140,7 +140,12 @@ export async function installM1Scene(page, options = {}) {
     viewer.renderError.addEventListener((...event) =>
       errors.push(String(event[1])),
     );
-    await viewer.readyPromise;
+    try {
+      await viewer.readyPromise;
+    } catch (error) {
+      const detail = viewer._webgpuProof?._context?._error?.message;
+      throw new Error(`${error.message}; WebGPU context: ${detail ?? "unavailable"}`, { cause: error });
+    }
     viewer.scene.globe.maximumScreenSpaceError = 3;
     const info = viewer._webgpuProof._context._adapter.info;
     const state = (window.__m1 = {

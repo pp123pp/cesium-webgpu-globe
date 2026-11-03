@@ -116,6 +116,7 @@
     "start": "node server.js",
     "start-public": "node server.js --public",
     "build": "gulp build",
+    "build-solar-textures": "node coordination/ci/build-solar-textures.mjs",
     "build-release": "gulp buildRelease",
     "build-watch": "gulp buildWatch",
     "build-ts": "gulp buildTs",
