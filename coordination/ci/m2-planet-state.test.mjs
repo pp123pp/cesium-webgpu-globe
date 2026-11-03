@@ -47,7 +47,7 @@ for (const [label, longitude, latitude, height] of [
     const values = state.uniformValues;
     assert.equal(state.update(camera, time), state);
     assert.equal(state.uniformValues, values, "reuse the frame allocation");
-    assert.equal(values.byteLength, 224);
+    assert.equal(values.byteLength, 272);
     assert.ok(state.moonDistance > 3.4e8 && state.moonDistance < 4.1e8);
     assert.ok(state.moonAngularRadius > 0.0035 && state.moonAngularRadius < 0.0055);
     assert.ok(state.moonIllumination >= 0 && state.moonIllumination <= 1);
@@ -57,6 +57,11 @@ for (const [label, longitude, latitude, height] of [
     close(values[50], state.moonDirectionWC.z, 1e-7);
     close(values[51], state.moonAngularRadius, 1e-7);
     close(values[52], state.moonIllumination, 1e-7);
+    for (let row = 0; row < 3; ++row) {
+      for (let column = 0; column < 3; ++column) {
+        close(values[56 + row * 4 + column], state._moonRotation[column * 3 + row], 1e-7);
+      }
+    }
     assert.ok([...values].every(Number.isFinite));
     close(state.cameraHeight, height, 1e-6);
     assert.ok(state.cameraGeocentricDistance > height + 6356000);
