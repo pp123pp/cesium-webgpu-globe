@@ -102,6 +102,23 @@
         font-size: 12px;
         color: #b4c3d3;
       }
+      #space-controls {
+        margin: 12px 0;
+        padding: 10px;
+        border: 1px solid #ffffff25;
+        border-radius: 6px;
+      }
+      #space-controls label {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+      }
+      #space-readout {
+        display: block;
+        margin-top: 8px;
+        color: #b4c3d3;
+        font-size: 12px;
+        line-height: 1.5;
+      }
       small {
         color: #b4c3d3;
       }
@@ -140,6 +157,21 @@
         </nav>
         <time id="sun-time"></time>
       </fieldset>
+      <fieldset id="space-controls" disabled>
+        <legend>Moon &amp; stars</legend>
+        <label><input id="show-moon" type="checkbox" checked /> Moon</label>
+        <label><input id="show-stars" type="checkbox" checked /> Stars</label>
+        <label>
+          Moonlight
+          <input id="moonlight" type="range" min="0" max="0.02" step="0.0005" value="0.0025" />
+        </label>
+        <nav aria-label="Moon controls">
+          <button id="look-moon" type="button">Look at Moon</button>
+          <button id="advance-day" type="button">Time +1 day</button>
+        </nav>
+        <output id="moon-readout" aria-live="polite">Moon phase: waiting for scene…</output>
+        <time id="space-time"></time>
+      </fieldset>
       <form id="ion-form" autocomplete="off">
         <label for="ion-token">Your Cesium ion access token</label>
         <div class="token-controls">
@@ -173,6 +205,9 @@
       const ionToken = document.getElementById("ion-token");
       const applyToken = document.getElementById("apply-token");
       const sunControls = document.getElementById("sun-controls");
+      const spaceControls = document.getElementById("space-controls");
+      const moonReadout = document.getElementById("moon-readout");
+      const spaceTime = document.getElementById("space-time");
       const sunTime = document.getElementById("sun-time");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
@@ -195,6 +230,7 @@
           orbit.disabled = terrain.disabled = everest.disabled = true;
           applyToken.disabled = true;
           sunControls.disabled = true;
+          spaceControls.disabled = true;
         }
       };
       viewer.renderError.addEventListener((source, error) =>
@@ -233,10 +269,67 @@
         viewer.camera.cancelFlight();
         viewer.camera.setView({ orientation: { direction, up } });
       });
+      document.getElementById("show-moon").addEventListener("change", (event) => {
+        viewer.scene.moon.show = event.target.checked;
+      });
+      document.getElementById("show-stars").addEventListener("change", (event) => {
+        viewer.scene.stars.show = event.target.checked;
+      });
+      document.getElementById("moonlight").addEventListener("input", (event) => {
+        viewer.scene.moon.moonlightIntensity = Number(event.target.value);
+      });
+      document.getElementById("advance-day").addEventListener("click", () => {
+        viewer.clock.shouldAnimate = false;
+        viewer.clock.currentTime = Cesium.JulianDate.addDays(
+          viewer.clock.currentTime,
+          1,
+          new Cesium.JulianDate(),
+        );
+      });
+      document.getElementById("look-moon").addEventListener("click", () => {
+        const scene = viewer.scene;
+        const moonPosition = scene._planetState?._moonPosition;
+        if (!moonPosition) {
+          showError(new Error("Moon ephemeris is not ready yet."));
+          return;
+        }
+        const direction = Cesium.Cartesian3.normalize(
+          Cesium.Cartesian3.subtract(
+            moonPosition,
+            viewer.camera.positionWC,
+            new Cesium.Cartesian3(),
+          ),
+          new Cesium.Cartesian3(),
+        );
+        const reference = Math.abs(direction.z) < 0.9
+          ? Cesium.Cartesian3.UNIT_Z
+          : Cesium.Cartesian3.UNIT_Y;
+        const right = Cesium.Cartesian3.normalize(
+          Cesium.Cartesian3.cross(direction, reference, new Cesium.Cartesian3()),
+          new Cesium.Cartesian3(),
+        );
+        const up = Cesium.Cartesian3.normalize(
+          Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()),
+          new Cesium.Cartesian3(),
+        );
+        viewer.camera.cancelFlight();
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(8);
+        viewer.camera.setView({ orientation: { direction, up } });
+      });
       viewer.scene.postRender.addEventListener((scene, time) => {
         const iso = Cesium.JulianDate.toIso8601(time, 0);
         sunTime.dateTime = iso;
         sunTime.textContent = iso.replace("T", " ").replace("Z", " UTC");
+        spaceTime.dateTime = iso;
+        spaceTime.textContent = iso.replace("T", " ").replace("Z", " UTC");
+        const illumination = scene._planetState?.moonIllumination;
+        if (Number.isFinite(illumination)) {
+          const percent = Math.round(illumination * 100);
+          const phase = percent >= 95 ? "Full" : percent <= 5 ? "New" :
+            percent >= 45 && percent <= 55 ? "Quarter" :
+            percent > 50 ? "Gibbous" : "Crescent";
+          moonReadout.textContent = `Illuminated: ${percent}% · ${phase} Moon`;
+        }
       });
       window.addEventListener(
         "pagehide",
@@ -332,6 +425,7 @@
       try {
         await viewer.readyPromise;
         sunControls.disabled = false;
+        spaceControls.disabled = false;
         viewer.camera.setView({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
           orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
