@@ -191,7 +191,7 @@ class WebGPUContext {
     return this._sceneColorTexture;
   }
 
-  // Only the atmosphere consumer needs this intermediate. The original direct
+  // The atmosphere/Sun consumer needs this intermediate. The original direct
   // canvas path (including the M0 proof) retains its format and behavior.
   _getSceneColorTexture() {
     if (!this._sceneColorTexture) {
@@ -249,7 +249,7 @@ class WebGPUContext {
         pass.draw(3, 2);
       }
       pass.end();
-      // The opaque attachments have finished writing. The atmosphere pass has
+      // The opaque attachments have finished writing. The atmosphere/Sun pass has
       // a distinct output and no writable depth attachment, avoiding feedback.
       composite?.(encoder, target, color, this._depthTexture);
       this._device.queue.submit([encoder.finish()]);

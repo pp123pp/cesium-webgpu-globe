@@ -87,6 +87,21 @@
         color: #a4ddc3;
         white-space: pre-wrap;
       }
+      #sun-controls {
+        margin: 12px 0;
+        padding: 10px;
+        border: 1px solid #ffffff25;
+        border-radius: 6px;
+      }
+      #sun-controls label {
+        display: inline-block;
+        margin: 4px 12px 4px 0;
+      }
+      #sun-time {
+        display: block;
+        font-size: 12px;
+        color: #b4c3d3;
+      }
       small {
         color: #b4c3d3;
       }
@@ -102,6 +117,29 @@
         <button id="terrain" disabled>Reload imagery + terrain</button>
         <button id="everest" disabled>Everest</button>
       </nav>
+      <fieldset id="sun-controls" disabled>
+        <legend>Sun &amp; atmosphere</legend>
+        <label><input id="show-sun" type="checkbox" checked /> Sun</label>
+        <label
+          ><input id="show-atmosphere" type="checkbox" checked />
+          Atmosphere</label
+        >
+        <label
+          >Sunlight
+          <input
+            id="sunlight"
+            type="range"
+            min="0"
+            max="20"
+            step="0.5"
+            value="10"
+        /></label>
+        <nav aria-label="Sun controls">
+          <button id="look-sun" type="button">Look at Sun</button>
+          <button id="advance-time" type="button">Time +10 min</button>
+        </nav>
+        <time id="sun-time"></time>
+      </fieldset>
       <form id="ion-form" autocomplete="off">
         <label for="ion-token">Your Cesium ion access token</label>
         <div class="token-controls">
@@ -120,9 +158,9 @@
       <small id="token-help"
         >Uses Google Maps 2D Satellite (Cesium ion asset 3830182) and Cesium
         World Terrain (asset 1). A demo token is tried first. For reliable
-        access, enter an ion token with permission to read both assets.
-        Your token is not saved by this page or added to the URL; it is
-        sent to Cesium ion to request the data.</small
+        access, enter an ion token with permission to read both assets. Your
+        token is not saved by this page or added to the URL; it is sent to
+        Cesium ion to request the data.</small
       >
     </aside>
     <script type="module">
@@ -134,6 +172,8 @@
       const ionForm = document.getElementById("ion-form");
       const ionToken = document.getElementById("ion-token");
       const applyToken = document.getElementById("apply-token");
+      const sunControls = document.getElementById("sun-controls");
+      const sunTime = document.getElementById("sun-time");
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
@@ -154,11 +194,50 @@
           failed = true;
           orbit.disabled = terrain.disabled = everest.disabled = true;
           applyToken.disabled = true;
+          sunControls.disabled = true;
         }
       };
       viewer.renderError.addEventListener((source, error) =>
         showError(error, true),
       );
+      document
+        .getElementById("show-sun")
+        .addEventListener("change", (event) => {
+          viewer.scene.sun.show = event.target.checked;
+        });
+      document
+        .getElementById("show-atmosphere")
+        .addEventListener("change", (event) => {
+          viewer.scene.atmosphere.show = event.target.checked;
+        });
+      document.getElementById("sunlight").addEventListener("input", (event) => {
+        // One irradiance source drives both the disk and atmospheric scattering.
+        viewer.scene.atmosphere.lightIntensity = Number(event.target.value);
+      });
+      document.getElementById("advance-time").addEventListener("click", () => {
+        viewer.clock.shouldAnimate = false;
+        viewer.clock.currentTime = Cesium.JulianDate.addMinutes(
+          viewer.clock.currentTime,
+          10,
+          new Cesium.JulianDate(),
+        );
+      });
+      document.getElementById("look-sun").addEventListener("click", () => {
+        const direction = Cesium.WebGPUPlanetMath.computeSunDirectionWC(
+          viewer.clock.currentTime,
+        );
+        const up =
+          Math.abs(direction.z) < 0.9
+            ? Cesium.Cartesian3.UNIT_Z
+            : Cesium.Cartesian3.UNIT_Y;
+        viewer.camera.cancelFlight();
+        viewer.camera.setView({ orientation: { direction, up } });
+      });
+      viewer.scene.postRender.addEventListener((scene, time) => {
+        const iso = Cesium.JulianDate.toIso8601(time, 0);
+        sunTime.dateTime = iso;
+        sunTime.textContent = iso.replace("T", " ").replace("Z", " UTC");
+      });
       window.addEventListener(
         "pagehide",
         () => {
@@ -252,12 +331,14 @@
       });
       try {
         await viewer.readyPromise;
+        sunControls.disabled = false;
         viewer.camera.setView({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
           orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
         });
         orbit.disabled = terrain.disabled = applyToken.disabled = false;
-        status.textContent = "Natural Earth fallback · connecting to Cesium ion…";
+        status.textContent =
+          "Natural Earth fallback · connecting to Cesium ion…";
         await loadGoogleAndTerrain();
       } catch (error) {
         if (!viewer.isDestroyed()) {

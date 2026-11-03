@@ -1,10 +1,12 @@
 import WebGPUPlanetShader from "./WebGPUPlanetShader.js";
+import WebGPUSunShader from "./WebGPUSunShader.js";
 
 /**
  * Original meter-based radiative-transfer implementation. Equations and the
  * reduced Hillaire isotropic closure are documented in docs/WEBGPU_M2.2.md.
  * The same executable functions serve visible sky, terrain aerial perspective
- * and the independent GPU numerical acceptance probes. No Sun disk is drawn.
+ * and the independent GPU numerical acceptance probes. M2.3 adds the distant
+ * Sun before the same LDR encoding, attenuated by the same view transmittance.
  * @private
  */
 const WebGPUAtmosphereShader = `${WebGPUPlanetShader}
@@ -12,7 +14,8 @@ struct AtmosphereParameters {
   rayleigh: vec4f, // scattering/extinction RGB in 1/m, scale height in m
   mie: vec4f,      // scattering, extinction in 1/m, scale height in m, g
   light: vec4f,    // normalized solar irradiance, MS strength, LUT radius/height m
-  viewport: vec4f,
+  viewport: vec4f, // width, height, atmosphere enabled, Sun enabled
+  sun: vec4f,      // angular radius rad, displayed L, glare strength/radius rad
 }
 @group(0) @binding(0) var<uniform> planet: WebGPUPlanet;
 @group(0) @binding(1) var<uniform> atmosphere: AtmosphereParameters;
@@ -21,6 +24,8 @@ struct AtmosphereParameters {
 @group(0) @binding(4) var atmosphereSampler: sampler;
 @group(0) @binding(5) var sceneColor: texture_2d<f32>;
 @group(0) @binding(6) var sceneDepth: texture_depth_2d;
+
+${WebGPUSunShader}
 
 fn atmosphereRayleighPhase(cosine: f32) -> f32 {
   let mu = clamp(cosine, -1.0, 1.0);
@@ -162,13 +167,31 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let ndc = vec2f(2.0 * pixel.x / atmosphere.viewport.x - 1.0,
                  1.0 - 2.0 * pixel.y / atmosphere.viewport.y);
   let direction = webgpuRayDirection(ndc, planet);
+  // Derivatives are evaluated in uniform control flow before solar occlusion.
+  let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
   let depth = textureLoad(sceneDepth, coordinate, 0);
   let sceneDistance = webgpuSceneRayDistance(depth, direction, planet);
   let transport = atmosphereIntegrate(direction, sceneDistance);
   let background = atmosphereDecodeSrgb(textureLoad(sceneColor, coordinate, 0).rgb);
-  let linear = background * transport.transmittance + transport.radiance;
+  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let linear = (background + solar) * transport.transmittance + transport.radiance;
   // A display-referred LDR output only. HDR, exposure and tone mapping are M2.5.
   return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), 1.0);
+}
+
+// Separate entry point keeps disabled atmosphere independent of LUT resources
+// and their expensive quadrature. The same real completed depth still occludes.
+@fragment fn sunOnlyFragment(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  let coordinate = vec2i(pixel.xy);
+  let ndc = vec2f(2.0 * pixel.x / atmosphere.viewport.x - 1.0,
+                 1.0 - 2.0 * pixel.y / atmosphere.viewport.y);
+  let direction = webgpuRayDirection(ndc, planet);
+  let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
+  let source = textureLoad(sceneColor, coordinate, 0);
+  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  if (all(solar == vec3f(0.0))) { return source; }
+  let linear = atmosphereDecodeSrgb(source.rgb) + solar;
+  return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), source.a);
 }
 `;
 

@@ -1,10 +1,13 @@
 import { RuntimeError } from "@cesium/core";
 import WebGPUAtmosphereShader from "./WebGPUAtmosphereShader.js";
+import { createSunParameters, sunDisplayRadiance } from "./WebGPUSun.js";
 import {
   validateAtmosphereParameters,
   atmosphereLutKey,
   generateAtmosphereLuts,
 } from "./WebGPUAtmosphereModel.js";
+
+const hiddenSun = createSunParameters({ show: false });
 
 // The LUTs contain nonnegative finite radiance/transmittance. Convert to IEEE
 // binary16 with rounding, including subnormals, without an optional GPU feature
@@ -29,14 +32,15 @@ function encodeHalf(values) {
   return result;
 }
 
-/** Two medium LUTs and a single depth-aware atmosphere composite. @private */
+/** Shared depth-aware atmosphere/Sun composite and two medium LUTs. @private */
 class WebGPUAtmosphereRenderer {
   constructor(context) {
     this.context = context;
     this._destroyed = false;
-    this._parametersValues = new Float32Array(16);
+    this._parametersValues = new Float32Array(20);
     this.statistics = {
       frames: 0,
+      sunFrames: 0,
       lutBuilds: 0,
       buffersCreated: 0,
       buffersDestroyed: 0,
@@ -57,8 +61,8 @@ class WebGPUAtmosphereRenderer {
         label: "M2 physical atmosphere WGSL",
         code: WebGPUAtmosphereShader,
       });
-      this._pipeline = await device.createRenderPipelineAsync({
-        label: "M2 sky and terrain aerial perspective",
+      const descriptor = {
+        label: "M2 sky, Sun and terrain aerial perspective",
         layout: "auto",
         vertex: { module, entryPoint: "atmosphereVertex" },
         fragment: {
@@ -67,6 +71,12 @@ class WebGPUAtmosphereRenderer {
           targets: [{ format: this.context._format }],
         },
         primitive: { topology: "triangle-list" },
+      };
+      this._pipeline = await device.createRenderPipelineAsync(descriptor);
+      this._sunPipeline = await device.createRenderPipelineAsync({
+        ...descriptor,
+        label: "M2 Sun without atmospheric transport",
+        fragment: { ...descriptor.fragment, entryPoint: "sunOnlyFragment" },
       });
       this.context._checkAlive();
       if (this._destroyed) {
@@ -76,8 +86,8 @@ class WebGPUAtmosphereRenderer {
       }
       this._planetBuffer = this._createBuffer(192, "M2 planet state");
       this._parametersBuffer = this._createBuffer(
-        64,
-        "M2 atmosphere parameters",
+        80,
+        "M2 atmosphere and Sun parameters",
       );
       this._sampler = device.createSampler({
         label: "M2 bilinear medium LUT sampler",
@@ -135,13 +145,23 @@ class WebGPUAtmosphereRenderer {
     return texture;
   }
 
-  update(state, parameters) {
-    if (this._destroyed || !parameters.show) {
+  update(state, parameters, sun = hiddenSun) {
+    if (this._destroyed || (!parameters.show && !sun.show)) {
       return false;
     }
-    validateAtmosphereParameters(parameters);
-    const key = atmosphereLutKey(parameters, state.planet);
-    if (key !== this._lutKey) {
+    // A hidden medium neither validates unused coefficients nor builds LUTs.
+    // The single light intensity still drives the visible Sun in vacuum.
+    const solar = sun.show ? sun : hiddenSun;
+    const radiance = sun.show
+      ? sunDisplayRadiance(sun, parameters.lightIntensity)
+      : 0;
+    if (parameters.show) {
+      validateAtmosphereParameters(parameters);
+    }
+    const key = parameters.show
+      ? atmosphereLutKey(parameters, state.planet)
+      : this._lutKey;
+    if (parameters.show && key !== this._lutKey) {
       const tables = generateAtmosphereLuts(parameters, state.planet);
       this._transmittanceTexture = this._uploadLut(
         tables.transmittance,
@@ -170,9 +190,16 @@ class WebGPUAtmosphereRenderer {
       state.planet.atmosphereHeight,
       this.context.drawingBufferWidth,
       this.context.drawingBufferHeight,
-      0,
-      0,
+      parameters.show ? 1 : 0,
+      sun.show ? 1 : 0,
+      solar.angularRadius,
+      radiance,
+      solar.glowStrength,
+      solar.glowRadius,
     ]);
+    this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
+    this._atmosphereShown = parameters.show;
+    this._sunShown = sun.show;
     this._device.queue.writeBuffer(this._planetBuffer, 0, state.uniformValues);
     this._device.queue.writeBuffer(
       this._parametersBuffer,
@@ -183,35 +210,51 @@ class WebGPUAtmosphereRenderer {
   }
 
   _composite(encoder, target, color, depth) {
-    if (this._boundColor !== color || this._boundDepth !== depth) {
-      this._bindings = this._device.createBindGroup({
-        label: "M2 completed color/depth and medium LUTs",
-        layout: this._pipeline.getBindGroupLayout(0),
-        entries: [
-          { binding: 0, resource: { buffer: this._planetBuffer } },
-          { binding: 1, resource: { buffer: this._parametersBuffer } },
+    const pipeline = this._activePipeline;
+    if (
+      this._boundColor !== color ||
+      this._boundDepth !== depth ||
+      this._boundPipeline !== pipeline
+    ) {
+      const entries = [
+        { binding: 0, resource: { buffer: this._planetBuffer } },
+        { binding: 1, resource: { buffer: this._parametersBuffer } },
+        { binding: 5, resource: color.createView() },
+        { binding: 6, resource: depth.createView() },
+      ];
+      if (this._atmosphereShown) {
+        entries.push(
           { binding: 2, resource: this._transmittanceTexture.createView() },
           {
             binding: 3,
             resource: this._multipleScatteringTexture.createView(),
           },
           { binding: 4, resource: this._sampler },
-          { binding: 5, resource: color.createView() },
-          { binding: 6, resource: depth.createView() },
-        ],
+        );
+      }
+      this._bindings = this._device.createBindGroup({
+        label: "M2 completed color/depth and active sky resources",
+        layout: pipeline.getBindGroupLayout(0),
+        entries,
       });
       this._boundColor = color;
       this._boundDepth = depth;
+      this._boundPipeline = pipeline;
     }
     const pass = encoder.beginRenderPass({
-      label: "M2 physical atmosphere composite",
+      label: "M2 atmosphere and Sun composite",
       colorAttachments: [{ view: target, loadOp: "clear", storeOp: "store" }],
     });
-    pass.setPipeline(this._pipeline);
+    pass.setPipeline(pipeline);
     pass.setBindGroup(0, this._bindings);
     pass.draw(3);
     pass.end();
-    ++this.statistics.frames;
+    if (this._atmosphereShown) {
+      ++this.statistics.frames;
+    }
+    if (this._sunShown) {
+      ++this.statistics.sunFrames;
+    }
   }
 
   destroy() {
@@ -235,9 +278,12 @@ class WebGPUAtmosphereRenderer {
     }
     this._bindings = undefined;
     this._pipeline = undefined;
+    this._sunPipeline = undefined;
+    this._activePipeline = undefined;
     this._sampler = undefined;
     this._boundColor = undefined;
     this._boundDepth = undefined;
+    this._boundPipeline = undefined;
   }
 }
 

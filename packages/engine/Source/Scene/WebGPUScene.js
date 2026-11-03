@@ -25,6 +25,7 @@ import WebGPUPlanetState from "./WebGPUPlanetState.js";
 import WebGPUDepth from "../Renderer/WebGPUDepth.js";
 import WebGPUAtmosphereRenderer from "./WebGPUAtmosphereRenderer.js";
 import { createAtmosphereParameters } from "./WebGPUAtmosphereModel.js";
+import { createSunParameters } from "./WebGPUSun.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -143,6 +144,9 @@ class WebGPUScene {
     this.atmosphere = createAtmosphereParameters({
       show: options.skyAtmosphere !== false,
     });
+    // Viewer already defines skyBox:false as hiding the Sun as well. This is
+    // WebGPU settings, not an instance of the separate native WebGL Sun class.
+    this.sun = createSunParameters({ show: options.skyBox !== false });
     this._atmosphere = new WebGPUAtmosphereRenderer(context);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);

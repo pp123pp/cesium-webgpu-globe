@@ -127,6 +127,7 @@ export async function installM1Scene(page, options = {}) {
       // original color assertions. The dedicated M2 suite enables the actual
       // atmosphere; the public demo also exercises it with its default on.
       skyAtmosphere: false,
+      skyBox: false, // Also hide Sun; dedicated M2 gates enable their consumer.
       ...options,
     });
     const errors = [];

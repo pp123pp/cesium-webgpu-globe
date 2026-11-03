@@ -74,6 +74,7 @@ try {
       // This gate measures M1 geometry/LOD, with its original time and pixel
       // bounds. M2's dedicated gate and the live demo cover enabled atmosphere.
       skyAtmosphere: false,
+      skyBox: false,
       useDefaultRenderLoop: false,
       terrainProvider: new Cesium.EllipsoidTerrainProvider({
         ellipsoid: Cesium.Ellipsoid.WGS84,
