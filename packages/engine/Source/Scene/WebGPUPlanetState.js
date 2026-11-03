@@ -52,7 +52,7 @@ class WebGPUPlanetState {
    * @param {JulianDate} time Actual scene render time.
    * @returns {WebGPUPlanetState} This reused frame record.
    */
-  update(camera, time, moon, stars) {
+  update(camera, time, moon = { show: true, moonlightIntensity: 0.0025 }, stars = { show: true, intensity: 1 }) {
     const planet = this.planet;
     validateMoonParameters(moon);
     validateStarParameters(stars);
