@@ -1,6 +1,6 @@
 /**
  * Shared M2.1 WGSL math, without bindings, entry points or visible effects.
- * WebGPUPlanetState supplies exactly twelve vec4 values (192 bytes).
+ * WebGPUPlanetState supplies fourteen vec4 values (224 bytes).
  * ECEF positions, radii, distances and ray intervals are meters. Callers supply
  * normalized ECEF directions. vec2(-1) is a miss; [0,0] is surface contact.
  * GPU float32 grazing contacts have a relative rounding band; real terrain
