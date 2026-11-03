@@ -187,6 +187,7 @@ jobs:
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-foundation-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-atmosphere-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-sun-smoke.mjs
+          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-space-smoke.mjs
 
       - name: Run live M1 terrain and near-ground flight acceptance
         if: ${{ !cancelled() }}
@@ -236,4 +237,5 @@ jobs:
             Build/m2-foundation/
             Build/m2-atmosphere/
             Build/m2-sun/
+            Build/m2-space/
           if-no-files-found: warn
