@@ -143,6 +143,51 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.ok(Math.abs(report.phase.after - report.phase.before) > 0.15, "lunar illumination changes with scene time");
   report.checks.push("lunar phase responds to native ephemeris time progression");
 
+  report.moonlight = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    const scene = viewer.scene;
+    viewer.clock.currentTime = Cesium.JulianDate.fromIso8601("2026-03-03T11:30:00Z");
+    const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(viewer.clock.currentTime);
+    const longitude = Math.atan2(-sun.y, -sun.x);
+    const latitude = Math.asin(-sun.z);
+    const origin = Cesium.Cartesian3.fromRadians(longitude, latitude, 2);
+    const direction = Cesium.Cartesian3.clone(sun);
+    let right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Z, new Cesium.Cartesian3());
+    if (Cesium.Cartesian3.magnitude(right) < 1e-5) { right = Cesium.Cartesian3.cross(direction, Cesium.Cartesian3.UNIT_Y, right); }
+    Cesium.Cartesian3.normalize(right, right);
+    const up = Cesium.Cartesian3.normalize(Cesium.Cartesian3.cross(right, direction, new Cesium.Cartesian3()), new Cesium.Cartesian3());
+    viewer.camera.frustum = new Cesium.PerspectiveFrustum({ fov: Cesium.Math.toRadians(8), aspectRatio: 800 / 450, near: 0.1, far: 1000000 });
+    viewer.camera.setView({ destination: origin, orientation: { direction, up } });
+    viewer.camera.update(Cesium.SceneMode.SCENE3D);
+    scene.globe.baseColor = new Cesium.Color(0.2, 0.2, 0.2, 1);
+    scene.atmosphere.show = false;
+    scene.sun.show = false;
+    scene.stars.show = false;
+    scene.moon.show = true;
+    scene.moon.moonlightIntensity = 0;
+    await window.__m1.settle({ timeout: 60000 });
+    const off = window.__m1.pixels();
+    scene.moon.moonlightIntensity = 0.1;
+    for (let i = 0; i < 4; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
+    await scene.context._device.queue.onSubmittedWorkDone();
+    const on = window.__m1.pixels();
+    const offset = ((on.height >> 1) * on.width + (on.width >> 1)) * 4;
+    return {
+      off: Array.from(off.data.slice(offset, offset + 4)),
+      on: Array.from(on.data.slice(offset, offset + 4)),
+      cameraHeight: scene._planetState.cameraHeight,
+      moonElevation: Cesium.Cartesian3.dot(Cesium.Ellipsoid.WGS84.geodeticSurfaceNormal(origin, new Cesium.Cartesian3()), scene._planetState.moonDirectionWC),
+      tilesLoaded: scene.globe.tilesLoaded,
+      statistics: scene.debugStatistics,
+    };
+  });
+  assert.ok(report.moonlight.cameraHeight > 0 && report.moonlight.cameraHeight < 20,
+    "night-side browser fixture is at ground level");
+  assert.ok(report.moonlight.moonElevation > 0.8, "full Moon is above the night-side horizon");
+  assert.ok(report.moonlight.on.slice(0, 3).some((value, channel) => value > report.moonlight.off[channel] + 4),
+    "moonlight measurably brightens actual night-side terrain pixels");
+  report.checks.push("actual night-side terrain receives a bounded Moon-light contribution");
+
   await page.setViewportSize({ width: 960, height: 540 });
   report.resize = await page.evaluate(async () => {
     const { viewer } = window.__m1;
