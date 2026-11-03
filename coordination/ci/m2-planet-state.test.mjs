@@ -59,7 +59,7 @@ for (const [label, longitude, latitude, height] of [
     close(values[52], state.moonIllumination, 1e-7);
     for (let row = 0; row < 3; ++row) {
       for (let column = 0; column < 3; ++column) {
-        close(values[56 + row * 4 + column], state._moonRotation[column * 3 + row], 1e-7);
+        close(values[56 + row * 4 + column], state._moonRotation[row * 3 + column], 1e-7);
       }
     }
     assert.ok([...values].every(Number.isFinite));
