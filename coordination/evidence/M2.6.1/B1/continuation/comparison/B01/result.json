@@ -1,0 +1,549 @@
+{
+  "suite": "m2-b1-comparison-B01",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T12:57:41.790Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "4da1baceb9567288ff1e5ac06227968dd1f6d851",
+  "sourceStatus": "",
+  "bundleSha256": "465ce843e64ae88f7e3a9e372b6c405ef220c5ea5cc57e48de454dc865b3a1ec",
+  "browserErrors": [],
+  "checks": [
+    "matched native-Sun views, unchanged angle, exposure/resolution matrix and balanced native teardown"
+  ],
+  "scenes": [
+    {
+      "name": "low-orbit-1920-exposure-0.5",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 0.5,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "c1b224cb0ed2df6681f93712bad3ee5160a5596f31897b39a56b44c10f070ba3"
+    },
+    {
+      "name": "low-orbit-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "1a432f4189f8f8e7d1be0bdfd5013e99301f768acc817dd143e8f877175d06d8"
+    },
+    {
+      "name": "low-orbit-1920-exposure-2",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 2,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "9c4fc5d4cff94acf1f9a330e3fb0de0c548e6634d9a275f38446955293c1fe1d"
+    },
+    {
+      "name": "low-orbit-1280-exposure-0.5",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 0.5,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "8a731c1326d08452503b11dc54a438f83bb052d25d63e2da6483256e3eb03794"
+    },
+    {
+      "name": "low-orbit-1280-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "a9573168d646860bad5c32131d89ba0c55dbf6b99ff8e75d3ab4f1a87d6a393f"
+    },
+    {
+      "name": "low-orbit-1280-exposure-2",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 2,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "b9b9e45e27a89d5b4b1167945769ad6760c5686f3914709438b16788898bcda4"
+    },
+    {
+      "name": "high-orbit-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": 35810023.58099153,
+          "y": 22258855.767617516,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228137085,
+          "z": -0.0007540324896108581
+        },
+        "up": {
+          "x": -0.03253240646830547,
+          "y": 0.999469827875957,
+          "z": 0.001306022582563413
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999995,
+          539.9999999999994
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "c06e31737561273e4484214bd97ffa8c16c8e38f466b3c5b95c3ed30aab6e9a0"
+    },
+    {
+      "name": "limb-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2494806.0967852785,
+          "y": 6302307.809859179,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813691,
+          "z": -0.0007540324896112497
+        },
+        "up": {
+          "x": -0.03253362111388525,
+          "y": 0.9994706050450768,
+          "z": -0.00027045895541600267
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          960.0000000000013,
+          539.9999999999993
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "81f516474eb8193e3365915d6e3935ab56cd40a28480f5947995b3c15126df41"
+    },
+    {
+      "name": "off-axis-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9954922690278979,
+          "y": 0.03242566677402875,
+          "z": 0.08912754030010688
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758362,
+          "z": -0.000241833066561212
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          552.4188948450937,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "325cf1757c1600ec8ad5298f078f7bf075c206c06104aadb860b0eba3314e76f"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "variant": "B01",
+  "baselineCommit": "5cb8eda655314119fa5567e1b4c023e2c4217906",
+  "solarShaderSha256": "5332c1094eab13c893296c433bc3cf58cceb975ec3e6d1026432bd68a499c8be",
+  "assets": [
+    {
+      "name": "radial-rays-01.r8",
+      "bytes": 262144,
+      "sha256": "1f0142147acf179acb627863b09c47585f5553d382b675aacf7579cb438c55d7",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    },
+    {
+      "name": "radial-rays-02.r8",
+      "bytes": 262144,
+      "sha256": "93a552e2603e79cbf9c1123566e0f1652d78ed369bf9a554613bbebec36aebe9",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    },
+    {
+      "name": "radial-rays-03.r8",
+      "bytes": 262144,
+      "sha256": "e8a08ce385d6f9e8231ab2594534da875c0330f9ea4e1cf06035d5cfb9e85b3f",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    }
+  ],
+  "replacements": [
+    "M2 physical atmosphere WGSL",
+    "M2.2 production atmosphere readback probe",
+    "M2.3 production solar probe"
+  ],
+  "lossPhases": {
+    "phases": {
+      "beforeDrain": 94,
+      "afterDrain": 94,
+      "afterEnable": 94,
+      "afterDestroyCall": 94,
+      "atLossNotification": 95,
+      "afterTwoAnimationFrames": 95
+    },
+    "stopped": true,
+    "errors": [
+      "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:20319:13)\n    at http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:76325:13"
+    ],
+    "created": 635,
+    "destroyed": 635,
+    "live": [],
+    "renderer": {
+      "frames": 93,
+      "sunFrames": 95,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 19,
+      "texturesDestroyed": 19,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 95,
+      "bloomPasses": 281,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33370226933715824
+    }
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

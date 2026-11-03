@@ -1,0 +1,2660 @@
+{
+  "suite": "m2-b1-comparison-baseline",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T12:57:35.427Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "4da1baceb9567288ff1e5ac06227968dd1f6d851",
+  "sourceStatus": "",
+  "bundleSha256": "465ce843e64ae88f7e3a9e372b6c405ef220c5ea5cc57e48de454dc865b3a1ec",
+  "browserErrors": [],
+  "checks": [
+    "matched native-Sun views, unchanged angle, exposure/resolution matrix and balanced native teardown"
+  ],
+  "scenes": [
+    {
+      "name": "low-orbit-1920-exposure-0.5",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 0.5,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "c1fb8e5c35b17e325f9fb76f584778da8b8855c5aa4fecb6865ce8d97d07dba6"
+    },
+    {
+      "name": "low-orbit-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "d143d724af7cc41bc7d2c52dd9bcfd4a73b701e017bffe2bfa2c6e5dfa4fdcca"
+    },
+    {
+      "name": "low-orbit-1920-exposure-2",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 2,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "fbd2bdab2b00c4866cdc86a1f0de03a2c11f57aa47762abb635fff3293277a37"
+    },
+    {
+      "name": "low-orbit-1280-exposure-0.5",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 0.5,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "620f8af6300f62293378e11ba07b387365a9c918e0d04da2af217232d56e4468"
+    },
+    {
+      "name": "low-orbit-1280-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "8affc551e67205463b0b7f176de59b5085684c08a9d97325cf088a8ab361f435"
+    },
+    {
+      "name": "low-orbit-1280-exposure-2",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1280,
+          720
+        ],
+        "exposure": 2,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          639.9999999999982,
+          359.9999999999997
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "048bd1552863d016cfcb10ca5cbc9908ee49c9d1376dffca7480b9f0093535c8"
+    },
+    {
+      "name": "high-orbit-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": 35810023.58099153,
+          "y": 22258855.767617516,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228137085,
+          "z": -0.0007540324896108581
+        },
+        "up": {
+          "x": -0.03253240646830547,
+          "y": 0.999469827875957,
+          "z": 0.001306022582563413
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999995,
+          539.9999999999994
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "1d3abe6d11ead3ea6cacbb6ef0f8ca1f4942cab57f66457b648c159a9551ffe2"
+    },
+    {
+      "name": "limb-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2494806.0967852785,
+          "y": 6302307.809859179,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813691,
+          "z": -0.0007540324896112497
+        },
+        "up": {
+          "x": -0.03253362111388525,
+          "y": 0.9994706050450768,
+          "z": -0.00027045895541600267
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          960.0000000000013,
+          539.9999999999993
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "9a4274edb038ab3c1e70dd9d22f0aec7b36b843b2bbfbf21a4504f8ff80d9a2a"
+    },
+    {
+      "name": "off-axis-1920-exposure-1",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9954922690278979,
+          "y": 0.03242566677402875,
+          "z": 0.08912754030010688
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758362,
+          "z": -0.000241833066561212
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          552.4188948450937,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "94745a3e6621cffa1660f0078c24b9c1a837d6e2533dea826ee94ee1d06e1d01"
+    },
+    {
+      "name": "timing-state",
+      "state": {
+        "time": "2026-03-20T12:00:00Z",
+        "position": {
+          "x": -2278910.453930618,
+          "y": 6383549.822295957,
+          "z": 0
+        },
+        "direction": {
+          "x": 0.9994703641024076,
+          "y": 0.032533409228136974,
+          "z": -0.0007540324896103623
+        },
+        "up": {
+          "x": -0.03253359977900333,
+          "y": 0.9994706130758361,
+          "z": -0.0002418330665612126
+        },
+        "frustum": {
+          "fov": 0.4188790204786391,
+          "aspectRatio": 1.7777777777777777
+        },
+        "viewport": [
+          1920,
+          1080
+        ],
+        "exposure": 1,
+        "sun": {
+          "show": true,
+          "angularRadius": 0.00465,
+          "displayScale": 0.00003396429877738057,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "sunDirection": {
+          "x": 0.9994703641024076,
+          "y": 0.03253340922813717,
+          "z": -0.0007540324896109544
+        },
+        "projection": [
+          959.9999999999974,
+          539.9999999999995
+        ],
+        "terrain": "EllipsoidTerrainProvider",
+        "imageryLayers": 0
+      },
+      "pngSha256": "d143d724af7cc41bc7d2c52dd9bcfd4a73b701e017bffe2bfa2c6e5dfa4fdcca"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "variant": "baseline",
+  "baselineCommit": "5cb8eda655314119fa5567e1b4c023e2c4217906",
+  "solarShaderSha256": "58bb36ee3e4df60e7c0ae65111d31368e1d4a6a659a7377314e910d827875518",
+  "assets": [
+    {
+      "name": "radial-rays-01.r8",
+      "bytes": 262144,
+      "sha256": "1f0142147acf179acb627863b09c47585f5553d382b675aacf7579cb438c55d7",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    },
+    {
+      "name": "radial-rays-02.r8",
+      "bytes": 262144,
+      "sha256": "93a552e2603e79cbf9c1123566e0f1652d78ed369bf9a554613bbebec36aebe9",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    },
+    {
+      "name": "radial-rays-03.r8",
+      "bytes": 262144,
+      "sha256": "e8a08ce385d6f9e8231ab2594534da875c0330f9ea4e1cf06035d5cfb9e85b3f",
+      "source": "5cb8eda655314119fa5567e1b4c023e2c4217906"
+    }
+  ],
+  "performance": {
+    "status": "MEASURED",
+    "adapterFeatures": [
+      "depth32float-stencil8",
+      "rg11b10ufloat-renderable",
+      "texture-formats-tier1",
+      "bgra8unorm-storage",
+      "texture-compression-bc",
+      "dual-source-blending",
+      "core-features-and-limits",
+      "float32-filterable",
+      "indirect-first-instance",
+      "float32-blendable",
+      "subgroup-size-control",
+      "depth-clip-control",
+      "texture-compression-bc-sliced-3d",
+      "timestamp-query",
+      "shader-f16",
+      "texture-formats-tier2",
+      "clip-distances",
+      "primitive-index",
+      "texture-component-swizzle",
+      "subgroups"
+    ],
+    "deviceFeatures": [
+      "core-features-and-limits",
+      "timestamp-query"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "samplesPerMode": 30,
+    "summaries": {
+      "baseline": {
+        "gpuPassSumMs": {
+          "mean": 8.0478208,
+          "p50": 8.126464,
+          "p95": 8.323072
+        },
+        "gpuFrameSpanMs": {
+          "mean": 8.320887466666667,
+          "p50": 8.388608,
+          "p95": 8.51968
+        },
+        "wallRenderAndMapMs": {
+          "mean": 10.970000000794728,
+          "p50": 10.899999976158142,
+          "p95": 12.399999976158142
+        },
+        "passCount": 3
+      },
+      "solarWithoutBloom": {
+        "gpuPassSumMs": {
+          "mean": 8.095880533333334,
+          "p50": 8.126464,
+          "p95": 8.454144000000001
+        },
+        "gpuFrameSpanMs": {
+          "mean": 8.392977066666665,
+          "p50": 8.454144,
+          "p95": 8.716288
+        },
+        "wallRenderAndMapMs": {
+          "mean": 11.113333328564961,
+          "p50": 11.199999928474426,
+          "p95": 12.300000071525574
+        },
+        "passCount": 3
+      },
+      "allEnabled": {
+        "gpuPassSumMs": {
+          "mean": 8.377685333333334,
+          "p50": 8.388608,
+          "p95": 8.716288
+        },
+        "gpuFrameSpanMs": {
+          "mean": 8.7425024,
+          "p50": 8.781824,
+          "p95": 9.043968
+        },
+        "wallRenderAndMapMs": {
+          "mean": 11.109999998410542,
+          "p50": 11.099999904632568,
+          "p95": 11.899999976158142
+        },
+        "passCount": 5
+      }
+    },
+    "samples": {
+      "baseline": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 10.699999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 11.100000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.585216,
+          "wallRenderAndMapMs": 10.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.929856,
+          "gpuFrameSpanMs": 8.257536,
+          "wallRenderAndMapMs": 12.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 11.700000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.471104
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.86432,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.7987839999999995,
+          "gpuFrameSpanMs": 8.126464,
+          "wallRenderAndMapMs": 9.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.262144
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.7987839999999995,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.700000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.099999904632568
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 11.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 7.995392,
+          "wallRenderAndMapMs": 9.800000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 12.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 11.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.7987839999999995,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 7.995392,
+          "wallRenderAndMapMs": 9.900000095367432
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 7.995392,
+          "wallRenderAndMapMs": 10.900000095367432
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 11.100000023841858
+        }
+      ],
+      "solarWithoutBloom": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.300000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 12.300000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 12.800000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.471104
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.86432,
+          "gpuFrameSpanMs": 8.126464,
+          "wallRenderAndMapMs": 10.699999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.929856,
+          "gpuFrameSpanMs": 8.257536,
+          "wallRenderAndMapMs": 11.100000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.060928,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.7987839999999995,
+          "gpuFrameSpanMs": 8.126464,
+          "wallRenderAndMapMs": 11
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.602176
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 11.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 11.199999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.471104
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.86432,
+          "gpuFrameSpanMs": 8.192,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.995392
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.454144000000001,
+          "gpuFrameSpanMs": 8.716288,
+          "wallRenderAndMapMs": 11.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.602176
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.995392,
+          "gpuFrameSpanMs": 8.192,
+          "wallRenderAndMapMs": 11.599999904632568
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.602176
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.995392,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 11.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 11.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.929856
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.388608000000001,
+          "gpuFrameSpanMs": 8.650752,
+          "wallRenderAndMapMs": 11.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.699999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.602176
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.995392,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 10.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.995392,
+          "gpuFrameSpanMs": 8.323072,
+          "wallRenderAndMapMs": 9.800000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.929856
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.388608000000001,
+          "gpuFrameSpanMs": 8.650752,
+          "wallRenderAndMapMs": 11.199999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.262144
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 11.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.7987839999999995,
+          "gpuFrameSpanMs": 8.126464,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.340032
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 7.733248,
+          "gpuFrameSpanMs": 8.060928,
+          "wallRenderAndMapMs": 10.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 8.060928
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 8.519680000000001,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 11.5
+        }
+      ],
+      "allEnabled": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.585216,
+          "gpuFrameSpanMs": 8.912896,
+          "wallRenderAndMapMs": 11.199999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.929856
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.716288,
+          "gpuFrameSpanMs": 9.043968,
+          "wallRenderAndMapMs": 11.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.454144,
+          "gpuFrameSpanMs": 8.781824,
+          "wallRenderAndMapMs": 11
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.388608,
+          "gpuFrameSpanMs": 8.781824,
+          "wallRenderAndMapMs": 11.099999904632568
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.585216,
+          "gpuFrameSpanMs": 8.781824,
+          "wallRenderAndMapMs": 12.300000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.060927999999999,
+          "gpuFrameSpanMs": 8.454144,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.585216,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 8.126464
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.781824,
+          "gpuFrameSpanMs": 9.17504,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 11.399999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.602176
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.650752,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.781824,
+          "wallRenderAndMapMs": 10.900000095367432
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.471104
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.126464,
+          "gpuFrameSpanMs": 8.51968,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.060927999999999,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 10.799999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.585216,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.192,
+          "gpuFrameSpanMs": 8.585216,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.454144000000001,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 10.600000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.388608,
+          "gpuFrameSpanMs": 8.781824,
+          "wallRenderAndMapMs": 11.200000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.519680000000001,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 10.699999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.454144000000001,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 11.700000047683716
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.929856
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.519680000000001,
+          "gpuFrameSpanMs": 8.978432,
+          "wallRenderAndMapMs": 11
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.716288,
+          "wallRenderAndMapMs": 11.100000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.405568
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.060927999999999,
+          "gpuFrameSpanMs": 8.388608,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.667712
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.716288,
+          "wallRenderAndMapMs": 10.699999928474426
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.716288,
+          "wallRenderAndMapMs": 11.300000071525574
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.733248
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.323072,
+          "gpuFrameSpanMs": 8.716288,
+          "wallRenderAndMapMs": 11.100000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.798784
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.454144,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 11.100000023841858
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.650752,
+          "gpuFrameSpanMs": 8.912896,
+          "wallRenderAndMapMs": 11.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.585216,
+          "gpuFrameSpanMs": 8.978432,
+          "wallRenderAndMapMs": 10.899999976158142
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.86432
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.131072
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 8.519680000000001,
+          "gpuFrameSpanMs": 8.84736,
+          "wallRenderAndMapMs": 11.299999952316284
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 7.53664
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom diagonal blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 8.257536,
+          "gpuFrameSpanMs": 8.585216,
+          "wallRenderAndMapMs": 11
+        }
+      ]
+    },
+    "incrementalBloomGpuMs": 0.28180479999999974,
+    "incrementalAllEffectsGpuMs": 0.32986453333333365,
+    "rendererAllocationsDuringMeasurement": {
+      "textures": 0,
+      "buffers": 0
+    },
+    "profilingResources": {
+      "querySetsCreated": 1,
+      "querySetsDestroyed": 1,
+      "buffersCreated": 2,
+      "buffersDestroyed": 2
+    },
+    "allocatedTexturePayloadBytes": 21545984,
+    "physicalResidentVram": "UNVERIFIED: WebGPU exposes no portable resident VRAM counter"
+  },
+  "replacements": [
+    "M2 physical atmosphere WGSL",
+    "M2.2 production atmosphere readback probe",
+    "M2.3 production solar probe"
+  ],
+  "lossPhases": {
+    "phases": {
+      "beforeDrain": 210,
+      "afterDrain": 210,
+      "afterEnable": 210,
+      "afterDestroyCall": 210,
+      "atLossNotification": 211,
+      "afterTwoAnimationFrames": 211
+    },
+    "stopped": true,
+    "errors": [
+      "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:20319:13)\n    at http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:76325:13"
+    ],
+    "created": 669,
+    "destroyed": 669,
+    "live": [],
+    "renderer": {
+      "frames": 209,
+      "sunFrames": 211,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 19,
+      "texturesDestroyed": 19,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 211,
+      "bloomPasses": 485,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33370226933715824
+    }
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}
