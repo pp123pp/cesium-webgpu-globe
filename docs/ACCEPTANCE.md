@@ -51,6 +51,24 @@ A10 additionally requires a restrained, HDR-aware solar glow treatment that visi
 
 This is a bounded visual rendering requirement, not a claim that screen-space radial rays are a physically exact atmospheric phenomenon. Cinematic lens ghosts, dirt, anamorphic streaks and exaggerated flare remain out of scope.
 
+### M2.6 closeout evidence (2026-11-03)
+
+A07–A10 local visual/functional acceptance passed on clean revision `cf2c1d1`;
+see [closeout reports and observations](../coordination/evidence/M2.6/closeout/README.md).
+This supersedes the preliminary checkpoint below. Evidence covers partial and
+fully hidden Sun, real mesh depth, same-state effect comparisons, ground/orbital
+views, continuous sunset, loss/recreation and 404/corrupt-payload handling.
+A08 uses the same-bundle ground day/terminator/night and fixed-camera 12-hour
+change plus continuous solar/space views; UTC orbital filenames alone do not
+establish local daytime. Final publication Fast/Full and WebGL differential
+remain separately recorded in the closeout regression record and PR #18.
+
+The adapter supports timestamp queries when explicitly enabled by the benchmark.
+GPU render-pass timings are now measured; resident VRAM and multi-device
+performance remain unverified. The performance-observational policy above is
+unchanged. NaturalEarth detail/seams and high-exposure low-Sun contrast remain
+explicit limitations, not silently fixed by this acceptance.
+
 ### M2.6 implementation checkpoint 闁?not accepted
 
 A preliminary headed Chromium 156.0.8078.4 run on an Intel Xe-LPG non-fallback adapter produced actual WebGPU scenario screenshots for A07闁炽儲寮?0 at 1920閼?080. The script also tested 1280閼?20 target recreation, exposure 0.5/1/2, enabled/disabled Bloom and one renderer teardown. These are implementation checks, not final PASS decisions for the acceptance matrix. Partial Earth/terrain occultation, animation stability, independent per-effect visual isolation, device-loss recovery, repeated create/destroy soak, final-head Fast/Full, and WebGL differential remain outstanding.

@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-03
-Current milestone: **M2.6 IN PROGRESS — solar assets, solar texture sampling, linear-HDR bloom and preliminary A07–A10 browser evidence implemented; performance and final regression/acceptance gates remain open**
+Current milestone: **M2.6 CLOSEOUT — A07–A10 local visual/functional acceptance passed on cf2c1d1; publication Fast/Full and WebGL differential are tracked below and in PR #18. No merge or M3 work authorized.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -45,7 +45,18 @@ The following known limitations remain recorded and are not silently waived by M
 - Local build, targeted lint, commit-hook types, focused lifecycle tests, hardware M2 space smoke and 17 M0 proof checks passed. The 20-frame capture has no browser errors and clean source identity. Original source `c11494b` passed Fast [41596565861](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565861) and executed Full [41596565848](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565848); those historical runs do not certify the later fix. Final PR CI must pass before the authorized merge.
 - NaturalEarth coarse imagery/seam, live terrain/navigation limitations and high-exposure calibration remain explicit. This is M2.5 acceptance only; M2.6 A07–A10, continuous-animation quality and complete WebGL differential are not claimed complete.
 
-## M2.6 solar visual enhancement — IN PROGRESS
+## M2.6 closeout — 2026-11-03
+
+- Runtime/harness revision: `cf2c1d1bc4f368a02d126bab203ee32da5d4064c`, clean for all seven hardware browser suites. [Closeout evidence](evidence/M2.6/closeout/README.md) records the bundle, actual screenshots, raw reports and limitations. Earlier preliminary records below are historical.
+- Fixed post-blur Earth/terrain leakage, small-highlight loss during downsampling, pending-load destruction and failed-upload cleanup. Solar defaults now match the accepted visible rays/halo configuration. No WebGL implementation was changed.
+- A07–A10 local acceptance passed: partial/hidden Sun and actual mesh occlusion, coherent ground/orbital views, fixed-camera ground day/terminator/night, 120-frame moving-time/camera sunset, independent effect controls and exposure comparisons. UTC orbital filenames are not local-daytime assertions.
+- Build, targeted lint, commit-hook types and 7 focused unit tests passed. Production-WGSL Bloom, solar occlusion, Sun, atmosphere, visual/lifecycle, 404 and corrupt-payload browser suites passed on Intel Xe-LPG / Chromium 156. The main scene released 6,896/6,896 native buffers/textures; loss stops drawing and three explicit recreations succeed.
+- Corrected capability diagnosis: the adapter supports timestamp queries; the old device had not requested them. Benchmark-only GPU timestamps measure all-enabled render-pass sum mean 16.80 ms at 1920 x 1080, with approximately 0.27 ms Bloom increment. Performance remains observational; this is not a pre-M2.6 comparison or a resident-VRAM measurement.
+- Final publication Fast/Full and separate WebGL differential must be read from the closeout regression record and [PR #18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18). The old `67151df` Full selector succeeded but the regression job was **skipped**; it is not passing Full evidence.
+- WebGL differential now passed on runtime `cf2c1d1`: baseline/candidate each 3,811 pass, the same 11 inherited failures and 12,068 skipped. No new failures, changed signatures or tolerated pixel drift; raw suites still exit 1. The archived comparison and full raw evidence are in the closeout directory. Final publication CI is tracked by PR #18.
+- Existing `M1-NAV-001`, NaturalEarth detail/seams and exposure-2 low-Sun contrast tradeoffs remain. No merge, production deployment, M3 or multi-device performance claim is included.
+
+## Historical M2.6 implementation checkpoint — superseded by closeout
 
 Development branch: `feat/m2.6-solar-visual-enhancement`, based on `1869091d0d4a95250e2c56f51cb574ab23598718`. Draft PR [#18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18) targets `main`; latest pushed HEAD is tracked by PR #18. Fast CI and Full regression have been triggered on the current PR head; final results are pending. No merge is authorized. Current implementation and preliminary browser evidence are not final acceptance.
 
@@ -60,9 +71,9 @@ Development branch: `feat/m2.6-solar-visual-enhancement`, based on `1869091d0d4a
 
 See [M2.6 evidence](evidence/M2.6/README.md) and [M2.6 handoff](handoffs/M2.6-solar-visual-enhancement.md) for the exact commit, bundle, evidence and remaining gates.
 
-## Remaining M2 acceptance — M2.6
+## M2.6 acceptance checklist
 
-The final M2 acceptance is still open; record A07–A10 from [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md):
+Local evidence for A07–A10 is linked in the closeout above; final publication gates remain separately tracked. Criteria from [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md):
 
 - A07: orbital sunrise and correct solar appearance / occultation at the limb.
 - A08: continuous twilight, noon and night transitions.

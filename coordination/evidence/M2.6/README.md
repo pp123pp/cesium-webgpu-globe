@@ -1,4 +1,9 @@
-# M2.6 preliminary evidence — IN PROGRESS
+# M2.6 preliminary evidence — historical
+
+The [closeout evidence](closeout/README.md) supersedes this preliminary checkpoint.
+It contains clean-revision A07–A10 visual/functional acceptance, corrected canvas
+captures, GPU timestamps, occlusion and lifecycle verification. Keep this older
+record for provenance; its outstanding list and device-feature inference are historical.
 
 This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The latest clean browser run was captured from commit 1df671931a762b81caed62467da4ca335bc8fd15. The production engine bundle is SHA-256 a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d, identical to implementation commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee; the later commit adds test-harness capability reporting and evidence/documentation only. It remains preliminary acceptance evidence, not final PR-head acceptance. Draft PR #18 currently targets main; Fast CI and Full regression have been triggered on the latest PR HEAD and their final results are pending.
 
