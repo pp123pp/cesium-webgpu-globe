@@ -143,6 +143,26 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.ok(Math.abs(report.phase.after - report.phase.before) > 0.15, "lunar illumination changes with scene time");
   report.checks.push("lunar phase responds to native ephemeris time progression");
 
+  await page.setViewportSize({ width: 960, height: 540 });
+  report.resize = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    viewer.resize();
+    for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
+    await viewer.scene.context._device.queue.onSubmittedWorkDone();
+    const pixels = window.__m1.pixels();
+    const center = ((pixels.height >> 1) * pixels.width + (pixels.width >> 1)) * 4;
+    return {
+      size: [pixels.width, pixels.height],
+      center: Array.from(pixels.data.slice(center, center + 4)),
+      depthSize: [viewer.scene.context.sceneDepthTexture.width, viewer.scene.context.sceneDepthTexture.height],
+      colorSize: [viewer.scene.context.sceneColorTexture.width, viewer.scene.context.sceneColorTexture.height],
+    };
+  });
+  assert.deepEqual(report.resize.size, [960, 540]);
+  assert.deepEqual(report.resize.depthSize, [960, 540]);
+  assert.deepEqual(report.resize.colorSize, [960, 540]);
+  report.checks.push("Moon and star compositor follows resized scene color/depth targets");
+
   report.cleanup = await destroyM1Scene(page);
   report.nativeResources = await page.evaluate(() => {
     const rows = window.__m2AtmosphereAllocations;
