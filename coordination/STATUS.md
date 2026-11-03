@@ -57,7 +57,7 @@ The following known limitations remain recorded and are not silently waived by M
 
 ## Next task — M2.6.1 Solar Visual Polish
 
-- Requirements are defined in [tasks/M2.6.1.md](../tasks/M2.6.1.md) and summarized in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md#m26.1-solar-visual-polish).
+- Requirements are defined in [tasks/M2.6.1.md](../tasks/M2.6.1.md) and summarized in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md).
 - Scope is limited to refining the existing M2.6 Sun disk, radial rays, halo, corona, authored tint and linear-HDR Bloom presentation. The target is to reduce the decorative / regular golden starburst, improve multi-scale glow and corona detail, and preserve disk readability and black-space contrast.
 - This checkpoint changes planning and acceptance documentation only. No engine source, WGSL, GPU assets, demo runtime, build configuration or rendering pipeline is modified.
 - SVP-01–SVP-10 require matched baseline / polished captures, effect isolation, exposure and viewport comparisons, partial / full Earth and terrain occultation, a 120-frame temporal sequence, same-adapter GPU timestamps, and resource-lifecycle evidence.
