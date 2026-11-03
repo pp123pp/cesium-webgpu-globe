@@ -1,0 +1,490 @@
+{
+  "scope": "M2.2 live-demo readiness diagnosis and focused harness validation; compact evidence, not complete logs or final-head hosted acceptance.",
+  "definitions": {
+    "reportPaths": "Paths are relative to the repository; full hosted reports are under each linked run artifact.",
+    "allocationPairs": "[created, destroyed] counts from native GPU allocation observers.",
+    "budgetPhaseOrder": [
+      "before",
+      "reduced",
+      "restored"
+    ],
+    "httpErrors": "HTTP status >=400; redirects and 304 are not counted as errors.",
+    "testSha256": "Repository harness hash reported by the run. Diagnostic copies also have a separate diagnosticScriptSha256."
+  },
+  "hostedFailures": {
+    "identity": {
+      "source": "a7839cf56edda42236433128768e1929e7e18231",
+      "sourceStatus": "",
+      "bundleSha256": "4bba77535755b8c81a39aa52a4eba99d3c3ccc0d54f6e36f8767d04e96b928cc",
+      "demoSha256": "e0ae6bbe12672e0cff1270d0bfc65e1ed1195311733f5841da242e6ed9deca58",
+      "testSha256": "fa7c4fe8b4a26ed6a4d146b9fdcb066a46907aaf4ac58b723633e18f86a5294d",
+      "browser": "156.0.8078.4"
+    },
+    "gpuConfiguration": "Headed Chromium, forced SwiftShader/software mode; failed reports did not reach final adapter/environment reporting.",
+    "status": "FAIL",
+    "completedChecks": 10,
+    "totalChecks": 14,
+    "failure": "Everest camera destination check completed; settle at original m1-demo-smoke.mjs:736 exceeded 90000 ms.",
+    "suiteDeadlineExceeded": false,
+    "runs": [
+      {
+        "run": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41507084724",
+        "report": {
+          "path": "Build/m22-hosted-a783-full-attempt1/artifact/m1-demo/error.json",
+          "sha256": "055c775e66faea86aedbf80911ca4f6ecbf39a0add95fc16151087b37d3ba9b5"
+        },
+        "terrainResponses": 184,
+        "imageryResponses": 228,
+        "artifact": {
+          "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41507084724/artifacts/13173445270",
+          "sha256": "9fb614a41790ae8607866e9f221027de17350659c24dac14cff872f5a09bd98a",
+          "downloadedAndDigestVerified": true
+        }
+      },
+      {
+        "run": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41511999042",
+        "report": {
+          "path": "Build/m22-hosted-a783-full-retry/artifact/m1-demo/error.json",
+          "sha256": "ce4a316cda181b3ad3cf264c84bffab59bcd3209448e6e24e90d39d2436cc5eb"
+        },
+        "terrainResponses": 187,
+        "imageryResponses": 262,
+        "artifact": {
+          "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41511999042/artifacts/13175665314",
+          "sha256": "ae04a3247032398264abc733c24d01d64d3a3ffba18ce5f42ff4e0fafa43e4da",
+          "downloadedAndDigestVerified": true
+        }
+      }
+    ],
+    "recordedBrowserErrors": [],
+    "networkFailure": "Each report contains only the deliberately aborted asset 1 metadata request (net::ERR_FAILED).",
+    "missingEvidence": "No timeout-time queues, providerErrors, in-flight request inventory, final cleanup, or Everest failure screenshot; the earlier failure reports cannot alone identify the cause."
+  },
+  "twoCpuEverestComparison": {
+    "identity": {
+      "source": "a3fdb0a25cb3b76615a2263d944089a5e06f3cdb",
+      "sourceStatus": "",
+      "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+      "demoSha256": "e0ae6bbe12672e0cff1270d0bfc65e1ed1195311733f5841da242e6ed9deca58",
+      "testSha256": "fa7c4fe8b4a26ed6a4d146b9fdcb066a46907aaf4ac58b723633e18f86a5294d",
+      "browser": "156.0.8078.4"
+    },
+    "diagnosticScript": {
+      "path": "/tmp/m22-demo-everest-diagnostic.mjs",
+      "sha256": "3b6493bb39acb251701f19a677b5bdcfc7627300aff3fd93b178d0b303797a24"
+    },
+    "cpuAffinity": "0-1",
+    "measuredHardwareConcurrency": 2,
+    "scope": "Everest load stress subset, excludes secondary failure paths and return Orbit; frame/queue/GPU observations; scale=1 control or shared-budget scale=.75 candidate, restored full-resolution rendering",
+    "control": {
+      "report": {
+        "path": "Build/m22-everest-cpu2-control/error.json",
+        "sha256": "d9643db11454d665a77fe8d7d3b1e81e16d53d07579a6cbab67160d645ca5ec0"
+      },
+      "observation": {
+        "path": "Build/m22-everest-cpu2-control/settle-3-failure.json",
+        "sha256": "26a7bf8fa64f157733c3e4621cedf122d30b8c5180ceb816a46549687ecbc883"
+      },
+      "status": "FAIL",
+      "completedChecks": 6,
+      "resolutionScale": 1,
+      "elapsedMs": 90118,
+      "framesAdvanced": 40,
+      "queuesAtTimeout": [
+        0,
+        19,
+        0
+      ],
+      "finalMediumQueueTrend": [
+        46,
+        41,
+        33,
+        28,
+        25,
+        19
+      ],
+      "finalMeshCountTrend": [
+        168,
+        173,
+        178,
+        183,
+        188,
+        193
+      ],
+      "activeSchedulerRequests": 0,
+      "pendingImageryRequests": 0,
+      "pendingHttpRequests": [],
+      "httpErrors": [],
+      "renderErrors": [],
+      "providerErrors": [],
+      "observedGpuFenceMs": 5945.8,
+      "finalCleanup": null
+    },
+    "candidate": {
+      "report": {
+        "path": "Build/m22-everest-cpu2-scaled/result.json",
+        "sha256": "f1348738f868db66809cc1784aad24e192376e325270b50d534906211fe3e4e9"
+      },
+      "status": "PASS",
+      "completedChecks": 8,
+      "totalSubsetChecks": 8,
+      "loadObservation": {
+        "path": "Build/m22-everest-cpu2-scaled/settle-3-success.json",
+        "sha256": "d1300c9492af870fba95dcc99c6fad8cfafc8f353a45581c00352a8e31c16500"
+      },
+      "restoreObservation": {
+        "path": "Build/m22-everest-cpu2-scaled/settle-4-success.json",
+        "sha256": "aefcc89d3ed7c7a67eff27fe0968d0bf38a12004a32d83c903f0a40c5ff6732a"
+      },
+      "reducedSettleMs": 62640,
+      "reducedFramesAdvanced": 46,
+      "restoredSettleMs": 3748,
+      "restoredSettleActualFrames": 3,
+      "budget": {
+        "sharedBudgetMs": 90000,
+        "elapsedMs": 75068,
+        "frames": [
+          64,
+          110,
+          117
+        ],
+        "css": [
+          [
+            1280,
+            720
+          ],
+          [
+            1280,
+            720
+          ],
+          [
+            1280,
+            720
+          ]
+        ],
+        "canvas": [
+          [
+            1280,
+            720
+          ],
+          [
+            960,
+            540
+          ],
+          [
+            1280,
+            720
+          ]
+        ],
+        "resolutionScale": [
+          1,
+          0.75,
+          1
+        ],
+        "sseHeight": [
+          720,
+          720,
+          720
+        ],
+        "atmosphereShown": [
+          true,
+          true,
+          true
+        ],
+        "lutBuilds": [
+          1,
+          1,
+          1
+        ],
+        "restoredTileCount": 31,
+        "entireRestoredTileSetEqualsReduced": true,
+        "liveTerrain": {
+          "quantizedMeshes": 31,
+          "maximumHeight": 8777.140625,
+          "levels": [
+            12,
+            11
+          ]
+        }
+      },
+      "mainCleanup": {
+        "buffers": [
+          634,
+          634
+        ],
+        "textures": [
+          159,
+          159
+        ],
+        "viewerDestroyed": true,
+        "renderingStopped": true,
+        "canvases": 0,
+        "bufferBytes": 0,
+        "textureBytes": 0,
+        "pendingImageryRequests": 0
+      }
+    }
+  },
+  "fourCpuOriginalFullDemo": {
+    "identity": {
+      "source": "a3fdb0a25cb3b76615a2263d944089a5e06f3cdb",
+      "sourceStatus": "",
+      "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+      "demoSha256": "e0ae6bbe12672e0cff1270d0bfc65e1ed1195311733f5841da242e6ed9deca58",
+      "testSha256": "fa7c4fe8b4a26ed6a4d146b9fdcb066a46907aaf4ac58b723633e18f86a5294d",
+      "browser": "156.0.8078.4"
+    },
+    "diagnosticScript": {
+      "path": "/tmp/m22-demo-cpu-diagnostic.mjs",
+      "sha256": "366eaa1fd6df28a4d594a0bb1e483bce37e07497ed964e301964088c84910deb"
+    },
+    "scope": "CPU-constrained diagnostic; frame/queue trend and nonblocking GPU completion observation; original 90s predicate, viewport and default atmosphere unchanged",
+    "report": {
+      "path": "Build/m22-demo-cpu4/result.json",
+      "sha256": "b6e201c548e981815e94dfd814f86cb6c4d9ca88ee726de8fe1d721ee7dc771d"
+    },
+    "everestObservation": {
+      "path": "Build/m22-demo-cpu4/settle-5-success.json",
+      "sha256": "4c570a638c2941068bd1b97a7bba5227295906abe686d429a5e206a0748d3fbc"
+    },
+    "cpuAffinity": "0-3",
+    "measuredHardwareConcurrency": 4,
+    "status": "PASS",
+    "completedChecks": 14,
+    "totalChecks": 14,
+    "everestSettleMs": 50066,
+    "everestFramesAdvanced": 41,
+    "observedGpuFenceMs": 3523.3,
+    "canvas": [
+      1280,
+      720
+    ],
+    "atmosphereShown": true,
+    "browserErrors": [],
+    "providerErrors": [],
+    "mainCleanup": {
+      "buffers": [
+        683,
+        683
+      ],
+      "textures": [
+        178,
+        178
+      ],
+      "viewerDestroyed": true,
+      "renderingStopped": true,
+      "canvases": 0,
+      "bufferBytes": 0,
+      "textureBytes": 0,
+      "pendingImageryRequests": 0
+    },
+    "allCleanupScenarios": {
+      "scenarios": 6,
+      "allBalancedAndStopped": true,
+      "buffersCreatedAndDestroyed": 809,
+      "texturesCreatedAndDestroyed": 245
+    }
+  },
+  "finalModifiedHarness": {
+    "identity": {
+      "source": "a3fdb0a25cb3b76615a2263d944089a5e06f3cdb",
+      "sourceStatus": "M coordination/ci/m1-demo-smoke.mjs",
+      "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+      "demoSha256": "e0ae6bbe12672e0cff1270d0bfc65e1ed1195311733f5841da242e6ed9deca58",
+      "testSha256": "6b957ab5d05792dd77828c71f5a55d95d473eb89c2ac3f315d5ec881e2e93a27",
+      "browser": "156.0.8078.4"
+    },
+    "script": {
+      "path": "coordination/ci/m1-demo-smoke.mjs",
+      "sha256": "6b957ab5d05792dd77828c71f5a55d95d473eb89c2ac3f315d5ec881e2e93a27"
+    },
+    "report": {
+      "path": "Build/m22-demo-load-budget/result.json",
+      "sha256": "8c671500b4034145f6a49e4d66c57284df8d6fa004e7138b2403165144f90848"
+    },
+    "status": "PASS",
+    "completedChecks": 14,
+    "totalChecks": 14,
+    "checksExactlyEqualOriginalFullDemo": true,
+    "launchConstraint": {
+      "cpuAffinity": "0-3",
+      "basis": "Integration owner recorded taskset 0-3 launch; this result does not report hardwareConcurrency.",
+      "measuredHardwareConcurrency": null
+    },
+    "gpu": {
+      "kind": "software",
+      "reason": "google swiftshader"
+    },
+    "environment": {
+      "cesium": "1.146.0",
+      "adapter": {
+        "vendor": "google",
+        "architecture": "swiftshader",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": true
+      },
+      "viewport": [
+        1280,
+        720
+      ]
+    },
+    "budget": {
+      "sharedBudgetMs": 90000,
+      "elapsedMs": 43851,
+      "frames": [
+        202,
+        247,
+        254
+      ],
+      "css": [
+        [
+          1280,
+          720
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1280,
+          720
+        ]
+      ],
+      "canvas": [
+        [
+          1280,
+          720
+        ],
+        [
+          960,
+          540
+        ],
+        [
+          1280,
+          720
+        ]
+      ],
+      "resolutionScale": [
+        1,
+        0.75,
+        1
+      ],
+      "sseHeight": [
+        720,
+        720,
+        720
+      ],
+      "atmosphereShown": [
+        true,
+        true,
+        true
+      ],
+      "lutBuilds": [
+        1,
+        1,
+        1
+      ],
+      "restoredTileCount": 31,
+      "entireRestoredTileSetEqualsReduced": true,
+      "liveTerrain": {
+        "quantizedMeshes": 31,
+        "maximumHeight": 8777.140625,
+        "levels": [
+          12,
+          11
+        ]
+      }
+    },
+    "browserErrors": [],
+    "providerErrors": [],
+    "network": {
+      "terrainResponses": 189,
+      "imageryResponses": 269,
+      "httpErrors": [],
+      "failures": [
+        {
+          "url": "https://api.cesium.com/v1/assets/1/endpoint",
+          "error": "net::ERR_FAILED"
+        },
+        {
+          "url": "https://assets.ion.cesium.com/proxy/3830182/v1/2dtiles/1/0/0",
+          "error": "net::ERR_ABORTED"
+        }
+      ],
+      "classification": "The asset 1 ERR_FAILED is the intentional metadata negative control. The retained imagery ERR_ABORTED is a request cancellation in this lifecycle test, with no provider-error event reported; this report does not timestamp its exact lifecycle phase."
+    },
+    "mainCleanup": {
+      "buffers": [
+        769,
+        769
+      ],
+      "textures": [
+        185,
+        185
+      ],
+      "viewerDestroyed": true,
+      "renderingStopped": true,
+      "canvases": 0,
+      "bufferBytes": 0,
+      "textureBytes": 0,
+      "pendingImageryRequests": 0
+    },
+    "allCleanupScenarios": {
+      "scenarios": 6,
+      "allBalancedAndStopped": true,
+      "buffersCreatedAndDestroyed": 899,
+      "texturesCreatedAndDestroyed": 252
+    }
+  },
+  "preservedAcceptance": [
+    "Only software-GPU Everest streaming after the original camera-arrival assertion uses resolutionScale 0.75; CSS remains 1280x720 and SSE height remains 720 (540 / 0.75).",
+    "One shared 90000 ms deadline includes streaming, restore, at least three actual postRender frames and a GPU queue completion fence; elapsed time is asserted within that deadline.",
+    "Restore scale 1 and canvas 1280x720 before the original screenshots and assertions; compare every selected tile ID with the reduced settled set, retain enabled atmosphere and unchanged LUT-build count.",
+    "Original real-provider, mountain-height/LOD, imagery, attribution, error and all-native-allocation teardown assertions remain; the full modified harness retains all 14 original checks."
+  ],
+  "interpretationAndLimits": [
+    "The constrained control kept advancing meshes and draining queues after HTTP work was complete. The paired scale change completed in the shared deadline, supporting a software-rendering load contribution to slow frame-driven tile processing; no request leak or renderer/provider error was observed in that control.",
+    "CPU affinity stress is not an exact reproduction of the hosted runner. Local and hosted reports have different source/bundle identities and local browser/CA configuration; these local results do not certify an untested remote head.",
+    "This is a harness workload adjustment, not a repair of the product default full-resolution loading performance. Original full-resolution streaming concurrency and resource peaks are not preserved.",
+    "The 8-check Everest diagnostic excludes secondary failure paths and the return-Orbit path. The separate 14-check runs supply those observations.",
+    "All observations use software SwiftShader; no physical-GPU performance or broad new renderer acceptance claim follows."
+  ],
+  "unrestrictedOriginalFullDemo": {
+    "report": {
+      "path": "Build/m22-demo-diagnostic/result.json",
+      "sha256": "5dcad5dd867be0f32c3899ee0f45aa2b3f24723d6b6adddb834901cb861aa901"
+    },
+    "identity": {
+      "source": "a3fdb0a25cb3b76615a2263d944089a5e06f3cdb",
+      "sourceStatus": "",
+      "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+      "testSha256": "fa7c4fe8b4a26ed6a4d146b9fdcb066a46907aaf4ac58b723633e18f86a5294d",
+      "diagnosticScriptSha256": "0cec8abb8139117b881904803978fd1898eefffd22ae49d3e89a1561affbc6ef"
+    },
+    "status": "PASS",
+    "completedChecks": 14,
+    "totalChecks": 14,
+    "everestSettleMs": 26725,
+    "scope": "Original predicate, canvas and atmosphere; diagnostic observer only. Successful focused follow-up before the one unchanged-head Full retry."
+  },
+  "twoCpuEarlierFullDemoFailure": {
+    "report": {
+      "path": "Build/m22-demo-cpu2-control/error.json",
+      "sha256": "5f96bce1a93dc36f3b10f9625b414aca115ea754cefa8af5ec68332feea283c3"
+    },
+    "identity": {
+      "source": "a3fdb0a25cb3b76615a2263d944089a5e06f3cdb",
+      "sourceStatus": "",
+      "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+      "testSha256": "fa7c4fe8b4a26ed6a4d146b9fdcb066a46907aaf4ac58b723633e18f86a5294d",
+      "diagnosticScriptSha256": "039adaff7f80c81efb37d6f20796198ae61eddb5beaceca109bd0ceaaa420517"
+    },
+    "status": "FAIL",
+    "completedChecks": 6,
+    "totalChecks": 14,
+    "cpuAffinity": "0-1",
+    "error": "TimeoutError: page.waitForRequest: Timeout 30000ms exceeded while waiting for event \"request\"",
+    "scope": "Failed before Everest in a secondary metadata-request wait; neither an Everest reproduction nor a passing complete demo."
+  }
+}

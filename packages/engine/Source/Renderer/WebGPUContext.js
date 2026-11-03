@@ -1,4 +1,5 @@
 import { Event, RuntimeError } from "@cesium/core";
+import WebGPUDepth from "./WebGPUDepth.js";
 
 // Near RGB triangle first, far magenta triangle second: depth, not draw order,
 // must keep the RGB triangle visible. WebGPU clip-space depth is in [0, 1].
@@ -154,13 +155,17 @@ class WebGPUContext {
     }
     try {
       this._depthTexture?.destroy();
+      this._sceneColorTexture?.destroy();
+      this._sceneColorTexture = undefined;
       this.canvas.width = width;
       this.canvas.height = height;
       this._depthTexture = this._device.createTexture({
         label: this._globe ? "WGS84 reversed depth" : "M0 depth attachment",
         size: [width, height],
-        format: this._globe ? "depth32float" : "depth24plus",
-        usage: GPUTextureUsage.RENDER_ATTACHMENT,
+        format: this._globe ? WebGPUDepth.format : "depth24plus",
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT |
+          (this._globe ? GPUTextureUsage.TEXTURE_BINDING : 0),
       });
     } catch (error) {
       this._fail(error);
@@ -176,7 +181,34 @@ class WebGPUContext {
     return this.canvas.height;
   }
 
-  render(draw, backgroundColor) {
+  // Acquire again after resize. Read only in a subsequent pass, never while
+  // this texture is attached for depth writing. M0's proof is deliberately separate.
+  get sceneDepthTexture() {
+    return this._globe ? this._depthTexture : undefined;
+  }
+
+  get sceneColorTexture() {
+    return this._sceneColorTexture;
+  }
+
+  // The atmosphere/Sun consumer needs this intermediate. The original direct
+  // canvas path (including the M0 proof) retains its format and behavior.
+  _getSceneColorTexture() {
+    if (!this._sceneColorTexture) {
+      this._sceneColorTexture = this._device.createTexture({
+        label: "M2 completed terrain color",
+        size: [this.canvas.width, this.canvas.height],
+        format: this._format,
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT |
+          GPUTextureUsage.TEXTURE_BINDING |
+          GPUTextureUsage.COPY_SRC,
+      });
+    }
+    return this._sceneColorTexture;
+  }
+
+  render(draw, backgroundColor, composite) {
     this._checkAlive();
     if (!this._ready) {
       return;
@@ -185,10 +217,12 @@ class WebGPUContext {
       const encoder = this._device.createCommandEncoder({
         label: this._globe ? "WGS84 frame" : "M0 frame",
       });
+      const target = this._canvasContext.getCurrentTexture().createView();
+      const color = composite ? this._getSceneColorTexture() : undefined;
       const pass = encoder.beginRenderPass({
         colorAttachments: [
           {
-            view: this._canvasContext.getCurrentTexture().createView(),
+            view: color ? color.createView() : target,
             clearValue: backgroundColor
               ? {
                   r: backgroundColor.red,
@@ -203,7 +237,7 @@ class WebGPUContext {
         ],
         depthStencilAttachment: {
           view: this._depthTexture.createView(),
-          depthClearValue: this._globe ? 0 : 1,
+          depthClearValue: this._globe ? WebGPUDepth.clearValue : 1,
           depthLoadOp: "clear",
           depthStoreOp: "store",
         },
@@ -215,6 +249,9 @@ class WebGPUContext {
         pass.draw(3, 2);
       }
       pass.end();
+      // The opaque attachments have finished writing. The atmosphere/Sun pass has
+      // a distinct output and no writable depth attachment, avoiding feedback.
+      composite?.(encoder, target, color, this._depthTexture);
       this._device.queue.submit([encoder.finish()]);
     } catch (error) {
       this._fail(error);
@@ -238,6 +275,8 @@ class WebGPUContext {
   _release() {
     this._depthTexture?.destroy();
     this._depthTexture = undefined;
+    this._sceneColorTexture?.destroy();
+    this._sceneColorTexture = undefined;
     if (this._configured) {
       this._canvasContext.unconfigure();
       this._configured = false;

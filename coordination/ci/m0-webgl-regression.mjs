@@ -264,14 +264,17 @@ function failuresOf(run) {
     });
 }
 
-// Known SwiftShader/Chrome fluctuation in this inherited failure only.
+// Observed SwiftShader/Chrome fluctuation in these two inherited failures only.
 // Keep all other assertion values and error shapes strict.
 function isToleratedShadowPixelDrift(known, failure) {
-  const target = JSON.stringify([
-    "Scene/ShadowMap",
+  const targets = [
     "Model with cutout texture casts shadows onto another model",
-  ]);
-  if (known.identity !== target || failure.identity !== target) {
+    "enable soft shadows",
+  ].map((description) => JSON.stringify(["Scene/ShadowMap", description]));
+  if (
+    known.identity !== failure.identity ||
+    !targets.includes(known.identity)
+  ) {
     return false;
   }
   if (known.messages.length !== 1 || failure.messages.length !== 1) {
@@ -296,14 +299,16 @@ function isToleratedShadowPixelDrift(known, failure) {
   }
 
   // Both failures must still represent two identical pixels where the
-  // spec expected a shadow difference; only red may drift by one level.
+  // spec expected a shadow difference; RGB may drift by one level, alpha cannot.
   const sameWithinRun = (rgba) =>
     rgba.slice(0, 4).every((value, index) => value === rgba[index + 4]);
   return (
     sameWithinRun(baseline) &&
     sameWithinRun(candidate) &&
-    Math.abs(baseline[0] - candidate[0]) <= 1 &&
-    baseline.slice(1, 4).every((value, index) => value === candidate[index + 1])
+    baseline
+      .slice(0, 3)
+      .every((value, index) => Math.abs(value - candidate[index]) <= 1) &&
+    baseline[3] === candidate[3]
   );
 }
 

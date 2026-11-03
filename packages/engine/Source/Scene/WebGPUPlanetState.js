@@ -1,0 +1,122 @@
+import {
+  Cartesian3,
+  Cartographic,
+  DeveloperError,
+  Ellipsoid,
+  EncodedCartesian3,
+  JulianDate,
+  Matrix4,
+} from "@cesium/core";
+import WebGPUDepth from "../Renderer/WebGPUDepth.js";
+import {
+  createPlanetParameters,
+  computeSunDirectionWC,
+} from "./WebGPUPlanetMath.js";
+
+/**
+ * Double-precision planet/camera state with the vec4-aligned WebGPUPlanet WGSL
+ * layout. This record allocates no GPU resources and renders no atmosphere.
+ * Positions/distances are meters; rotations/directions are dimensionless.
+ * @private
+ */
+class WebGPUPlanetState {
+  constructor(ellipsoid = Ellipsoid.WGS84, atmosphereHeight = 100000) {
+    this.planet = createPlanetParameters(ellipsoid, atmosphereHeight);
+    this.cameraPositionWC = new Cartesian3();
+    this.cameraGeocentricDistance = 0;
+    this.cameraHeight = 0;
+    this.sunDirectionWC = new Cartesian3();
+    this.sunDirectionEC = new Cartesian3();
+    this.time = new JulianDate();
+    this.uniformValues = new Float32Array(48);
+    this._encodedCamera = new EncodedCartesian3();
+    this._cartographic = new Cartographic();
+    this._projection = new Matrix4();
+    this._scaledCamera = new Cartesian3();
+  }
+
+  /**
+   * Updates after scene callbacks, using the same time and native camera as terrain.
+   * @param {Camera} camera Native Cesium camera, including its reference transform.
+   * @param {JulianDate} time Actual scene render time.
+   * @returns {WebGPUPlanetState} This reused frame record.
+   */
+  update(camera, time) {
+    const planet = this.planet;
+    const position = Cartesian3.clone(camera.positionWC, this.cameraPositionWC);
+    this.cameraGeocentricDistance = Cartesian3.magnitude(position);
+    const cartographic = planet.ellipsoid.cartesianToCartographic(
+      position,
+      this._cartographic,
+    );
+    if (cartographic === undefined) {
+      throw new DeveloperError(
+        "Planet camera must have a defined geodetic height.",
+      );
+    }
+    this.cameraHeight = cartographic.height;
+    JulianDate.clone(time, this.time);
+    computeSunDirectionWC(time, this.sunDirectionWC);
+    Matrix4.multiplyByPointAsVector(
+      camera.viewMatrix,
+      this.sunDirectionWC,
+      this.sunDirectionEC,
+    );
+    Cartesian3.normalize(this.sunDirectionEC, this.sunDirectionEC);
+    EncodedCartesian3.fromCartesian(position, this._encodedCamera);
+    const projection = WebGPUDepth.computeProjection(
+      camera.frustum,
+      this._projection,
+    );
+    const q = Cartesian3.multiplyComponents(
+      position,
+      planet.inverseRadii,
+      this._scaledCamera,
+    );
+    const q2 = Cartesian3.magnitudeSquared(q);
+    const sphereQ = this.cameraGeocentricDistance / planet.atmosphereRadius;
+    // Compute cancellation-sensitive constants in double precision. In particular,
+    // a 1 cm camera height must not disappear in a float32 dot(q,q)-1 operation.
+    let ellipsoidC = q2 - 1;
+    let atmosphereC = (sphereQ - 1) * (sphereQ + 1);
+    if (Math.abs(ellipsoidC) <= 16 * Number.EPSILON) {
+      ellipsoidC = 0;
+    }
+    if (Math.abs(atmosphereC) <= 16 * Number.EPSILON) {
+      atmosphereC = 0;
+    }
+    const values = this.uniformValues;
+    const write = (offset, vector, w = 0) => {
+      values[offset] = vector.x;
+      values[offset + 1] = vector.y;
+      values[offset + 2] = vector.z;
+      values[offset + 3] = w;
+    };
+    write(0, planet.radii, planet.atmosphereRadius);
+    write(4, planet.inverseRadii, 1 / planet.atmosphereRadius);
+    write(8, this._encodedCamera.high, this.cameraGeocentricDistance);
+    write(12, this._encodedCamera.low, this.cameraHeight);
+    write(16, this.sunDirectionWC);
+    write(20, this.sunDirectionEC);
+    write(24, camera.rightWC);
+    write(28, camera.upWC);
+    write(32, camera.directionWC);
+    values.set(
+      [projection[0], projection[5], projection[8], projection[9]],
+      36,
+    );
+    values.set(
+      [camera.frustum.near, camera.frustum.far, projection[10], projection[14]],
+      40,
+    );
+    values.set([ellipsoidC, atmosphereC, planet.atmosphereHeight, 0], 44);
+    if (!values.every(Number.isFinite)) {
+      throw new DeveloperError(
+        "Planet state exceeds finite float32 shader precision.",
+      );
+    }
+    return this;
+  }
+}
+
+export default WebGPUPlanetState;

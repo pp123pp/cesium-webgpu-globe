@@ -1,4 +1,5 @@
-import { Cartesian2, Cartesian3, DeveloperError, Matrix4 } from "@cesium/core";
+import { Cartesian2, Cartesian3, Matrix4 } from "@cesium/core";
+import WebGPUDepth from "../Renderer/WebGPUDepth.js";
 
 const centerEyeScratch = new Cartesian3();
 const relativeViewScratch = new Matrix4();
@@ -26,34 +27,10 @@ export function computeRelativeViewProjection(
   center,
   result = new Matrix4(),
 ) {
-  const frustum = camera.frustum;
-  const near = frustum.near;
-  const far = frustum.far;
-  if (
-    !Number.isFinite(near) ||
-    !Number.isFinite(far) ||
-    near <= 0 ||
-    far <= near
-  ) {
-    throw new DeveloperError(
-      "M1 requires finite perspective distances with 0 < near < far.",
-    );
-  }
-
-  const projection = Matrix4.clone(frustum.projectionMatrix, projectionScratch);
-  if (projection[11] !== -1 || projection[15] !== 0) {
-    throw new DeveloperError("M1 requires a perspective frustum.");
-  }
-
-  // zWebGPU = (wOpenGL - zOpenGL) / 2. Bake this into the projection
-  // before float32 conversion; doing the subtraction in a shader loses
-  // distant depth when float32 rounds zOpenGL and wOpenGL to the same value.
-  // Use the analytic coefficients to avoid subtracting nearly equal doubles.
-  // All X/Y entries, including off-center offsets, remain native Cesium values.
-  projection[2] = 0;
-  projection[6] = 0;
-  projection[10] = near / (far - near);
-  projection[14] = near * (far / (far - near));
+  const projection = WebGPUDepth.computeProjection(
+    camera.frustum,
+    projectionScratch,
+  );
 
   const view = camera.viewMatrix;
   Matrix4.multiplyByPoint(view, center, centerEyeScratch);

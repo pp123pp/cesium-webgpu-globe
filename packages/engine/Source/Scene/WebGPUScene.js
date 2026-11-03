@@ -21,6 +21,11 @@ import TweenCollection from "./TweenCollection.js";
 import WebGPUGlobeRenderer from "./WebGPUGlobeRenderer.js";
 import WebGPUGlobeTileProvider from "./WebGPUGlobeTileProvider.js";
 import WebGPUImagery from "./WebGPUImagery.js";
+import WebGPUPlanetState from "./WebGPUPlanetState.js";
+import WebGPUDepth from "../Renderer/WebGPUDepth.js";
+import WebGPUAtmosphereRenderer from "./WebGPUAtmosphereRenderer.js";
+import { createAtmosphereParameters } from "./WebGPUAtmosphereModel.js";
+import { createSunParameters } from "./WebGPUSun.js";
 
 // Quadtree roots are created lazily, so their absence does not imply that an
 // otherwise fresh Globe has no owner. Weak membership does not retain Globes.
@@ -133,8 +138,16 @@ class WebGPUScene {
     this._ready = false;
     this.creditDisplay = creditDisplay;
     this.camera = new Camera(this);
-    this.camera.frustum.near = 0.1;
-    this.camera.frustum.far = 500000000;
+    this.camera.frustum.near = WebGPUDepth.defaultNear;
+    this.camera.frustum.far = WebGPUDepth.defaultFar;
+    this._planetState = new WebGPUPlanetState(this.ellipsoid);
+    this.atmosphere = createAtmosphereParameters({
+      show: options.skyAtmosphere !== false,
+    });
+    // Viewer already defines skyBox:false as hiding the Sun as well. This is
+    // WebGPU settings, not an instance of the separate native WebGL Sun class.
+    this.sun = createSunParameters({ show: options.skyBox !== false });
+    this._atmosphere = new WebGPUAtmosphereRenderer(context);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);
     const baseColor = Color.clone(globe.baseColor);
@@ -225,6 +238,7 @@ class WebGPUScene {
 
   async initialize() {
     await this._renderer.initialize();
+    await this._atmosphere.initialize();
     this.context._checkAlive();
     this._ready = true;
   }
@@ -304,6 +318,7 @@ class WebGPUScene {
     ++frame.frameNumber;
     frame.newFrame = true;
     frame.time = JulianDate.clone(time, frame.time);
+    this._planetState.update(this.camera, frame.time);
     frame.pixelRatio = this.pixelRatio;
     frame.cameraUnderground = this.cameraUnderground;
     frame.cullingVolume = this.camera.frustum.computeCullingVolume(
@@ -363,6 +378,7 @@ class WebGPUScene {
       terrain: { ...this._tileProvider.statistics },
       imagery: { ...this._imagery.statistics },
       resources: { ...this._renderer.statistics },
+      atmosphere: { ...this._atmosphere?.statistics },
     };
   }
 
@@ -381,6 +397,7 @@ class WebGPUScene {
       this.globe.destroy();
       layers.destroy();
       this._renderer.destroy();
+      this._atmosphere?.destroy();
       RequestScheduler.update();
     }
   }

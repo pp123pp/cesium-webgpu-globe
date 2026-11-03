@@ -26,6 +26,7 @@ import TweenCollection from "../../packages/engine/Source/Scene/TweenCollection.
 import WebGPUGlobeRenderer from "../../packages/engine/Source/Scene/WebGPUGlobeRenderer.js";
 import WebGPUGlobeTileProvider from "../../packages/engine/Source/Scene/WebGPUGlobeTileProvider.js";
 import WebGPUScene from "../../packages/engine/Source/Scene/WebGPUScene.js";
+import WebGPUPlanetState from "../../packages/engine/Source/Scene/WebGPUPlanetState.js";
 
 const regions = [
   { name: "south", longitude: 10, latitude: 10, x: 4, y: 1 },
@@ -91,6 +92,7 @@ function fixture(t) {
     ellipsoid: globe.ellipsoid,
     mapProjection: new GeographicProjection(globe.ellipsoid),
     _renderer: renderer,
+    _planetState: new WebGPUPlanetState(globe.ellipsoid),
     _tileProvider: adapter,
     _ready: true,
     _destroyed: false,
@@ -245,5 +247,18 @@ for (const eventName of ["postUpdate", "preRender"]) {
       f.scene.frameState.cullingVolume.computeVisibility(north),
       Intersect.OUTSIDE,
     );
+    assert.ok(Cartesian3.equals(f.scene._planetState.cameraPositionWC, f.scene.camera.positionWC));
+    assert.ok(JulianDate.equals(f.scene._planetState.time, time));
   });
 }
+
+test("planet Sun follows explicit scene time, independently of camera translation", (t) => {
+  const f = fixture(t);
+  f.scene.render(time);
+  const original = Cartesian3.clone(f.scene._planetState.sunDirectionWC);
+  setView(f.scene.camera, regions[1]);
+  f.scene.render(time);
+  assert.ok(Cartesian3.equals(f.scene._planetState.sunDirectionWC, original));
+  f.scene.render(JulianDate.addHours(time, 6, new JulianDate()));
+  assert.ok(Cartesian3.distance(f.scene._planetState.sunDirectionWC, original) > 1);
+});

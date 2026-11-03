@@ -176,83 +176,171 @@ test("a newly failed spec fails even if total failures stay unchanged", () => {
   );
 });
 
-function shadowFixture(red = 147, green = 1) {
+const inheritedShadowDescriptions = [
+  "Model with cutout texture casts shadows onto another model",
+  "enable soft shadows",
+];
+
+function shadowFixture({
+  rgba = [147, 1, 1, 255],
+  otherRgba = rgba,
+  description = inheritedShadowDescriptions[0],
+  suite = ["Scene/ShadowMap"],
+} = {}) {
   const run = fixture();
-  run.specs[0].suite = ["Scene/ShadowMap"];
-  run.specs[0].description =
-    "Model with cutout texture casts shadows onto another model";
-  const value = `${red}, ${green}, 1, 255`;
+  run.specs[0].suite = suite;
+  run.specs[0].description = description;
   run.specs[0].errors = [
-    `Expected Uint8Array [ ${value} ] not to equal Uint8Array [ ${value} ].`,
+    `Expected Uint8Array [ ${rgba.join(", ")} ] not to equal Uint8Array [ ${otherRgba.join(", ")} ].`,
   ];
   return run;
 }
 
-test("known ShadowMap one-level red drift is tolerated and recorded", () => {
-  const baseline = shadowFixture(147);
-  const candidate = shadowFixture(148);
-  const comparison = compareWebglRuns(baseline, candidate);
-  assert.equal(comparison.baselineFailures, 1);
-  assert.equal(comparison.candidateFailures, 1);
-  assert.equal(comparison.toleratedPixelDrifts.length, 1);
-  assert.deepEqual(comparison.toleratedPixelDrifts[0].suite, ["Scene/ShadowMap"]);
-  assert.deepEqual(comparison.fixedFailures, []);
-});
+for (const description of inheritedShadowDescriptions) {
+  test(`${description}: bounded RGB drift is recorded without passing inherited failures`, () => {
+    for (const [before, after] of [
+      [
+        [174, 3, 3, 255],
+        [175, 3, 3, 255],
+      ],
+      [
+        [175, 3, 3, 255],
+        [174, 3, 3, 255],
+      ],
+      [
+        [163, 2, 2, 255],
+        [163, 3, 3, 255],
+      ],
+      [
+        [163, 3, 3, 255],
+        [163, 2, 2, 255],
+      ],
+      [
+        [147, 1, 1, 255],
+        [147, 2, 1, 255],
+      ],
+      [
+        [147, 1, 1, 255],
+        [147, 1, 2, 255],
+      ],
+      [
+        [0, 0, 0, 255],
+        [1, 1, 1, 255],
+      ],
+      [
+        [255, 255, 255, 255],
+        [254, 254, 254, 255],
+      ],
+    ]) {
+      const baseline = shadowFixture({ description, rgba: before });
+      const candidate = shadowFixture({ description, rgba: after });
+      const comparison = compareWebglRuns(baseline, candidate);
+      assert.equal(comparison.baselineFailures, 1);
+      assert.equal(comparison.candidateFailures, 1);
+      assert.deepEqual(comparison.toleratedPixelDrifts, [
+        {
+          suite: ["Scene/ShadowMap"],
+          description,
+          baselineMessages: baseline.specs[0].errors,
+          candidateMessages: candidate.specs[0].errors,
+        },
+      ]);
+      assert.deepEqual(comparison.fixedFailures, []);
+      assert.equal(baseline.exitCode, 1);
+      assert.equal(candidate.exitCode, 1);
+    }
+  });
 
-test("known ShadowMap one-level red drift in the opposite direction is tolerated", () => {
-  assert.equal(
-    compareWebglRuns(shadowFixture(148), shadowFixture(147))
-      .toleratedPixelDrifts.length,
-    1,
-  );
-});
+  for (const [reason, rgba] of [
+    ["red differs by two", [149, 1, 1, 255]],
+    ["green differs by two", [147, 3, 1, 255]],
+    ["blue differs by two", [147, 1, 3, 255]],
+    ["alpha changes", [147, 1, 1, 254]],
+    ["a channel exceeds byte range", [256, 1, 1, 255]],
+    ["a channel is negative", [-1, 1, 1, 255]],
+    ["a channel is fractional", [147.5, 1, 1, 255]],
+    ["pixel has only RGB", [148, 1, 1]],
+  ]) {
+    test(`${description}: ${reason} remains a regression`, () => {
+      assert.throws(
+        () =>
+          compareWebglRuns(
+            shadowFixture({ description }),
+            shadowFixture({ description, rgba }),
+          ),
+        /changed assertion signature/i,
+      );
+    });
+  }
 
-test("ShadowMap red drift greater than one remains a regression", () => {
-  assert.throws(
-    () => compareWebglRuns(shadowFixture(147), shadowFixture(149)),
-    /changed assertion signature/i,
-  );
-});
+  for (const side of ["baseline", "candidate"]) {
+    test(`${description}: adjacent out-of-range values in ${side} remain a regression`, () => {
+      const valid = shadowFixture({ description, rgba: [255, 1, 1, 255] });
+      const invalid = shadowFixture({ description, rgba: [256, 1, 1, 255] });
+      assert.throws(
+        () =>
+          compareWebglRuns(
+            side === "baseline" ? invalid : valid,
+            side === "baseline" ? valid : invalid,
+          ),
+        /changed assertion signature/i,
+      );
+    });
 
-test("ShadowMap green-channel drift remains a regression", () => {
-  assert.throws(
-    () => compareWebglRuns(shadowFixture(147), shadowFixture(147, 2)),
-    /changed assertion signature/i,
-  );
-});
+    test(`${description}: unequal pixels in ${side} remain a regression`, () => {
+      const baseline = shadowFixture({ description });
+      const candidate = shadowFixture({ description, rgba: [148, 1, 1, 255] });
+      const target = side === "baseline" ? baseline : candidate;
+      target.specs[0].errors[0] =
+        "Expected Uint8Array [ 148, 1, 1, 255 ] not to equal Uint8Array [ 147, 1, 1, 255 ].";
+      assert.throws(
+        () => compareWebglRuns(baseline, candidate),
+        /changed assertion signature/i,
+      );
+    });
 
-test("ShadowMap changed failure semantics remain a regression", () => {
-  const candidate = shadowFixture(148);
-  candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
-    "not to equal",
-    "to equal",
-  );
-  assert.throws(
-    () => compareWebglRuns(shadowFixture(147), candidate),
-    /changed assertion signature/i,
-  );
-});
+    test(`${description}: an extra assertion in ${side} remains a regression`, () => {
+      const baseline = shadowFixture({ description });
+      const candidate = shadowFixture({ description, rgba: [148, 1, 1, 255] });
+      const target = side === "baseline" ? baseline : candidate;
+      target.specs[0].errors.push("New unrelated assertion failed.");
+      assert.throws(
+        () => compareWebglRuns(baseline, candidate),
+        /changed assertion signature/i,
+      );
+    });
+  }
 
-test("ShadowMap unequal expected and actual pixels remain a regression", () => {
-  const candidate = shadowFixture(148);
-  candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
-    "not to equal Uint8Array [ 148",
-    "not to equal Uint8Array [ 147",
-  );
-  assert.throws(
-    () => compareWebglRuns(shadowFixture(147), candidate),
-    /changed assertion signature/i,
-  );
-});
+  test(`${description}: changed failure semantics remain a regression`, () => {
+    const candidate = shadowFixture({ description, rgba: [148, 1, 1, 255] });
+    candidate.specs[0].errors[0] = candidate.specs[0].errors[0].replace(
+      "not to equal",
+      "to equal",
+    );
+    assert.throws(
+      () => compareWebglRuns(shadowFixture({ description }), candidate),
+      /changed assertion signature/i,
+    );
+  });
+}
 
-test("ShadowMap extra assertion remains a regression", () => {
-  const candidate = shadowFixture(148);
-  candidate.specs[0].errors.push("New unrelated assertion failed.");
-  assert.throws(
-    () => compareWebglRuns(shadowFixture(147), candidate),
-    /changed assertion signature/i,
-  );
-});
+for (const identity of [
+  { suite: ["Scene/ShadowMap"], description: "point light shadows" },
+  { suite: ["Scene/ShadowMap"], description: "enable soft shadows changed" },
+  { suite: ["Scene/Other"], description: "enable soft shadows" },
+  { suite: ["Scene/ShadowMap", "nested"], description: "enable soft shadows" },
+]) {
+  test(`bounded pixel drift cannot mask another identity: ${JSON.stringify(identity)}`, () => {
+    assert.throws(
+      () =>
+        compareWebglRuns(
+          shadowFixture(identity),
+          shadowFixture({ ...identity, rgba: [148, 1, 1, 255] }),
+        ),
+      /changed assertion signature/i,
+    );
+  });
+}
 
 test("the same failed spec with changed assertion values is a regression", () => {
   const candidate = fixture();

@@ -1,0 +1,88 @@
+{
+  "failure": {
+    "run": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41502541781",
+    "source": "0bdb07ea368556dca814594e66763e555e405b7e",
+    "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n98 !== 96\n",
+    "native": {
+      "buffersCreated": 1132,
+      "buffersDestroyed": 1034,
+      "texturesCreated": 42,
+      "texturesDestroyed": 14,
+      "peakBuffers": 282,
+      "peakTextures": 28,
+      "activeBuffers": 98,
+      "activeTextures": 28,
+      "bufferBytes": 538340
+    },
+    "terrain": {
+      "buffersCreated": 1130,
+      "buffersDestroyed": 1034,
+      "bufferBytes": 538084,
+      "drawCalls": 2,
+      "triangles": 1140,
+      "texturesCreated": 37,
+      "texturesDestroyed": 10,
+      "textureBytes": 7077888,
+      "imageryDrawCalls": 2
+    },
+    "atmosphere": {
+      "frames": 0,
+      "lutBuilds": 0,
+      "buffersCreated": 2,
+      "buffersDestroyed": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0
+    }
+  },
+  "repair": "Strict equality sums both resource owners; resource caps, repeated-waypoint non-growth and actual zero teardown remain unchanged.",
+  "local": {
+    "source": "83fe75cc8c23f4af9ede341d224271066d918ba8",
+    "sourceStatus": "M coordination/ci/m1-navigation-smoke.mjs",
+    "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+    "browser": "156.0.8078.4",
+    "environment": {
+      "cesium": "1.146.0",
+      "adapter": {
+        "vendor": "google",
+        "architecture": "swiftshader",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": true
+      },
+      "viewport": [
+        960,
+        540
+      ]
+    },
+    "gpu": {
+      "kind": "software",
+      "reason": "google swiftshader"
+    },
+    "status": "PASS",
+    "checks": [
+      "real ellipsoid provider and local NaturalEarthII imagery",
+      "native orbital rotations across dateline and both poles",
+      "reversed GPU depth preserves front imagery; always-depth negative control fails",
+      "real Camera.flyTo completes orbit-to-10m path and restores controller inputs",
+      "native flight also completes in the Viewer's default render loop",
+      "10m and 1m surface views: native metre/submetre movement, finite reversed depth, RTC reference agreement, stationary pixels",
+      "actual Playwright mouse drag and wheel drive the native controller",
+      "viewport and resolutionScale recreate correctly sized depth attachments",
+      "rapid pending-request churn and three waypoint cycles keep actual GPU allocations bounded",
+      "balanced native GPU buffer/texture teardown, no hidden WebGL or browser/GPU errors"
+    ],
+    "browserErrors": [],
+    "actualGpuTeardown": {
+      "buffersCreated": 2713,
+      "buffersDestroyed": 2713,
+      "texturesCreated": 68,
+      "texturesDestroyed": 68,
+      "peakBuffers": 282,
+      "peakTextures": 28,
+      "activeBuffers": 0,
+      "activeTextures": 0,
+      "bufferBytes": 0
+    }
+  },
+  "testSha256": "9586456bdb8c3d5ced9d7d7e342c35eb7213e6b4f7b74736f1eed8017045fff0"
+}

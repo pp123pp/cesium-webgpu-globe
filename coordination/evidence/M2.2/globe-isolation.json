@@ -1,0 +1,127 @@
+{
+  "failedRun": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41505390861",
+  "failure": {
+    "source": "46c8ded2dfd94e7d712dcd2b9e96a75caf345b94",
+    "sourceStatus": "",
+    "bundleSha256": "d24e50221118e77fa3b207e9c68b7737fb5f10b297f7a60fe5b4761011c85524",
+    "error": "Error: page.evaluate: Error: {\"errors\":[],\"timeout\":true,\"statistics\":{\"frame\":60,\"selectedTiles\":28,\"levels\":[13,13,13,13,13,13,13,13,12,13,13,13,13,12,13,13,13,13,13,13,13,13,12,13,13,13,13,12],\"cacheTiles\":142,\"loadedTiles\":142,\"terrain\":{\"requests\":166,\"deferred\":0,\"meshes\":166,\"fills\":69,\"upsampled\":0,\"failed\":0},\"imagery\":{\"requests\":0,\"deferred\":0,\"failed\":0,\"discarded\":0,\"imagesClosed\":0,\"pendingRequests\":0,\"texturesCreated\":0,\"texturesDestroyed\":0,\"activeTextures\":0},\"resources\":{\"buffersCreated\":474,\"buffersDestroyed\":189,\"bufferBytes\":1584392,\"drawCalls\":28,\"triangles\":15960,\"texturesCreated\":0,\"texturesDestroyed\":0,\"textureBytes\":0,\"imageryDrawCalls\":0},\"atmosphere\":{\"frames\":60,\"lutBuilds\":1,\"buffersCreated\":2,\"buffersDestroyed\":0,\"texturesCreated\":2,\"texturesDestroyed\":0,\"maxFeedback\":0.33370226933715824}},\"frames\":33}\n    at eval (eval at evaluate (:370:30), <anonymous>:24:17)\n    at async <anonymous>:396:30",
+    "browserErrors": []
+  },
+  "repair": "Explicitly disable atmosphere in the M1 geometry/LOD fixture; retain its original 60-second limit and all geometry, coverage and error assertions.",
+  "local": {
+    "source": "e90e0dd2daec2d09fbe8ff0f4243bfbbed7bf656",
+    "sourceStatus": "M coordination/ci/m1-globe-smoke.mjs",
+    "bundleSha256": "1a89d41521368a2427afa75bfbeb0ac09da2ca60a6f149fb76599b4ecd9a66e8",
+    "status": "PASS",
+    "browser": "156.0.8078.4",
+    "environment": {
+      "cesium": "1.146.0",
+      "atmosphereShown": false,
+      "radii": [
+        6378137,
+        6378137,
+        6356752.314245179
+      ],
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "adapter": {
+        "vendor": "google",
+        "architecture": "swiftshader",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": true
+      }
+    },
+    "gpu": {
+      "kind": "software",
+      "reason": "google swiftshader"
+    },
+    "checks": [
+      "native WGS84/Camera/Globe",
+      "orbital/polar/dateline silhouettes",
+      "native quadtree LOD",
+      "no WebGL context",
+      "terrain worker meshes",
+      "exclusive Globe ownership before first render",
+      "direct Scene.render error event and rethrow policy"
+    ]
+  },
+  "scenes": [
+    {
+      "name": "orbit",
+      "frames": 14,
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 416,
+        "agreement": 0.9993710691823899
+      },
+      "backgroundPixels": 682956,
+      "atmosphere": {
+        "frames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 2,
+        "buffersDestroyed": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0
+      }
+    },
+    {
+      "name": "pole",
+      "frames": 6,
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 655,
+        "agreement": 0.9993710691823899
+      },
+      "backgroundPixels": 544008,
+      "atmosphere": {
+        "frames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 2,
+        "buffersDestroyed": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0
+      }
+    },
+    {
+      "name": "dateline",
+      "frames": 7,
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1588,
+        "foreground": 868,
+        "agreement": 0.9987421383647799
+      },
+      "backgroundPixels": 420429,
+      "atmosphere": {
+        "frames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 2,
+        "buffersDestroyed": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0
+      }
+    },
+    {
+      "name": "surface",
+      "frames": 34,
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1590,
+        "foreground": 1590,
+        "agreement": 1
+      },
+      "backgroundPixels": 0,
+      "atmosphere": {
+        "frames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 2,
+        "buffersDestroyed": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0
+      }
+    }
+  ],
+  "testSha256": "4e5c6dedeb2615a86c36806cd9aba52a058b46037d8260e444d7e4b1db0a98a9"
+}
