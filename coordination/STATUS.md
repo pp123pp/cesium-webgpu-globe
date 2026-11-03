@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-03
-Current milestone: **M2.4 Stars, Moon and moonlight — implementation and CI diagnosis in progress**
+Current milestone: **M2.4 completed and merged; M2.5 HDR / exposure / tone mapping is next**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -10,39 +10,57 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## Current integration state
 
-- Remote `main` is `442be5b1db9c1e04346ab7f2d2d74ab4de3d5907` (tree `d57666b1a34e00d514859d05e17a5b6e1b2846b4`). This is the normal merge commit for PR #8 and contains accepted M2.1–M2.3.
-- PR [#8](https://github.com/pp123pp/cesium-webgpu-globe/pull/8) is **closed and merged**. Its final published head was `ce9492b5ae262207532dae1e0c856701d19550b7`; final-head Fast [41560846959](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846959) and executed Full [41560846966](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846966) both succeeded on that exact head.
-- Active development branch: `feat/m2.4-stars-moon`. PR [#9](https://github.com/pp123pp/cesium-webgpu-globe/pull/9) targets `main`, remains open and unmerged, and currently points to `c59eae1928fa28d188edb5e9e75a3af3b200dd83`.
-- Do not treat the historical M2.3 authorization text below as current authorization or state. M2.3 is merged; M2.4 is the active milestone. No M2.5, M2.6 acceptance or PR #9 merge is included in this checkpoint.
+- Remote `main` is `6c741bc3237323cf139113fba4f07530a0d5d4cc` (tree `99c87fa9d5194685eccb466cf089f3f3e863af61`). It includes the normal merge commits for PRs #8, #9, #10 and #11. Do not use older historical SHAs below as the current main state.
+- PR [#8](https://github.com/pp123pp/cesium-webgpu-globe/pull/8) merged M2.1–M2.3. Its final-head Fast [41560846959](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846959) and executed Full [41560846966](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846966) succeeded.
+- PR [#9](https://github.com/pp123pp/cesium-webgpu-globe/pull/9) merged M2.4 at merge commit `1fe802d0ca45ac98c4822338e41e487390219a89`. Its final development head was `e76bc3866289b3f93f80546eeb14dd7f5b32f9e0`; Fast [41581646293](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41581646293) and actually executed Full [41581646232](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41581646232) both succeeded on that exact head.
+- PR [#10](https://github.com/pp123pp/cesium-webgpu-globe/pull/10) merged the public Moon / Stars / moonlight demo controls at `d52bdb43ce8c76f9e7f3b32c247200c974d6d9cb`. Its final head `482ce2b438c64070c996426276074ee91c5c415a` passed Fast [41585321728](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321728) and Full [41585321714](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321714).
+- PR [#11](https://github.com/pp123pp/cesium-webgpu-globe/pull/11) merged native Cesium Timeline integration, configured default ion token usage and Pages stylesheet-path handling. Its head `b46f97ab29e8486bcd3715efc348b033d7734bf7` passed Fast [41588524382](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524382) and Full [41588524350](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524350). The main push Pages workflow [41588552188](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588552188) and Pages deployment [41588680662](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588680662) succeeded.
+- PR [#6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at `6788fbd174a1104688be34abbb40c8f9d305da7a`, with an obsolete base SHA from before the current M2 integration. It is a historical M1 regression-closeout proposal, not an active M2 dependency. Do not merge or close it without separately reviewing whether its changes are already superseded.
+- The active development branch for the next milestone has not yet been created. Proposed branch: `feat/m2.5-hdr-tonemapping`. Do not push directly to `main`; use a feature branch and PR.
 
-## M2.1–M2.3 accepted on main
+## Accepted milestones
 
-M2.1 establishes the WGS84/ECEF meter and depth contracts; M2.2 adds physical-inspired Rayleigh/Mie scattering, RGB transmittance and terrain aerial perspective; M2.3 adds the time-dependent Sun disk, Earth/terrain occultation, shared solar irradiance, atmospheric attenuation and bounded glare.
+- **M0 — WebGPU foundation:** accepted and merged.
+- **M1 — WGS84 Globe, imagery and terrain:** accepted and merged. The previously authorized `M1-NAV-001` rapid near-ground descent limitation remains **KNOWN_UNRESOLVED**; it is not claimed fixed.
+- **M2.1 — shared coordinates, units, solar direction, ray intersections and depth:** accepted and merged.
+- **M2.2 — physical-inspired Rayleigh / Mie atmosphere, transmittance and aerial perspective:** accepted and merged.
+- **M2.3 — Sun disk, occultation, irradiance, atmospheric attenuation and bounded glare:** accepted and merged.
+- **M2.4 — inertial stars, lunar ephemeris / phases, lunar occultation and bounded moonlight:** accepted and merged. The Moon / Stars controls and native Timeline demo follow-ups are also merged.
 
-PR #8 passed its final-head Fast and actually executed Full workflows before merge. Its acceptance records include production-WGSL browser checks, ground / low-orbit / high-orbit views, day/night/terminator behavior, real terrain depth and resource teardown. M1's `M1-NAV-001` rapid near-ground descent limitation remains **KNOWN_UNRESOLVED** under its existing narrowly scoped authorization. The separate transient terrain-gap observation recorded during M2.3 also remains unresolved; the final M2.3 run did not reproduce it and no runtime fix is claimed.
+M2.4's implementation and browser smoke passed Fast on its final development head, and its Full workflow actually executed and passed on that same SHA. The M2.4 Fast evidence includes the production-browser space smoke. Full is now a build / lint / type / focused-unit / complete upstream non-WebGL test tier; it no longer runs rendering acceptance or the complete WebGL differential. A passing Full must not be described as proof of those removed rendering gates. Fast retains software-GPU browser rendering checks. Physical-GPU behavior and performance remain unverified.
 
-The hosted browser evidence uses Chromium 156 and Google SwiftShader software GPU. Physical-GPU behavior and performance remain unverified. See [M2.3 handoff](handoffs/M2.3-sun-rendering.md), [M2.3 evidence](evidence/M2.3/README.md), [M2.1 contract](../docs/WEBGPU_M2.1.md), [M2.2 contract](../docs/WEBGPU_M2.2.md) and [M2.3 contract](../docs/WEBGPU_M2.3.md).
+The following known limitations remain recorded and are not silently waived by M2.4 completion:
+- `M1-NAV-001`: the specifically authorized rapid real-terrain descent / collision-height limitation.
+- The separate transient terrain-gap observation recorded during M2.3 remains unresolved; the final M2.3 run did not reproduce it and no runtime fix is claimed.
+- Hosted browser rendering evidence uses Chromium 156 and Google SwiftShader software GPU; physical GPU testing is not evidenced.
 
-## Active M2.4 — stars, Moon and moonlight
+## Next milestone — M2.5 HDR, exposure and tone mapping
 
-PR #9 continues from merged main commit `442be5b1db9c1e04346ab7f2d2d74ab4de3d5907`. Its current implementation adds:
+M2.5 is the next implementation task; it has **not started**. Scope comes from task 5 in [tasks/M2.md](../tasks/M2.md):
 
-- Native Simon 1994 lunar ephemeris and ICRF-to-ECEF transform; camera-relative lunar direction is calculated in CPU double precision.
-- Apparent lunar angular radius, phase-dependent disk shading and Earth / completed-scene-depth occultation.
-- Procedural stars anchored to inertial sky directions, designed to avoid camera-translation parallax and fade through twilight.
-- Bounded moonlight contributions to night-side terrain and atmospheric scattering.
-- Validated `scene.moon` and `scene.stars` controls; the shared planet uniform is extended from 192 to 272 bytes. No additional GPU texture or independent GPU resource owner is introduced.
+- Introduce HDR surface / sky composition with a coherent linear-light representation.
+- Add explicit exposure control and tone mapping.
+- Preserve coherent color-space handling across Sun, atmosphere, Moon, stars and terrain.
+- Prevent inappropriate clipping of solar highlights while maintaining useful surface and night-sky detail.
+- Avoid unrelated general PBR, full RenderGraph, volumetric clouds or other future-milestone work.
 
-The PR adds lunar-state and settings tests plus a production-browser smoke intended to verify night-sky pixels, lunar visibility at ground / low orbit / high orbit, star stability under camera translation, time-dependent lunar phase, night-side terrain moonlight, resize and resource teardown. These checks are acceptance evidence only when the corresponding workflow completes successfully on the exact current PR head.
+Before implementation, select one concrete M2.5 task slice, identify owned files and acceptance checks, and inspect the current post-M2.4 source. Use the risk-based verification rules in [AGENTS.md](../AGENTS.md#risk-based-testing-and-verification) and the current [CI policy](../docs/CI.md). Do not start M2.6 or claim whole-M2 acceptance as part of M2.5.
 
-### Current M2.4 CI observation
+## Remaining M2 acceptance — M2.6
 
-- Fast run [41570177424](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41570177424), on `c59eae1928fa28d188edb5e9e75a3af3b200dd83`, **failed** in the browser stage while executing the existing M2.2 atmosphere smoke.
-- The failure is `Scene did not settle` during a ground-day scene wait. The diagnostic snapshot showed 78 selected tiles, 282 loaded/cache tiles, active terrain requests and imagery textures, with 68 atmosphere frames. This indicates that the existing scene-settling deadline expired while terrain/imagery work was still active; it does **not** establish a lunar shader or ephemeris defect.
-- The same-head Full run [41570177410](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41570177410) was still in progress when this status snapshot was written. Its result must be checked before reporting final M2.4 CI status.
-- No test assertion, timeout, terrain coverage requirement or acceptance waiver has been changed to accommodate this observation. Root cause and any required harness correction remain pending diagnosis.
+After M2.5 is complete, perform the final M2 acceptance and record A07–A10 from [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md):
 
-M2.4 is **not yet accepted**. Keep PR #9 open and unmerged. Do not start M2.5 or whole-M2 A07–A10 acceptance until M2.4 is complete and explicitly handed off.
+- A07: orbital sunrise and correct solar appearance / occultation at the limb.
+- A08: continuous twilight, noon and night transitions.
+- A09: coherent horizon and aerial perspective across representative altitudes.
+- A10: HDR highlights without inappropriate whole-image clipping.
+
+M2.6 must also coordinate the required final acceptance evidence and regression gates. Follow the current CI policy: Full does not include rendering acceptance or complete WebGL differential. Those checks remain separate and require the applicable explicit authorization; do not infer them from a successful Full run.
+
+## Later roadmap
+
+After M2.6, proceed to M3 global volumetric clouds, M4 cloud shadows / terrain-light coupling, and M5 image-quality stabilization / profiling. V1.0 is M0–M5. M6 3D Tiles / BIM is deferred until after V1.0 and is not a V1.0 blocker.
+
 
 ---
 
