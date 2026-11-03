@@ -1,10 +1,12 @@
 /* global window */
 import assert from "node:assert/strict";
+import process from "node:process";
 import { runM1BrowserSuite, installM1Scene } from "./m1-browser-harness.mjs";
 
-await runM1BrowserSuite("m2.6-solar-asset-fallback", async ({ page, report }) => {
+const corrupt = process.env.M26_CORRUPT_ASSET === "1";
+await runM1BrowserSuite(`m2.6-solar-asset-${corrupt ? "corrupt" : "fallback"}`, async ({ page, report }) => {
   await page.route("**/Assets/Textures/WebGPU/Solar/GPU/glow-gradient.rgba8", async (route) => {
-    await route.fulfill({ status: 404, body: "intentional M2.6 fallback test" });
+    await route.fulfill({ status: corrupt ? 200 : 404, body: "intentional M2.6 fallback test" });
   });
   await installM1Scene(page, { baseLayer: false });
   const result = await page.evaluate(async () => {
@@ -21,7 +23,7 @@ await runM1BrowserSuite("m2.6-solar-asset-fallback", async ({ page, report }) =>
     };
   });
   assert.equal(result.solarAssetsLoaded, false);
-  assert.match(result.solarAssetError, /glow-gradient.*HTTP 404/);
+  assert.match(result.solarAssetError, corrupt ? /glow-gradient.*bytes; expected/ : /glow-gradient.*HTTP 404/);
   assert.equal(result.textureCount, 8);
   assert.equal(result.texturesDestroyed, 7);
   report.fallback = result;

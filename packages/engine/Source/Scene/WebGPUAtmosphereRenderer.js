@@ -79,13 +79,28 @@ class WebGPUAtmosphereRenderer {
       bloomWidth: 0,
       bloomHeight: 0,
     };
-    this.bloomStrength = 0.16;
+    this.bloomStrength = 0.35;
     this._postParametersValues = new Float32Array(4);
     this.composite = (encoder, target, color, depth) =>
       this._composite(encoder, target, color, depth);
   }
 
-  async initialize() {
+  initialize() {
+    if (!this._initializePromise) {
+      this._initializePromise = this._initialize().catch((error) => {
+        this.destroy();
+        throw error;
+      });
+    }
+    return this._initializePromise;
+  }
+
+  async _initialize() {
+    if (this._destroyed) {
+      throw new RuntimeError(
+        "Atmosphere initialization cancelled by destroy().",
+      );
+    }
     const device = this.context._device;
     this._device = device;
     device.pushErrorScope("validation");
@@ -184,99 +199,125 @@ class WebGPUAtmosphereRenderer {
     }
   }
 
+  _releaseSolarTextures() {
+    for (const texture of this._solarTextures ?? []) {
+      texture.destroy();
+      ++this.statistics.texturesDestroyed;
+    }
+    this._solarTextures = [];
+    this.statistics.solarAssetBytes = 0;
+    this.statistics.solarAssetsLoaded = false;
+    this._solarAssetsLoaded = false;
+  }
+
   async _loadSolarAssets() {
-    const loaded = [];
+    this._solarAbort = new AbortController();
+    this._solarTextures = [];
+    this.solarAssetRecords = [];
+    let assetFailure;
+    const createAndUpload = (name, channels, bytes, size) => {
+      const format = channels === 1 ? "r8unorm" : "rgba8unorm-srgb";
+      const texture = this._device.createTexture({
+        label: `M2.6 solar ${name}`,
+        size: [size, size],
+        format,
+        usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
+      });
+      // Register ownership before upload: even a synchronous GPU failure must
+      // release and count this allocation, rather than masquerade as a 404.
+      this._solarTextures.push(texture);
+      ++this.statistics.texturesCreated;
+      this._device.queue.writeTexture(
+        { texture },
+        bytes,
+        { bytesPerRow: size * channels, rowsPerImage: size },
+        [size, size],
+      );
+      return format;
+    };
     try {
       for (const [name, extension, channels] of solarAssets) {
-        const response = await fetch(
-          buildModuleUrl(
-            `Assets/Textures/WebGPU/Solar/GPU/${name}.${extension}`,
-          ),
-        );
-        if (!response.ok) {
-          throw new RuntimeError(
-            `Solar texture ${name} returned HTTP ${response.status}.`,
-          );
-        }
-        const bytes = await response.arrayBuffer();
-        const expected = solarAssetSize * solarAssetSize * channels;
-        if (bytes.byteLength !== expected) {
-          throw new RuntimeError(
-            `Solar texture ${name} has ${bytes.byteLength} bytes; expected ${expected}.`,
-          );
-        }
-        const format = channels === 1 ? "r8unorm" : "rgba8unorm-srgb";
-        const texture = this._device.createTexture({
-          label: `M2.6 solar ${name}`,
-          size: [solarAssetSize, solarAssetSize],
-          format,
-          usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
-        });
+        let bytes;
+        const started = performance.now();
         try {
-          this._device.queue.writeTexture(
-            { texture },
-            bytes,
-            {
-              bytesPerRow: solarAssetSize * channels,
-              rowsPerImage: solarAssetSize,
-            },
-            [solarAssetSize, solarAssetSize],
+          const response = await fetch(
+            buildModuleUrl(
+              `Assets/Textures/WebGPU/Solar/GPU/${name}.${extension}`,
+            ),
+            { signal: this._solarAbort.signal },
           );
+          if (this._destroyed) {
+            return;
+          }
+          this.context._checkAlive();
+          if (!response.ok) {
+            throw new RuntimeError(
+              `Solar texture ${name} returned HTTP ${response.status}.`,
+            );
+          }
+          bytes = await response.arrayBuffer();
+          if (this._destroyed) {
+            return;
+          }
+          this.context._checkAlive();
+          const expected = solarAssetSize * solarAssetSize * channels;
+          if (bytes.byteLength !== expected) {
+            throw new RuntimeError(
+              `Solar texture ${name} has ${bytes.byteLength} bytes; expected ${
+                expected
+              }.`,
+            );
+          }
         } catch (error) {
-          texture.destroy();
-          throw error;
+          if (this._destroyed) {
+            return;
+          }
+          // Device loss is not an optional-artwork failure. The context owns
+          // shutdown and no new fallback allocations may use a lost device.
+          this.context._checkAlive();
+          assetFailure = error;
+          this.solarAssetRecords.push({
+            name,
+            status: "FAILED",
+            error: error.message,
+          });
+          break;
         }
-        loaded.push(texture);
-        ++this.statistics.texturesCreated;
+        const format = createAndUpload(name, channels, bytes, solarAssetSize);
         this.statistics.solarAssetBytes += bytes.byteLength;
-      }
-      this._solarAssetsLoaded = true;
-      this.statistics.solarAssetsLoaded = true;
-    } catch (error) {
-      for (const texture of loaded) {
-        texture.destroy();
-        ++this.statistics.texturesDestroyed;
-      }
-      this.statistics.solarAssetBytes = 0;
-      this._solarAssetsLoaded = false;
-      this.statistics.solarAssetsLoaded = false;
-      if (this._destroyed) {
-        return;
-      }
-      this._solarAssetError = error.message;
-      // Keep the Sun and atmosphere operational when optional artwork is absent.
-      this._solarTextures = solarAssets.map(([name, extension, channels]) => {
-        const format = channels === 1 ? "r8unorm" : "rgba8unorm-srgb";
-        const texture = this._device.createTexture({
-          label: `M2.6 fallback solar ${name}`,
-          size: [1, 1],
+        this.solarAssetRecords.push({
+          name,
           format,
-          usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST,
+          width: solarAssetSize,
+          height: solarAssetSize,
+          byteLength: bytes.byteLength,
+          status: "LOADED",
+          loadAndUploadMs: performance.now() - started,
         });
-        const fallback =
-          channels === 1
-            ? new Uint8Array([0])
-            : new Uint8Array([255, 255, 255, 255]);
-        this._device.queue.writeTexture(
-          { texture },
-          fallback,
-          { bytesPerRow: channels },
-          [1, 1],
-        );
-        ++this.statistics.texturesCreated;
-        return texture;
-      });
-      return;
-    }
-    if (this._destroyed) {
-      for (const texture of loaded) {
-        texture.destroy();
-        ++this.statistics.texturesDestroyed;
       }
-      this.statistics.solarAssetBytes = 0;
-      return;
+      if (assetFailure) {
+        this._releaseSolarTextures();
+        this._solarAssetError = assetFailure.message;
+        for (const [name, , channels] of solarAssets) {
+          createAndUpload(
+            `fallback ${name}`,
+            channels,
+            channels === 1
+              ? new Uint8Array([0])
+              : new Uint8Array([255, 255, 255, 255]),
+            1,
+          );
+        }
+      } else {
+        this._solarAssetsLoaded = true;
+        this.statistics.solarAssetsLoaded = true;
+      }
+    } catch (error) {
+      this._releaseSolarTextures();
+      throw error;
+    } finally {
+      this._solarAbort = undefined;
     }
-    this._solarTextures = loaded;
   }
 
   _createBuffer(size, label) {
@@ -482,10 +523,7 @@ class WebGPUAtmosphereRenderer {
       (width * height + 2 * bloomWidth * bloomHeight) * 8;
     this._bloomExtractBindings = this._device.createBindGroup({
       layout: this._bloomExtractPipeline.getBindGroupLayout(0),
-      entries: [
-        { binding: 0, resource: this._linearTexture.createView() },
-        { binding: 1, resource: this._sampler },
-      ],
+      entries: [{ binding: 0, resource: this._linearTexture.createView() }],
     });
     this._bloomBlurBindings = this._device.createBindGroup({
       layout: this._bloomBlurPipeline.getBindGroupLayout(0),
@@ -494,15 +532,7 @@ class WebGPUAtmosphereRenderer {
         { binding: 1, resource: this._sampler },
       ],
     });
-    this._bloomFinalBindings = this._device.createBindGroup({
-      layout: this._bloomFinalPipeline.getBindGroupLayout(0),
-      entries: [
-        { binding: 0, resource: this._linearTexture.createView() },
-        { binding: 1, resource: this._sampler },
-        { binding: 2, resource: this._bloomTextureB.createView() },
-        { binding: 3, resource: { buffer: this._postParametersBuffer } },
-      ],
-    });
+    this._bloomFinalDepth = undefined;
     this._boundColor = undefined;
     this._boundDepth = undefined;
   }
@@ -522,6 +552,20 @@ class WebGPUAtmosphereRenderer {
 
   _composite(encoder, target, color, depth) {
     this._ensurePostProcessTargets();
+    if (this._bloomFinalDepth !== depth) {
+      this._bloomFinalBindings = this._device.createBindGroup({
+        layout: this._bloomFinalPipeline.getBindGroupLayout(0),
+        entries: [
+          { binding: 0, resource: this._linearTexture.createView() },
+          { binding: 1, resource: this._sampler },
+          { binding: 2, resource: this._bloomTextureB.createView() },
+          { binding: 3, resource: { buffer: this._postParametersBuffer } },
+          { binding: 4, resource: depth.createView() },
+          { binding: 5, resource: { buffer: this._planetBuffer } },
+        ],
+      });
+      this._bloomFinalDepth = depth;
+    }
     const pipeline = this._activePipeline;
     if (
       this._boundColor !== color ||
@@ -613,6 +657,7 @@ class WebGPUAtmosphereRenderer {
       return;
     }
     this._destroyed = true;
+    this._solarAbort?.abort();
     for (const key of [
       "_planetBuffer",
       "_parametersBuffer",
@@ -624,12 +669,7 @@ class WebGPUAtmosphereRenderer {
         this[key] = undefined;
       }
     }
-    for (const texture of this._solarTextures ?? []) {
-      texture.destroy();
-      ++this.statistics.texturesDestroyed;
-    }
-    this.statistics.solarAssetBytes = 0;
-    this._solarTextures = [];
+    this._releaseSolarTextures();
     for (const key of ["_transmittanceTexture", "_multipleScatteringTexture"]) {
       if (this[key]) {
         this[key].destroy();
@@ -651,6 +691,7 @@ class WebGPUAtmosphereRenderer {
     this._bloomExtractBindings = undefined;
     this._bloomBlurBindings = undefined;
     this._bloomFinalBindings = undefined;
+    this._bloomFinalDepth = undefined;
     this._pipeline = undefined;
     this._sunPipeline = undefined;
     this._bloomExtractPipeline = undefined;

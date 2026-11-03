@@ -6,6 +6,8 @@ import { createSunParameters, sunDisplayRadiance } from "../../packages/engine/S
 
 test("shared irradiance controls finite solar radiance and invalid mutable settings are rejected", () => {
   const settings = createSunParameters();
+  assert.equal(settings.glowStrength, 0.08);
+  assert.equal(settings.glowRadius, 0.05);
   assert.ok(Math.abs(sunDisplayRadiance(settings, 10) - 5) < 1e-12);
   assert.ok(Math.abs(sunDisplayRadiance(settings, 5) - 2.5) < 1e-12);
   assert.equal(sunDisplayRadiance(settings, 0), 0);
@@ -25,7 +27,7 @@ test("Sun-only updates use the existing uniforms without creating medium resourc
   renderer._planetBuffer = {};
   renderer._parametersBuffer = {};
   renderer._sunPipeline = {};
-  const sun = { show: true, angularRadius: 0.00465, displayScale: 3.3964295e-5, glowStrength: 0.025, glowRadius: 0.025 };
+  const sun = { show: true, angularRadius: 0.00465, displayScale: 3.3964295e-5, glowStrength: 0.08, glowRadius: 0.05 };
   const atmosphere = createAtmosphereParameters({ show: false });
   const state = { uniformValues: new Float32Array(68), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
   assert.equal(renderer.update(state, atmosphere, sun), true);

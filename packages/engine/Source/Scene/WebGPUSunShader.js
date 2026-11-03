@@ -91,9 +91,9 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let tint = mix(vec3f(1.0), textureSampleLevel(solarGlowGradient, solarSampler,
                                 vec2f(1.0 - r, 0.5), 0.0).rgb, atmosphere.exposure.w);
   let radialFade = 1.0 - smoothstep(0.82, 1.0, r);
-  let halo = atmosphere.sun.z * radialFade * (0.28 * soft * atmosphere.solarEffects.y +
-                0.10 * wide * atmosphere.solarEffects.z);
-  let coronaDetail = atmosphere.sun.z * 1.8 * corona * mix(0.75, 1.15, noise) * atmosphere.solarEffects.w;
+  let halo = atmosphere.sun.z * radialFade * (0.70 * soft * atmosphere.solarEffects.y +
+                0.25 * wide * atmosphere.solarEffects.z);
+  let coronaDetail = atmosphere.sun.z * 2.2 * corona * mix(0.75, 1.15, noise) * atmosphere.solarEffects.w;
   let rayDetail = atmosphere.sun.z * 4.8 * rays * radialFade * atmosphere.solarEffects.x;
   return atmosphere.sun.y * (vec3f(disk) + tint * (halo + coronaDetail + rayDetail) * visibility);
 }
