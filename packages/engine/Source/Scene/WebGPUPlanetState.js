@@ -38,8 +38,8 @@ class WebGPUPlanetState {
     this._moonPosition = new Cartesian3();
     this._moonRotation = new Matrix3();
     this.time = new JulianDate();
-    // Fourteen vec4 records: the original 192-byte M2.1 ABI plus camera-relative Moon data.
-    this.uniformValues = new Float32Array(56);
+    // Seventeen vec4 records: M2.1 planet state, lunar data and ICRF star-frame rotation.
+    this.uniformValues = new Float32Array(68);
     this._encodedCamera = new EncodedCartesian3();
     this._cartographic = new Cartographic();
     this._projection = new Matrix4();
@@ -158,6 +158,11 @@ class WebGPUPlanetState {
     values.set([ellipsoidC, atmosphereC, planet.atmosphereHeight, 0], 44);
     write(48, this.moonDirectionWC, this.moonAngularRadius);
     values.set([this.moonIllumination, this.moonDistance, stars.show ? stars.intensity : 0, moon.moonlightIntensity], 52);
+    // Inverse ICRF-to-ECEF rotation is the transpose of the orthonormal
+    // celestial matrix. Pack its three rows for a per-ray inertial star lookup.
+    values.set([this._moonRotation[0], this._moonRotation[1], this._moonRotation[2], 0], 56);
+    values.set([this._moonRotation[3], this._moonRotation[4], this._moonRotation[5], 0], 60);
+    values.set([this._moonRotation[6], this._moonRotation[7], this._moonRotation[8], 0], 64);
     if (!values.every(Number.isFinite)) {
       throw new DeveloperError(
         "Planet state exceeds finite float32 shader precision.",
