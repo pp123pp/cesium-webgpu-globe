@@ -25,4 +25,3 @@ assert.ok(toneMapACESChannel(1) < 1);
 assert.ok(toneMapACESChannel(8) > toneMapACESChannel(1));
 assert.ok(toneMapACESChannel(8) <= 1);
 assert.ok(toneMapACESChannel(1, 2) > toneMapACESChannel(1, 0.5));
-
