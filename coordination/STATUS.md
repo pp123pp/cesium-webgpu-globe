@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-03
-Current milestone: **M2.5 implemented and focused visual acceptance passed; M2.6 is next after PR #14 integration**
+Current milestone: **M2.5 implemented and focused visual acceptance passed; M2.6 A07–A10 is next, with an explicit A10 supplement for HDR solar bloom and restrained radial Sun Rays**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -52,9 +52,11 @@ After M2.5 is complete, perform the final M2 acceptance and record A07–A10 fro
 - A07: orbital sunrise and correct solar appearance / occultation at the limb.
 - A08: continuous twilight, noon and night transitions.
 - A09: coherent horizon and aerial perspective across representative altitudes.
-- A10: HDR highlights without inappropriate whole-image clipping.
+- A10: HDR highlights without inappropriate whole-image clipping; additionally implement and visually accept restrained HDR bloom, subtle radial Sun Rays tied to the true Sun direction, and atmospheric glow. Bloom must be composed in linear HDR before ACES/sRGB output; preserve Earth/terrain occultation, atmospheric attenuation and exposure control, with no glow leakage, whole-frame washout or temporal instability. Capture enabled/baseline comparisons. Cinematic lens ghosts, dirt, anamorphic streaks and exaggerated flare remain out of scope.
 
 M2.6 must also coordinate the required final acceptance evidence and regression gates. Follow the current CI policy: Full does not include rendering acceptance or complete WebGL differential. Those checks remain separate and require the applicable explicit authorization; do not infer them from a successful Full run.
+
+**M2.6 A10 supplement:** the existing M2.3 analytic aureole is not sufficient by itself. M2.6 must add visible but restrained HDR bloom and radial Sun Rays around the actual Sun, with the compositing, occlusion, exposure and temporal-stability constraints recorded in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md#m26-a10-supplemental-solar-appearance-requirement). This is an acceptance requirement, not an assertion that implementation has started.
 
 ## Later roadmap
 

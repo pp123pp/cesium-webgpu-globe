@@ -13,7 +13,7 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 | A07 | M2    | orbital sunrise                 | Sun correctly occludes/appears at limb, physically plausible scattering  |
 | A08 | M2    | twilight, noon, night           | smoothly varying sky and sunlight, believable night background           |
 | A09 | M2    | horizon / aerial perspective    | terrain and atmosphere visually coherent at several altitudes            |
-| A10 | M2    | HDR                             | Sun/highlights visible without inappropriate clipping in whole image     |
+| A10 | M2    | HDR + solar glow                 | HDR Sun/highlights retain detail; restrained bloom, visible but subtle radial Sun Rays and atmospheric glow; no whole-image clipping or glow leaking through Earth/terrain occlusion |
 | A11 | M3    | orbital global clouds           | curved global coverage, meaningful shapes, no planar seam/edge           |
 | A12 | M3    | cloud fly-through               | near-cloud detail and interior density, coherent with distance           |
 | A13 | M3    | sunset/side lighting            | self-shadow and silver lining, no severe temporal ghosting               |
@@ -35,9 +35,21 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 
 Follow the user's 2026-11-02 risk-based testing policy in [`AGENTS.md`](../AGENTS.md#risk-based-testing-and-verification). Ordinary subtasks use the smallest checks that cover the changed behavior and its effects. Documentation-only updates use content/diff checks and do not reopen completed milestone acceptance.
 
-Keep the required numerical, functional and view-based checks for the active task. In particular, M2.1 verifies its math/depth foundation at high orbit, low orbit and ground; A07–A10 remain final M2 acceptance. Full regression is required when the active milestone acceptance or CI gate specifies it, not after every individual edit or ordinary task handoff. Exact final-HEAD requirements cannot be satisfied with an older passing result.
+Keep the required numerical, functional and view-based checks for the active task. In particular, M2.1 verifies its math/depth foundation at high orbit, low orbit and ground; A07–A10 remain final M2 acceptance. M2.6's A10 includes the explicit supplemental solar-appearance requirement below; this is not satisfied by a bright Sun disk or the existing small analytic aureole alone. Full regression is required when the active milestone acceptance or CI gate specifies it, not after every individual edit or ordinary task handoff. Exact final-HEAD requirements cannot be satisfied with an older passing result.
 
 Automatic workflow selection remains governed by [`CI.md`](CI.md#trigger-policy); this policy does not disable an automatically selected or required gate. Historical acceptance evidence and known-issue decisions below remain unchanged.
+
+### M2.6 A10 supplemental solar-appearance requirement
+
+A10 additionally requires a restrained, HDR-aware solar glow treatment that visibly improves the Sun's presentation beyond the existing disk and small analytic aureole:
+
+- Add a controlled HDR bloom around the solar source, composed in linear HDR before the single ACES tone-map and final sRGB encode. Keep the highlight core and surrounding gradation legible; do not use exposure increase as a substitute for bloom.
+- Add subtle, clearly visible radial Sun Rays around the Sun, comparable in character to the project's reference screenshots, but restrained enough to avoid an exaggerated starburst. Their placement must follow the actual scene-time Sun direction and camera projection, not a fixed screen coordinate.
+- Preserve per-fragment Sun disk occultation and prevent bloom/rays from visibly bleeding through the Earth or real terrain. Respect atmospheric attenuation and the existing linear-HDR → ACES → sRGB pipeline.
+- Verify day, low-Sun/orbital sunrise, twilight and night-adjacent views at more than one exposure. The glow must not wash out the whole image, erase the solar disk boundary, or create distracting temporal flicker when time/camera moves.
+- Record screenshots and observations showing both the effect enabled and a disabled/baseline comparison. Pixel-identical matching to a reference is not required.
+
+This is a bounded visual rendering requirement, not a claim that screen-space radial rays are a physically exact atmospheric phenomenon. Cinematic lens ghosts, dirt, anamorphic streaks and exaggerated flare remain out of scope.
 
 ## Visual acceptance policy
 
