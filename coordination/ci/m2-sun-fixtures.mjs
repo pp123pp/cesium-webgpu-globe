@@ -299,6 +299,7 @@ export async function installSunProbe(page) {
           pixel, gpu: gpu[index],
           displayed: Array.from(image.data.slice(offset, offset + 4)),
           withoutSun: offImage ? Array.from(offImage.data.slice(offset, offset + 4)) : null,
+          exposure: scene.exposure,
           nativeRay: [ray.direction.x, ray.direction.y, ray.direction.z],
           ellipsoid: ellipsoid ? [ellipsoid.start, ellipsoid.stop] : null,
           pickedDistance: picked ? Cesium.Cartesian3.distance(ray.origin, picked) : null,
