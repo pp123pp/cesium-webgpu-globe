@@ -51,7 +51,6 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
       moonDistance: scene._planetState.moonDistance,
       moonAngularRadius: scene._planetState.moonAngularRadius,
       moonIllumination: scene._planetState.moonIllumination,
-      pixels: Array.from(pixels.data),
       errors: [...window.__m1.errors],
     };
   });
