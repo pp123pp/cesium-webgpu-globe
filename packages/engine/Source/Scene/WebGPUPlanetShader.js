@@ -21,6 +21,8 @@ struct WebGPUPlanet {
   projection: vec4f,            // native column-major [0], [5], [8], [9]
   depth: vec4f,                 // near, far, reversed A, reversed B: z = B/d - A
   surface: vec4f,               // CPU-double ellipsoid c, atmosphere c, height, reserved
+  moonDirectionWC: vec4f,       // camera-to-Moon unit direction, angular radius rad
+  moon: vec4f,                  // illuminated fraction, camera distance m, reserved
 }
 
 fn webgpuRelativePosition(high: vec3f, low: vec3f, planet: WebGPUPlanet) -> vec3f {
