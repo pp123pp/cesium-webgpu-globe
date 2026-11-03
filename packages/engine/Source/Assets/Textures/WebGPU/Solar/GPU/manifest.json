@@ -111,8 +111,27 @@
       "colorSpace": "linear scalar coverage",
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
-      "alphaMax": 176,
-      "alphaNonZeroCoverage": 0.711761474609375,
+      "alphaMax": 169,
+      "alphaNonZeroCoverage": 0.7145156860351562,
+      "byteLength": 262144
+    },
+    {
+      "source": "Corona/corona-mid.svg",
+      "payload": "GPU/corona-mid.r8",
+      "sourceDimensions": [
+        1024,
+        1024
+      ],
+      "textureDimensions": [
+        512,
+        512
+      ],
+      "format": "r8unorm",
+      "colorSpace": "linear scalar coverage",
+      "channelSemantic": "SVG alpha coverage in R channel",
+      "alphaMin": 0,
+      "alphaMax": 137,
+      "alphaNonZeroCoverage": 0.7295074462890625,
       "byteLength": 262144
     },
     {

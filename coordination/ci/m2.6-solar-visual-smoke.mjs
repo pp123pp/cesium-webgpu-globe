@@ -262,7 +262,7 @@ await runM1BrowserSuite("m2.6-solar-visual", async ({ page, report, output }) =>
   assert.ok(exposureResults.every((result) => result.atmosphere.solarAssetsLoaded));
   assert.ok(exposureResults.every((result) => result.atmosphere.bloomFrames > 0));
   const stats = exposureResults.at(-1).atmosphere;
-  assert.equal(stats.solarAssetBytes, 2883584);
+  assert.equal(stats.solarAssetBytes, 3145728);
   assert.equal(stats.bloomWidth, 480);
   assert.equal(stats.bloomHeight, 270);
   assert.equal(stats.bloomTextureBytes, (1920 * 1080 + 2 * 480 * 270) * 8);

@@ -20,6 +20,7 @@ const solarAssets = [
   ["soft-halo", "r8", 1],
   ["wide-halo", "r8", 1],
   ["corona-fine", "r8", 1],
+  ["corona-mid", "r8", 1],
   ["radial-noise", "r8", 1],
   ["glow-gradient", "rgba8", 4],
 ];
@@ -584,7 +585,7 @@ class WebGPUAtmosphereRenderer {
           resource: this._solarTextures[i].createView(),
         });
       }
-      entries.push({ binding: 15, resource: this._sampler });
+      entries.push({ binding: 16, resource: this._sampler });
       if (this._atmosphereShown) {
         entries.push(
           { binding: 2, resource: this._transmittanceTexture.createView() },

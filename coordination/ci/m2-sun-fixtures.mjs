@@ -184,8 +184,8 @@ export async function installSunProbe(page) {
     };
 
     const code = `${Cesium.WebGPUAtmosphereShader}
-      @group(0) @binding(16) var<storage, read> solarPixels: array<vec4f>;
-      @group(0) @binding(17) var<storage, read_write> solarResults: array<vec4f>;
+      @group(0) @binding(17) var<storage, read> solarPixels: array<vec4f>;
+      @group(0) @binding(18) var<storage, read_write> solarResults: array<vec4f>;
       @compute @workgroup_size(1)
       fn solarProbeMain(@builtin(global_invocation_id) id: vec3u) {
         let pixel = vec2i(solarPixels[id.x].xy);
@@ -267,9 +267,9 @@ export async function installSunProbe(page) {
               binding: 7 + index,
               resource: texture.createView(),
             })),
-            { binding: 15, resource: renderer._sampler },
-            { binding: 16, resource: { buffer: input } },
-            { binding: 17, resource: { buffer: output } },
+            { binding: 16, resource: renderer._sampler },
+            { binding: 17, resource: { buffer: input } },
+            { binding: 18, resource: { buffer: output } },
           ],
         });
         const encoder = device.createCommandEncoder();

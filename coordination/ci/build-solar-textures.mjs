@@ -17,6 +17,7 @@ const masks = [
   "Halo/soft-halo.svg",
   "Halo/wide-halo.svg",
   "Corona/corona-fine.svg",
+  "Corona/corona-mid.svg",
   "Noise/radial-noise.svg",
 ];
 const color = "Atmosphere/glow-gradient.svg";
