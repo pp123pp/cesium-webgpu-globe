@@ -119,9 +119,9 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     const starPixels = [];
     for (let y = 0; y < pixels.height; ++y) {
       for (let x = 0; x < pixels.width; ++x) {
-        if ((x - pixels.width / 2) ** 2 + (y - pixels.height / 2) ** 2 < 32 ** 2) continue;
+        if ((x - pixels.width / 2) ** 2 + (y - pixels.height / 2) ** 2 < 32 ** 2) { continue; }
         const offset = (y * pixels.width + x) * 4;
-        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) starPixels.push(y * pixels.width + x);
+        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) { starPixels.push(y * pixels.width + x); }
       }
     }
     return { starPixels, moonIllumination: viewer.scene._planetState.moonIllumination };
