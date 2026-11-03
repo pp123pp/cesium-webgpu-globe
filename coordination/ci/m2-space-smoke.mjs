@@ -160,6 +160,19 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     "the same Moon is visible from the unobstructed near side");
   report.checks.push("actual Moon pixels are rejected by both completed Earth depth and analytic WGS84 occultation, then reappear on the near side");
 
+  // The occultation fixture disables the star layer to isolate Moon pixels.
+  // Restore it before the altitude and translation checks so they measure the
+  // actual inertial star field rather than a deliberately starless frame.
+  await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    viewer.scene.stars.show = true;
+    for (let i = 0; i < 4; ++i) {
+      await new Promise(requestAnimationFrame);
+      viewer.render();
+    }
+    await viewer.scene.context._device.queue.onSubmittedWorkDone();
+  });
+
   report.altitudes = [];
   for (const [name, height] of [["ground", 2], ["low-orbit", 400000], ["high-orbit", 35786000]]) {
     const view = await page.evaluate(async ({ name, height }) => {
