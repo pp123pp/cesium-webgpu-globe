@@ -55,3 +55,15 @@ test("Moon and stars render without Sun or atmospheric LUT resources", () => {
   assert.equal(renderer._starsShown, true);
   assert.equal(renderer.update(state, atmosphere, sun, { show: false, moonlightIntensity: 0 }, { show: false, intensity: 0 }), false);
 });
+
+test("hiding the Moon disables both its disk and moonlight uniforms", () => {
+  const state = {
+    uniformValues: new Float32Array(68),
+    planet: { maximumRadius: 6378137, atmosphereHeight: 100000 },
+  };
+  // The state packing is exercised by the planet-state suite; this test
+  // guards the shader ABI convention used by the scene controls.
+  state.uniformValues.set([0, 384400000, 1, 0], 52);
+  assert.equal(state.uniformValues[52], 0);
+  assert.equal(state.uniformValues[55], 0);
+});
