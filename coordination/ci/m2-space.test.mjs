@@ -43,7 +43,7 @@ test("Moon and stars render without Sun or atmospheric LUT resources", () => {
   renderer._planetBuffer = {};
   renderer._parametersBuffer = {};
   renderer._sunPipeline = {};
-  const state = { uniformValues: new Float32Array(56), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
+  const state = { uniformValues: new Float32Array(68), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
   const atmosphere = createAtmosphereParameters({ show: false });
   const sun = createSunParameters({ show: false });
   assert.equal(renderer.update(state, atmosphere, sun, createMoonParameters(), createStarParameters()), true);
