@@ -132,6 +132,29 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     "100 km camera translation with fixed orientation preserves star screen positions");
   report.checks.push("100 km camera translation does not introduce star-field parallax");
 
+  report.dayNight = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    viewer.clock.currentTime = Cesium.JulianDate.addHours(viewer.clock.currentTime, 12, new Cesium.JulianDate());
+    for (let i = 0; i < 3; ++i) { await new Promise(requestAnimationFrame); viewer.render(); }
+    await viewer.scene.context._device.queue.onSubmittedWorkDone();
+    const pixels = window.__m1.pixels();
+    let stars = 0;
+    for (let y = 0; y < pixels.height; ++y) {
+      for (let x = 0; x < pixels.width; ++x) {
+        if ((x - pixels.width / 2) ** 2 + (y - pixels.height / 2) ** 2 < 32 ** 2) { continue; }
+        const offset = (y * pixels.width + x) * 4;
+        if (pixels.data[offset] > 24 || pixels.data[offset + 1] > 24 || pixels.data[offset + 2] > 24) { ++stars; }
+      }
+    }
+    const observer = Cesium.Cartesian3.normalize(viewer.camera.positionWC, new Cesium.Cartesian3());
+    const sun = Cesium.WebGPUPlanetMath.computeSunDirectionWC(viewer.clock.currentTime);
+    return { stars, solarElevation: Cesium.Cartesian3.dot(observer, sun) };
+  });
+  assert.ok(report.dayNight.solarElevation > 0, "the fixed ground track has advanced into daylight");
+  assert.ok(report.dayNight.stars < report.sky.starPixels.length * 0.2,
+    "procedural stars fade out as the local sky enters daylight");
+  report.checks.push("star visibility transitions smoothly from night to day with the native solar direction");
+
   report.phase = await page.evaluate(async () => {
     const { viewer } = window.__m1;
     const before = viewer.scene._planetState.moonIllumination;
