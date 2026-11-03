@@ -1,7 +1,7 @@
 {
   "suite": "m2.6.1-b2-halo-corona",
   "browserConsole": [],
-  "capturedAt": "2026-11-03T14:29:58.267Z",
+  "capturedAt": "2026-11-03T14:36:24.722Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": false,
@@ -12,8 +12,8 @@
       "args": []
     }
   },
-  "source": "22515f64eeb04f9d6aab887073051f7e2a34543b",
-  "sourceStatus": "M coordination/ci/build-solar-textures.mjs\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-solar-assets.test.mjs\n M coordination/ci/m2-solar-lifecycle.test.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2.6-solar-visual-smoke.mjs\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/Atmosphere/glow-gradient.svg\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-fine.svg\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/corona-fine.r8\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/glow-gradient.rgba8\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/manifest.json\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n M tasks/M2.6.1.md\n?? coordination/ci/m2.6.1-b2-halo-corona-smoke.mjs\n?? coordination/ci/m2.6.1-b2-halo-corona.test.mjs\n?? coordination/evidence/M2.6.1/B2/\n?? packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-mid.svg\n?? packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/corona-mid.r8",
+  "source": "44fb757a0e07f59c852807d41f2e0e437a087c26",
+  "sourceStatus": "",
   "bundleSha256": "f686a6fa3643b6f61aa2bceb0c4a87876229141eaf01af811da4262fb961f2de",
   "browserErrors": [],
   "checks": [
@@ -49,7 +49,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4.799999952316284
+        "loadAndUploadMs": 6
       },
       {
         "name": "radial-rays-02",
@@ -58,7 +58,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 23.100000023841858
+        "loadAndUploadMs": 5.100000023841858
       },
       {
         "name": "radial-rays-03",
@@ -67,7 +67,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4.199999928474426
+        "loadAndUploadMs": 15.899999976158142
       },
       {
         "name": "soft-halo",
@@ -76,7 +76,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 3.4000000953674316
+        "loadAndUploadMs": 4.100000023841858
       },
       {
         "name": "wide-halo",
@@ -85,7 +85,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4
+        "loadAndUploadMs": 5.800000071525574
       },
       {
         "name": "corona-fine",
@@ -103,7 +103,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 3.899999976158142
+        "loadAndUploadMs": 4.299999952316284
       },
       {
         "name": "radial-noise",
@@ -112,7 +112,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 6.899999976158142
+        "loadAndUploadMs": 6.5
       },
       {
         "name": "glow-gradient",
@@ -121,7 +121,7 @@
         "height": 512,
         "byteLength": 1048576,
         "status": "LOADED",
-        "loadAndUploadMs": 7.799999952316284
+        "loadAndUploadMs": 8.600000023841858
       }
     ],
     "solarAssetBytes": 3145728
@@ -180,7 +180,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4.799999952316284
+        "loadAndUploadMs": 6
       },
       {
         "name": "radial-rays-02",
@@ -189,7 +189,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 23.100000023841858
+        "loadAndUploadMs": 5.100000023841858
       },
       {
         "name": "radial-rays-03",
@@ -198,7 +198,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4.199999928474426
+        "loadAndUploadMs": 15.899999976158142
       },
       {
         "name": "soft-halo",
@@ -207,7 +207,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 3.4000000953674316
+        "loadAndUploadMs": 4.100000023841858
       },
       {
         "name": "wide-halo",
@@ -216,7 +216,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 4
+        "loadAndUploadMs": 5.800000071525574
       },
       {
         "name": "corona-fine",
@@ -234,7 +234,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 3.899999976158142
+        "loadAndUploadMs": 4.299999952316284
       },
       {
         "name": "radial-noise",
@@ -243,7 +243,7 @@
         "height": 512,
         "byteLength": 262144,
         "status": "LOADED",
-        "loadAndUploadMs": 6.899999976158142
+        "loadAndUploadMs": 6.5
       },
       {
         "name": "glow-gradient",
@@ -252,7 +252,7 @@
         "height": 512,
         "byteLength": 1048576,
         "status": "LOADED",
-        "loadAndUploadMs": 7.799999952316284
+        "loadAndUploadMs": 8.600000023841858
       }
     ],
     "errors": []
