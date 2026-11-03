@@ -35,3 +35,23 @@ test("production WGSL contains direction-anchored stars, lunar disk, phase and n
   assert.match(WebGPUAtmosphereShader, /moonDirect = planet\.moon\.w/);
   assert.match(WebGPUAtmosphereShader, /sceneDistance < 0\.0/);
 });
+
+test("Moon and stars render without Sun or atmospheric LUT resources", () => {
+  const writes = [];
+  const renderer = new WebGPUAtmosphereRenderer({ drawingBufferWidth: 800, drawingBufferHeight: 450 });
+  renderer._device = { queue: { writeBuffer: (...args) => writes.push(args) } };
+  renderer._planetBuffer = {};
+  renderer._parametersBuffer = {};
+  renderer._sunPipeline = {};
+  const state = { uniformValues: new Float32Array(56), planet: { maximumRadius: 6378137, atmosphereHeight: 100000 } };
+  const atmosphere = createAtmosphereParameters({ show: false });
+  const sun = createSunParameters({ show: false });
+  assert.equal(renderer.update(state, atmosphere, sun, createMoonParameters(), createStarParameters()), true);
+  assert.equal(renderer._activePipeline, renderer._sunPipeline);
+  assert.equal(renderer.statistics.lutBuilds, 0);
+  assert.equal(renderer.statistics.texturesCreated, 0);
+  assert.equal(writes.length, 2);
+  assert.equal(renderer._moonShown, true);
+  assert.equal(renderer._starsShown, true);
+  assert.equal(renderer.update(state, atmosphere, sun, { show: false, moonlightIntensity: 0 }, { show: false, intensity: 0 }), false);
+});
