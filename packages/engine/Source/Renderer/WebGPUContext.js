@@ -1,5 +1,6 @@
 import { Event, RuntimeError } from "@cesium/core";
 import WebGPUDepth from "./WebGPUDepth.js";
+import { decodeSrgbChannel } from "../Scene/WebGPUColorPipeline.js";
 
 // Near RGB triangle first, far magenta triangle second: depth, not draw order,
 // must keep the RGB triangle visible. WebGPU clip-space depth is in [0, 1].
@@ -219,18 +220,24 @@ class WebGPUContext {
       });
       const target = this._canvasContext.getCurrentTexture().createView();
       const color = composite ? this._getSceneColorTexture() : undefined;
+      const clearValue = backgroundColor
+        ? {
+            r: backgroundColor.red,
+            g: backgroundColor.green,
+            b: backgroundColor.blue,
+            a: backgroundColor.alpha,
+          }
+        : { r: 0.04, g: 0.06, b: 0.1, a: 1 };
+      if (color) {
+        clearValue.r = decodeSrgbChannel(clearValue.r);
+        clearValue.g = decodeSrgbChannel(clearValue.g);
+        clearValue.b = decodeSrgbChannel(clearValue.b);
+      }
       const pass = encoder.beginRenderPass({
         colorAttachments: [
           {
             view: color ? color.createView() : target,
-            clearValue: backgroundColor
-              ? {
-                  r: backgroundColor.red,
-                  g: backgroundColor.green,
-                  b: backgroundColor.blue,
-                  a: backgroundColor.alpha,
-                }
-              : { r: 0.04, g: 0.06, b: 0.1, a: 1 },
+            clearValue,
             loadOp: "clear",
             storeOp: "store",
           },

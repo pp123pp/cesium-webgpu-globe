@@ -442,6 +442,36 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.deepEqual(report.resize.colorSize, [960, 540]);
   report.checks.push("Moon and star compositor follows resized scene color/depth targets");
 
+  report.backgroundColor = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    const scene = viewer.scene;
+    scene.atmosphere.show = false;
+    scene.sun.show = false;
+    scene.moon.show = false;
+    scene.stars.show = false;
+    scene.exposure = 1;
+    scene.backgroundColor = new Cesium.Color(0.5, 0.5, 0.5, 1);
+    scene.globe.baseColor = Cesium.Color.clone(scene.backgroundColor);
+    await window.__m1.settle({ longitude: 0, latitude: 0, height: 1000, pitch: -90 });
+    const surface = window.__m1.pixels();
+    const offset = ((surface.height >> 1) * surface.width + (surface.width >> 1)) * 4;
+    viewer.camera.setView({
+      destination: Cesium.Cartesian3.fromDegrees(0, 0, 1000),
+      orientation: { heading: 0, pitch: Math.PI / 2, roll: 0 },
+    });
+    const background = window.__m1.pixels();
+    return {
+      surface: Array.from(surface.data.slice(offset, offset + 4)),
+      background: Array.from(background.data.slice(offset, offset + 4)),
+    };
+  });
+  assert.ok(report.backgroundColor.surface[0] > 140 && report.backgroundColor.surface[0] < 170,
+    "mid-gray terrain remains visible through the HDR display pass");
+  assert.ok(report.backgroundColor.background.slice(0, 3).every(
+    (value, channel) => Math.abs(value - report.backgroundColor.surface[channel]) <= 1),
+  `identical background and terrain colors must share the linear HDR input space: ${JSON.stringify(report.backgroundColor)}`);
+  report.checks.push("equal sRGB background and terrain colors match after the HDR display pass");
+
   report.cleanup = await destroyM1Scene(page);
   report.nativeResources = await page.evaluate(() => {
     const rows = window.__m2AtmosphereAllocations;
