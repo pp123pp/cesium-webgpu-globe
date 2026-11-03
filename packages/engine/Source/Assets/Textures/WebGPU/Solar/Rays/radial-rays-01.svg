@@ -1,1 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><defs><radialGradient id="core"><stop stop-color="#fff" stop-opacity="0.34"/><stop offset=".08" stop-color="#fff" stop-opacity="0.16"/><stop offset=".42" stop-color="#fff" stop-opacity="0.035"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><circle cx="512" cy="512" r="270" fill="url(#core)"/><path d="M431.7 620.2 Q358.3 699.2 304.0 792.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.147"/><path d="M566.6 427.5 Q625.0 307.0 710.9 204.2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.077"/><path d="M459.3 417.6 Q379.0 305.8 326.0 178.7" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.081"/><path d="M497.2 391.4 Q496.7 258.0 464.9 128.5" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.182"/><path d="M548.7 656.1 Q580.7 714.8 580.6 781.7" stroke="#fff" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.144"/><path d="M402.9 603.5 Q287.1 685.2 186.5 784.9" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity="0.109"/><path d="M612.8 542.9 Q721.1 587.8 836.1 611.2" stroke="#fff" stroke-width="1.3" stroke-linecap="round" fill="none" opacity="0.106"/><path d="M458.2 640.6 Q407.3 725.0 383.0 820.5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.189"/><path d="M616.5 445.3 Q751.0 358.7 886.2 273.2" stroke="#fff" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.186"/><path d="M391.0 593.0 Q311.1 649.9 228.0 702.2" stroke="#fff" stroke-width="1.0" stroke-linecap="round" fill="none" opacity="0.140"/><path d="M404.8 485.1 Q254.6 465.3 112.8 411.7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.100"/><path d="M547.8 405.0 Q603.5 263.5 644.2 116.9" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.155"/><path d="M381.3 448.4 Q259.9 396.5 144.1 333.0" stroke="#fff" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.092"/><path d="M599.4 467.0 Q683.5 417.6 772.6 378.0" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.170"/><path d="M555.6 610.6 Q616.6 740.2 671.4 872.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" fill="none" opacity="0.115"/><path d="M579.6 610.3 Q614.0 686.6 673.0 746.1" stroke="#fff" stroke-width="0.9" stroke-linecap="round" fill="none" opacity="0.140"/><path d="M608.8 500.3 Q790.6 493.5 968.8 456.8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.149"/><path d="M463.6 384.9 Q411.6 255.6 364.4 124.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" fill="none" opacity="0.114"/><path d="M593.6 430.3 Q688.6 328.1 790.6 232.9" stroke="#fff" stroke-width="2.1" stroke-linecap="round" fill="none" opacity="0.106"/><path d="M397.2 513.0 Q260.8 525.8 124.2 515.4" stroke="#fff" stroke-width="1.1" stroke-linecap="round" fill="none" opacity="0.124"/><path d="M597.6 465.9 Q744.6 397.2 882.7 312.1" stroke="#fff" stroke-width="2.3" stroke-linecap="round" fill="none" opacity="0.163"/><path d="M398.6 587.6 Q337.1 631.6 272.8 671.5" stroke="#fff" stroke-width="1.0" stroke-linecap="round" fill="none" opacity="0.106"/><path d="M432.3 609.3 Q345.2 708.9 264.7 813.9" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.135"/><path d="M527.4 386.7 Q548.7 228.2 566.5 69.4" stroke="#fff" stroke-width="2.3" stroke-linecap="round" fill="none" opacity="0.171"/><path d="M437.7 637.0 Q367.6 760.4 292.6 881.0" stroke="#fff" stroke-width="1.7" stroke-linecap="round" fill="none" opacity="0.076"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="core"><stop stop-color="#fff" stop-opacity="0.34"/><stop offset=".08" stop-color="#fff" stop-opacity="0.16"/><stop offset=".42" stop-color="#fff" stop-opacity="0.035"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <filter id="feather" x="-50%" y="-200%" width="200%" height="500%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="5.5"/></filter>
+    <linearGradient id="beam1" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="374" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam2" gradientUnits="userSpaceOnUse" x1="30" y1="0" x2="304" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam3" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="422" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam4" gradientUnits="userSpaceOnUse" x1="26" y1="0" x2="348" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam5" gradientUnits="userSpaceOnUse" x1="32" y1="0" x2="275" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam6" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="401" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam7" gradientUnits="userSpaceOnUse" x1="28" y1="0" x2="322" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam8" gradientUnits="userSpaceOnUse" x1="18" y1="0" x2="365" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="512" cy="512" r="270" fill="url(#core)"/>
+  <path d="M22 0 C46.64 -3.08 102.96 -17.42 194.48 -14.34 C303.6 -9.24 352.88 -3.32 374 -2 C345.84 -0.46 296.56 3.72 194.48 5.68 C102.96 10.52 43.12 3.3 22 0Z" transform="translate(512 512) rotate(-9)" fill="url(#beam1)" filter="url(#feather)" opacity="0.12"/>
+  <path d="M30 0 C49.18 -2.24 93.02 -4.76 164.26 -2.52 C249.2 -2.37 287.56 2.04 304 3 C282.08 4.12 243.72 6.66 164.26 12.04 C93.02 15.56 46.44 2.4 30 0Z" transform="translate(512 512) rotate(21)" fill="url(#beam2)" filter="url(#feather)" opacity="0.1"/>
+  <path d="M20 0 C48.14 -3.78 112.46 -23.47 216.98 -19.69 C341.6 -12.49 397.88 -4.62 422 -3 C389.84 -1.11 333.56 3.52 216.98 4.88 C112.46 10.82 44.12 4.05 20 0Z" transform="translate(512 512) rotate(78)" fill="url(#beam3)" filter="url(#feather)" opacity="0.12"/>
+  <path d="M26 0 C48.54 -2.52 100.06 -6.98 183.78 -4.46 C283.6 -3.56 328.68 -0.08 348 1 C322.24 2.26 277.16 6.68 183.78 11.92 C100.06 15.88 45.32 2.7 26 0Z" transform="translate(512 512) rotate(128)" fill="url(#beam4)" filter="url(#feather)" opacity="0.14"/>
+  <path d="M32 0 C49.01 -3.5 87.89 -18.25 151.07 -14.75 C226.4 -9.65 260.42 -3.5 275 -2 C255.56 -0.25 221.54 5 151.07 8 C87.89 13.5 46.58 3.75 32 0Z" transform="translate(512 512) rotate(164)" fill="url(#beam5)" filter="url(#feather)" opacity="0.09"/>
+  <path d="M24 0 C50.39 -2.94 110.71 -5.81 208.73 -2.87 C325.6 -2.87 378.38 1.74 401 3 C370.84 4.47 318.06 8.96 208.73 16.24 C110.71 20.86 46.62 3.15 24 0Z" transform="translate(512 512) rotate(218)" fill="url(#beam6)" filter="url(#feather)" opacity="0.11"/>
+  <path d="M28 0 C48.58 -2.1 95.62 -14.15 172.06 -12.05 C263.2 -7.55 304.36 -2.9 322 -2 C298.48 -0.95 257.32 1.4 172.06 1.6 C95.62 4.9 45.64 2.25 28 0Z" transform="translate(512 512) rotate(243)" fill="url(#beam7)" filter="url(#feather)" opacity="0.1"/>
+  <path d="M18 0 C42.29 -3.36 97.81 -10.64 188.03 -7.28 C295.6 -5.48 344.18 0.56 365 2 C337.24 3.68 288.66 8.24 188.03 14.56 C97.81 19.84 38.82 3.6 18 0Z" transform="translate(512 512) rotate(302)" fill="url(#beam8)" filter="url(#feather)" opacity="0.12"/>
+</svg>

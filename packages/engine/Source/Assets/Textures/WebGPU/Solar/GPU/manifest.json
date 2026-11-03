@@ -17,7 +17,7 @@
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
       "alphaMax": 84,
-      "alphaNonZeroCoverage": 0.21509170532226562,
+      "alphaNonZeroCoverage": 0.21179962158203125,
       "byteLength": 262144
     },
     {
@@ -36,7 +36,7 @@
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
       "alphaMax": 30,
-      "alphaNonZeroCoverage": 0.19586563110351562,
+      "alphaNonZeroCoverage": 0.18858718872070312,
       "byteLength": 262144
     },
     {
@@ -55,7 +55,7 @@
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
       "alphaMax": 49,
-      "alphaNonZeroCoverage": 0.20174407958984375,
+      "alphaNonZeroCoverage": 0.2023468017578125,
       "byteLength": 262144
     },
     {
