@@ -35,6 +35,8 @@ fn spaceHash(p: vec3f) -> f32 {
 // Star positions are indexed only by the world-space ray, never camera position.
 fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   let observer = normalize((planet.cameraHigh.xyz + planet.cameraLow.xyz) * planet.inverseRadii.xyz);
+  let earth = webgpuRayEllipsoid(direction, planet);
+  if (earth.x >= 0.0 && earth.y > earth.x) { return vec3f(0.0); }
   let solarElevation = dot(observer, planet.sunDirectionWC.xyz);
   let night = 1.0 - smoothstep(-0.08, 0.035, solarElevation);
   let grid = direction * 1800.0;
@@ -66,7 +68,7 @@ fn moonRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let tangent = direction - moonDirection * cosine;
   let radial = clamp(chord / max(radius, 1.0e-7), 0.0, 1.0);
   let tangentDirection = normalize(tangent);
-  let surfaceNormal = normalize(moonDirection * sqrt(max(0.0, 1.0 - radial * radial)) +
+  let surfaceNormal = normalize(-moonDirection * sqrt(max(0.0, 1.0 - radial * radial)) +
                                 tangentDirection * radial);
   let phase = max(dot(surfaceNormal, planet.sunDirectionWC.xyz), 0.0);
   let coverage = 1.0 - smoothstep(radius - halfWidth, radius + halfWidth, chord);
