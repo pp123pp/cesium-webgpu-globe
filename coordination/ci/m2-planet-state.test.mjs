@@ -47,7 +47,16 @@ for (const [label, longitude, latitude, height] of [
     const values = state.uniformValues;
     assert.equal(state.update(camera, time), state);
     assert.equal(state.uniformValues, values, "reuse the frame allocation");
-    assert.equal(values.byteLength, 192);
+    assert.equal(values.byteLength, 224);
+    assert.ok(state.moonDistance > 3.4e8 && state.moonDistance < 4.1e8);
+    assert.ok(state.moonAngularRadius > 0.0035 && state.moonAngularRadius < 0.0055);
+    assert.ok(state.moonIllumination >= 0 && state.moonIllumination <= 1);
+    close(Cartesian3.magnitude(state.moonDirectionWC), 1, 1e-12);
+    close(values[48], state.moonDirectionWC.x, 1e-7);
+    close(values[49], state.moonDirectionWC.y, 1e-7);
+    close(values[50], state.moonDirectionWC.z, 1e-7);
+    close(values[51], state.moonAngularRadius, 1e-7);
+    close(values[52], state.moonIllumination, 1e-7);
     assert.ok([...values].every(Number.isFinite));
     close(state.cameraHeight, height, 1e-6);
     assert.ok(state.cameraGeocentricDistance > height + 6356000);
@@ -99,4 +108,21 @@ test("ground quadratic constant is computed before float32 Earth-sized cancellat
   const c = state.uniformValues[44];
   assert.ok(c > 0 && c < 1e-8, "one-centimeter altitude must survive upload");
   close(c, 3.1462606e-9, 2e-15);
+});
+
+
+test("Moon direction includes camera parallax and follows native lunar ephemeris time", () => {
+  const camera = cameraAt(20, 30, 400000);
+  const state = new PlanetState().update(camera, time);
+  const first = Cartesian3.clone(state.moonDirectionWC);
+  const firstPhase = state.moonIllumination;
+  camera.position = Cartesian3.add(camera.positionWC, new Cartesian3(200000, 0, 0), new Cartesian3());
+  camera.update(SceneMode.SCENE3D);
+  state.update(camera, time);
+  assert.ok(Cartesian3.distance(first, state.moonDirectionWC) > 1e-5, "camera translation changes apparent lunar direction");
+  const nextTime = JulianDate.addDays(time, 7, new JulianDate());
+  state.update(camera, nextTime);
+  assert.ok(Cartesian3.distance(first, state.moonDirectionWC) > 0.01, "lunar ephemeris advances with scene time");
+  assert.ok(state.moonIllumination >= 0 && state.moonIllumination <= 1);
+  assert.ok(Number.isFinite(firstPhase));
 });
