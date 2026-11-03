@@ -1,7 +1,7 @@
 {
   "suite": "m2.6-solar-visual",
   "browserConsole": [],
-  "capturedAt": "2026-11-03T09:52:25.052Z",
+  "capturedAt": "2026-11-03T09:59:04.871Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -12,8 +12,8 @@
       "args": []
     }
   },
-  "source": "1c54722a32c5446f4796347e5efeec60f7cad545",
-  "sourceStatus": "M coordination/ci/m2.6-solar-visual-smoke.mjs",
+  "source": "1df671931a762b81caed62467da4ca335bc8fd15",
+  "sourceStatus": "",
   "bundleSha256": "a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d",
   "browserErrors": [],
   "checks": [
@@ -522,46 +522,46 @@
     "resolution": "1920x1080",
     "endToEndRenderAndQueueCompletionMs": {
       "bloomDisabled": {
-        "meanMs": 7.5533333341280615,
-        "p50Ms": 7.399999976158142,
-        "p95Ms": 8.899999976158142,
+        "meanMs": 10.706666664282482,
+        "p50Ms": 10.5,
+        "p95Ms": 13.100000023841858,
         "samples": 30
       },
       "bloomEnabled": {
-        "meanMs": 9.773333330949148,
-        "p50Ms": 10,
-        "p95Ms": 11,
+        "meanMs": 10.45,
+        "p50Ms": 10.300000071525574,
+        "p95Ms": 12.100000023841858,
         "samples": 30
       }
     },
-    "initializationMs": 1709.1742000000002,
+    "initializationMs": 1794.4135,
     "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
   },
   "effectIsolation": {
     "rays": {
-      "disabledScreenshotSha256": "f7ccf910ccb4b2b3748ae28036584970830395d14fd781155515b8d4ce1d0818",
+      "disabledScreenshotSha256": "9e996bb74dde72269bbf659872d7f9ef10c71a93d2ac01448ec2608ba6486208",
       "differsFromEnabled": true
     },
     "softHalo": {
-      "disabledScreenshotSha256": "6f9435f2778c612653033cd9c1805542db28e162770f05e88e82750c55342124",
+      "disabledScreenshotSha256": "8e1af718170ffac179dcb585486d1c9a34fe955435c9c3128ff318a55ec6b595",
       "differsFromEnabled": true
     },
     "wideHalo": {
-      "disabledScreenshotSha256": "b1d50a8737612192eca9e1553b234873967ac07b9050a0e692a85919b22f776b",
+      "disabledScreenshotSha256": "0da5c8c6428b6706b0ed6b52db21a5e2f2d73be068a2f6eab78980c3b791fd87",
       "differsFromEnabled": true
     },
     "corona": {
-      "disabledScreenshotSha256": "eb8d229c938e1c1b1e25010ab46566559ad5ba13ca2a8bbdd2ea9b80a3180fb4",
+      "disabledScreenshotSha256": "2a25893569132b3208aa91995576a000e294e7be0ac992350045f2a1a2540c63",
       "differsFromEnabled": true
     },
     "tint": {
-      "disabledScreenshotSha256": "b275c25304a2eec183814916b8fe46880b775275cb88e1d7f641f59b0d21fef5",
+      "disabledScreenshotSha256": "dfec8fa8f2f4378e9a593b7972ea4a32a58cb4013b0680aac308df87667496af",
       "differsFromEnabled": true
     }
   },
   "bloom": {
-    "enabledScreenshotSha256": "87d0acb55a8b8081faf90a9db9bc900ee595e64285b99466dd4e962b85562add",
-    "disabledScreenshotSha256": "2eca8882211931a66612df72304afd2dd3a2fdf313d81a9e9b22aa104a4bc92c",
+    "enabledScreenshotSha256": "dc13650e9b20eda98f281cb9554c116c572f68ca8caaf4c03708b3301c384ba8",
+    "disabledScreenshotSha256": "5d84b52b359a4966804c169ed9c8f7587b90aa5f3141aa92d4c6692604c248e4",
     "enabledDiffersFromDisabled": true,
     "exposure": [
       0.5,

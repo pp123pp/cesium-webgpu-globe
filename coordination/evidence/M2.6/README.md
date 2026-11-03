@@ -1,6 +1,6 @@
 # M2.6 preliminary evidence — IN PROGRESS
 
-This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The capture was built from commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee with a clean source worktree. The report is tied to that exact implementation commit and bundle; later evidence-only commits do not alter the built source. It remains preliminary acceptance evidence, not final PR-head acceptance. Draft PR #18 currently targets main; Fast CI and Full regression have been triggered on the latest PR HEAD and their final results are pending.
+This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The latest clean browser run was captured from commit 1df671931a762b81caed62467da4ca335bc8fd15. The production engine bundle is SHA-256 a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d, identical to implementation commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee; the later commit adds test-harness capability reporting and evidence/documentation only. It remains preliminary acceptance evidence, not final PR-head acceptance. Draft PR #18 currently targets main; Fast CI and Full regression have been triggered on the latest PR HEAD and their final results are pending.
 
 ## Environment
 
@@ -9,7 +9,8 @@ This directory contains real headed-browser WebGPU captures and run diagnostics 
 - Adapter: Intel, architecture xe-lpg, non-fallback adapter. Device/driver identifiers were not exposed by requestAdapterInfo().
 - Viewport: 1920×1080 for A07–A10 captures; resize assertion at 1280×720.
 - Device features: core-features-and-limits only; timestamp-query is not supported by this WebGPU device. Limits reported: maxTextureDimension2D 8192, maxBufferSize 268435456 bytes.
-- Tested source commit: e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee.
+- Tested clean browser-run commit: 1df671931a762b81caed62467da4ca335bc8fd15.
+- Engine implementation commit: e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee.
 - Base main commit: 1869091d0d4a95250e2c56f51cb574ab23598718.
 - Bundle SHA-256: a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d.
 - Browser console errors: none recorded by the harness.
@@ -44,8 +45,8 @@ The harness measures viewer.render() plus queue submission completion via GPUQue
 
 Latest preliminary run at 1920×1080, 30 samples:
 
-- Bloom disabled: mean 7.55 ms, p50 7.40 ms, p95 8.90 ms.
-- Bloom enabled: mean 9.77 ms, p50 10.00 ms, p95 11.00 ms.
+- Bloom disabled: mean 10.71 ms, p50 10.50 ms, p95 13.10 ms.
+- Bloom enabled: mean 10.45 ms, p50 10.30 ms, p95 12.10 ms.
 - GPU frame time: UNVERIFIED.
 - Initial renderer setup: approximately 1.79 s (includes browser startup/scene setup, not isolated asset fetch/decode time).
 

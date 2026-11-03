@@ -6,7 +6,7 @@
       "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
     }
   ],
-  "capturedAt": "2026-11-03T09:46:58.643Z",
+  "capturedAt": "2026-11-03T09:59:12.341Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -17,7 +17,7 @@
       "args": []
     }
   },
-  "source": "e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee",
+  "source": "1df671931a762b81caed62467da4ca335bc8fd15",
   "sourceStatus": "",
   "bundleSha256": "a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d",
   "browserErrors": [],
