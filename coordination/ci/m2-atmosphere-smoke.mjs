@@ -83,7 +83,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
   assert.equal(report.setup.settings.show, true);
   assert.equal(report.setup.settings.lightIntensity, 10);
   assert.equal(report.setup.settings.multipleScatteringStrength, 1);
-  assert.deepEqual(report.setup.buffers, [272, 80]);
+  assert.deepEqual(report.setup.buffers, [272, 96]);
   assert.deepEqual(report.setup.lutFormats, ["rgba16float", "rgba16float"]);
   report.luts = await page.evaluate(async () => {
     const state = window.__m2Atmosphere;
