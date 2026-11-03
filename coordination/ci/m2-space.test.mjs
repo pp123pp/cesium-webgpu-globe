@@ -7,6 +7,9 @@ import {
   validateStarParameters,
 } from "../../packages/engine/Source/Scene/WebGPUSpace.js";
 import WebGPUAtmosphereShader from "../../packages/engine/Source/Scene/WebGPUAtmosphereShader.js";
+import WebGPUAtmosphereRenderer from "../../packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js";
+import { createAtmosphereParameters } from "../../packages/engine/Source/Scene/WebGPUAtmosphereModel.js";
+import { createSunParameters } from "../../packages/engine/Source/Scene/WebGPUSun.js";
 
 test("Moon settings validate visibility and bounded linear moonlight", () => {
   assert.deepEqual(createMoonParameters(), { show: true, moonlightIntensity: 0.0025 });
