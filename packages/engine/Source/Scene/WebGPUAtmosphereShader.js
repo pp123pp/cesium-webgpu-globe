@@ -67,7 +67,8 @@ fn moonRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let cosine = clamp(dot(direction, moonDirection), -1.0, 1.0);
   let tangent = direction - moonDirection * cosine;
   let radial = clamp(chord / max(radius, 1.0e-7), 0.0, 1.0);
-  let tangentDirection = normalize(tangent);
+  var tangentDirection = vec3f(1.0, 0.0, 0.0);
+  if (length(tangent) > 1.0e-7) { tangentDirection = normalize(tangent); }
   let surfaceNormal = normalize(-moonDirection * sqrt(max(0.0, 1.0 - radial * radial)) +
                                 tangentDirection * radial);
   let phase = max(dot(surfaceNormal, planet.sunDirectionWC.xyz), 0.0);
@@ -271,7 +272,8 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   if (all(solar == vec3f(0.0)) && all(moon == vec3f(0.0)) && all(stars == vec3f(0.0))) { return source; }
-  let linear = atmosphereDecodeSrgb(source.rgb) + solar + moon + stars;
+  let moonTerrain = moonTerrainLight(direction, sceneDistance);
+  let linear = atmosphereDecodeSrgb(source.rgb) + solar + moon + stars + moonTerrain;
   return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), source.a);
 }
 `;
