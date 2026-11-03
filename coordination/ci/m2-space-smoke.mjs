@@ -83,6 +83,34 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.ok(report.sky.moonAngularRadius > 0.0035 && report.sky.moonAngularRadius < 0.0055);
   assert.ok(report.sky.moonIllumination > 0.8, "full-Moon date produces a mostly illuminated lunar disk");
   assert.ok(report.sky.starPixels.length >= 8, "actual canvas contains resolved procedural stars");
+  report.exposure = await page.evaluate(async () => {
+    const { viewer, pixels } = window.__m1;
+    const scene = viewer.scene;
+    const measurements = [];
+    for (const exposure of [0.5, 1.0, 2.0]) {
+      scene.exposure = exposure;
+      for (let i = 0; i < 2; ++i) {
+        await new Promise(requestAnimationFrame);
+        viewer.render();
+      }
+      await scene.context._device.queue.onSubmittedWorkDone();
+      const frame = pixels();
+      let sum = 0;
+      for (let i = 0; i < frame.data.length; i += 4) {
+        sum += frame.data[i] + frame.data[i + 1] + frame.data[i + 2];
+      }
+      measurements.push({ exposure, meanRgb: sum / (frame.width * frame.height * 3) });
+    }
+    scene.exposure = 1.0;
+    viewer.render();
+    await scene.context._device.queue.onSubmittedWorkDone();
+    return measurements;
+  });
+  assert.ok(report.exposure[0].meanRgb < report.exposure[1].meanRgb,
+    "raising exposure from 0.5 to 1.0 raises actual GPU output");
+  assert.ok(report.exposure[1].meanRgb < report.exposure[2].meanRgb,
+    "raising exposure from 1.0 to 2.0 raises actual GPU output");
+  report.checks.push("manual exposure monotonically changes the actual HDR-to-display GPU output");
   await captureM1Scene(page, report, output, "night-sky-moon-stars", report.sky);
   report.checks.push("real WebGPU night sky displays the native-ephemeris Moon and procedural stars");
 
@@ -413,6 +441,36 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
   assert.deepEqual(report.resize.depthSize, [960, 540]);
   assert.deepEqual(report.resize.colorSize, [960, 540]);
   report.checks.push("Moon and star compositor follows resized scene color/depth targets");
+
+  report.backgroundColor = await page.evaluate(async () => {
+    const { viewer } = window.__m1;
+    const scene = viewer.scene;
+    scene.atmosphere.show = false;
+    scene.sun.show = false;
+    scene.moon.show = false;
+    scene.stars.show = false;
+    scene.exposure = 1;
+    scene.backgroundColor = new Cesium.Color(0.5, 0.5, 0.5, 1);
+    scene.globe.baseColor = Cesium.Color.clone(scene.backgroundColor);
+    await window.__m1.settle({ longitude: 0, latitude: 0, height: 1000, pitch: -90 });
+    const surface = window.__m1.pixels();
+    const offset = ((surface.height >> 1) * surface.width + (surface.width >> 1)) * 4;
+    viewer.camera.setView({
+      destination: Cesium.Cartesian3.fromDegrees(0, 0, 1000),
+      orientation: { heading: 0, pitch: Math.PI / 2, roll: 0 },
+    });
+    const background = window.__m1.pixels();
+    return {
+      surface: Array.from(surface.data.slice(offset, offset + 4)),
+      background: Array.from(background.data.slice(offset, offset + 4)),
+    };
+  });
+  assert.ok(report.backgroundColor.surface[0] > 140 && report.backgroundColor.surface[0] < 170,
+    "mid-gray terrain remains visible through the HDR display pass");
+  assert.ok(report.backgroundColor.background.slice(0, 3).every(
+    (value, channel) => Math.abs(value - report.backgroundColor.surface[channel]) <= 1),
+  `identical background and terrain colors must share the linear HDR input space: ${JSON.stringify(report.backgroundColor)}`);
+  report.checks.push("equal sRGB background and terrain colors match after the HDR display pass");
 
   report.cleanup = await destroyM1Scene(page);
   report.nativeResources = await page.evaluate(() => {

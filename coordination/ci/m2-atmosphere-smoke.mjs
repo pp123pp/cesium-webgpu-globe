@@ -48,22 +48,30 @@ async function settleAtmosphereView(page, view) {
   }, view);
 }
 
-// Independent IEC sRGB transfer: the intermediate retains the M1 encoded
-// surface appearance, while scattering and attenuation compose in linear RGB.
-const decodeSrgb = (value) =>
-  value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+// Independently reproduce the production display transform. sceneColor is
+// RGBA16Float scene-linear HDR (not sRGB); atmosphere transport is composed in
+// linear space, then the shared manual-exposure ACES curve and sRGB encoding
+// are applied exactly once at the final display output.
 const encodeSrgb = (value) =>
   value <= 0.0031308 ? 12.92 * value : 1.055 * value ** (1 / 2.4) - 0.055;
+const toneMapACES = (value, exposure = 1) => {
+  const x = Math.max(0, value) * exposure;
+  return Math.min(
+    1,
+    Math.max(0, (x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14)),
+  );
+};
+const displayChannel = (linear, exposure = 1) =>
+  Math.round(encodeSrgb(toneMapACES(linear, exposure)) * 255);
 
 function assertComposite(sample, label) {
   assertPhysical(sample.gpu, label);
   const expected = [];
   for (let channel = 0; channel < 3; ++channel) {
     const linear =
-      decodeSrgb(sample.gpu[16 + channel]) * sample.gpu[4 + channel] +
+      sample.gpu[16 + channel] * sample.gpu[4 + channel] +
       sample.gpu[channel];
-    const encoded = Math.min(1, Math.max(0, encodeSrgb(linear)));
-    expected.push(Math.round(encoded * 255));
+    expected.push(displayChannel(linear));
     assert.ok(
       Math.abs(sample.displayed[channel] - expected[channel]) <= 3,
       `${label}: canvas channel ${channel} is ${sample.displayed[channel]}, expected ${expected[channel]}`,
@@ -83,7 +91,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
   assert.equal(report.setup.settings.show, true);
   assert.equal(report.setup.settings.lightIntensity, 10);
   assert.equal(report.setup.settings.multipleScatteringStrength, 1);
-  assert.deepEqual(report.setup.buffers, [272, 80]);
+  assert.deepEqual(report.setup.buffers, [272, 96]);
   assert.deepEqual(report.setup.lutFormats, ["rgba16float", "rgba16float"]);
   report.luts = await page.evaluate(async () => {
     const state = window.__m2Atmosphere;
@@ -390,7 +398,7 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
     assertPhysical(report.terrain.unoccluded[index], `ellipsoid-only control ${index}`);
     assert.ok(sample.gpu[6] > report.terrain.unoccluded[index][6] + 0.005, "real mountain depth materially shortens atmospheric extinction");
     for (let channel = 0; channel < 3; ++channel) {
-      assert.ok(Math.abs(report.terrain.disabled[index][channel] - Math.round(sample.gpu[16 + channel] * 255)) <= 2, "disabled atmosphere preserves original surface pixels");
+      assert.ok(Math.abs(report.terrain.disabled[index][channel] - displayChannel(sample.gpu[16 + channel])) <= 2, "disabled atmosphere preserves the tone-mapped original surface pixels");
     }
   }
   const offAxis = report.terrain.samples[1];

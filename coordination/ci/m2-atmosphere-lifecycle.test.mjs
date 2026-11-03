@@ -28,7 +28,11 @@ function fixture(t) {
       return {
         beginRenderPass(descriptor) {
           events.push({ kind: "begin", descriptor });
-          return { end() { events.push({ kind: "end" }); } };
+          return {
+            setPipeline() {},
+            draw() {},
+            end() { events.push({ kind: "end" }); },
+          };
         },
         finish() { return {}; },
       };
@@ -73,6 +77,7 @@ test("resize and failure release the atmosphere color attachment with scene dept
   context.render(() => {}, undefined, () => {});
   const color = context.sceneColorTexture;
   assert.ok(color, "composition allocates a readable color attachment");
+  assert.equal(color.descriptor.format, "rgba16float", "scene composition retains linear HDR precision");
   assert.equal(color.descriptor.usage & 4, 4);
   const depth = context.sceneDepthTexture;
   context.resize(640, 480);
@@ -85,4 +90,22 @@ test("resize and failure release the atmosphere color attachment with scene dept
   assert.equal(textures.length, count, "unchanged dimensions reuse attachments");
   assert.throws(() => context.render(() => {}, undefined, () => { throw new Error("composite failure"); }), /composite failure/);
   assert.ok(textures.every((texture) => texture.destroyed));
+});
+
+test("HDR clear decodes background RGB while M0 preserves display RGB and alpha", (t) => {
+  const { context, events } = fixture(t);
+  const background = { red: 0.5, green: 0.04045, blue: 1, alpha: 0.25 };
+  context._globe = false;
+  context.render(undefined, background);
+  assert.deepEqual(events[0].descriptor.colorAttachments[0].clearValue,
+    { r: 0.5, g: 0.04045, b: 1, a: 0.25 });
+  events.length = 0;
+  context._globe = true;
+  context.render(() => {}, background, () => {});
+  const clear = events[0].descriptor.colorAttachments[0].clearValue;
+  assert.ok(Math.abs(clear.r - 0.21404114048223255) < 1e-12);
+  assert.ok(Math.abs(clear.g - 0.0031308049535603713) < 1e-12);
+  assert.equal(clear.b, 1);
+  assert.equal(clear.a, 0.25);
+  assert.deepEqual(background, { red: 0.5, green: 0.04045, blue: 1, alpha: 0.25 });
 });

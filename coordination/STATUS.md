@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-03
-Current milestone: **M2.4 completed and merged; M2.5 HDR / exposure / tone mapping is next**
+Current milestone: **M2.5 implemented and focused visual acceptance passed; M2.6 is next after PR #14 integration**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -10,13 +10,13 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## Current integration state
 
-- Remote `main` is `6c741bc3237323cf139113fba4f07530a0d5d4cc` (tree `99c87fa9d5194685eccb466cf089f3f3e863af61`). It includes the normal merge commits for PRs #8, #9, #10 and #11. Do not use older historical SHAs below as the current main state.
+- PR [#14](https://github.com/pp123pp/cesium-webgpu-globe/pull/14) integrates M2.5 from `feat/m2.5-hdr-tonemapping` into `main`; its base at acceptance was `8693c44d721fa327c9765ffa74a8b21e8d09912d`. Runtime acceptance source is `e22d4361ccdf3310e12431a740a4f8606a567722`. GitHub records the final check results and merge SHA; older main SHAs below are historical.
 - PR [#8](https://github.com/pp123pp/cesium-webgpu-globe/pull/8) merged M2.1–M2.3. Its final-head Fast [41560846959](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846959) and executed Full [41560846966](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846966) succeeded.
 - PR [#9](https://github.com/pp123pp/cesium-webgpu-globe/pull/9) merged M2.4 at merge commit `1fe802d0ca45ac98c4822338e41e487390219a89`. Its final development head was `e76bc3866289b3f93f80546eeb14dd7f5b32f9e0`; Fast [41581646293](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41581646293) and actually executed Full [41581646232](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41581646232) both succeeded on that exact head.
 - PR [#10](https://github.com/pp123pp/cesium-webgpu-globe/pull/10) merged the public Moon / Stars / moonlight demo controls at `d52bdb43ce8c76f9e7f3b32c247200c974d6d9cb`. Its final head `482ce2b438c64070c996426276074ee91c5c415a` passed Fast [41585321728](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321728) and Full [41585321714](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321714).
 - PR [#11](https://github.com/pp123pp/cesium-webgpu-globe/pull/11) merged native Cesium Timeline integration, configured default ion token usage and Pages stylesheet-path handling. Its head `b46f97ab29e8486bcd3715efc348b033d7734bf7` passed Fast [41588524382](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524382) and Full [41588524350](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524350). The main push Pages workflow [41588552188](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588552188) and Pages deployment [41588680662](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588680662) succeeded.
 - PR [#6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at `6788fbd174a1104688be34abbb40c8f9d305da7a`, with an obsolete base SHA from before the current M2 integration. It is a historical M1 regression-closeout proposal, not an active M2 dependency. Do not merge or close it without separately reviewing whether its changes are already superseded.
-- The active development branch for the next milestone has not yet been created. Proposed branch: `feat/m2.5-hdr-tonemapping`. Do not push directly to `main`; use a feature branch and PR.
+- The user authorized M2.5 focused visual acceptance, STATUS updates and merging PR #14 only after acceptance/checks pass. Do not push directly to `main`. M2.6 and M3 implementation are not part of this task.
 
 ## Accepted milestones
 
@@ -27,24 +27,23 @@ Import workflow result: SUCCESS; source presence verified.
 - **M2.3 — Sun disk, occultation, irradiance, atmospheric attenuation and bounded glare:** accepted and merged.
 - **M2.4 — inertial stars, lunar ephemeris / phases, lunar occultation and bounded moonlight:** accepted and merged. The Moon / Stars controls and native Timeline demo follow-ups are also merged.
 
-M2.4's implementation and browser smoke passed Fast on its final development head, and its Full workflow actually executed and passed on that same SHA. The M2.4 Fast evidence includes the production-browser space smoke. Full is now a build / lint / type / focused-unit / complete upstream non-WebGL test tier; it no longer runs rendering acceptance or the complete WebGL differential. A passing Full must not be described as proof of those removed rendering gates. Fast retains software-GPU browser rendering checks. Physical-GPU behavior and performance remain unverified.
+M2.4's implementation and browser smoke passed Fast on its final development head, and its Full workflow actually executed and passed on that same SHA. The M2.4 Fast evidence includes the production-browser space smoke. Full is now a build / lint / type / focused-unit / complete upstream non-WebGL test tier; it no longer runs rendering acceptance or the complete WebGL differential. A passing Full must not be described as proof of those removed rendering gates. Fast retains software-GPU browser rendering checks. M2.5 now adds the scoped Intel Xe-LPG evidence below; performance remains unverified.
 
 The following known limitations remain recorded and are not silently waived by M2.4 completion:
+
 - `M1-NAV-001`: the specifically authorized rapid real-terrain descent / collision-height limitation.
 - The separate transient terrain-gap observation recorded during M2.3 remains unresolved; the final M2.3 run did not reproduce it and no runtime fix is claimed.
-- Hosted browser rendering evidence uses Chromium 156 and Google SwiftShader software GPU; physical GPU testing is not evidenced.
+- Hosted rendering uses Chromium 156 and Google SwiftShader. M2.5 adds one Intel Xe-LPG device for focused HDR/space/M0 checks; this does not certify other devices or performance.
 
-## Next milestone — M2.5 HDR, exposure and tone mapping
+## M2.5 HDR, exposure and tone mapping — focused acceptance passed
 
-M2.5 is the next implementation task; it has **not started**. Scope comes from task 5 in [tasks/M2.md](../tasks/M2.md):
-
-- Introduce HDR surface / sky composition with a coherent linear-light representation.
-- Add explicit exposure control and tone mapping.
-- Preserve coherent color-space handling across Sun, atmosphere, Moon, stars and terrain.
-- Prevent inappropriate clipping of solar highlights while maintaining useful surface and night-sky detail.
-- Avoid unrelated general PBR, full RenderGraph, volumetric clouds or other future-milestone work.
-
-Before implementation, select one concrete M2.5 task slice, identify owned files and acceptance checks, and inspect the current post-M2.4 source. Use the risk-based verification rules in [AGENTS.md](../AGENTS.md#risk-based-testing-and-verification) and the current [CI policy](../docs/CI.md). Do not start M2.6 or claim whole-M2 acceptance as part of M2.5.
+- Implemented linear `rgba16float` surface/sky composition, manual exposure (default 1, range 0.01–16), fitted ACES and one final sRGB encode. No automatic exposure, general PBR or future cloud work.
+- [Acceptance evidence](evidence/M2.5/README.md) contains 20 actual 800×450 hardware captures, source/bundle identity, pixel metrics, a reproducible script and explicit limitations. Headed Chromium `156.0.8078.4`, Intel Xe-LPG non-fallback adapter.
+- Day/terminator/night views at exposure 0.5/1/2 preserve black space and have no channel at the 254 clipping threshold. Lower exposure retains more highlight contrast; higher exposure reveals more night-side surface detail. Five fixed-camera sunset samples progress from daylight through orange twilight to stars.
+- Default-exposure Sun remains distinguishable without whole-image clipping. Exposure 2 produces a bounded white orbital disk and washed-out yellow low-Sun sky (19.67% any-channel clipping, no all-white pixels). This is a recorded high-exposure tradeoff, not a claim that every exposure improves quality.
+- Acceptance found and fixed custom background RGB bypassing sRGB decoding: actual equal gray terrain/background differed 154 vs 206 before the fix and match at 154 afterward. Commit `e22d436` preserves the direct M0 clear, alpha and input Color. A real-browser regression and focused context test cover the defect.
+- Local build, targeted lint, commit-hook types, focused lifecycle tests, hardware M2 space smoke and 17 M0 proof checks passed. The 20-frame capture has no browser errors and clean source identity. Original source `c11494b` passed Fast [41596565861](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565861) and executed Full [41596565848](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41596565848); those historical runs do not certify the later fix. Final PR CI must pass before the authorized merge.
+- NaturalEarth coarse imagery/seam, live terrain/navigation limitations and high-exposure calibration remain explicit. This is M2.5 acceptance only; M2.6 A07–A10, continuous-animation quality and complete WebGL differential are not claimed complete.
 
 ## Remaining M2 acceptance — M2.6
 
@@ -60,7 +59,6 @@ M2.6 must also coordinate the required final acceptance evidence and regression 
 ## Later roadmap
 
 After M2.6, proceed to M3 global volumetric clouds, M4 cloud shadows / terrain-light coupling, and M5 image-quality stabilization / profiling. V1.0 is M0–M5. M6 3D Tiles / BIM is deferred until after V1.0 and is not a V1.0 blocker.
-
 
 ---
 

@@ -2,11 +2,10 @@ import WebGPUPlanetShader from "./WebGPUPlanetShader.js";
 import WebGPUSunShader from "./WebGPUSunShader.js";
 
 /**
- * Original meter-based radiative-transfer implementation. Equations and the
- * reduced Hillaire isotropic closure are documented in docs/WEBGPU_M2.2.md.
- * The same executable functions serve visible sky, terrain aerial perspective
- * and the independent GPU numerical acceptance probes. M2.3 adds the distant
- * Sun before the same LDR encoding, attenuated by the same view transmittance.
+ * Meter-based radiative transfer and M2.5 scene-linear HDR composition.
+ * Atmosphere, Sun, Moon and stars remain linear until the final ACES/sRGB output.
+ * The completed terrain attachment is RGBA16Float; only this final pass writes
+ * the display-referred canvas format.
  * @private
  */
 const WebGPUAtmosphereShader = `${WebGPUPlanetShader}
@@ -16,6 +15,7 @@ struct AtmosphereParameters {
   light: vec4f,    // normalized solar irradiance, MS strength, LUT radius/height m
   viewport: vec4f, // width, height, atmosphere enabled, Sun enabled
   sun: vec4f,      // angular radius rad, displayed L, glare strength/radius rad
+  exposure: vec4f, // manual scene-referred exposure multiplier
 }
 @group(0) @binding(0) var<uniform> planet: WebGPUPlanet;
 @group(0) @binding(1) var<uniform> atmosphere: AtmosphereParameters;
@@ -233,15 +233,21 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
   return result;
 }
 
-fn atmosphereDecodeSrgb(value: vec3f) -> vec3f {
-  return select(pow((value + 0.055) / 1.055, vec3f(2.4)), value / 12.92,
-                value <= vec3f(0.04045));
-}
-
 fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let color = max(value, vec3f(0.0));
   return select(1.055 * pow(color, vec3f(1.0 / 2.4)) - 0.055, color * 12.92,
                 color <= vec3f(0.0031308));
+}
+
+// Narkowicz fitted ACES curve. Inputs remain scene-linear HDR until this point.
+fn atmosphereToneMapACES(value: vec3f) -> vec3f {
+  let x = max(value, vec3f(0.0)) * atmosphere.exposure.x;
+  return clamp((x * (2.51 * x + 0.03)) /
+               (x * (2.43 * x + 0.59) + 0.14), vec3f(0.0), vec3f(1.0));
+}
+
+fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
+  return vec4f(atmosphereEncodeSrgb(atmosphereToneMapACES(linear)), 1.0);
 }
 
 @vertex fn atmosphereVertex(@builtin(vertex_index) index: u32) -> @builtin(position) vec4f {
@@ -259,15 +265,14 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let depth = textureLoad(sceneDepth, coordinate, 0);
   let sceneDistance = webgpuSceneRayDistance(depth, direction, planet);
   let transport = atmosphereIntegrate(direction, sceneDistance);
-  let background = atmosphereDecodeSrgb(textureLoad(sceneColor, coordinate, 0).rgb);
+  let background = textureLoad(sceneColor, coordinate, 0).rgb;
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let solar = sunRadiance(direction, coordinate, pixelWidth);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
   let linear = (background + stars + solar + moon) * transport.transmittance +
                transport.radiance + moonTerrain;
-  // A display-referred LDR output only. HDR, exposure and tone mapping are M2.5.
-  return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), 1.0);
+  return atmosphereDisplayOutput(linear);
 }
 
 // Separate entry point keeps disabled atmosphere independent of LUT resources
@@ -284,10 +289,8 @@ fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  if (all(solar == vec3f(0.0)) && all(moon == vec3f(0.0)) && all(stars == vec3f(0.0)) &&
-      all(moonTerrain == vec3f(0.0))) { return source; }
-  let linear = atmosphereDecodeSrgb(source.rgb) + solar + moon + stars + moonTerrain;
-  return vec4f(clamp(atmosphereEncodeSrgb(linear), vec3f(0.0), vec3f(1.0)), source.a);
+  let linear = source.rgb + solar + moon + stars + moonTerrain;
+  return atmosphereDisplayOutput(linear);
 }
 `;
 

@@ -2,12 +2,12 @@ import { DeveloperError } from "@cesium/core";
 
 // Mean apparent semidiameter at 1 AU, approximately 0.2664 degrees.
 const angularRadius = 0.00465;
-const displayScale = (Math.PI * Math.sin(angularRadius) ** 2) / 10;
+const displayScale = (Math.PI * Math.sin(angularRadius) ** 2) / 2;
 
 /**
- * WebGPU-only Sun settings. Angles are radians. displayScale is a Sun-only
- * radiance-to-LDR scale in steradians, not a scene exposure. Irradiance remains
- * the single scene.atmosphere.lightIntensity value (normalized units, not lux).
+ * WebGPU-only Sun settings. Angles are radians. displayScale converts the
+ * shared normalized irradiance into scene-linear HDR radiance in steradians;
+ * final exposure and tone mapping are owned by the shared display pass.
  * @param {object} [options] Mutable setting overrides.
  * @returns {object} Validated independent settings.
  * @private

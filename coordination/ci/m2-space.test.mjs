@@ -53,6 +53,9 @@ test("Moon and stars render without Sun or atmospheric LUT resources", () => {
   assert.equal(writes.length, 2);
   assert.equal(renderer._moonShown, true);
   assert.equal(renderer._starsShown, true);
-  assert.equal(renderer.update(state, atmosphere, sun, { show: false, moonlightIntensity: 0 }, { show: false, intensity: 0 }), false);
+  const before = writes.length;
+  assert.equal(renderer.update(state, atmosphere, sun, { show: false, moonlightIntensity: 0 }, { show: false, intensity: 0 }), true);
+  assert.equal(renderer._activePipeline, renderer._sunPipeline);
+  assert.equal(writes.length, before + 2, "display tone mapping remains active with all celestial effects hidden");
 });
 

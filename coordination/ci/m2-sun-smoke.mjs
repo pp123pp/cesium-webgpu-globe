@@ -12,15 +12,23 @@ import { installSunProbe } from "./m2-sun-fixtures.mjs";
 
 process.env.M1_OUTPUT ??= "Build/m2-sun";
 
-const decode = (byte) => {
-  const value = byte / 255;
-  return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-};
-const encode = (value) => value <= 0.0031308
+// The HDR scene attachment and all celestial contributions are scene-linear.
+// Reproduce the production display transform independently: exposure, fitted
+// ACES, then one IEC sRGB encode. Never decode the RGBA16Float scene attachment.
+const encodeSrgb = (value) => value <= 0.0031308
   ? 12.92 * value : 1.055 * value ** (1 / 2.4) - 0.055;
+const toneMapACES = (value, exposure) => {
+  const x = Math.max(0, value) * exposure;
+  return Math.min(1, Math.max(0,
+    (x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14)));
+};
+const displayChannel = (linear, exposure) =>
+  Math.round(encodeSrgb(toneMapACES(linear, exposure)) * 255);
 const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
-const solarDelta = (sample) => sample.displayed.slice(0, 3).map(
-  (value, channel) => decode(value) - decode(sample.withoutSun[channel]),
+// Compare physical scene-linear solar contribution, not the difference of
+// tone-mapped display pixels (ACES is nonlinear and compresses highlights).
+const solarDelta = (sample) => sample.gpu.slice(0, 3).map(
+  (radiance, channel) => radiance * sample.gpu[4 + channel],
 );
 
 function assertComposite(sample, label) {
@@ -28,13 +36,15 @@ function assertComposite(sample, label) {
   assert.ok(sample.gpu.slice(0, 3).every((value) => value >= 0), `${label}: nonnegative solar radiance`);
   assert.ok(sample.gpu[3] >= 0 && sample.gpu[3] <= 1.000001, `${label}: bounded disk coverage`);
   assert.ok(sample.gpu.slice(4, 7).every((value) => value >= 0 && value <= 1.000001), `${label}: physical transmittance`);
+  assert.ok(Number.isFinite(sample.exposure) && sample.exposure >= 0.01 && sample.exposure <= 16,
+    `${label}: valid production exposure`);
   const expected = [];
   for (let channel = 0; channel < 3; ++channel) {
-    // Independent sRGB transfer and composition. The GPU probe supplies the
-    // production solar radiance, actual medium and completed surface color.
-    const linear = (decode(sample.gpu[12 + channel] * 255) + sample.gpu[channel]) *
+    // The probe supplies linear HDR scene color, solar radiance, transmittance
+    // and atmospheric in-scattering from the production WGSL.
+    const linear = (sample.gpu[12 + channel] + sample.gpu[channel]) *
       sample.gpu[4 + channel] + sample.gpu[8 + channel];
-    expected.push(Math.round(Math.max(0, Math.min(1, encode(linear))) * 255));
+    expected.push(displayChannel(linear, sample.exposure));
     assert.ok(Math.abs(sample.displayed[channel] - expected[channel]) <= 3,
       `${label}: actual canvas channel ${channel}: ${sample.displayed[channel]} vs ${expected[channel]}`);
     assert.ok(Math.abs(sample.gpu[16 + channel] - sample.nativeRay[channel]) < 1e-6,
