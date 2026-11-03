@@ -1,7 +1,7 @@
 {
   "suite": "m2.6-solar-visual",
   "browserConsole": [],
-  "capturedAt": "2026-11-03T09:36:15.442Z",
+  "capturedAt": "2026-11-03T09:46:51.548Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -12,9 +12,9 @@
       "args": []
     }
   },
-  "source": "1869091d0d4a95250e2c56f51cb574ab23598718",
-  "sourceStatus": "M coordination/STATUS.md\n M coordination/ci/m1-browser-harness.mjs\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M docs/ACCEPTANCE.md\n M package.json\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n M tasks/M2.md\n?? coordination/ci/build-solar-textures.mjs\n?? coordination/ci/m2-solar-assets.test.mjs\n?? coordination/ci/m2.6-solar-asset-fallback-smoke.mjs\n?? coordination/ci/m2.6-solar-visual-smoke.mjs\n?? coordination/evidence/M2.6/\n?? coordination/handoffs/M2.6-solar-visual-enhancement.md\n?? packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/\n?? packages/engine/Source/Scene/WebGPUSolarBloomShader.js",
-  "bundleSha256": "7da2bb6b31c68cd0143e30a2730cd65abe4aa2888fe3235c865e0bebf661e120",
+  "source": "e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee",
+  "sourceStatus": "",
+  "bundleSha256": "a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d",
   "browserErrors": [],
   "checks": [
     "A07/orbital-sunrise.png: actual WebGPU frame 4",
@@ -522,19 +522,19 @@
     "resolution": "1920x1080",
     "endToEndRenderAndQueueCompletionMs": {
       "bloomDisabled": {
-        "meanMs": 9.439999997615814,
-        "p50Ms": 8.899999976158142,
-        "p95Ms": 15.299999952316284,
+        "meanMs": 11.4,
+        "p50Ms": 10.899999976158142,
+        "p95Ms": 16.90000009536743,
         "samples": 30
       },
       "bloomEnabled": {
-        "meanMs": 9.27333333492279,
-        "p50Ms": 8.899999976158142,
-        "p95Ms": 14.400000095367432,
+        "meanMs": 10.543333331743876,
+        "p50Ms": 10.5,
+        "p95Ms": 12,
         "samples": 30
       }
     },
-    "initializationMs": 2632.0067000000004,
+    "initializationMs": 1787.4969,
     "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
   },
   "effectIsolation": {

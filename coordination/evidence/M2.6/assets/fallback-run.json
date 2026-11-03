@@ -6,7 +6,7 @@
       "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
     }
   ],
-  "capturedAt": "2026-11-03T09:37:46.749Z",
+  "capturedAt": "2026-11-03T09:46:58.643Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -17,9 +17,9 @@
       "args": []
     }
   },
-  "source": "1869091d0d4a95250e2c56f51cb574ab23598718",
-  "sourceStatus": "M coordination/STATUS.md\n M coordination/ci/m1-browser-harness.mjs\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M docs/ACCEPTANCE.md\n M package.json\n M packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n M tasks/M2.md\n?? coordination/ci/build-solar-textures.mjs\n?? coordination/ci/m2-solar-assets.test.mjs\n?? coordination/ci/m2.6-solar-asset-fallback-smoke.mjs\n?? coordination/ci/m2.6-solar-visual-smoke.mjs\n?? coordination/evidence/M2.6/\n?? coordination/handoffs/M2.6-solar-visual-enhancement.md\n?? packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/\n?? packages/engine/Source/Scene/WebGPUSolarBloomShader.js",
-  "bundleSha256": "7da2bb6b31c68cd0143e30a2730cd65abe4aa2888fe3235c865e0bebf661e120",
+  "source": "e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee",
+  "sourceStatus": "",
+  "bundleSha256": "a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d",
   "browserErrors": [],
   "checks": [
     "single failed solar payload falls back to neutral textures and releases every partial/fallback allocation"

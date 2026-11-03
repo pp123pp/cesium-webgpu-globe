@@ -1,6 +1,6 @@
 # M2.6 preliminary evidence — IN PROGRESS
 
-This directory contains real headed-browser WebGPU captures and run diagnostics from the development worktree. It is deliberately labelled preliminary: the captured bundle was built from the M2.6 worktree before its first commit, so preliminary-run.json records the main base SHA and a dirty worktree. It must not be presented as final-HEAD acceptance evidence. A new evidence capture is required after the branch commit and final PR HEAD are established.
+This directory contains real headed-browser WebGPU captures and run diagnostics from the committed M2.6 implementation. The capture was built from commit e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee with a clean source worktree. The report is tied to that exact implementation commit and bundle; later evidence-only commits do not alter the built source. It remains preliminary acceptance evidence, not final PR-head acceptance.
 
 ## Environment
 
@@ -8,8 +8,9 @@ This directory contains real headed-browser WebGPU captures and run diagnostics 
 - Cesium: 1.146.0.
 - Adapter: Intel, architecture xe-lpg, non-fallback adapter. Device/driver identifiers were not exposed by requestAdapterInfo().
 - Viewport: 1920×1080 for A07–A10 captures; resize assertion at 1280×720.
-- Source base in preliminary run: 1869091d0d4a95250e2c56f51cb574ab23598718.
-- Latest bundle SHA-256: 7da2bb6b31c68cd0143e30a2730cd65abe4aa2888fe3235c865e0bebf661e120.
+- Tested source commit: e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee.
+- Base main commit: 1869091d0d4a95250e2c56f51cb574ab23598718.
+- Bundle SHA-256: a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d.
 - Browser console errors: none recorded by the harness.
 
 ## Scenario run status
@@ -42,10 +43,10 @@ The harness measures viewer.render() plus queue submission completion via GPUQue
 
 Latest preliminary run at 1920×1080, 30 samples:
 
-- Bloom disabled: mean 9.44 ms, p50 8.90 ms, p95 15.30 ms.
-- Bloom enabled: mean 9.27 ms, p50 8.90 ms, p95 14.40 ms.
+- Bloom disabled: mean 11.40 ms, p50 10.90 ms, p95 16.90 ms.
+- Bloom enabled: mean 10.54 ms, p50 10.50 ms, p95 12.00 ms.
 - GPU frame time: UNVERIFIED.
-- Initial renderer setup: approximately 2.63 s (includes browser startup/scene setup, not isolated asset fetch/decode time).
+- Initial renderer setup: approximately 1.79 s (includes browser startup/scene setup, not isolated asset fetch/decode time).
 
 The apparent timing difference is within run-to-run noise and does not prove Bloom has zero GPU cost. A GPU timestamp query or controlled external profiler is still required.
 
