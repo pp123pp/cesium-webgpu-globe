@@ -1,7 +1,7 @@
 {
   "suite": "m2.6-solar-visual",
   "browserConsole": [],
-  "capturedAt": "2026-11-03T09:46:51.548Z",
+  "capturedAt": "2026-11-03T09:52:25.052Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -12,8 +12,8 @@
       "args": []
     }
   },
-  "source": "e1dab082bbfdbd3cba1bb24b3d39132f02ed33ee",
-  "sourceStatus": "",
+  "source": "1c54722a32c5446f4796347e5efeec60f7cad545",
+  "sourceStatus": "M coordination/ci/m2.6-solar-visual-smoke.mjs",
   "bundleSha256": "a098d91da5bd3ddfa63456be465b2234715cbff969a23ccfcb2beff5c3c2608d",
   "browserErrors": [],
   "checks": [
@@ -522,19 +522,19 @@
     "resolution": "1920x1080",
     "endToEndRenderAndQueueCompletionMs": {
       "bloomDisabled": {
-        "meanMs": 11.4,
-        "p50Ms": 10.899999976158142,
-        "p95Ms": 16.90000009536743,
+        "meanMs": 7.5533333341280615,
+        "p50Ms": 7.399999976158142,
+        "p95Ms": 8.899999976158142,
         "samples": 30
       },
       "bloomEnabled": {
-        "meanMs": 10.543333331743876,
-        "p50Ms": 10.5,
-        "p95Ms": 12,
+        "meanMs": 9.773333330949148,
+        "p50Ms": 10,
+        "p95Ms": 11,
         "samples": 30
       }
     },
-    "initializationMs": 1787.4969,
+    "initializationMs": 1709.1742000000002,
     "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
   },
   "effectIsolation": {

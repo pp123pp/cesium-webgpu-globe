@@ -2,18 +2,18 @@
   "resolution": "1920x1080",
   "endToEndRenderAndQueueCompletionMs": {
     "bloomDisabled": {
-      "meanMs": 11.4,
-      "p50Ms": 10.899999976158142,
-      "p95Ms": 16.90000009536743,
+      "meanMs": 7.5533333341280615,
+      "p50Ms": 7.399999976158142,
+      "p95Ms": 8.899999976158142,
       "samples": 30
     },
     "bloomEnabled": {
-      "meanMs": 10.543333331743876,
-      "p50Ms": 10.5,
-      "p95Ms": 12,
+      "meanMs": 9.773333330949148,
+      "p50Ms": 10,
+      "p95Ms": 11,
       "samples": 30
     }
   },
-  "initializationMs": 1787.4969,
+  "initializationMs": 1709.1742000000002,
   "gpuTimestampQueries": "UNVERIFIED; wall-clock queue completion is not a GPU timestamp"
 }

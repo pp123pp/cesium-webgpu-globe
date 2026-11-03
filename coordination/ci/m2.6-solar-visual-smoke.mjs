@@ -93,6 +93,12 @@ await runM1BrowserSuite("m2.6-solar-visual", async ({ page, report, output }) =>
     window.__m2SolarView(400000, 0.5);
     return {
       adapter: window.__m1.adapterInfo,
+      deviceFeatures: Array.from(scene.context._device.features),
+      timestampQuerySupported: scene.context._device.features.has("timestamp-query"),
+      limits: {
+        maxTextureDimension2D: scene.context._device.limits.maxTextureDimension2D,
+        maxBufferSize: scene.context._device.limits.maxBufferSize,
+      },
       viewport: [viewer.canvas.width, viewer.canvas.height],
       browser: navigator.userAgent,
     };

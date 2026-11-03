@@ -6,10 +6,18 @@
     "description": "",
     "isFallbackAdapter": false
   },
+  "deviceFeatures": [
+    "core-features-and-limits"
+  ],
+  "timestampQuerySupported": false,
+  "limits": {
+    "maxTextureDimension2D": 8192,
+    "maxBufferSize": 268435456
+  },
   "viewport": [
     1920,
     1080
   ],
   "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
-  "initializationMs": 1787.4969
+  "initializationMs": 1709.1742000000002
 }
