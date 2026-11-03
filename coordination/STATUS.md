@@ -56,7 +56,7 @@ After M2.5 is complete, perform the final M2 acceptance and record A07–A10 fro
 
 M2.6 must also coordinate the required final acceptance evidence and regression gates. Follow the current CI policy: Full does not include rendering acceptance or complete WebGL differential. Those checks remain separate and require the applicable explicit authorization; do not infer them from a successful Full run.
 
-**M2.6 A10 supplement:** the existing M2.3 analytic aureole is not sufficient by itself. M2.6 must add visible but restrained HDR bloom and radial Sun Rays around the actual Sun, with the compositing, occlusion, exposure and temporal-stability constraints recorded in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md# m26-a10-supplemental-solar-appearance-requirement). This is an acceptance requirement, not an assertion that implementation has started.
+**M2.6 A10 supplement:** the existing M2.3 analytic aureole is not sufficient by itself. M2.6 must add visible but restrained HDR bloom and radial Sun Rays around the actual Sun, with the compositing, occlusion, exposure and temporal-stability constraints recorded in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md#m26-a10-supplemental-solar-appearance-requirement). This is an acceptance requirement, not an assertion that implementation has started.
 
 ## Later roadmap
 
