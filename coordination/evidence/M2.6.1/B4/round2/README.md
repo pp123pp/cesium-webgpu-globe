@@ -76,9 +76,9 @@ The baseline/candidate physical-only and physical-no-Bloom images are byte-ident
 
 ## Actual image review and limits
 
-The integration owner opened the original exposure 0.5/1/2, night, twilight-control and terrain-occlusion PNGs, plus representative matching baseline images. An independent reviewer opened high-orbit limb, near-ground low Sun, −1°/−4° transition, partial Earth and terrain-hidden/removed images. Review used raw captures, without recoloring, rescaling or generated substitutes.
+The integration owner and an independent reviewer opened the original exposure 0.5/1/2, night, twilight-control and terrain-occlusion PNGs, plus representative matching baseline images. Review used raw captures, without recoloring, rescaling or generated substitutes. The user explicitly confirmed B4 / B05 visual acceptance on 2026-11-04.
 
-The corrected orbital frames make the disk, atmospheric limb and Earth assessable across all three exposures. Saturated horizon colors, prominent radial artwork, slight silhouette stair steps, weak twilight contrast and bright unlit night terrain remain visible concerns. The smooth synthetic occluder limits scenic realism. Script PASS does not close visual acceptance.
+The corrected orbital frames make the disk, atmospheric limb and Earth assessable across all three exposures. Saturated horizon colors, prominent radial artwork, slight silhouette stair steps, weak twilight contrast and bright unlit night terrain remain visible concerns. The smooth synthetic occluder limits scenic realism. Automated PASS was supplemented by manual raw-image review and explicit user visual acceptance.
 
 ## Verification and reproduction
 
@@ -99,4 +99,4 @@ node coordination/ci/m2.6.1-b4-audit.mjs coordination/evidence/M2.6.1/B4/round2/
 
 The [capture script](../../../../ci/m2.6.1-b4-atmospheric-glow-smoke.mjs), [fixtures](../../../../ci/m2.6.1-b4-fixtures.mjs) and [audit](../../../../ci/m2.6.1-b4-audit.mjs) preserve the checks. No new timing run, resident-VRAM measurement, full B5 matrix, 120-frame sequence or additional local WebGL differential was performed. Round-one captures/timing remain historical and are not overwritten or relabeled as fresh evidence.
 
-**Stop at B4 for the user's visual re-review.**
+**B4 / B05 visual acceptance: PASS (user-confirmed 2026-11-04).** PR #25 merge is authorized. B5/B07 remains unstarted and requires a separate instruction.
