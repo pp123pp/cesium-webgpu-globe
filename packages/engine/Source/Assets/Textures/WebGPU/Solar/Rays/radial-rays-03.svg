@@ -1,1 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024"><defs><radialGradient id="core"><stop stop-color="#fff" stop-opacity=".95"/><stop offset=".08" stop-color="#fff" stop-opacity=".5"/><stop offset=".42" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs><circle cx="512" cy="512" r="270" fill="url(#core)"/><path d="M577.0 512.0 L872.0 512.0" stroke="#fff" stroke-width="3.4" stroke-linecap="round" opacity="0.086"/><path d="M574.8 528.8 L891.9 613.8" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.110"/><path d="M568.3 544.5 L881.4 725.3" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.135"/><path d="M558.0 558.0 L773.6 773.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.160"/><path d="M544.5 568.3 L713.6 861.2" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.089"/><path d="M528.8 574.8 L625.0 933.6" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.114"/><path d="M512.0 577.0 L512.0 891.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.139"/><path d="M495.2 574.8 L405.1 911.0" stroke="#fff" stroke-width="3.4" stroke-linecap="round" opacity="0.163"/><path d="M479.5 568.3 L288.8 898.6" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.093"/><path d="M466.0 558.0 L236.4 787.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.118"/><path d="M455.7 544.5 L145.7 723.5" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.143"/><path d="M449.2 528.8 L158.2 606.8" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.167"/><path d="M447.0 512.0 L112.4 512.0" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.097"/><path d="M449.2 495.2 L93.9 400.0" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.122"/><path d="M455.7 479.5 L186.2 323.9" stroke="#fff" stroke-width="3.4" stroke-linecap="round" opacity="0.146"/><path d="M466.0 466.0 L222.4 222.4" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.171"/><path d="M479.5 455.7 L290.6 128.5" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.101"/><path d="M495.2 449.2 L412.1 139.1" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.125"/><path d="M512.0 447.0 L512.0 92.6" stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity="0.150"/><path d="M528.8 449.2 L605.9 161.7" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.175"/><path d="M544.5 455.7 L710.0 169.1" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.105"/><path d="M558.0 466.0 L815.6 208.4" stroke="#fff" stroke-width="3.4" stroke-linecap="round" opacity="0.129"/><path d="M568.3 479.5 L834.7 325.7" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.154"/><path d="M574.8 495.2 L904.1 406.9" stroke="#fff" stroke-width="0.8" stroke-linecap="round" opacity="0.179"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <radialGradient id="core"><stop stop-color="#fff" stop-opacity="0.20"/><stop offset=".08" stop-color="#fff" stop-opacity="0.09"/><stop offset=".42" stop-color="#fff" stop-opacity="0.02"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <filter id="feather" x="-50%" y="-200%" width="200%" height="500%" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="9.0"/></filter>
+    <linearGradient id="beam1" gradientUnits="userSpaceOnUse" x1="16" y1="0" x2="360" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam2" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="300" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam3" gradientUnits="userSpaceOnUse" x1="20" y1="0" x2="410" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam4" gradientUnits="userSpaceOnUse" x1="18" y1="0" x2="335" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam5" gradientUnits="userSpaceOnUse" x1="28" y1="0" x2="276" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="beam6" gradientUnits="userSpaceOnUse" x1="22" y1="0" x2="388" y2="0">
+      <stop stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".06" stop-color="#fff" stop-opacity=".72"/>
+      <stop offset=".16" stop-color="#fff" stop-opacity="1"/>
+      <stop offset=".40" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset=".72" stop-color="#fff" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="512" cy="512" r="270" fill="url(#core)"/>
+  <path d="M16 0 C40.08 -6.44 95.12 -36.06 184.56 -29.62 C291.2 -19.12 339.36 -5.76 360 -3 C332.48 0.22 284.32 7.96 184.56 12.24 C95.12 22.36 36.64 6.9 16 0Z" transform="translate(512 512) rotate(8)" fill="url(#beam1)" filter="url(#feather)" opacity="0.08"/>
+  <path d="M24 0 C43.32 -4.62 87.48 -15.13 159.24 -10.51 C244.8 -7.81 283.44 0.02 300 2 C277.92 4.31 239.28 11.08 159.24 19.52 C87.48 26.78 40.56 4.95 24 0Z" transform="translate(512 512) rotate(82)" fill="url(#beam2)" filter="url(#feather)" opacity="0.07"/>
+  <path d="M20 0 C47.3 -7.28 109.7 -41.72 211.1 -34.44 C332 -22.14 386.6 -7.12 410 -4 C378.8 -0.36 324.2 8.52 211.1 12.88 C109.7 24.32 43.4 7.8 20 0Z" transform="translate(512 512) rotate(137)" fill="url(#beam3)" filter="url(#feather)" opacity="0.07"/>
+  <path d="M18 0 C40.19 -5.46 90.91 -14.79 173.33 -9.33 C271.6 -7.53 315.98 1.66 335 4 C309.64 6.73 265.26 14.64 173.33 26.16 C90.91 34.74 37.02 5.85 18 0Z" transform="translate(512 512) rotate(210)" fill="url(#beam4)" filter="url(#feather)" opacity="0.09"/>
+  <path d="M28 0 C45.36 -6.16 85.04 -31.84 149.52 -25.68 C226.4 -16.83 261.12 -4.64 276 -2 C256.16 1.08 221.44 8.94 149.52 14.36 C85.04 24.04 42.88 6.6 28 0Z" transform="translate(512 512) rotate(249)" fill="url(#beam5)" filter="url(#feather)" opacity="0.06"/>
+  <path d="M22 0 C47.62 -5.04 106.18 -14.96 201.34 -9.92 C314.8 -7.67 366.04 0.84 388 3 C358.72 5.52 307.48 12.86 201.34 22.84 C106.18 30.76 43.96 5.4 22 0Z" transform="translate(512 512) rotate(321)" fill="url(#beam6)" filter="url(#feather)" opacity="0.08"/>
+</svg>

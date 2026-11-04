@@ -1,0 +1,116 @@
+{
+  "testedCommit": "4da1baceb9567288ff1e5ac06227968dd1f6d851",
+  "runtimeIdenticalTo": "59f6089bfa63212f74a2913c6d11a6d13ec0a5d9",
+  "bundleSha256": "465ce843e64ae88f7e3a9e372b6c405ef220c5ea5cc57e48de454dc865b3a1ec",
+  "browser": "156.0.8078.4",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "comparisonCaptures": 38,
+  "sameStateComparisons": "PASS",
+  "gpuTimestampPassSumMs": {
+    "baseline": {
+      "mean": 8.377685333333334,
+      "p50": 8.388608,
+      "p95": 8.716288
+    },
+    "combined": {
+      "mean": 7.180561066666667,
+      "p50": 7.405567999999999,
+      "p95": 7.667712
+    },
+    "deltaMean": -1.197124266666667
+  },
+  "diskEnergy": {
+    "samples": 4096,
+    "meanY": 4.994052865882888,
+    "expected": 5,
+    "relativeError": 0.0011894268234223793,
+    "angularRadius": 0.00465,
+    "showAtmosphere": false,
+    "sourceOnly": true,
+    "profileSamples": [
+      [
+        6.243719100952148,
+        6.243501663208008,
+        6.242995738983154,
+        1
+      ],
+      [
+        2.9464850425720215,
+        2.8944830894470215,
+        2.773146152496338,
+        1
+      ]
+    ]
+  },
+  "motion": {
+    "frames": 120,
+    "maxMeanDelta": 0.0024475972788944272,
+    "maxP99Delta": 0.024072089638819738,
+    "maxRepeat": 0,
+    "newTextures": 0,
+    "newBuffers": 0,
+    "assetsReused": true
+  },
+  "nativeLifecycle": {
+    "comparison": {
+      "baseline": [
+        669,
+        669
+      ],
+      "combined": [
+        671,
+        671
+      ]
+    },
+    "physicsMotion": {
+      "created": 32,
+      "destroyed": 32,
+      "live": []
+    }
+  },
+  "shaderAndAssets": {
+    "addedTextures": 0,
+    "modifiedRayTextures": 3,
+    "rayFormat": "r8unorm",
+    "rayDimensions": [
+      512,
+      512
+    ],
+    "rayPayloadBytes": 786432,
+    "solarPayloadBytes": 2883584,
+    "logicalBytesDelta": 0,
+    "raySamples": 3,
+    "solarSamples": 8,
+    "addedRenderPasses": 0
+  },
+  "lifecyclePhases": {
+    "baseline": {
+      "beforeDrain": 210,
+      "afterDrain": 210,
+      "afterEnable": 210,
+      "afterDestroyCall": 210,
+      "atLossNotification": 211,
+      "afterTwoAnimationFrames": 211
+    },
+    "combined": {
+      "beforeDrain": 211,
+      "afterDrain": 211,
+      "afterEnable": 211,
+      "afterDestroyCall": 211,
+      "atLossNotification": 211,
+      "afterTwoAnimationFrames": 211
+    }
+  },
+  "hashes": {
+    "packages/engine/Source/Scene/WebGPUSunShader.js": "e4f8a8aa2737f38a2e94223ce2ff04ab2a9db962213464b2f5fcd00ba2ad1a2f",
+    "coordination/ci/m2-b1-comparison-smoke.mjs": "20c813baa33b44a5cd586c4f257beab43201b5006141e5140a1badce86d79164",
+    "coordination/ci/m2-b1-physics-motion-smoke.mjs": "4115dc4514670b348f64ce3883ecaac30d1cdf486fa7847077cba75cb96a1347",
+    "coordination/ci/m2-b1-solar.test.mjs": "02abb444dc77a6a0eafdb921a115dd1015a63d58c864ea02865f5d92a26f099e"
+  }
+}

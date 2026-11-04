@@ -17,6 +17,33 @@ fn sunDiskCoverage(direction: vec3f, pixelWidth: f32) -> f32 {
   return 1.0 - smoothstep(radius - halfWidth, radius + halfWidth, chord);
 }
 
+fn sunDiskProfile(chord: f32) -> vec3f {
+  // A restrained limb-darkening profile gives the analytic disk a readable
+  // core/edge transition. Normalize its projected-disk integral to one so
+  // the existing angular radius and irradiance calibration remain unchanged.
+  let sinTheta = chord * sqrt(max(1.0 - 0.25 * chord * chord, 0.0));
+  let radial = clamp(sinTheta / max(sin(atmosphere.sun.x), 1.0e-7), 0.0, 1.0);
+  let limb = sqrt(max(1.0 - radial * radial, 0.0));
+  let limbDarkening = 0.60;
+  let profile = (1.0 - limbDarkening * (1.0 - limb)) / (1.0 - limbDarkening / 3.0);
+  // A subtle warm-white limb is normalized to unit Rec.709 luminance; it
+  // changes edge chromaticity without changing the disk's photometric energy.
+  let warmWhite = vec3f(1.0295226, 0.9986369, 0.9265703);
+  let edgeTint = mix(vec3f(1.0), warmWhite, (1.0 - limb) * 0.65);
+  return vec3f(profile) * edgeTint;
+}
+
+fn solarRayUv(uv: vec2f, angle: f32, scale: f32) -> vec2f {
+  // Deterministic per-layer transforms decorrelate authored spokes while
+  // keeping every mask centered on the true projected Sun direction.
+  let centered = (uv - vec2f(0.5)) * scale;
+  let c = cos(angle);
+  let s = sin(angle);
+  let rotated = vec2f(c * centered.x - s * centered.y,
+                      s * centered.x + c * centered.y);
+  return clamp(vec2f(0.5) + rotated, vec2f(0.0), vec2f(1.0));
+}
+
 fn sunSkyAtPixel(pixel: vec2i) -> f32 {
   let size = vec2i(textureDimensions(sceneDepth));
   if (any(pixel < vec2i(0)) || any(pixel >= size)) { return 0.0; }
@@ -68,7 +95,7 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   if (textureLoad(sceneDepth, pixel, 0) != 0.0 || !sunEarthVisible(direction)) {
     return vec3f(0.0);
   }
-  let disk = sunDiskCoverage(direction, pixelWidth);
+  let disk = vec3f(sunDiskCoverage(direction, pixelWidth)) * sunDiskProfile(chord);
   let visibility = sunSourceVisibility();
   let r = clamp(chord / max(outer, 1.0e-7), 0.0, 1.0);
   let axis = select(vec3f(0.0, 1.0, 0.0), vec3f(0.0, 0.0, 1.0),
@@ -85,17 +112,21 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let wide = textureSampleLevel(solarWideHalo, solarSampler, uv, 0.0).r;
   let corona = textureSampleLevel(solarCorona, solarSampler, uv, 0.0).r;
   let noise = textureSampleLevel(solarNoise, solarSampler, uv, 0.0).r;
-  let rays = textureSampleLevel(solarRaysPrimary, solarSampler, uv, 0.0).r * 0.48 +
-             textureSampleLevel(solarRaysFine, solarSampler, uv, 0.0).r * 0.30 +
-             textureSampleLevel(solarRaysBroad, solarSampler, uv, 0.0).r * 0.22;
+  let primaryRayUv = solarRayUv(uv, 0.11, 0.96);
+  let fineRayUv = solarRayUv(uv, -0.19, 1.07);
+  let broadRayUv = solarRayUv(uv, 0.31, 0.86);
+  let rays = textureSampleLevel(solarRaysPrimary, solarSampler, primaryRayUv, 0.0).r * 0.45 +
+             textureSampleLevel(solarRaysFine, solarSampler, fineRayUv, 0.0).r * 0.15 +
+             textureSampleLevel(solarRaysBroad, solarSampler, broadRayUv, 0.0).r * 0.40;
   let tint = mix(vec3f(1.0), textureSampleLevel(solarGlowGradient, solarSampler,
                                 vec2f(1.0 - r, 0.5), 0.0).rgb, atmosphere.exposure.w);
   let radialFade = 1.0 - smoothstep(0.82, 1.0, r);
   let halo = atmosphere.sun.z * radialFade * (0.70 * soft * atmosphere.solarEffects.y +
                 0.25 * wide * atmosphere.solarEffects.z);
   let coronaDetail = atmosphere.sun.z * 2.2 * corona * mix(0.75, 1.15, noise) * atmosphere.solarEffects.w;
-  let rayDetail = atmosphere.sun.z * 4.8 * rays * radialFade * atmosphere.solarEffects.x;
-  return atmosphere.sun.y * (vec3f(disk) + tint * (halo + coronaDetail + rayDetail) * visibility);
+  let rayFade = 1.0 - smoothstep(0.68, 1.0, r);
+  let rayDetail = atmosphere.sun.z * 2.5 * rays * rayFade * atmosphere.solarEffects.x;
+  return atmosphere.sun.y * (disk + tint * (halo + coronaDetail + rayDetail) * visibility);
 }
 `;
 

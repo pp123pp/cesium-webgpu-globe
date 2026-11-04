@@ -1,0 +1,12 @@
+M1 ground-sun: 2 terrain tiles, 0 imagery draws
+M1 low-orbit-sun: 5 terrain tiles, 0 imagery draws
+M1 high-orbit-sun: 0 terrain tiles, 0 imagery draws
+M1 sun-four-minutes-later: 0 terrain tiles, 0 imagery draws
+M1 limb-1.2: 4 terrain tiles, 0 imagery draws
+M1 limb-0: 6 terrain tiles, 0 imagery draws
+M1 limb--1.2: 7 terrain tiles, 0 imagery draws
+M1 ground-horizon-half-sun: 2 terrain tiles, 0 imagery draws
+M1 sun-behind-real-mountain: 56 terrain tiles, 0 imagery draws
+M1 ground-low-sun-atmosphere: 2 terrain tiles, 0 imagery draws
+M1 resized-off-axis-sun: 0 terrain tiles, 0 imagery draws
+M1 m2-sun PASS: production WGSL and actual canvas show native solar position and a 0.53-degree disk at 2 m, 400 km and 35,786 km, fixed camera and a four-minute scene-time advance visibly follow independent native solar projection, orbital limb and 2 m ground horizon give whole disks, progressive partial occultation and complete disappearance, real heightmap depth hides a ray that misses Earth, restoring terrain reveals it, and fully hidden subpixel disks produce no detached halo, actual atmosphere reddens and attenuates the disk; shared irradiance visibly scales it and zero removes it, independent atmosphere/Sun controls, camera rotation and resize preserve position, angular size and current color/depth bindings, real solar highlights and restrained finite glare have bounded support and vanish when the entire source is occulted, actual GPU loss stops rendering and teardown releases every native buffer/texture, resized target and probe readback

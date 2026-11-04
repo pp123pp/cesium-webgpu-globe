@@ -409,10 +409,12 @@ await runM1BrowserSuite("m2.6-solar-visual", async ({ page, report, output }) =>
     viewer.useDefaultRenderLoop = true;
     device.destroy();
     await device.lost;
+    const bloomFramesAtLoss = viewer.scene._atmosphere.statistics.bloomFrames;
     await new Promise(requestAnimationFrame);
     await new Promise(requestAnimationFrame);
     return { errors: [...errors], stopped: !viewer.useDefaultRenderLoop,
-      newBloomFrames: viewer.scene._atmosphere.statistics.bloomFrames - before };
+      inFlightBloomFrames: bloomFramesAtLoss - before,
+      newBloomFrames: viewer.scene._atmosphere.statistics.bloomFrames - bloomFramesAtLoss };
   });
   assert.equal(report.loss.errors.length, 1);
   assert.match(report.loss.errors[0], /device lost/i);

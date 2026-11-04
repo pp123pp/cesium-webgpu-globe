@@ -1,0 +1,944 @@
+{
+  "suite": "m2-solar-occlusion",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T13:28:16.920Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+  "sourceStatus": "",
+  "bundleSha256": "1d3fb59e72d2c816e8644657f42fa82cb62f4cb899a9eb3eee95a23371e3c074",
+  "browserErrors": [],
+  "checks": [
+    "actual partial/full Earth occultation and real terrain depth constrain Rays/Halo/Corona/Bloom together"
+  ],
+  "scenes": [
+    {
+      "name": "limb-1.5",
+      "changed": 61402,
+      "energy": 4651274,
+      "blocked": 79380,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "statistics": {
+        "frame": 34,
+        "selectedTiles": 12,
+        "levels": [
+          7,
+          7,
+          7,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 102,
+        "loadedTiles": 102,
+        "terrain": {
+          "requests": 102,
+          "deferred": 0,
+          "meshes": 102,
+          "fills": 64,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 336,
+          "buffersDestroyed": 131,
+          "bufferBytes": 1136296,
+          "drawCalls": 12,
+          "triangles": 6840,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 33,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 34,
+          "bloomPasses": 98,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 281,
+      "backgroundPixels": 141497,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb-0.4",
+      "changed": 53536,
+      "energy": 3410664,
+      "blocked": 87824,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "statistics": {
+        "frame": 42,
+        "selectedTiles": 12,
+        "levels": [
+          7,
+          7,
+          7,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 102,
+        "loadedTiles": 102,
+        "terrain": {
+          "requests": 102,
+          "deferred": 0,
+          "meshes": 102,
+          "fills": 64,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 336,
+          "buffersDestroyed": 131,
+          "bufferBytes": 1136296,
+          "drawCalls": 12,
+          "triangles": 6840,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 40,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 42,
+          "bloomPasses": 122,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 248,
+      "backgroundPixels": 133007,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb-0",
+      "changed": 48236,
+      "energy": 2243389,
+      "blocked": 90862,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "statistics": {
+        "frame": 53,
+        "selectedTiles": 12,
+        "levels": [
+          7,
+          7,
+          7,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 102,
+        "loadedTiles": 102,
+        "terrain": {
+          "requests": 110,
+          "deferred": 0,
+          "meshes": 110,
+          "fills": 64,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 352,
+          "buffersDestroyed": 147,
+          "bufferBytes": 1136296,
+          "drawCalls": 12,
+          "triangles": 6840,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 50,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 53,
+          "bloomPasses": 155,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 204,
+      "backgroundPixels": 130041,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb--0.4",
+      "changed": 43468,
+      "energy": 1165962,
+      "blocked": 93894,
+      "hiddenMax": 0,
+      "centerDelta": [
+        0,
+        0,
+        0
+      ],
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "statistics": {
+        "frame": 61,
+        "selectedTiles": 12,
+        "levels": [
+          7,
+          7,
+          7,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 102,
+        "loadedTiles": 102,
+        "terrain": {
+          "requests": 110,
+          "deferred": 0,
+          "meshes": 110,
+          "fills": 64,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 352,
+          "buffersDestroyed": 147,
+          "bufferBytes": 1136296,
+          "drawCalls": 12,
+          "triangles": 6840,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 57,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 61,
+          "bloomPasses": 179,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 154,
+      "backgroundPixels": 127131,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "limb--1.5",
+      "changed": 0,
+      "energy": 0,
+      "blocked": 102682,
+      "hiddenMax": 0,
+      "centerDelta": [
+        0,
+        0,
+        0
+      ],
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "statistics": {
+        "frame": 72,
+        "selectedTiles": 14,
+        "levels": [
+          7,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6,
+          7,
+          7,
+          7,
+          7,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 110,
+        "loadedTiles": 110,
+        "terrain": {
+          "requests": 118,
+          "deferred": 0,
+          "meshes": 118,
+          "fills": 64,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 368,
+          "buffersDestroyed": 147,
+          "bufferBytes": 1225096,
+          "drawCalls": 14,
+          "triangles": 7980,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 67,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 72,
+          "bloomPasses": 212,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 2,
+      "backgroundPixels": 160817,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "real-mountain-occluder",
+      "height": 20000,
+      "elevation": -3.858130543161609,
+      "rayMinimumHeight": 5500.000000001778,
+      "longitude": 91.86435874719605,
+      "latitude": -0.0029331796488252654,
+      "statistics": {
+        "frame": 132,
+        "selectedTiles": 76,
+        "levels": [
+          11,
+          11,
+          11,
+          11,
+          10,
+          11,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          11,
+          11,
+          11,
+          11,
+          10,
+          11,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9
+        ],
+        "cacheTiles": 238,
+        "loadedTiles": 238,
+        "terrain": {
+          "requests": 356,
+          "deferred": 0,
+          "meshes": 356,
+          "fills": 162,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 1043,
+          "buffersDestroyed": 566,
+          "bufferBytes": 10297232,
+          "drawCalls": 76,
+          "triangles": 175104,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 126,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 132,
+          "bloomPasses": 392,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "distinctSampledColors": 172,
+      "backgroundPixels": 131211,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "mountain-removed",
+      "changed": 67719,
+      "energy": 5252707,
+      "blocked": 71810,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "statistics": {
+        "frame": 174,
+        "selectedTiles": 24,
+        "levels": [
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          8,
+          8,
+          10,
+          10,
+          10,
+          10,
+          9,
+          9,
+          9,
+          9,
+          9,
+          9,
+          8,
+          8
+        ],
+        "cacheTiles": 150,
+        "loadedTiles": 150,
+        "terrain": {
+          "requests": 506,
+          "deferred": 0,
+          "meshes": 506,
+          "fills": 237,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 1493,
+          "buffersDestroyed": 1192,
+          "bufferBytes": 1697768,
+          "drawCalls": 24,
+          "triangles": 13680,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 167,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 13,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 2883584,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 174,
+          "bloomPasses": 518,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "distinctSampledColors": 314,
+      "backgroundPixels": 148100,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "limb": [
+    {
+      "fraction": 1.5,
+      "changed": 61402,
+      "energy": 4651274,
+      "blocked": 79380,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        399,
+        224
+      ]
+    },
+    {
+      "fraction": 0.4,
+      "changed": 53536,
+      "energy": 3410664,
+      "blocked": 87824,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        399,
+        224
+      ]
+    },
+    {
+      "fraction": 0,
+      "changed": 48236,
+      "energy": 2243389,
+      "blocked": 90862,
+      "hiddenMax": 0,
+      "centerDelta": [
+        255,
+        255,
+        255
+      ],
+      "center": [
+        399,
+        224
+      ]
+    },
+    {
+      "fraction": -0.4,
+      "changed": 43468,
+      "energy": 1165962,
+      "blocked": 93894,
+      "hiddenMax": 0,
+      "centerDelta": [
+        0,
+        0,
+        0
+      ],
+      "center": [
+        400,
+        224
+      ]
+    },
+    {
+      "fraction": -1.5,
+      "changed": 0,
+      "energy": 0,
+      "blocked": 102682,
+      "hiddenMax": 0,
+      "centerDelta": [
+        0,
+        0,
+        0
+      ],
+      "center": [
+        399,
+        225
+      ]
+    }
+  ],
+  "mountain": {
+    "observation": {
+      "changed": 45490,
+      "energy": 1480540,
+      "blocked": 71810,
+      "hiddenMax": 0,
+      "centerDelta": [
+        0,
+        0,
+        0
+      ],
+      "center": [
+        400,
+        224
+      ]
+    },
+    "gpu": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2.430215602089447e-7,
+      0,
+      0,
+      0,
+      411147.75,
+      0.0330810546875,
+      0.1705322265625,
+      0.44775390625,
+      1,
+      0.9994661808013916,
+      0.03266472741961479,
+      -0.000622655963525176,
+      0.0002627605863381177,
+      0.9994703531265259,
+      0.03253341093659401,
+      -0.0007540325168520212,
+      0
+    ],
+    "analyticEarthHit": false,
+    "realMeshHit": true
+  },
+  "mountainRemoved": {
+    "changed": 67719,
+    "energy": 5252707,
+    "blocked": 71810,
+    "hiddenMax": 0,
+    "centerDelta": [
+      255,
+      255,
+      255
+    ],
+    "center": [
+      400,
+      224
+    ]
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 1493,
+      "buffersDestroyed": 1493,
+      "bufferBytes": 0,
+      "drawCalls": 24,
+      "triangles": 13680,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      800,
+      450
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

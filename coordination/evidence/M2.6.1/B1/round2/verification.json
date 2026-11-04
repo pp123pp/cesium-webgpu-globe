@@ -1,0 +1,80 @@
+{
+  "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+  "sourceStatus": "",
+  "bundleSha256": "1d3fb59e72d2c816e8644657f42fa82cb62f4cb899a9eb3eee95a23371e3c074",
+  "startedAt": "2026-11-03T13:27:40.636Z",
+  "runs": [
+    {
+      "name": "unit",
+      "args": [
+        "--test",
+        "coordination/ci/m2-b1-solar.test.mjs",
+        "coordination/ci/m2-b1-round2.test.mjs",
+        "coordination/ci/m2-sun.test.mjs",
+        "coordination/ci/m2-solar-assets.test.mjs",
+        "coordination/ci/m2-solar-lifecycle.test.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:27:40.639Z",
+      "finishedAt": "2026-11-03T13:27:41.131Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "comparison",
+      "args": [
+        "coordination/ci/m2-b1-round2-capture.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:27:41.132Z",
+      "finishedAt": "2026-11-03T13:28:10.885Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "physics-motion",
+      "args": [
+        "coordination/ci/m2-b1-physics-motion-smoke.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:28:10.888Z",
+      "finishedAt": "2026-11-03T13:28:16.519Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "occlusion",
+      "args": [
+        "coordination/ci/m2-solar-occlusion-smoke.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:28:16.522Z",
+      "finishedAt": "2026-11-03T13:28:27.851Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "sun",
+      "args": [
+        "coordination/ci/m2-sun-smoke.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:28:27.854Z",
+      "finishedAt": "2026-11-03T13:28:35.053Z",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "visual-lifecycle",
+      "args": [
+        "coordination/ci/m2.6-solar-visual-smoke.mjs"
+      ],
+      "source": "274d9397300b09843d2e3b517a55ed634b94639c",
+      "start": "2026-11-03T13:28:35.054Z",
+      "finishedAt": "2026-11-03T13:28:55.819Z",
+      "exitCode": 0,
+      "error": null
+    }
+  ],
+  "finishedAt": "2026-11-03T13:28:55.997Z"
+}
