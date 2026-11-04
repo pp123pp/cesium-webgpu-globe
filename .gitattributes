@@ -2,6 +2,12 @@
 * text=auto
 package.json text eol=lf
 
+# Keep these recorded capture-harness hashes stable on Windows checkout.
+coordination/ci/m2.6.1-b5-b-temporal.mjs text eol=lf
+coordination/ci/m2.6.1-b5-c-performance.mjs text eol=lf
+coordination/ci/m2.6.1-b5-c-lifecycle.mjs text eol=lf
+coordination/ci/m2.6.1-b5-c-audit.mjs text eol=lf
+
 # Generated GPU payloads are binary, including ramps with no NUL bytes.
 *.r8 binary
 *.rgba8 binary

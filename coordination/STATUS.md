@@ -1,12 +1,20 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B5-A static visual acceptance PASS (user-confirmed 2026-11-04); PR #27 merged into main at `0cf85063a4c63251b71be95375da03ba6354f869`. B5-B temporal and B5-C performance/lifecycle acceptance are not complete; M2.6.1 is not closed.**
+Current milestone: **M2.6.1 B5-A/B5-B/B5-C acceptance PASS (user-confirmed 2026-11-04). B5-B/B5-C evidence delivery and main merge are authorized, subject to final-head CI and mergeability checks. M2.6.1 final closeout is not claimed by this evidence-only delivery.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
+
+## B5-B/B5-C acceptance and delivery — 2026-11-04
+
+- User confirmed B5-B visual acceptance and B5-C acceptance, then authorized commit, push and merge to main. This supersedes the earlier no-push instruction for this delivery.
+- [B5-B evidence](evidence/M2.6.1/B5-B/README.md): 288 original physical-GPU PNGs; 120-frame camera/time and 120-frame Earth-limb sequences; resize and native-mesh occlusion; independent integrity and visual review passed. User confirmation is recorded separately from immutable capture-time reports.
+- [B5-C evidence](evidence/M2.6.1/B5-C/README.md): same Intel Xe-LPG / Chrome A–B–A comparison to rebuilt M2.6 `cf2c1d1`; 810 timestamp samples and three lifecycle cycles. Mean/p95 increased 10.24%/24.77% against pooled baseline; this disclosed observation is accepted, not called performance neutrality. All 312 lifecycle buffers/textures were destroyed once, with no retained growth.
+- Tested candidate runtime is `8e7c53c09f3b0e2ae6b38ab4593d818282b979a4`, bundle `410f39366223a6a611e2072945c39d682507b2b152e2105a964325887cab9980`. This delivery adds harnesses/evidence and acceptance records only; there is no runtime implementation change. New publication CI does not constitute fresh rendering or complete WebGL differential evidence.
+- Final PR checks and merge identity are recorded by GitHub. This record authorizes delivery; it does not predeclare the merge successful or waive remaining milestone-level gates.
 
 ## B5-A acceptance and integration — 2026-11-04
 

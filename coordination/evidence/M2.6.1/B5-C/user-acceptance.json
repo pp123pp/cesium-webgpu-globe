@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-04",
+  "phase": "B5-C",
+  "status": "USER_ACCEPTANCE_PASS",
+  "confirmation": "B5c也确认通过",
+  "deliveryAuthorization": "提交并推送，然后合并到main",
+  "disclosedGpuPassSumChangePercent": { "mean": 10.237106873988555, "p95": 24.770642201834846 },
+  "captureSource": "8e7c53c09f3b0e2ae6b38ab4593d818282b979a4",
+  "note": "Acceptance of measurement/lifecycle evidence and disclosed performance trend, not a no-regression performance claim."
+}

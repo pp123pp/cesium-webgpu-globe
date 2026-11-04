@@ -1,0 +1,2384 @@
+{
+  "name": "mesh-removed-720",
+  "kind": "fixed",
+  "count": 8,
+  "frames": [
+    {
+      "index": 0,
+      "filename": "frame-0000.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 416,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": null,
+      "trackedDelta": null
+    },
+    {
+      "index": 1,
+      "filename": "frame-0001.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 417,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 2,
+      "filename": "frame-0002.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 418,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 3,
+      "filename": "frame-0003.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 419,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 4,
+      "filename": "frame-0004.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 420,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 5,
+      "filename": "frame-0005.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 421,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 6,
+      "filename": "frame-0006.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 422,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    },
+    {
+      "index": 7,
+      "filename": "frame-0007.png",
+      "sha256": "3af9e9c6fd6fc945b96a429d3fefe1a7352ae7b7b71390e20afbd2b4fda982e8",
+      "state": {
+        "time": "2026-03-20T12:04:00Z",
+        "camera": {
+          "position": [
+            -562284.0252753926,
+            6373381.65699255,
+            0
+          ],
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026634,
+            -0.000734861525996805
+          ],
+          "up": [
+            -0.01508176790192123,
+            0.9998862622297475,
+            -0.00005367659939560005
+          ],
+          "longitudeDegrees": 95.0417982754129,
+          "latitudeDegrees": 0,
+          "heightMeters": 19999.999999998945,
+          "elevationDegrees": -4.17764499363899,
+          "fovRadians": 0.20943951023931956,
+          "fovyRadians": 0.11810478848265601,
+          "aspectRatio": 1.7777777777777777,
+          "near": 0.1,
+          "far": 500000000
+        },
+        "sun": {
+          "direction": [
+            0.9998859942850122,
+            0.015081724411026681,
+            -0.0007348615259971765
+          ],
+          "elevationDegrees": -4.177644993638986,
+          "angularRadius": 0.00465,
+          "projectedCenter": [
+            639.9999999999977,
+            359.99999999999966
+          ],
+          "show": true,
+          "glowStrength": 0.08,
+          "glowRadius": 0.05
+        },
+        "exposure": 1,
+        "mode": "all",
+        "atmosphere": {
+          "show": true,
+          "rayleighScattering": [
+            0.000005802,
+            0.000013558,
+            0.0000331
+          ],
+          "mieScattering": 0.000001998,
+          "mieExtinction": 0.00000222,
+          "rayleighScaleHeight": 8000,
+          "mieScaleHeight": 1200,
+          "mieAnisotropy": 0.65,
+          "lightIntensity": 10,
+          "multipleScatteringStrength": 1
+        },
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "bloomStrength": 0.35,
+        "viewport": [
+          1280,
+          720
+        ],
+        "devicePixelRatio": 1.0000000149011612,
+        "framing": {
+          "skyRays": 15,
+          "earthRays": 10
+        },
+        "terrain": {
+          "provider": "EllipsoidTerrainProvider",
+          "tilesLoaded": true,
+          "selectedMeshes": [
+            [
+              8,
+              389,
+              127
+            ],
+            [
+              8,
+              388,
+              127
+            ],
+            [
+              8,
+              387,
+              127
+            ],
+            [
+              8,
+              386,
+              127
+            ],
+            [
+              8,
+              385,
+              127
+            ],
+            [
+              8,
+              384,
+              127
+            ],
+            [
+              8,
+              389,
+              128
+            ],
+            [
+              8,
+              388,
+              128
+            ],
+            [
+              8,
+              387,
+              128
+            ],
+            [
+              8,
+              386,
+              128
+            ],
+            [
+              8,
+              385,
+              128
+            ],
+            [
+              8,
+              384,
+              128
+            ]
+          ]
+        }
+      },
+      "frame": 423,
+      "geometry": {
+        "center": [
+          639.9999999999977,
+          359.99999999999966
+        ],
+        "radiusPixels": 28.314952696082152,
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 0,
+        "clear": 81
+      },
+      "diagnostics": {
+        "space": "display-encoded RGB, Rec.709 weighted; no pixel editing",
+        "regions": {
+          "discCore": {
+            "innerRadiusPixels": 0,
+            "outerRadiusPixels": 14.157476348041076,
+            "count": 624,
+            "meanRgb": [
+              222.20833333333334,
+              103.2948717948718,
+              74.43910256410257
+            ],
+            "meanLuminance": 0.496048969331322,
+            "p05": 0.43694039215686276,
+            "p50": 0.4957576470588235,
+            "p95": 0.5565819607843138,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discLimb": {
+            "innerRadiusPixels": 21.236214522061616,
+            "outerRadiusPixels": 28.314952696082152,
+            "count": 1100,
+            "meanRgb": [
+              205.22272727272727,
+              98.76727272727273,
+              74.97636363636363
+            ],
+            "meanLuminance": 0.46934117147950083,
+            "p05": 0.3634760784313726,
+            "p50": 0.46056705882352944,
+            "p95": 0.5874650980392156,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "discEdge": {
+            "innerRadiusPixels": 26.899205061278042,
+            "outerRadiusPixels": 31.14644796569037,
+            "count": 764,
+            "meanRgb": [
+              135.6675392670157,
+              84.36387434554973,
+              75.06282722513089
+            ],
+            "meanLuminance": 0.37097842315984014,
+            "p05": 0.28944470588235294,
+            "p50": 0.3572329411764706,
+            "p95": 0.5471592156862745,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "innerGlow": {
+            "innerRadiusPixels": 36.8094385049068,
+            "outerRadiusPixels": 76.17840822348784,
+            "count": 13960,
+            "meanRgb": [
+              91.55136103151862,
+              72.24405444126074,
+              67.83467048710602
+            ],
+            "meanLuminance": 0.29815855019946436,
+            "p05": 0.07083529411764705,
+            "p50": 0.3225050980392157,
+            "p95": 0.44746980392156854,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysInner": {
+            "innerRadiusPixels": 76.17840822348784,
+            "outerRadiusPixels": 167.59249809167326,
+            "count": 70020,
+            "meanRgb": [
+              78.75368466152528,
+              69.07746358183377,
+              64.5166952299343
+            ],
+            "meanLuminance": 0.2776680027778943,
+            "p05": 0.03220627450980392,
+            "p50": 0.3194533333333333,
+            "p95": 0.5075027450980392,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "raysOuter": {
+            "innerRadiusPixels": 167.59249809167326,
+            "outerRadiusPixels": 274.2422696045562,
+            "count": 148028,
+            "meanRgb": [
+              74.68420163752803,
+              70.05732023671197,
+              63.81454859891372
+            ],
+            "meanLuminance": 0.2768245769030436,
+            "p05": 0.0271678431372549,
+            "p50": 0.3191701960784314,
+            "p95": 0.531041568627451,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": false
+          },
+          "outsideSource": {
+            "innerRadiusPixels": 319.94931453864893,
+            "outerRadiusPixels": 396.1277227621368,
+            "count": 155316,
+            "meanRgb": [
+              70.4058178165804,
+              70.11887377990676,
+              63.00988951556826
+            ],
+            "meanLuminance": 0.27320238987524403,
+            "p05": 0.023529411764705882,
+            "p50": 0.31833647058823533,
+            "p95": 0.5302078431372549,
+            "nearlyWhiteFraction": 0,
+            "anyChannel255Fraction": 0,
+            "clippedByViewport": true
+          }
+        },
+        "validTrackedSamples": 1536
+      },
+      "errors": [],
+      "adjacent": {
+        "maxByteDifference": 0,
+        "meanAbsoluteRgbBytes": 0
+      },
+      "trackedDelta": {
+        "samples": 1536,
+        "mean": 0,
+        "p99": 0,
+        "max": 0
+      }
+    }
+  ],
+  "note": "PNG encoding paces capture. Every actual render is saved; no FPS claim."
+}

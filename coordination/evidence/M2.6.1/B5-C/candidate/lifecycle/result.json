@@ -1,0 +1,3857 @@
+[
+  {
+    "cycle": 0,
+    "captures": [
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 21,
+          "sunFrames": 21,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 34,
+          "bloomPasses": 76,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.1999999955296516
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.100000001490116
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-0-resize-0.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      },
+      {
+        "intended": [
+          1280,
+          720
+        ],
+        "canvas": [
+          1280,
+          720
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "rendererStatistics": {
+          "frames": 42,
+          "sunFrames": 42,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 17,
+          "texturesDestroyed": 3,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 60,
+          "bloomPasses": 144,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.1999999955296516
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.100000001490116
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 326,
+        "filename": "lifecycle/cycle-0-resize-1.png",
+        "sha256": "f243543ec496f3be102edba38d5b77840d9a1ac6cd1d89d13b0ff1e4ad0c0bee"
+      },
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 63,
+          "sunFrames": 63,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 20,
+          "texturesDestroyed": 6,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 86,
+          "bloomPasses": 212,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999985098839
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.1999999955296516
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.100000001490116
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-0-resize-2.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      }
+    ],
+    "errors": [],
+    "gpuErrors": [],
+    "priorLive": 0,
+    "fixture": {
+      "maximumLevel": 8,
+      "provider": "native ellipsoid",
+      "externalProviders": false,
+      "probes": false
+    },
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "effects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "beforeDestroy": {
+      "created": 104,
+      "destroyed": 32,
+      "live": 72,
+      "buffers": 56,
+      "textures": 16,
+      "logicalBytes": 47127784
+    },
+    "rendererBeforeDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 0,
+      "texturesCreated": 20,
+      "texturesDestroyed": 6,
+      "solarAssetBytes": 3145728,
+      "solarAssetsLoaded": true,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 18662400,
+      "bloomWidth": 480,
+      "bloomHeight": 270,
+      "maxFeedback": 0.33188103715541617
+    },
+    "viewerDestroyed": true,
+    "rendererAfterDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 20,
+      "texturesDestroyed": 20,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33188103715541617
+    },
+    "afterDestroy": {
+      "created": 104,
+      "destroyed": 104,
+      "live": 0,
+      "buffers": 0,
+      "textures": 0,
+      "logicalBytes": 0
+    },
+    "allocations": [
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 180000,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 planet, Moon and inertial star state",
+        "bytes": 272,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 atmosphere, Sun and solar effect controls",
+        "bytes": 112,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2.6 HDR bloom exposure and strength",
+        "bytes": 16,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-01",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-02",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-03",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar soft-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar wide-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-fine",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-mid",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-noise",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar glow-gradient",
+        "bytes": 1048576,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 512,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 2048,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 4096,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 optical transmittance LUT",
+        "bytes": 131072,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 isotropic multiple-scattering LUT",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 3686400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      }
+    ],
+    "globalLiveAfterDestroy": 0
+  },
+  {
+    "cycle": 1,
+    "captures": [
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 21,
+          "sunFrames": 21,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 34,
+          "bloomPasses": 76,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.100000001490116
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8000000044703484
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.199999995529652
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-1-resize-0.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      },
+      {
+        "intended": [
+          1280,
+          720
+        ],
+        "canvas": [
+          1280,
+          720
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "rendererStatistics": {
+          "frames": 42,
+          "sunFrames": 42,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 17,
+          "texturesDestroyed": 3,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 60,
+          "bloomPasses": 144,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.100000001490116
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8000000044703484
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.199999995529652
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 326,
+        "filename": "lifecycle/cycle-1-resize-1.png",
+        "sha256": "f243543ec496f3be102edba38d5b77840d9a1ac6cd1d89d13b0ff1e4ad0c0bee"
+      },
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 63,
+          "sunFrames": 63,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 20,
+          "texturesDestroyed": 6,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 86,
+          "bloomPasses": 212,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.100000001490116
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8000000044703484
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.199999995529652
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-1-resize-2.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      }
+    ],
+    "errors": [],
+    "gpuErrors": [],
+    "priorLive": 0,
+    "fixture": {
+      "maximumLevel": 8,
+      "provider": "native ellipsoid",
+      "externalProviders": false,
+      "probes": false
+    },
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "effects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "beforeDestroy": {
+      "created": 104,
+      "destroyed": 32,
+      "live": 72,
+      "buffers": 56,
+      "textures": 16,
+      "logicalBytes": 47127784
+    },
+    "rendererBeforeDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 0,
+      "texturesCreated": 20,
+      "texturesDestroyed": 6,
+      "solarAssetBytes": 3145728,
+      "solarAssetsLoaded": true,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 18662400,
+      "bloomWidth": 480,
+      "bloomHeight": 270,
+      "maxFeedback": 0.33188103715541617
+    },
+    "viewerDestroyed": true,
+    "rendererAfterDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 20,
+      "texturesDestroyed": 20,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33188103715541617
+    },
+    "afterDestroy": {
+      "created": 104,
+      "destroyed": 104,
+      "live": 0,
+      "buffers": 0,
+      "textures": 0,
+      "logicalBytes": 0
+    },
+    "allocations": [
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 180000,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 planet, Moon and inertial star state",
+        "bytes": 272,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 atmosphere, Sun and solar effect controls",
+        "bytes": 112,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2.6 HDR bloom exposure and strength",
+        "bytes": 16,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-01",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-02",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-03",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar soft-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar wide-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-fine",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-mid",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-noise",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar glow-gradient",
+        "bytes": 1048576,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 512,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 2048,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 4096,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 optical transmittance LUT",
+        "bytes": 131072,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 isotropic multiple-scattering LUT",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 3686400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      }
+    ],
+    "globalLiveAfterDestroy": 0
+  },
+  {
+    "cycle": 2,
+    "captures": [
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 94,
+          "destroyed": 22,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 21,
+          "sunFrames": 21,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 34,
+          "bloomPasses": 76,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6999999955296516
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.3999999985098839
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.8000000044703484
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-2-resize-0.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      },
+      {
+        "intended": [
+          1280,
+          720
+        ],
+        "canvas": [
+          1280,
+          720
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 99,
+          "destroyed": 27,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 22935784
+        },
+        "rendererStatistics": {
+          "frames": 42,
+          "sunFrames": 42,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 17,
+          "texturesDestroyed": 3,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 60,
+          "bloomPasses": 144,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6999999955296516
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.3999999985098839
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.8000000044703484
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 326,
+        "filename": "lifecycle/cycle-2-resize-1.png",
+        "sha256": "f243543ec496f3be102edba38d5b77840d9a1ac6cd1d89d13b0ff1e4ad0c0bee"
+      },
+      {
+        "intended": [
+          1920,
+          1080
+        ],
+        "canvas": [
+          1920,
+          1080
+        ],
+        "nativeBeforeRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "nativeAfterRepeatedRendering": {
+          "created": 104,
+          "destroyed": 32,
+          "live": 72,
+          "buffers": 56,
+          "textures": 16,
+          "logicalBytes": 47127784
+        },
+        "rendererStatistics": {
+          "frames": 63,
+          "sunFrames": 63,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 20,
+          "texturesDestroyed": 6,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 86,
+          "bloomPasses": 212,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33188103715541617
+        },
+        "selectedLevels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1
+        ],
+        "assetRecords": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6999999955296516
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.3999999985098839
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000014901161
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.8000000044703484
+          }
+        ],
+        "bloomStrength": 0.35,
+        "solarEffects": {
+          "rays": 1,
+          "softHalo": 1,
+          "wideHalo": 1,
+          "corona": 1,
+          "tint": 1
+        },
+        "sampledColors": 430,
+        "filename": "lifecycle/cycle-2-resize-2.png",
+        "sha256": "50b094b753954341e4f6125dcdcef9b94d3cbe043189cd2eab14993015bf7135"
+      }
+    ],
+    "errors": [],
+    "gpuErrors": [],
+    "priorLive": 0,
+    "fixture": {
+      "maximumLevel": 8,
+      "provider": "native ellipsoid",
+      "externalProviders": false,
+      "probes": false
+    },
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "effects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "beforeDestroy": {
+      "created": 104,
+      "destroyed": 32,
+      "live": 72,
+      "buffers": 56,
+      "textures": 16,
+      "logicalBytes": 47127784
+    },
+    "rendererBeforeDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 0,
+      "texturesCreated": 20,
+      "texturesDestroyed": 6,
+      "solarAssetBytes": 3145728,
+      "solarAssetsLoaded": true,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 18662400,
+      "bloomWidth": 480,
+      "bloomHeight": 270,
+      "maxFeedback": 0.33188103715541617
+    },
+    "viewerDestroyed": true,
+    "rendererAfterDestroy": {
+      "frames": 63,
+      "sunFrames": 63,
+      "moonFrames": 0,
+      "starFrames": 0,
+      "lutBuilds": 1,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3,
+      "texturesCreated": 20,
+      "texturesDestroyed": 20,
+      "solarAssetBytes": 0,
+      "solarAssetsLoaded": false,
+      "bloomFrames": 86,
+      "bloomPasses": 212,
+      "bloomTextureBytes": 0,
+      "bloomWidth": 0,
+      "bloomHeight": 0,
+      "maxFeedback": 0.33188103715541617
+    },
+    "afterDestroy": {
+      "created": 104,
+      "destroyed": 104,
+      "live": 0,
+      "buffers": 0,
+      "textures": 0,
+      "logicalBytes": 0
+    },
+    "allocations": [
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 180000,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 planet, Moon and inertial star state",
+        "bytes": 272,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2 atmosphere, Sun and solar effect controls",
+        "bytes": 112,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "M2.6 HDR bloom exposure and strength",
+        "bytes": 16,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-01",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-02",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-rays-03",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar soft-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar wide-halo",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-fine",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar corona-mid",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar radial-noise",
+        "bytes": 262144,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 solar glow-gradient",
+        "bytes": 1048576,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 512,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 2048,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 4096,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe per-draw uniforms",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 2808,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 1152,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe RTC vertices",
+        "bytes": 7680,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Buffer",
+        "label": "Globe terrain indices and skirts",
+        "bytes": 3420,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 optical transmittance LUT",
+        "bytes": 131072,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 isotropic multiple-scattering LUT",
+        "bytes": 8192,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 3686400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 7372800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 460800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "WGS84 reversed depth",
+        "bytes": 8294400,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2 completed terrain color",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 scene-linear HDR composite",
+        "bytes": 16588800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      },
+      {
+        "kind": "Texture",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "bytes": 1036800,
+        "destroyed": true,
+        "destroyCalls": 1
+      }
+    ],
+    "globalLiveAfterDestroy": 0
+  }
+]

@@ -1,0 +1,324 @@
+{
+  "status": "PASS",
+  "scope": "Measurement integrity and native buffer/texture lifetime; not a no-regression performance assertion",
+  "pngCount": 12,
+  "matchedScene": true,
+  "expectedProductionAtmosphereChanges": {
+    "mieScattering": {
+      "before": 0.000003996,
+      "candidate": 0.000001998
+    },
+    "mieExtinction": {
+      "before": 0.00000444,
+      "candidate": 0.00000222
+    },
+    "mieAnisotropy": {
+      "before": 0.8,
+      "candidate": 0.65
+    }
+  },
+  "baselineBefore": {
+    "baseline": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 10.313181866666673,
+        "p50": 9.240576,
+        "p95": 15.138816,
+        "minimum": 8.650751999999999,
+        "maximum": 19.464192
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 11.181897955555552,
+        "p50": 10.15808,
+        "p95": 16.449536,
+        "minimum": 8.978432,
+        "maximum": 20.578304
+      }
+    },
+    "solarWithoutBloom": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 10.241820444444445,
+        "p50": 9.240576,
+        "p95": 15.859712,
+        "minimum": 8.650752,
+        "maximum": 19.595264
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 11.11344924444445,
+        "p50": 10.092544,
+        "p95": 17.104896,
+        "minimum": 8.978432,
+        "maximum": 20.64384
+      }
+    },
+    "allEnabled": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 10.593530311111108,
+        "p50": 9.568256,
+        "p95": 16.515072,
+        "minimum": 8.84736,
+        "maximum": 18.546688
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 11.323164444444444,
+        "p50": 10.223616,
+        "p95": 17.760256,
+        "minimum": 9.240576,
+        "maximum": 19.98848
+      }
+    }
+  },
+  "baselineAfter": {
+    "baseline": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 9.837681777777782,
+        "p50": 9.109504000000001,
+        "p95": 15.269888,
+        "minimum": 8.650752,
+        "maximum": 17.629184
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 10.575325866666669,
+        "p50": 9.961472,
+        "p95": 16.580608,
+        "minimum": 8.912896,
+        "maximum": 19.00544
+      }
+    },
+    "solarWithoutBloom": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 9.94982115555556,
+        "p50": 9.240576,
+        "p95": 13.172736,
+        "minimum": 8.585215999999999,
+        "maximum": 19.6608
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 10.710766933333334,
+        "p50": 10.223616,
+        "p95": 14.483456,
+        "minimum": 8.912896,
+        "maximum": 21.168128
+      }
+    },
+    "allEnabled": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 10.105651199999997,
+        "p50": 9.437184,
+        "p95": 13.500416,
+        "minimum": 8.84736,
+        "maximum": 18.481151999999998
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 10.814896355555554,
+        "p50": 10.223616,
+        "p95": 14.41792,
+        "minimum": 9.240576,
+        "maximum": 19.529728
+      }
+    }
+  },
+  "baselinePooled": {
+    "baseline": {
+      "gpuPassSumMs": {
+        "count": 180,
+        "mean": 10.075431822222221,
+        "p50": 9.175040000000001,
+        "p95": 15.269888,
+        "minimum": 8.650751999999999,
+        "maximum": 19.464192
+      },
+      "gpuFrameSpanMs": {
+        "count": 180,
+        "mean": 10.878611911111106,
+        "p50": 9.961472,
+        "p95": 16.580608,
+        "minimum": 8.912896,
+        "maximum": 20.578304
+      }
+    },
+    "solarWithoutBloom": {
+      "gpuPassSumMs": {
+        "count": 180,
+        "mean": 10.095820800000002,
+        "p50": 9.240576,
+        "p95": 13.893632,
+        "minimum": 8.585215999999999,
+        "maximum": 19.6608
+      },
+      "gpuFrameSpanMs": {
+        "count": 180,
+        "mean": 10.91210808888889,
+        "p50": 10.15808,
+        "p95": 15.597568,
+        "minimum": 8.912896,
+        "maximum": 21.168128
+      }
+    },
+    "allEnabled": {
+      "gpuPassSumMs": {
+        "count": 180,
+        "mean": 10.349590755555555,
+        "p50": 9.437184,
+        "p95": 14.286847999999999,
+        "minimum": 8.84736,
+        "maximum": 18.546688
+      },
+      "gpuFrameSpanMs": {
+        "count": 180,
+        "mean": 11.0690304,
+        "p50": 10.223616,
+        "p95": 15.72864,
+        "minimum": 9.240576,
+        "maximum": 19.98848
+      }
+    }
+  },
+  "candidate": {
+    "baseline": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 11.296950044444445,
+        "p50": 10.616832,
+        "p95": 17.104896,
+        "minimum": 8.716287999999999,
+        "maximum": 19.202048
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 12.088479288888893,
+        "p50": 11.4688,
+        "p95": 18.087936,
+        "minimum": 9.043968,
+        "maximum": 20.774912
+      }
+    },
+    "solarWithoutBloom": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 11.135294577777778,
+        "p50": 10.420224000000001,
+        "p95": 17.301503999999998,
+        "minimum": 8.716288,
+        "maximum": 20.054016
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 11.971970844444447,
+        "p50": 11.337728,
+        "p95": 18.35008,
+        "minimum": 8.978432,
+        "maximum": 21.495808
+      }
+    },
+    "allEnabled": {
+      "gpuPassSumMs": {
+        "count": 90,
+        "mean": 11.409089422222216,
+        "p50": 10.747903999999998,
+        "p95": 17.825791999999996,
+        "minimum": 8.912896,
+        "maximum": 19.267584
+      },
+      "gpuFrameSpanMs": {
+        "count": 90,
+        "mean": 12.21882311111111,
+        "p50": 11.534336,
+        "p95": 19.070976,
+        "minimum": 9.306112,
+        "maximum": 20.447232
+      }
+    }
+  },
+  "measuredChange": {
+    "mean": {
+      "milliseconds": 1.059498666666661,
+      "percent": 10.237106873988555
+    },
+    "p95": {
+      "milliseconds": 3.538943999999997,
+      "percent": 24.770642201834846
+    }
+  },
+  "passMeans": [
+    {
+      "phase": "baseline",
+      "passMeans": {
+        "opaque terrain": 0.10704213333333329,
+        "M2 atmosphere and Sun scene-linear HDR composite": 9.812923733333326,
+        "M2.6 HDR bloom threshold and downsample": 0.18568533333333326,
+        "M2.6 HDR bloom diagonal blur": 0.016748088888888887,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.47113102222222153
+      },
+      "batchMeans": [
+        12.0061952,
+        10.411485866666668,
+        9.362909866666666
+      ]
+    },
+    {
+      "phase": "candidate",
+      "passMeans": {
+        "opaque terrain": 0.12160568888888881,
+        "M2 atmosphere and Sun scene-linear HDR composite": 10.589161244444444,
+        "M2.6 HDR bloom threshold and downsample": 0.20097706666666654,
+        "M2.6 HDR bloom normalized single-scale blur": 0.022573511111111097,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.4747719111111102
+      },
+      "batchMeans": [
+        11.436032,
+        13.305992533333331,
+        9.48524373333333
+      ]
+    },
+    {
+      "phase": "baseline",
+      "passMeans": {
+        "opaque terrain": 0.10412942222222214,
+        "M2 atmosphere and Sun scene-linear HDR composite": 9.33087004444444,
+        "M2.6 HDR bloom threshold and downsample": 0.18568533333333323,
+        "M2.6 HDR bloom diagonal blur": 0.01601991111111111,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.46894648888888807
+      },
+      "batchMeans": [
+        10.450807466666665,
+        10.664891733333333,
+        9.2012544
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source": "cf2c1d1bc4f368a02d126bab203ee32da5d4064c",
+      "bundleSha256": "340b831d3181d7268101e6dab9289eec82f46c0c97ae67ae5a506fdd2eee08f0",
+      "phase": "baseline"
+    },
+    {
+      "source": "8e7c53c09f3b0e2ae6b38ab4593d818282b979a4",
+      "bundleSha256": "410f39366223a6a611e2072945c39d682507b2b152e2105a964325887cab9980",
+      "phase": "candidate"
+    },
+    {
+      "source": "cf2c1d1bc4f368a02d126bab203ee32da5d4064c",
+      "bundleSha256": "340b831d3181d7268101e6dab9289eec82f46c0c97ae67ae5a506fdd2eee08f0",
+      "phase": "baseline"
+    }
+  ],
+  "limitations": [
+    "Single integrated GPU; batch variability prevents precise causal attribution",
+    "No performance budget specified; observed increase is retained, not waived or called zero cost",
+    "GPU timestamps quantize short passes; zero does not mean no work",
+    "Logical payload and explicit buffer/texture counts are not resident VRAM"
+  ]
+}
