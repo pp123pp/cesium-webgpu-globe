@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-04",
+  "status": "AGENT_VISUAL_REVIEW_PASS",
+  "userVisualAcceptance": "AWAITING_REVIEW",
+  "source": "8e7c53c09f3b0e2ae6b38ab4593d818282b979a4",
+  "bundleSha256": "410f39366223a6a611e2072945c39d682507b2b152e2105a964325887cab9980",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "browser": "156.0.8078.80",
+  "evidenceMode": "Reused existing physical-GPU capture after fresh source, bundle, harness and 288 PNG integrity audit; no new GPU run.",
+  "inspection": {
+    "motion": "All 120 solar-centered frame previews inspected in sequence order",
+    "earthLimb": "All 120 solar-centered frame previews inspected in sequence order",
+    "originalResolutionSamples": [
+      "motion-1080/frame-0091.png",
+      "earth-limb-720/frame-0085.png",
+      "resize-1280/frame-0000.png",
+      "resize-1920/frame-0000.png",
+      "mesh-hidden-720/frame-0000.png",
+      "mesh-removed-720/frame-0000.png"
+    ],
+    "method": "Ordered contact sheets plus original PNG samples, not live video playback. Derived JPEG previews are diagnostic only; original PNG files unchanged."
+  },
+  "findings": [
+    "No obvious structural jumps in rays or corona across the inspected motion frames.",
+    "Earth occultation progresses continuously; no visible solar artwork remains after full occultation.",
+    "Resize samples retain coherent off-axis solar structure without an obvious rectangular Bloom boundary.",
+    "Native mountain hides the source; mesh removal restores the visible disk.",
+    "Accepted B5-A limb sharpness and atmospheric haze remain visible limitations."
+  ],
+  "limits": [
+    "Capture-paced sequence does not establish real-time frame rate or live interaction smoothness.",
+    "One adapter and bounded deterministic fixtures; no real-terrain navigation or streaming acceptance.",
+    "This review does not close M2.6.1 or substitute for user visual approval."
+  ],
+  "playback": "index.html"
+}

@@ -1,0 +1,59 @@
+{
+  "suite": "m2.6.1-b5-b-temporal",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T13:29:57.272Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "8e7c53c09f3b0e2ae6b38ab4593d818282b979a4",
+  "sourceStatus": "?? coordination/ci/m2.6.1-b5-b-temporal.mjs",
+  "bundleSha256": "410f39366223a6a611e2072945c39d682507b2b152e2105a964325887cab9980",
+  "browserErrors": [],
+  "checks": [],
+  "scenes": [],
+  "browser": "156.0.8078.80",
+  "protocol": "B5-B-v1",
+  "visualAcceptance": "AWAITING_REVIEW",
+  "scope": "Fixed repeats, capture-paced contiguous motion, Earth/mesh occultation and resize. No GPU performance or lifecycle acceptance.",
+  "harnessSha256": "d49ed8c72aa3b075ebf87ee95daa7bd83a8f1590fa9eb93afaf2dd8355687cbd",
+  "harnessDependencies": {
+    "m1-browser-harness.mjs": "b349104a63a459678a20bc40515d4bdc6d47e7f1ddd688fc04cdc1d6186a57e9",
+    "m2-sun-fixtures.mjs": "2a6f7235489ae24e8de5626e8466155806efb499118ae0096a4e214bba85a821",
+    "m2-atmosphere-fixtures.mjs": "c9543b078279142c78a0c204049171690efcf8455a9c0d63a41f32c112ec0a68",
+    "m2.6.1-b4-fixtures.mjs": "51c37bd905f3da4e16a530664cb31378da6717416d2d07a04d419b41e3f3ac2b",
+    "m0-browser-config.mjs": "d1c4db717e47ebd1ad74daa579ff9e072963627bf4a68a5756efc17f46cbfc09",
+    "m2-b1-round2-fixtures.mjs": "1b37c14eb8de96ff9223fa26833e613f60a8a652468718fa3dc0c2e0984cd1c3"
+  },
+  "runtimeHashes": {
+    "WebGPUAtmosphereShader.js": "c3a4ffb3789ac3fc95da86a142e420e1bfcb3b68b3902a9fb177f61342954ac3",
+    "WebGPUAtmosphereRenderer.js": "10f02093262c175f7d979d09b6cc14b59c5fec35b679692a81b77eac60aa0341",
+    "WebGPUAtmosphereModel.js": "cd785e9aa03f431e178b4814547a23678ddeab48e6a2642e03c9ee077777509f",
+    "WebGPUSunShader.js": "9cb9e1d02692b1362d7e3610a2bc93417288594cfa8f72bb7dc7d3b71daef12f",
+    "WebGPUPlanetShader.js": "fe0a9506f23b9d4bdbe6f1e099957d09ab7a6cedd4a054b7f0bfd2c054a8ed4d",
+    "WebGPUGlobeRenderer.js": "2f55aa6d56c2ab4bf11c1c2a49c866b2cc96690176d17bf53f30a9e095f315b5"
+  },
+  "productionShaderSha256": "2258c916682dea891f86d5370774259189a0c66ebb899354b33654429073c81f",
+  "sequences": [],
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "fixture": {
+    "terrain": "native bounded ellipsoid meshes",
+    "maximumLevel": 8,
+    "externalProviders": false
+  },
+  "status": "FAIL",
+  "error": "Error: page.evaluate: Error: Scene did not settle: {\"frame\":3606,\"selectedTiles\":0,\"levels\":[],\"cacheTiles\":30,\"loadedTiles\":30,\"terrain\":{\"requests\":30,\"deferred\":0,\"meshes\":30,\"fills\":3,\"upsampled\":0,\"failed\":0},\"imagery\":{\"requests\":0,\"deferred\":0,\"failed\":0,\"discarded\":0,\"imagesClosed\":0,\"pendingRequests\":0,\"texturesCreated\":0,\"texturesDestroyed\":0,\"activeTextures\":0},\"resources\":{\"buffersCreated\":69,\"buffersDestroyed\":8,\"bufferBytes\":335048,\"drawCalls\":0,\"triangles\":0,\"texturesCreated\":0,\"texturesDestroyed\":0,\"textureBytes\":0,\"imageryDrawCalls\":0},\"atmosphere\":{\"frames\":2,\"sunFrames\":5,\"moonFrames\":0,\"starFrames\":0,\"lutBuilds\":1,\"buffersCreated\":3,\"buffersDestroyed\":0,\"texturesCreated\":14,\"texturesDestroyed\":0,\"solarAssetBytes\":3145728,\"solarAssetsLoaded\":true,\"bloomFrames\":3606,\"bloomPasses\":3610,\"bloomTextureBytes\":18662400,\"bloomWidth\":480,\"bloomHeight\":270,\"maxFeedback\":0.33188103715541617}}\n    at state.settle (eval at evaluate (:370:30), <anonymous>:127:13)\n    at async eval (eval at evaluate (:370:30), <anonymous>:6:18)\n    at async <anonymous>:396:30",
+  "timedOut": false
+}

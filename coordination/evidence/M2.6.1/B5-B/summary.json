@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "source": "8e7c53c09f3b0e2ae6b38ab4593d818282b979a4",
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "sequences": [
+    {
+      "name": "fixed-1080",
+      "count": 8,
+      "firstFrame": 7,
+      "lastFrame": 14,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    },
+    {
+      "name": "motion-1080",
+      "count": 120,
+      "firstFrame": 15,
+      "lastFrame": 134,
+      "maxPixelDelta": 37,
+      "maxAlignedMean": 0.0005050204668140145,
+      "maxAlignedP99": 0.0021681300672044546
+    },
+    {
+      "name": "resize-1280",
+      "count": 8,
+      "firstFrame": 136,
+      "lastFrame": 143,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    },
+    {
+      "name": "resize-1920",
+      "count": 8,
+      "firstFrame": 145,
+      "lastFrame": 152,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    },
+    {
+      "name": "earth-limb-720",
+      "count": 120,
+      "firstFrame": 181,
+      "lastFrame": 300,
+      "maxPixelDelta": 159,
+      "maxAlignedMean": 0.004524139829796533,
+      "maxAlignedP99": 0.08337177155750647
+    },
+    {
+      "name": "earth-partial-720",
+      "count": 8,
+      "firstFrame": 315,
+      "lastFrame": 322,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    },
+    {
+      "name": "mesh-hidden-720",
+      "count": 8,
+      "firstFrame": 368,
+      "lastFrame": 375,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    },
+    {
+      "name": "mesh-removed-720",
+      "count": 8,
+      "firstFrame": 416,
+      "lastFrame": 423,
+      "maxPixelDelta": 0,
+      "maxAlignedMean": 0,
+      "maxAlignedP99": 0
+    }
+  ],
+  "totalPng": 288,
+  "visualAcceptance": "AWAITING_REVIEW"
+}
