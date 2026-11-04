@@ -11,7 +11,7 @@
 
 ## Before / after WebGPU captures
 
-Both sets use the same 1920×1080 headed Chrome / Intel Xe-LPG adapter, same smoke script and controlled scene sequence. Before is the unmodified main runtime at 5f18afc1b77f433892f14510b2599c374f8a4942; after is the B4 candidate built from the same base plus the working-tree changes. Bundle hashes are recorded in the respective result files.
+Both sets use the same 1920×1080 headed Chrome / Intel Xe-LPG adapter, same smoke script and controlled scene sequence. Before is the unmodified main runtime at 5f18afc1b77f433892f14510b2599c374f8a4942; after is the B4 runtime committed as ff06e9691ae98550cc965e1f8c6313a730c0bab6 (PR #25), built from the same base. Bundle hashes are recorded in the respective result files.
 
 | Scenario | Before | After |
 | --- | --- | --- |

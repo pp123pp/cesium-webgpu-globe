@@ -326,7 +326,7 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 
 **B4 / B05 implementation and scoped technical verification complete; awaiting user visual acceptance. Not merged.**
 
-- Branch: feat/m2-6-1-b4-atmospheric-glow, based on main `5f18afc1b77f433892f14510b2599c374f8a4942`.
+- [PR #25](https://github.com/pp123pp/cesium-webgpu-globe/pull/25) is open as draft, based on main `5f18afc1b77f433892f14510b2599c374f8a4942`. Implementation commit: `ff06e9691ae98550cc965e1f8c6313a730c0bab6`; head CI is queued. Branch: feat/m2-6-1-b4-atmospheric-glow.
 - Physical view-path transmittance now modulates only authored Rays/Halo/Corona contribution. The direct solar disk, physical direction/radius/radiance, Earth and real-terrain depth occlusion, Rayleigh/Mie radiance and HDR/Bloom/ACES/sRGB order remain unchanged.
 - No additional render pass, GPU texture or buffer; WebGL untouched. Build, targeted lint, 19 focused tests and headed Intel Xe-LPG WebGPU smoke passed. Before/after capture and 15-sample GPU timing reports are preserved in [B4 evidence](evidence/M2.6.1/B4/README.md).
 - Browser capture: Chrome 156.0.8078.80, Intel Xe-LPG non-fallback, 1920×1080. All 17 scenes per side captured with zero browser errors. GPU all-enabled pass-sum mean 5.0244 ms before / 4.9720 ms after; p95 5.7672 / 5.5050 ms. No new pass or texture payload.
