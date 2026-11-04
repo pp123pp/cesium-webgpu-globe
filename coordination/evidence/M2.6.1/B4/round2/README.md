@@ -1,6 +1,6 @@
 # M2.6.1-B4 — Round 2: corrected scenes and matched evidence
 
-**Technical result: PASS_WITH_KNOWN_ISSUES. Visual acceptance: AWAITING USER REVIEW.** This is B4 / B05 only. PR #25 remains draft; B5 has not started and main is not merged or pushed.
+**Technical result: PASS_WITH_KNOWN_ISSUES. B4 / B05 visual acceptance: PASS (explicitly confirmed by the user on 2026-11-04).** PR #25 merged into main at `34f2571b80ee1854e4a7b8369c845aa506a0b24d`. This acceptance is B4-only; B5/B07 has not started and M2.6.1 is not yet closed.
 
 ## Fixed source and build identities
 
