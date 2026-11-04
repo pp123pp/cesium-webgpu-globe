@@ -57,10 +57,33 @@
         "regressionConclusion": "success",
         "actuallyExecuted": true
       }
+    },
+    {
+      "commit": "24702bddb4d982f60df6a49a010337547d6c3c5f",
+      "fast": {
+        "runId": 41778777546,
+        "status": "completed",
+        "conclusion": "success",
+        "actuallyExecuted": true
+      },
+      "full": {
+        "runId": 41778777606,
+        "selectorConclusion": "success",
+        "regressionStatus": "completed",
+        "regressionConclusion": "skipped",
+        "actuallyExecuted": false
+      },
+      "note": "Latest PR publication head at user visual acceptance and merge authorization. Ready-for-review may trigger another automatic Full run under docs/CI.md; no result is assumed in advance."
     }
   ],
   "manualFullDispatch": false,
   "newLocalWebglDifferential": false,
   "note": "Actual job snapshot before the final log/documentation commit. The 835d967 Full regression executed and passed. d54d8c4 Full was skipped and its superseded Fast was cancelled. Later publication-head checks are tracked in PR #25; none is predeclared passed. Canonical hardware capture and runtime remain unchanged.",
-  "recordedAt": "2026-11-04T05:19:48Z"
+  "recordedAt": "2026-11-04T05:19:48Z",
+  "visualAcceptance": {
+    "status": "PASS",
+    "confirmedByUser": true,
+    "confirmedAt": "2026-11-04",
+    "scope": "B4 / B05 Atmospheric Glow Integration only"
+  }
 }
