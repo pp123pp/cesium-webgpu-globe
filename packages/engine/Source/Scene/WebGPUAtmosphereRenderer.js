@@ -368,11 +368,22 @@ class WebGPUAtmosphereRenderer {
     moon = hiddenMoon,
     stars = hiddenStars,
     exposure = DEFAULT_EXPOSURE,
+    surfaceLighting = false,
   ) {
     if (this._destroyed) {
       return false;
     }
     validateExposure(exposure);
+    if (
+      surfaceLighting &&
+      (!Number.isFinite(parameters.lightIntensity) ||
+        parameters.lightIntensity < 0 ||
+        parameters.lightIntensity > 1e6)
+    ) {
+      throw new RuntimeError(
+        "Surface solar irradiance must be finite in [0, 1000000].",
+      );
+    }
     if (
       !Number.isFinite(this.bloomStrength) ||
       this.bloomStrength < 0 ||
@@ -447,7 +458,16 @@ class WebGPUAtmosphereRenderer {
       ],
       12,
     );
-    this._parametersValues.set([exposure, 0, 0, this.solarEffects.tint], 20);
+    // Reuse reserved components; cold Sun-only rendering still needs no LUT.
+    this._parametersValues.set(
+      [
+        exposure,
+        surfaceLighting ? 1 : 0,
+        surfaceLighting ? parameters.lightIntensity / 10 : 0,
+        this.solarEffects.tint,
+      ],
+      20,
+    );
     this._parametersValues.set(
       [
         this.solarEffects.rays,

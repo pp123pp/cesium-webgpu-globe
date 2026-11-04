@@ -14,7 +14,8 @@ test("M2.6.1 B2 composes three halo scales and two authored corona bands", async
   }
   assert.match(sun, /solarCoronaMid/);
   assert.match(sun, /coronaEnvelope/);
-  assert.match(sun, /mix\(coronaMid, coronaFine, 0\.56\)/);
+  // B5-A-R calibration retains both bands while emphasizing irregular fine detail.
+  assert.match(sun, /mix\(coronaMid, coronaFine, 0\.78\)/);
   assert.match(atmosphere, /@binding\(12\) var solarCorona:/);
   assert.match(atmosphere, /@binding\(13\) var solarCoronaMid:/);
   assert.match(atmosphere, /@binding\(14\) var solarNoise:/);
@@ -75,7 +76,7 @@ test("B2 corona payloads feather transverse edges without erasing directional en
     assert.ok(Math.max(...angularMeans) - Math.min(...angularMeans) >= 3,
       `${name} must retain directional structure rather than uniform haze`);
   }
-  const mixedMean = means["corona-mid"] * 0.44 + means["corona-fine"] * 0.56;
+  const mixedMean = means["corona-mid"] * 0.22 + means["corona-fine"] * 0.78;
   assert.ok(mixedMean >= 12 && mixedMean <= 30,
     `corona coverage must retain restrained visible energy (${mixedMean})`);
 });

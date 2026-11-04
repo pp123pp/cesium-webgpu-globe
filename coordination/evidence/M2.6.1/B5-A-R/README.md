@@ -1,0 +1,60 @@
+# M2.6.1-B5-A-R — Static Visual Remediation
+
+**Latest status (2026-11-04):** round-three functional remediation is implemented at `9a3a1f2decb1f4ec7d37ed3b5649496d007a23d4`. See the [round-three report and matched images](round3/README.md) for 70 clean-source captures, surface-lighting fixes, focused checks and remaining A02/A05 visual concerns. The bright night-side surface defect is resolved in the tested fixture; overall B5-A visual acceptance remains open. No B5-B/B5-C or main merge is claimed.
+
+**Historical evidence below:** the following baseline, second-round observations and CI follow-up describe the earlier `8bb21de` / `85ea6ad` implementation. Their original captures and FAIL/BLOCKED observations are preserved, not presented as the latest render.
+
+## Baseline and candidate
+
+- Baseline audit: [PR #26](https://github.com/pp123pp/cesium-webgpu-globe/pull/26), head `a1a2d680268672f12f7320dac360f2769d751e80`; its original screenshots and FAIL/BLOCKED results remain unchanged.
+- Candidate runtime and capture source: `8bb21de89ce1c42a4e2c43d029771df18c0eab5a`.
+- Bundle: `Build/CesiumUnminified/Cesium.js`, SHA-256 `5c584fd85a551ba47483e4770faf79eefb1dd095b85405f2798d65bd4901c3d7`.
+- Environment: headed Chrome 156.0.8078.80; Intel Xe-LPG non-fallback WebGPU; 1920×1080; exposure 1; CesiumJS 1.146.0.
+- Eight authored solar assets plus the full nine-record solar asset set: **9/9 LOADED**.
+- 58 diagnostic PNGs captured; all 58 hashes match `capture-result.json`; SHA256SUMS manifest verified. No browser/page errors.
+
+## Changes
+
+1. Rays: rebalance the three authored masks toward irregular fine detail (0.15 / 0.65 / 0.20), reduce ray energy from 2.5 to 0.75 and shorten the outer fade.
+2. Solar artwork: lower the minimum view-path transmission from 0.58 to 0.28 and begin attenuation earlier on optically thick paths. The analytic solar disk remains on its existing physical path.
+3. Atmosphere display balance: apply a scene-linear, long-path desaturation / attenuation to the transmitted scene plus in-scattered radiance in both atmosphere output paths. Physical scattering coefficients, transmittance, direct solar energy, depth, Earth/terrain intersection, Bloom order and the single ACES/sRGB output remain intact.
+
+## Second-round static observations
+
+| Scene | Candidate observation |
+| --- | --- |
+| A01 high-orbit Sun | Rays are softer, shorter and lower-energy; residual radial structure remains for user review. |
+| A02 Earth limb | Long-path color is reduced; a thin residual atmospheric limb remains visible. The atmosphere-off control removes it, confirming the atmosphere composite as its source. |
+| A03 orbital sunrise | Horizon warmth is less dominant; a narrow warm band remains. |
+| A04 low-orbit low Sun | Recaptured with the original geometry; residual low-Sun warmth remains under review. |
+| A05 near-ground low Sun | Atmospheric veil is restrained; no claim of visual PASS. |
+| A06 ground daytime | Retained as a control; no obvious regression observed in the reviewed capture. |
+| A07 ground twilight | Yellow cast is reduced toward a softer warm-neutral transition; residual warmth remains for review. |
+| A08 ground night | **BLOCKED / unresolved.** The unlit constant-color night-side terrain remains too bright; this is a surface-lighting limitation, not a solar-artwork defect. It was not hidden by changing exposure or disabling Sun effects. |
+
+Primary candidate captures: [A01](captures/a01-all.png), [A02](captures/a02-all.png), [A03](captures/a03-all.png), [A04](captures/a04-all.png), [A05](captures/a05-all.png), [A06](captures/a06-all.png), [A07](captures/a07-all.png), [A08](captures/a08-all.png).
+
+Diagnostic controls include [A02 atmosphere off](captures/a02-atmosphere-off.png), [A02 physical only / no Bloom](captures/a02-physical-no-bloom.png), [A02 corona disabled](captures/a02-effect-off-corona.png), [A03 physical only / no Bloom](captures/a03-physical-no-bloom.png), [A07 physical only / no Bloom](captures/a07-physical-no-bloom.png), and [A08 physical only / no Bloom](captures/a08-physical-no-bloom.png). All remaining controls and the full capture metadata are retained in this directory.
+
+For same-state before/after comparison, use the original A01–A08 images in [PR #26's B5-A evidence](https://github.com/pp123pp/cesium-webgpu-globe/tree/feat/m2-6-1-b5-a-static-audit/coordination/evidence/M2.6.1/B5/A); no baseline image or result was overwritten.
+
+## Verification
+
+- `npm run build`: PASS on candidate source.
+- Focused Node tests: **5/5 PASS** (two existing B1 solar checks plus three B5-A-R shader invariants).
+- M2.2 production atmosphere browser smoke: **PASS** after updating its independent CPU composite oracle to reproduce the new long-path balance; the original ±3 display-channel tolerance and all physical/depth/occlusion assertions remain unchanged.
+- Targeted ESLint on both modified shaders and B5-A-R scripts: PASS.
+- Capture harness: PASS; all 58 PNG hashes and per-scene error lists verified.
+- Cleanup: viewer destroyed; 6,850/6,850 buffers released; zero pending imagery requests; zero canvases retained.
+- `git diff --check`: PASS.
+- Full regression, WebGL differential, 120-frame temporal acceptance, B5-C GPU timing / resident-VRAM and lifecycle acceptance were not run.
+
+The capture harness PASS is a technical capture-integrity result, **not** a visual acceptance result. Stop here for the user's second-round visual review. Do not start B5-B/B5-C, merge PR #26, merge this remediation, or claim M2.6.1 complete.
+
+## CI follow-up — solar composite oracle
+
+The earlier `806c4ce` fix updated only the atmosphere smoke oracle. The Sun smoke still used the pre-B5-A-R composition, omitting the long-path balance. The unchanged runtime reproduced a `photometry low` failure locally: red was 205 versus the old expected 209, outside the unchanged ±3 tolerance. This was a test-reference mismatch, not a Rays visibility defect.
+
+The Sun oracle now balances only `sceneColor * transmittance + in-scattering`, then adds direct solar radiance times transmittance before exposure / ACES / sRGB. Both smoke suites import the same independent test-only CPU reference; neither reads the production balance helper to compute expected pixels. No engine, visual parameters, fixtures, tolerances, physical checks or occlusion assertions changed.
+
+Retained numeric reports in `ci-followup/` show the failure before the patch and passing Sun (8 check groups), atmosphere (8) and space (12) runs afterward on Chrome 156.0.8078.80 / Intel Xe-LPG. The corrected low-Sun sample is actual RGB `[205, 176, 106]`, expected `[205, 176, 106]`; all three viewers are destroyed. Syntax, targeted ESLint and diff checks pass. Reports identify base `806c4ce` plus the recorded working-tree test changes, not a clean post-commit capture. Screenshots remain in the local Build output; this subsection records CI diagnostics, not a new B5-A visual acceptance.

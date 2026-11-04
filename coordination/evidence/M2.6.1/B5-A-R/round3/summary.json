@@ -1,0 +1,240 @@
+{
+  "runtimeSource": "9a3a1f2decb1f4ec7d37ed3b5649496d007a23d4",
+  "sourceStatus": "",
+  "bundleSha256": "410f39366223a6a611e2072945c39d682507b2b152e2105a964325887cab9980",
+  "productionShaderSha256": "2258c916682dea891f86d5370774259189a0c66ebb899354b33654429073c81f",
+  "engineSourceTree": "a223f3759be0f393297fb36b0bf6e506403ab464",
+  "browser": "156.0.8078.80",
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "images": 70,
+  "verifiedImageHashes": 70,
+  "assetsLoaded": 9,
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 6882,
+      "buffersDestroyed": 6882,
+      "bufferBytes": 0,
+      "drawCalls": 231,
+      "triangles": 131670,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "comparisons": [
+    {
+      "scene": "A01",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "ae34e791d9ef4f6e4fa871a26c2e6bacc604188c4ed062fbf6cde98ccf174152",
+      "afterSha": "634a1c2e76a96d8d74b8417f8c2324bcbecb3eaa705e04a675c165fd35954ce1",
+      "surfaceLuminanceBefore": 0,
+      "surfaceLuminanceAfter": 0,
+      "diskAnnulusContrastBefore": 0.5496778220681848,
+      "diskAnnulusContrastAfter": 0.7491322922361733
+    },
+    {
+      "scene": "A02",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "343f9bbf555ca2f286478bdf26f74ee5e939d9b4eb63457947fa53bb9029b606",
+      "afterSha": "1490b34b42689fe4b9358ad1928580f9689b0d421a51eeed23727cf8f473b141",
+      "surfaceLuminanceBefore": 0,
+      "surfaceLuminanceAfter": 0,
+      "diskAnnulusContrastBefore": 0.6409684870614125,
+      "diskAnnulusContrastAfter": 0.801344384672459
+    },
+    {
+      "scene": "A03",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "59c3fe9568cd519a45ef3f2a45ff65cbbcc3dc25c01831c6ae414d508eedf42e",
+      "afterSha": "38f833963bbc2005b7ee012c7543f715b7f76dffb34a04a7cd797d623bea10b7",
+      "surfaceLuminanceBefore": 0.08044857657549445,
+      "surfaceLuminanceAfter": 0.0005308338995074615,
+      "diskAnnulusContrastBefore": 0.5402436440387727,
+      "diskAnnulusContrastAfter": 0.6133122444515129
+    },
+    {
+      "scene": "A04",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "7f675eaf248db62e34cc1b5396fdf9590eb00f617cfd925d0b7c7ad4895e7a40",
+      "afterSha": "0a78a40690aa307b4307c2425951ab573b45f29452fb95e6035f65377897a118",
+      "surfaceLuminanceBefore": 0.06398618850308209,
+      "surfaceLuminanceAfter": 0.00048634268848396023,
+      "diskAnnulusContrastBefore": 0.4774480670003667,
+      "diskAnnulusContrastAfter": 0.6142471024865683
+    },
+    {
+      "scene": "A05",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "6f50cdce2a89d9045b1ad4ca419ca5c38d082c3e8af7138221c6dd5a4d5debd7",
+      "afterSha": "05a4a0005e36face05120dfe2c8fc267abbe8041161d9bd9e987d8b0b25eaf08",
+      "surfaceLuminanceBefore": 0.512397985426911,
+      "surfaceLuminanceAfter": 0.251538672821168,
+      "diskAnnulusContrastBefore": 0.27678322137984135,
+      "diskAnnulusContrastAfter": 0.4410824524780424
+    },
+    {
+      "scene": "A06",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "de37ccecf1fff7de3ef68e77fca2e00de82dc75c48f38e32bc8d152fb251ab64",
+      "afterSha": "8c7a06a87ba817073d99e153b8cb289b7e0b99b0549df40b64c988462e0bd6e6",
+      "surfaceLuminanceBefore": 0.5068541782266281,
+      "surfaceLuminanceAfter": 0.316056507630373,
+      "diskAnnulusContrastBefore": 0.29070647800169336,
+      "diskAnnulusContrastAfter": 0.5021293544303421
+    },
+    {
+      "scene": "A07",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "7042c4ae8ebb30a50337417ee549c00714e8ebf1be97133fb997ea8da5d48220",
+      "afterSha": "4fa44c38c084b73608be70c8fbc401eea954c71200d77a8b0a724a1787fc30dc",
+      "surfaceLuminanceBefore": 0.22608964547231475,
+      "surfaceLuminanceAfter": 0.0013262512141756758,
+      "diskAnnulusContrastBefore": 0.09620593909974728,
+      "diskAnnulusContrastAfter": 0.34607589699922947
+    },
+    {
+      "scene": "A08",
+      "sameCamera": true,
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "beforeSha": "00793c2e592bbe0502d7e6a35349496f7c0fc8232f9a6e56c396fb1b6a183302",
+      "afterSha": "0753daf80f9115ff1752a38c19b15e0aae9160050cff06192893521ebf83de3d",
+      "surfaceLuminanceBefore": 0.2255369186873417,
+      "surfaceLuminanceAfter": 0.0012499219463404446,
+      "diskAnnulusContrastBefore": -1.3600232051658168e-15,
+      "diskAnnulusContrastAfter": 1.5178830414797062e-18
+    }
+  ],
+  "checks": [
+    {
+      "name": "m1-globe",
+      "status": "PASS",
+      "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+      "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+      "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+      "groups": 7,
+      "provenance": "Pre-commit tested working tree; source changes subsequently committed as 9a3a1f2, with formatting-only commit-hook changes. Not represented as fresh clean-HEAD reruns."
+    },
+    {
+      "name": "m2-atmosphere",
+      "status": "PASS",
+      "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+      "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+      "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+      "groups": 8,
+      "provenance": "Pre-commit tested working tree; source changes subsequently committed as 9a3a1f2, with formatting-only commit-hook changes. Not represented as fresh clean-HEAD reruns."
+    },
+    {
+      "name": "m2-sun",
+      "status": "PASS",
+      "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+      "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+      "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+      "groups": 8,
+      "provenance": "Pre-commit tested working tree; source changes subsequently committed as 9a3a1f2, with formatting-only commit-hook changes. Not represented as fresh clean-HEAD reruns."
+    },
+    {
+      "name": "m2-space",
+      "status": "PASS",
+      "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+      "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+      "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+      "groups": 12,
+      "provenance": "Pre-commit tested working tree; source changes subsequently committed as 9a3a1f2, with formatting-only commit-hook changes. Not represented as fresh clean-HEAD reruns."
+    },
+    {
+      "name": "m2.6.1-b5-a-remediation",
+      "status": "PASS",
+      "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+      "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+      "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+      "groups": 9,
+      "provenance": "Pre-commit tested working tree; source changes subsequently committed as 9a3a1f2, with formatting-only commit-hook changes. Not represented as fresh clean-HEAD reruns."
+    }
+  ],
+  "visualStatus": "REQUIRES_USER_REVIEW; not B5-A/B5 PASS",
+  "notRun": [
+    "B5-B temporal acceptance",
+    "B5-C performance acceptance",
+    "full WebGL differential"
+  ],
+  "limitations": [
+    "Geodetic-normal illumination, not per-mesh slope lighting or terrain shadow mapping",
+    "0.025 artistic ambient floor; no physically calibrated indirect ground irradiance",
+    "Existing RGB atmosphere excludes ozone and spectral conversion",
+    "A02 thin limb and A05 haze remain visible; no universal aesthetic PASS claimed"
+  ]
+}

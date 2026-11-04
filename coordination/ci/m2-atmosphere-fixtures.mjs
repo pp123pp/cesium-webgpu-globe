@@ -37,6 +37,7 @@ export async function installAtmosphereProbe(page) {
       throw new Error("M2.2 shared atmosphere WGSL is missing");
     }
     scene.atmosphere.show = true;
+    scene.globe.enableLighting = true;
     scene._atmosphere.bloomStrength = 0;
     scene.backgroundColor = Cesium.Color.clone(Cesium.Color.BLACK);
     scene.screenSpaceCameraController.enableCollisionDetection = false;
@@ -270,6 +271,31 @@ export async function installAtmosphereProbe(page) {
         );
         const picked = scene.globe.pick(ray, scene);
         const ellipsoid = Cesium.WebGPUPlanetMath.intersectEllipsoid(ray);
+        const sceneDistance = gpu[index][3];
+        const depthPoint = sceneDistance >= 0
+          ? Cesium.Cartesian3.add(
+              ray.origin,
+              Cesium.Cartesian3.multiplyByScalar(ray.direction, sceneDistance, new Cesium.Cartesian3()),
+              new Cesium.Cartesian3(),
+            )
+          : undefined;
+        const ellipsoidPoint = ellipsoid && ellipsoid.start >= 0
+          ? Cesium.Cartesian3.add(
+              ray.origin,
+              Cesium.Cartesian3.multiplyByScalar(ray.direction, ellipsoid.start, new Cesium.Cartesian3()),
+              new Cesium.Cartesian3(),
+            )
+          : undefined;
+        const surfacePoint = depthPoint ?? picked ?? ellipsoidPoint;
+        const surfaceNormal = surfacePoint
+          ? Cesium.Ellipsoid.WGS84.geodeticSurfaceNormal(surfacePoint, new Cesium.Cartesian3())
+          : undefined;
+        const sunCosine = surfaceNormal
+          ? Cesium.Cartesian3.dot(surfaceNormal, scene._planetState.sunDirectionWC)
+          : undefined;
+        const surfaceHeight = surfacePoint
+          ? Cesium.Ellipsoid.WGS84.cartesianToCartographic(surfacePoint).height
+          : null;
         const cosine = Cesium.Cartesian3.dot(ray.direction, viewer.camera.directionWC);
         // Rasterization snaps projected vertices. Chromium's SwiftShader GN
         // configuration supports a 1/16-pixel grid (see WEBGPU_M2.2.md).
@@ -299,6 +325,12 @@ export async function installAtmosphereProbe(page) {
           cosine,
           pickedDistance: picked ? Cesium.Cartesian3.distance(ray.origin, picked) : null,
           pickedHeight: picked ? Cesium.Ellipsoid.WGS84.cartesianToCartographic(picked).height : null,
+          surfaceHeight,
+          surfaceNormal: surfaceNormal ? [surfaceNormal.x, surfaceNormal.y, surfaceNormal.z] : null,
+          sunCosine,
+          atmosphereEnabled: scene.atmosphere.show,
+          surfaceLightingEnabled: scene.globe.enableLighting,
+          lightIntensity: scene.atmosphere.lightIntensity,
           ellipsoidDistance: ellipsoid?.start ?? null,
           rasterPickDistances,
         };

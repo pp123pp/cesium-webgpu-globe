@@ -9,6 +9,10 @@ import {
 } from "./m1-browser-harness.mjs";
 import { trackAtmosphereResources } from "./m2-atmosphere-fixtures.mjs";
 import { installSunProbe } from "./m2-sun-fixtures.mjs";
+import {
+  balanceLongPathAtmosphere,
+  terrainSurfaceLighting,
+} from "./m2-composite-reference.mjs";
 
 process.env.M1_OUTPUT ??= "Build/m2-sun";
 
@@ -38,12 +42,18 @@ function assertComposite(sample, label) {
   assert.ok(sample.gpu.slice(4, 7).every((value) => value >= 0 && value <= 1.000001), `${label}: physical transmittance`);
   assert.ok(Number.isFinite(sample.exposure) && sample.exposure >= 0.01 && sample.exposure <= 16,
     `${label}: valid production exposure`);
+  // Balance the atmosphere/scene term before adding direct solar light.
+  // The production probe still reports raw transport, not display-balanced RGB.
+  const surfaceLighting = sample.surfaceNormal && sample.surfaceLightingEnabled
+    ? terrainSurfaceLighting(sample.sunCosine, sample.surfaceHeight ?? sample.pickedHeight, sample.atmosphereEnabled, sample.lightIntensity)
+    : [1, 1, 1];
+  const atmosphereComposite = [0, 1, 2].map(
+    (channel) => sample.gpu[12 + channel] * surfaceLighting[channel] * sample.gpu[4 + channel] + sample.gpu[8 + channel],
+  );
+  const balanced = balanceLongPathAtmosphere(atmosphereComposite, sample.gpu.slice(4, 7));
   const expected = [];
   for (let channel = 0; channel < 3; ++channel) {
-    // The probe supplies linear HDR scene color, solar radiance, transmittance
-    // and atmospheric in-scattering from the production WGSL.
-    const linear = (sample.gpu[12 + channel] + sample.gpu[channel]) *
-      sample.gpu[4 + channel] + sample.gpu[8 + channel];
+    const linear = balanced[channel] + sample.gpu[channel] * sample.gpu[4 + channel];
     expected.push(displayChannel(linear, sample.exposure));
     assert.ok(Math.abs(sample.displayed[channel] - expected[channel]) <= 3,
       `${label}: actual canvas channel ${channel}: ${sample.displayed[channel]} vs ${expected[channel]}`);

@@ -15,7 +15,7 @@ struct AtmosphereParameters {
   light: vec4f,    // normalized solar irradiance, MS strength, LUT radius/height m
   viewport: vec4f, // width, height, atmosphere enabled, Sun enabled
   sun: vec4f,      // angular radius rad, displayed L, glare strength/radius rad
-  exposure: vec4f, // manual scene-referred exposure multiplier
+  exposure: vec4f, // exposure, surface-lighting enabled, normalized irradiance, tint
   solarEffects: vec4f, // rays, soft halo, wide halo and corona controls
 }
 @group(0) @binding(0) var<uniform> planet: WebGPUPlanet;
@@ -244,6 +244,68 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
   return result;
 }
 
+// The WebGPU terrain pass supplies linear albedo but intentionally has no
+// camera-local lighting. Reconstruct the ellipsoid surface normal from the
+// completed depth so the final compositor applies the same geodetic Lambert
+// day/night split used by Cesium's GlobeFS and Bruneton's ground irradiance.
+// The small ambient floor is an artistic fill, NOT a physical earthshine model.
+fn atmosphereTerrainGeometry(direction: vec3f, sceneDistance: f32) -> vec4f {
+  if (sceneDistance < 0.0) { return vec4f(0.0, 0.0, 0.0, -1.0); }
+  let inverseRadii = planet.inverseRadii.xyz;
+  // Keep the high/low camera split until the local ray offset is added.
+  let localOffset = planet.cameraLow.xyz + direction * sceneDistance;
+  let scaledPosition = planet.cameraHigh.xyz * inverseRadii + localOffset * inverseRadii;
+  let scaledRadius = max(length(scaledPosition), 1.0e-7);
+  let normal = normalize(scaledPosition * inverseRadii);
+  let radialDirection = scaledPosition / scaledRadius;
+  let heightScale = max(dot(radialDirection, normal * inverseRadii), 1.0e-7);
+  let height = max((scaledRadius - 1.0) / heightScale, 0.0);
+  return vec4f(normal, height);
+}
+
+fn terrainSurfaceLight(sunCosine: f32, directTransmittance: vec3f) -> vec3f {
+  // Lambert irradiance is continuous at the terminator. Normalize the existing
+  // scene irradiance convention (10 at default daylight), not the visible disk.
+  let direct = atmosphere.exposure.z * sunCosine * directTransmittance;
+  return vec3f(0.025) + direct;
+}
+
+fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
+  if (atmosphere.exposure.y == 0.0) { return vec3f(1.0); }
+  let surface = atmosphereTerrainGeometry(direction, sceneDistance);
+  if (surface.w < 0.0) { return vec3f(1.0); }
+  let sunCosine = max(dot(surface.xyz, planet.sunDirectionWC.xyz), 0.0);
+  var directTransmittance = vec3f(1.0);
+  if (sunCosine > 0.0) {
+    directTransmittance = atmosphereSunTransmittance(surface.w, sunCosine);
+  }
+  return terrainSurfaceLight(sunCosine, directTransmittance);
+}
+
+// The atmosphere-disabled entry point deliberately avoids the transmittance
+// LUT binding, preserving the cold Sun-only pipeline before LUT allocation.
+fn sunOnlyTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
+  if (atmosphere.exposure.y == 0.0) { return vec3f(1.0); }
+  let surface = atmosphereTerrainGeometry(direction, sceneDistance);
+  if (surface.w < 0.0) { return vec3f(1.0); }
+  let sunCosine = max(dot(surface.xyz, planet.sunDirectionWC.xyz), 0.0);
+  return terrainSurfaceLight(sunCosine, vec3f(1.0));
+}
+
+// Long grazing paths can produce a saturated, one-pixel limb/horizon band after
+// tone mapping. Apply a restrained scene-linear display balance to the combined
+// transmitted scene and in-scattered atmosphere. Transport transmittance, physical
+// coefficients, direct Sun energy and the single ACES/sRGB output remain unchanged.
+fn atmosphereLongPathBalance(radiance: vec3f, transmittance: vec3f) -> vec3f {
+  let weights = vec3f(0.2126, 0.7152, 0.0722);
+  let opacity = clamp(1.0 - dot(transmittance, weights), 0.0, 1.0);
+  let grazingPath = smoothstep(0.25, 0.75, opacity);
+  let luminance = max(dot(radiance, weights), 0.0);
+  let desaturation = 0.85 * grazingPath;
+  let attenuation = 1.0 - 0.35 * grazingPath;
+  return mix(radiance, vec3f(luminance), desaturation) * attenuation;
+}
+
 fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let color = max(value, vec3f(0.0));
   return select(1.055 * pow(color, vec3f(1.0 / 2.4)) - 0.055, color * 12.92,
@@ -281,8 +343,11 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let linear = (background + stars + solar + moon) * transport.transmittance +
-               transport.radiance + moonTerrain;
+  let surfaceLighting = atmosphereTerrainLighting(direction, sceneDistance);
+  let atmosphereComposite = background * surfaceLighting * transport.transmittance + transport.radiance;
+  let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
+  let linear = (stars + solar + moon) * transport.transmittance +
+               balancedAtmosphere + moonTerrain;
   return atmosphereDisplayOutput(linear);
 }
 
@@ -301,8 +366,11 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let linear = (background + stars + solar + moon) * transport.transmittance +
-               transport.radiance + moonTerrain;
+  let surfaceLighting = atmosphereTerrainLighting(direction, sceneDistance);
+  let atmosphereComposite = background * surfaceLighting * transport.transmittance + transport.radiance;
+  let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
+  let linear = (stars + solar + moon) * transport.transmittance +
+               balancedAtmosphere + moonTerrain;
   return vec4f(linear, 1.0);
 }
 
@@ -320,7 +388,8 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let linear = source.rgb + solar + moon + stars + moonTerrain;
+  let surfaceLighting = sunOnlyTerrainLighting(direction, sceneDistance);
+  let linear = source.rgb * surfaceLighting + solar + moon + stars + moonTerrain;
   return atmosphereDisplayOutput(linear);
 }
 
@@ -336,7 +405,8 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  return vec4f(source.rgb + solar + moon + stars + moonTerrain, 1.0);
+  let surfaceLighting = sunOnlyTerrainLighting(direction, sceneDistance);
+  return vec4f(source.rgb * surfaceLighting + solar + moon + stars + moonTerrain, 1.0);
 }
 `;
 

@@ -1,0 +1,107 @@
+{
+  "failedRun": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41817610698/job/126532268175",
+  "failedHead": "885e6a3e9f52c6f8609164184a0414363f0130fb",
+  "failure": "B5 smoke terrain settle timeout after 60000 ms; only 23 frames completed with full-resolution atmosphere on SwiftShader.",
+  "fix": "Use existing atmosphere-suite loading pattern: disable atmosphere only while terrain settles; restore in finally, render and assert atmosphere.show before unchanged pixel/depth checks.",
+  "runtimeChanged": false,
+  "hardware": {
+    "source": "885e6a3e9f52c6f8609164184a0414363f0130fb",
+    "sourceStatus": "M coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs",
+    "browser": "156.0.8078.80",
+    "gpu": {
+      "kind": "hardware-reported",
+      "reason": "intel xe-lpg"
+    },
+    "status": "PASS",
+    "checks": [
+      "twilight: night-side brightness is measured on actual terrain depth",
+      "twilight: unlit surface remains below 1% display-linear white",
+      "twilight: disk-to-adjacent-sky luminance contrast exceeds 0.20 at exposure one",
+      "night: night-side brightness is measured on actual terrain depth",
+      "night: unlit surface remains below 1% display-linear white",
+      "irradiance response uses actual surface pixels, not sky",
+      "physical surface illumination responds monotonically to shared solar irradiance",
+      "zero solar irradiance removes direct surface sunlight",
+      "explicit unlit mode preserves linear albedo and the existing ACES/sRGB codec"
+    ],
+    "settling": [
+      {
+        "name": "twilight",
+        "frames": 129,
+        "elapsedMs": 2144.800000000745,
+        "atmosphereDuringLoad": false,
+        "atmosphereAtCapture": true
+      },
+      {
+        "name": "night",
+        "frames": 85,
+        "elapsedMs": 1408.8999999985099,
+        "atmosphereDuringLoad": false,
+        "atmosphereAtCapture": true
+      }
+    ],
+    "browserErrors": [],
+    "browserConsole": []
+  },
+  "localSoftware": "BLOCKED: Windows Chrome returned no WebGPU adapter with the existing software configuration. Linux SwiftShader verification remains an automatic Fast CI gate.",
+  "userVisualAcceptance": "Confirmed 2026-11-04 for B5-A, including recorded A02/A05 limitations; merge main authorized. B5-B/B5-C not included.",
+  "followup": {
+    "failedRun": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41822298271",
+    "failedHead": "f4cca7cf16afaab33f13aa5564baabe12f64e812",
+    "observation": "Atmosphere-only loading optimization still exhausted 60000 ms: 90 frames, 606 loaded tiles, 409 meshes; Sun/Bloom remained active.",
+    "userDirection": "Use small deterministic real-GPU functional checks in Fast and subsequent workflows; keep full visual matrices for milestone acceptance.",
+    "fixture": {
+      "provider": "EllipsoidTerrainProvider",
+      "maximumLevel": 8,
+      "viewport": [
+        640,
+        360
+      ],
+      "scope": "lighting/depth/color functional regression"
+    },
+    "loading": "Temporarily disable atmosphere, Sun, Bloom and surface lighting; restore before render/capture. Preserve all numerical thresholds, real depth, tilesLoaded, three stable frames and the 60000 ms readiness deadline.",
+    "hardware": {
+      "source": "f4cca7cf16afaab33f13aa5564baabe12f64e812",
+      "sourceStatus": "M coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs",
+      "status": "PASS",
+      "checks": [
+        "twilight: night-side brightness is measured on actual terrain depth",
+        "twilight: unlit surface remains below 1% display-linear white",
+        "twilight: disk-to-adjacent-sky luminance contrast exceeds 0.20 at exposure one",
+        "night: night-side brightness is measured on actual terrain depth",
+        "night: unlit surface remains below 1% display-linear white",
+        "irradiance response uses actual surface pixels, not sky",
+        "physical surface illumination responds monotonically to shared solar irradiance",
+        "zero solar irradiance removes direct surface sunlight",
+        "explicit unlit mode preserves linear albedo and the existing ACES/sRGB codec"
+      ],
+      "settling": [
+        {
+          "name": "twilight",
+          "frames": 18,
+          "elapsedMs": 295.79999999701977,
+          "meshes": 2,
+          "maxLevel": 8
+        },
+        {
+          "name": "night",
+          "frames": 12,
+          "elapsedMs": 191,
+          "meshes": 4,
+          "maxLevel": 8
+        }
+      ],
+      "browserErrors": [],
+      "browserConsole": []
+    },
+    "negativeControl": {
+      "mutation": "Disable actual globe.enableLighting for twilight/night in a temporary copy of the same smoke; no shader or expected-pixel mock.",
+      "exitCode": 1,
+      "failures": [
+        "twilight: unlit surface remains below 1% display-linear white",
+        "night: unlit surface remains below 1% display-linear white"
+      ]
+    },
+    "linuxSoftware": "Pending automatic current-head Fast CI; local Windows software configuration remains unavailable."
+  }
+}
