@@ -1,0 +1,11 @@
+
+D:\github\cesium-webgpu-globe-b2-round2\coordination\ci\generate-corona-artwork.mjs
+   45:54  error  '_' is defined but never used  no-unused-vars
+  108:23  error  'URL' is not defined           no-undef
+  110:37  error  'URL' is not defined           no-undef
+
+D:\github\cesium-webgpu-globe-b2-round2\coordination\ci\m2.6.1-b2-round2-capture.mjs
+  74:40  error  'URL' is not defined  no-undef
+
+鉁?4 problems (4 errors, 0 warnings)
+

@@ -59,7 +59,7 @@ test("solar initialization is idempotent and all owned resources are freed exact
   const { renderer, resources } = setup(t);
   t.mock.method(globalThis, "fetch", async (url) => payload(url));
   await Promise.all([renderer.initialize(), renderer.initialize()]);
-  assert.equal(resources.filter((r) => r.kind === "texture").length, 8);
+  assert.equal(resources.filter((r) => r.kind === "texture").length, 9);
   assert.equal(resources.filter((r) => r.kind === "buffer").length, 3);
   renderer.destroy(); renderer.destroy();
   assert.ok(resources.every((r) => r.destructions === 1));

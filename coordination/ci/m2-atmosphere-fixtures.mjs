@@ -57,8 +57,8 @@ export async function installAtmosphereProbe(page) {
         pixel: vec4f,
         lutUv: vec4f,
       }
-      @group(0) @binding(16) var<storage, read> atmosphereProbes: array<AtmosphereProbe>;
-      @group(0) @binding(17) var<storage, read_write> atmosphereResults: array<vec4f>;
+      @group(0) @binding(17) var<storage, read> atmosphereProbes: array<AtmosphereProbe>;
+      @group(0) @binding(18) var<storage, read_write> atmosphereResults: array<vec4f>;
       @compute @workgroup_size(1)
       fn atmosphereProbeMain(@builtin(global_invocation_id) id: vec3u) {
         let input = atmosphereProbes[id.x];
@@ -207,8 +207,8 @@ export async function installAtmosphereProbe(page) {
             { binding: 4, resource: renderer._sampler },
             { binding: 5, resource: scene.context.sceneColorTexture.createView() },
             { binding: 6, resource: scene.context.sceneDepthTexture.createView() },
-            { binding: 16, resource: { buffer: input } },
-            { binding: 17, resource: { buffer: output } },
+            { binding: 17, resource: { buffer: input } },
+            { binding: 18, resource: { buffer: output } },
           ],
         });
         const encoder = device.createCommandEncoder();

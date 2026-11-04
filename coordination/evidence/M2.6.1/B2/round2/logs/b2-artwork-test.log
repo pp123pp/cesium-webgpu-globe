@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: M2.6.1 B2 composes three halo scales and two authored corona bands
+ok 1 - M2.6.1 B2 composes three halo scales and two authored corona bands
+  ---
+  duration_ms: 9.2435
+  type: 'test'
+  ...
+# Subtest: B2 corona payloads feather transverse edges without erasing directional energy
+ok 2 - B2 corona payloads feather transverse edges without erasing directional energy
+  ---
+  duration_ms: 27.4158
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 112.4707

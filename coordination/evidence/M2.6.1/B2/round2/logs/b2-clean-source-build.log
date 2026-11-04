@@ -1,0 +1,43 @@
+
+> cesium@1.146.0 build
+> gulp build
+
+[08:19:22] Using gulpfile D:\github\cesium-webgpu-globe-b2-round2\gulpfile.js
+[08:19:22] Starting 'build'...
+node.exe : 
+所在位置 行:1 字符: 1
++ & "D:\Program Files\nodejs/node.exe" "D:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  packages\core\Build\Unminified\index.js      1.6mb
+  packages\core\Build\Unminified\index.js.map  3.2mb
+
+Done in 46ms
+
+  packages\engine\Build\Unminified\index.js       9.1mb
+  packages\engine\Build\Unminified\index.js.map  18.0mb
+
+Done in 202ms
+
+  packages\widgets\Build\Unminified\index.js      537.5kb
+  packages\widgets\Build\Unminified\index.js.map  958.6kb
+
+Done in 18ms
+
+  Build\CesiumUnminified\index.js      11.0mb
+  Build\CesiumUnminified\index.js.map  21.8mb
+
+Done in 230ms
+
+  Build\CesiumUnminified\Cesium.js      15.3mb
+  Build\CesiumUnminified\Cesium.js.map  25.6mb
+
+Done in 296ms
+
+  Build\CesiumUnminified\index.cjs      11.1mb
+  Build\CesiumUnminified\index.cjs.map  21.9mb
+
+Done in 206ms
+[08:19:26] Finished 'build' after 4.3 s

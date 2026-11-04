@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "historicalReportsPreserved": true,
+  "allPngHashesVerified": true,
+  "totalArchivedPngs": 611,
+  "suites": [
+    {
+      "directory": "before",
+      "status": "PASS",
+      "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+      "images": 16
+    },
+    {
+      "directory": "before-extended",
+      "status": "PASS",
+      "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+      "images": 142
+    },
+    {
+      "directory": "after",
+      "status": "PASS",
+      "source": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+      "images": 16
+    },
+    {
+      "directory": "after-extended",
+      "status": "PASS",
+      "source": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+      "images": 142
+    },
+    {
+      "directory": "resource-fallback-404",
+      "status": "PASS",
+      "source": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+      "images": 0
+    },
+    {
+      "directory": "resource-fallback-corrupt",
+      "status": "PASS",
+      "source": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+      "images": 0
+    },
+    {
+      "directory": "attempts/before-extended-initial",
+      "status": "FAIL",
+      "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+      "images": 141
+    },
+    {
+      "directory": "attempts/candidate-1",
+      "status": "PASS",
+      "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+      "images": 16
+    },
+    {
+      "directory": "attempts/candidate-2",
+      "status": "PASS",
+      "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+      "images": 16
+    },
+    {
+      "directory": "after-continuous-motion",
+      "status": "PASS",
+      "source": "b7846cf0d7ab5417a37b31f32a47e2888429c147",
+      "images": 122
+    }
+  ],
+  "relativeLinksVerified": 65,
+  "rawImagesUnedited": true,
+  "notes": [
+    "Only playback HTML braces and formatting adjusted; raw PNG/JSON unchanged.",
+    "Evidence runtime b5fc33e; final source diff is docs/evidence and HTML playback template only."
+  ],
+  "supplementaryAfterMotionVerified": true,
+  "supplementaryCaptureScriptHashVerified": true,
+  "relativeLinksVerifiedRound2Readme": 67
+}

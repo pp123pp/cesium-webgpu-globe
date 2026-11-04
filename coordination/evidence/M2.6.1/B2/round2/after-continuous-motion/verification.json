@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "source": "b7846cf0d7ab5417a37b31f32a47e2888429c147",
+  "bundleSha256": "504a8b4ae55497191400a1e4208c577473c414b74b18ec4adcf61ef42e40b99e",
+  "sourceStatus": "",
+  "rawImages": 122,
+  "frames": 120,
+  "cameraMovedEveryFrame": true,
+  "timeAdvancedEveryFrame": true,
+  "contiguous": true,
+  "allRuntimeInputHashesEqualToPrimary": true,
+  "allPngHashesVerified": true,
+  "exposure": 1,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "cameraStepDegrees": 0.025,
+  "timeStepSeconds": 2,
+  "maxAdjacentMeanLumaDelta": 4.1088152081050766e-7,
+  "browserErrors": 0,
+  "gpuErrors": 0,
+  "providerErrors": 0,
+  "requestFailures": 0
+}

@@ -1,0 +1,533 @@
+{
+  "suite": "M2.6.1-B2-round2",
+  "technicalStatus": "PASS",
+  "visualAcceptance": "ACCEPTED_BY_USER",
+  "handoff": "B2 已于 2026-11-04 获用户画面验收通过，已授权将通过的 B1/B2 成果合入 main；完成集成后停止，B3–B5 尚未授权。",
+  "scope": [
+    "B03 Halo retention and combination verification",
+    "B04 Corona refinement"
+  ],
+  "runtimeSource": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+  "implementationCommit": "e009078aa836e2631e8ec8566aa30255363ee6e1",
+  "beforeSource": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
+  "bundleSha256": {
+    "before": "c60f33511ced8e09c0fa1b9e77dc410f4fae28b2e5a5f47db947524916ace236",
+    "after": "504a8b4ae55497191400a1e4208c577473c414b74b18ec4adcf61ef42e40b99e"
+  },
+  "sourceStatus": {
+    "before": "?? coordination/ci/m2.6.1-b2-round2-capture.mjs\n?? coordination/ci/m2.6.1-b2-round2-extended.mjs",
+    "after": ""
+  },
+  "evidence": "round2/README.md",
+  "rawReports": {
+    "before": "round2/before/result.json",
+    "beforeExtended": "round2/before-extended/result.json",
+    "after": "round2/after/result.json",
+    "afterExtended": "round2/after-extended/result.json",
+    "fallback404": "round2/resource-fallback-404/result.json",
+    "fallbackCorrupt": "round2/resource-fallback-corrupt/result.json",
+    "supplementaryAfterMotion": "round2/after-continuous-motion/result.json"
+  },
+  "audit": "round2/audit.json",
+  "matchedScenePairs": 158,
+  "allConfigurationsMatched": true,
+  "rawPngHashesVerified": true,
+  "environment": {
+    "browser": "156.0.8078.76",
+    "gpu": "Intel Arc 130T / Xe-LPG",
+    "driver": "32.0.101.8801",
+    "fallbackAdapter": false,
+    "node": "v22.20.0",
+    "platform": "Windows",
+    "dpr": 1
+  },
+  "fullState": {
+    "solarDisc": true,
+    "solarEffects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "bloomStrength": 0.35,
+    "atmosphere": true,
+    "globe": true,
+    "moon": true,
+    "stars": true,
+    "normalFovDegrees": 60,
+    "diagnosticFovDegrees": 12,
+    "exposures": [
+      0.5,
+      1,
+      2
+    ],
+    "resolutions": [
+      [
+        1920,
+        1080
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "offAxisDegrees": 15,
+    "bloom": {
+      "thresholdLinear": 1,
+      "downsample": 4,
+      "blurCenterWeight": 0.36,
+      "blurDiagonalWeight": 0.16,
+      "blurDiagonalOffsetTexels": 2,
+      "bufferDimensions": [
+        [
+          480,
+          270
+        ],
+        [
+          320,
+          180
+        ]
+      ]
+    }
+  },
+  "visualReview": {
+    "status": "ACCEPTED_BY_USER",
+    "fineContours": "visibly reduced; variable-width diffuse internal structure",
+    "broadPlumes": "complete ellipse/petal/ribbon rims visibly reduced; directional energy retained",
+    "halo": "unchanged continuous falloff",
+    "fullEffects": "improvement visible in normal 60-degree full-effect captures",
+    "highExposure": "bounded white core; exposure 2 compresses weak inner detail",
+    "userApproved": true,
+    "userAcceptance": {
+      "date": "2026-11-04",
+      "timezone": "Asia/Shanghai",
+      "statement": "B2通过画面验收，将当前成果合并到main",
+      "reviewedPublicationHead": "d5d7b84ecdb27091537d9a564b9ccf7942561cc6",
+      "scope": [
+        "B03 Halo",
+        "B04 Corona"
+      ]
+    }
+  },
+  "unchangedDiagnostics": [
+    {
+      "name": "diagnostic-12-halo-only",
+      "sha256": "d659df4f2aa50ab02b31fb96c4fd8e7678a89a0af43988cfda8fc8cc51444dca",
+      "byteIdentical": true
+    },
+    {
+      "name": "diagnostic-12-corona-off",
+      "sha256": "a27326b1291766c1bc82ff9e2187883fba6f07137948cc7f28d99075529fcd4f",
+      "byteIdentical": true
+    }
+  ],
+  "continuous": {
+    "count": 120,
+    "events": {
+      "0": "fixed state begins",
+      "20": "camera lookRight ramp begins (0.05 deg/frame)",
+      "50": "camera stops; native clock advances 10 sec/frame",
+      "80": "clock stops; exposure ramps 1 to 2",
+      "100": "exposure returns to 1; actual resize to 1280x720",
+      "110": "actual resize to 1920x1080",
+      "111": "fixed state after resize; all remaining frames retained"
+    },
+    "contiguous": true,
+    "staticPrefix": true,
+    "largestMeanDifference": 0.00009939078512063262,
+    "segmentMaxDifferences": [
+      {
+        "start": 0,
+        "end": 19,
+        "maxMeanRgbDifference": 0
+      },
+      {
+        "start": 20,
+        "end": 49,
+        "maxMeanRgbDifference": 0.00009939078512063262
+      },
+      {
+        "start": 50,
+        "end": 79,
+        "maxMeanRgbDifference": 0.0000833478324457355
+      },
+      {
+        "start": 80,
+        "end": 99,
+        "maxMeanRgbDifference": 0.00005910027333978859
+      },
+      {
+        "start": 100,
+        "end": 109,
+        "maxMeanRgbDifference": 0
+      },
+      {
+        "start": 110,
+        "end": 119,
+        "maxMeanRgbDifference": 0
+      }
+    ]
+  },
+  "occlusion": {
+    "limb": [
+      {
+        "fraction": 1.5,
+        "changed": 252328,
+        "energy": 12836382,
+        "blocked": 398830,
+        "hiddenMax": 0,
+        "centerDelta": [
+          67,
+          49,
+          61
+        ],
+        "center": [
+          959,
+          539
+        ],
+        "radius": 482,
+        "filename": "earth-occultation-1.5.png"
+      },
+      {
+        "fraction": 0.4,
+        "changed": 211666,
+        "energy": 7967362,
+        "blocked": 444894,
+        "hiddenMax": 0,
+        "centerDelta": [
+          36,
+          50,
+          2
+        ],
+        "center": [
+          959,
+          540
+        ],
+        "radius": 482,
+        "filename": "earth-occultation-0.4.png"
+      },
+      {
+        "fraction": 0,
+        "changed": 182541,
+        "energy": 4688049,
+        "blocked": 461272,
+        "hiddenMax": 0,
+        "centerDelta": [
+          0,
+          0,
+          0
+        ],
+        "center": [
+          959,
+          540
+        ],
+        "radius": 482,
+        "filename": "earth-occultation-0.png"
+      },
+      {
+        "fraction": -0.4,
+        "changed": 142831,
+        "energy": 2135330,
+        "blocked": 476686,
+        "hiddenMax": 0,
+        "centerDelta": [
+          0,
+          0,
+          0
+        ],
+        "center": [
+          960,
+          539
+        ],
+        "radius": 482,
+        "filename": "earth-occultation--0.4.png"
+      },
+      {
+        "fraction": -1.5,
+        "changed": 0,
+        "energy": 0,
+        "blocked": 522691,
+        "hiddenMax": 0,
+        "centerDelta": [
+          0,
+          0,
+          0
+        ],
+        "center": [
+          959,
+          540
+        ],
+        "radius": 482,
+        "filename": "earth-occultation--1.5.png"
+      }
+    ],
+    "mountain": {
+      "observation": {
+        "changed": 74578,
+        "energy": 553419,
+        "blocked": 358020,
+        "hiddenMax": 0,
+        "centerDelta": [
+          0,
+          0,
+          0
+        ],
+        "center": [
+          960,
+          539
+        ],
+        "radius": 482
+      },
+      "gpu": [
+        0,
+        0,
+        0,
+        1,
+        0.4849354922771454,
+        0.1852843314409256,
+        0.016407284885644913,
+        2.4344484472749173e-7,
+        0.21318235993385315,
+        0.06830274313688278,
+        0.0149745624512434,
+        410433.46875,
+        0.03558349609375,
+        0.1143798828125,
+        0.25,
+        1,
+        0.9994686245918274,
+        0.03258812800049782,
+        -0.000699294381774962,
+        0.00010948357521556318,
+        0.9994703531265259,
+        0.03253341093659401,
+        -0.0007540325168520212,
+        0
+      ],
+      "analyticEarthHit": false,
+      "realMeshHit": true
+    },
+    "mountainRemoved": {
+      "changed": 164690,
+      "energy": 1663385,
+      "blocked": 358020,
+      "hiddenMax": 0,
+      "centerDelta": [
+        42,
+        63,
+        5
+      ],
+      "center": [
+        960,
+        539
+      ],
+      "radius": 482
+    },
+    "pair": {
+      "sameCamera": true,
+      "sameTime": true,
+      "sameLayers": true,
+      "sameBloom": true
+    },
+    "cameraBasisDelta": 1.1102230246251565e-16
+  },
+  "gpuTimings": {
+    "kind": "GPU timestamp render-pass sum, not CPU wait",
+    "samplesPerMode": 30,
+    "warmupIterations": 6,
+    "beforeStatic": {
+      "gpuPassSumMs": {
+        "mean": 2.411724800000001,
+        "p50": 2.2937600000000002,
+        "p95": 3.145728
+      },
+      "gpuFrameSpanMs": {
+        "mean": 2.7743573333333336,
+        "p50": 2.686976,
+        "p95": 3.473408
+      },
+      "wallRenderAndMapMs": {
+        "mean": 4.833333337306977,
+        "p50": 4.799999952316284,
+        "p95": 6.100000023841858
+      },
+      "passCount": 5
+    },
+    "afterStatic": {
+      "gpuPassSumMs": {
+        "mean": 2.2719146666666665,
+        "p50": 2.228224,
+        "p95": 2.555904
+      },
+      "gpuFrameSpanMs": {
+        "mean": 2.649838933333334,
+        "p50": 2.62144,
+        "p95": 2.883584
+      },
+      "wallRenderAndMapMs": {
+        "mean": 4.856666664282481,
+        "p50": 4.699999928474426,
+        "p95": 6.200000047683716
+      },
+      "passCount": 5
+    },
+    "beforeExtended": {
+      "gpuPassSumMs": {
+        "mean": 2.2828373333333336,
+        "p50": 2.29376,
+        "p95": 2.490368
+      },
+      "gpuFrameSpanMs": {
+        "mean": 2.6345472,
+        "p50": 2.62144,
+        "p95": 2.752512
+      },
+      "wallRenderAndMapMs": {
+        "mean": 4.803333330154419,
+        "p50": 4.399999976158142,
+        "p95": 6.5
+      },
+      "passCount": 5
+    },
+    "afterExtended": {
+      "gpuPassSumMs": {
+        "mean": 2.368034133333333,
+        "p50": 2.359296,
+        "p95": 2.6214399999999998
+      },
+      "gpuFrameSpanMs": {
+        "mean": 2.7284821333333342,
+        "p50": 2.686976,
+        "p95": 3.014656
+      },
+      "wallRenderAndMapMs": {
+        "mean": 4.753333334128062,
+        "p50": 4.700000047683716,
+        "p95": 6.200000047683716
+      },
+      "passCount": 5
+    },
+    "interpretation": "Observational run-to-run variation; no speedup claim",
+    "textureCount": 9,
+    "payloadBytes": 3145728,
+    "addedTextures": 0,
+    "addedSamples": 0,
+    "addedPasses": 0,
+    "rendererAllocationsDuringMeasurement": {
+      "textures": 0,
+      "buffers": 0
+    }
+  },
+  "resourceFallback": {
+    "http404": {
+      "solarAssetsLoaded": false,
+      "solarAssetError": "Solar texture glow-gradient returned HTTP 404.",
+      "textureCount": 9,
+      "texturesCreated": 20,
+      "texturesDestroyed": 8
+    },
+    "corrupt": {
+      "solarAssetsLoaded": false,
+      "solarAssetError": "Solar texture glow-gradient has 30 bytes; expected 1048576.",
+      "textureCount": 9,
+      "texturesCreated": 20,
+      "texturesDestroyed": 8
+    },
+    "destroy404": {
+      "destroyed": true,
+      "texturesCreated": 20,
+      "texturesDestroyed": 20,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3
+    },
+    "destroyCorrupt": {
+      "destroyed": true,
+      "texturesCreated": 20,
+      "texturesDestroyed": 20,
+      "buffersCreated": 3,
+      "buffersDestroyed": 3
+    },
+    "expected404ConsoleError": [
+      {
+        "type": "error",
+        "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+      }
+    ],
+    "counterScope": "WebGPUAtmosphereRenderer after viewer.destroy; not whole-engine native allocation totals"
+  },
+  "newVerification": {
+    "hardwareSuites": 5,
+    "beforeRawImages": 158,
+    "focusedUnits": {
+      "pass": 9,
+      "fail": 0,
+      "log": "round2/logs/b2-focused-tests.log",
+      "note": "Stabilized runtime inputs; later shader comment-only clarification."
+    },
+    "targetedEslint": "PASS",
+    "bundleBuild": "PASS",
+    "generatedDeclarations": "PASS",
+    "engineTypes": "PASS",
+    "normalCaptureErrors": {
+      "browser": 0,
+      "console": 0,
+      "requestFailures": 0,
+      "provider": 0,
+      "gpu": 0,
+      "shader": 0
+    },
+    "matchedAfterImages": 158,
+    "supplementaryAfterImages": 122,
+    "totalAfterImages": 280
+  },
+  "historicalEvidence": {
+    "roundOne": "round1/result.json",
+    "deviceLossAndRecreation": "M2.6 closeout; not newly run on B2 hardware",
+    "webglDifferential": "M2.6 closeout; unchanged implementation, final PR CI separately checked"
+  },
+  "limits": [
+    "Single physical GPU/browser; no long-duration soak or new hardware device-loss/recreation stress",
+    "12-degree broad corona remains soft and somewhat cloud-like; normal-view detail merges",
+    "Exposure 2 reduces weak inner contrast",
+    "Near-ground strong yellow/orange sky and imagery seams remain; no overall scene-naturalness claim",
+    "High-orbit named limb image lacks discernible Earth edge; low-orbit/independent-mask scenes provide limb evidence",
+    "120-frame paced sequence is not an FPS benchmark",
+    "Resident VRAM not measured",
+    "No B3/B4/B5 or final M2.6.1 integrated acceptance"
+  ],
+  "publication": {
+    "branch": "feat/m2-6-1-b2-solar-halo-corona",
+    "pr": "https://github.com/pp123pp/cesium-webgpu-globe/pull/22",
+    "base": "main",
+    "checks": "https://github.com/pp123pp/cesium-webgpu-globe/pull/22/checks",
+    "note": "User accepted B2 and authorized dependency-ordered B1/B2 integration into main on 2026-11-04. PR #21 merged first; PR #22 now targets main. Final integration status and SHA are recorded by GitHub PR merge records. B3–B5 remain unauthorized.",
+    "b1MergeCommit": "eeaca1ddc3ef960ad23cd4aae9757b31ea98063a",
+    "integrationAuthorizedByUser": true
+  },
+  "supplementaryAfterOnlyMotion": {
+    "status": "PASS",
+    "source": "b7846cf0d7ab5417a37b31f32a47e2888429c147",
+    "bundleSha256": "504a8b4ae55497191400a1e4208c577473c414b74b18ec4adcf61ef42e40b99e",
+    "sourceStatus": "",
+    "rawImages": 122,
+    "frames": 120,
+    "cameraMovedEveryFrame": true,
+    "timeAdvancedEveryFrame": true,
+    "contiguous": true,
+    "allRuntimeInputHashesEqualToPrimary": true,
+    "allPngHashesVerified": true,
+    "exposure": 1,
+    "canvas": [
+      1920,
+      1080
+    ],
+    "cameraStepDegrees": 0.025,
+    "timeStepSeconds": 2,
+    "maxAdjacentMeanLumaDelta": 4.1088152081050766e-7,
+    "browserErrors": 0,
+    "gpuErrors": 0,
+    "providerErrors": 0,
+    "requestFailures": 0
+  }
+}

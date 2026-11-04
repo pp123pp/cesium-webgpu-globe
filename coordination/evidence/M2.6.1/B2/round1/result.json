@@ -1,0 +1,279 @@
+{
+  "suite": "m2.6.1-b2-halo-corona",
+  "browserConsole": [],
+  "capturedAt": "2026-11-03T14:36:24.722Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": false,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "44fb757a0e07f59c852807d41f2e0e437a087c26",
+  "sourceStatus": "",
+  "bundleSha256": "f686a6fa3643b6f61aa2bceb0c4a87876229141eaf01af811da4262fb961f2de",
+  "browserErrors": [],
+  "checks": [
+    "halo-only-1920x1080.png: actual WebGPU canvas capture",
+    "corona-only-1920x1080.png: actual WebGPU canvas capture",
+    "combined-exposure-0.5-1920x1080.png: actual WebGPU canvas capture",
+    "combined-exposure-1.0-1920x1080.png: actual WebGPU canvas capture",
+    "combined-exposure-2.0-1920x1080.png: actual WebGPU canvas capture",
+    "combined-resized-1280x720.png: actual WebGPU canvas capture"
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.76",
+  "setup": {
+    "viewport": [
+      1920,
+      1080
+    ],
+    "cameraHeight": 399999.9999999993,
+    "time": "2026-03-20T12:00:00Z",
+    "angularRadius": 0.00465,
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "assetRecords": [
+      {
+        "name": "radial-rays-01",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 6
+      },
+      {
+        "name": "radial-rays-02",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 5.100000023841858
+      },
+      {
+        "name": "radial-rays-03",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 15.899999976158142
+      },
+      {
+        "name": "soft-halo",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.100000023841858
+      },
+      {
+        "name": "wide-halo",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 5.800000071525574
+      },
+      {
+        "name": "corona-fine",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.5
+      },
+      {
+        "name": "corona-mid",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.299999952316284
+      },
+      {
+        "name": "radial-noise",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 6.5
+      },
+      {
+        "name": "glow-gradient",
+        "format": "rgba8unorm-srgb",
+        "width": 512,
+        "height": 512,
+        "byteLength": 1048576,
+        "status": "LOADED",
+        "loadAndUploadMs": 8.600000023841858
+      }
+    ],
+    "solarAssetBytes": 3145728
+  },
+  "shaderDiagnostics": [],
+  "effectIsolation": {
+    "halo": {
+      "center": [
+        959,
+        539
+      ],
+      "roiRadius": 180,
+      "changedPixels": 126700,
+      "maxDifference": 171
+    },
+    "corona": {
+      "center": [
+        959,
+        539
+      ],
+      "roiRadius": 180,
+      "changedPixels": 123924,
+      "maxDifference": 148
+    }
+  },
+  "resize": {
+    "width": 1280,
+    "height": 720,
+    "bloomWidth": 320,
+    "bloomHeight": 180,
+    "solarAssetBytes": 3145728
+  },
+  "finalStatistics": {
+    "frames": 29,
+    "sunFrames": 31,
+    "moonFrames": 0,
+    "starFrames": 0,
+    "lutBuilds": 1,
+    "buffersCreated": 3,
+    "buffersDestroyed": 0,
+    "texturesCreated": 17,
+    "texturesDestroyed": 3,
+    "solarAssetBytes": 3145728,
+    "solarAssetsLoaded": true,
+    "bloomFrames": 31,
+    "bloomPasses": 33,
+    "bloomTextureBytes": 8294400,
+    "bloomWidth": 320,
+    "bloomHeight": 180,
+    "maxFeedback": 0.33370226933715824,
+    "assetRecords": [
+      {
+        "name": "radial-rays-01",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 6
+      },
+      {
+        "name": "radial-rays-02",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 5.100000023841858
+      },
+      {
+        "name": "radial-rays-03",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 15.899999976158142
+      },
+      {
+        "name": "soft-halo",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.100000023841858
+      },
+      {
+        "name": "wide-halo",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 5.800000071525574
+      },
+      {
+        "name": "corona-fine",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.5
+      },
+      {
+        "name": "corona-mid",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 4.299999952316284
+      },
+      {
+        "name": "radial-noise",
+        "format": "r8unorm",
+        "width": 512,
+        "height": 512,
+        "byteLength": 262144,
+        "status": "LOADED",
+        "loadAndUploadMs": 6.5
+      },
+      {
+        "name": "glow-gradient",
+        "format": "rgba8unorm-srgb",
+        "width": 512,
+        "height": 512,
+        "byteLength": 1048576,
+        "status": "LOADED",
+        "loadAndUploadMs": 8.600000023841858
+      }
+    ],
+    "errors": []
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

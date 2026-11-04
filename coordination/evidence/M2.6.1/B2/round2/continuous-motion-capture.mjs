@@ -1,0 +1,26 @@
+/* global window, Cesium, requestAnimationFrame */
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile}from'node:fs/promises';
+import path from'node:path';
+import process from'node:process';
+import{fileURLToPath,pathToFileURL}from'node:url';
+const{runB2Capture,fullEffects}=await import(pathToFileURL(path.resolve(process.cwd(),'coordination/ci/m2.6.1-b2-round2-capture.mjs')).href);
+await runB2Capture('continuous-motion',async({page,report,output,scene,capture})=>{
+  await scene('continuous-motion-initial',{fov:60,exposure:1});
+  await mkdir(path.join(output,'continuous'));
+  const sequence=[];
+  for(let index=0;index<120;index++){
+    await page.evaluate(async()=>{await new Promise(requestAnimationFrame);const{viewer}=window.__m1;viewer.camera.lookRight(Cesium.Math.toRadians(0.025));viewer.clock.currentTime=Cesium.JulianDate.addSeconds(viewer.clock.currentTime,2,new Cesium.JulianDate());viewer.camera.update(Cesium.SceneMode.SCENE3D);});
+    const row=await capture(`continuous/frame-${String(index).padStart(4,'0')}`,{intent:{sequenceIndex:index,cameraStepDegrees:0.025,timeStepSeconds:2,exposure:1,resolution:[1920,1080],allFramesRetained:true}});
+    assert.equal(row.state.exposure,1);assert.equal(row.state.bloomStrength,0.35);assert.deepEqual(row.state.solarEffects,fullEffects);assert.deepEqual(row.state.canvas,[1920,1080]);
+    sequence.push({index,filename:path.basename(row.filename),sha256:row.sha256,frame:row.state.frame,time:row.state.time,event:'camera +0.025 degree and clock +2 seconds; exposure/resolution fixed',directionWC:row.state.camera.directionWC,nativeSun:row.state.nativeSun});
+  }
+  report.continuousMotion={count:sequence.length,afterOnly:true,contiguousRenderFrameNumbers:sequence.every((r,i)=>i===0||r.frame===sequence[i-1].frame+1),everyFrameTimeAdvanced:sequence.every((r,i)=>i===0||Date.parse(r.time)-Date.parse(sequence[i-1].time)===2000),everyFrameCameraMoved:sequence.every((r,i)=>i===0||r.directionWC.some((v,c)=>v!==sequence[i-1].directionWC[c])),exposure:1,canvas:[1920,1080],cameraStepDegrees:0.025,timeStepSeconds:2,viewer:'continuous/index.html',observations:sequence};
+  assert.equal(report.continuousMotion.contiguousRenderFrameNumbers,true);assert.equal(report.continuousMotion.everyFrameTimeAdvanced,true);assert.equal(report.continuousMotion.everyFrameCameraMoved,true);
+  await writeFile(path.join(output,'continuous','sequence.json'),JSON.stringify(report.continuousMotion,null,2));
+  const existing=await readFile('coordination/evidence/M2.6.1/B2/round2/after-extended/continuous/index.html','utf8');
+  const begin=existing.indexOf('const frames=');const end=existing.indexOf(';let current=',begin);assert.ok(begin>=0&&end>begin);
+  const html=(`${existing.slice(0,begin)}const frames=${JSON.stringify(sequence)}${existing.slice(end)}`).replace('Resize and deliberate exposure changes are labelled.','Every frame moves the camera by 0.025 degree and advances native time by 2 seconds. Exposure 1, FOV 60 degrees and 1920x1080 remain fixed. This is an additional after-only sequence.');
+  await writeFile(path.join(output,'continuous','index.html'),html);
+  report.checks.push('120 consecutive frames with camera and native time changing on every frame; exposure, dimensions and full effects fixed; after-only supplemental evidence');
+},{extraScripts:[fileURLToPath(import.meta.url)]});

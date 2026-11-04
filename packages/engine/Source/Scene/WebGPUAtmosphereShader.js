@@ -31,9 +31,10 @@ struct AtmosphereParameters {
 @group(0) @binding(10) var solarSoftHalo: texture_2d<f32>;
 @group(0) @binding(11) var solarWideHalo: texture_2d<f32>;
 @group(0) @binding(12) var solarCorona: texture_2d<f32>;
-@group(0) @binding(13) var solarNoise: texture_2d<f32>;
-@group(0) @binding(14) var solarGlowGradient: texture_2d<f32>;
-@group(0) @binding(15) var solarSampler: sampler;
+@group(0) @binding(13) var solarCoronaMid: texture_2d<f32>;
+@group(0) @binding(14) var solarNoise: texture_2d<f32>;
+@group(0) @binding(15) var solarGlowGradient: texture_2d<f32>;
+@group(0) @binding(16) var solarSampler: sampler;
 
 ${WebGPUSunShader}
 

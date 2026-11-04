@@ -1,0 +1,299 @@
+node.exe : [0;33m[0;33m鈿?[0m Skipping backup because `--diff` was used.
+所在位置 行:1 字符: 1
++ & "D:\Program Files\nodejs/node.exe" "D:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([0;33m[0;33m鈿...diff` was used.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[0m
+[33m[STARTED][39m Preparing lint-staged...
+[32m[COMPLETED][39m Preparing lint-staged...
+[33m[STARTED][39m Running tasks for changed files...
+[33m[STARTED][39m packages/engine/lint-staged.config.js[0;90m 鈥?7 files[0m
+[33m[STARTED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?1 file[0m
+[33m[STARTED][39m eslint --cache --quiet
+[32m[COMPLETED][39m eslint --cache --quiet
+[33m[STARTED][39m prettier --write
+[32m[COMPLETED][39m prettier --write
+[32m[COMPLETED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?1 file[0m
+[33m[STARTED][39m *.md[0;90m 鈥?1 file[0m
+[33m[STARTED][39m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md
+[32m[COMPLETED][39m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/packages/engine/Source/Assets/Textures/WebGPU/Solar/README.md
+[33m[STARTED][39m prettier --write
+[32m[COMPLETED][39m prettier --write
+[32m[COMPLETED][39m *.md[0;90m 鈥?1 file[0m
+[33m[STARTED][39m *.{js,cjs,mjs,ts,cts,mts}[0;90m 鈥?1 file[0m
+[33m[STARTED][39m tsc
+[31m[FAILED][39m [0;31mtsc[0m [0;90m[FAILED][0m
+[31m[FAILED][39m [0;31mtsc[0m [0;90m[FAILED][0m
+[33m[STARTED][39m lint-staged.config.js[0;90m 鈥?9 files[0m
+[33m[STARTED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?5 files[0m
+[33m[STARTED][39m eslint --cache --quiet
+[32m[COMPLETED][39m eslint --cache --quiet
+[33m[STARTED][39m prettier --write
+[32m[COMPLETED][39m prettier --write
+[32m[COMPLETED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?5 files[0m
+[33m[STARTED][39m *.md[0;90m 鈥?4 files[0m
+[33m[STARTED][39m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md D:/github/cesium-webgpu-globe-b2-round2/coordination/STATUS.md D:/github/cesium-webgpu-globe-b2-round2/coordination/audits/M2.6.1-B2-round2-plan.md D:/github/cesium-webgpu-globe-b2-round2/tasks/M2.6.1.md
+[31m[FAILED][39m [0;31mmarkdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-pat
+h D:\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md D:/git
+hub/cesium-webgpu-globe-b2-round2/coordination/STATUS.md D:/github/cesium-webgpu-globe-b2-round2/coordination/audits/M2
+.6.1-B2-round2-plan.md D:/github/cesium-webgpu-globe-b2-round2/tasks/M2.6.1.md[0m [0;90m[FAILED][0m
+[31m[FAILED][39m [0;31mmarkdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-pat
+h D:\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md D:/git
+hub/cesium-webgpu-globe-b2-round2/coordination/STATUS.md D:/github/cesium-webgpu-globe-b2-round2/coordination/audits/M2
+.6.1-B2-round2-plan.md D:/github/cesium-webgpu-globe-b2-round2/tasks/M2.6.1.md[0m [0;90m[FAILED][0m
+[32m[COMPLETED][39m Running tasks for changed files...
+[33m[STARTED][39m Applying modifications from tasks...
+[32m[COMPLETED][39m Applying modifications from tasks...
+
+[0;31m[0;31m鉁?[0m tsc:[0m
+[96mSource/Core/VectorPipeline.js[0m:[93m30[0m:[93m14[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"
+' has no exported member 'TypedArray'.
+
+[7m30[0m /** @import {TypedArray, TypedArrayConstructor} from "@cesium/core"; */
+[7m  [0m [91m             ~~~~~~~~~~[0m
+
+[96mSource/Core/VectorPipeline.js[0m:[93m30[0m:[93m26[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"
+' has no exported member 'TypedArrayConstructor'.
+
+[7m30[0m /** @import {TypedArray, TypedArrayConstructor} from "@cesium/core"; */
+[7m  [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Core/VectorPipeline.js[0m:[93m1205[0m:[93m7[0m - [91merror[0m[90m TS2578: [0mUnused '@ts-expect-er
+ror' directive.
+
+[7m1205[0m       // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m    [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPoint.js[0m:[93m104[0m:[93m5[0m - [91merror[0m[90m TS2578: [0mUnused '@ts-expect-error
+' directive.
+
+[7m104[0m     // @ts-expect-error TODO(tsd-jsdoc): See https://github.com/CesiumGS/cesium/pull/13302.
+[7m   [0m [91m    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPointCollection.js[0m:[93m15[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@cesi
+um/core"' has no exported member 'TypedArray'.
+
+[7m15[0m /** @import { TypedArray } from "@cesium/core"; */
+[7m  [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolygon.js[0m:[93m7[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"'
+ has no exported member 'TypedArray'.
+
+[7m7[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolygon.js[0m:[93m7[0m:[93m27[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"'
+ has no exported member 'TypedArrayConstructor'.
+
+[7m7[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolygonCollection.js[0m:[93m11[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@ce
+sium/core"' has no exported member 'TypedArray'.
+
+[7m11[0m /** @import { TypedArray } from "@cesium/core"; */
+[7m  [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolyline.js[0m:[93m7[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"
+' has no exported member 'TypedArray'.
+
+[7m7[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolyline.js[0m:[93m7[0m:[93m27[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core"
+' has no exported member 'TypedArrayConstructor'.
+
+[7m7[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPolylineCollection.js[0m:[93m9[0m:[93m59[0m - [91merror[0m[90m TS2305: [0mModule '"@ce
+sium/core"' has no exported member 'TypedArray'.
+
+[7m9[0m /** @import { BoundingSphere, ComponentDatatype, Matrix4, TypedArray } from "@cesium/core"; */
+[7m [0m [91m                                                          ~~~~~~~~~~[0m
+
+[96mSource/Scene/BufferPrimitiveCollection.js[0m:[93m23[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@
+cesium/core"' has no exported member 'TypedArray'.
+
+[7m23[0m /** @import { TypedArray } from "@cesium/core"; */
+[7m  [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/buildVectorGltfFromMVT.js[0m:[93m17[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@ces
+ium/core"' has no exported member 'TypedArray'.
+
+[7m17[0m /** @import { TypedArray } from "@cesium/core"; */
+[7m  [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/GeoJsonPrimitive.js[0m:[93m540[0m:[93m7[0m - [91merror[0m[90m TS2345: [0mArgument of type 'o
+bject' is not assignable to parameter of type 'Record<string, unknown>'.
+  Index signature for type 'string' is missing in type '{}'.
+
+[7m540[0m       isPlainObject(featureInput.properties)
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m541[0m         ? featureInput.properties
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m542[0m         : Frozen.EMPTY_OBJECT,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/Model/createVectorTileBuffersFromModelComponents.js[0m:[93m22[0m:[93m15[0m - [91merror[0m[90m
+ TS2305: [0mModule '"@cesium/core"' has no exported member 'TypedArray'.
+
+[7m22[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m  [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/Model/createVectorTileBuffersFromModelComponents.js[0m:[93m22[0m:[93m27[0m - [91merror[0m[90m
+ TS2305: [0mModule '"@cesium/core"' has no exported member 'TypedArrayConstructor'.
+
+[7m22[0m /** @import { TypedArray, TypedArrayConstructor } from "@cesium/core"; */
+[7m  [0m [91m                          ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/Model/createVectorTileBuffersFromModelComponents.js[0m:[93m316[0m:[93m7[0m - [91merror[0m[90m
+ TS2578: [0mUnused '@ts-expect-error' directive.
+
+[7m316[0m       // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/ModelComponents.js[0m:[93m6[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@cesium/core
+"' has no exported member 'TypedArray'.
+
+[7m6[0m /** @import { TypedArray } from "@cesium/core"; */
+[7m [0m [91m              ~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPointCollection.js[0m:[93m30[0m:[93m14[0m - [91merror[0m[90m TS2305: [0mModule '
+"@cesium/core"' has no exported member 'TypedArray'.
+
+[7m30[0m /** @import {TypedArray} from "@cesium/core"; */
+[7m  [0m [91m             ~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPointCollection.js[0m:[93m177[0m:[93m7[0m - [91merror[0m[90m TS2578: [0mUnused '
+@ts-expect-error' directive.
+
+[7m177[0m       // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPointCollection.js[0m:[93m182[0m:[93m9[0m - [91merror[0m[90m TS2578: [0mUnused '
+@ts-expect-error' directive.
+
+[7m182[0m         // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPointCollection.js[0m:[93m186[0m:[93m7[0m - [91merror[0m[90m TS2578: [0mUnused '
+@ts-expect-error' directive.
+
+[7m186[0m       // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolygonCollection.js[0m:[93m29[0m:[93m14[0m - [91merror[0m[90m TS2305: [0mModule
+ '"@cesium/core"' has no exported member 'TypedArray'.
+
+[7m29[0m /** @import {TypedArray} from "@cesium/core"; */
+[7m  [0m [91m             ~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolygonCollection.js[0m:[93m208[0m:[93m9[0m - [91merror[0m[90m TS2578: [0mUnused
+ '@ts-expect-error' directive.
+
+[7m208[0m         // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolygonCollection.js[0m:[93m211[0m:[93m9[0m - [91merror[0m[90m TS2578: [0mUnused
+ '@ts-expect-error' directive.
+
+[7m211[0m         // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolygonCollection.js[0m:[93m213[0m:[93m9[0m - [91merror[0m[90m TS2578: [0mUnused
+ '@ts-expect-error' directive.
+
+[7m213[0m         // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m32[0m:[93m14[0m - [91merror[0m[90m TS2305: [0mModul
+e '"@cesium/core"' has no exported member 'TypedArray'.
+
+[7m32[0m /** @import {TypedArray} from "@cesium/core"; */
+[7m  [0m [91m             ~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m333[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m333[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m335[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m335[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m338[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m338[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m340[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m340[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m343[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m343[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mSource/Scene/renderBufferPolylineCollection.js[0m:[93m345[0m:[93m13[0m - [91merror[0m[90m TS2578: [0mUnus
+ed '@ts-expect-error' directive.
+
+[7m345[0m             // @ts-expect-error https://github.com/CesiumGS/cesium/pull/13302
+[7m   [0m [91m            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 33 errors in 15 files.
+
+Errors  Files
+     3  Source/Core/VectorPipeline.js[90m:30[0m
+     1  Source/Scene/BufferPoint.js[90m:104[0m
+     1  Source/Scene/BufferPointCollection.js[90m:15[0m
+     2  Source/Scene/BufferPolygon.js[90m:7[0m
+     1  Source/Scene/BufferPolygonCollection.js[90m:11[0m
+     2  Source/Scene/BufferPolyline.js[90m:7[0m
+     1  Source/Scene/BufferPolylineCollection.js[90m:9[0m
+     1  Source/Scene/BufferPrimitiveCollection.js[90m:23[0m
+     1  Source/Scene/buildVectorGltfFromMVT.js[90m:17[0m
+     1  Source/Scene/GeoJsonPrimitive.js[90m:540[0m
+     3  Source/Scene/Model/createVectorTileBuffersFromModelComponents.js[90m:22[0m
+     1  Source/Scene/ModelComponents.js[90m:6[0m
+     4  Source/Scene/renderBufferPointCollection.js[90m:30[0m
+     4  Source/Scene/renderBufferPolygonCollection.js[90m:29[0m
+     7  Source/Scene/renderBufferPolylineCollection.js[90m:32[0m
+
+[0;31m[0;31m鉁?[0m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:\g
+ithub\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md D:/github/ce
+sium-webgpu-globe-b2-round2/coordination/STATUS.md D:/github/cesium-webgpu-globe-b2-round2/coordination/audits/M2.6.1-B
+2-round2-plan.md D:/github/cesium-webgpu-globe-b2-round2/tasks/M2.6.1.md:[0m
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:5 error MD060/table-column-style Table column style [Table pipe is
+ missing space to the left for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:9 error MD060/table-column-style Table column style [Table pipe is
+ missing space to the left for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:13 error MD060/table-column-style Table column style [Table pipe i
+s missing space to the left for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:17 error MD060/table-column-style Table column style [Table pipe i
+s missing space to the left for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:1 error MD060/table-column-style Table column style [Table pipe is
+ missing space to the right for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:5 error MD060/table-column-style Table column style [Table pipe is
+ missing space to the right for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:9 error MD060/table-column-style Table column style [Table pipe is
+ missing space to the right for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:4:13 error MD060/table-column-style Table column style [Table pipe i
+s missing space to the right for style "compact"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:26 error MD022/blanks-around-headings Headings should be surrounded 
+by blank lines [Expected: 1; Actual: 0; Below] [Context: "## Strict scope gate"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:29 error MD022/blanks-around-headings Headings should be surrounded 
+by blank lines [Expected: 1; Actual: 0; Below] [Context: "## Task assignment protocol"]
+D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md:30:255 error MD047/single-trailing-newline Files should end with a s
+ingle newline character

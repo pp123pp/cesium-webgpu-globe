@@ -110,7 +110,12 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
                  vec2f(0.0), vec2f(1.0));
   let soft = textureSampleLevel(solarSoftHalo, solarSampler, uv, 0.0).r;
   let wide = textureSampleLevel(solarWideHalo, solarSampler, uv, 0.0).r;
-  let corona = textureSampleLevel(solarCorona, solarSampler, uv, 0.0).r;
+  // Two authored corona frequency bands use independent deterministic transforms.
+  // Both remain centered on the physical Sun and share the existing bounded UV domain.
+  let coronaFineUv = solarRayUv(uv, 0.13, 1.08);
+  let coronaMidUv = solarRayUv(uv, -0.23, 0.78);
+  let coronaFine = textureSampleLevel(solarCorona, solarSampler, coronaFineUv, 0.0).r;
+  let coronaMid = textureSampleLevel(solarCoronaMid, solarSampler, coronaMidUv, 0.0).r;
   let noise = textureSampleLevel(solarNoise, solarSampler, uv, 0.0).r;
   let primaryRayUv = solarRayUv(uv, 0.11, 0.96);
   let fineRayUv = solarRayUv(uv, -0.19, 1.07);
@@ -120,13 +125,33 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
              textureSampleLevel(solarRaysBroad, solarSampler, broadRayUv, 0.0).r * 0.40;
   let tint = mix(vec3f(1.0), textureSampleLevel(solarGlowGradient, solarSampler,
                                 vec2f(1.0 - r, 0.5), 0.0).rgb, atmosphere.exposure.w);
-  let radialFade = 1.0 - smoothstep(0.82, 1.0, r);
-  let halo = atmosphere.sun.z * radialFade * (0.70 * soft * atmosphere.solarEffects.y +
-                0.25 * wide * atmosphere.solarEffects.z);
-  let coronaDetail = atmosphere.sun.z * 2.2 * corona * mix(0.75, 1.15, noise) * atmosphere.solarEffects.w;
+  // Three overlapping halo scales share the two authored radial masks:
+  // compact inner glow, broad intermediate transition and a low-energy outer falloff.
+  // The radial envelopes avoid a third hard circular mask or a visible ring.
+  let innerFalloff = 1.0 - smoothstep(0.08, 0.38, r);
+  let intermediateFalloff = 1.0 - smoothstep(0.28, 0.78, r);
+  let outerFalloff = 1.0 - smoothstep(0.58, 1.0, r);
+  let innerHalo = soft * innerFalloff;
+  let intermediateHalo = (0.62 * soft + 0.38 * wide) * intermediateFalloff;
+  let outerHalo = wide * outerFalloff;
+  let halo = atmosphere.sun.z * (
+    0.48 * innerHalo * atmosphere.solarEffects.y +
+    0.34 * intermediateHalo * mix(atmosphere.solarEffects.y, atmosphere.solarEffects.z, 0.5) +
+    0.18 * outerHalo * atmosphere.solarEffects.z);
+  // Corona starts just beyond the analytic photosphere and fades gradually.
+  // Noise modulates authored structure; it is not animated or frame-random.
+  let coronaEnvelope = smoothstep(0.08, 0.20, r) * (1.0 - smoothstep(0.62, 0.96, r));
+  let coronaPattern = mix(coronaMid, coronaFine, 0.56) * mix(0.58, 1.18, noise);
+  let coronaDetail = atmosphere.sun.z * 2.2 * coronaPattern * coronaEnvelope * atmosphere.solarEffects.w;
+  // Diffuse corona remains warm-white instead of accumulating a brown-gold
+  // veil. Desaturate only this layer toward its own linear luminance: this
+  // preserves pre-transport linear Rec.709 luminance; Halo/Rays tint is unchanged.
+  let coronaLuminance = dot(tint, vec3f(0.2126, 0.7152, 0.0722));
+  let coronaTint = mix(tint, vec3f(coronaLuminance), 0.72);
   let rayFade = 1.0 - smoothstep(0.68, 1.0, r);
   let rayDetail = atmosphere.sun.z * 2.5 * rays * rayFade * atmosphere.solarEffects.x;
-  return atmosphere.sun.y * (disk + tint * (halo + coronaDetail + rayDetail) * visibility);
+  return atmosphere.sun.y * (disk +
+    (tint * (halo + rayDetail) + coronaTint * coronaDetail) * visibility);
 }
 `;
 

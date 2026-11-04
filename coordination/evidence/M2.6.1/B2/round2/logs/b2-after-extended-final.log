@@ -1,0 +1,1 @@
+M1 b2-round2-extended PASS: high/low orbit and low Sun; visible/partial/full Earth mask; real mesh depth/remove pair; fixed repeats; all continuous PNGs with events and viewer, explicit state reset for each case; production Bloom=0.35; actual WebGPU PNG hashes; matched served assets

@@ -1,0 +1,30 @@
+node : node:internal/modules/run_main:123
+所在位置 行:1 字符: 343
++ ... AMES='120'; node coordination/ci/m2.6.1-b2-round2-extended.mjs *> Bui ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (node:internal/modules/run_main:123:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(Object.values(report.occlusion.identicalMountainPair).every(Boolean))
+
+    at file:///D:/github/cesium-webgpu-globe-b2-round2/coordination/ci/m2.6.1-b2-round2-extended.mjs:188:10
+    at async file:///D:/github/cesium-webgpu-globe-b2-round2/coordination/ci/m2.6.1-b2-round2-capture.mjs:223:5
+    at async runM1BrowserSuite (file:///D:/github/cesium-webgpu-globe-b2-round2/coordination/ci/m1-browser-harness.mjs:
+82:5)
+    at async runB2Capture (file:///D:/github/cesium-webgpu-globe-b2-round2/coordination/ci/m2.6.1-b2-round2-capture.mjs
+:50:3)
+    at async file:///D:/github/cesium-webgpu-globe-b2-round2/coordination/ci/m2.6.1-b2-round2-extended.mjs:14:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.20.0

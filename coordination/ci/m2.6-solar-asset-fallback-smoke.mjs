@@ -24,8 +24,8 @@ await runM1BrowserSuite(`m2.6-solar-asset-${corrupt ? "corrupt" : "fallback"}`, 
   });
   assert.equal(result.solarAssetsLoaded, false);
   assert.match(result.solarAssetError, corrupt ? /glow-gradient.*bytes; expected/ : /glow-gradient.*HTTP 404/);
-  assert.equal(result.textureCount, 8);
-  assert.equal(result.texturesDestroyed, 7);
+  assert.equal(result.textureCount, 9);
+  assert.equal(result.texturesDestroyed, 8);
   report.fallback = result;
   const lifecycle = await page.evaluate(() => {
     const viewer = window.__m1.viewer;
