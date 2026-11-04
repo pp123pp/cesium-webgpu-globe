@@ -1,6 +1,10 @@
 # M2.6.1-B4 — B05 Atmospheric Glow Integration
 
-**B4 implementation and scoped technical verification completed; awaiting user visual acceptance.** This is not B5 integrated acceptance and does not authorize merge to main.
+**Round two: corrected capture scenarios and scoped technical checks complete; awaiting user visual re-review.** See [round-two evidence](round2/README.md) for 42 matched captures per side, clean committed source identities, partial Earth / fully rendered-terrain controls and the yellow-twilight diagnosis. Existing yellow twilight, weak disk contrast and unlit near-ground night-surface limitations remain; final visual acceptance is not closed.
+
+## Historical round-one record
+
+The original PNGs and raw reports below are preserved. Round two supersedes their invalid limb-exposure/night framing and duplicate 400 km high/low labels. The old reports recorded dirty source states and did not independently establish the source-to-bundle mapping stated below; use round two for a clean, verifiable comparison. Old timing remains historical and was not remeasured. Read the remaining sections as the original round-one record, not new proof of corrected coverage.
 
 ## Change summary
 
@@ -50,3 +54,9 @@ The before/after image difference is intentionally subtle and localized to the s
 ## Status
 
 **Implementation and B4-scoped verification complete — awaiting user visual acceptance.** Do not merge main or start B5 until separately instructed.
+
+## Round two — corrected B4 scenes and source-attributed diagnosis
+
+The round-two evidence supersedes the invalid limb-exposure/night framing and duplicate altitude labels in the original capture set. It contains 42 matched real WebGPU captures per side, 84 PNG hash checks, clean source/bundle provenance, partial-Earth and fully rendered-terrain occultation controls, and matched twilight modes. See [round-two report](round2/README.md) and [machine audit](round2/audit.json).
+
+The corrected -8° night camera now shows sky, horizon and surface, but the existing constant-color surface pass does not apply directional night-side shading; that surface remains visibly too bright and is explicitly unresolved. The twilight diagnosis finds the strong yellow sky in the physical Rayleigh/Mie baseline, not B4 artwork or Bloom. Bloom reduces disk/annulus contrast; authored artwork has a smaller effect. No B4 runtime retune was justified, and no engine shader was changed in this round.

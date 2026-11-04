@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B4 / B05 Atmospheric Glow Integration implemented and focused verification completed on feat/m2-6-1-b4-atmospheric-glow; awaiting user visual acceptance. Not merged. B5 / B07 Integrated Visual Acceptance is not started. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B4 / B05 round-two scenario repair and scoped technical recheck complete on feat/m2-6-1-b4-atmospheric-glow; appearance limitations remain and user visual re-review is pending. Not merged. B5 / B07 is not started. M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -322,13 +322,16 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - Recovery after device loss is destruction and recreation; no backend hot switch.
 - Read `coordination/handoffs/M0.4-webgpu-proof.md` for the supported API, commands, evidence and environment limits.
 
-## Current handoff — B4 Atmospheric Glow Integration, 2026-11-04
+## Current handoff — B4 round-two repair and recheck, 2026-11-04
 
-**B4 / B05 implementation and scoped technical verification complete; awaiting user visual acceptance. Not merged.**
+**B4 / B05 scoped technical checks complete; appearance limitations remain; awaiting user visual re-review. Not merged.**
 
-- [PR #25](https://github.com/pp123pp/cesium-webgpu-globe/pull/25) is open as draft, based on main `5f18afc1b77f433892f14510b2599c374f8a4942`. Implementation commit: `ff06e9691ae98550cc965e1f8c6313a730c0bab6`; head CI is queued. Branch: feat/m2-6-1-b4-atmospheric-glow.
-- Physical view-path transmittance now modulates only authored Rays/Halo/Corona contribution. The direct solar disk, physical direction/radius/radiance, Earth and real-terrain depth occlusion, Rayleigh/Mie radiance and HDR/Bloom/ACES/sRGB order remain unchanged.
-- No additional render pass, GPU texture or buffer; WebGL untouched. Build, targeted lint, 19 focused tests and headed Intel Xe-LPG WebGPU smoke passed. Before/after capture and 15-sample GPU timing reports are preserved in [B4 evidence](evidence/M2.6.1/B4/README.md).
-- Browser capture: Chrome 156.0.8078.80, Intel Xe-LPG non-fallback, 1920×1080. All 17 scenes per side captured with zero browser errors. GPU all-enabled pass-sum mean 5.0244 ms before / 4.9720 ms after; p95 5.7672 / 5.5050 ms. No new pass or texture payload.
-- Full M2.6.1 integrated acceptance, B5/B07, 120-frame temporal acceptance, full occultation matrix and WebGL differential were not run. These are not claimed passed.
-- Handoff: [M2.6.1-B4](handoffs/M2.6.1-B4-atmospheric-glow.md). B4 stops here pending user visual acceptance; do not merge main or start B5.
+- [PR #25](https://github.com/pp123pp/cesium-webgpu-globe/pull/25) remains draft on feat/m2-6-1-b4-atmospheric-glow. Fixed accepted runtime baseline: `5f18afc1b77f433892f14510b2599c374f8a4942`; tested B4 runtime: `ff06e9691ae98550cc965e1f8c6313a730c0bab6`; matched capture harness checkout: `10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa`. Runtime and harness identities are reported separately; the publication/documentation commit is not misrepresented as a runtime build.
+- Corrected actual-limb exposures 0.5/1/2, independent night camera, distinct 36,000 km/400 km/2 km/2 m views and ground-facing day/terminator/night. Added partial Earth and real-mesh full occultation, controls, sunset source isolation and complete capture state/source/bundle/PNG hashes. [Round-two evidence](evidence/M2.6.1/B4/round2/README.md) preserves 42 PNGs per side on clean committed sources.
+- Candidate `npm run build` passed; the baseline build attempt could not regenerate the missing generated `zip-web-worker.js` input, so the exact already-built B3/main bundle was reused and SHA-256 verified. Focused Node batch: 19/19 passed; targeted ESLint/syntax and offline integrity audit passed. Intel Xe-LPG / headed Chrome 156.0.8078.80, 1920×1080; zero browser errors/warnings. 84 PNG hashes and 42 matched state pairs verified. Partial Earth blocked-receiver difference is 0; full terrain has 81/81 mesh-blocked disk samples, 0/81 analytic Earth hits and 0 full-image source difference.
+- Twilight yellow/weak disk contrast remains with artwork and Bloom disabled and is identical to the accepted baseline in that control. Geometric night framing is corrected, but the unlit constant-color terrain remains unrealistically bright on both versions. These are recorded physical-atmosphere/HDR and surface-lighting follow-ups, not silently accepted B4 improvements. No engine runtime change was justified by this round's diagnosis.
+- Physical Sun, B1–B3, original B4 attenuation, HDR/Bloom order and WebGL remain unchanged. Original evidence and timing remain historical; no new performance measurement, full B5 matrix, temporal acceptance, WebGL differential or resident-VRAM claim.
+- CI is recorded per actual job in [round-two CI record](evidence/M2.6.1/B4/round2/ci-status.json) and PR #25; automatic Full selection/execution is distinguished from a skipped job. No manual Full dispatch.
+- Handoff: [M2.6.1-B4](handoffs/M2.6.1-B4-atmospheric-glow.md). Stop at B4 for the user's visual re-review; no main merge/push or B5 start.
+
+The round-two evidence explicitly leaves physical yellow twilight / reduced disk contrast and constant-color night-side terrain shading unresolved; these are not marked visually accepted. No new engine runtime changes were justified. The exact PR-head CI state is recorded in [B4 round-two CI status](evidence/M2.6.1/B4/round2/ci-status.json); see the [round-two report](evidence/M2.6.1/B4/round2/README.md).

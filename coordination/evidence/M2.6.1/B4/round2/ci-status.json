@@ -1,0 +1,22 @@
+{
+  "pullRequest": 25,
+  "branch": "feat/m2-6-1-b4-atmospheric-glow",
+  "testedRuntimeCommit": "ff06e9691ae98550cc965e1f8c6313a730c0bab6",
+  "testedHarnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+  "publicationCommit": null,
+  "githubActions": {
+    "fast": {
+      "runId": null,
+      "status": "NOT_YET_TRIGGERED_FOR_PUBLICATION_HEAD",
+      "note": "A new commit will be pushed after this record is prepared; refresh with the exact new PR head."
+    },
+    "full": {
+      "runId": null,
+      "status": "NOT_YET_TRIGGERED_FOR_PUBLICATION_HEAD",
+      "note": "Do not interpret absence as a pass or as a skip."
+    }
+  },
+  "manualFullDispatch": false,
+  "webglDifferential": "NOT_RUN",
+  "note": "Update this file after the documentation/evidence publication commit is pushed and the exact PR-head runs are inspected."
+}
