@@ -27,6 +27,28 @@ draft shared-code updates can also select it. The table below describes that
 existing behavior, not permission to initiate more runs. This change does not
 disable Fast's software-GPU checks.
 
+## Functional rendering checks versus visual acceptance
+
+User policy (2026-11-04): Fast rendering checks, including future additions,
+must use small, deterministic scenes with bounded terrain complexity and no
+external provider dependency. Exercise the real production WebGPU shaders,
+native mesh depth and displayed output; do not replace them with mocked pixels.
+Keep meaningful illumination, occlusion and color assertions. Terrain loading
+should not repeatedly run expensive sky/solar effects: restore all settings
+before checking the final rendered output. Record fixture limits and readiness.
+
+The B5-A remediation smoke uses a 640×360 viewport and native ellipsoid terrain
+meshes capped at level 8. It checks twilight/night surface brightness, real depth,
+solar contrast, irradiance response and the unlit color codec. This is functional
+regression coverage, not a replacement for the accepted 1920×1080 visual evidence.
+
+Full visual matrices (real terrain and LOD transitions, multiple altitudes,
+exposures/resolutions, 120-frame motion and GPU profiling) belong to explicitly
+assigned milestone acceptance. Do not add those matrices to every Fast run.
+Apply this separation to subsequent workflow changes without silently removing
+existing functional gates or weakening their assertions. Full remains the
+non-rendering tier described below.
+
 ## What each tier runs
 
 | Gate | Fast CI | Full regression |

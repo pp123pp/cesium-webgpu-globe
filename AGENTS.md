@@ -3,9 +3,11 @@
 Read this file first. **Do not load the entire documentation tree or Cesium source into context.**
 
 ## Mission
+
 Start from CesiumJS **official 1.146.0 tag** (verify at implementation time), keep the existing WebGL path unchanged in behavior, add a separately selectable WebGPU backend. Prioritize WGS84 Globe, imagery, Terrain, physical atmosphere, Sun, space sky, HDR, volumetric clouds and terrain cloud shadows. **3D Tiles/BIM is deferred until after V1.0 Globe.** Only SceneMode.SCENE3D required for WebGPU.
 
 ## Always-on rules
+
 1. Inspect actual upstream files before editing. No invented Cesium symbols or APIs; keep patches minimal.
 2. WebGL regression is a hard gate. Select backend on Viewer creation; no hot switching.
 3. Complete only the active milestone and an explicitly assigned small task. Do not prebuild a generic engine, full RenderGraph, PBR system or 3D Tiles pipeline.
@@ -29,21 +31,23 @@ User policy (2026-11-02): use the smallest sufficient verification scope. Apply 
 - Reuse passing evidence only while the tested source, tests, dependencies, configuration and relevant environment remain applicable. Record the tested revision, checks and results. Never describe an old result as a newly verified HEAD; an explicitly required final-HEAD gate still needs that HEAD's evidence.
 - The integration owner coordinates shared/full verification so agents do not duplicate it. Independent focused checks and read-only reviews may run in parallel. Reuse equivalent CI evidence instead of repeating it locally.
 - Stop when the change's concrete risks are sufficiently checked and applicable gates are satisfied. Do not add extra verification merely for reassurance.
+- Fast CI rendering checks, including future additions, use small deterministic scenes with bounded terrain complexity to exercise real production GPU lighting, depth and color output. Full visual matrices belong to explicitly assigned milestone acceptance, not every Fast run. Preserve meaningful functional assertions; follow the fixture and evidence rules in `docs/CI.md`.
 - Do not remove existing tests, weaken valid assertions or disable required CI gates to reduce work. Report actual checks/results and any unverified scope concisely.
 
 ### Cesium / WebGPU verification scope
 
-| Change | Minimum relevant verification |
-| --- | --- |
-| Documentation, handoffs, comments, behavior-preserving formatting | Review content, links where changed and the diff; no runtime/rendering tests. |
-| Local math function or isolated behavior | Existing affected cases; add only missing meaningful cases. |
+| Change                                                                      | Minimum relevant verification                                                                                                                                 |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Documentation, handoffs, comments, behavior-preserving formatting           | Review content, links where changed and the diff; no runtime/rendering tests.                                                                                 |
+| Local math function or isolated behavior                                    | Existing affected cases; add only missing meaningful cases.                                                                                                   |
 | M2.1 coordinates, units/radii, solar direction, ray intersections and depth | Focused numerical/boundary/occlusion checks plus the required high-orbit, low-orbit and ground views. Do not repeat complete regression after each math edit. |
-| Camera, rendering pipeline or shared core | Expand checks according to actual impact, including relevant WebGL smoke and rendering/view checks; use Full only under the conditions above. |
-| Final milestone acceptance | Run the specified acceptance gates and reuse still-applicable evidence; M2 A07–A10 belong to the M2.6 acceptance task, not every M2.1 iteration. |
+| Camera, rendering pipeline or shared core                                   | Expand checks according to actual impact, including relevant WebGL smoke and rendering/view checks; use Full only under the conditions above.                 |
+| Final milestone acceptance                                                  | Run the specified acceptance gates and reuse still-applicable evidence; M2 A07–A10 belong to the M2.6 acceptance task, not every M2.1 iteration.              |
 
 Harmless image differences remain acceptable under `docs/ACCEPTANCE.md`; do not require pixel-identical WebGL/WebGPU output. Functional correctness and the documented `M1-NAV-001` limitation remain governed by that document. Automatic workflow triggers are described in `docs/CI.md`; these instructions do not change those triggers.
 
 ## Reading order (context budget)
+
 1. `coordination/STATUS.md` (current state)
 2. `ROADMAP.md` (stage dependency overview)
 3. `tasks/MX.md` (ONLY active milestone)
@@ -51,7 +55,9 @@ Harmless image differences remain acceptable under `docs/ACCEPTANCE.md`; do not 
 5. Source files needed for the current task, not whole directories
 
 ## Workflow
+
 Follow `coordination/WORKFLOW.md` for subagents, worktrees, ownership and integration. Subagents are optional and tool-dependent; don't assume they exist. If no subagent support, run the same split as separate human/Codex sessions or sequential tasks. No two agents may edit the same source file concurrently.
 
 ## Entry task
+
 If source isn't imported: execute `tasks/M0.md` only after verifying upstream tag, licensing, baseline build, and import path. Before source exists, work only on docs/reproducible bootstrap.

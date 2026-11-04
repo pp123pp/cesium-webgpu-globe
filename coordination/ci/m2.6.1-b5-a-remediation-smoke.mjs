@@ -10,8 +10,20 @@ const decode = (byte) => { const v = byte / 255; return v <= 0.04045 ? v / 12.92
 const luminance = (rgb) => rgb.slice(0, 3).reduce((sum, byte, i) => sum + decode(byte) * [0.2126, 0.7152, 0.0722][i], 0);
 const display = (linear) => { const x = Math.max(0, linear); const mapped = Math.min(1, (x * (2.51 * x + 0.03)) / (x * (2.43 * x + 0.59) + 0.14)); return Math.round(255 * (mapped <= 0.0031308 ? 12.92 * mapped : 1.055 * mapped ** (1 / 2.4) - 0.055)); };
 await runM1BrowserSuite("m2.6.1-b5-a-remediation", async ({ page, report, output }) => {
-  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.setViewportSize({ width: 640, height: 360 });
   await installM1Scene(page, { baseLayer: false });
+  report.terrainFixture = await page.evaluate(() => {
+    class BoundedEllipsoidTerrainProvider extends Cesium.EllipsoidTerrainProvider {
+      getLevelMaximumGeometricError(level) {
+        return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
+      }
+    }
+    // Native ellipsoid meshes still produce the real depth buffer. LOD stress
+    // belongs to terrain acceptance, not this surface-lighting regression.
+    window.__m1.viewer.terrainProvider = new BoundedEllipsoidTerrainProvider();
+    return { provider: "EllipsoidTerrainProvider", maximumLevel: 8,
+      viewport: [640, 360], scope: "lighting/depth/color functional regression" };
+  });
   await installSunProbe(page); await installB4Probe(page);
   await page.waitForFunction(() => { window.__m1.viewer.render(); return window.__m1.viewer.scene._atmosphere.statistics.solarAssetsLoaded; });
   const failures = [];
@@ -25,6 +37,9 @@ await runM1BrowserSuite("m2.6.1-b5-a-remediation", async ({ page, report, output
     const capture = await captureB4(page, report, output, settings.id);
     capture.settling = settling;
     assert.equal(capture.atmosphere.show, true);
+    assert.equal(capture.sun.show, true);
+    assert.equal(capture.bloomStrength, 0.35);
+    assert.ok(capture.terrain.selectedMeshes.every(([level]) => level <= 8));
     const pixel = await page.evaluate(() => window.__m2Atmosphere.pixelSamples([[0.1, 0.9]]));
     check(pixel[0].gpu[3] >= 0 && pixel[0].gpu[7] > 0, `${settings.id}: night-side brightness is measured on actual terrain depth`);
     check(capture.metrics.surface.displayLinearLuminanceMean < 0.01, `${settings.id}: unlit surface remains below 1% display-linear white`);
@@ -63,18 +78,29 @@ await runM1BrowserSuite("m2.6.1-b5-a-remediation", async ({ page, report, output
 async function settleAtmosphereView(page) {
   return page.evaluate(async () => {
     const { viewer, settle } = window.__m1;
-    const atmosphere = viewer.scene.atmosphere;
+    const scene = viewer.scene;
+    const atmosphere = scene.atmosphere;
     const show = atmosphere.show;
+    const sunShow = scene.sun.show;
+    const bloomStrength = scene._atmosphere.bloomStrength;
+    const enableLighting = scene.globe.enableLighting;
     let settled;
     // Terrain readiness does not depend on intermediate sky pixels. Avoid
-    // full-resolution transport on every loading frame under SwiftShader.
+    // full-resolution sky, solar and lighting work on loading frames under SwiftShader.
     atmosphere.show = false;
+    scene.sun.show = false;
+    scene._atmosphere.bloomStrength = 0;
+    scene.globe.enableLighting = false;
     try {
       settled = await settle({ timeout: 60000 });
     } finally {
       atmosphere.show = show;
+      scene.sun.show = sunShow;
+      scene._atmosphere.bloomStrength = bloomStrength;
+      scene.globe.enableLighting = enableLighting;
     }
     viewer.render();
-    return { ...settled, atmosphereDuringLoad: false };
+    return { ...settled, atmosphereDuringLoad: false, solarDuringLoad: false,
+      bloomDuringLoad: 0, lightingDuringLoad: false };
   });
 }
