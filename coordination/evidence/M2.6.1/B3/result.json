@@ -2,23 +2,38 @@
   "schema": "M2.6.1-B3-evidence-summary-v1",
   "milestone": "M2.6.1-B3",
   "scope": "B06 HDR Bloom Refinement only",
-  "status": "IMPLEMENTATION_AND_TARGETED_VERIFICATION_COMPLETE_AWAITING_USER_VISUAL_ACCEPTANCE",
-  "statusZh": "B3 实现与专项验证完成，等待用户视觉验收。",
+  "status": "USER_VISUAL_ACCEPTANCE_PASS_AND_MERGED",
+  "statusZh": "B3 用户视觉验收通过，PR #23 已合并到 main。",
   "technicalEvidenceReady": true,
-  "userVisualAcceptance": "PENDING",
+  "userVisualAcceptance": "PASS",
   "publication": {
-    "commit": null,
-    "pullRequest": null,
-    "treeHashMapping": "PENDING_FINAL_PR_RECORD",
-    "automaticFastCi": "PENDING_PUBLICATION_TRACKING",
-    "automaticFullCi": "PENDING_ACTUAL_SELECTION_AND_RESULT",
+    "commit": "57e02703cec723d0fe7c12dd10f5d72c1f263055",
+    "treeHash": "3067f82a8e6235e156d0ab9a15ed6fd9b506aeff",
+    "pullRequest": 23,
+    "pullRequestUrl": "https://github.com/pp123pp/cesium-webgpu-globe/pull/23",
+    "merged": true,
+    "mergeCommit": "9dfc6d6539e5ebb17e38c5761e0f07c77d762e54",
+    "mainHeadAtCloseout": "9dfc6d6539e5ebb17e38c5761e0f07c77d762e54",
+    "hardwareRuntimeCommit": "4fde49bc63eb67c34816a424895d035b24efc2ea",
+    "automaticFastCi": {
+      "status": "SUCCESS",
+      "runId": 41763228341,
+      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41763228341"
+    },
+    "automaticFullCi": {
+      "status": "SUCCESS",
+      "runId": 41763228306,
+      "executed": true,
+      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41763228306"
+    },
     "manualFullExecuted": false,
     "manualFullDispatched": false,
     "manualFullRerun": false,
     "ciFullLabelToggledToTriggerRun": false,
     "extraPushSolelyToTriggerFull": false,
-    "mainPushOrMergeAuthorized": false,
-    "note": "Publication revision must be mapped to the captured runtime by the final PR/tree and file hashes; it is not a newly hardware-tested revision."
+    "mainPushOrMergeAuthorized": true,
+    "mainDirectPush": false,
+    "note": "Publication head contains evidence/documentation; hardware execution remains attributed to hardwareRuntimeCommit and the exact candidate bundle recorded above."
   },
   "sources": {
     "before": {
@@ -248,7 +263,7 @@
           "whitePixelsAfter": 112
         },
         {
-          "exposure": 1.0,
+          "exposure": 1,
           "changedPixels": 1159,
           "maxChannelByteDifference": 30,
           "changedBounds": [
@@ -262,7 +277,7 @@
           "whitePixelsAfter": 180
         },
         {
-          "exposure": 2.0,
+          "exposure": 2,
           "changedPixels": 1076,
           "maxChannelByteDifference": 19,
           "changedBounds": [
@@ -958,19 +973,19 @@
       "photometryWholeFrame": {
         "clippedChannelFraction": {
           "count": 120,
-          "min": 6.99266975308642e-05,
-          "max": 7.426697530864198e-05,
-          "mean": 7.205262988683127e-05,
-          "p95": 7.330246913580247e-05,
-          "populationStandardDeviation": 1.1005797204726016e-06
+          "min": 0.0000699266975308642,
+          "max": 0.00007426697530864198,
+          "mean": 0.00007205262988683127,
+          "p95": 0.00007330246913580247,
+          "populationStandardDeviation": 0.0000011005797204726016
         },
         "whiteFraction": {
           "count": 120,
-          "min": 8.487654320987654e-05,
-          "max": 8.969907407407407e-05,
-          "mean": 8.734407150205762e-05,
-          "p95": 8.825231481481481e-05,
-          "populationStandardDeviation": 8.145732236850413e-07
+          "min": 0.00008487654320987654,
+          "max": 0.00008969907407407407,
+          "mean": 0.00008734407150205762,
+          "p95": 0.00008825231481481481,
+          "populationStandardDeviation": 8.145732236850413e-7
         },
         "meanLuma": {
           "count": 120,
@@ -978,14 +993,14 @@
           "max": 0.0020649565072015435,
           "mean": 0.0020474690092850047,
           "p95": 0.0020624065412429395,
-          "populationStandardDeviation": 7.86742553279395e-06
+          "populationStandardDeviation": 0.00000786742553279395
         }
       },
       "lumaTrend": {
         "first": 0.0020387031669842856,
         "last": 0.0020649565072015435,
         "firstToLastPercent": 1.287747065998457,
-        "largestAbsoluteAdjacentChange": 7.433176742862799e-07,
+        "largestAbsoluteAdjacentChange": 7.433176742862799e-7,
         "largestAbsoluteAdjacentChangeFrame": 119
       },
       "adjacentFrameComparisons": {
@@ -1028,19 +1043,19 @@
       "photometryWholeFrame": {
         "clippedChannelFraction": {
           "count": 120,
-          "min": 7.282021604938271e-05,
-          "max": 7.716049382716049e-05,
-          "mean": 7.536410108024691e-05,
-          "p95": 7.667824074074074e-05,
-          "populationStandardDeviation": 8.847789050521983e-07
+          "min": 0.00007282021604938271,
+          "max": 0.00007716049382716049,
+          "mean": 0.00007536410108024691,
+          "p95": 0.00007667824074074074,
+          "populationStandardDeviation": 8.847789050521983e-7
         },
         "whiteFraction": {
           "count": 120,
-          "min": 8.63233024691358e-05,
-          "max": 8.969907407407407e-05,
-          "mean": 8.791875643004116e-05,
-          "p95": 8.921682098765432e-05,
-          "populationStandardDeviation": 7.870133804077554e-07
+          "min": 0.0000863233024691358,
+          "max": 0.00008969907407407407,
+          "mean": 0.00008791875643004116,
+          "p95": 0.00008921682098765432,
+          "populationStandardDeviation": 7.870133804077554e-7
         },
         "meanLuma": {
           "count": 120,
@@ -1048,14 +1063,14 @@
           "max": 0.0020524313403987126,
           "mean": 0.0020350103611129016,
           "p95": 0.002049876498577728,
-          "populationStandardDeviation": 7.846959733845302e-06
+          "populationStandardDeviation": 0.000007846959733845302
         }
       },
       "lumaTrend": {
         "first": 0.002026290493373174,
         "last": 0.0020524313403987126,
         "firstToLastPercent": 1.290083880422399,
-        "largestAbsoluteAdjacentChange": 6.003143155353108e-07,
+        "largestAbsoluteAdjacentChange": 6.003143155353108e-7,
         "largestAbsoluteAdjacentChangeFrame": 119
       },
       "adjacentFrameComparisons": {
@@ -1191,7 +1206,7 @@
             "max": 0,
             "mean": 0,
             "p95": 0,
-            "populationStandardDeviation": 0.0
+            "populationStandardDeviation": 0
           },
           "zeroDurationSamples": 30
         },
@@ -1356,7 +1371,7 @@
             "max": 0,
             "mean": 0,
             "p95": 0,
-            "populationStandardDeviation": 0.0
+            "populationStandardDeviation": 0
           },
           "zeroDurationSamples": 30
         },
@@ -1701,9 +1716,9 @@
     "allDeviceAllSceneAcceptanceClaimed": false
   },
   "remaining": [
-    "User visual acceptance.",
-    "Final publication PR/tree/hash mapping.",
-    "Track actual automatic Fast/Full selection and results for the published head; skipped/selector-only Full is not an executed pass."
+    "B4 / B05 Atmospheric Glow Integration remains planned and requires separate user authorization.",
+    "B5 / B07 Integrated Visual Acceptance remains planned and requires separate user authorization.",
+    "M2.6.1 as a whole is not closed until B4 and B5 are completed and accepted."
   ],
   "untouchedScope": [
     "B4",
@@ -1711,5 +1726,13 @@
     "M2.7",
     "M2.8",
     "M3"
+  ],
+  "userVisualAcceptanceDate": "2026-11-04",
+  "userVisualAcceptanceNotes": [
+    "User reviewed actual WebGPU captures, matched before/after comparisons, exposure panels and scene overview.",
+    "Inner Bloom transition is tighter and more continuous; solar core and outer Rays/Corona remain legible.",
+    "Black-space contrast is preserved; Earth and real-terrain occultation checks pass.",
+    "No new resource leak observed in recorded lifecycle checks.",
+    "Known evidence limits remain documented; aggregate motion metrics are not a localized flicker guarantee."
   ]
 }
