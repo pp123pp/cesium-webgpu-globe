@@ -148,7 +148,7 @@
       "corona": 1,
       "tint": 1
     },
-    "threshold": 1,
+    "threshold": 1.0,
     "softKneeHalfWidth": 0.5,
     "zeroExtractionAtOrBelow": 0.5,
     "previousExtractedEnergyPreservedAtOrAbove": 1.5,
