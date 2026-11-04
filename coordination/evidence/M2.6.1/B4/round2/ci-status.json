@@ -1,0 +1,89 @@
+{
+  "pullRequest": 25,
+  "branch": "feat/m2-6-1-b4-atmospheric-glow",
+  "canonicalCapture": {
+    "baseline": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "candidateAndHarness": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "candidateBuild": "995860bf2e3aa6cee0731d2e110643f45e16f6bf"
+  },
+  "observations": [
+    {
+      "commit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+      "fast": {
+        "runId": 41775838199,
+        "jobId": 126395857919,
+        "status": "completed",
+        "conclusion": "success"
+      },
+      "full": {
+        "runId": 41775838234,
+        "selectorConclusion": "success",
+        "regressionJobId": 126395946778,
+        "regressionStatus": "completed",
+        "regressionConclusion": "success",
+        "actuallyExecuted": true
+      }
+    },
+    {
+      "commit": "d54d8c49f4862e904851d8a68f42d908b3fc2dbd",
+      "fast": {
+        "runId": 41777393065,
+        "jobId": 126401247018,
+        "status": "completed",
+        "conclusion": "cancelled"
+      },
+      "full": {
+        "runId": 41777393255,
+        "selectorConclusion": "success",
+        "regressionJobId": 126400915319,
+        "regressionStatus": "completed",
+        "regressionConclusion": "skipped",
+        "actuallyExecuted": false
+      }
+    },
+    {
+      "commit": "835d967944d432eb062db2944587d367991a7b79",
+      "fast": {
+        "runId": 41778005735,
+        "jobId": 126403016936,
+        "status": "in_progress",
+        "conclusion": null
+      },
+      "full": {
+        "runId": 41778005829,
+        "selectorConclusion": "success",
+        "regressionJobId": 126402843189,
+        "regressionStatus": "completed",
+        "regressionConclusion": "success",
+        "actuallyExecuted": true
+      }
+    },
+    {
+      "commit": "24702bddb4d982f60df6a49a010337547d6c3c5f",
+      "fast": {
+        "runId": 41778777546,
+        "status": "completed",
+        "conclusion": "success",
+        "actuallyExecuted": true
+      },
+      "full": {
+        "runId": 41778777606,
+        "selectorConclusion": "success",
+        "regressionStatus": "completed",
+        "regressionConclusion": "skipped",
+        "actuallyExecuted": false
+      },
+      "note": "Latest PR publication head at user visual acceptance and merge authorization. Ready-for-review may trigger another automatic Full run under docs/CI.md; no result is assumed in advance."
+    }
+  ],
+  "manualFullDispatch": false,
+  "newLocalWebglDifferential": false,
+  "note": "Actual job snapshot before the final log/documentation commit. The 835d967 Full regression executed and passed. d54d8c4 Full was skipped and its superseded Fast was cancelled. Later publication-head checks are tracked in PR #25; none is predeclared passed. Canonical hardware capture and runtime remain unchanged.",
+  "recordedAt": "2026-11-04T05:19:48Z",
+  "visualAcceptance": {
+    "status": "PASS",
+    "confirmedByUser": true,
+    "confirmedAt": "2026-11-04",
+    "scope": "B4 / B05 Atmospheric Glow Integration only"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "baseline": {
+    "buildCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "captureCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "engineSourceTree": "d89e835bb08c174afa1d8ad374679cb605a3ae03",
+    "bundleSha256": "c7529148c4b88961c0b2249868d662e8baca4f167f2b0853f4a2cf4565797854",
+    "buildExitCode": 0
+  },
+  "candidate": {
+    "buildCommit": "995860bf2e3aa6cee0731d2e110643f45e16f6bf",
+    "captureCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "engineSourceTree": "a01b16951f3f31458a9c3768fe0626a6e5a10341",
+    "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f",
+    "buildExitCode": 0,
+    "buildReuseReason": "ac7884d changes only the B4 capture script after 995860b. Engine source tree and all runtime/build inputs remain identical; no second build is needed."
+  },
+  "harnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+  "command": "npm run build",
+  "runtimeOrHarnessDirtyPatchesUsed": false,
+  "adapter": {
+    "webgpuVendor": "intel",
+    "architecture": "xe-lpg",
+    "isFallbackAdapter": false,
+    "osName": "Intel(R) Arc(TM) 130T GPU (16GB)",
+    "driver": "32.0.101.8801"
+  },
+  "browser": "156.0.8078.80",
+  "node": "22.20.0",
+  "viewport": [
+    1920,
+    1080
+  ],
+  "sourceToScreenshot": "Committed source/build -> SHA-256 of local bundle equals served bundle -> exact state captured in result.json -> SHA-256 of every PNG verified by offline audit.",
+  "runtimeChangesThisRound": [],
+  "manualFullDispatched": false,
+  "canonicalCapture": "before/result.json and after/result.json; committed ac7884d harness used for both runtime checkouts.",
+  "laterHarnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+  "repeat": {
+    "purpose": "Supplementary recapture metadata retained separately. All 42 PNGs on each side are byte-identical to the canonical set; no duplicate image files.",
+    "baselineHarnessCommit": "f58881f895e5b61ee6f451474b047825e0e3cec2",
+    "candidateHarnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+    "candidateBundleSha256": "349a9cc9e5c12d60c4bd81e3d5f4c3e02532aeb355e53f303f799f41e7a07793",
+    "canonicalBuildClaimsApplyTo": "995860b/ac7884d set, not the supplementary bundle."
+  }
+}

@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+ok 1 - atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+  ---
+  duration_ms: 1.6584
+  type: 'test'
+  ...
+# Subtest: resize and failure release the atmosphere color attachment with scene depth
+ok 2 - resize and failure release the atmosphere color attachment with scene depth
+  ---
+  duration_ms: 1.033
+  type: 'test'
+  ...
+# Subtest: HDR clear decodes background RGB while M0 preserves display RGB and alpha
+ok 3 - HDR clear decodes background RGB while M0 preserves display RGB and alpha
+  ---
+  duration_ms: 1.111
+  type: 'test'
+  ...
+# Subtest: invalid optical parameters fail before producing nonphysical or undefined energy
+ok 4 - invalid optical parameters fail before producing nonphysical or undefined energy
+  ---
+  duration_ms: 2.1324
+  type: 'test'
+  ...
+# Subtest: medium changes invalidate the LUT cache while runtime lighting controls do not
+ok 5 - medium changes invalidate the LUT cache while runtime lighting controls do not
+  ---
+  duration_ms: 0.272
+  type: 'test'
+  ...
+# Subtest: an empty path transmits all light and increasing extinction cannot brighten a path
+ok 6 - an empty path transmits all light and increasing extinction cannot brighten a path
+  ---
+  duration_ms: 0.8705
+  type: 'test'
+  ...
+# Subtest: vertical transmission agrees with the analytic exponential atmosphere column
+ok 7 - vertical transmission agrees with the analytic exponential atmosphere column
+  ---
+  duration_ms: 0.5563
+  type: 'test'
+  ...
+# Subtest: transmittance LUT samples conserve bounds and do not leak across the planet horizon
+ok 8 - transmittance LUT samples conserve bounds and do not leak across the planet horizon
+  ---
+  duration_ms: 108.5983
+  type: 'test'
+  ...
+# Subtest: a vacuum has unit transmission and no scattered radiance or feedback
+ok 9 - a vacuum has unit transmission and no scattered radiance or feedback
+  ---
+  duration_ms: 83.5321
+  type: 'test'
+  ...
+# Subtest: multiple scattering carries illuminated twilight but disappears in deep planetary shadow
+ok 10 - multiple scattering carries illuminated twilight but disappears in deep planetary shadow
+  ---
+  duration_ms: 0.7417
+  type: 'test'
+  ...
+# Subtest: the multiple-scattering closure remains finite when feedback approaches one
+ok 11 - the multiple-scattering closure remains finite when feedback approaches one
+  ---
+  duration_ms: 74.9542
+  type: 'test'
+  ...
+# Subtest: normalized phases conserve energy and positive Mie anisotropy peaks toward the Sun
+ok 12 - normalized phases conserve energy and positive Mie anisotropy peaks toward the Sun
+  ---
+  duration_ms: 7.1107
+  type: 'test'
+  ...
+# Subtest: solar disk uses a normalized limb profile without changing physical Sun parameters
+ok 13 - solar disk uses a normalized limb profile without changing physical Sun parameters
+  ---
+  duration_ms: 1.1412
+  type: 'test'
+  ...
+# Subtest: solar ray layers use fixed independent UV transforms and retain exactly three ray samples
+ok 14 - solar ray layers use fixed independent UV transforms and retain exactly three ray samples
+  ---
+  duration_ms: 0.1535
+  type: 'test'
+  ...
+# Subtest: shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+ok 15 - shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+  ---
+  duration_ms: 1.0226
+  type: 'test'
+  ...
+# Subtest: Sun-only updates use the existing uniforms without creating medium resources
+ok 16 - Sun-only updates use the existing uniforms without creating medium resources
+  ---
+  duration_ms: 1.0523
+  type: 'test'
+  ...
+# Subtest: B4 attenuates authored solar artwork with physical view-path transmittance only
+ok 17 - B4 attenuates authored solar artwork with physical view-path transmittance only
+  ---
+  duration_ms: 1.7029
+  type: 'test'
+  ...
+# Subtest: B4 retains physical atmosphere scattering and the existing HDR output order
+ok 18 - B4 retains physical atmosphere scattering and the existing HDR output order
+  ---
+  duration_ms: 0.265
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 726.1169

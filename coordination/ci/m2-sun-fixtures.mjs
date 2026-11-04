@@ -133,7 +133,8 @@ export async function installSunProbe(page) {
     };
     state.limbElevation = (height) => {
       const direction = state.nativeSun();
-      let blocked = -60;
+      // Bracket high-orbit limbs too; -60 degrees only covered lower views.
+      let blocked = -Cesium.Math.toDegrees(Math.asin(Math.hypot(direction.x, direction.y))) + 1e-5;
       let clear = 0;
       for (let iteration = 0; iteration < 44; ++iteration) {
         const middle = (blocked + clear) / 2;
@@ -183,6 +184,10 @@ export async function installSunProbe(page) {
       };
     };
 
+    // The same capture harness must probe both the accepted pre-B4 bundle and
+    // B4's additional transport input, without changing either production shader.
+    const transportArgument = /fn sunRadiance\([^)]*viewTransmittance/.test(Cesium.WebGPUAtmosphereShader)
+      ? ", transport.transmittance" : "";
     const code = `${Cesium.WebGPUAtmosphereShader}
       @group(0) @binding(17) var<storage, read> solarPixels: array<vec4f>;
       @group(0) @binding(18) var<storage, read_write> solarResults: array<vec4f>;
@@ -201,7 +206,7 @@ export async function installSunProbe(page) {
         }
         var solar = vec3f(0.0);
         if (atmosphere.viewport.w > 0.0) {
-          solar = sunRadiance(direction, pixel, pixelWidth);
+          solar = sunRadiance(direction, pixel, pixelWidth${transportArgument});
         }
         let i = id.x * 6u;
         solarResults[i] = vec4f(solar, sunDiskCoverage(direction, pixelWidth));

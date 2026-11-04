@@ -1,0 +1,1117 @@
+{
+  "status": "PASS",
+  "visualAcceptance": "AWAITING_USER_REVIEW",
+  "generatedAt": "2026-11-04T05:13:40.842Z",
+  "baseline": {
+    "runtimeCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "runtimeCheckoutCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "harnessCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "sourceTree": "d89e835bb08c174afa1d8ad374679cb605a3ae03",
+    "bundleSha256": "c7529148c4b88961c0b2249868d662e8baca4f167f2b0853f4a2cf4565797854"
+  },
+  "candidate": {
+    "runtimeCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "runtimeCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "harnessCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "sourceTree": "a01b16951f3f31458a9c3768fe0626a6e5a10341",
+    "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f"
+  },
+  "harnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+  "pairedCaptures": 42,
+  "verifiedPngFiles": 84,
+  "sameState": true,
+  "invariantPairs": 24,
+  "identicalPairs": 28,
+  "pairs": [
+    {
+      "name": "high-orbit-direct-36000km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "candidatePngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "high-orbit-direct-36000km-atmosphere-on",
+      "identical": true,
+      "invariant": false,
+      "baselinePngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "candidatePngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "high-orbit-limb-36000km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "fc25f7662f637c0036c6ce7291d264c2d458ab4e6653dd8305be07e2a6373fa3",
+      "candidatePngSha256": "fc25f7662f637c0036c6ce7291d264c2d458ab4e6653dd8305be07e2a6373fa3",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "high-orbit-limb-36000km-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "70785314330b214297f6f6ffdae92f0b998ccc36b5cd4751b3a0d16e5a819344",
+      "candidatePngSha256": "409b09426d112683b20e286054af609d6e496594f59743b05a2253a4e4fd7b4e",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "low-orbit-sunrise-400km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "d1a29a766bd66f373c7d5a39516d00404d9ec52ffab977a6bc9ebe2739f02cb3",
+      "candidatePngSha256": "d1a29a766bd66f373c7d5a39516d00404d9ec52ffab977a6bc9ebe2739f02cb3",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "low-orbit-sunrise-400km-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "367e2c781c06d8086d03c0e60e18867f842a9dab1e18f0d09421d2a673ebb0f5",
+      "candidatePngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8",
+      "diskLuminanceDelta": -0.002552273259019522,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "low-orbit-low-sun-400km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "84f0de9b8698743b76669af2dbe9d756ef47c4abfebc789d47fe14122702dadd",
+      "candidatePngSha256": "84f0de9b8698743b76669af2dbe9d756ef47c4abfebc789d47fe14122702dadd",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "low-orbit-low-sun-400km-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "f92e5a94f4313ba0865803355e01ce3f8aceaf90953538cbe17f3b983bcdc05c",
+      "candidatePngSha256": "90f786bc7a463ad56bcbf0d1aeaa6dd54346fb2aa40887020b6559afed242db5",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "near-ground-low-sun-2km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "e37ae545730c2ccd52033b11835959019bd73deb9b6bff64f0ef1b7946b182f9",
+      "candidatePngSha256": "e37ae545730c2ccd52033b11835959019bd73deb9b6bff64f0ef1b7946b182f9",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "near-ground-low-sun-2km-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "2b54d499435a6be2412c960cae85dd8c118ed07ac68f17549541718fc7623b59",
+      "candidatePngSha256": "e6a3079b27894b403fe5b11bd3be64f68307b91ce91942274d7f1eda8b8219ff",
+      "diskLuminanceDelta": -0.0012574070879499688,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-day-2m-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "6ae6a192e9bf836236f5e49ac85e048fdca524782baa1f4018f084a51f8d92f5",
+      "candidatePngSha256": "6ae6a192e9bf836236f5e49ac85e048fdca524782baa1f4018f084a51f8d92f5",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-day-2m-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "23feac56acd361cec28c885e5cc971a93b690a6783e47ec3e6e62d0463bd71a5",
+      "candidatePngSha256": "516ad2d3af6954a3de018b18afee9fbd988067fcbb9b4965b7e0ba1a922145a1",
+      "diskLuminanceDelta": -0.000004922824432096462,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-twilight-2m-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "ae69bf1e6e9a4583c05c5bf433d7e81317634197248b3ff50ce357ad5f400c5c",
+      "candidatePngSha256": "ae69bf1e6e9a4583c05c5bf433d7e81317634197248b3ff50ce357ad5f400c5c",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-twilight-2m-atmosphere-on",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "8202de751cf3342a55976fe3bd0797e68a770c0bb447fceba1a49020c4595bac",
+      "candidatePngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f",
+      "diskLuminanceDelta": -0.0018873628597861902,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-night-2m-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "7ae30dc461a7454cb0a36e16e95d6d5b3a0780589bd64dfa7190125702d63152",
+      "candidatePngSha256": "7ae30dc461a7454cb0a36e16e95d6d5b3a0780589bd64dfa7190125702d63152",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-night-2m-atmosphere-on",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "candidatePngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-night-2m-sun-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "candidatePngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-day-2km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "candidatePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-day-2km-atmosphere-on",
+      "identical": true,
+      "invariant": false,
+      "baselinePngSha256": "71a9381c4ba0456fcb2497fc93ae5c1c9d9ac3482ffcf340d5f56960e9fb404d",
+      "candidatePngSha256": "71a9381c4ba0456fcb2497fc93ae5c1c9d9ac3482ffcf340d5f56960e9fb404d",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-terminator-2km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "candidatePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-terminator-2km-atmosphere-on",
+      "identical": true,
+      "invariant": false,
+      "baselinePngSha256": "b1ea18d6743de29882592df6aba133d384d48b41178e1a18b5fe74a50204fbd2",
+      "candidatePngSha256": "b1ea18d6743de29882592df6aba133d384d48b41178e1a18b5fe74a50204fbd2",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-night-2km-atmosphere-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "candidatePngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-facing-night-2km-atmosphere-on",
+      "identical": true,
+      "invariant": false,
+      "baselinePngSha256": "f9970b5ebdf3210130d5e5b9f08373f2ac22ba0081bd479602d3d15f13e29c58",
+      "candidatePngSha256": "f9970b5ebdf3210130d5e5b9f08373f2ac22ba0081bd479602d3d15f13e29c58",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "orbital-limb-exposure-0.5",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "f418538f68402069641a9854325bba6abf7d2674f5dbbbb47eb3bc34c8f336f4",
+      "candidatePngSha256": "2eac051403893693a2b7de21f3340d1a3064536da6c2929b588d684d7dcdaadc",
+      "diskLuminanceDelta": -0.003505220726366609,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "orbital-limb-exposure-1",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "367e2c781c06d8086d03c0e60e18867f842a9dab1e18f0d09421d2a673ebb0f5",
+      "candidatePngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8",
+      "diskLuminanceDelta": -0.002552273259019522,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "orbital-limb-exposure-2",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "eb91feb92803106d6995ae3d0070ec498cdf94fade13fbc086d03809867702cc",
+      "candidatePngSha256": "9a6949476767266a457054c1c44418bc91d4c833ac97727d35e38230fd592ec4",
+      "diskLuminanceDelta": -0.0007231069889080954,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-transition-sun--1",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "b0beca224404b77018ed01bf7ebc2138378aa80623476558bd805235a5e2839f",
+      "candidatePngSha256": "b0beca224404b77018ed01bf7ebc2138378aa80623476558bd805235a5e2839f",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-transition-sun--4",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2",
+      "candidatePngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "ground-transition-sun--4-sun-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2",
+      "candidatePngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "twilight-all",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "8202de751cf3342a55976fe3bd0797e68a770c0bb447fceba1a49020c4595bac",
+      "candidatePngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f",
+      "diskLuminanceDelta": -0.0018873628597861902,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "twilight-physical-only",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "ed0de2b22ef9a28bb2be290227effbd0603204a7f1a3e4323c895b1f176396da",
+      "candidatePngSha256": "ed0de2b22ef9a28bb2be290227effbd0603204a7f1a3e4323c895b1f176396da",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "twilight-bloom-off",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "d19db0056a539d05e199fb155973c316c9313f3c4c105b1baebc990595d4d6dc",
+      "candidatePngSha256": "8f36dc174496396f7f11ffa83def06d3282e2efee469ba1973ef7e734757b6c5",
+      "diskLuminanceDelta": -0.0008287116115078819,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "twilight-physical-no-bloom",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "9bf96dc7abeace39ce45c2b192385739afad391c1f25f152c4cfbbc6aed0511e",
+      "candidatePngSha256": "9bf96dc7abeace39ce45c2b192385739afad391c1f25f152c4cfbbc6aed0511e",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "earth-partial-all",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "e8d0e1a16a776677fadee2476f036d52933813fa4b942e1e87282962b5396d8c",
+      "candidatePngSha256": "5714cde5294bfe605eed3fc46006c1f0b6bb4254553e9f192f69b23ac4c97290",
+      "diskLuminanceDelta": -0.0005643257319615791,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "earth-partial-physical-only",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "67d107c41f038a20f8dc66e9675f8f7ad5ca9e63933bd4d5535f952eec4c9605",
+      "candidatePngSha256": "67d107c41f038a20f8dc66e9675f8f7ad5ca9e63933bd4d5535f952eec4c9605",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "earth-partial-bloom-off",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "76f95c49f7614e44f61d531c52dab1d21c40d15e9614ea13ea05783ad28c579e",
+      "candidatePngSha256": "bfbef98dc367e81e525641e6ef907ee4ee1d9a694b96f6a3cb073f59392c5ba8",
+      "diskLuminanceDelta": -0.0004034433615906219,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "earth-partial-sun-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "9f83ae7a0061c541f320e68120db267d2bc50c30e1063fd58c73e617cf55ef83",
+      "candidatePngSha256": "9f83ae7a0061c541f320e68120db267d2bc50c30e1063fd58c73e617cf55ef83",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "terrain-full-all",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "candidatePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "terrain-full-physical-only",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "candidatePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "terrain-full-bloom-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "candidatePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "terrain-full-sun-off",
+      "identical": true,
+      "invariant": true,
+      "baselinePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "candidatePngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082",
+      "diskLuminanceDelta": 0,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "terrain-removed-all",
+      "identical": false,
+      "invariant": false,
+      "baselinePngSha256": "f3b77b4def28519f19e9a9b8e0e62bff4414ab6f0a9f0ffd2f536a2d44e7ae88",
+      "candidatePngSha256": "85e9f023a9a876dc36f24c6f6d32c5405c6a1f69de0075cedab05461399f7959",
+      "diskLuminanceDelta": -0.002198265332158167,
+      "skyRgbDelta": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "twilight": {
+    "baseline": {
+      "all": {
+        "displayLinearDiskLuminance": 0.8216447940332713,
+        "displayLinearAnnulusLuminance": 0.7509768547769174,
+        "contrastAboveAnnulus": 0.09410135453155372,
+        "farSkyRgb": [
+          231.81879340277777,
+          200.70529513888889,
+          93.85579427083333
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.866907119750977,
+            6.761975288391113,
+            6.631124496459961
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.7342040757815198,
+            0.3648751737655864,
+            0.0073257454093003105
+          ]
+        }
+      },
+      "physical-only": {
+        "displayLinearDiskLuminance": 0.817749293536639,
+        "displayLinearAnnulusLuminance": 0.7437580318186611,
+        "contrastAboveAnnulus": 0.09948297504371438,
+        "farSkyRgb": [
+          231.81879340277777,
+          200.70529513888889,
+          93.85579427083333
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.2494964599609375,
+            6.2494797706604,
+            6.249439239501953
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.5782800092451907,
+            0.33722099238945624,
+            0.006904078010286696
+          ]
+        }
+      },
+      "bloom-off": {
+        "displayLinearDiskLuminance": 0.7849512562430125,
+        "displayLinearAnnulusLuminance": 0.7106897903119341,
+        "contrastAboveAnnulus": 0.10449209619077791,
+        "farSkyRgb": [
+          230.75021701388889,
+          198.60503472222223,
+          91.27918836805556
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.866907119750977,
+            6.761975288391113,
+            6.631124496459961
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.7342040757815198,
+            0.3648751737655864,
+            0.0073257454093003105
+          ]
+        }
+      },
+      "physical-no-bloom": {
+        "displayLinearDiskLuminance": 0.7821251504455853,
+        "displayLinearAnnulusLuminance": 0.7038514472771136,
+        "contrastAboveAnnulus": 0.11120770365860247,
+        "farSkyRgb": [
+          230.75021701388889,
+          198.60503472222223,
+          91.27918836805556
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.2494964599609375,
+            6.2494797706604,
+            6.249439239501953
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.5782800092451907,
+            0.33722099238945624,
+            0.006904078010286696
+          ]
+        }
+      }
+    },
+    "candidate": {
+      "all": {
+        "displayLinearDiskLuminance": 0.8197574311734851,
+        "displayLinearAnnulusLuminance": 0.7480640852820182,
+        "contrastAboveAnnulus": 0.09583850809311173,
+        "farSkyRgb": [
+          231.81879340277777,
+          200.70529513888889,
+          93.85579427083333
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.6075944900512695,
+            6.546727180480957,
+            6.470816612243652
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.6687159293009302,
+            0.353260418102213,
+            0.007148645017428734
+          ]
+        }
+      },
+      "physical-only": {
+        "displayLinearDiskLuminance": 0.817749293536639,
+        "displayLinearAnnulusLuminance": 0.7437580318186611,
+        "contrastAboveAnnulus": 0.09948297504371438,
+        "farSkyRgb": [
+          231.81879340277777,
+          200.70529513888889,
+          93.85579427083333
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.2494964599609375,
+            6.2494797706604,
+            6.249439239501953
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.5782800092451907,
+            0.33722099238945624,
+            0.006904078010286696
+          ]
+        }
+      },
+      "bloom-off": {
+        "displayLinearDiskLuminance": 0.7841225446315047,
+        "displayLinearAnnulusLuminance": 0.7079223722925961,
+        "contrastAboveAnnulus": 0.10763916401191756,
+        "farSkyRgb": [
+          230.75021701388889,
+          198.60503472222223,
+          91.27918836805556
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.6075944900512695,
+            6.546727180480957,
+            6.470816612243652
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.6687159293009302,
+            0.353260418102213,
+            0.007148645017428734
+          ]
+        }
+      },
+      "physical-no-bloom": {
+        "displayLinearDiskLuminance": 0.7821251504455853,
+        "displayLinearAnnulusLuminance": 0.7038514472771136,
+        "contrastAboveAnnulus": 0.11120770365860247,
+        "farSkyRgb": [
+          230.75021701388889,
+          198.60503472222223,
+          91.27918836805556
+        ],
+        "center": {
+          "solarBeforeTransport": [
+            6.2494964599609375,
+            6.2494797706604,
+            6.249439239501953
+          ],
+          "transmittance": [
+            0.25254514813423157,
+            0.05395985022187233,
+            0.0011047516018152237
+          ],
+          "physicalAtmosphericRadiance": [
+            2.43479061126709,
+            0.6617318391799927,
+            0.04966562241315842
+          ],
+          "solarAfterTransport": [
+            1.5782800092451907,
+            0.33722099238945624,
+            0.006904078010286696
+          ]
+        }
+      }
+    }
+  },
+  "occlusion": {
+    "baseline": {
+      "earthPartial": {
+        "blockedDiskSamples": 36,
+        "clearDiskSamples": 45,
+        "hiddenReceiverMaxByteDelta": 0,
+        "hiddenReceiverSamples": 51377
+      },
+      "terrainFull": {
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 81,
+        "maxByteDelta": 0,
+        "changedPixelsAbove1Byte": 0
+      },
+      "terrainRemoved": {
+        "clearDiskSamples": 81,
+        "centerSolarRadiance": [
+          6.866907119750977,
+          6.761975288391113,
+          6.631124496459961
+        ]
+      },
+      "night": {
+        "maxByteDelta": 0,
+        "visibleSky": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0.595191478729248,
+            0.32134899497032166,
+            0.06800355017185211,
+            0,
+            0.0023998820688575506,
+            0.0018657890614122152,
+            0.0006387880421243608,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9659978747367859,
+            0.2585495710372925,
+            -0.0006193037261255085,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0.2693882882595062,
+            0.06134451925754547,
+            0.001474603428505361,
+            0,
+            0.0062619661912322044,
+            0.002177860587835312,
+            0.0001870265550678596,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9816402792930603,
+            0.19074074923992157,
+            -0.0006217480986379087,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ]
+        ]
+      },
+      "twilight": {
+        "maxByteDelta": 0,
+        "visibleSky": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0.5951915383338928,
+            0.32134902477264404,
+            0.0680035948753357,
+            0,
+            0.03864143416285515,
+            0.029982656240463257,
+            0.011116464622318745,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9816802144050598,
+            0.19053512811660767,
+            -0.0006137569434940815,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0.2693885266780853,
+            0.06134462356567383,
+            0.0014746093656867743,
+            0,
+            0.05959973856806755,
+            0.02262028679251671,
+            0.004069085698574781,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9925544857978821,
+            0.12180034816265106,
+            -0.0006161801284179091,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ]
+        ]
+      }
+    },
+    "candidate": {
+      "earthPartial": {
+        "blockedDiskSamples": 36,
+        "clearDiskSamples": 45,
+        "hiddenReceiverMaxByteDelta": 0,
+        "hiddenReceiverSamples": 51377
+      },
+      "terrainFull": {
+        "samples": 81,
+        "earthBlocked": 0,
+        "meshBlocked": 81,
+        "maxByteDelta": 0,
+        "changedPixelsAbove1Byte": 0
+      },
+      "terrainRemoved": {
+        "clearDiskSamples": 81,
+        "centerSolarRadiance": [
+          6.6075944900512695,
+          6.546727180480957,
+          6.470816612243652
+        ]
+      },
+      "night": {
+        "maxByteDelta": 0,
+        "visibleSky": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0.595191478729248,
+            0.32134899497032166,
+            0.06800355017185211,
+            0,
+            0.0023998820688575506,
+            0.0018657890614122152,
+            0.0006387880421243608,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9659978747367859,
+            0.2585495710372925,
+            -0.0006193037261255085,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0.2693882882595062,
+            0.06134451925754547,
+            0.001474603428505361,
+            0,
+            0.0062619661912322044,
+            0.002177860587835312,
+            0.0001870265550678596,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9816402792930603,
+            0.19074074923992157,
+            -0.0006217480986379087,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ]
+        ]
+      },
+      "twilight": {
+        "maxByteDelta": 0,
+        "visibleSky": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0.5951915383338928,
+            0.32134902477264404,
+            0.0680035948753357,
+            0,
+            0.03864143416285515,
+            0.029982656240463257,
+            0.011116464622318745,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9816802144050598,
+            0.19053512811660767,
+            -0.0006137569434940815,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0.2693885266780853,
+            0.06134462356567383,
+            0.0014746093656867743,
+            0,
+            0.05959973856806755,
+            0.02262028679251671,
+            0.004069085698574781,
+            -1,
+            0,
+            0,
+            0,
+            1,
+            0.9925544857978821,
+            0.12180034816265106,
+            -0.0006161801284179091,
+            0.0002791137376334518,
+            0.9994703531265259,
+            0.03253341093659401,
+            -0.0007540325168520212,
+            0
+          ]
+        ]
+      }
+    }
+  },
+  "limitations": [
+    "Technical assertions and exact hashes do not constitute final visual acceptance.",
+    "Yellow physical twilight and weak disk contrast remain; physical-only and Bloom-off controls are retained.",
+    "The constant-color terrain is not solar shaded; its bright night-side appearance predates B4 and remains unresolved.",
+    "Controlled smooth heightmap occluder, single GPU/browser and static captures; no B5 full matrix or temporal acceptance."
+  ]
+}
