@@ -1,7 +1,7 @@
 {
   "suite": "m2.6.1-b4-round2",
   "browserConsole": [],
-  "capturedAt": "2026-11-04T04:56:08.379Z",
+  "capturedAt": "2026-11-04T04:46:29.707Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -12,7 +12,7 @@
       "args": []
     }
   },
-  "source": "f58881f895e5b61ee6f451474b047825e0e3cec2",
+  "source": "5f18afc1b77f433892f14510b2599c374f8a4942",
   "sourceStatus": "",
   "bundleSha256": "c7529148c4b88961c0b2249868d662e8baca4f167f2b0853f4a2cf4565797854",
   "browserErrors": [],
@@ -38236,10 +38236,9 @@
   "provenance": {
     "role": "baseline",
     "runtimeCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
-    "runtimeCheckoutCommit": "f58881f895e5b61ee6f451474b047825e0e3cec2",
     "runtimeTree": "d89e835bb08c174afa1d8ad374679cb605a3ae03",
     "runtimeStatus": "",
-    "harnessCommit": "f58881f895e5b61ee6f451474b047825e0e3cec2",
+    "harnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
     "harnessStatus": "",
     "runtimeFiles": {
       "packages/engine/Source/Scene/WebGPUSunShader.js": "9ef7b39264284aa62bf8bc42f04d376fecf789e49a22d646ac33805e93664ed8",
@@ -38248,7 +38247,7 @@
       "package.json": "68ed499fc836311879922f87f269d2cad9e15b489691ddd7370f6cede24d3239"
     },
     "harnessFiles": {
-      "coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs": "6602ebb9d7239c189b2f9ae60dbf4a0fb4a0c8d0f25e8acda0d72aef96a02987",
+      "coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs": "16d8ff3ae09a4a4e0b397e2da98cd34e73f2b2f6384bbcfcba43c71eb46c3aae",
       "coordination/ci/m2.6.1-b4-fixtures.mjs": "51c37bd905f3da4e16a530664cb31378da6717416d2d07a04d419b41e3f3ac2b",
       "coordination/ci/m2-sun-fixtures.mjs": "7f45efac938be6294e04809b0a6c9ca70baa8aeb5b4c9557788ce8109b1e2994",
       "coordination/ci/m2-atmosphere-fixtures.mjs": "32b9d607f4bb363a1e240a596c9e3661a21ecffb4fd2df54cef6b6210c229933",
@@ -38269,7 +38268,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 16.300000000745058
+      "loadAndUploadMs": 16.899999999441206
     },
     {
       "name": "radial-rays-02",
@@ -38278,7 +38277,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 4.8999999994412065
+      "loadAndUploadMs": 7.6000000005587935
     },
     {
       "name": "radial-rays-03",
@@ -38287,7 +38286,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 4.7999999998137355
+      "loadAndUploadMs": 5.599999999627471
     },
     {
       "name": "soft-halo",
@@ -38296,7 +38295,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 5.6000000005587935
+      "loadAndUploadMs": 6
     },
     {
       "name": "wide-halo",
@@ -38314,7 +38313,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 6.3999999994412065
+      "loadAndUploadMs": 6.7999999998137355
     },
     {
       "name": "corona-mid",
@@ -38323,7 +38322,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 9
+      "loadAndUploadMs": 7.400000000372529
     },
     {
       "name": "radial-noise",
@@ -38332,7 +38331,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 8.100000000558794
+      "loadAndUploadMs": 9.200000000186265
     },
     {
       "name": "glow-gradient",
@@ -38341,7 +38340,7 @@
       "height": 512,
       "byteLength": 1048576,
       "status": "LOADED",
-      "loadAndUploadMs": 10.599999999627471
+      "loadAndUploadMs": 9.799999999813735
     }
   ],
   "reproducedFramingDefects": [

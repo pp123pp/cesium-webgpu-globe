@@ -1,20 +1,22 @@
 {
   "status": "PASS",
   "visualAcceptance": "AWAITING_USER_REVIEW",
-  "generatedAt": "2026-11-04T05:00:00.391Z",
+  "generatedAt": "2026-11-04T05:13:40.842Z",
   "baseline": {
     "runtimeCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
-    "harnessCheckoutCommit": "f58881f895e5b61ee6f451474b047825e0e3cec2",
+    "runtimeCheckoutCommit": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "harnessCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
     "sourceTree": "d89e835bb08c174afa1d8ad374679cb605a3ae03",
     "bundleSha256": "c7529148c4b88961c0b2249868d662e8baca4f167f2b0853f4a2cf4565797854"
   },
   "candidate": {
-    "runtimeCommit": "ff06e9691ae98550cc965e1f8c6313a730c0bab6",
-    "harnessCheckoutCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+    "runtimeCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "runtimeCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "harnessCheckoutCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
     "sourceTree": "a01b16951f3f31458a9c3768fe0626a6e5a10341",
-    "bundleSha256": "349a9cc9e5c12d60c4bd81e3d5f4c3e02532aeb355e53f303f799f41e7a07793"
+    "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f"
   },
-  "harnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+  "harnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
   "pairedCaptures": 42,
   "verifiedPngFiles": 84,
   "sameState": true,

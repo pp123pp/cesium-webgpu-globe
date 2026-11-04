@@ -1,37 +1,49 @@
 {
+  "observedAt": "2026-11-04T05:13:00Z",
   "pullRequest": 25,
   "branch": "feat/m2-6-1-b4-atmospheric-glow",
-  "observedHead": "d34ef47f4ac70f4b16e7615c9b17d005038c1a76",
-  "testedRuntimeCommit": "ff06e9691ae98550cc965e1f8c6313a730c0bab6",
-  "testedHarnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
-  "githubActions": {
-    "fast": {
-      "runId": 41777230884,
-      "runNumber": 111,
-      "status": "pending",
-      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41777230884"
-    },
-    "full": {
-      "runId": 41777230908,
-      "runNumber": 88,
-      "selectorJob": "completed_success",
-      "regressionJob": "skipped",
-      "status": "FULL_REGRESSION_SKIPPED",
-      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41777230908"
-    },
-    "supersededHead016dd3": {
+  "canonicalCapture": {
+    "baseline": "5f18afc1b77f433892f14510b2599c374f8a4942",
+    "candidateAndHarness": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "candidateBuild": "995860bf2e3aa6cee0731d2e110643f45e16f6bf"
+  },
+  "observations": [
+    {
+      "commit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
       "fast": {
-        "runId": 41777087020,
-        "status": "in_progress"
+        "runId": 41775838199,
+        "jobId": 126395857919,
+        "status": "completed",
+        "conclusion": "success"
       },
       "full": {
-        "runId": 41777087022,
-        "status": "cancelled",
-        "note": "Superseded by a newer PR head before the Full job completed."
+        "runId": 41775838234,
+        "selectorConclusion": "success",
+        "regressionJobId": 126395946778,
+        "regressionStatus": "completed",
+        "regressionConclusion": "success",
+        "actuallyExecuted": true
+      }
+    },
+    {
+      "commit": "d54d8c49f4862e904851d8a68f42d908b3fc2dbd",
+      "fast": {
+        "runId": 41777393065,
+        "jobId": 126401247018,
+        "status": "in_progress",
+        "conclusion": null
+      },
+      "full": {
+        "runId": 41777393255,
+        "selectorConclusion": "success",
+        "regressionJobId": 126400915319,
+        "regressionStatus": "completed",
+        "regressionConclusion": "skipped",
+        "actuallyExecuted": false
       }
     }
-  },
+  ],
   "manualFullDispatch": false,
-  "webglDifferential": "NOT_RUN",
-  "note": "This is the observed CI snapshot for d34ef47. The following documentation-only CI-status commit will create a newer PR head; its automatic checks are tracked separately and are not represented as passed here."
+  "newLocalWebglDifferential": false,
+  "note": "Snapshot before the provenance/measurement correction commit. Subsequent PR-head checks are reported in PR #25; no future or skipped job is claimed passed."
 }

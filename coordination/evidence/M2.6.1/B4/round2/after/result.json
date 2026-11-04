@@ -1,7 +1,7 @@
 {
   "suite": "m2.6.1-b4-round2",
   "browserConsole": [],
-  "capturedAt": "2026-11-04T04:58:11.621Z",
+  "capturedAt": "2026-11-04T04:43:01.782Z",
   "configuration": {
     "mode": "hardware",
     "requirePhysicalGpu": true,
@@ -12,9 +12,9 @@
       "args": []
     }
   },
-  "source": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+  "source": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
   "sourceStatus": "",
-  "bundleSha256": "349a9cc9e5c12d60c4bd81e3d5f4c3e02532aeb355e53f303f799f41e7a07793",
+  "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f",
   "browserErrors": [],
   "checks": [
     "Old exposure and night framing failures reproduced geometrically.",
@@ -105,7 +105,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 25,
         "earthRays": 0
@@ -241,7 +241,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 25,
         "earthRays": 0
@@ -377,7 +377,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 19,
         "earthRays": 6
@@ -594,7 +594,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 19,
         "earthRays": 6
@@ -811,7 +811,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -1218,7 +1218,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -1625,7 +1625,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -2022,7 +2022,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -2419,7 +2419,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 20,
         "earthRays": 5
@@ -2986,7 +2986,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 20,
         "earthRays": 5
@@ -3553,7 +3553,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 25,
         "earthRays": 0
@@ -3715,7 +3715,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 25,
         "earthRays": 0
@@ -3862,7 +3862,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -6129,7 +6129,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -8397,7 +8397,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -9690,7 +9690,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -10975,7 +10975,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -12267,7 +12267,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -12504,7 +12504,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -12741,7 +12741,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -12978,7 +12978,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -13215,7 +13215,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -13452,7 +13452,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25
@@ -13689,7 +13689,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -14096,7 +14096,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -14503,7 +14503,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -14911,7 +14911,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -16229,7 +16229,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -17544,7 +17544,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -18866,7 +18866,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -21133,7 +21133,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -23400,7 +23400,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -25667,7 +25667,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -27934,7 +27934,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 14,
         "earthRays": 11
@@ -28346,7 +28346,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 14,
         "earthRays": 11
@@ -28758,7 +28758,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 14,
         "earthRays": 11
@@ -29170,7 +29170,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 14,
         "earthRays": 11
@@ -29582,7 +29582,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -31594,7 +31594,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -33606,7 +33606,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -35618,7 +35618,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -37630,7 +37630,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 15,
         "earthRays": 10
@@ -38235,11 +38235,10 @@
   "browser": "156.0.8078.80",
   "provenance": {
     "role": "candidate",
-    "runtimeCommit": "ff06e9691ae98550cc965e1f8c6313a730c0bab6",
-    "runtimeCheckoutCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+    "runtimeCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
     "runtimeTree": "a01b16951f3f31458a9c3768fe0626a6e5a10341",
     "runtimeStatus": "",
-    "harnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
+    "harnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
     "harnessStatus": "",
     "runtimeFiles": {
       "packages/engine/Source/Scene/WebGPUSunShader.js": "45644b2f4d29167d7988993c8e37c1808c0358454e1ca0ae841f5e3b696530cb",
@@ -38248,7 +38247,7 @@
       "package.json": "68ed499fc836311879922f87f269d2cad9e15b489691ddd7370f6cede24d3239"
     },
     "harnessFiles": {
-      "coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs": "6602ebb9d7239c189b2f9ae60dbf4a0fb4a0c8d0f25e8acda0d72aef96a02987",
+      "coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs": "16d8ff3ae09a4a4e0b397e2da98cd34e73f2b2f6384bbcfcba43c71eb46c3aae",
       "coordination/ci/m2.6.1-b4-fixtures.mjs": "51c37bd905f3da4e16a530664cb31378da6717416d2d07a04d419b41e3f3ac2b",
       "coordination/ci/m2-sun-fixtures.mjs": "7f45efac938be6294e04809b0a6c9ca70baa8aeb5b4c9557788ce8109b1e2994",
       "coordination/ci/m2-atmosphere-fixtures.mjs": "32b9d607f4bb363a1e240a596c9e3661a21ecffb4fd2df54cef6b6210c229933",
@@ -38269,7 +38268,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 17.200000000186265
+      "loadAndUploadMs": 14.299999999813735
     },
     {
       "name": "radial-rays-02",
@@ -38278,7 +38277,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 5.2999999998137355
+      "loadAndUploadMs": 3.6000000005587935
     },
     {
       "name": "radial-rays-03",
@@ -38287,7 +38286,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 6
+      "loadAndUploadMs": 2.8999999994412065
     },
     {
       "name": "soft-halo",
@@ -38296,7 +38295,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 5.5
+      "loadAndUploadMs": 2.900000000372529
     },
     {
       "name": "wide-halo",
@@ -38305,7 +38304,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 5.5
+      "loadAndUploadMs": 3.5
     },
     {
       "name": "corona-fine",
@@ -38314,7 +38313,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 6.099999999627471
+      "loadAndUploadMs": 2.900000000372529
     },
     {
       "name": "corona-mid",
@@ -38323,7 +38322,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 7.5
+      "loadAndUploadMs": 3.099999999627471
     },
     {
       "name": "radial-noise",
@@ -38332,7 +38331,7 @@
       "height": 512,
       "byteLength": 262144,
       "status": "LOADED",
-      "loadAndUploadMs": 10
+      "loadAndUploadMs": 6.6000000005587935
     },
     {
       "name": "glow-gradient",
@@ -38341,7 +38340,7 @@
       "height": 512,
       "byteLength": 1048576,
       "status": "LOADED",
-      "loadAndUploadMs": 10.599999999627471
+      "loadAndUploadMs": 6.7000000001862645
     }
   ],
   "reproducedFramingDefects": [
@@ -38419,7 +38418,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 25,
         "earthRays": 0
@@ -38504,7 +38503,7 @@
         1920,
         1080
       ],
-      "devicePixelRatio": 1,
+      "devicePixelRatio": 1.0000000149011612,
       "framing": {
         "skyRays": 0,
         "earthRays": 25

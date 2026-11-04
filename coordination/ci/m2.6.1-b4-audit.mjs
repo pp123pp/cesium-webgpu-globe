@@ -80,9 +80,11 @@ const occlusion = (report) => ({
 });
 const result = {
   status: "PASS", visualAcceptance: "AWAITING_USER_REVIEW", generatedAt: new Date().toISOString(),
-  baseline: { runtimeCommit: before.provenance.runtimeCommit, harnessCheckoutCommit: before.source,
+  baseline: { runtimeCommit: before.provenance.runtimeCommit, runtimeCheckoutCommit: before.source,
+    harnessCheckoutCommit: before.provenance.harnessCommit,
     sourceTree: before.provenance.runtimeTree, bundleSha256: before.bundleSha256 },
-  candidate: { runtimeCommit: after.provenance.runtimeCommit, harnessCheckoutCommit: after.source,
+  candidate: { runtimeCommit: after.provenance.runtimeCommit, runtimeCheckoutCommit: after.source,
+    harnessCheckoutCommit: after.provenance.harnessCommit,
     sourceTree: after.provenance.runtimeTree, bundleSha256: after.bundleSha256 },
   harnessCommit: after.provenance.harnessCommit, pairedCaptures: pairs.length, verifiedPngFiles: pairs.length * 2,
   sameState: true, invariantPairs: pairs.filter((p) => p.invariant).length,
