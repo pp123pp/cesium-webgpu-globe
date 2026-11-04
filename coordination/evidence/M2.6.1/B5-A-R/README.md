@@ -40,6 +40,7 @@ For same-state before/after comparison, use the original A01–A08 images in [PR
 
 - `npm run build`: PASS on candidate source.
 - Focused Node tests: **5/5 PASS** (two existing B1 solar checks plus three B5-A-R shader invariants).
+- M2.2 production atmosphere browser smoke: **PASS** after updating its independent CPU composite oracle to reproduce the new long-path balance; the original ±3 display-channel tolerance and all physical/depth/occlusion assertions remain unchanged.
 - Targeted ESLint on both modified shaders and B5-A-R scripts: PASS.
 - Capture harness: PASS; all 58 PNG hashes and per-scene error lists verified.
 - Cleanup: viewer destroyed; 6,850/6,850 buffers released; zero pending imagery requests; zero canvases retained.

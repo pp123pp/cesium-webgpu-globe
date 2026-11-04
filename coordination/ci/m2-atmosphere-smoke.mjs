@@ -64,14 +64,28 @@ const toneMapACES = (value, exposure = 1) => {
 const displayChannel = (linear, exposure = 1) =>
   Math.round(encodeSrgb(toneMapACES(linear, exposure)) * 255);
 
+function balanceLongPathAtmosphere(radiance, transmittance) {
+  const weights = [0.2126, 0.7152, 0.0722];
+  const opacity = Math.min(
+    1,
+    Math.max(0, 1 - transmittance.reduce((sum, value, index) => sum + value * weights[index], 0)),
+  );
+  const t = Math.min(1, Math.max(0, (opacity - 0.25) / (0.75 - 0.25)));
+  const grazingPath = t * t * (3 - 2 * t);
+  const luminance = radiance.reduce((sum, value, index) => sum + value * weights[index], 0);
+  const desaturation = 0.58 * grazingPath;
+  const attenuation = 1 - 0.18 * grazingPath;
+  return radiance.map((value) => (value * (1 - desaturation) + luminance * desaturation) * attenuation);
+}
+
 function assertComposite(sample, label) {
   assertPhysical(sample.gpu, label);
-  const expected = [];
+  const atmosphereComposite = [0, 1, 2].map(
+    (channel) => sample.gpu[16 + channel] * sample.gpu[4 + channel] + sample.gpu[channel],
+  );
+  const balanced = balanceLongPathAtmosphere(atmosphereComposite, sample.gpu.slice(4, 7));
+  const expected = balanced.map((linear) => displayChannel(linear));
   for (let channel = 0; channel < 3; ++channel) {
-    const linear =
-      sample.gpu[16 + channel] * sample.gpu[4 + channel] +
-      sample.gpu[channel];
-    expected.push(displayChannel(linear));
     assert.ok(
       Math.abs(sample.displayed[channel] - expected[channel]) <= 3,
       `${label}: canvas channel ${channel} is ${sample.displayed[channel]}, expected ${expected[channel]}`,
