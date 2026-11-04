@@ -278,7 +278,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let transport = atmosphereIntegrate(direction, sceneDistance);
   let background = textureLoad(sceneColor, coordinate, 0).rgb;
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
-  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
   let linear = (background + stars + solar + moon) * transport.transmittance +
@@ -298,7 +298,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let transport = atmosphereIntegrate(direction, sceneDistance);
   let background = textureLoad(sceneColor, coordinate, 0).rgb;
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
-  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
   let linear = (background + stars + solar + moon) * transport.transmittance +
@@ -316,7 +316,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
   let source = textureLoad(sceneColor, coordinate, 0);
   let sceneDistance = webgpuSceneRayDistance(textureLoad(sceneDepth, coordinate, 0), direction, planet);
-  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let solar = sunRadiance(direction, coordinate, pixelWidth, vec3f(1.0));
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
@@ -332,7 +332,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let pixelWidth = max(length(dpdx(direction)), length(dpdy(direction)));
   let source = textureLoad(sceneColor, coordinate, 0);
   let sceneDistance = webgpuSceneRayDistance(textureLoad(sceneDepth, coordinate, 0), direction, planet);
-  let solar = sunRadiance(direction, coordinate, pixelWidth);
+  let solar = sunRadiance(direction, coordinate, pixelWidth, vec3f(1.0));
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);

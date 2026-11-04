@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B1, B2 and B3 (B01–B04, B06) are visually accepted and merged into main. B3 merge commit: `9dfc6d6539e5ebb17e38c5761e0f07c77d762e54` (PR #23). B4 / B05 Atmospheric Glow Integration and B5 / B07 Integrated Visual Acceptance remain planned and unauthorized. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B4 / B05 Atmospheric Glow Integration implemented and focused verification completed on feat/m2-6-1-b4-atmospheric-glow; awaiting user visual acceptance. Not merged. B5 / B07 Integrated Visual Acceptance is not started. M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -321,3 +321,14 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - WebGPU unsupported behavior: explicit error; no silent WebGL fallback.
 - Recovery after device loss is destruction and recreation; no backend hot switch.
 - Read `coordination/handoffs/M0.4-webgpu-proof.md` for the supported API, commands, evidence and environment limits.
+
+## Current handoff — B4 Atmospheric Glow Integration, 2026-11-04
+
+**B4 / B05 implementation and scoped technical verification complete; awaiting user visual acceptance. Not merged.**
+
+- Branch: feat/m2-6-1-b4-atmospheric-glow, based on main `5f18afc1b77f433892f14510b2599c374f8a4942`.
+- Physical view-path transmittance now modulates only authored Rays/Halo/Corona contribution. The direct solar disk, physical direction/radius/radiance, Earth and real-terrain depth occlusion, Rayleigh/Mie radiance and HDR/Bloom/ACES/sRGB order remain unchanged.
+- No additional render pass, GPU texture or buffer; WebGL untouched. Build, targeted lint, 19 focused tests and headed Intel Xe-LPG WebGPU smoke passed. Before/after capture and 15-sample GPU timing reports are preserved in [B4 evidence](evidence/M2.6.1/B4/README.md).
+- Browser capture: Chrome 156.0.8078.80, Intel Xe-LPG non-fallback, 1920×1080. All 17 scenes per side captured with zero browser errors. GPU all-enabled pass-sum mean 5.0244 ms before / 4.9720 ms after; p95 5.7672 / 5.5050 ms. No new pass or texture payload.
+- Full M2.6.1 integrated acceptance, B5/B07, 120-frame temporal acceptance, full occultation matrix and WebGL differential were not run. These are not claimed passed.
+- Handoff: [M2.6.1-B4](handoffs/M2.6.1-B4-atmospheric-glow.md). B4 stops here pending user visual acceptance; do not merge main or start B5.

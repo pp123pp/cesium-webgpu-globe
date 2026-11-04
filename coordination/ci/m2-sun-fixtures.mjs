@@ -201,7 +201,7 @@ export async function installSunProbe(page) {
         }
         var solar = vec3f(0.0);
         if (atmosphere.viewport.w > 0.0) {
-          solar = sunRadiance(direction, pixel, pixelWidth);
+          solar = sunRadiance(direction, pixel, pixelWidth, transport.transmittance);
         }
         let i = id.x * 6u;
         solarResults[i] = vec4f(solar, sunDiskCoverage(direction, pixelWidth));

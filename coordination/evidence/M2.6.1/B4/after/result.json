@@ -1,0 +1,2542 @@
+{
+  "suite": "m2.6.1-b4-atmospheric-glow",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T04:02:31.794Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "5f18afc1b77f433892f14510b2599c374f8a4942",
+  "sourceStatus": "M coordination/ci/m2-sun-fixtures.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs\n?? coordination/ci/m2.6.1-b4-atmospheric-glow.test.mjs",
+  "bundleSha256": "1ad52fcd746fa632b81fc1d4b3e5c3122ac9bbcddbd5705d55882c8124378804",
+  "browserErrors": [],
+  "checks": [
+    "Actual WebGPU canvas captures: high orbit, orbital sunrise, low orbit, near-ground low Sun, ground day/twilight/night; atmosphere off/on controls; exposure 0.5/1/2."
+  ],
+  "scenes": [
+    {
+      "name": "high-orbit-direct-atmosphere-off",
+      "scene": "high-orbit-direct",
+      "elevation": 60,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 6,
+        "selectedTiles": 2,
+        "levels": [
+          1,
+          1
+        ],
+        "cacheTiles": 14,
+        "loadedTiles": 14,
+        "terrain": {
+          "requests": 14,
+          "deferred": 0,
+          "meshes": 6,
+          "fills": 2,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 6,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 4,
+          "pendingRequests": 0,
+          "texturesCreated": 4,
+          "texturesDestroyed": 0,
+          "activeTextures": 4
+        },
+        "resources": {
+          "buffersCreated": 20,
+          "buffersDestroyed": 6,
+          "bufferBytes": 68648,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 4,
+          "texturesDestroyed": 0,
+          "textureBytes": 1048576,
+          "imageryDrawCalls": 2
+        },
+        "atmosphere": {
+          "frames": 1,
+          "sunFrames": 6,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 6,
+          "bloomPasses": 14,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1288,
+      "backgroundPixels": 1552301,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "high-orbit-direct-atmosphere-on",
+      "scene": "high-orbit-direct",
+      "elevation": 60,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 9,
+        "selectedTiles": 2,
+        "levels": [
+          3,
+          2
+        ],
+        "cacheTiles": 26,
+        "loadedTiles": 26,
+        "terrain": {
+          "requests": 26,
+          "deferred": 0,
+          "meshes": 18,
+          "fills": 5,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 14,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 6,
+          "pendingRequests": 0,
+          "texturesCreated": 6,
+          "texturesDestroyed": 0,
+          "activeTextures": 6
+        },
+        "resources": {
+          "buffersCreated": 52,
+          "buffersDestroyed": 14,
+          "bufferBytes": 203896,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 6,
+          "texturesDestroyed": 0,
+          "textureBytes": 1572864,
+          "imageryDrawCalls": 2
+        },
+        "atmosphere": {
+          "frames": 4,
+          "sunFrames": 9,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 9,
+          "bloomPasses": 23,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1288,
+      "backgroundPixels": 1552301,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbital-sunrise-atmosphere-off",
+      "scene": "orbital-sunrise",
+      "elevation": -19.432068758210583,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 12,
+        "selectedTiles": 7,
+        "levels": [
+          2,
+          3,
+          3,
+          3,
+          3,
+          1,
+          2
+        ],
+        "cacheTiles": 50,
+        "loadedTiles": 50,
+        "terrain": {
+          "requests": 50,
+          "deferred": 0,
+          "meshes": 27,
+          "fills": 8,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 18,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 11,
+          "pendingRequests": 0,
+          "texturesCreated": 11,
+          "texturesDestroyed": 0,
+          "activeTextures": 11
+        },
+        "resources": {
+          "buffersCreated": 76,
+          "buffersDestroyed": 14,
+          "bufferBytes": 315676,
+          "drawCalls": 7,
+          "triangles": 2856,
+          "texturesCreated": 11,
+          "texturesDestroyed": 0,
+          "textureBytes": 2883584,
+          "imageryDrawCalls": 7
+        },
+        "atmosphere": {
+          "frames": 4,
+          "sunFrames": 12,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 12,
+          "bloomPasses": 32,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 5756,
+      "backgroundPixels": 883258,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbital-sunrise-atmosphere-on",
+      "scene": "orbital-sunrise",
+      "elevation": -19.432068758210583,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 15,
+        "selectedTiles": 8,
+        "levels": [
+          3,
+          4,
+          3,
+          3,
+          3,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 66,
+        "loadedTiles": 66,
+        "terrain": {
+          "requests": 66,
+          "deferred": 0,
+          "meshes": 42,
+          "fills": 17,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 20,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 126,
+          "buffersDestroyed": 32,
+          "bufferBytes": 490232,
+          "drawCalls": 8,
+          "triangles": 3048,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 8
+        },
+        "atmosphere": {
+          "frames": 7,
+          "sunFrames": 15,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 15,
+          "bloomPasses": 41,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        249,
+        207,
+        255
+      ],
+      "distinctSampledColors": 9616,
+      "backgroundPixels": 437204,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "low-orbit-low-sun-atmosphere-off",
+      "scene": "low-orbit-low-sun",
+      "elevation": -18.782068758210585,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 18,
+        "selectedTiles": 14,
+        "levels": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          4,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 90,
+        "loadedTiles": 90,
+        "terrain": {
+          "requests": 90,
+          "deferred": 0,
+          "meshes": 57,
+          "fills": 37,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 20,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 196,
+          "buffersDestroyed": 62,
+          "bufferBytes": 659976,
+          "drawCalls": 14,
+          "triangles": 3722,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 14
+        },
+        "atmosphere": {
+          "frames": 7,
+          "sunFrames": 18,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 18,
+          "bloomPasses": 50,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 5096,
+      "backgroundPixels": 970287,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "low-orbit-low-sun-atmosphere-on",
+      "scene": "low-orbit-low-sun",
+      "elevation": -18.782068758210585,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 21,
+        "selectedTiles": 13,
+        "levels": [
+          6,
+          6,
+          6,
+          6,
+          4,
+          4,
+          4,
+          4,
+          3,
+          3,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 100,
+        "terrain": {
+          "requests": 110,
+          "deferred": 0,
+          "meshes": 72,
+          "fills": 37,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 20,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 226,
+          "buffersDestroyed": 80,
+          "bufferBytes": 757972,
+          "drawCalls": 13,
+          "triangles": 4801,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 13
+        },
+        "atmosphere": {
+          "frames": 10,
+          "sunFrames": 21,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 21,
+          "bloomPasses": 59,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 7705,
+      "backgroundPixels": 568218,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "near-ground-low-sun-atmosphere-off",
+      "scene": "near-ground-low-sun",
+      "elevation": 3,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 24,
+        "selectedTiles": 5,
+        "levels": [
+          6,
+          3,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 76,
+        "terrain": {
+          "requests": 122,
+          "deferred": 0,
+          "meshes": 87,
+          "fills": 39,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 20,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 260,
+          "buffersDestroyed": 136,
+          "bufferBytes": 643012,
+          "drawCalls": 5,
+          "triangles": 2094,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 5
+        },
+        "atmosphere": {
+          "frames": 10,
+          "sunFrames": 24,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 24,
+          "bloomPasses": 68,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1279,
+      "backgroundPixels": 1552297,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "near-ground-low-sun-atmosphere-on",
+      "scene": "near-ground-low-sun",
+      "elevation": 3,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 27,
+        "selectedTiles": 1,
+        "levels": [
+          5
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 84,
+        "terrain": {
+          "requests": 130,
+          "deferred": 0,
+          "meshes": 101,
+          "fills": 41,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 292,
+          "buffersDestroyed": 146,
+          "bufferBytes": 786532,
+          "drawCalls": 1,
+          "triangles": 570,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 1
+        },
+        "atmosphere": {
+          "frames": 13,
+          "sunFrames": 27,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 27,
+          "bloomPasses": 77,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        254,
+        250,
+        223,
+        255
+      ],
+      "distinctSampledColors": 813,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-day-atmosphere-off",
+      "scene": "ground-day",
+      "elevation": 45,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 30,
+        "selectedTiles": 5,
+        "levels": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 88,
+        "terrain": {
+          "requests": 146,
+          "deferred": 0,
+          "meshes": 106,
+          "fills": 44,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 308,
+          "buffersDestroyed": 154,
+          "bufferBytes": 798904,
+          "drawCalls": 5,
+          "triangles": 1180,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 5
+        },
+        "atmosphere": {
+          "frames": 13,
+          "sunFrames": 30,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 30,
+          "bloomPasses": 86,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1286,
+      "backgroundPixels": 1552294,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-day-atmosphere-on",
+      "scene": "ground-day",
+      "elevation": 45,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 33,
+        "selectedTiles": 2,
+        "levels": [
+          5,
+          5
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 94,
+        "terrain": {
+          "requests": 154,
+          "deferred": 0,
+          "meshes": 117,
+          "fills": 47,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 336,
+          "buffersDestroyed": 170,
+          "bufferBytes": 918392,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 2
+        },
+        "atmosphere": {
+          "frames": 16,
+          "sunFrames": 33,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 33,
+          "bloomPasses": 95,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 298,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-twilight-atmosphere-off",
+      "scene": "ground-twilight",
+      "elevation": 1,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 36,
+        "selectedTiles": 5,
+        "levels": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 93,
+        "terrain": {
+          "requests": 170,
+          "deferred": 0,
+          "meshes": 127,
+          "fills": 50,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 362,
+          "buffersDestroyed": 204,
+          "bufferBytes": 841964,
+          "drawCalls": 5,
+          "triangles": 1180,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 5
+        },
+        "atmosphere": {
+          "frames": 16,
+          "sunFrames": 36,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 36,
+          "bloomPasses": 104,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1220,
+      "backgroundPixels": 976544,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-twilight-atmosphere-on",
+      "scene": "ground-twilight",
+      "elevation": 1,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 39,
+        "selectedTiles": 2,
+        "levels": [
+          5,
+          5
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 100,
+        "terrain": {
+          "requests": 178,
+          "deferred": 0,
+          "meshes": 138,
+          "fills": 53,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "activeTextures": 12
+        },
+        "resources": {
+          "buffersCreated": 390,
+          "buffersDestroyed": 218,
+          "bufferBytes": 951692,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "textureBytes": 3145728,
+          "imageryDrawCalls": 2
+        },
+        "atmosphere": {
+          "frames": 19,
+          "sunFrames": 39,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 39,
+          "bloomPasses": 113,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        254,
+        238,
+        79,
+        255
+      ],
+      "distinctSampledColors": 1152,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-night-atmosphere-off",
+      "scene": "ground-night",
+      "elevation": -8,
+      "atmosphere": false,
+      "statistics": {
+        "frame": 42,
+        "selectedTiles": 5,
+        "levels": [
+          6,
+          6,
+          6,
+          6,
+          6
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 85,
+        "terrain": {
+          "requests": 194,
+          "deferred": 0,
+          "meshes": 148,
+          "fills": 56,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 12,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 1,
+          "activeTextures": 11
+        },
+        "resources": {
+          "buffersCreated": 416,
+          "buffersDestroyed": 272,
+          "bufferBytes": 764264,
+          "drawCalls": 5,
+          "triangles": 1180,
+          "texturesCreated": 12,
+          "texturesDestroyed": 1,
+          "textureBytes": 2883584,
+          "imageryDrawCalls": 5
+        },
+        "atmosphere": {
+          "frames": 19,
+          "sunFrames": 42,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 42,
+          "bloomPasses": 122,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        99,
+        159,
+        137,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "ground-night-atmosphere-on",
+      "scene": "ground-night",
+      "elevation": -8,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 45,
+        "selectedTiles": 4,
+        "levels": [
+          7,
+          7,
+          7,
+          7
+        ],
+        "cacheTiles": 100,
+        "loadedTiles": 81,
+        "terrain": {
+          "requests": 210,
+          "deferred": 0,
+          "meshes": 159,
+          "fills": 59,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 14,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "activeTextures": 9
+        },
+        "resources": {
+          "buffersCreated": 444,
+          "buffersDestroyed": 318,
+          "bufferBytes": 696392,
+          "drawCalls": 4,
+          "triangles": 2280,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "textureBytes": 2359296,
+          "imageryDrawCalls": 4
+        },
+        "atmosphere": {
+          "frames": 22,
+          "sunFrames": 45,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 45,
+          "bloomPasses": 131,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        99,
+        159,
+        137,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 0,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbital-limb-exposure-0.5",
+      "exposure": 0.5,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 48,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 100,
+        "loadedTiles": 81,
+        "terrain": {
+          "requests": 210,
+          "deferred": 0,
+          "meshes": 164,
+          "fills": 59,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 14,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "activeTextures": 9
+        },
+        "resources": {
+          "buffersCreated": 454,
+          "buffersDestroyed": 318,
+          "bufferBytes": 751892,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "textureBytes": 2359296,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 25,
+          "sunFrames": 48,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 48,
+          "bloomPasses": 140,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        253,
+        253,
+        252,
+        255
+      ],
+      "distinctSampledColors": 983,
+      "backgroundPixels": 1577137,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbital-limb-exposure-1",
+      "exposure": 1,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 51,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 100,
+        "loadedTiles": 81,
+        "terrain": {
+          "requests": 210,
+          "deferred": 0,
+          "meshes": 164,
+          "fills": 59,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 14,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "activeTextures": 9
+        },
+        "resources": {
+          "buffersCreated": 454,
+          "buffersDestroyed": 318,
+          "bufferBytes": 751892,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "textureBytes": 2359296,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 28,
+          "sunFrames": 51,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 51,
+          "bloomPasses": 149,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1278,
+      "backgroundPixels": 1552298,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbital-limb-exposure-2",
+      "exposure": 2,
+      "atmosphere": true,
+      "statistics": {
+        "frame": 54,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 100,
+        "loadedTiles": 81,
+        "terrain": {
+          "requests": 210,
+          "deferred": 0,
+          "meshes": 164,
+          "fills": 59,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 22,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 14,
+          "pendingRequests": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "activeTextures": 9
+        },
+        "resources": {
+          "buffersCreated": 454,
+          "buffersDestroyed": 318,
+          "bufferBytes": 751892,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 3,
+          "textureBytes": 2359296,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 31,
+          "sunFrames": 54,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 1,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 14,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 54,
+          "bloomPasses": 158,
+          "bloomTextureBytes": 18662400,
+          "bloomWidth": 480,
+          "bloomHeight": 270,
+          "maxFeedback": 0.33370226933715824
+        }
+      },
+      "center": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "distinctSampledColors": 1473,
+      "backgroundPixels": 1526917,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "setup": {
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ],
+    "exposure": 1,
+    "bloomStrength": 0.35,
+    "solarEffects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "angularRadius": 0.00465
+  },
+  "gpuTiming": {
+    "status": "MEASURED",
+    "adapterFeatures": [
+      "depth32float-stencil8",
+      "rg11b10ufloat-renderable",
+      "texture-formats-tier1",
+      "bgra8unorm-storage",
+      "texture-compression-bc",
+      "dual-source-blending",
+      "core-features-and-limits",
+      "float32-filterable",
+      "indirect-first-instance",
+      "float32-blendable",
+      "subgroup-size-control",
+      "texture-compression-unaligned",
+      "depth-clip-control",
+      "texture-compression-bc-sliced-3d",
+      "timestamp-query",
+      "shader-f16",
+      "texture-formats-tier2",
+      "clip-distances",
+      "primitive-index",
+      "texture-component-swizzle",
+      "subgroups"
+    ],
+    "deviceFeatures": [
+      "core-features-and-limits",
+      "timestamp-query"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "samplesPerMode": 15,
+    "summaries": {
+      "baseline": {
+        "gpuPassSumMs": {
+          "mean": 4.3122688,
+          "p50": 4.325375999999999,
+          "p95": 4.456448
+        },
+        "gpuFrameSpanMs": {
+          "mean": 4.954521600000001,
+          "p50": 4.521984,
+          "p95": 5.89824
+        },
+        "wallRenderAndMapMs": {
+          "mean": 7.153333333305394,
+          "p50": 7,
+          "p95": 9.199999999953434
+        },
+        "passCount": 3
+      },
+      "solarWithoutBloom": {
+        "gpuPassSumMs": {
+          "mean": 4.351590400000001,
+          "p50": 4.325376,
+          "p95": 4.58752
+        },
+        "gpuFrameSpanMs": {
+          "mean": 5.0025813333333335,
+          "p50": 4.58752,
+          "p95": 6.750208
+        },
+        "wallRenderAndMapMs": {
+          "mean": 7.846666666710129,
+          "p50": 7.900000000139698,
+          "p95": 10.099999999860302
+        },
+        "passCount": 3
+      },
+      "allEnabled": {
+        "gpuPassSumMs": {
+          "mean": 4.971997866666666,
+          "p50": 4.980735999999999,
+          "p95": 5.505024000000001
+        },
+        "gpuFrameSpanMs": {
+          "mean": 5.6186197333333325,
+          "p50": 5.373952,
+          "p95": 6.684672
+        },
+        "wallRenderAndMapMs": {
+          "mean": 8.313333333299186,
+          "p50": 8.799999999813735,
+          "p95": 9.799999999813735
+        },
+        "passCount": 5
+      }
+    },
+    "samples": {
+      "baseline": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 5.800000000046566
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.325375999999999,
+          "gpuFrameSpanMs": 5.636096,
+          "wallRenderAndMapMs": 7.399999999906868
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 6.199999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 6
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.325375999999999,
+          "gpuFrameSpanMs": 5.89824,
+          "wallRenderAndMapMs": 8.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.456448,
+          "wallRenderAndMapMs": 7
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 6.899999999906868
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.456448,
+          "gpuFrameSpanMs": 5.832704,
+          "wallRenderAndMapMs": 9.199999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.456448,
+          "wallRenderAndMapMs": 6.699999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.325375999999999,
+          "gpuFrameSpanMs": 5.89824,
+          "wallRenderAndMapMs": 9
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 4.2598400000000005,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 6.5
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.390912,
+          "gpuFrameSpanMs": 5.832704,
+          "wallRenderAndMapMs": 7.800000000046566
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 7
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 6.199999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 7.5
+        }
+      ],
+      "solarWithoutBloom": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.390912,
+          "gpuFrameSpanMs": 6.750208,
+          "wallRenderAndMapMs": 10.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 4.456448,
+          "wallRenderAndMapMs": 6.600000000093132
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 4.194304
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.58752,
+          "gpuFrameSpanMs": 4.784128,
+          "wallRenderAndMapMs": 8
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.325375999999999,
+          "gpuFrameSpanMs": 5.832704,
+          "wallRenderAndMapMs": 9.400000000139698
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 4.2598400000000005,
+          "gpuFrameSpanMs": 4.456448,
+          "wallRenderAndMapMs": 5.900000000139698
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.325375999999999,
+          "gpuFrameSpanMs": 5.57056,
+          "wallRenderAndMapMs": 7.900000000139698
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.390912,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 6.7000000001862645
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 7.900000000139698
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.25984,
+          "gpuFrameSpanMs": 5.111808,
+          "wallRenderAndMapMs": 7.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.456448,
+          "gpuFrameSpanMs": 4.653056,
+          "wallRenderAndMapMs": 8.200000000186265
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.458752
+            }
+          ],
+          "gpuPassSumMs": 4.456448,
+          "gpuFrameSpanMs": 6.029312,
+          "wallRenderAndMapMs": 9.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.32768
+            }
+          ],
+          "gpuPassSumMs": 4.2598400000000005,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 7.199999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 9
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.58752,
+          "wallRenderAndMapMs": 7.100000000093132
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.393216
+            }
+          ],
+          "gpuPassSumMs": 4.325376,
+          "gpuFrameSpanMs": 4.521984,
+          "wallRenderAndMapMs": 7.5
+        }
+      ],
+      "allEnabled": [
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.589824
+            }
+          ],
+          "gpuPassSumMs": 4.653056,
+          "gpuFrameSpanMs": 5.111808,
+          "wallRenderAndMapMs": 7.100000000093132
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.589824
+            }
+          ],
+          "gpuPassSumMs": 4.784128,
+          "gpuFrameSpanMs": 5.111808,
+          "wallRenderAndMapMs": 9.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.65536
+            }
+          ],
+          "gpuPassSumMs": 4.849664,
+          "gpuFrameSpanMs": 5.177344,
+          "wallRenderAndMapMs": 7
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.589824
+            }
+          ],
+          "gpuPassSumMs": 4.653056,
+          "gpuFrameSpanMs": 5.111808,
+          "wallRenderAndMapMs": 7.800000000046566
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 4.128768
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.32768
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 5.2428799999999995,
+          "gpuFrameSpanMs": 6.488064,
+          "wallRenderAndMapMs": 9.299999999813735
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.866624
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.196608
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.589824
+            }
+          ],
+          "gpuPassSumMs": 4.653056,
+          "gpuFrameSpanMs": 5.111808,
+          "wallRenderAndMapMs": 6.699999999953434
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 4.980735999999999,
+          "gpuFrameSpanMs": 5.373952,
+          "wallRenderAndMapMs": 6.899999999906868
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 4.063232
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.32768
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 5.111808,
+          "gpuFrameSpanMs": 6.684672,
+          "wallRenderAndMapMs": 9.099999999860302
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 4.194304
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.589824
+            }
+          ],
+          "gpuPassSumMs": 5.111808,
+          "gpuFrameSpanMs": 5.373952,
+          "wallRenderAndMapMs": 8.900000000139698
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 4.980735999999999,
+          "gpuFrameSpanMs": 6.291456,
+          "wallRenderAndMapMs": 8.799999999813735
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.65536
+            }
+          ],
+          "gpuPassSumMs": 4.9152,
+          "gpuFrameSpanMs": 5.24288,
+          "wallRenderAndMapMs": 9.200000000186265
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 5.046271999999999,
+          "gpuFrameSpanMs": 6.488064,
+          "wallRenderAndMapMs": 8
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 4.390912
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.786432
+            }
+          ],
+          "gpuPassSumMs": 5.505024000000001,
+          "gpuFrameSpanMs": 5.832704,
+          "wallRenderAndMapMs": 8
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.93216
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.262144
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.65536
+            }
+          ],
+          "gpuPassSumMs": 4.849664,
+          "gpuFrameSpanMs": 5.24288,
+          "wallRenderAndMapMs": 9
+        },
+        {
+          "passes": [
+            {
+              "name": "opaque terrain",
+              "gpuMs": 0
+            },
+            {
+              "name": "M2 atmosphere and Sun scene-linear HDR composite",
+              "gpuMs": 3.997696
+            },
+            {
+              "name": "M2.6 HDR bloom threshold and downsample",
+              "gpuMs": 0.458752
+            },
+            {
+              "name": "M2.6 HDR bloom normalized single-scale blur",
+              "gpuMs": 0.065536
+            },
+            {
+              "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+              "gpuMs": 0.720896
+            }
+          ],
+          "gpuPassSumMs": 5.2428799999999995,
+          "gpuFrameSpanMs": 5.636096,
+          "wallRenderAndMapMs": 9.799999999813735
+        }
+      ]
+    },
+    "incrementalBloomGpuMs": 0.6204074666666655,
+    "incrementalAllEffectsGpuMs": 0.6597290666666664,
+    "rendererAllocationsDuringMeasurement": {
+      "textures": 0,
+      "buffers": 0
+    },
+    "profilingResources": {
+      "querySetsCreated": 1,
+      "querySetsDestroyed": 1,
+      "buffersCreated": 2,
+      "buffersDestroyed": 2
+    },
+    "allocatedTexturePayloadBytes": 21808128,
+    "physicalResidentVram": "UNVERIFIED: WebGPU exposes no portable resident VRAM counter"
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 454,
+      "buffersDestroyed": 454,
+      "bufferBytes": 0,
+      "drawCalls": 0,
+      "triangles": 0,
+      "texturesCreated": 12,
+      "texturesDestroyed": 12,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 22,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 22,
+      "pendingRequests": 0,
+      "texturesCreated": 12,
+      "texturesDestroyed": 12,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

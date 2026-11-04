@@ -84,7 +84,7 @@ fn sunSourceVisibility() -> f32 {
   return visible / 16.0;
 }
 
-fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
+fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32, viewTransmittance: vec3f) -> vec3f {
   if (atmosphere.viewport.w == 0.0 || atmosphere.sun.y == 0.0) { return vec3f(0.0); }
   let chord = length(direction - planet.sunDirectionWC.xyz);
   let outer = 2.0 * sin(0.5 * atmosphere.sun.w);
@@ -150,8 +150,16 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let coronaTint = mix(tint, vec3f(coronaLuminance), 0.72);
   let rayFade = 1.0 - smoothstep(0.68, 1.0, r);
   let rayDetail = atmosphere.sun.z * 2.5 * rays * rayFade * atmosphere.solarEffects.x;
+  // The analytic disk is the direct photosphere and follows Beer-Lambert
+  // attenuation in the compositor. Artwork is a restrained visual supplement,
+  // not a second scattering solution: reduce it as the physical view path
+  // becomes optically thick, where Rayleigh/Mie in-scattering already supplies
+  // the atmospheric glow. This avoids a second orange veil at the limb while
+  // retaining the full authored appearance in optically thin space.
+  let viewTransmission = dot(viewTransmittance, vec3f(0.2126, 0.7152, 0.0722));
+  let artworkTransmission = mix(0.58, 1.0, smoothstep(0.25, 0.90, viewTransmission));
   return atmosphere.sun.y * (disk +
-    (tint * (halo + rayDetail) + coronaTint * coronaDetail) * visibility);
+    (tint * (halo + rayDetail) + coronaTint * coronaDetail) * visibility * artworkTransmission);
 }
 `;
 
