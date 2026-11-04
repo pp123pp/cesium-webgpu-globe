@@ -1,6 +1,7 @@
 /* global Cesium, window */
 import assert from "node:assert/strict";
 import process from "node:process";
+import { balanceLongPathAtmosphere } from "./m2-composite-reference.mjs";
 import {
   runM1BrowserSuite,
   installM1Scene,
@@ -63,20 +64,6 @@ const toneMapACES = (value, exposure = 1) => {
 };
 const displayChannel = (linear, exposure = 1) =>
   Math.round(encodeSrgb(toneMapACES(linear, exposure)) * 255);
-
-function balanceLongPathAtmosphere(radiance, transmittance) {
-  const weights = [0.2126, 0.7152, 0.0722];
-  const opacity = Math.min(
-    1,
-    Math.max(0, 1 - transmittance.reduce((sum, value, index) => sum + value * weights[index], 0)),
-  );
-  const t = Math.min(1, Math.max(0, (opacity - 0.25) / (0.75 - 0.25)));
-  const grazingPath = t * t * (3 - 2 * t);
-  const luminance = radiance.reduce((sum, value, index) => sum + value * weights[index], 0);
-  const desaturation = 0.58 * grazingPath;
-  const attenuation = 1 - 0.18 * grazingPath;
-  return radiance.map((value) => (value * (1 - desaturation) + luminance * desaturation) * attenuation);
-}
 
 function assertComposite(sample, label) {
   assertPhysical(sample.gpu, label);

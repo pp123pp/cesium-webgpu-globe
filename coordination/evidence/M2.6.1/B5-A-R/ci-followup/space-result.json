@@ -1,0 +1,875 @@
+{
+  "suite": "m2-space",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T08:32:54.856Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "806c4ce08c022f9702295ed3f7218b3ed82799f0",
+  "sourceStatus": "M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-sun-smoke.mjs\n?? coordination/ci/m2-composite-reference.mjs",
+  "bundleSha256": "3ad5029e8fa314d1face0f020396846f4f1c716b6ace7521a9f2f02d8ef60f14",
+  "browserErrors": [],
+  "checks": [
+    "manual exposure monotonically changes the actual HDR-to-display GPU output",
+    "real WebGPU night sky displays the native-ephemeris Moon and procedural stars",
+    "actual Moon pixels are rejected by both completed Earth depth and analytic WGS84 occultation, then reappear on the near side",
+    "ground, low-orbit and high-orbit browser views preserve lunar visibility and angular size",
+    "100 km camera translation does not introduce star-field parallax",
+    "star visibility transitions smoothly from night to day with the native solar direction",
+    "lunar phase responds to native ephemeris time progression",
+    "production atmospheric integration includes a nonzero lunar-scattering contribution at default moonlight intensity",
+    "default 0.0025 moonlight intensity measurably brightens actual night-side terrain pixels",
+    "Moon and star compositor follows resized scene color/depth targets",
+    "equal sRGB background and terrain colors match after the HDR display pass",
+    "all native GPU resources are released on scene destruction"
+  ],
+  "scenes": [
+    {
+      "name": "night-sky-moon-stars",
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "width": 800,
+      "height": 450,
+      "starPixels": [
+        5544,
+        11944,
+        33188,
+        42372,
+        46600,
+        47626,
+        54558,
+        56672,
+        61847,
+        69003,
+        69141,
+        71010,
+        88373,
+        112302,
+        124207,
+        138018,
+        143830,
+        154739,
+        156544,
+        164204,
+        190543,
+        205998,
+        220983,
+        224462,
+        225897,
+        233101,
+        236331,
+        253734,
+        260216,
+        261862,
+        262942,
+        266945,
+        270187,
+        270653,
+        278447,
+        280343,
+        283190,
+        285429,
+        291606,
+        298859,
+        299959,
+        300006,
+        301335,
+        307927,
+        317789,
+        318636,
+        332728,
+        337910,
+        338826,
+        344735
+      ],
+      "moonDistance": 375871455.0905896,
+      "moonAngularRadius": 0.004622341397246213,
+      "moonIllumination": 0.9999894255341969,
+      "aimError": 0,
+      "errors": [],
+      "statistics": {
+        "frame": 16,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 18,
+        "loadedTiles": 18,
+        "terrain": {
+          "requests": 18,
+          "deferred": 0,
+          "meshes": 18,
+          "fills": 0,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 38,
+          "buffersDestroyed": 1,
+          "bufferBytes": 200312,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 16,
+          "starFrames": 16,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 16,
+          "bloomPasses": 48,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113
+        }
+      },
+      "distinctSampledColors": 33,
+      "backgroundPixels": 358961,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ]
+    },
+    {
+      "name": "ground",
+      "height": 2,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 2.0000006037879046,
+      "moonDistance": 376271708.6943304,
+      "moonAngularRadius": 0.004617424413282728,
+      "moonIllumination": 0.9999894852804596,
+      "statistics": {
+        "frame": 50,
+        "selectedTiles": 1,
+        "levels": [
+          5
+        ],
+        "cacheTiles": 66,
+        "loadedTiles": 66,
+        "terrain": {
+          "requests": 66,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 134,
+          "buffersDestroyed": 9,
+          "bufferBytes": 690248,
+          "drawCalls": 1,
+          "triangles": 570,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 40,
+          "starFrames": 25,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 50,
+          "bloomPasses": 150,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113
+        }
+      },
+      "distinctSampledColors": 33,
+      "backgroundPixels": 358961,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "low-orbit",
+      "height": 400000,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 399999.99999999773,
+      "moonDistance": 375871719.1150155,
+      "moonAngularRadius": 0.004622338150341315,
+      "moonIllumination": 0.9999894628895204,
+      "statistics": {
+        "frame": 55,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 66,
+        "loadedTiles": 66,
+        "terrain": {
+          "requests": 66,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 134,
+          "buffersDestroyed": 9,
+          "bufferBytes": 690248,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 45,
+          "starFrames": 30,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 55,
+          "bloomPasses": 165,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113
+        }
+      },
+      "distinctSampledColors": 33,
+      "backgroundPixels": 358959,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "high-orbit",
+      "height": 35786000,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 35785999.99999846,
+      "moonDistance": 340486542.3488786,
+      "moonAngularRadius": 0.005102720147770158,
+      "moonIllumination": 0.9999871589087432,
+      "statistics": {
+        "frame": 60,
+        "selectedTiles": 0,
+        "levels": [],
+        "cacheTiles": 66,
+        "loadedTiles": 66,
+        "terrain": {
+          "requests": 66,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 3,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 134,
+          "buffersDestroyed": 9,
+          "bufferBytes": 690248,
+          "drawCalls": 0,
+          "triangles": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 50,
+          "starFrames": 35,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 60,
+          "bloomPasses": 180,
+          "bloomTextureBytes": 3241600,
+          "bloomWidth": 200,
+          "bloomHeight": 113
+        }
+      },
+      "distinctSampledColors": 32,
+      "backgroundPixels": 358762,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "sky": {
+    "center": [
+      109,
+      113,
+      120,
+      255
+    ],
+    "width": 800,
+    "height": 450,
+    "starPixels": [
+      5544,
+      11944,
+      33188,
+      42372,
+      46600,
+      47626,
+      54558,
+      56672,
+      61847,
+      69003,
+      69141,
+      71010,
+      88373,
+      112302,
+      124207,
+      138018,
+      143830,
+      154739,
+      156544,
+      164204,
+      190543,
+      205998,
+      220983,
+      224462,
+      225897,
+      233101,
+      236331,
+      253734,
+      260216,
+      261862,
+      262942,
+      266945,
+      270187,
+      270653,
+      278447,
+      280343,
+      283190,
+      285429,
+      291606,
+      298859,
+      299959,
+      300006,
+      301335,
+      307927,
+      317789,
+      318636,
+      332728,
+      337910,
+      338826,
+      344735
+    ],
+    "moonDistance": 375871455.0905896,
+    "moonAngularRadius": 0.004622341397246213,
+    "moonIllumination": 0.9999894255341969,
+    "aimError": 0,
+    "errors": []
+  },
+  "exposure": [
+    {
+      "exposure": 0.5,
+      "meanRgb": 0.1422388888888889
+    },
+    {
+      "exposure": 1,
+      "meanRgb": 0.24115092592592594
+    },
+    {
+      "exposure": 2,
+      "meanRgb": 0.36833333333333335
+    }
+  ],
+  "earthOccultation": {
+    "terrainOccluded": [
+      0,
+      0,
+      154,
+      255
+    ],
+    "terrainWithoutMoon": [
+      0,
+      0,
+      154,
+      255
+    ],
+    "ellipsoidOccluded": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "ellipsoidWithoutMoon": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "unobstructed": [
+      109,
+      113,
+      120,
+      255
+    ],
+    "moonDistance": 375871314.2794719,
+    "moonAngularRadius": 0.004622343128907207
+  },
+  "altitudes": [
+    {
+      "name": "ground",
+      "height": 2,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 2.0000006037879046,
+      "moonDistance": 376271708.6943304,
+      "moonAngularRadius": 0.004617424413282728,
+      "moonIllumination": 0.9999894852804596
+    },
+    {
+      "name": "low-orbit",
+      "height": 400000,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 399999.99999999773,
+      "moonDistance": 375871719.1150155,
+      "moonAngularRadius": 0.004622338150341315,
+      "moonIllumination": 0.9999894628895204
+    },
+    {
+      "name": "high-orbit",
+      "height": 35786000,
+      "center": [
+        109,
+        113,
+        120,
+        255
+      ],
+      "cameraHeight": 35785999.99999846,
+      "moonDistance": 340486542.3488786,
+      "moonAngularRadius": 0.005102720147770158,
+      "moonIllumination": 0.9999871589087432
+    }
+  ],
+  "translation": {
+    "baselineStars": [
+      3943,
+      31587,
+      44199,
+      44827,
+      60246,
+      63921,
+      68897,
+      69409,
+      90696,
+      110701,
+      122606,
+      129301,
+      136417,
+      153138,
+      162603,
+      178909,
+      203823,
+      219382,
+      221445,
+      229638,
+      231500,
+      234730,
+      246932,
+      252133,
+      260261,
+      268586,
+      269052,
+      272385,
+      275854,
+      276845,
+      281489,
+      281589,
+      295666,
+      297257,
+      298358,
+      298405,
+      298506,
+      300515,
+      301458,
+      305526,
+      316188,
+      331127,
+      337225,
+      340396,
+      343134,
+      352323,
+      358609
+    ],
+    "starPixels": [
+      3943,
+      31587,
+      44199,
+      44827,
+      60246,
+      63921,
+      68897,
+      69409,
+      90696,
+      110701,
+      122606,
+      129301,
+      136417,
+      153138,
+      162603,
+      178909,
+      203823,
+      219382,
+      221445,
+      229638,
+      231500,
+      234730,
+      246932,
+      252133,
+      260261,
+      268586,
+      269052,
+      272385,
+      275854,
+      276845,
+      281489,
+      281589,
+      295666,
+      297257,
+      298358,
+      298405,
+      298506,
+      300515,
+      301458,
+      305526,
+      316188,
+      331127,
+      337225,
+      340396,
+      343134,
+      352323,
+      358609
+    ],
+    "moonIllumination": 0.9999871589087432
+  },
+  "dayNight": {
+    "stars": 0,
+    "solarElevation": 0.9734394671181588
+  },
+  "phase": {
+    "before": 0.9969505990790695,
+    "after": 0.5888169170591164
+  },
+  "atmosphereMoonlightSetup": {
+    "settings": {
+      "show": true,
+      "rayleighScattering": [
+        0.000005802,
+        0.000013558,
+        0.0000331
+      ],
+      "mieScattering": 0.000003996,
+      "mieExtinction": 0.00000444,
+      "rayleighScaleHeight": 8000,
+      "mieScaleHeight": 1200,
+      "mieAnisotropy": 0.8,
+      "lightIntensity": 10,
+      "multipleScatteringStrength": 1
+    },
+    "shaderDiagnostics": [],
+    "buffers": [
+      272,
+      112
+    ],
+    "sceneColorFormat": "rgba16float",
+    "lutFormats": [
+      "rgba16float",
+      "rgba16float"
+    ]
+  },
+  "atmosphereMoonlight": {
+    "withoutMoon": [
+      0,
+      0,
+      0
+    ],
+    "withMoon": [
+      0.0005024136044085026,
+      0.0006642469670623541,
+      0.0010311083169654012
+    ],
+    "moonElevation": 0.9999741591499771,
+    "illumination": 0.9999894480045296,
+    "defaultIntensity": 0.0025,
+    "delta": [
+      0.0005024136044085026,
+      0.0006642469670623541,
+      0.0010311083169654012
+    ]
+  },
+  "moonlight": {
+    "off": [
+      42,
+      42,
+      42,
+      255
+    ],
+    "on": [
+      45,
+      45,
+      45,
+      255
+    ],
+    "intensity": 0.0025,
+    "cameraHeight": 2.0000006037879046,
+    "moonElevation": 0.9999789705595332,
+    "tilesLoaded": true,
+    "statistics": {
+      "frame": 130,
+      "selectedTiles": 6,
+      "levels": [
+        27,
+        27,
+        27,
+        27,
+        27,
+        27
+      ],
+      "cacheTiles": 122,
+      "loadedTiles": 122,
+      "terrain": {
+        "requests": 162,
+        "deferred": 0,
+        "meshes": 162,
+        "fills": 9,
+        "upsampled": 0,
+        "failed": 0
+      },
+      "imagery": {
+        "requests": 0,
+        "deferred": 0,
+        "failed": 0,
+        "discarded": 0,
+        "imagesClosed": 0,
+        "pendingRequests": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0,
+        "activeTextures": 0
+      },
+      "resources": {
+        "buffersCreated": 346,
+        "buffersDestroyed": 101,
+        "bufferBytes": 1356248,
+        "drawCalls": 6,
+        "triangles": 3420,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0,
+        "textureBytes": 0,
+        "imageryDrawCalls": 0
+      },
+      "atmosphere": {
+        "frames": 6,
+        "sunFrames": 0,
+        "moonFrames": 120,
+        "starFrames": 48,
+        "lutBuilds": 1,
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 14,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 3145728,
+        "solarAssetsLoaded": true,
+        "bloomFrames": 130,
+        "bloomPasses": 274,
+        "bloomTextureBytes": 3241600,
+        "bloomWidth": 200,
+        "bloomHeight": 113,
+        "maxFeedback": 0.33370226933715824
+      }
+    }
+  },
+  "resize": {
+    "size": [
+      960,
+      540
+    ],
+    "center": [
+      45,
+      45,
+      45,
+      255
+    ],
+    "depthSize": [
+      960,
+      540
+    ],
+    "colorSize": [
+      960,
+      540
+    ]
+  },
+  "backgroundColor": {
+    "surface": [
+      154,
+      154,
+      154,
+      255
+    ],
+    "background": [
+      154,
+      154,
+      154,
+      255
+    ]
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 1369,
+      "buffersDestroyed": 1369,
+      "bufferBytes": 0,
+      "drawCalls": 0,
+      "triangles": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "nativeResources": {
+    "created": 1400,
+    "destroyed": 1400,
+    "live": []
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      960,
+      540
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

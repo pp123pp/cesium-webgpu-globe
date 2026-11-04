@@ -48,3 +48,11 @@ For same-state before/after comparison, use the original A01–A08 images in [PR
 - Full regression, WebGL differential, 120-frame temporal acceptance, B5-C GPU timing / resident-VRAM and lifecycle acceptance were not run.
 
 The capture harness PASS is a technical capture-integrity result, **not** a visual acceptance result. Stop here for the user's second-round visual review. Do not start B5-B/B5-C, merge PR #26, merge this remediation, or claim M2.6.1 complete.
+
+## CI follow-up — solar composite oracle
+
+The earlier `806c4ce` fix updated only the atmosphere smoke oracle. The Sun smoke still used the pre-B5-A-R composition, omitting the long-path balance. The unchanged runtime reproduced a `photometry low` failure locally: red was 205 versus the old expected 209, outside the unchanged ±3 tolerance. This was a test-reference mismatch, not a Rays visibility defect.
+
+The Sun oracle now balances only `sceneColor * transmittance + in-scattering`, then adds direct solar radiance times transmittance before exposure / ACES / sRGB. Both smoke suites import the same independent test-only CPU reference; neither reads the production balance helper to compute expected pixels. No engine, visual parameters, fixtures, tolerances, physical checks or occlusion assertions changed.
+
+Retained numeric reports in `ci-followup/` show the failure before the patch and passing Sun (8 check groups), atmosphere (8) and space (12) runs afterward on Chrome 156.0.8078.80 / Intel Xe-LPG. The corrected low-Sun sample is actual RGB `[205, 176, 106]`, expected `[205, 176, 106]`; all three viewers are destroyed. Syntax, targeted ESLint and diff checks pass. Reports identify base `806c4ce` plus the recorded working-tree test changes, not a clean post-commit capture. Screenshots remain in the local Build output; this subsection records CI diagnostics, not a new B5-A visual acceptance.
