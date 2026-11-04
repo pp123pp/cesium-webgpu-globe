@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6 and M2.6.1-A are preserved; accepted B1/B2 are merged into main `76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba`. Separately authorized B3 / B06 HDR Bloom implementation and scoped hardware verification are complete, awaiting user visual acceptance. B4 / B05 and B5 / B07 remain unauthorized. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B1, B2 and B3 (B01–B04, B06) are visually accepted and merged into main. B3 merge commit: `9dfc6d6539e5ebb17e38c5761e0f07c77d762e54` (PR #23). B4 / B05 Atmospheric Glow Integration and B5 / B07 Integrated Visual Acceptance remain planned and unauthorized. M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -10,7 +10,8 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## Current integration state
 
-- PR [#21](https://github.com/pp123pp/cesium-webgpu-globe/pull/21) merged accepted B1 as `eeaca1ddc3ef960ad23cd4aae9757b31ea98063a`; PR [#22](https://github.com/pp123pp/cesium-webgpu-globe/pull/22) merged accepted B2 as `76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba`. This is the B3 baseline. B3 publishes only `feat/m2-6-1-b3-hdr-bloom`; no main push or merge is authorized.
+- PR [#21](https://github.com/pp123pp/cesium-webgpu-globe/pull/21) merged accepted B1 as `eeaca1ddc3ef960ad23cd4aae9757b31ea98063a`; PR [#22](https://github.com/pp123pp/cesium-webgpu-globe/pull/22) merged accepted B2 as `76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba`.
+- PR [#23](https://github.com/pp123pp/cesium-webgpu-globe/pull/23) merged visually accepted B3 / B06 HDR Bloom Refinement into main at `9dfc6d6539e5ebb17e38c5761e0f07c77d762e54`. The hardware-tested runtime is `4fde49bc63eb67c34816a424895d035b24efc2ea`; publication head `57e02703cec723d0fe7c12dd10f5d72c1f263055` passed Fast [41763228341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41763228341) and executed Full [41763228306](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41763228306). B3 evidence and acceptance are recorded in `coordination/evidence/M2.6.1/B3/`.
 
 - PR [#14](https://github.com/pp123pp/cesium-webgpu-globe/pull/14) integrates M2.5 from `feat/m2.5-hdr-tonemapping` into `main`; its base at acceptance was `8693c44d721fa327c9765ffa74a8b21e8d09912d`. Runtime acceptance source is `e22d4361ccdf3310e12431a740a4f8606a567722`. GitHub records the final check results and merge SHA; older main SHAs below are historical.
 - PR [#8](https://github.com/pp123pp/cesium-webgpu-globe/pull/8) merged M2.1–M2.3. Its final-head Fast [41560846959](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846959) and executed Full [41560846966](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41560846966) succeeded.
