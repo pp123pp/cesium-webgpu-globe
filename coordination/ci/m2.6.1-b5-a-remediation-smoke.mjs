@@ -21,8 +21,10 @@ await runM1BrowserSuite("m2.6.1-b5-a-remediation", async ({ page, report, output
     { id: "night", height: 2, elevation: -8, cameraElevation: 0.5, fov: 30 },
   ]) {
     await page.evaluate((s) => { window.__m1.viewer.scene.globe.enableLighting = true; return window.__b4.view(s); }, settings);
-    await page.evaluate(() => window.__m1.settle({ timeout: 60000 }));
+    const settling = await settleAtmosphereView(page);
     const capture = await captureB4(page, report, output, settings.id);
+    capture.settling = settling;
+    assert.equal(capture.atmosphere.show, true);
     const pixel = await page.evaluate(() => window.__m2Atmosphere.pixelSamples([[0.1, 0.9]]));
     check(pixel[0].gpu[3] >= 0 && pixel[0].gpu[7] > 0, `${settings.id}: night-side brightness is measured on actual terrain depth`);
     check(capture.metrics.surface.displayLinearLuminanceMean < 0.01, `${settings.id}: unlit surface remains below 1% display-linear white`);
@@ -57,3 +59,22 @@ await runM1BrowserSuite("m2.6.1-b5-a-remediation", async ({ page, report, output
   assert.equal(report.cleanup.destroyed, true);
   assert.deepEqual(failures, [], failures.join("; "));
 });
+
+async function settleAtmosphereView(page) {
+  return page.evaluate(async () => {
+    const { viewer, settle } = window.__m1;
+    const atmosphere = viewer.scene.atmosphere;
+    const show = atmosphere.show;
+    let settled;
+    // Terrain readiness does not depend on intermediate sky pixels. Avoid
+    // full-resolution transport on every loading frame under SwiftShader.
+    atmosphere.show = false;
+    try {
+      settled = await settle({ timeout: 60000 });
+    } finally {
+      atmosphere.show = show;
+    }
+    viewer.render();
+    return { ...settled, atmosphereDuringLoad: false };
+  });
+}
