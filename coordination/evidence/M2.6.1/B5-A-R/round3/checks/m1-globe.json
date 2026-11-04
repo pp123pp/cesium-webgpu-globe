@@ -1,0 +1,477 @@
+{
+  "source": "85ea6ad07a53e13aae0a90459db3be5e3a5c0b65",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M coordination/ci/m2-atmosphere-fixtures.mjs\n M coordination/ci/m2-atmosphere-smoke.mjs\n M coordination/ci/m2-composite-reference.mjs\n M coordination/ci/m2-space-smoke.mjs\n M coordination/ci/m2-sun-fixtures.mjs\n M coordination/ci/m2-sun-smoke.mjs\n M coordination/evidence/M2.6.1/B5-A-R/capture.mjs\n M coordination/evidence/M2.6.1/B5-A-R/shader-checks.test.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereModel.js\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M packages/engine/Source/Scene/WebGPUSunShader.js\n?? coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs\n?? coordination/evidence/M2.6.1/B5-A-R/round3-plan.md",
+  "bundleSha256": "0814eb5f4f0b538ce501a0c51b79f6a7600cb58f3c46a951600e579e80488d1c",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "checks": [
+    "native WGS84/Camera/Globe",
+    "orbital/polar/dateline silhouettes",
+    "native quadtree LOD",
+    "no WebGL context",
+    "terrain worker meshes",
+    "exclusive Globe ownership before first render",
+    "direct Scene.render error event and rethrow policy"
+  ],
+  "scenes": [
+    {
+      "name": "orbit",
+      "frames": 14,
+      "elapsedMs": 294.5999999977648,
+      "statistics": {
+        "frame": 15,
+        "selectedTiles": 14,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "cacheTiles": 18,
+        "loadedTiles": 18,
+        "terrain": {
+          "requests": 18,
+          "deferred": 0,
+          "meshes": 18,
+          "fills": 6,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 51,
+          "buffersDestroyed": 14,
+          "bufferBytes": 203896,
+          "drawCalls": 14,
+          "triangles": 7980,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 15,
+          "bloomPasses": 45,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 416,
+        "agreement": 0.9993710691823899
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "backgroundPixels": 682952,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "pole",
+      "frames": 6,
+      "elapsedMs": 111.5,
+      "statistics": {
+        "frame": 22,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 26,
+        "loadedTiles": 26,
+        "terrain": {
+          "requests": 26,
+          "deferred": 0,
+          "meshes": 26,
+          "fills": 9,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 73,
+          "buffersDestroyed": 20,
+          "bufferBytes": 292696,
+          "drawCalls": 16,
+          "triangles": 9120,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 22,
+          "bloomPasses": 66,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1589,
+        "foreground": 655,
+        "agreement": 0.9993710691823899
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "backgroundPixels": 544004,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "dateline",
+      "frames": 6,
+      "elapsedMs": 106.69999999925494,
+      "statistics": {
+        "frame": 29,
+        "selectedTiles": 16,
+        "levels": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cacheTiles": 34,
+        "loadedTiles": 34,
+        "terrain": {
+          "requests": 34,
+          "deferred": 0,
+          "meshes": 34,
+          "fills": 12,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 95,
+          "buffersDestroyed": 26,
+          "bufferBytes": 381496,
+          "drawCalls": 16,
+          "triangles": 9120,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 29,
+          "bloomPasses": 87,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1588,
+        "foreground": 868,
+        "agreement": 0.9987421383647799
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "backgroundPixels": 420429,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "surface",
+      "frames": 33,
+      "elapsedMs": 548.1000000014901,
+      "statistics": {
+        "frame": 63,
+        "selectedTiles": 28,
+        "levels": [
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          13,
+          12,
+          13,
+          13,
+          13,
+          13,
+          12
+        ],
+        "cacheTiles": 142,
+        "loadedTiles": 142,
+        "terrain": {
+          "requests": 166,
+          "deferred": 0,
+          "meshes": 166,
+          "fills": 75,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 486,
+          "buffersDestroyed": 201,
+          "bufferBytes": 1584392,
+          "drawCalls": 28,
+          "triangles": 15960,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 63,
+          "bloomPasses": 189,
+          "bloomTextureBytes": 8294400,
+          "bloomWidth": 320,
+          "bloomHeight": 180
+        }
+      },
+      "silhouette": {
+        "tested": 1590,
+        "matches": 1590,
+        "foreground": 1590,
+        "agreement": 1
+      },
+      "center": [
+        42,
+        137,
+        200,
+        255
+      ],
+      "backgroundPixels": 0,
+      "viewport": [
+        1280,
+        720
+      ],
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "environment": {
+    "cesium": "1.146.0",
+    "atmosphereShown": false,
+    "radii": [
+      6378137,
+      6378137,
+      6356752.314245179
+    ],
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    }
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "sceneErrorContract": {
+    "correctSource": true,
+    "errors": [
+      "DeveloperError: M1 WebGPU supports SCENE3D with unexaggerated terrain.\nError\n    at new DeveloperError (http://127.0.0.1:8097/Build/CesiumUnminified/Cesium.js:14401:13)\n    at WebGPUScene._renderFrame (http://127.0.0.1:8097/Build/CesiumUnminified/Cesium.js:274354:15)\n    at WebGPUScene.render (http://127.0.0.1:8097/Build/CesiumUnminified/Cesium.js:274341:14)\n    at eval (eval at evaluate (:370:30), <anonymous>:10:11)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+    ],
+    "sceneDestroyed": true
+  },
+  "destroy": {
+    "statistics": {
+      "buffersCreated": 486,
+      "buffersDestroyed": 486,
+      "bufferBytes": 0,
+      "drawCalls": 28,
+      "triangles": 15960,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "status": "PASS"
+}

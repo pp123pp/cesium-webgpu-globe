@@ -1,6 +1,8 @@
 # M2.6.1-B5-A-R — Static Visual Remediation
 
-**Status:** implementation and static recapture complete; awaiting the user's second-round visual review. This is not a B5-A visual PASS and does not close M2.6.1.
+**Latest status (2026-11-04):** round-three functional remediation is implemented at `9a3a1f2decb1f4ec7d37ed3b5649496d007a23d4`. See the [round-three report and matched images](round3/README.md) for 70 clean-source captures, surface-lighting fixes, focused checks and remaining A02/A05 visual concerns. The bright night-side surface defect is resolved in the tested fixture; overall B5-A visual acceptance remains open. No B5-B/B5-C or main merge is claimed.
+
+**Historical evidence below:** the following baseline, second-round observations and CI follow-up describe the earlier `8bb21de` / `85ea6ad` implementation. Their original captures and FAIL/BLOCKED observations are preserved, not presented as the latest render.
 
 ## Baseline and candidate
 
