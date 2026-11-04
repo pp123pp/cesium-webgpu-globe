@@ -1,0 +1,427 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-11-04T05:12:58.075Z",
+  "verifiedPngs": 84,
+  "pairs": [
+    {
+      "side": "before",
+      "name": "high-orbit-direct-36000km-atmosphere-off",
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9"
+    },
+    {
+      "side": "before",
+      "name": "high-orbit-direct-36000km-atmosphere-on",
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9"
+    },
+    {
+      "side": "before",
+      "name": "high-orbit-limb-36000km-atmosphere-off",
+      "pngSha256": "fc25f7662f637c0036c6ce7291d264c2d458ab4e6653dd8305be07e2a6373fa3"
+    },
+    {
+      "side": "before",
+      "name": "high-orbit-limb-36000km-atmosphere-on",
+      "pngSha256": "70785314330b214297f6f6ffdae92f0b998ccc36b5cd4751b3a0d16e5a819344"
+    },
+    {
+      "side": "before",
+      "name": "low-orbit-sunrise-400km-atmosphere-off",
+      "pngSha256": "d1a29a766bd66f373c7d5a39516d00404d9ec52ffab977a6bc9ebe2739f02cb3"
+    },
+    {
+      "side": "before",
+      "name": "low-orbit-sunrise-400km-atmosphere-on",
+      "pngSha256": "367e2c781c06d8086d03c0e60e18867f842a9dab1e18f0d09421d2a673ebb0f5"
+    },
+    {
+      "side": "before",
+      "name": "low-orbit-low-sun-400km-atmosphere-off",
+      "pngSha256": "84f0de9b8698743b76669af2dbe9d756ef47c4abfebc789d47fe14122702dadd"
+    },
+    {
+      "side": "before",
+      "name": "low-orbit-low-sun-400km-atmosphere-on",
+      "pngSha256": "f92e5a94f4313ba0865803355e01ce3f8aceaf90953538cbe17f3b983bcdc05c"
+    },
+    {
+      "side": "before",
+      "name": "near-ground-low-sun-2km-atmosphere-off",
+      "pngSha256": "e37ae545730c2ccd52033b11835959019bd73deb9b6bff64f0ef1b7946b182f9"
+    },
+    {
+      "side": "before",
+      "name": "near-ground-low-sun-2km-atmosphere-on",
+      "pngSha256": "2b54d499435a6be2412c960cae85dd8c118ed07ac68f17549541718fc7623b59"
+    },
+    {
+      "side": "before",
+      "name": "ground-day-2m-atmosphere-off",
+      "pngSha256": "6ae6a192e9bf836236f5e49ac85e048fdca524782baa1f4018f084a51f8d92f5"
+    },
+    {
+      "side": "before",
+      "name": "ground-day-2m-atmosphere-on",
+      "pngSha256": "23feac56acd361cec28c885e5cc971a93b690a6783e47ec3e6e62d0463bd71a5"
+    },
+    {
+      "side": "before",
+      "name": "ground-twilight-2m-atmosphere-off",
+      "pngSha256": "ae69bf1e6e9a4583c05c5bf433d7e81317634197248b3ff50ce357ad5f400c5c"
+    },
+    {
+      "side": "before",
+      "name": "ground-twilight-2m-atmosphere-on",
+      "pngSha256": "8202de751cf3342a55976fe3bd0797e68a770c0bb447fceba1a49020c4595bac"
+    },
+    {
+      "side": "before",
+      "name": "ground-night-2m-atmosphere-off",
+      "pngSha256": "7ae30dc461a7454cb0a36e16e95d6d5b3a0780589bd64dfa7190125702d63152"
+    },
+    {
+      "side": "before",
+      "name": "ground-night-2m-atmosphere-on",
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb"
+    },
+    {
+      "side": "before",
+      "name": "ground-night-2m-sun-off",
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-day-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-day-2km-atmosphere-on",
+      "pngSha256": "71a9381c4ba0456fcb2497fc93ae5c1c9d9ac3482ffcf340d5f56960e9fb404d"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-terminator-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-terminator-2km-atmosphere-on",
+      "pngSha256": "b1ea18d6743de29882592df6aba133d384d48b41178e1a18b5fe74a50204fbd2"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-night-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "before",
+      "name": "ground-facing-night-2km-atmosphere-on",
+      "pngSha256": "f9970b5ebdf3210130d5e5b9f08373f2ac22ba0081bd479602d3d15f13e29c58"
+    },
+    {
+      "side": "before",
+      "name": "orbital-limb-exposure-0.5",
+      "pngSha256": "f418538f68402069641a9854325bba6abf7d2674f5dbbbb47eb3bc34c8f336f4"
+    },
+    {
+      "side": "before",
+      "name": "orbital-limb-exposure-1",
+      "pngSha256": "367e2c781c06d8086d03c0e60e18867f842a9dab1e18f0d09421d2a673ebb0f5"
+    },
+    {
+      "side": "before",
+      "name": "orbital-limb-exposure-2",
+      "pngSha256": "eb91feb92803106d6995ae3d0070ec498cdf94fade13fbc086d03809867702cc"
+    },
+    {
+      "side": "before",
+      "name": "ground-transition-sun--1",
+      "pngSha256": "b0beca224404b77018ed01bf7ebc2138378aa80623476558bd805235a5e2839f"
+    },
+    {
+      "side": "before",
+      "name": "ground-transition-sun--4",
+      "pngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2"
+    },
+    {
+      "side": "before",
+      "name": "ground-transition-sun--4-sun-off",
+      "pngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2"
+    },
+    {
+      "side": "before",
+      "name": "twilight-all",
+      "pngSha256": "8202de751cf3342a55976fe3bd0797e68a770c0bb447fceba1a49020c4595bac"
+    },
+    {
+      "side": "before",
+      "name": "twilight-physical-only",
+      "pngSha256": "ed0de2b22ef9a28bb2be290227effbd0603204a7f1a3e4323c895b1f176396da"
+    },
+    {
+      "side": "before",
+      "name": "twilight-bloom-off",
+      "pngSha256": "d19db0056a539d05e199fb155973c316c9313f3c4c105b1baebc990595d4d6dc"
+    },
+    {
+      "side": "before",
+      "name": "twilight-physical-no-bloom",
+      "pngSha256": "9bf96dc7abeace39ce45c2b192385739afad391c1f25f152c4cfbbc6aed0511e"
+    },
+    {
+      "side": "before",
+      "name": "earth-partial-all",
+      "pngSha256": "e8d0e1a16a776677fadee2476f036d52933813fa4b942e1e87282962b5396d8c"
+    },
+    {
+      "side": "before",
+      "name": "earth-partial-physical-only",
+      "pngSha256": "67d107c41f038a20f8dc66e9675f8f7ad5ca9e63933bd4d5535f952eec4c9605"
+    },
+    {
+      "side": "before",
+      "name": "earth-partial-bloom-off",
+      "pngSha256": "76f95c49f7614e44f61d531c52dab1d21c40d15e9614ea13ea05783ad28c579e"
+    },
+    {
+      "side": "before",
+      "name": "earth-partial-sun-off",
+      "pngSha256": "9f83ae7a0061c541f320e68120db267d2bc50c30e1063fd58c73e617cf55ef83"
+    },
+    {
+      "side": "before",
+      "name": "terrain-full-all",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "before",
+      "name": "terrain-full-physical-only",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "before",
+      "name": "terrain-full-bloom-off",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "before",
+      "name": "terrain-full-sun-off",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "before",
+      "name": "terrain-removed-all",
+      "pngSha256": "f3b77b4def28519f19e9a9b8e0e62bff4414ab6f0a9f0ffd2f536a2d44e7ae88"
+    },
+    {
+      "side": "after",
+      "name": "high-orbit-direct-36000km-atmosphere-off",
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9"
+    },
+    {
+      "side": "after",
+      "name": "high-orbit-direct-36000km-atmosphere-on",
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9"
+    },
+    {
+      "side": "after",
+      "name": "high-orbit-limb-36000km-atmosphere-off",
+      "pngSha256": "fc25f7662f637c0036c6ce7291d264c2d458ab4e6653dd8305be07e2a6373fa3"
+    },
+    {
+      "side": "after",
+      "name": "high-orbit-limb-36000km-atmosphere-on",
+      "pngSha256": "409b09426d112683b20e286054af609d6e496594f59743b05a2253a4e4fd7b4e"
+    },
+    {
+      "side": "after",
+      "name": "low-orbit-sunrise-400km-atmosphere-off",
+      "pngSha256": "d1a29a766bd66f373c7d5a39516d00404d9ec52ffab977a6bc9ebe2739f02cb3"
+    },
+    {
+      "side": "after",
+      "name": "low-orbit-sunrise-400km-atmosphere-on",
+      "pngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8"
+    },
+    {
+      "side": "after",
+      "name": "low-orbit-low-sun-400km-atmosphere-off",
+      "pngSha256": "84f0de9b8698743b76669af2dbe9d756ef47c4abfebc789d47fe14122702dadd"
+    },
+    {
+      "side": "after",
+      "name": "low-orbit-low-sun-400km-atmosphere-on",
+      "pngSha256": "90f786bc7a463ad56bcbf0d1aeaa6dd54346fb2aa40887020b6559afed242db5"
+    },
+    {
+      "side": "after",
+      "name": "near-ground-low-sun-2km-atmosphere-off",
+      "pngSha256": "e37ae545730c2ccd52033b11835959019bd73deb9b6bff64f0ef1b7946b182f9"
+    },
+    {
+      "side": "after",
+      "name": "near-ground-low-sun-2km-atmosphere-on",
+      "pngSha256": "e6a3079b27894b403fe5b11bd3be64f68307b91ce91942274d7f1eda8b8219ff"
+    },
+    {
+      "side": "after",
+      "name": "ground-day-2m-atmosphere-off",
+      "pngSha256": "6ae6a192e9bf836236f5e49ac85e048fdca524782baa1f4018f084a51f8d92f5"
+    },
+    {
+      "side": "after",
+      "name": "ground-day-2m-atmosphere-on",
+      "pngSha256": "516ad2d3af6954a3de018b18afee9fbd988067fcbb9b4965b7e0ba1a922145a1"
+    },
+    {
+      "side": "after",
+      "name": "ground-twilight-2m-atmosphere-off",
+      "pngSha256": "ae69bf1e6e9a4583c05c5bf433d7e81317634197248b3ff50ce357ad5f400c5c"
+    },
+    {
+      "side": "after",
+      "name": "ground-twilight-2m-atmosphere-on",
+      "pngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f"
+    },
+    {
+      "side": "after",
+      "name": "ground-night-2m-atmosphere-off",
+      "pngSha256": "7ae30dc461a7454cb0a36e16e95d6d5b3a0780589bd64dfa7190125702d63152"
+    },
+    {
+      "side": "after",
+      "name": "ground-night-2m-atmosphere-on",
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb"
+    },
+    {
+      "side": "after",
+      "name": "ground-night-2m-sun-off",
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-day-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-day-2km-atmosphere-on",
+      "pngSha256": "71a9381c4ba0456fcb2497fc93ae5c1c9d9ac3482ffcf340d5f56960e9fb404d"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-terminator-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-terminator-2km-atmosphere-on",
+      "pngSha256": "b1ea18d6743de29882592df6aba133d384d48b41178e1a18b5fe74a50204fbd2"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-night-2km-atmosphere-off",
+      "pngSha256": "9443ba0a34ac34fd80bd55d1529c25f4dfd19f5019cb4e1442e432055d637a01"
+    },
+    {
+      "side": "after",
+      "name": "ground-facing-night-2km-atmosphere-on",
+      "pngSha256": "f9970b5ebdf3210130d5e5b9f08373f2ac22ba0081bd479602d3d15f13e29c58"
+    },
+    {
+      "side": "after",
+      "name": "orbital-limb-exposure-0.5",
+      "pngSha256": "2eac051403893693a2b7de21f3340d1a3064536da6c2929b588d684d7dcdaadc"
+    },
+    {
+      "side": "after",
+      "name": "orbital-limb-exposure-1",
+      "pngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8"
+    },
+    {
+      "side": "after",
+      "name": "orbital-limb-exposure-2",
+      "pngSha256": "9a6949476767266a457054c1c44418bc91d4c833ac97727d35e38230fd592ec4"
+    },
+    {
+      "side": "after",
+      "name": "ground-transition-sun--1",
+      "pngSha256": "b0beca224404b77018ed01bf7ebc2138378aa80623476558bd805235a5e2839f"
+    },
+    {
+      "side": "after",
+      "name": "ground-transition-sun--4",
+      "pngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2"
+    },
+    {
+      "side": "after",
+      "name": "ground-transition-sun--4-sun-off",
+      "pngSha256": "c6fa42c9ed8d286f8fe78128e8fd97c5a8554d663d892cf795b8b8821c7608f2"
+    },
+    {
+      "side": "after",
+      "name": "twilight-all",
+      "pngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f"
+    },
+    {
+      "side": "after",
+      "name": "twilight-physical-only",
+      "pngSha256": "ed0de2b22ef9a28bb2be290227effbd0603204a7f1a3e4323c895b1f176396da"
+    },
+    {
+      "side": "after",
+      "name": "twilight-bloom-off",
+      "pngSha256": "8f36dc174496396f7f11ffa83def06d3282e2efee469ba1973ef7e734757b6c5"
+    },
+    {
+      "side": "after",
+      "name": "twilight-physical-no-bloom",
+      "pngSha256": "9bf96dc7abeace39ce45c2b192385739afad391c1f25f152c4cfbbc6aed0511e"
+    },
+    {
+      "side": "after",
+      "name": "earth-partial-all",
+      "pngSha256": "5714cde5294bfe605eed3fc46006c1f0b6bb4254553e9f192f69b23ac4c97290"
+    },
+    {
+      "side": "after",
+      "name": "earth-partial-physical-only",
+      "pngSha256": "67d107c41f038a20f8dc66e9675f8f7ad5ca9e63933bd4d5535f952eec4c9605"
+    },
+    {
+      "side": "after",
+      "name": "earth-partial-bloom-off",
+      "pngSha256": "bfbef98dc367e81e525641e6ef907ee4ee1d9a694b96f6a3cb073f59392c5ba8"
+    },
+    {
+      "side": "after",
+      "name": "earth-partial-sun-off",
+      "pngSha256": "9f83ae7a0061c541f320e68120db267d2bc50c30e1063fd58c73e617cf55ef83"
+    },
+    {
+      "side": "after",
+      "name": "terrain-full-all",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "after",
+      "name": "terrain-full-physical-only",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "after",
+      "name": "terrain-full-bloom-off",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "after",
+      "name": "terrain-full-sun-off",
+      "pngSha256": "907c81081426458b0e2c80cbe6acf78a879a49e5aa23b27a94b0e550e9a65082"
+    },
+    {
+      "side": "after",
+      "name": "terrain-removed-all",
+      "pngSha256": "85e9f023a9a876dc36f24c6f6d32c5405c6a1f69de0075cedab05461399f7959"
+    }
+  ]
+}
