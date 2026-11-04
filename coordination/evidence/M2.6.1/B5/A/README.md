@@ -1,21 +1,25 @@
 # M2.6.1-B5-A — Static Integrated Visual Audit
 
-**Result: FAIL (static visual gate).** The eight required scene slots are populated with original, unmodified WebGPU PNG captures and each has a per-scene review. This is not a B5-B/C result and does not close M2.6.1.
+**Result: FAIL (static visual gate).** The eight required scene slots are populated with freshly captured, unmodified WebGPU PNGs from the main-derived build and each has a per-scene review. This is not a B5-B/C result and does not close M2.6.1.
 
-## Provenance and capture reuse
+## Provenance and current-main build
 
-The eight images are exact byte copies of the canonical B4 round-two candidate captures. They are not newly captured for B5-A. This reuse is intentional and limited to static review: the B4 evidence records a headed, non-fallback Intel Xe-LPG WebGPU run at 1920×1080, Chrome 156.0.8078.80, exposure 1, scene time 2026-03-20T12:00:00Z, with original per-scene camera vectors, height, Sun elevation, PNG SHA-256, browser errors and bundle identity in `result.json`.
+All eight scenes were freshly captured for B5-A from a clean main-derived checkout using the existing B4 WebGPU fixture/probe helpers. The capture harness exports the native WebGPU canvas directly to PNG without rescaling, recoloring or post-processing. The harness verifies that the locally built bundle SHA-256 matches the bundle served to Chromium.
 
-- Capture/runtime source: `ac7884dcb15b0e83ac173f211b7eb1814ee26a92`
-- Bundle build checkout: `995860bf2e3aa6cee0731d2e110643f45e16f6bf`
-- Capture harness: `ac7884dcb15b0e83ac173f211b7eb1814ee26a92`
-- Bundle SHA-256: `71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f`
-- Current main checked: `f51ee9ea1618071ec67f77421c5a4d933ce1f3d4`
-- Git comparison: `packages/engine/Source` is identical between bundle-build commit `995860b` and current main. Intervening differences are planning/evidence/harness records, not engine source.
-- Hardware: Intel Xe-LPG non-fallback adapter (Windows device identified in B4 report as Intel Arc 130T, 16 GB; driver 32.0.101.8801).
-- Browser: headed Chrome 156.0.8078.80; viewport 1920×1080; DPR approximately 1; CesiumJS 1.146.0.
+- Current main at task start: f51ee9ea1618071ec67f77421c5a4d933ce1f3d4
+- Capture runtime / clean checkout: 4544a483171ed94f4b1124323cf630773854c20b
+- Engine source: identical to current main at task start; this branch adds only the B5-A capture harness and audit/evidence documentation.
+- Build command: npm run build (successful, 4.94 s)
+- Served bundle: Build/CesiumUnminified/Cesium.js
+- Bundle SHA-256: 3c5b8bb7ca8322a86e1292b848cc28a929dd9577fa21b637b2bb32fb49df63a3
+- Capture time: 2026-11-04T06:22:37.944Z (UTC)
+- Runtime: CesiumJS 1.146.0; headed Chrome 156.0.8078.80; Windows; 1920×1080; DPR 1; exposure 1; scene time 2026-03-20T12:00:00Z.
+- GPU: Intel Xe-LPG, non-fallback WebGPU adapter. B4 hardware record identifies the device as Intel Arc 130T 16 GB, driver 32.0.101.8801. Current adapter info reports vendor intel / architecture xe-lpg; device and description fields are empty.
+- Authored solar resources: all 9 expected assets reported LOADED.
+- Browser page errors: 0. Console errors/warnings: 0.
+- Capture harness teardown: viewer destroyed; 6,564/6,564 buffers released; outstanding buffer/texture bytes 0. This is capture-scene cleanup only, not the B5-C lifecycle gate.
 
-**Limit:** source equivalence is established for the engine source tree and the historical B4 report says the candidate bundle hash matched its served bundle. This package does not claim a fresh B5-A build, fresh live-production deployment capture, or a new GPU run on current main. The original source/bundle identities are preserved rather than relabeled as current-main execution.
+**Production-source scope:** the capture is from a local build of current main engine source, not a new GitHub Pages deployment. It verifies that the main-derived runtime includes B1–B4 and that the WebGPU solar resources load; it does not claim a fresh live Pages deployment identity. The exact source, bundle, adapter, browser and per-scene camera/time metadata are retained in result.json.
 
 ## Scene results
 
@@ -24,11 +28,11 @@ The eight images are exact byte copies of the canonical B4 round-two candidate c
 | A01 | High-orbit direct Sun | 36,000 km | +60° | FAIL | [PNG](high-orbit-direct-36000km-atmosphere-on.png) |
 | A02 | High-orbit Earth limb | 36,000 km | −80.99° | FAIL | [PNG](high-orbit-limb-36000km-atmosphere-on.png) |
 | A03 | Low-orbit sunrise | 400 km | −19.43° | FAIL | [PNG](low-orbit-sunrise-400km-atmosphere-on.png) |
-| A04 | Low-orbit low Sun | 400 km | See result.json | FAIL | [PNG](low-orbit-low-sun-400km-atmosphere-on.png) |
-| A05 | Near-ground low Sun | 2 km | See result.json | FAIL | [PNG](near-ground-low-sun-2km-atmosphere-on.png) |
-| A06 | Ground daytime | 2 m | See result.json | PASS | [PNG](ground-day-2m-atmosphere-on.png) |
-| A07 | Ground twilight | 2 m | See result.json | FAIL | [PNG](ground-twilight-2m-atmosphere-on.png) |
-| A08 | Ground night | 2 m | See result.json | BLOCKED | [PNG](ground-night-2m-atmosphere-on.png) |
+| A04 | Low-orbit low Sun | 400 km | −18.78° | FAIL | [PNG](low-orbit-low-sun-400km-atmosphere-on.png) |
+| A05 | Near-ground low Sun | 2 km | +3° | FAIL | [PNG](near-ground-low-sun-2km-atmosphere-on.png) |
+| A06 | Ground daytime | 2 m | +45° | PASS | [PNG](ground-day-2m-atmosphere-on.png) |
+| A07 | Ground twilight | 2 m | +1° | FAIL | [PNG](ground-twilight-2m-atmosphere-on.png) |
+| A08 | Ground night | 2 m | −8° | BLOCKED | [PNG](ground-night-2m-atmosphere-on.png) |
 
 All exact Sun angles, camera position/direction/up, timestamps, exposure, viewport, adapter/browser and PNG hashes are in the structured [result.json](result.json).
 

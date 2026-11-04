@@ -1,63 +1,36 @@
 {
-  "suite": "M2.6.1-B5-A-static-integrated-visual-audit",
-  "auditCapturedAt": "2026-11-04T06:15:20.509Z",
-  "auditMethod": "Reuse of original raw WebGPU captures from the canonical B4 round-two hardware run; no new rendering run is claimed. Original PNG bytes and per-scene capture metadata are preserved.",
-  "sourceRun": {
-    "sourceCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
-    "bundleBuildCommit": "995860bf2e3aa6cee0731d2e110643f45e16f6bf",
-    "captureHarnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
-    "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f",
-    "capturedAt": "2026-11-04T04:43:01.782Z",
-    "environment": {
-      "cesium": "1.146.0",
-      "adapter": {
-        "vendor": "intel",
-        "architecture": "xe-lpg",
-        "device": "",
-        "description": "",
-        "isFallbackAdapter": false
-      },
-      "viewport": [
-        1920,
-        1080
-      ]
-    },
-    "gpu": {
-      "kind": "hardware-reported",
-      "reason": "intel xe-lpg"
-    },
-    "browser": "156.0.8078.80",
-    "configuration": {
-      "mode": "hardware",
-      "requirePhysicalGpu": true,
-      "launchOptions": {
-        "headless": false,
-        "timeout": 30000,
-        "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        "args": []
-      }
+  "suite": "m2.6.1-b5-a-static",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T06:22:37.944Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
     }
   },
-  "currentMain": {
-    "commit": "f51ee9ea1618071ec67f77421c5a4d933ce1f3d4",
-    "engineSourceComparedToBundleBuild": "identical",
-    "verification": "git diff --quiet 995860bf2e3aa6cee0731d2e110643f45e16f6bf origin/main -- packages/engine/Source returned identical; intervening changes are documentation/evidence and B4 audit harness/evidence only. This proves engine-source equivalence, not a fresh production deployment capture."
-  },
+  "source": "4544a483171ed94f4b1124323cf630773854c20b",
+  "sourceStatus": "",
+  "bundleSha256": "3c5b8bb7ca8322a86e1292b848cc28a929dd9577fa21b637b2bb32fb49df63a3",
+  "browserErrors": [],
+  "checks": [
+    "Eight unique static views captured from this clean main-derived WebGPU build; authored solar assets loaded."
+  ],
   "scenes": [
     {
-      "id": "A01",
       "name": "high-orbit-direct-36000km-atmosphere-on",
-      "status": "FAIL",
-      "review": "Disc, halo and corona are legible at long range. Radial rays remain too regular/prominent for the intended restrained distant-view presentation.",
-      "screenshot": "high-orbit-direct-36000km-atmosphere-on.png",
-      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "sceneId": "A01",
+      "geometry": {
+        "height": 36000000,
+        "sunElevationDegrees": 60,
+        "limbElevationDegrees": -81.3437863636106,
+        "limbOffsetDegrees": 141.3437863636106,
+        "groundFacing": false
+      },
       "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
-      "viewport": [
-        1920,
-        1080
-      ],
-      "devicePixelRatio": 1.0000000149011612,
       "camera": {
         "position": [
           35991773.89278689,
@@ -74,18 +47,49 @@
           0.999469827875957,
           0.0013060225825634135
         ],
+        "longitudeDegrees": 31.864328338283908,
+        "latitudeDegrees": 0,
         "heightMeters": 36000000,
-        "cameraElevationDegrees": 60.00000000000002
+        "elevationDegrees": 60.00000000000002,
+        "fovRadians": 0.20943951023931956,
+        "fovyRadians": 0.11810478848265601,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": 60.00000000000001,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": 60.00000000000001,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          959.9999999999991,
+          539.9999999999999
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -94,23 +98,79 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A02",
-      "name": "high-orbit-limb-36000km-atmosphere-on",
-      "status": "FAIL",
-      "review": "Earth limb is present, but a thin saturated cyan/yellow edge is conspicuous; distinguish physical atmospheric rim from a hard/colored edge artifact.",
-      "screenshot": "high-orbit-limb-36000km-atmosphere-on.png",
-      "pngSha256": "409b09426d112683b20e286054af609d6e496594f59743b05a2253a4e4fd7b4e",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 25,
+        "earthRays": 0
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": []
+      },
+      "metrics": {
+        "disk": {
+          "count": 261,
+          "rgbMean": [
+            255,
+            255,
+            255
+          ],
+          "displayLinearLuminanceMean": 1.000000000000011,
+          "anyChannel254Fraction": 1
+        },
+        "annulus": {
+          "count": 2520,
+          "rgbMean": [
+            195.2722222222222,
+            185.8186507936508,
+            171.22380952380954
+          ],
+          "displayLinearLuminanceMean": 0.49702988056542324,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "status": "FAIL",
+      "review": "The disk silhouette is clear, but long-range radial spokes are prominent, regular and compete with the halo/corona. The core is clipped white at exposure 1; highlight roll-off is not demonstrated.",
+      "screenshot": "high-orbit-direct-36000km-atmosphere-on.png"
+    },
+    {
+      "name": "high-orbit-limb-36000km-atmosphere-on",
+      "sceneId": "A02",
+      "geometry": {
+        "height": 36000000,
+        "sunElevationDegrees": -80.99378636361061,
+        "limbElevationDegrees": -81.3437863636106,
+        "limbOffsetDegrees": 0.3499999999999943,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           -42049350.45234427,
@@ -127,18 +187,49 @@
           0.9994592208570753,
           -0.004757434506635899
         ],
+        "longitudeDegrees": 172.85824568194616,
+        "latitudeDegrees": 0,
         "heightMeters": 36000000,
-        "cameraElevationDegrees": -80.99378636361065
+        "elevationDegrees": -80.99378636361065,
+        "fovRadians": 0.5235987755982988,
+        "fovyRadians": 0.29919083757908044,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": -80.99378636361061,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": -80.99378636361061,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          960.0000000000002,
+          539.9999999999974
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -147,23 +238,160 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A03",
-      "name": "low-orbit-sunrise-400km-atmosphere-on",
-      "status": "FAIL",
-      "review": "Sun/limb composition is clear, but the red-orange horizon band is strongly saturated and radial artwork remains conspicuous.",
-      "screenshot": "low-orbit-sunrise-400km-atmosphere-on.png",
-      "pngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 19,
+        "earthRays": 6
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            2,
+            7,
+            1
+          ],
+          [
+            2,
+            6,
+            1
+          ],
+          [
+            2,
+            7,
+            0
+          ],
+          [
+            2,
+            6,
+            0
+          ],
+          [
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            7,
+            2
+          ],
+          [
+            2,
+            6,
+            2
+          ],
+          [
+            2,
+            7,
+            3
+          ],
+          [
+            2,
+            6,
+            3
+          ],
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            3
+          ],
+          [
+            2,
+            0,
+            3
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 45,
+          "rgbMean": [
+            255,
+            255,
+            255
+          ],
+          "displayLinearLuminanceMean": 1.0000000000000009,
+          "anyChannel254Fraction": 1
+        },
+        "annulus": {
+          "count": 372,
+          "rgbMean": [
+            154.05107526881721,
+            161.94892473118279,
+            149.51344086021504
+          ],
+          "displayLinearLuminanceMean": 0.3973694225793445,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "409b09426d112683b20e286054af609d6e496594f59743b05a2253a4e4fd7b4e",
+      "status": "FAIL",
+      "review": "The Sun is framed above the Earth limb, but a narrow saturated cyan/yellow edge follows the silhouette and reads as a hard rim. Source attribution is still required.",
+      "screenshot": "high-orbit-limb-36000km-atmosphere-on.png"
+    },
+    {
+      "name": "low-orbit-sunrise-400km-atmosphere-on",
+      "sceneId": "A03",
+      "geometry": {
+        "height": 400000,
+        "sunElevationDegrees": -19.4320687582103,
+        "limbElevationDegrees": -19.7820687582103,
+        "limbOffsetDegrees": 0.3500000000000014,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           -2461773.2322637625,
@@ -180,18 +408,49 @@
           0.9994706063465919,
           -0.000266011224310126
         ],
+        "longitudeDegrees": 111.29643105471422,
+        "latitudeDegrees": 0,
         "heightMeters": 399999.99999999965,
-        "cameraElevationDegrees": -19.43206875821031
+        "elevationDegrees": -19.43206875821031,
+        "fovRadians": 0.20943951023931956,
+        "fovyRadians": 0.11810478848265601,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": -19.43206875821031,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": -19.43206875821031,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          959.9999999999986,
+          539.9999999999993
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -200,23 +459,350 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A04",
-      "name": "low-orbit-low-sun-400km-atmosphere-on",
-      "status": "FAIL",
-      "review": "Broad yellow/orange horizon transition and visible rays dominate the scene; color calibration concern is also present in physical-only baseline controls.",
-      "screenshot": "low-orbit-low-sun-400km-atmosphere-on.png",
-      "pngSha256": "90f786bc7a463ad56bcbf0d1aeaa6dd54346fb2aa40887020b6559afed242db5",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 15,
+        "earthRays": 10
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            8,
+            398,
+            127
+          ],
+          [
+            8,
+            398,
+            126
+          ],
+          [
+            8,
+            397,
+            127
+          ],
+          [
+            8,
+            396,
+            127
+          ],
+          [
+            8,
+            397,
+            126
+          ],
+          [
+            8,
+            396,
+            126
+          ],
+          [
+            8,
+            396,
+            125
+          ],
+          [
+            8,
+            395,
+            127
+          ],
+          [
+            8,
+            394,
+            127
+          ],
+          [
+            8,
+            395,
+            126
+          ],
+          [
+            8,
+            394,
+            126
+          ],
+          [
+            8,
+            393,
+            127
+          ],
+          [
+            8,
+            392,
+            127
+          ],
+          [
+            8,
+            393,
+            126
+          ],
+          [
+            8,
+            392,
+            126
+          ],
+          [
+            8,
+            395,
+            125
+          ],
+          [
+            8,
+            394,
+            125
+          ],
+          [
+            8,
+            393,
+            125
+          ],
+          [
+            8,
+            392,
+            125
+          ],
+          [
+            7,
+            195,
+            63
+          ],
+          [
+            7,
+            194,
+            63
+          ],
+          [
+            7,
+            195,
+            62
+          ],
+          [
+            7,
+            194,
+            62
+          ],
+          [
+            7,
+            193,
+            63
+          ],
+          [
+            7,
+            192,
+            63
+          ],
+          [
+            7,
+            193,
+            62
+          ],
+          [
+            7,
+            192,
+            62
+          ],
+          [
+            8,
+            398,
+            128
+          ],
+          [
+            8,
+            398,
+            129
+          ],
+          [
+            8,
+            397,
+            128
+          ],
+          [
+            8,
+            396,
+            128
+          ],
+          [
+            8,
+            397,
+            129
+          ],
+          [
+            8,
+            396,
+            129
+          ],
+          [
+            8,
+            396,
+            130
+          ],
+          [
+            8,
+            395,
+            128
+          ],
+          [
+            8,
+            394,
+            128
+          ],
+          [
+            8,
+            395,
+            129
+          ],
+          [
+            8,
+            394,
+            129
+          ],
+          [
+            8,
+            393,
+            128
+          ],
+          [
+            8,
+            392,
+            128
+          ],
+          [
+            8,
+            393,
+            129
+          ],
+          [
+            8,
+            392,
+            129
+          ],
+          [
+            8,
+            395,
+            130
+          ],
+          [
+            8,
+            394,
+            130
+          ],
+          [
+            8,
+            393,
+            130
+          ],
+          [
+            8,
+            392,
+            130
+          ],
+          [
+            7,
+            195,
+            64
+          ],
+          [
+            7,
+            194,
+            64
+          ],
+          [
+            7,
+            195,
+            65
+          ],
+          [
+            7,
+            194,
+            65
+          ],
+          [
+            7,
+            193,
+            64
+          ],
+          [
+            7,
+            192,
+            64
+          ],
+          [
+            7,
+            193,
+            65
+          ],
+          [
+            7,
+            192,
+            65
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 261,
+          "rgbMean": [
+            252.55555555555554,
+            244.60536398467434,
+            182.01532567049807
+          ],
+          "displayLinearLuminanceMean": 0.8989955781670192,
+          "anyChannel254Fraction": 0.40229885057471265
+        },
+        "annulus": {
+          "count": 2520,
+          "rgbMean": [
+            161.6027777777778,
+            144.67460317460316,
+            114.24166666666666
+          ],
+          "displayLinearLuminanceMean": 0.3897846923930921,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            32.28014964788732,
+            92.58384683098592,
+            98.46379841549296
+          ],
+          "displayLinearLuminanceMean": 0.0897973065345793,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8",
+      "status": "FAIL",
+      "review": "Orbital sunrise geometry is legible, but the red/orange horizon band is strongly saturated and radial artwork remains conspicuous.",
+      "screenshot": "low-orbit-sunrise-400km-atmosphere-on.png"
+    },
+    {
+      "name": "low-orbit-low-sun-400km-atmosphere-on",
+      "sceneId": "A04",
+      "geometry": {
+        "height": 400000,
+        "sunElevationDegrees": -18.7820687582103,
+        "limbElevationDegrees": -19.7820687582103,
+        "limbOffsetDegrees": 1,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           -2389971.7057486246,
@@ -233,18 +819,49 @@
           0.9994706090830381,
           -0.0002564302963559913
         ],
+        "longitudeDegrees": 110.64643084775227,
+        "latitudeDegrees": 0,
         "heightMeters": 399999.99999999965,
-        "cameraElevationDegrees": -18.782068758210315
+        "elevationDegrees": -18.782068758210315,
+        "fovRadians": 0.20943951023931956,
+        "fovyRadians": 0.11810478848265601,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": -18.782068758210304,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": -18.782068758210304,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          960,
+          539.9999999999994
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -253,23 +870,340 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A05",
-      "name": "near-ground-low-sun-2km-atmosphere-on",
-      "status": "FAIL",
-      "review": "Low-Sun view is washed by a broad pale sky field; solar disk/halo separation and contrast are weak.",
-      "screenshot": "near-ground-low-sun-2km-atmosphere-on.png",
-      "pngSha256": "e6a3079b27894b403fe5b11bd3be64f68307b91ce91942274d7f1eda8b8219ff",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 15,
+        "earthRays": 10
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            8,
+            396,
+            127
+          ],
+          [
+            8,
+            396,
+            126
+          ],
+          [
+            8,
+            395,
+            127
+          ],
+          [
+            8,
+            394,
+            127
+          ],
+          [
+            8,
+            395,
+            126
+          ],
+          [
+            8,
+            394,
+            126
+          ],
+          [
+            8,
+            393,
+            127
+          ],
+          [
+            8,
+            392,
+            127
+          ],
+          [
+            8,
+            393,
+            126
+          ],
+          [
+            8,
+            392,
+            126
+          ],
+          [
+            8,
+            395,
+            125
+          ],
+          [
+            8,
+            394,
+            125
+          ],
+          [
+            8,
+            393,
+            125
+          ],
+          [
+            8,
+            392,
+            125
+          ],
+          [
+            8,
+            391,
+            127
+          ],
+          [
+            8,
+            390,
+            127
+          ],
+          [
+            8,
+            391,
+            126
+          ],
+          [
+            8,
+            390,
+            126
+          ],
+          [
+            7,
+            194,
+            63
+          ],
+          [
+            8,
+            391,
+            125
+          ],
+          [
+            8,
+            390,
+            125
+          ],
+          [
+            7,
+            194,
+            62
+          ],
+          [
+            7,
+            193,
+            63
+          ],
+          [
+            7,
+            192,
+            63
+          ],
+          [
+            7,
+            193,
+            62
+          ],
+          [
+            7,
+            192,
+            62
+          ],
+          [
+            8,
+            396,
+            128
+          ],
+          [
+            8,
+            396,
+            129
+          ],
+          [
+            8,
+            395,
+            128
+          ],
+          [
+            8,
+            394,
+            128
+          ],
+          [
+            8,
+            395,
+            129
+          ],
+          [
+            8,
+            394,
+            129
+          ],
+          [
+            8,
+            393,
+            128
+          ],
+          [
+            8,
+            392,
+            128
+          ],
+          [
+            8,
+            393,
+            129
+          ],
+          [
+            8,
+            392,
+            129
+          ],
+          [
+            8,
+            395,
+            130
+          ],
+          [
+            8,
+            394,
+            130
+          ],
+          [
+            8,
+            393,
+            130
+          ],
+          [
+            8,
+            392,
+            130
+          ],
+          [
+            8,
+            391,
+            128
+          ],
+          [
+            8,
+            390,
+            128
+          ],
+          [
+            8,
+            391,
+            129
+          ],
+          [
+            8,
+            390,
+            129
+          ],
+          [
+            7,
+            194,
+            64
+          ],
+          [
+            8,
+            391,
+            130
+          ],
+          [
+            8,
+            390,
+            130
+          ],
+          [
+            7,
+            194,
+            65
+          ],
+          [
+            7,
+            193,
+            64
+          ],
+          [
+            7,
+            192,
+            64
+          ],
+          [
+            7,
+            193,
+            65
+          ],
+          [
+            7,
+            192,
+            65
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 261,
+          "rgbMean": [
+            255,
+            255,
+            254.83141762452107
+          ],
+          "displayLinearLuminanceMean": 0.9998916978625068,
+          "anyChannel254Fraction": 1
+        },
+        "annulus": {
+          "count": 2520,
+          "rgbMean": [
+            200.15357142857144,
+            197.84285714285716,
+            192.55
+          ],
+          "displayLinearLuminanceMean": 0.5673176028764721,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            0,
+            0,
+            0
+          ],
+          "displayLinearLuminanceMean": 0,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            31.0115536971831,
+            85.52464788732394,
+            81.66769366197182
+          ],
+          "displayLinearLuminanceMean": 0.0752019611529539,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "90f786bc7a463ad56bcbf0d1aeaa6dd54346fb2aa40887020b6559afed242db5",
+      "status": "FAIL",
+      "review": "The warm horizon band and radial rays dominate; physical transport and Bloom contributions need to be separated using existing matched controls.",
+      "screenshot": "low-orbit-low-sun-400km-atmosphere-on.png"
+    },
+    {
+      "name": "near-ground-low-sun-2km-atmosphere-on",
+      "sceneId": "A05",
+      "geometry": {
+        "height": 2000,
+        "sunElevationDegrees": 3,
+        "limbElevationDegrees": -1.4346599421662711,
+        "limbOffsetDegrees": 4.434659942166271,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           126450.70705554223,
@@ -286,18 +1220,49 @@
           0.9994706484234758,
           0.0000395171682875142
         ],
+        "longitudeDegrees": 88.86435569664788,
+        "latitudeDegrees": 0,
         "heightMeters": 1999.9999999991855,
-        "cameraElevationDegrees": 2.9999999999999925
+        "elevationDegrees": 2.9999999999999925,
+        "fovRadians": 0.5235987755982988,
+        "fovyRadians": 0.29919083757908044,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": 2.9999999999999916,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": 2.9999999999999916,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          959.9999999999991,
+          540
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -306,23 +1271,510 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A06",
-      "name": "ground-day-2m-atmosphere-on",
-      "status": "PASS",
-      "review": "Disk remains visible and bloom is bounded; ground-day sky is smooth but comparatively uniform, with limited visible corona/ray detail at this scale.",
-      "screenshot": "ground-day-2m-atmosphere-on.png",
-      "pngSha256": "516ad2d3af6954a3de018b18afee9fbd988067fcbb9b4965b7e0ba1a922145a1",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 20,
+        "earthRays": 5
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            13,
+            12227,
+            4095
+          ],
+          [
+            13,
+            12226,
+            4095
+          ],
+          [
+            13,
+            12227,
+            4094
+          ],
+          [
+            13,
+            12226,
+            4094
+          ],
+          [
+            12,
+            6112,
+            2047
+          ],
+          [
+            13,
+            12227,
+            4093
+          ],
+          [
+            13,
+            12226,
+            4093
+          ],
+          [
+            12,
+            6112,
+            2046
+          ],
+          [
+            12,
+            6111,
+            2047
+          ],
+          [
+            12,
+            6110,
+            2047
+          ],
+          [
+            12,
+            6111,
+            2046
+          ],
+          [
+            12,
+            6110,
+            2046
+          ],
+          [
+            12,
+            6109,
+            2047
+          ],
+          [
+            12,
+            6108,
+            2047
+          ],
+          [
+            12,
+            6109,
+            2046
+          ],
+          [
+            12,
+            6108,
+            2046
+          ],
+          [
+            12,
+            6110,
+            2045
+          ],
+          [
+            12,
+            6109,
+            2045
+          ],
+          [
+            12,
+            6108,
+            2045
+          ],
+          [
+            11,
+            3053,
+            1023
+          ],
+          [
+            11,
+            3052,
+            1023
+          ],
+          [
+            11,
+            3053,
+            1022
+          ],
+          [
+            11,
+            3052,
+            1022
+          ],
+          [
+            11,
+            3051,
+            1023
+          ],
+          [
+            11,
+            3050,
+            1023
+          ],
+          [
+            11,
+            3051,
+            1022
+          ],
+          [
+            11,
+            3050,
+            1022
+          ],
+          [
+            11,
+            3049,
+            1023
+          ],
+          [
+            11,
+            3048,
+            1023
+          ],
+          [
+            11,
+            3049,
+            1022
+          ],
+          [
+            11,
+            3048,
+            1022
+          ],
+          [
+            11,
+            3051,
+            1021
+          ],
+          [
+            11,
+            3050,
+            1021
+          ],
+          [
+            11,
+            3049,
+            1021
+          ],
+          [
+            11,
+            3048,
+            1021
+          ],
+          [
+            10,
+            1523,
+            511
+          ],
+          [
+            10,
+            1522,
+            511
+          ],
+          [
+            10,
+            1523,
+            510
+          ],
+          [
+            10,
+            1522,
+            510
+          ],
+          [
+            10,
+            1521,
+            511
+          ],
+          [
+            10,
+            1521,
+            510
+          ],
+          [
+            10,
+            1522,
+            509
+          ],
+          [
+            10,
+            1521,
+            509
+          ],
+          [
+            13,
+            12227,
+            4096
+          ],
+          [
+            13,
+            12226,
+            4096
+          ],
+          [
+            13,
+            12227,
+            4097
+          ],
+          [
+            13,
+            12226,
+            4097
+          ],
+          [
+            12,
+            6112,
+            2048
+          ],
+          [
+            13,
+            12227,
+            4098
+          ],
+          [
+            13,
+            12226,
+            4098
+          ],
+          [
+            12,
+            6112,
+            2049
+          ],
+          [
+            12,
+            6111,
+            2048
+          ],
+          [
+            12,
+            6110,
+            2048
+          ],
+          [
+            12,
+            6111,
+            2049
+          ],
+          [
+            12,
+            6110,
+            2049
+          ],
+          [
+            12,
+            6109,
+            2048
+          ],
+          [
+            12,
+            6108,
+            2048
+          ],
+          [
+            12,
+            6109,
+            2049
+          ],
+          [
+            12,
+            6108,
+            2049
+          ],
+          [
+            12,
+            6110,
+            2050
+          ],
+          [
+            12,
+            6109,
+            2050
+          ],
+          [
+            12,
+            6108,
+            2050
+          ],
+          [
+            11,
+            3053,
+            1024
+          ],
+          [
+            11,
+            3052,
+            1024
+          ],
+          [
+            11,
+            3053,
+            1025
+          ],
+          [
+            11,
+            3052,
+            1025
+          ],
+          [
+            11,
+            3051,
+            1024
+          ],
+          [
+            11,
+            3050,
+            1024
+          ],
+          [
+            11,
+            3051,
+            1025
+          ],
+          [
+            11,
+            3050,
+            1025
+          ],
+          [
+            11,
+            3049,
+            1024
+          ],
+          [
+            11,
+            3048,
+            1024
+          ],
+          [
+            11,
+            3049,
+            1025
+          ],
+          [
+            11,
+            3048,
+            1025
+          ],
+          [
+            11,
+            3051,
+            1026
+          ],
+          [
+            11,
+            3050,
+            1026
+          ],
+          [
+            11,
+            3049,
+            1026
+          ],
+          [
+            11,
+            3048,
+            1026
+          ],
+          [
+            10,
+            1523,
+            512
+          ],
+          [
+            10,
+            1522,
+            512
+          ],
+          [
+            10,
+            1523,
+            513
+          ],
+          [
+            10,
+            1522,
+            513
+          ],
+          [
+            10,
+            1521,
+            512
+          ],
+          [
+            10,
+            1521,
+            513
+          ],
+          [
+            10,
+            1522,
+            514
+          ],
+          [
+            10,
+            1521,
+            514
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 45,
+          "rgbMean": [
+            253.64444444444445,
+            249.53333333333333,
+            220.13333333333333
+          ],
+          "displayLinearLuminanceMean": 0.9426105915870339,
+          "anyChannel254Fraction": 0.6444444444444445
+        },
+        "annulus": {
+          "count": 372,
+          "rgbMean": [
+            230.1478494623656,
+            222.8790322580645,
+            177.03763440860214
+          ],
+          "displayLinearLuminanceMean": 0.7273989877511654,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            155.09526909722223,
+            176.27322048611111,
+            168.44021267361111
+          ],
+          "displayLinearLuminanceMean": 0.41036142961763317,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            203.7086267605634,
+            189.10684419014083,
+            160.01573503521126
+          ],
+          "displayLinearLuminanceMean": 0.5202498027874863,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "e6a3079b27894b403fe5b11bd3be64f68307b91ce91942274d7f1eda8b8219ff",
+      "status": "FAIL",
+      "review": "The broad pale warm sky washes out the view and the Sun reads as a small, low-contrast disk.",
+      "screenshot": "near-ground-low-sun-2km-atmosphere-on.png"
+    },
+    {
+      "name": "ground-day-2m-atmosphere-on",
+      "sceneId": "A06",
+      "geometry": {
+        "height": 2,
+        "sunElevationDegrees": 45,
+        "limbElevationDegrees": -0.04537385202370548,
+        "limbOffsetDegrees": 45.04537385202371,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           4360912.72985953,
@@ -339,18 +1791,49 @@
           0.9994703825996142,
           0.0007540324896107402
         ],
+        "longitudeDegrees": 46.86434026207938,
+        "latitudeDegrees": 0,
         "heightMeters": 1.999999998378311,
-        "cameraElevationDegrees": 44.99999999999999
+        "elevationDegrees": 44.99999999999999,
+        "fovRadians": 0.20943951023931956,
+        "fovyRadians": 0.11810478848265601,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": 44.99999999999999,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": 44.99999999999999,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          960.0000000000002,
+          540.0000000000001
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -359,23 +1842,105 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A07",
-      "name": "ground-twilight-2m-atmosphere-on",
-      "status": "FAIL",
-      "review": "Strong nearly uniform yellow field and weak disk contrast; B4 round-two diagnosis shows much of the yellow persists with authored artwork and Bloom disabled.",
-      "screenshot": "ground-twilight-2m-atmosphere-on.png",
-      "pngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 25,
+        "earthRays": 0
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": false,
+        "selectedMeshes": [
+          [
+            4,
+            20,
+            7
+          ],
+          [
+            4,
+            20,
+            8
+          ],
+          [
+            4,
+            20,
+            9
+          ],
+          [
+            4,
+            21,
+            8
+          ],
+          [
+            4,
+            21,
+            9
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 261,
+          "rgbMean": [
+            255,
+            255,
+            254.22222222222223
+          ],
+          "displayLinearLuminanceMean": 0.9995003333201601,
+          "anyChannel254Fraction": 1
+        },
+        "annulus": {
+          "count": 2520,
+          "rgbMean": [
+            221.25039682539682,
+            220.9936507936508,
+            224.23611111111111
+          ],
+          "displayLinearLuminanceMean": 0.725218066005603,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            167.51052517361111,
+            184.91460503472223,
+            207.75509982638889
+          ],
+          "displayLinearLuminanceMean": 0.47483631727485903,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            173.81536091549296,
+            190.34573063380282,
+            211.43507922535213
+          ],
+          "displayLinearLuminanceMean": 0.5068541782266281,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "516ad2d3af6954a3de018b18afee9fbd988067fcbb9b4965b7e0ba1a922145a1",
+      "status": "PASS",
+      "review": "The daytime disk remains visible with a smooth bounded glow and no obvious hard halo boundary in this frame; fine corona/rays are naturally subdued at this scale.",
+      "screenshot": "ground-day-2m-atmosphere-on.png"
+    },
+    {
+      "name": "ground-twilight-2m-atmosphere-on",
+      "sceneId": "A07",
+      "geometry": {
+        "height": 2,
+        "sunElevationDegrees": 1,
+        "limbElevationDegrees": -0.04537385202370548,
+        "limbOffsetDegrees": 1.0453738520237055,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           -96216.07993785398,
@@ -392,18 +1957,49 @@
           0.9994706484707638,
           0.000013161686063898281
         ],
+        "longitudeDegrees": 90.86435626596446,
+        "latitudeDegrees": 0,
         "heightMeters": 1.9999999981602683,
-        "cameraElevationDegrees": 1.0000000000000016
+        "elevationDegrees": 1.0000000000000016,
+        "fovRadians": 0.20943951023931956,
+        "fovyRadians": 0.11810478848265601,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": 0.9999999999999992,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": 0.9999999999999992,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          959.9999999999991,
+          540.0000000000003
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -412,23 +2008,2211 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
-    },
-    {
-      "id": "A08",
-      "name": "ground-night-2m-atmosphere-on",
-      "status": "BLOCKED",
-      "review": "No obvious residual solar artwork is visible, but the unlit constant-color night-side surface remains bright blue; this inherited surface-lighting limitation prevents a complete ground-night scene judgement.",
-      "screenshot": "ground-night-2m-atmosphere-on.png",
-      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
-      "time": "2026-03-20T12:00:00Z",
-      "exposure": 1,
       "viewport": [
         1920,
         1080
       ],
-      "devicePixelRatio": 1.0000000149011612,
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 15,
+        "earthRays": 10
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            23,
+            12623173,
+            4194303
+          ],
+          [
+            23,
+            12623172,
+            4194303
+          ],
+          [
+            23,
+            12623173,
+            4194302
+          ],
+          [
+            23,
+            12623172,
+            4194302
+          ],
+          [
+            23,
+            12623173,
+            4194301
+          ],
+          [
+            23,
+            12623172,
+            4194301
+          ],
+          [
+            23,
+            12623171,
+            4194303
+          ],
+          [
+            23,
+            12623170,
+            4194303
+          ],
+          [
+            23,
+            12623171,
+            4194302
+          ],
+          [
+            23,
+            12623170,
+            4194302
+          ],
+          [
+            22,
+            6311584,
+            2097151
+          ],
+          [
+            23,
+            12623171,
+            4194301
+          ],
+          [
+            23,
+            12623170,
+            4194301
+          ],
+          [
+            22,
+            6311584,
+            2097150
+          ],
+          [
+            22,
+            6311583,
+            2097151
+          ],
+          [
+            22,
+            6311582,
+            2097151
+          ],
+          [
+            22,
+            6311583,
+            2097150
+          ],
+          [
+            22,
+            6311582,
+            2097150
+          ],
+          [
+            22,
+            6311581,
+            2097151
+          ],
+          [
+            22,
+            6311580,
+            2097151
+          ],
+          [
+            22,
+            6311581,
+            2097150
+          ],
+          [
+            22,
+            6311580,
+            2097150
+          ],
+          [
+            22,
+            6311579,
+            2097151
+          ],
+          [
+            22,
+            6311578,
+            2097151
+          ],
+          [
+            22,
+            6311579,
+            2097150
+          ],
+          [
+            22,
+            6311578,
+            2097150
+          ],
+          [
+            22,
+            6311577,
+            2097151
+          ],
+          [
+            22,
+            6311576,
+            2097151
+          ],
+          [
+            22,
+            6311577,
+            2097150
+          ],
+          [
+            22,
+            6311576,
+            2097150
+          ],
+          [
+            22,
+            6311577,
+            2097149
+          ],
+          [
+            22,
+            6311576,
+            2097149
+          ],
+          [
+            22,
+            6311575,
+            2097151
+          ],
+          [
+            22,
+            6311574,
+            2097151
+          ],
+          [
+            22,
+            6311575,
+            2097150
+          ],
+          [
+            22,
+            6311574,
+            2097150
+          ],
+          [
+            22,
+            6311573,
+            2097151
+          ],
+          [
+            22,
+            6311572,
+            2097151
+          ],
+          [
+            22,
+            6311573,
+            2097150
+          ],
+          [
+            22,
+            6311572,
+            2097150
+          ],
+          [
+            22,
+            6311575,
+            2097149
+          ],
+          [
+            22,
+            6311574,
+            2097149
+          ],
+          [
+            22,
+            6311573,
+            2097149
+          ],
+          [
+            22,
+            6311572,
+            2097149
+          ],
+          [
+            21,
+            3155785,
+            1048575
+          ],
+          [
+            21,
+            3155784,
+            1048575
+          ],
+          [
+            21,
+            3155785,
+            1048574
+          ],
+          [
+            21,
+            3155784,
+            1048574
+          ],
+          [
+            21,
+            3155783,
+            1048575
+          ],
+          [
+            21,
+            3155782,
+            1048575
+          ],
+          [
+            21,
+            3155783,
+            1048574
+          ],
+          [
+            21,
+            3155782,
+            1048574
+          ],
+          [
+            21,
+            3155781,
+            1048575
+          ],
+          [
+            21,
+            3155780,
+            1048575
+          ],
+          [
+            21,
+            3155781,
+            1048574
+          ],
+          [
+            21,
+            3155780,
+            1048574
+          ],
+          [
+            21,
+            3155779,
+            1048575
+          ],
+          [
+            21,
+            3155778,
+            1048575
+          ],
+          [
+            21,
+            3155779,
+            1048574
+          ],
+          [
+            21,
+            3155778,
+            1048574
+          ],
+          [
+            21,
+            3155777,
+            1048575
+          ],
+          [
+            21,
+            3155776,
+            1048575
+          ],
+          [
+            21,
+            3155777,
+            1048574
+          ],
+          [
+            21,
+            3155776,
+            1048574
+          ],
+          [
+            21,
+            3155779,
+            1048573
+          ],
+          [
+            21,
+            3155778,
+            1048573
+          ],
+          [
+            21,
+            3155777,
+            1048573
+          ],
+          [
+            21,
+            3155776,
+            1048573
+          ],
+          [
+            21,
+            3155775,
+            1048575
+          ],
+          [
+            21,
+            3155774,
+            1048575
+          ],
+          [
+            21,
+            3155775,
+            1048574
+          ],
+          [
+            21,
+            3155774,
+            1048574
+          ],
+          [
+            20,
+            1577886,
+            524287
+          ],
+          [
+            21,
+            3155775,
+            1048573
+          ],
+          [
+            21,
+            3155774,
+            1048573
+          ],
+          [
+            20,
+            1577886,
+            524286
+          ],
+          [
+            20,
+            1577885,
+            524287
+          ],
+          [
+            20,
+            1577884,
+            524287
+          ],
+          [
+            20,
+            1577885,
+            524286
+          ],
+          [
+            20,
+            1577884,
+            524286
+          ],
+          [
+            20,
+            1577883,
+            524287
+          ],
+          [
+            20,
+            1577882,
+            524287
+          ],
+          [
+            20,
+            1577883,
+            524286
+          ],
+          [
+            20,
+            1577882,
+            524286
+          ],
+          [
+            20,
+            1577881,
+            524287
+          ],
+          [
+            20,
+            1577880,
+            524287
+          ],
+          [
+            20,
+            1577881,
+            524286
+          ],
+          [
+            20,
+            1577880,
+            524286
+          ],
+          [
+            20,
+            1577880,
+            524285
+          ],
+          [
+            20,
+            1577879,
+            524287
+          ],
+          [
+            20,
+            1577878,
+            524287
+          ],
+          [
+            20,
+            1577879,
+            524286
+          ],
+          [
+            20,
+            1577878,
+            524286
+          ],
+          [
+            20,
+            1577877,
+            524287
+          ],
+          [
+            20,
+            1577876,
+            524287
+          ],
+          [
+            20,
+            1577877,
+            524286
+          ],
+          [
+            20,
+            1577876,
+            524286
+          ],
+          [
+            20,
+            1577879,
+            524285
+          ],
+          [
+            20,
+            1577878,
+            524285
+          ],
+          [
+            20,
+            1577877,
+            524285
+          ],
+          [
+            20,
+            1577876,
+            524285
+          ],
+          [
+            20,
+            1577875,
+            524287
+          ],
+          [
+            20,
+            1577874,
+            524287
+          ],
+          [
+            20,
+            1577875,
+            524286
+          ],
+          [
+            20,
+            1577874,
+            524286
+          ],
+          [
+            19,
+            788936,
+            262143
+          ],
+          [
+            20,
+            1577875,
+            524285
+          ],
+          [
+            20,
+            1577874,
+            524285
+          ],
+          [
+            19,
+            788936,
+            262142
+          ],
+          [
+            19,
+            788935,
+            262143
+          ],
+          [
+            19,
+            788934,
+            262143
+          ],
+          [
+            19,
+            788935,
+            262142
+          ],
+          [
+            19,
+            788934,
+            262142
+          ],
+          [
+            19,
+            788933,
+            262143
+          ],
+          [
+            19,
+            788932,
+            262143
+          ],
+          [
+            19,
+            788933,
+            262142
+          ],
+          [
+            19,
+            788932,
+            262142
+          ],
+          [
+            19,
+            788931,
+            262143
+          ],
+          [
+            19,
+            788930,
+            262143
+          ],
+          [
+            19,
+            788931,
+            262142
+          ],
+          [
+            19,
+            788930,
+            262142
+          ],
+          [
+            19,
+            788929,
+            262143
+          ],
+          [
+            19,
+            788928,
+            262143
+          ],
+          [
+            19,
+            788929,
+            262142
+          ],
+          [
+            19,
+            788928,
+            262142
+          ],
+          [
+            19,
+            788930,
+            262141
+          ],
+          [
+            19,
+            788929,
+            262141
+          ],
+          [
+            19,
+            788928,
+            262141
+          ],
+          [
+            19,
+            788927,
+            262143
+          ],
+          [
+            19,
+            788926,
+            262143
+          ],
+          [
+            19,
+            788927,
+            262142
+          ],
+          [
+            19,
+            788926,
+            262142
+          ],
+          [
+            19,
+            788925,
+            262143
+          ],
+          [
+            19,
+            788924,
+            262143
+          ],
+          [
+            19,
+            788925,
+            262142
+          ],
+          [
+            19,
+            788924,
+            262142
+          ],
+          [
+            19,
+            788927,
+            262141
+          ],
+          [
+            19,
+            788926,
+            262141
+          ],
+          [
+            19,
+            788925,
+            262141
+          ],
+          [
+            19,
+            788924,
+            262141
+          ],
+          [
+            18,
+            394461,
+            131071
+          ],
+          [
+            18,
+            394460,
+            131071
+          ],
+          [
+            18,
+            394461,
+            131070
+          ],
+          [
+            18,
+            394460,
+            131070
+          ],
+          [
+            18,
+            394459,
+            131071
+          ],
+          [
+            18,
+            394458,
+            131071
+          ],
+          [
+            18,
+            394459,
+            131070
+          ],
+          [
+            18,
+            394458,
+            131070
+          ],
+          [
+            18,
+            394457,
+            131071
+          ],
+          [
+            18,
+            394456,
+            131071
+          ],
+          [
+            18,
+            394457,
+            131070
+          ],
+          [
+            18,
+            394456,
+            131070
+          ],
+          [
+            18,
+            394455,
+            131071
+          ],
+          [
+            18,
+            394454,
+            131071
+          ],
+          [
+            18,
+            394455,
+            131070
+          ],
+          [
+            18,
+            394454,
+            131070
+          ],
+          [
+            18,
+            394453,
+            131071
+          ],
+          [
+            18,
+            394452,
+            131071
+          ],
+          [
+            18,
+            394453,
+            131070
+          ],
+          [
+            18,
+            394452,
+            131070
+          ],
+          [
+            18,
+            394455,
+            131069
+          ],
+          [
+            18,
+            394454,
+            131069
+          ],
+          [
+            18,
+            394453,
+            131069
+          ],
+          [
+            18,
+            394452,
+            131069
+          ],
+          [
+            18,
+            394451,
+            131071
+          ],
+          [
+            18,
+            394450,
+            131071
+          ],
+          [
+            18,
+            394451,
+            131070
+          ],
+          [
+            18,
+            394450,
+            131070
+          ],
+          [
+            17,
+            197224,
+            65535
+          ],
+          [
+            18,
+            394451,
+            131069
+          ],
+          [
+            18,
+            394450,
+            131069
+          ],
+          [
+            17,
+            197224,
+            65534
+          ],
+          [
+            17,
+            197223,
+            65535
+          ],
+          [
+            17,
+            197222,
+            65535
+          ],
+          [
+            17,
+            197223,
+            65534
+          ],
+          [
+            17,
+            197222,
+            65534
+          ],
+          [
+            17,
+            197221,
+            65535
+          ],
+          [
+            17,
+            197220,
+            65535
+          ],
+          [
+            17,
+            197221,
+            65534
+          ],
+          [
+            17,
+            197220,
+            65534
+          ],
+          [
+            17,
+            197219,
+            65535
+          ],
+          [
+            17,
+            197218,
+            65535
+          ],
+          [
+            17,
+            197219,
+            65534
+          ],
+          [
+            17,
+            197218,
+            65534
+          ],
+          [
+            17,
+            197217,
+            65535
+          ],
+          [
+            17,
+            197216,
+            65535
+          ],
+          [
+            17,
+            197217,
+            65534
+          ],
+          [
+            17,
+            197216,
+            65534
+          ],
+          [
+            17,
+            197218,
+            65533
+          ],
+          [
+            17,
+            197217,
+            65533
+          ],
+          [
+            17,
+            197216,
+            65533
+          ],
+          [
+            17,
+            197215,
+            65535
+          ],
+          [
+            17,
+            197214,
+            65535
+          ],
+          [
+            17,
+            197215,
+            65534
+          ],
+          [
+            17,
+            197214,
+            65534
+          ],
+          [
+            17,
+            197213,
+            65535
+          ],
+          [
+            17,
+            197212,
+            65535
+          ],
+          [
+            17,
+            197213,
+            65534
+          ],
+          [
+            17,
+            197212,
+            65534
+          ],
+          [
+            17,
+            197215,
+            65533
+          ],
+          [
+            17,
+            197214,
+            65533
+          ],
+          [
+            17,
+            197213,
+            65533
+          ],
+          [
+            17,
+            197212,
+            65533
+          ],
+          [
+            16,
+            98605,
+            32767
+          ],
+          [
+            16,
+            98604,
+            32767
+          ],
+          [
+            16,
+            98605,
+            32766
+          ],
+          [
+            16,
+            98604,
+            32766
+          ],
+          [
+            16,
+            98603,
+            32767
+          ],
+          [
+            16,
+            98602,
+            32767
+          ],
+          [
+            16,
+            98603,
+            32766
+          ],
+          [
+            16,
+            98602,
+            32766
+          ],
+          [
+            16,
+            98601,
+            32767
+          ],
+          [
+            23,
+            12623173,
+            4194304
+          ],
+          [
+            23,
+            12623172,
+            4194304
+          ],
+          [
+            23,
+            12623173,
+            4194305
+          ],
+          [
+            23,
+            12623172,
+            4194305
+          ],
+          [
+            23,
+            12623173,
+            4194306
+          ],
+          [
+            23,
+            12623172,
+            4194306
+          ],
+          [
+            23,
+            12623171,
+            4194304
+          ],
+          [
+            23,
+            12623170,
+            4194304
+          ],
+          [
+            23,
+            12623171,
+            4194305
+          ],
+          [
+            23,
+            12623170,
+            4194305
+          ],
+          [
+            22,
+            6311584,
+            2097152
+          ],
+          [
+            23,
+            12623171,
+            4194306
+          ],
+          [
+            23,
+            12623170,
+            4194306
+          ],
+          [
+            22,
+            6311584,
+            2097153
+          ],
+          [
+            22,
+            6311583,
+            2097152
+          ],
+          [
+            22,
+            6311582,
+            2097152
+          ],
+          [
+            22,
+            6311583,
+            2097153
+          ],
+          [
+            22,
+            6311582,
+            2097153
+          ],
+          [
+            22,
+            6311581,
+            2097152
+          ],
+          [
+            22,
+            6311580,
+            2097152
+          ],
+          [
+            22,
+            6311581,
+            2097153
+          ],
+          [
+            22,
+            6311580,
+            2097153
+          ],
+          [
+            22,
+            6311579,
+            2097152
+          ],
+          [
+            22,
+            6311578,
+            2097152
+          ],
+          [
+            22,
+            6311579,
+            2097153
+          ],
+          [
+            22,
+            6311578,
+            2097153
+          ],
+          [
+            22,
+            6311577,
+            2097152
+          ],
+          [
+            22,
+            6311576,
+            2097152
+          ],
+          [
+            22,
+            6311577,
+            2097153
+          ],
+          [
+            22,
+            6311576,
+            2097153
+          ],
+          [
+            22,
+            6311578,
+            2097154
+          ],
+          [
+            22,
+            6311577,
+            2097154
+          ],
+          [
+            22,
+            6311576,
+            2097154
+          ],
+          [
+            22,
+            6311575,
+            2097152
+          ],
+          [
+            22,
+            6311574,
+            2097152
+          ],
+          [
+            22,
+            6311575,
+            2097153
+          ],
+          [
+            22,
+            6311574,
+            2097153
+          ],
+          [
+            22,
+            6311573,
+            2097152
+          ],
+          [
+            22,
+            6311572,
+            2097152
+          ],
+          [
+            22,
+            6311573,
+            2097153
+          ],
+          [
+            22,
+            6311572,
+            2097153
+          ],
+          [
+            22,
+            6311575,
+            2097154
+          ],
+          [
+            22,
+            6311574,
+            2097154
+          ],
+          [
+            22,
+            6311573,
+            2097154
+          ],
+          [
+            22,
+            6311572,
+            2097154
+          ],
+          [
+            21,
+            3155785,
+            1048576
+          ],
+          [
+            21,
+            3155784,
+            1048576
+          ],
+          [
+            21,
+            3155785,
+            1048577
+          ],
+          [
+            21,
+            3155784,
+            1048577
+          ],
+          [
+            21,
+            3155783,
+            1048576
+          ],
+          [
+            21,
+            3155782,
+            1048576
+          ],
+          [
+            21,
+            3155783,
+            1048577
+          ],
+          [
+            21,
+            3155782,
+            1048577
+          ],
+          [
+            21,
+            3155781,
+            1048576
+          ],
+          [
+            21,
+            3155780,
+            1048576
+          ],
+          [
+            21,
+            3155781,
+            1048577
+          ],
+          [
+            21,
+            3155780,
+            1048577
+          ],
+          [
+            21,
+            3155779,
+            1048576
+          ],
+          [
+            21,
+            3155778,
+            1048576
+          ],
+          [
+            21,
+            3155779,
+            1048577
+          ],
+          [
+            21,
+            3155778,
+            1048577
+          ],
+          [
+            21,
+            3155777,
+            1048576
+          ],
+          [
+            21,
+            3155776,
+            1048576
+          ],
+          [
+            21,
+            3155777,
+            1048577
+          ],
+          [
+            21,
+            3155776,
+            1048577
+          ],
+          [
+            21,
+            3155779,
+            1048578
+          ],
+          [
+            21,
+            3155778,
+            1048578
+          ],
+          [
+            21,
+            3155777,
+            1048578
+          ],
+          [
+            21,
+            3155776,
+            1048578
+          ],
+          [
+            21,
+            3155775,
+            1048576
+          ],
+          [
+            21,
+            3155774,
+            1048576
+          ],
+          [
+            21,
+            3155775,
+            1048577
+          ],
+          [
+            21,
+            3155774,
+            1048577
+          ],
+          [
+            20,
+            1577886,
+            524288
+          ],
+          [
+            21,
+            3155775,
+            1048578
+          ],
+          [
+            21,
+            3155774,
+            1048578
+          ],
+          [
+            20,
+            1577886,
+            524289
+          ],
+          [
+            20,
+            1577885,
+            524288
+          ],
+          [
+            20,
+            1577884,
+            524288
+          ],
+          [
+            20,
+            1577885,
+            524289
+          ],
+          [
+            20,
+            1577884,
+            524289
+          ],
+          [
+            20,
+            1577883,
+            524288
+          ],
+          [
+            20,
+            1577882,
+            524288
+          ],
+          [
+            20,
+            1577883,
+            524289
+          ],
+          [
+            20,
+            1577882,
+            524289
+          ],
+          [
+            20,
+            1577881,
+            524288
+          ],
+          [
+            20,
+            1577880,
+            524288
+          ],
+          [
+            20,
+            1577881,
+            524289
+          ],
+          [
+            20,
+            1577880,
+            524289
+          ],
+          [
+            20,
+            1577880,
+            524290
+          ],
+          [
+            20,
+            1577879,
+            524288
+          ],
+          [
+            20,
+            1577878,
+            524288
+          ],
+          [
+            20,
+            1577879,
+            524289
+          ],
+          [
+            20,
+            1577878,
+            524289
+          ],
+          [
+            20,
+            1577877,
+            524288
+          ],
+          [
+            20,
+            1577876,
+            524288
+          ],
+          [
+            20,
+            1577877,
+            524289
+          ],
+          [
+            20,
+            1577876,
+            524289
+          ],
+          [
+            20,
+            1577879,
+            524290
+          ],
+          [
+            20,
+            1577878,
+            524290
+          ],
+          [
+            20,
+            1577877,
+            524290
+          ],
+          [
+            20,
+            1577876,
+            524290
+          ],
+          [
+            20,
+            1577875,
+            524288
+          ],
+          [
+            20,
+            1577874,
+            524288
+          ],
+          [
+            20,
+            1577875,
+            524289
+          ],
+          [
+            20,
+            1577874,
+            524289
+          ],
+          [
+            19,
+            788936,
+            262144
+          ],
+          [
+            20,
+            1577875,
+            524290
+          ],
+          [
+            20,
+            1577874,
+            524290
+          ],
+          [
+            19,
+            788936,
+            262145
+          ],
+          [
+            19,
+            788935,
+            262144
+          ],
+          [
+            19,
+            788934,
+            262144
+          ],
+          [
+            19,
+            788935,
+            262145
+          ],
+          [
+            19,
+            788934,
+            262145
+          ],
+          [
+            19,
+            788933,
+            262144
+          ],
+          [
+            19,
+            788932,
+            262144
+          ],
+          [
+            19,
+            788933,
+            262145
+          ],
+          [
+            19,
+            788932,
+            262145
+          ],
+          [
+            19,
+            788931,
+            262144
+          ],
+          [
+            19,
+            788930,
+            262144
+          ],
+          [
+            19,
+            788931,
+            262145
+          ],
+          [
+            19,
+            788930,
+            262145
+          ],
+          [
+            19,
+            788929,
+            262144
+          ],
+          [
+            19,
+            788928,
+            262144
+          ],
+          [
+            19,
+            788929,
+            262145
+          ],
+          [
+            19,
+            788928,
+            262145
+          ],
+          [
+            19,
+            788930,
+            262146
+          ],
+          [
+            19,
+            788929,
+            262146
+          ],
+          [
+            19,
+            788928,
+            262146
+          ],
+          [
+            19,
+            788927,
+            262144
+          ],
+          [
+            19,
+            788926,
+            262144
+          ],
+          [
+            19,
+            788927,
+            262145
+          ],
+          [
+            19,
+            788926,
+            262145
+          ],
+          [
+            19,
+            788925,
+            262144
+          ],
+          [
+            19,
+            788924,
+            262144
+          ],
+          [
+            19,
+            788925,
+            262145
+          ],
+          [
+            19,
+            788924,
+            262145
+          ],
+          [
+            19,
+            788927,
+            262146
+          ],
+          [
+            19,
+            788926,
+            262146
+          ],
+          [
+            19,
+            788925,
+            262146
+          ],
+          [
+            19,
+            788924,
+            262146
+          ],
+          [
+            18,
+            394461,
+            131072
+          ],
+          [
+            18,
+            394460,
+            131072
+          ],
+          [
+            18,
+            394461,
+            131073
+          ],
+          [
+            18,
+            394460,
+            131073
+          ],
+          [
+            18,
+            394459,
+            131072
+          ],
+          [
+            18,
+            394458,
+            131072
+          ],
+          [
+            18,
+            394459,
+            131073
+          ],
+          [
+            18,
+            394458,
+            131073
+          ],
+          [
+            18,
+            394457,
+            131072
+          ],
+          [
+            18,
+            394456,
+            131072
+          ],
+          [
+            18,
+            394457,
+            131073
+          ],
+          [
+            18,
+            394456,
+            131073
+          ],
+          [
+            18,
+            394456,
+            131074
+          ],
+          [
+            18,
+            394455,
+            131072
+          ],
+          [
+            18,
+            394454,
+            131072
+          ],
+          [
+            18,
+            394455,
+            131073
+          ],
+          [
+            18,
+            394454,
+            131073
+          ],
+          [
+            18,
+            394453,
+            131072
+          ],
+          [
+            18,
+            394452,
+            131072
+          ],
+          [
+            18,
+            394453,
+            131073
+          ],
+          [
+            18,
+            394452,
+            131073
+          ],
+          [
+            18,
+            394455,
+            131074
+          ],
+          [
+            18,
+            394454,
+            131074
+          ],
+          [
+            18,
+            394453,
+            131074
+          ],
+          [
+            18,
+            394452,
+            131074
+          ],
+          [
+            18,
+            394451,
+            131072
+          ],
+          [
+            18,
+            394450,
+            131072
+          ],
+          [
+            18,
+            394451,
+            131073
+          ],
+          [
+            18,
+            394450,
+            131073
+          ],
+          [
+            17,
+            197224,
+            65536
+          ],
+          [
+            18,
+            394451,
+            131074
+          ],
+          [
+            18,
+            394450,
+            131074
+          ],
+          [
+            17,
+            197224,
+            65537
+          ],
+          [
+            17,
+            197223,
+            65536
+          ],
+          [
+            17,
+            197222,
+            65536
+          ],
+          [
+            17,
+            197223,
+            65537
+          ],
+          [
+            17,
+            197222,
+            65537
+          ],
+          [
+            17,
+            197221,
+            65536
+          ],
+          [
+            17,
+            197220,
+            65536
+          ],
+          [
+            17,
+            197221,
+            65537
+          ],
+          [
+            17,
+            197220,
+            65537
+          ],
+          [
+            17,
+            197219,
+            65536
+          ],
+          [
+            17,
+            197218,
+            65536
+          ],
+          [
+            17,
+            197219,
+            65537
+          ],
+          [
+            17,
+            197218,
+            65537
+          ],
+          [
+            17,
+            197217,
+            65536
+          ],
+          [
+            17,
+            197216,
+            65536
+          ],
+          [
+            17,
+            197217,
+            65537
+          ],
+          [
+            17,
+            197216,
+            65537
+          ],
+          [
+            17,
+            197218,
+            65538
+          ],
+          [
+            17,
+            197217,
+            65538
+          ],
+          [
+            17,
+            197216,
+            65538
+          ],
+          [
+            17,
+            197215,
+            65536
+          ],
+          [
+            17,
+            197214,
+            65536
+          ],
+          [
+            17,
+            197215,
+            65537
+          ],
+          [
+            17,
+            197214,
+            65537
+          ],
+          [
+            17,
+            197213,
+            65536
+          ],
+          [
+            17,
+            197212,
+            65536
+          ],
+          [
+            17,
+            197213,
+            65537
+          ],
+          [
+            17,
+            197212,
+            65537
+          ],
+          [
+            17,
+            197215,
+            65538
+          ],
+          [
+            17,
+            197214,
+            65538
+          ],
+          [
+            17,
+            197213,
+            65538
+          ],
+          [
+            17,
+            197212,
+            65538
+          ],
+          [
+            16,
+            98605,
+            32768
+          ],
+          [
+            16,
+            98604,
+            32768
+          ],
+          [
+            16,
+            98605,
+            32769
+          ],
+          [
+            16,
+            98604,
+            32769
+          ],
+          [
+            16,
+            98603,
+            32768
+          ],
+          [
+            16,
+            98602,
+            32768
+          ],
+          [
+            16,
+            98603,
+            32769
+          ],
+          [
+            16,
+            98602,
+            32769
+          ],
+          [
+            16,
+            98601,
+            32768
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 261,
+          "rgbMean": [
+            253.05747126436782,
+            236.93486590038313,
+            78.01915708812261
+          ],
+          "displayLinearLuminanceMean": 0.8197574311734851,
+          "anyChannel254Fraction": 0.05747126436781609
+        },
+        "annulus": {
+          "count": 2520,
+          "rgbMean": [
+            249.734126984127,
+            225.44325396825397,
+            69.09484126984127
+          ],
+          "displayLinearLuminanceMean": 0.7480640852820182,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            231.81879340277777,
+            200.70529513888889,
+            93.85579427083333
+          ],
+          "displayLinearLuminanceMean": 0.5958527230266685,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            44.53455105633803,
+            137,
+            200
+          ],
+          "displayLinearLuminanceMean": 0.22608964547231475,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f",
+      "status": "FAIL",
+      "review": "The yellow field is nearly uniform and disk contrast is weak. Existing physical-only/no-Bloom baseline controls show much of the yellow predates B4 artwork integration.",
+      "screenshot": "ground-twilight-2m-atmosphere-on.png"
+    },
+    {
+      "name": "ground-night-2m-atmosphere-on",
+      "sceneId": "A08",
+      "geometry": {
+        "height": 2,
+        "sunElevationDegrees": -8,
+        "limbElevationDegrees": -0.04537385202370548,
+        "limbOffsetDegrees": -7.9546261479762945,
+        "cameraElevation": 0.5,
+        "groundFacing": false
+      },
+      "time": "2026-03-20T12:00:00Z",
       "camera": {
         "position": [
           -1092679.0103238476,
@@ -445,18 +4229,49 @@
           0.9836835738869121,
           0.0000066447576115835955
         ],
+        "longitudeDegrees": 99.86435883943237,
+        "latitudeDegrees": 0,
         "heightMeters": 1.999999998733464,
-        "cameraElevationDegrees": 0.4999999999999967
+        "elevationDegrees": 0.4999999999999967,
+        "fovRadians": 0.5235987755982988,
+        "fovyRadians": 0.29919083757908044,
+        "aspectRatio": 1.7777777777777777,
+        "near": 0.1,
+        "far": 500000000
       },
       "sun": {
-        "elevationDegrees": -8.000000000000002,
         "direction": [
           0.9994703641024076,
           0.03253340922813717,
           -0.0007540324896109544
-        ]
+        ],
+        "elevationDegrees": -8.000000000000002,
+        "angularRadius": 0.00465,
+        "projectedCenter": [
+          960.0000000000015,
+          1075.4483810659096
+        ],
+        "show": true,
+        "glowStrength": 0.08,
+        "glowRadius": 0.05
       },
-      "atmosphere": true,
+      "exposure": 1,
+      "mode": "all",
+      "atmosphere": {
+        "show": true,
+        "rayleighScattering": [
+          0.000005802,
+          0.000013558,
+          0.0000331
+        ],
+        "mieScattering": 0.000003996,
+        "mieExtinction": 0.00000444,
+        "rayleighScaleHeight": 8000,
+        "mieScaleHeight": 1200,
+        "mieAnisotropy": 0.8,
+        "lightIntensity": 10,
+        "multipleScatteringStrength": 1
+      },
       "solarEffects": {
         "rays": 1,
         "softHalo": 1,
@@ -465,26 +4280,1449 @@
         "tint": 1
       },
       "bloomStrength": 0.35,
-      "terrainProvider": "EllipsoidTerrainProvider",
-      "errors": []
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1,
+      "framing": {
+        "skyRays": 15,
+        "earthRays": 10
+      },
+      "terrain": {
+        "provider": "EllipsoidTerrainProvider",
+        "tilesLoaded": true,
+        "selectedMeshes": [
+          [
+            23,
+            13042618,
+            4194303
+          ],
+          [
+            23,
+            13042618,
+            4194302
+          ],
+          [
+            23,
+            13042617,
+            4194303
+          ],
+          [
+            23,
+            13042616,
+            4194303
+          ],
+          [
+            23,
+            13042617,
+            4194302
+          ],
+          [
+            23,
+            13042616,
+            4194302
+          ],
+          [
+            23,
+            13042616,
+            4194301
+          ],
+          [
+            23,
+            13042615,
+            4194303
+          ],
+          [
+            23,
+            13042614,
+            4194303
+          ],
+          [
+            23,
+            13042615,
+            4194302
+          ],
+          [
+            23,
+            13042614,
+            4194302
+          ],
+          [
+            22,
+            6521306,
+            2097151
+          ],
+          [
+            23,
+            13042615,
+            4194301
+          ],
+          [
+            23,
+            13042614,
+            4194301
+          ],
+          [
+            22,
+            6521306,
+            2097150
+          ],
+          [
+            22,
+            6521305,
+            2097151
+          ],
+          [
+            22,
+            6521304,
+            2097151
+          ],
+          [
+            22,
+            6521305,
+            2097150
+          ],
+          [
+            22,
+            6521304,
+            2097150
+          ],
+          [
+            22,
+            6521304,
+            2097149
+          ],
+          [
+            22,
+            6521303,
+            2097151
+          ],
+          [
+            22,
+            6521302,
+            2097151
+          ],
+          [
+            22,
+            6521303,
+            2097150
+          ],
+          [
+            22,
+            6521302,
+            2097150
+          ],
+          [
+            21,
+            3260650,
+            1048575
+          ],
+          [
+            22,
+            6521303,
+            2097149
+          ],
+          [
+            22,
+            6521302,
+            2097149
+          ],
+          [
+            21,
+            3260650,
+            1048574
+          ],
+          [
+            21,
+            3260649,
+            1048575
+          ],
+          [
+            21,
+            3260648,
+            1048575
+          ],
+          [
+            21,
+            3260649,
+            1048574
+          ],
+          [
+            21,
+            3260648,
+            1048574
+          ],
+          [
+            21,
+            3260648,
+            1048573
+          ],
+          [
+            21,
+            3260647,
+            1048575
+          ],
+          [
+            21,
+            3260646,
+            1048575
+          ],
+          [
+            21,
+            3260647,
+            1048574
+          ],
+          [
+            21,
+            3260646,
+            1048574
+          ],
+          [
+            20,
+            1630322,
+            524287
+          ],
+          [
+            21,
+            3260647,
+            1048573
+          ],
+          [
+            21,
+            3260646,
+            1048573
+          ],
+          [
+            20,
+            1630322,
+            524286
+          ],
+          [
+            20,
+            1630321,
+            524287
+          ],
+          [
+            20,
+            1630320,
+            524287
+          ],
+          [
+            20,
+            1630321,
+            524286
+          ],
+          [
+            20,
+            1630320,
+            524286
+          ],
+          [
+            20,
+            1630320,
+            524285
+          ],
+          [
+            20,
+            1630319,
+            524287
+          ],
+          [
+            20,
+            1630318,
+            524287
+          ],
+          [
+            20,
+            1630319,
+            524286
+          ],
+          [
+            20,
+            1630318,
+            524286
+          ],
+          [
+            19,
+            815158,
+            262143
+          ],
+          [
+            20,
+            1630319,
+            524285
+          ],
+          [
+            20,
+            1630318,
+            524285
+          ],
+          [
+            19,
+            815158,
+            262142
+          ],
+          [
+            19,
+            815157,
+            262143
+          ],
+          [
+            19,
+            815156,
+            262143
+          ],
+          [
+            19,
+            815157,
+            262142
+          ],
+          [
+            19,
+            815156,
+            262142
+          ],
+          [
+            19,
+            815156,
+            262141
+          ],
+          [
+            19,
+            815155,
+            262143
+          ],
+          [
+            19,
+            815154,
+            262143
+          ],
+          [
+            19,
+            815155,
+            262142
+          ],
+          [
+            19,
+            815154,
+            262142
+          ],
+          [
+            18,
+            407576,
+            131071
+          ],
+          [
+            19,
+            815155,
+            262141
+          ],
+          [
+            19,
+            815154,
+            262141
+          ],
+          [
+            18,
+            407576,
+            131070
+          ],
+          [
+            18,
+            407575,
+            131071
+          ],
+          [
+            18,
+            407574,
+            131071
+          ],
+          [
+            18,
+            407575,
+            131070
+          ],
+          [
+            18,
+            407574,
+            131070
+          ],
+          [
+            18,
+            407573,
+            131071
+          ],
+          [
+            18,
+            407572,
+            131071
+          ],
+          [
+            18,
+            407573,
+            131070
+          ],
+          [
+            18,
+            407572,
+            131070
+          ],
+          [
+            18,
+            407574,
+            131069
+          ],
+          [
+            18,
+            407573,
+            131069
+          ],
+          [
+            18,
+            407572,
+            131069
+          ],
+          [
+            17,
+            203785,
+            65535
+          ],
+          [
+            17,
+            203784,
+            65535
+          ],
+          [
+            17,
+            203785,
+            65534
+          ],
+          [
+            17,
+            203784,
+            65534
+          ],
+          [
+            17,
+            203783,
+            65535
+          ],
+          [
+            17,
+            203782,
+            65535
+          ],
+          [
+            17,
+            203783,
+            65534
+          ],
+          [
+            17,
+            203782,
+            65534
+          ],
+          [
+            17,
+            203781,
+            65535
+          ],
+          [
+            17,
+            203780,
+            65535
+          ],
+          [
+            17,
+            203781,
+            65534
+          ],
+          [
+            17,
+            203780,
+            65534
+          ],
+          [
+            17,
+            203783,
+            65533
+          ],
+          [
+            17,
+            203782,
+            65533
+          ],
+          [
+            17,
+            203781,
+            65533
+          ],
+          [
+            17,
+            203780,
+            65533
+          ],
+          [
+            16,
+            101889,
+            32767
+          ],
+          [
+            16,
+            101888,
+            32767
+          ],
+          [
+            16,
+            101889,
+            32766
+          ],
+          [
+            16,
+            101888,
+            32766
+          ],
+          [
+            16,
+            101888,
+            32765
+          ],
+          [
+            16,
+            101887,
+            32767
+          ],
+          [
+            16,
+            101886,
+            32767
+          ],
+          [
+            16,
+            101887,
+            32766
+          ],
+          [
+            16,
+            101886,
+            32766
+          ],
+          [
+            15,
+            50942,
+            16383
+          ],
+          [
+            16,
+            101887,
+            32765
+          ],
+          [
+            16,
+            101886,
+            32765
+          ],
+          [
+            15,
+            50942,
+            16382
+          ],
+          [
+            15,
+            50941,
+            16383
+          ],
+          [
+            15,
+            50940,
+            16383
+          ],
+          [
+            15,
+            50941,
+            16382
+          ],
+          [
+            15,
+            50940,
+            16382
+          ],
+          [
+            15,
+            50940,
+            16381
+          ],
+          [
+            15,
+            50939,
+            16383
+          ],
+          [
+            15,
+            50939,
+            16382
+          ],
+          [
+            15,
+            50939,
+            16381
+          ],
+          [
+            23,
+            13042618,
+            4194304
+          ],
+          [
+            23,
+            13042618,
+            4194305
+          ],
+          [
+            23,
+            13042617,
+            4194304
+          ],
+          [
+            23,
+            13042616,
+            4194304
+          ],
+          [
+            23,
+            13042617,
+            4194305
+          ],
+          [
+            23,
+            13042616,
+            4194305
+          ],
+          [
+            23,
+            13042617,
+            4194306
+          ],
+          [
+            23,
+            13042616,
+            4194306
+          ],
+          [
+            23,
+            13042615,
+            4194304
+          ],
+          [
+            23,
+            13042614,
+            4194304
+          ],
+          [
+            23,
+            13042615,
+            4194305
+          ],
+          [
+            23,
+            13042614,
+            4194305
+          ],
+          [
+            22,
+            6521306,
+            2097152
+          ],
+          [
+            23,
+            13042615,
+            4194306
+          ],
+          [
+            23,
+            13042614,
+            4194306
+          ],
+          [
+            22,
+            6521306,
+            2097153
+          ],
+          [
+            22,
+            6521305,
+            2097152
+          ],
+          [
+            22,
+            6521304,
+            2097152
+          ],
+          [
+            22,
+            6521305,
+            2097153
+          ],
+          [
+            22,
+            6521304,
+            2097153
+          ],
+          [
+            22,
+            6521304,
+            2097154
+          ],
+          [
+            22,
+            6521303,
+            2097152
+          ],
+          [
+            22,
+            6521302,
+            2097152
+          ],
+          [
+            22,
+            6521303,
+            2097153
+          ],
+          [
+            22,
+            6521302,
+            2097153
+          ],
+          [
+            21,
+            3260650,
+            1048576
+          ],
+          [
+            22,
+            6521303,
+            2097154
+          ],
+          [
+            22,
+            6521302,
+            2097154
+          ],
+          [
+            21,
+            3260650,
+            1048577
+          ],
+          [
+            21,
+            3260649,
+            1048576
+          ],
+          [
+            21,
+            3260648,
+            1048576
+          ],
+          [
+            21,
+            3260649,
+            1048577
+          ],
+          [
+            21,
+            3260648,
+            1048577
+          ],
+          [
+            21,
+            3260648,
+            1048578
+          ],
+          [
+            21,
+            3260647,
+            1048576
+          ],
+          [
+            21,
+            3260646,
+            1048576
+          ],
+          [
+            21,
+            3260647,
+            1048577
+          ],
+          [
+            21,
+            3260646,
+            1048577
+          ],
+          [
+            20,
+            1630322,
+            524288
+          ],
+          [
+            21,
+            3260647,
+            1048578
+          ],
+          [
+            21,
+            3260646,
+            1048578
+          ],
+          [
+            20,
+            1630322,
+            524289
+          ],
+          [
+            20,
+            1630321,
+            524288
+          ],
+          [
+            20,
+            1630320,
+            524288
+          ],
+          [
+            20,
+            1630321,
+            524289
+          ],
+          [
+            20,
+            1630320,
+            524289
+          ],
+          [
+            20,
+            1630320,
+            524290
+          ],
+          [
+            20,
+            1630319,
+            524288
+          ],
+          [
+            20,
+            1630318,
+            524288
+          ],
+          [
+            20,
+            1630319,
+            524289
+          ],
+          [
+            20,
+            1630318,
+            524289
+          ],
+          [
+            19,
+            815158,
+            262144
+          ],
+          [
+            20,
+            1630319,
+            524290
+          ],
+          [
+            20,
+            1630318,
+            524290
+          ],
+          [
+            19,
+            815158,
+            262145
+          ],
+          [
+            19,
+            815157,
+            262144
+          ],
+          [
+            19,
+            815156,
+            262144
+          ],
+          [
+            19,
+            815157,
+            262145
+          ],
+          [
+            19,
+            815156,
+            262145
+          ],
+          [
+            19,
+            815156,
+            262146
+          ],
+          [
+            19,
+            815155,
+            262144
+          ],
+          [
+            19,
+            815154,
+            262144
+          ],
+          [
+            19,
+            815155,
+            262145
+          ],
+          [
+            19,
+            815154,
+            262145
+          ],
+          [
+            18,
+            407576,
+            131072
+          ],
+          [
+            19,
+            815155,
+            262146
+          ],
+          [
+            19,
+            815154,
+            262146
+          ],
+          [
+            18,
+            407576,
+            131073
+          ],
+          [
+            18,
+            407575,
+            131072
+          ],
+          [
+            18,
+            407574,
+            131072
+          ],
+          [
+            18,
+            407575,
+            131073
+          ],
+          [
+            18,
+            407574,
+            131073
+          ],
+          [
+            18,
+            407573,
+            131072
+          ],
+          [
+            18,
+            407572,
+            131072
+          ],
+          [
+            18,
+            407573,
+            131073
+          ],
+          [
+            18,
+            407572,
+            131073
+          ],
+          [
+            18,
+            407574,
+            131074
+          ],
+          [
+            18,
+            407573,
+            131074
+          ],
+          [
+            18,
+            407572,
+            131074
+          ],
+          [
+            17,
+            203785,
+            65536
+          ],
+          [
+            17,
+            203784,
+            65536
+          ],
+          [
+            17,
+            203785,
+            65537
+          ],
+          [
+            17,
+            203784,
+            65537
+          ],
+          [
+            17,
+            203783,
+            65536
+          ],
+          [
+            17,
+            203782,
+            65536
+          ],
+          [
+            17,
+            203783,
+            65537
+          ],
+          [
+            17,
+            203782,
+            65537
+          ],
+          [
+            17,
+            203781,
+            65536
+          ],
+          [
+            17,
+            203780,
+            65536
+          ],
+          [
+            17,
+            203781,
+            65537
+          ],
+          [
+            17,
+            203780,
+            65537
+          ],
+          [
+            17,
+            203783,
+            65538
+          ],
+          [
+            17,
+            203782,
+            65538
+          ],
+          [
+            17,
+            203781,
+            65538
+          ],
+          [
+            17,
+            203780,
+            65538
+          ],
+          [
+            16,
+            101889,
+            32768
+          ],
+          [
+            16,
+            101888,
+            32768
+          ],
+          [
+            16,
+            101889,
+            32769
+          ],
+          [
+            16,
+            101888,
+            32769
+          ],
+          [
+            16,
+            101888,
+            32770
+          ],
+          [
+            16,
+            101887,
+            32768
+          ],
+          [
+            16,
+            101886,
+            32768
+          ],
+          [
+            16,
+            101887,
+            32769
+          ],
+          [
+            16,
+            101886,
+            32769
+          ],
+          [
+            15,
+            50942,
+            16384
+          ],
+          [
+            16,
+            101887,
+            32770
+          ],
+          [
+            16,
+            101886,
+            32770
+          ],
+          [
+            15,
+            50942,
+            16385
+          ],
+          [
+            15,
+            50941,
+            16384
+          ],
+          [
+            15,
+            50940,
+            16384
+          ],
+          [
+            15,
+            50941,
+            16385
+          ],
+          [
+            15,
+            50940,
+            16385
+          ],
+          [
+            15,
+            50940,
+            16386
+          ],
+          [
+            15,
+            50939,
+            16384
+          ],
+          [
+            15,
+            50939,
+            16385
+          ],
+          [
+            15,
+            50939,
+            16386
+          ]
+        ]
+      },
+      "metrics": {
+        "disk": {
+          "count": 27,
+          "rgbMean": [
+            42,
+            137,
+            200
+          ],
+          "displayLinearLuminanceMean": 0.22553691868734985,
+          "anyChannel254Fraction": 0
+        },
+        "annulus": {
+          "count": 204,
+          "rgbMean": [
+            42,
+            137,
+            200
+          ],
+          "displayLinearLuminanceMean": 0.2255369186873512,
+          "anyChannel254Fraction": 0
+        },
+        "sky": {
+          "count": 9216,
+          "rgbMean": [
+            1.0815972222222223,
+            1,
+            0
+          ],
+          "displayLinearLuminanceMean": 0.00028687779076206217,
+          "anyChannel254Fraction": 0
+        },
+        "surface": {
+          "count": 9088,
+          "rgbMean": [
+            42,
+            137,
+            200
+          ],
+          "displayLinearLuminanceMean": 0.2255369186873417,
+          "anyChannel254Fraction": 0
+        }
+      },
+      "errors": [],
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "status": "BLOCKED",
+      "review": "No obvious solar-artwork residual is visible, but the constant-color unlit night-side surface remains bright blue and prevents a complete ground-night scene judgement.",
+      "screenshot": "ground-night-2m-atmosphere-on.png"
     }
   ],
+  "browser": "156.0.8078.80",
+  "solarAssets": [
+    {
+      "name": "radial-rays-01",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 17
+    },
+    {
+      "name": "radial-rays-02",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 5.300000000745058
+    },
+    {
+      "name": "radial-rays-03",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 5.900000000372529
+    },
+    {
+      "name": "soft-halo",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 6.099999999627471
+    },
+    {
+      "name": "wide-halo",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 6
+    },
+    {
+      "name": "corona-fine",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 8.099999999627471
+    },
+    {
+      "name": "corona-mid",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 9.099999999627471
+    },
+    {
+      "name": "radial-noise",
+      "format": "r8unorm",
+      "width": 512,
+      "height": 512,
+      "byteLength": 262144,
+      "status": "LOADED",
+      "loadAndUploadMs": 9
+    },
+    {
+      "name": "glow-gradient",
+      "format": "rgba8unorm-srgb",
+      "width": 512,
+      "height": 512,
+      "byteLength": 1048576,
+      "status": "LOADED",
+      "loadAndUploadMs": 11.100000001490116
+    }
+  ],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 6564,
+      "buffersDestroyed": 6564,
+      "bufferBytes": 0,
+      "drawCalls": 231,
+      "triangles": 131670,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1920,
+      1080
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS",
+  "audit": {
+    "verdict": "FAIL",
+    "captureStatus": "PASS",
+    "method": "Fresh headed hardware WebGPU capture from a clean main-derived checkout; no post-processing or rescaling of PNGs.",
+    "currentMainAtStart": "f51ee9ea1618071ec67f77421c5a4d933ce1f3d4",
+    "runtimeCommit": "4544a483171ed94f4b1124323cf630773854c20b",
+    "engineSourceComparedToMain": "identical to main at audit start; branch adds only audit harness/evidence/docs",
+    "buildCommand": "npm run build",
+    "auditReviewCompletedAt": "2026-11-04T06:23:51.395Z",
+    "scope": "B5-A static eight-scene review only"
+  },
   "summary": {
     "PASS": 1,
     "FAIL": 6,
     "BLOCKED": 1,
     "NOT_RUN": 0
   },
+  "knownBaselineIssues": [
+    "Yellow physical twilight and reduced disk contrast persist in the physical-only/no-Bloom matched baseline controls; not a new B4 regression.",
+    "Unlit constant-color night-side terrain remains unrealistically bright blue; not attributed to solar artwork."
+  ],
   "excluded": [
     "B5-B 120-frame temporal stability",
-    "B5-B complete occultation matrix",
-    "B5-C performance mean/P95",
-    "B5-C resource lifecycle",
-    "full regression",
+    "B5-B continuous time/camera motion",
+    "B5-B complete Earth/terrain occultation matrix",
+    "B5-C GPU mean/P95 performance",
+    "B5-C full resource lifecycle",
+    "B5-C final full regression",
     "M2.6.1 closure"
   ],
-  "knownBaselineIssues": [
-    "Yellow physical twilight and reduced disk contrast persist in physical-only/no-Bloom baseline controls.",
-    "Unlit constant-color night-side terrain remains unrealistically bright blue."
+  "issues": [
+    {
+      "id": "B5A-01",
+      "stage": "B1 — Solar Rays",
+      "severity": "high",
+      "scenes": [
+        "A01",
+        "A03",
+        "A04"
+      ],
+      "finding": "Far-orbit radial spokes remain prominent and regular, competing with the solar disk/halo.",
+      "attribution": "B1 visual presentation",
+      "confidence": "high",
+      "disposition": "Record for user review; no Shader edit in B5-A."
+    },
+    {
+      "id": "B5A-02",
+      "stage": "B4 — Atmospheric Glow / integration diagnostic",
+      "severity": "medium",
+      "scenes": [
+        "A02"
+      ],
+      "finding": "A thin saturated cyan/yellow edge follows the Earth silhouette.",
+      "attribution": "Unresolved: physical scattering boundary vs atmosphere/surface composition edge vs capture fixture",
+      "confidence": "low",
+      "disposition": "Needs a matched diagnostic before assigning a code owner."
+    },
+    {
+      "id": "B5A-03",
+      "stage": "B3 — HDR Bloom + physical atmosphere interaction",
+      "severity": "high",
+      "scenes": [
+        "A03",
+        "A04",
+        "A05",
+        "A07"
+      ],
+      "finding": "Warm horizon/sky field is strongly saturated and disk contrast is reduced.",
+      "attribution": "Mixed; B4 matched physical-only/no-Bloom controls show much of the yellow predates authored solar artwork and Bloom.",
+      "confidence": "medium",
+      "disposition": "Do not label as a B4 regression or retune physical scattering within B5-A."
+    },
+    {
+      "id": "B5A-04",
+      "stage": "Physical atmosphere baseline (outside B1–B4 solar artwork)",
+      "severity": "medium",
+      "scenes": [
+        "A07"
+      ],
+      "finding": "Ground twilight retains a nearly uniform yellow field and weak disk separation in physical-only/no-Bloom controls.",
+      "attribution": "Pre-existing baseline",
+      "confidence": "high",
+      "disposition": "Record as baseline limitation; separate future atmosphere/HDR calibration."
+    },
+    {
+      "id": "B5A-05",
+      "stage": "Surface lighting baseline (outside B1–B4 solar artwork)",
+      "severity": "medium",
+      "scenes": [
+        "A08"
+      ],
+      "finding": "Constant-color unlit night-side terrain remains bright blue.",
+      "attribution": "Pre-existing surface-lighting limitation",
+      "confidence": "high",
+      "disposition": "A08 BLOCKED; not attributed to solar artwork."
+    }
   ]
 }
