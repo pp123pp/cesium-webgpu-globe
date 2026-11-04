@@ -1,0 +1,28 @@
+import karma from 'karma';
+import path from 'node:path';
+import fs from 'node:fs/promises';
+import process from 'node:process';
+import {createResultReporter} from '../coordination/ci/m0-webgl-regression.mjs';
+
+const root=process.env.WEBGL_DIAGNOSTIC_ROOT || process.cwd();
+const output=process.env.WEBGL_DIAGNOSTIC_OUTPUT || 'Build/m2-6-1-webgl-diagnostic.json';
+const grep='/Restrict tileset memory usage with maximumCacheOverflowBytes|Unloads cached tiles in a tileset with external tileset JSON file using cacheBytes/';
+const record={root,grep,specs:[],browserErrors:[],browsers:[],completed:false};
+const config=await karma.config.parseConfig(path.join(root,'Specs/karma.conf.cjs'),{
+ browsers:['ChromeHeadless'], singleRun:true,autoWatch:false,port:9876,
+ client:{args:['WebGL','',false,false,false,undefined,undefined,'--grep',grep], captureConsole:false,jasmine:{random:false}},
+},{promiseConfig:true,throwErrors:true});
+config.reporters=['dots','diagnostic-json'];
+config.plugins=[...config.plugins,{'reporter:diagnostic-json':['type',createResultReporter(record)]}];
+const exitCode=await new Promise((resolve,reject)=>{
+ const s=new karma.Server(config,resolve);
+ s.on('listening',port=>record.actualPort=port);
+ s.start().catch(reject);
+});
+record.exitCode=exitCode;
+record.selected=record.specs.filter(s=>s.status!=='skipped').map(({suite,description,status,errors})=>({suite,description,status,errors}));
+record.counts={passed:record.specs.filter(s=>s.status==='passed').length,failed:record.specs.filter(s=>s.status==='failed').length,skipped:record.specs.filter(s=>s.status==='skipped').length};
+record.finishedAt=new Date().toISOString();
+await fs.writeFile(output,JSON.stringify(record,null,2)+'\n');
+console.log('SCOPED_WEBGL_DIAG',JSON.stringify({root,actualPort:record.actualPort,counts:record.counts,selected:record.selected,exitCode},{replacer:null}));
+if(record.selected.length!==2 || record.counts.failed!==0 || record.actualPort!==9876 || exitCode!==0)process.exitCode=1;

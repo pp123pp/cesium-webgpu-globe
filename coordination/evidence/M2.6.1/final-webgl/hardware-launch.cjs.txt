@@ -1,0 +1,46 @@
+'use strict';
+// Local-only browser launcher adaptation for the M2.6.1 WebGL differential.
+// Keeps Karma's ChromeHeadless identity and all test assertions unchanged.
+const assert = require('node:assert/strict');
+const launchers = require('karma-chrome-launcher');
+const registered = launchers['launcher:ChromeHeadless'];
+assert.equal(registered[0], 'type');
+const Original = registered[1];
+function HardwareChromeHeadless(baseBrowserDecorator, args) {
+  Original.call(this, baseBrowserDecorator, args);
+  const originalOptions = this._getOptions;
+  this._getOptions = function (url) {
+    const options = originalOptions.call(this, url).filter(arg =>
+      arg !== '--disable-gpu' &&
+      !arg.startsWith('--remote-debugging-port=')
+    );
+    assert(!options.some(arg => /swiftshader|software-rasterizer/i.test(arg)), 'Software GPU launch forbidden');
+    const hardware = [
+      '--headless',
+      '--no-sandbox',
+      '--enable-webgl',
+      '--use-gl=angle',
+      '--use-angle=d3d11',
+      '--ignore-gpu-blocklist',
+      '--disable-software-rasterizer',
+      '--enable-gpu-rasterization',
+      '--remote-debugging-port=0',
+    ];
+    process.stdout.write('WEBGL_HARDWARE_KARMA_CHROME '+JSON.stringify(hardware)+'\\n');
+    return [...options.filter(arg => arg !== '--headless'), ...hardware];
+  };
+}
+HardwareChromeHeadless.prototype = Original.prototype;
+HardwareChromeHeadless.$inject = Original.$inject;
+registered[1] = HardwareChromeHeadless;
+// Windows host has ports 9876–9879 available on loopback but unavailable on
+// 0.0.0.0. Bind the unmodified Karma test suite to local loopback so its
+// strict expected port 9876 remains available; no test assertions are changed.
+const karma = require('karma');
+const originalParseConfig = karma.config.parseConfig;
+karma.config.parseConfig = async function (file, options, parseOptions) {
+  const config = await originalParseConfig.call(this, file, options, parseOptions);
+  config.listenAddress = '127.0.0.1';
+  config.hostname = '127.0.0.1';
+  return config;
+};

@@ -1,0 +1,30 @@
+{
+  "status": "failed",
+  "error": "AssertionError [ERR_ASSERTION]: New failed spec: [\"Scene/Cesium3DTileset\",\"Restrict tileset memory usage with maximumCacheOverflowBytes\"]",
+  "runs": [
+    {
+      "role": "baseline",
+      "completed": true,
+      "exitCode": 1,
+      "counts": {
+        "passed": 3821,
+        "failed": 1,
+        "skipped": 12068,
+        "executed": 3822,
+        "total": 15890
+      }
+    },
+    {
+      "role": "candidate",
+      "completed": true,
+      "exitCode": 1,
+      "counts": {
+        "passed": 3819,
+        "failed": 3,
+        "skipped": 12068,
+        "executed": 3822,
+        "total": 15890
+      }
+    }
+  ]
+}
