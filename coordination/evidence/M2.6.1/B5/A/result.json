@@ -1,0 +1,490 @@
+{
+  "suite": "M2.6.1-B5-A-static-integrated-visual-audit",
+  "auditCapturedAt": "2026-11-04T06:15:20.509Z",
+  "auditMethod": "Reuse of original raw WebGPU captures from the canonical B4 round-two hardware run; no new rendering run is claimed. Original PNG bytes and per-scene capture metadata are preserved.",
+  "sourceRun": {
+    "sourceCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "bundleBuildCommit": "995860bf2e3aa6cee0731d2e110643f45e16f6bf",
+    "captureHarnessCommit": "ac7884dcb15b0e83ac173f211b7eb1814ee26a92",
+    "bundleSha256": "71ea6226295ad805895660da9f6f4ce7711a93c4b32c69b03284bc1a3cdb402f",
+    "capturedAt": "2026-11-04T04:43:01.782Z",
+    "environment": {
+      "cesium": "1.146.0",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "viewport": [
+        1920,
+        1080
+      ]
+    },
+    "gpu": {
+      "kind": "hardware-reported",
+      "reason": "intel xe-lpg"
+    },
+    "browser": "156.0.8078.80",
+    "configuration": {
+      "mode": "hardware",
+      "requirePhysicalGpu": true,
+      "launchOptions": {
+        "headless": false,
+        "timeout": 30000,
+        "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "args": []
+      }
+    }
+  },
+  "currentMain": {
+    "commit": "f51ee9ea1618071ec67f77421c5a4d933ce1f3d4",
+    "engineSourceComparedToBundleBuild": "identical",
+    "verification": "git diff --quiet 995860bf2e3aa6cee0731d2e110643f45e16f6bf origin/main -- packages/engine/Source returned identical; intervening changes are documentation/evidence and B4 audit harness/evidence only. This proves engine-source equivalence, not a fresh production deployment capture."
+  },
+  "scenes": [
+    {
+      "id": "A01",
+      "name": "high-orbit-direct-36000km-atmosphere-on",
+      "status": "FAIL",
+      "review": "Disc, halo and corona are legible at long range. Radial rays remain too regular/prominent for the intended restrained distant-view presentation.",
+      "screenshot": "high-orbit-direct-36000km-atmosphere-on.png",
+      "pngSha256": "848a77fdf5013d89bb07fe3df1abdbab31bea648b624c680a8bc87111b12cdf9",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          35991773.89278689,
+          22371828.437596984,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.0325334092281373,
+          -0.0007540324896108581
+        ],
+        "up": [
+          -0.032532406468305575,
+          0.999469827875957,
+          0.0013060225825634135
+        ],
+        "heightMeters": 36000000,
+        "cameraElevationDegrees": 60.00000000000002
+      },
+      "sun": {
+        "elevationDegrees": 60.00000000000001,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A02",
+      "name": "high-orbit-limb-36000km-atmosphere-on",
+      "status": "FAIL",
+      "review": "Earth limb is present, but a thin saturated cyan/yellow edge is conspicuous; distinguish physical atmospheric rim from a hard/colored edge artifact.",
+      "screenshot": "high-orbit-limb-36000km-atmosphere-on.png",
+      "pngSha256": "409b09426d112683b20e286054af609d6e496594f59743b05a2253a4e4fd7b4e",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          -42049350.45234427,
+          5268645.188917547,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813646,
+          -0.0007540324896110347
+        ],
+        "up": [
+          -0.03253663566940021,
+          0.9994592208570753,
+          -0.004757434506635899
+        ],
+        "heightMeters": 36000000,
+        "cameraElevationDegrees": -80.99378636361065
+      },
+      "sun": {
+        "elevationDegrees": -80.99378636361061,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A03",
+      "name": "low-orbit-sunrise-400km-atmosphere-on",
+      "status": "FAIL",
+      "review": "Sun/limb composition is clear, but the red-orange horizon band is strongly saturated and radial artwork remains conspicuous.",
+      "screenshot": "low-orbit-sunrise-400km-atmosphere-on.png",
+      "pngSha256": "2fcc0f71679d2b6d07301086276ef7b00be2418b046001beeb02de10731566a8",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          -2461773.2322637625,
+          6315284.138000334,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813714,
+          -0.0007540324896107984
+        ],
+        "up": [
+          -0.032533617800739545,
+          0.9994706063465919,
+          -0.000266011224310126
+        ],
+        "heightMeters": 399999.99999999965,
+        "cameraElevationDegrees": -19.43206875821031
+      },
+      "sun": {
+        "elevationDegrees": -19.43206875821031,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A04",
+      "name": "low-orbit-low-sun-400km-atmosphere-on",
+      "status": "FAIL",
+      "review": "Broad yellow/orange horizon transition and visible rays dominate the scene; color calibration concern is also present in physical-only baseline controls.",
+      "screenshot": "low-orbit-low-sun-400km-atmosphere-on.png",
+      "pngSha256": "90f786bc7a463ad56bcbf0d1aeaa6dd54346fb2aa40887020b6559afed242db5",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          -2389971.7057486246,
+          6342805.092109485,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813703,
+          -0.0007540324896109608
+        ],
+        "up": [
+          -0.032533610661653396,
+          0.9994706090830381,
+          -0.0002564302963559913
+        ],
+        "heightMeters": 399999.99999999965,
+        "cameraElevationDegrees": -18.782068758210315
+      },
+      "sun": {
+        "elevationDegrees": -18.782068758210304,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A05",
+      "name": "near-ground-low-sun-2km-atmosphere-on",
+      "status": "FAIL",
+      "review": "Low-Sun view is washed by a broad pale sky field; solar disk/halo separation and contrast are weak.",
+      "screenshot": "near-ground-low-sun-2km-atmosphere-on.png",
+      "pngSha256": "e6a3079b27894b403fe5b11bd3be64f68307b91ce91942274d7f1eda8b8219ff",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          126450.70705554223,
+          6378883.786169345,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.032533409228137175,
+          -0.000754032489610693
+        ],
+        "up": [
+          -0.03253338866995369,
+          0.9994706484234758,
+          0.0000395171682875142
+        ],
+        "heightMeters": 1999.9999999991855,
+        "cameraElevationDegrees": 2.9999999999999925
+      },
+      "sun": {
+        "elevationDegrees": 2.9999999999999916,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A06",
+      "name": "ground-day-2m-atmosphere-on",
+      "status": "PASS",
+      "review": "Disk remains visible and bloom is bounded; ground-day sky is smooth but comparatively uniform, with limited visible corona/ray detail at this scale.",
+      "screenshot": "ground-day-2m-atmosphere-on.png",
+      "pngSha256": "516ad2d3af6954a3de018b18afee9fbd988067fcbb9b4965b7e0ba1a922145a1",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          4360912.72985953,
+          4654363.250313635,
+          0
+        ],
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813713,
+          -0.0007540324896109852
+        ],
+        "up": [
+          -0.032532840963945875,
+          0.9994703825996142,
+          0.0007540324896107402
+        ],
+        "heightMeters": 1.999999998378311,
+        "cameraElevationDegrees": 44.99999999999999
+      },
+      "sun": {
+        "elevationDegrees": 44.99999999999999,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A07",
+      "name": "ground-twilight-2m-atmosphere-on",
+      "status": "FAIL",
+      "review": "Strong nearly uniform yellow field and weak disk contrast; B4 round-two diagnosis shows much of the yellow persists with authored artwork and Bloom disabled.",
+      "screenshot": "ground-twilight-2m-atmosphere-on.png",
+      "pngSha256": "d0317bac2dfe9dfab07632a06e4d0254f99eedc0042bda7793e298905e40c16f",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          -96216.07993785398,
+          6377413.23494741,
+          0
+        ],
+        "direction": [
+          0.9994703641024077,
+          0.03253340922813721,
+          -0.0007540324896108646
+        ],
+        "up": [
+          -0.032533408554913844,
+          0.9994706484707638,
+          0.000013161686063898281
+        ],
+        "heightMeters": 1.9999999981602683,
+        "cameraElevationDegrees": 1.0000000000000016
+      },
+      "sun": {
+        "elevationDegrees": 0.9999999999999992,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    },
+    {
+      "id": "A08",
+      "name": "ground-night-2m-atmosphere-on",
+      "status": "BLOCKED",
+      "review": "No obvious residual solar artwork is visible, but the unlit constant-color night-side surface remains bright blue; this inherited surface-lighting limitation prevents a complete ground-night scene judgement.",
+      "screenshot": "ground-night-2m-atmosphere-on.png",
+      "pngSha256": "93a8479a5078a3654d6f5b3056bc38fa337670e78ee78a8ce85e932bd44493cb",
+      "time": "2026-03-20T12:00:00Z",
+      "exposure": 1,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "devicePixelRatio": 1.0000000149011612,
+      "camera": {
+        "position": [
+          -1092679.0103238476,
+          6283845.135243125,
+          0
+        ],
+        "direction": [
+          0.9836832878526031,
+          0.1799072245589664,
+          -0.0007614138051758944
+        ],
+        "up": [
+          -0.17990727172885232,
+          0.9836835738869121,
+          0.0000066447576115835955
+        ],
+        "heightMeters": 1.999999998733464,
+        "cameraElevationDegrees": 0.4999999999999967
+      },
+      "sun": {
+        "elevationDegrees": -8.000000000000002,
+        "direction": [
+          0.9994703641024076,
+          0.03253340922813717,
+          -0.0007540324896109544
+        ]
+      },
+      "atmosphere": true,
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "bloomStrength": 0.35,
+      "terrainProvider": "EllipsoidTerrainProvider",
+      "errors": []
+    }
+  ],
+  "summary": {
+    "PASS": 1,
+    "FAIL": 6,
+    "BLOCKED": 1,
+    "NOT_RUN": 0
+  },
+  "excluded": [
+    "B5-B 120-frame temporal stability",
+    "B5-B complete occultation matrix",
+    "B5-C performance mean/P95",
+    "B5-C resource lifecycle",
+    "full regression",
+    "M2.6.1 closure"
+  ],
+  "knownBaselineIssues": [
+    "Yellow physical twilight and reduced disk contrast persist in physical-only/no-Bloom baseline controls.",
+    "Unlit constant-color night-side terrain remains unrealistically bright blue."
+  ]
+}
