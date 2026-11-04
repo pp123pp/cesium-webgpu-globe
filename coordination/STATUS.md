@@ -1,12 +1,20 @@
 # Single source of truth — status
 
-Last updated: 2026-11-04
-Current milestone: **M2.6.1 B5-A/B5-B/B5-C acceptance PASS (user-confirmed 2026-11-04). B5-B/B5-C evidence delivery and main merge are authorized, subject to final-head CI and mergeability checks. M2.6.1 final closeout is not claimed by this evidence-only delivery.**
+Last updated: 2026-11-05
+Current milestone: **M2.6.1 B1–B5 implementation and phase acceptance PASS; PR #28 merged to main at `1462876` and final-head Fast / executed Full PASS. Milestone-level closure remains PENDING the separately authorized complete WebGL differential.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
+
+## M2.6.1 final-acceptance reconciliation — 2026-11-05
+
+- PR [#28](https://github.com/pp123pp/cesium-webgpu-globe/pull/28) merged tested head `96820edb62a7c27ef679914d3a2ef257239cbdb1` as main `1462876b3f6428e3fe5da5a054d01bcc6767d66b`. Its [Fast CI 41846319742](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41846319742) and [actually executed Full 41846319604](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41846319604) both PASS. Both hosted tiers are non-rendering; the Full job itself completed successfully.
+- B1–B4 and B5-A/B5-B/B5-C have user-confirmed phase acceptance. [Integrated SVP-01–SVP-10 evidence and limitations](evidence/M2.6.1/README.md) link the exact physical-GPU capture and performance reports. No new capture or runtime change occurred in this documentation reconciliation.
+- B5-C's accepted observation remains a **+10.24% mean / +24.77% p95** GPU-timestamp increase over its pooled M2.6 baseline, not a no-regression claim. Lifecycle allocations are balanced; resident VRAM remains unverified.
+- From M2.6 reference `cf2c1d1` to merged M2.6.1, all 21 changed engine/widgets Source paths include `WebGPU`; zero changed paths outside that namespace in those trees. **The complete upstream WebGL differential has NOT RUN** on final M2.6.1 runtime; source auditing and green non-rendering CI do not replace it. Under `docs/CI.md`, the separate differential needs specific authorization before final milestone closeout.
+- Existing accepted A02 thin-limb and A05 haze limitations, single-adapter verification, bounded terrain fixtures and `M1-NAV-001` remain disclosed. No M2.7/M2.8/M3 work is authorized in this closeout.
 
 ## B5-B/B5-C acceptance and delivery — 2026-11-04
 
