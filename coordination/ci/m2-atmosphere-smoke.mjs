@@ -1,7 +1,10 @@
 /* global Cesium, window */
 import assert from "node:assert/strict";
 import process from "node:process";
-import { balanceLongPathAtmosphere } from "./m2-composite-reference.mjs";
+import {
+  balanceLongPathAtmosphere,
+  terrainSurfaceLighting,
+} from "./m2-composite-reference.mjs";
 import {
   runM1BrowserSuite,
   installM1Scene,
@@ -67,8 +70,11 @@ const displayChannel = (linear, exposure = 1) =>
 
 function assertComposite(sample, label) {
   assertPhysical(sample.gpu, label);
+  const surfaceLighting = sample.surfaceNormal && sample.surfaceLightingEnabled
+    ? terrainSurfaceLighting(sample.sunCosine, sample.surfaceHeight ?? sample.pickedHeight, sample.atmosphereEnabled, sample.lightIntensity)
+    : [1, 1, 1];
   const atmosphereComposite = [0, 1, 2].map(
-    (channel) => sample.gpu[16 + channel] * sample.gpu[4 + channel] + sample.gpu[channel],
+    (channel) => sample.gpu[16 + channel] * surfaceLighting[channel] * sample.gpu[4 + channel] + sample.gpu[channel],
   );
   const balanced = balanceLongPathAtmosphere(atmosphereComposite, sample.gpu.slice(4, 7));
   const expected = balanced.map((linear) => displayChannel(linear));
@@ -398,8 +404,11 @@ await runM1BrowserSuite("m2-atmosphere", async ({ page, report, output }) => {
     assert.ok(near(sample.gpu[11], sample.cosine, 1e-6), "off-axis GPU ray matches native camera ray");
     assertPhysical(report.terrain.unoccluded[index], `ellipsoid-only control ${index}`);
     assert.ok(sample.gpu[6] > report.terrain.unoccluded[index][6] + 0.005, "real mountain depth materially shortens atmospheric extinction");
+    const disabledLighting = sample.surfaceNormal && sample.surfaceLightingEnabled
+      ? terrainSurfaceLighting(sample.sunCosine, sample.surfaceHeight, false, sample.lightIntensity)
+      : [1, 1, 1];
     for (let channel = 0; channel < 3; ++channel) {
-      assert.ok(Math.abs(report.terrain.disabled[index][channel] - displayChannel(sample.gpu[16 + channel])) <= 2, "disabled atmosphere preserves the tone-mapped original surface pixels");
+      assert.ok(Math.abs(report.terrain.disabled[index][channel] - displayChannel(sample.gpu[16 + channel] * disabledLighting[channel])) <= 2, "disabled atmosphere preserves the illuminated surface without aerial perspective");
     }
   }
   const offAxis = report.terrain.samples[1];

@@ -64,7 +64,7 @@ jobs:
 
       - name: Check M1 and M2 source and generated TypeScript APIs
         run: |
-          npx eslint packages/engine/Source/Renderer/WebGPU*.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs coordination/ci/m2-*.mjs Apps/WebGPUGlobe.html
+          npx eslint packages/engine/Source/Renderer/WebGPU*.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs coordination/ci/m2-*.mjs coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs Apps/WebGPUGlobe.html
           npm run build-ts
           npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json
           npm run tsc
@@ -132,6 +132,7 @@ jobs:
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-atmosphere-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-sun-smoke.mjs
           M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2-space-smoke.mjs
+          M1_BASE_URL=http://localhost:8080/ xvfb-run --auto-servernum node coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs
 
       - name: Upload fast CI evidence
         if: always()
@@ -147,4 +148,5 @@ jobs:
             Build/m2-atmosphere/
             Build/m2-sun/
             Build/m2-space/
+            Build/m2.6.1-b5-a-remediation-smoke/
           if-no-files-found: warn

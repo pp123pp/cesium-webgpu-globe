@@ -29,11 +29,12 @@ export function createAtmosphereParameters(options = {}) {
   const {
     show = true,
     rayleighScattering = [5.802e-6, 13.558e-6, 33.1e-6],
-    mieScattering = 3.996e-6,
-    mieExtinction = 4.44e-6,
+    // Clear-sky aerosol calibration; retain mutable controls for hazier media.
+    mieScattering = 1.998e-6,
+    mieExtinction = 2.22e-6,
     rayleighScaleHeight = 8000,
     mieScaleHeight = 1200,
-    mieAnisotropy = 0.8,
+    mieAnisotropy = 0.65,
     lightIntensity = 10,
     multipleScatteringStrength = 1,
   } = options;

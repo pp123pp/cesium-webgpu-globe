@@ -9,7 +9,10 @@ import {
 } from "./m1-browser-harness.mjs";
 import { trackAtmosphereResources } from "./m2-atmosphere-fixtures.mjs";
 import { installSunProbe } from "./m2-sun-fixtures.mjs";
-import { balanceLongPathAtmosphere } from "./m2-composite-reference.mjs";
+import {
+  balanceLongPathAtmosphere,
+  terrainSurfaceLighting,
+} from "./m2-composite-reference.mjs";
 
 process.env.M1_OUTPUT ??= "Build/m2-sun";
 
@@ -41,8 +44,11 @@ function assertComposite(sample, label) {
     `${label}: valid production exposure`);
   // Balance the atmosphere/scene term before adding direct solar light.
   // The production probe still reports raw transport, not display-balanced RGB.
+  const surfaceLighting = sample.surfaceNormal && sample.surfaceLightingEnabled
+    ? terrainSurfaceLighting(sample.sunCosine, sample.surfaceHeight ?? sample.pickedHeight, sample.atmosphereEnabled, sample.lightIntensity)
+    : [1, 1, 1];
   const atmosphereComposite = [0, 1, 2].map(
-    (channel) => sample.gpu[12 + channel] * sample.gpu[4 + channel] + sample.gpu[8 + channel],
+    (channel) => sample.gpu[12 + channel] * surfaceLighting[channel] * sample.gpu[4 + channel] + sample.gpu[8 + channel],
   );
   const balanced = balanceLongPathAtmosphere(atmosphereComposite, sample.gpu.slice(4, 7));
   const expected = [];

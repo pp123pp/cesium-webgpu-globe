@@ -113,6 +113,12 @@ class WebGPUScene {
         "WebGPU baseLayer must be an ImageryLayer or false.",
       );
     }
+    // Physical WebGPU scenes default to lit terrain. Explicit unlit M1 scenes
+    // and caller-owned Globe settings remain unchanged; visibility toggles do not
+    // change this independent surface-lighting control.
+    if (!(options.globe instanceof Globe)) {
+      globe.enableLighting = options.skyAtmosphere !== false;
+    }
     this._globe = globe;
     this.context = context;
     this.canvas = context.canvas;

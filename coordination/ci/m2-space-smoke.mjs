@@ -450,6 +450,8 @@ await runM1BrowserSuite("m2-space", async ({ page, report, output }) => {
     scene.moon.show = false;
     scene.stars.show = false;
     scene.exposure = 1;
+    // This test isolates the color codec, not a reflectance/irradiance product.
+    scene.globe.enableLighting = false;
     scene.backgroundColor = new Cesium.Color(0.5, 0.5, 0.5, 1);
     scene.globe.baseColor = Cesium.Color.clone(scene.backgroundColor);
     await window.__m1.settle({ longitude: 0, latitude: 0, height: 1000, pitch: -90 });

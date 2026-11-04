@@ -306,6 +306,31 @@ export async function installSunProbe(page) {
         const ray = state.rayAt(pixel[0] + 0.5, pixel[1] + 0.5);
         const ellipsoid = state.earthHit(ray);
         const picked = scene.globe.pick(ray, scene);
+        const sceneDistance = gpu[index][11];
+        const depthPoint = sceneDistance >= 0
+          ? Cesium.Cartesian3.add(
+              ray.origin,
+              Cesium.Cartesian3.multiplyByScalar(ray.direction, sceneDistance, new Cesium.Cartesian3()),
+              new Cesium.Cartesian3(),
+            )
+          : undefined;
+        const ellipsoidPoint = ellipsoid && ellipsoid.start >= 0
+          ? Cesium.Cartesian3.add(
+              ray.origin,
+              Cesium.Cartesian3.multiplyByScalar(ray.direction, ellipsoid.start, new Cesium.Cartesian3()),
+              new Cesium.Cartesian3(),
+            )
+          : undefined;
+        const surfacePoint = depthPoint ?? picked ?? ellipsoidPoint;
+        const surfaceNormal = surfacePoint
+          ? Cesium.Ellipsoid.WGS84.geodeticSurfaceNormal(surfacePoint, new Cesium.Cartesian3())
+          : undefined;
+        const sunCosine = surfaceNormal
+          ? Cesium.Cartesian3.dot(surfaceNormal, scene._planetState.sunDirectionWC)
+          : undefined;
+        const surfaceHeight = surfacePoint
+          ? Cesium.Ellipsoid.WGS84.cartesianToCartographic(surfacePoint).height
+          : null;
         return {
           pixel, gpu: gpu[index],
           displayed: Array.from(image.data.slice(offset, offset + 4)),
@@ -315,6 +340,12 @@ export async function installSunProbe(page) {
           ellipsoid: ellipsoid ? [ellipsoid.start, ellipsoid.stop] : null,
           pickedDistance: picked ? Cesium.Cartesian3.distance(ray.origin, picked) : null,
           pickedHeight: picked ? Cesium.Ellipsoid.WGS84.cartesianToCartographic(picked).height : null,
+          surfaceHeight,
+          surfaceNormal: surfaceNormal ? [surfaceNormal.x, surfaceNormal.y, surfaceNormal.z] : null,
+          sunCosine,
+          atmosphereEnabled: scene.atmosphere.show,
+          surfaceLightingEnabled: scene.globe.enableLighting,
+          lightIntensity: scene.atmosphere.lightIntensity,
         };
       });
     };

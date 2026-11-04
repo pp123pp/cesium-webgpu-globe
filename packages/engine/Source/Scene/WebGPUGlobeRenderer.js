@@ -408,6 +408,7 @@ class WebGPUGlobeRenderer {
       scene.moon,
       scene.stars,
       scene.exposure,
+      scene.globe.enableLighting,
     )
       ? atmosphere.composite
       : undefined;
