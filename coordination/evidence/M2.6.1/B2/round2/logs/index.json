@@ -1,0 +1,176 @@
+[
+  {
+    "file": "b2-after-baseline-final.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "a7a384afd7dfd9158ddf72ba6449839f8ca69a8432dd8e5b5b169b45b360cdd0",
+    "utf8Sha256": "cdf792cbfea5031b941c53bb3558f4f9c34e0cbb080863a84006a916a7d4e0e2"
+  },
+  {
+    "file": "b2-after-candidate1.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "d4cebd7992af886bc5dd4982581ea1ba6aac25309f84c535c6fd2914980d5f28",
+    "utf8Sha256": "e24bafa714fbd21f008f52e9d3a671977e640f2d0cbd06653b2a50e88c901806"
+  },
+  {
+    "file": "b2-after-candidate2.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "f6dd1a144d693462893e5b61cbb5a8ca5baf7f9da79418e91472521b86e900c5",
+    "utf8Sha256": "02b7efe822a93cef3a5b9cf2da3fd3aa4e272463ee62d47cb0defc3ddcce9e2b"
+  },
+  {
+    "file": "b2-after-extended-final.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "b784a305fedd0a7545e144f4c83c9e8e50d3eb5835150434c0128d47902285fb",
+    "utf8Sha256": "8a05df0f06fff4d0c7265f6b61767caca514502503b5298d61da04c1808d3af9"
+  },
+  {
+    "file": "b2-artwork-test.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "d93560f849a823113d674d2b60a2870bde762e7d1ab094d51359cf0781ef1148",
+    "utf8Sha256": "271afc8daeb34fe7b461848bb9d88770d77825fe0188683981ebbf56f01cf2b0"
+  },
+  {
+    "file": "b2-before-baseline.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "a7a384afd7dfd9158ddf72ba6449839f8ca69a8432dd8e5b5b169b45b360cdd0",
+    "utf8Sha256": "cdf792cbfea5031b941c53bb3558f4f9c34e0cbb080863a84006a916a7d4e0e2"
+  },
+  {
+    "file": "b2-before-extended-v2.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "b784a305fedd0a7545e144f4c83c9e8e50d3eb5835150434c0128d47902285fb",
+    "utf8Sha256": "8a05df0f06fff4d0c7265f6b61767caca514502503b5298d61da04c1808d3af9"
+  },
+  {
+    "file": "b2-before-extended.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "e69f6b32d651e7b4244f8bb44c0401ff77d917e8bba0ba58b784410738dd021b",
+    "utf8Sha256": "65e0fbe1368bf8351f146249797ac560f0160d66b613371f994612779c7eb9d0"
+  },
+  {
+    "file": "b2-candidate-build.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "72217ba8cb25e1256e29978f5b2bae3fdb9449cf625ea4dba1a800daf367f6e7",
+    "utf8Sha256": "bd2775836ff3a4aac0010031e60b9939cf3ba2cc9890671f8c20a6d3786fffc6"
+  },
+  {
+    "file": "b2-clean-source-build.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "471950f658155927719e8c8506034227142b2fe58188e25f02cb3a2930b676e5",
+    "utf8Sha256": "898c5c7f6e2e0d8d4cfb3f8055ced808bce4c56418218a949f68ec702c7f10de"
+  },
+  {
+    "file": "b2-eslint-final.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "b2-eslint.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "e632a35173aac693060656a8fcb23eb9f523a48b8a97b8eaa248c41d9a0c48ef",
+    "utf8Sha256": "2e534f83ca94438bbdeb39d1bd8fb7a42ff4a9725e3c01ed667648c388192576"
+  },
+  {
+    "file": "b2-fallback-404.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "e8614ef4e0e404e76c6a9297c523f051ec3ed17f0ac233287222640d8c66d18d",
+    "utf8Sha256": "f6fe9f0349ef1946649d202b38fe42cf2adfccdb1b273483efb410c1d53d26d0"
+  },
+  {
+    "file": "b2-fallback-corrupt.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "517f05867b3e3323f8c3e17d8a630a05946006f49d21864b19939f45b34f078e",
+    "utf8Sha256": "703410c50c45552b432be62387bbfcbcad70a7d09cf051f6a582cc0d398edded"
+  },
+  {
+    "file": "b2-final-build.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "9232898bc6f02d7e0a1f7758d31af001eabf86206c75ae7eef9dd290a343f344",
+    "utf8Sha256": "63cd5f27730a68da87a5e9603089805ce31f6a10fa73d7717e5980f1a2c68dda"
+  },
+  {
+    "file": "b2-final-payloads.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "7e2897222552f26fef790f83256ed61b658112b3c1874ddc2b14797d99742f8d",
+    "utf8Sha256": "e63221e8720d9e0acf9aba78ca9a77ec5deddc63510ad7337ce25a6b5b49e8fe"
+  },
+  {
+    "file": "b2-focused-tests.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "ee3fa07c4481e57460d9a22ee0b9a4461f47bd9eeb79e3d4aed5632a60631404",
+    "utf8Sha256": "82d263066f217ebcb8ca0688ee65323b89b6cbb5d4c12b466d4f01ec3095b18f"
+  },
+  {
+    "file": "b2-format-commit.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "ea644a4a889569b5389da4cc7f1beffbfd05e2a15272ca9c95b8e15c48dca6be",
+    "utf8Sha256": "87dbc605e31c00039f0557cadfa53e3a78196965c403f4fc1a5462b773a7da14"
+  },
+  {
+    "file": "b2-markdown-fix.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "b2-payloads.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "7c4ec47d59ea7c53a48d696b11cc4a2224b433ef8f7e0070f1a7df05258b6d78",
+    "utf8Sha256": "835d09993adb7ed9b18feca71a3e8a955cd99a648686e21a70baf6b804867304"
+  },
+  {
+    "file": "b2-source-commit.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "3d0ee5d215ad805cdd9516833a850adebb958a695f40ed098951d552f5ad19f7",
+    "utf8Sha256": "756318c93a3ef687d2ee6cf335eb1b5f9dc40f12c7973f6940b52ef39555ba1e"
+  },
+  {
+    "file": "b2-source-gates.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "407a75c9394b6e42bb3627de06316a1e952e592cb0a2b4f5c8852b9f469b7d07",
+    "utf8Sha256": "307fd3d98bc820b8ea679693ce02957fb176318a59c8a5e37c9c67c8057d9fb5"
+  },
+  {
+    "file": "b2-types-engine-final.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "b2-types-generated-final.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "3f3a1edbd828921a2cce09e1ba72a28e33d2629b40a5e37195abebeccb6e1709",
+    "utf8Sha256": "fb408081b10a8081c3b5a99b5307ca561cefe057a7ac64e1087ac65364aa2152"
+  },
+  {
+    "file": "b2-types-prepare.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "11fe0b5f61187fcd3ab64058350f5fabfb93ff78221d5ced38b6ed307adaec5a",
+    "utf8Sha256": "7c8b046e073353dfe76fb4c40a53a07bf7609c4938231a09848389e04c1b36ea"
+  },
+  {
+    "file": "b2-handoff-markdown.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "b2-playback-eslint-final.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "b2-playback-eslint.log",
+    "originalEncoding": "utf16le",
+    "originalSha256": "1fa7c1f8d052df21d052399b72dfaf9e595896daa5292bf6f58b24e7600860e2",
+    "utf8Sha256": "d577b13f4d162172a93ec927da87dfad6ea069baf6abf06a922b9e442c0370ff"
+  },
+  {
+    "file": "b2-playback-prettier-final.log",
+    "originalEncoding": "utf8",
+    "originalSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "utf8Sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

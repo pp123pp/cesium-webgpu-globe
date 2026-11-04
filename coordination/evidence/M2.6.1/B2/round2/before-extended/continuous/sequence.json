@@ -1,0 +1,2181 @@
+{
+  "count": 120,
+  "events": {
+    "0": "fixed state begins",
+    "20": "camera lookRight ramp begins (0.05 deg/frame)",
+    "50": "camera stops; native clock advances 10 sec/frame",
+    "80": "clock stops; exposure ramps 1 to 2",
+    "100": "exposure returns to 1; actual resize to 1280x720",
+    "110": "actual resize to 1920x1080",
+    "111": "fixed state after resize; all remaining frames retained"
+  },
+  "firstFrame": 489,
+  "lastFrame": 608,
+  "contiguousRenderFrameNumbers": true,
+  "staticPrefixByteIdentical": true,
+  "largestMeanDifference": 0.00013321027999677238,
+  "viewer": "continuous/index.html",
+  "manifest": "continuous/sequence.json",
+  "observations": [
+    {
+      "index": 0,
+      "filename": "frame-0000.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 489,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "fixed state begins",
+      "motion": {
+        "comparable": false,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": null
+      }
+    },
+    {
+      "index": 1,
+      "filename": "frame-0001.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 490,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 2,
+      "filename": "frame-0002.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 491,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 3,
+      "filename": "frame-0003.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 492,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 4,
+      "filename": "frame-0004.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 493,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 5,
+      "filename": "frame-0005.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 494,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 6,
+      "filename": "frame-0006.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 495,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 7,
+      "filename": "frame-0007.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 496,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 8,
+      "filename": "frame-0008.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 497,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 9,
+      "filename": "frame-0009.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 498,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 10,
+      "filename": "frame-0010.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 499,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 11,
+      "filename": "frame-0011.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 500,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 12,
+      "filename": "frame-0012.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 501,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 13,
+      "filename": "frame-0013.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 502,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 14,
+      "filename": "frame-0014.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 503,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 15,
+      "filename": "frame-0015.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 504,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 16,
+      "filename": "frame-0016.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 505,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 17,
+      "filename": "frame-0017.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 506,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 18,
+      "filename": "frame-0018.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 507,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 19,
+      "filename": "frame-0019.png",
+      "sha256": "d676c2789b54fd022ff9053354de9e712f8c7e78108964f9897892d64e15cab6",
+      "frame": 508,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 20,
+      "filename": "frame-0020.png",
+      "sha256": "4f80c8c3c1837e577727f55a5c68a42f6e7e13a673d19028fc035b0b14968d0d",
+      "frame": 509,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "camera lookRight ramp begins (0.05 deg/frame)",
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17114,
+        "maxDifference": 63,
+        "meanRgbDifference": 0.00013214112805616073
+      }
+    },
+    {
+      "index": 21,
+      "filename": "frame-0021.png",
+      "sha256": "de78db6e3b2a63c693d3347ead1c0b2e2c51a8ec9ec317c3684024cca9a0760f",
+      "frame": 510,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17137,
+        "maxDifference": 67,
+        "meanRgbDifference": 0.00013302683470507544
+      }
+    },
+    {
+      "index": 22,
+      "filename": "frame-0022.png",
+      "sha256": "064804bc4700d72d88302c4d8af9c83f0a99de78bb0d57505c1318b85c32e776",
+      "frame": 511,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17121,
+        "maxDifference": 69,
+        "meanRgbDifference": 0.00013198100742354554
+      }
+    },
+    {
+      "index": 23,
+      "filename": "frame-0023.png",
+      "sha256": "31888f7b83c9c33331c0c5dd2887c935e75a896373badf1655ba065533e697a3",
+      "frame": 512,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17139,
+        "maxDifference": 64,
+        "meanRgbDifference": 0.00013251810497861695
+      }
+    },
+    {
+      "index": 24,
+      "filename": "frame-0024.png",
+      "sha256": "a2857dce4d9a02c4247472cab742bac2ff0e7068ee99dd8b3d4033eb389aa0d9",
+      "frame": 513,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17145,
+        "maxDifference": 66,
+        "meanRgbDifference": 0.0001329259713144517
+      }
+    },
+    {
+      "index": 25,
+      "filename": "frame-0025.png",
+      "sha256": "0858a2c39b292dab86257b6e9fc270f229264f008fc771a6b0284f237eab61e0",
+      "frame": 514,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17134,
+        "maxDifference": 55,
+        "meanRgbDifference": 0.00013166517893165497
+      }
+    },
+    {
+      "index": 26,
+      "filename": "frame-0026.png",
+      "sha256": "73a456ed198b87b2ba5ebb5a7caa6d64cdd1ec1deaef93d267c3f347acc21d63",
+      "frame": 515,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17145,
+        "maxDifference": 57,
+        "meanRgbDifference": 0.0001329322752763657
+      }
+    },
+    {
+      "index": 27,
+      "filename": "frame-0027.png",
+      "sha256": "a932fbc2c26096a06a177b49fb65b119bf7f52adc0f08d5111068facfb1865f1",
+      "frame": 516,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17170,
+        "maxDifference": 56,
+        "meanRgbDifference": 0.00013255466795771806
+      }
+    },
+    {
+      "index": 28,
+      "filename": "frame-0028.png",
+      "sha256": "92e6d399e40b773a1b67f4b25680ff1b3893705529833b65e39bc9cc8cd74d57",
+      "frame": 517,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17125,
+        "maxDifference": 58,
+        "meanRgbDifference": 0.00013239896009844266
+      }
+    },
+    {
+      "index": 29,
+      "filename": "frame-0029.png",
+      "sha256": "8ccec60996fb05df748982d9c1fc2a1bb91b730848656589d90d6a0ff844202b",
+      "frame": 518,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17124,
+        "maxDifference": 59,
+        "meanRgbDifference": 0.00013269776789316548
+      }
+    },
+    {
+      "index": 30,
+      "filename": "frame-0030.png",
+      "sha256": "38dffb219b5979660f6855ca7f9307970c2a72355913d57e063e3287db9e6c29",
+      "frame": 519,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17140,
+        "maxDifference": 63,
+        "meanRgbDifference": 0.00013279295771806665
+      }
+    },
+    {
+      "index": 31,
+      "filename": "frame-0031.png",
+      "sha256": "701cb8819c3d0d3ed3927d751f69ebde0be9ece56d24e1cb4d6fb05bc3fdd821",
+      "frame": 520,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17109,
+        "maxDifference": 65,
+        "meanRgbDifference": 0.00013210141309610263
+      }
+    },
+    {
+      "index": 32,
+      "filename": "frame-0032.png",
+      "sha256": "74508bf6b6ec8cf5dff92016efb47fffad132691dbd3cf6ef2ef59795ffd08c7",
+      "frame": 521,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17150,
+        "maxDifference": 69,
+        "meanRgbDifference": 0.0001329656862745098
+      }
+    },
+    {
+      "index": 33,
+      "filename": "frame-0033.png",
+      "sha256": "e88e78adea5aea1a2d0ad60d0f67edaae63a885562f35ebf144a9c1da8bfa709",
+      "frame": 522,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17115,
+        "maxDifference": 71,
+        "meanRgbDifference": 0.00013198037702735415
+      }
+    },
+    {
+      "index": 34,
+      "filename": "frame-0034.png",
+      "sha256": "5d0f633ffa1b516bd2f95e82b05bddf5fb3f821e8c492d14b52cbef414ede850",
+      "frame": 523,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17140,
+        "maxDifference": 60,
+        "meanRgbDifference": 0.00013248091160332446
+      }
+    },
+    {
+      "index": 35,
+      "filename": "frame-0035.png",
+      "sha256": "a8e94cf94e65c0719679ef16d372b1c4213d4d78facfd42fb476618d2ca9e0fa",
+      "frame": 524,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17133,
+        "maxDifference": 62,
+        "meanRgbDifference": 0.00013303124747841524
+      }
+    },
+    {
+      "index": 36,
+      "filename": "frame-0036.png",
+      "sha256": "9dd3d282a7e74070221c5934256825cbb37363bf6473b50f54f64bbbb989fbfc",
+      "frame": 525,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17154,
+        "maxDifference": 56,
+        "meanRgbDifference": 0.00013152523097716452
+      }
+    },
+    {
+      "index": 37,
+      "filename": "frame-0037.png",
+      "sha256": "8c016c4ba6c377d14f40e81ba7c82d46613527b3220034439ed5f8845383065c",
+      "frame": 526,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17154,
+        "maxDifference": 58,
+        "meanRgbDifference": 0.0001330848311546841
+      }
+    },
+    {
+      "index": 38,
+      "filename": "frame-0038.png",
+      "sha256": "8e81ae033db245b4d5e61cbe5fabd78ee00739b8adbf3f91cdb7b6d15a53d4b9",
+      "frame": 527,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17180,
+        "maxDifference": 57,
+        "meanRgbDifference": 0.00013256601508916324
+      }
+    },
+    {
+      "index": 39,
+      "filename": "frame-0039.png",
+      "sha256": "af8414d4fc7561d59a8151feb3e969d795165c73ad808d9edbc40637a695a7f6",
+      "frame": 528,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17142,
+        "maxDifference": 59,
+        "meanRgbDifference": 0.00013243489268135238
+      }
+    },
+    {
+      "index": 40,
+      "filename": "frame-0040.png",
+      "sha256": "f86785cd7214857dfbbf2f4dbb9a6e7e9ce66c604d6f66a989b656a79f4f43fc",
+      "frame": 529,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17124,
+        "maxDifference": 61,
+        "meanRgbDifference": 0.0001327324396836924
+      }
+    },
+    {
+      "index": 41,
+      "filename": "frame-0041.png",
+      "sha256": "81ec7638a47eaf150570bacd95a545ce819dc289eb990931eb064fec896987ce",
+      "frame": 530,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17150,
+        "maxDifference": 66,
+        "meanRgbDifference": 0.00013285914931816348
+      }
+    },
+    {
+      "index": 42,
+      "filename": "frame-0042.png",
+      "sha256": "12e6704a3629127872ce59cfb7dade598df39915779d79e112cb7a5e49774398",
+      "frame": 531,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17122,
+        "maxDifference": 68,
+        "meanRgbDifference": 0.00013222560114580813
+      }
+    },
+    {
+      "index": 43,
+      "filename": "frame-0043.png",
+      "sha256": "ecfb6783ca1ca9340305af03fde96f745004f29aaa58cf7d06085982f16398cb",
+      "frame": 532,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17167,
+        "maxDifference": 67,
+        "meanRgbDifference": 0.0001329310144839829
+      }
+    },
+    {
+      "index": 44,
+      "filename": "frame-0044.png",
+      "sha256": "3a81bfb194322dd59e1bf6a26968df76c1e79a60131d3db008675dec2ef155d6",
+      "frame": 533,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17153,
+        "maxDifference": 69,
+        "meanRgbDifference": 0.0001322350570886791
+      }
+    },
+    {
+      "index": 45,
+      "filename": "frame-0045.png",
+      "sha256": "70e4e8f2129bb3b6e3a3d41e47f935e803c12151ec94b0b280e3f07975d8f6fa",
+      "frame": 534,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17147,
+        "maxDifference": 56,
+        "meanRgbDifference": 0.00013237815702412653
+      }
+    },
+    {
+      "index": 46,
+      "filename": "frame-0046.png",
+      "sha256": "6050a921f216a88287a65a80affd0ba9ac161d35005204e03ea24bf926d2b2d2",
+      "frame": 535,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17134,
+        "maxDifference": 58,
+        "meanRgbDifference": 0.00013313021968046479
+      }
+    },
+    {
+      "index": 47,
+      "filename": "frame-0047.png",
+      "sha256": "d15f8c29189ab0a27df8d0f34493f6fb860706789f381c8118fc6e176ffccce5",
+      "frame": 536,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17167,
+        "maxDifference": 55,
+        "meanRgbDifference": 0.00013164374546114743
+      }
+    },
+    {
+      "index": 48,
+      "filename": "frame-0048.png",
+      "sha256": "c262848393492b6d03d2ca582d350e02aa69c45b4ab7bd5ed93a68b46691abaf",
+      "frame": 537,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17140,
+        "maxDifference": 58,
+        "meanRgbDifference": 0.00013321027999677238
+      }
+    },
+    {
+      "index": 49,
+      "filename": "frame-0049.png",
+      "sha256": "2fb18dfbd56e1d0fdb71c8c50680eccceaf0d7eac516afff9b6cdb5ba8fe2683",
+      "frame": 538,
+      "time": "2026-03-20T12:00:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 17167,
+        "maxDifference": 58,
+        "meanRgbDifference": 0.00013263220668926007
+      }
+    },
+    {
+      "index": 50,
+      "filename": "frame-0050.png",
+      "sha256": "17603320e2358872f95dac6933fdb52135d4694c222cf0d1606f79d2c274ea51",
+      "frame": 539,
+      "time": "2026-03-20T12:00:10Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "camera stops; native clock advances 10 sec/frame",
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16502,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010511730412329541
+      }
+    },
+    {
+      "index": 51,
+      "filename": "frame-0051.png",
+      "sha256": "bb01ef6c677e526d4881087e4222e06cfb887ef3665aafccaabea25877ad2900",
+      "frame": 540,
+      "time": "2026-03-20T12:00:20Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16470,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010606037682562737
+      }
+    },
+    {
+      "index": 52,
+      "filename": "frame-0052.png",
+      "sha256": "c26de35f6d937d7419c4292ede45e3c0a6b8e84cc61fde9cfa06442c4b735351",
+      "frame": 541,
+      "time": "2026-03-20T12:00:30Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16451,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010580443597191964
+      }
+    },
+    {
+      "index": 53,
+      "filename": "frame-0053.png",
+      "sha256": "9f73f7420dd229dc3cef8f5be11b8116d214b51ce7ea18cbaf8f9954c08e3bdb",
+      "frame": 542,
+      "time": "2026-03-20T12:00:40Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16474,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010510658738804164
+      }
+    },
+    {
+      "index": 54,
+      "filename": "frame-0054.png",
+      "sha256": "0d764cb3bf9b28e8200ae05c1497b80a25acef925796e646ff546bf9b2671988",
+      "frame": 543,
+      "time": "2026-03-20T12:00:50Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16493,
+        "maxDifference": 52,
+        "meanRgbDifference": 0.0001061662833857823
+      }
+    },
+    {
+      "index": 55,
+      "filename": "frame-0055.png",
+      "sha256": "d6f382e7ddf55cfd8246c87b6fb5636da69990c42869f918cd25c8878b08c521",
+      "frame": 544,
+      "time": "2026-03-20T12:01:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16459,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010564242415073025
+      }
+    },
+    {
+      "index": 56,
+      "filename": "frame-0056.png",
+      "sha256": "e3dc04c8573844f805cef2fe57085f26ee2e43379eeaf2109e1a80071fa6ea2c",
+      "frame": 545,
+      "time": "2026-03-20T12:01:10Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16426,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010504606935366739
+      }
+    },
+    {
+      "index": 57,
+      "filename": "frame-0057.png",
+      "sha256": "e81efe08abe7f473f7a950ada234998a0e2058680ef76c3dbf79b9b40cb7840e",
+      "frame": 546,
+      "time": "2026-03-20T12:01:20Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16461,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010603074820463165
+      }
+    },
+    {
+      "index": 58,
+      "filename": "frame-0058.png",
+      "sha256": "522b75c71db77aaaa26572883994cb2abca7205bb96cf709dd1483444343d6a2",
+      "frame": 547,
+      "time": "2026-03-20T12:01:30Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16490,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010604650810941661
+      }
+    },
+    {
+      "index": 59,
+      "filename": "frame-0059.png",
+      "sha256": "3200298bcf0e56f1c1e0dcc954fe001197a3cdfde1a637c235d8d734bd383f3f",
+      "frame": 548,
+      "time": "2026-03-20T12:01:40Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16516,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010503787420317921
+      }
+    },
+    {
+      "index": 60,
+      "filename": "frame-0060.png",
+      "sha256": "560bc52e1c34aed6c7bd954b47100dd313dea2067b522edd115b73c80cc20ba5",
+      "frame": 549,
+      "time": "2026-03-20T12:01:50Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16463,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010516395344145889
+      }
+    },
+    {
+      "index": 61,
+      "filename": "frame-0061.png",
+      "sha256": "69b3ed2e82d2e75f255fd008c94da4bef76c79c0000e8740cbe75484778bced6",
+      "frame": 550,
+      "time": "2026-03-20T12:02:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16439,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010629740579359316
+      }
+    },
+    {
+      "index": 62,
+      "filename": "frame-0062.png",
+      "sha256": "957c9d893342e49af616c7f7ee7fbb18159f4186407954b688fc26de66fb772f",
+      "frame": 551,
+      "time": "2026-03-20T12:02:10Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16463,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010590151698539498
+      }
+    },
+    {
+      "index": 63,
+      "filename": "frame-0063.png",
+      "sha256": "dc4fc7f523c575ed0cebb9756247b7fc4216f1d3fb57176bcf08b4d8831bf908",
+      "frame": 552,
+      "time": "2026-03-20T12:02:20Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16510,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010510658738804164
+      }
+    },
+    {
+      "index": 64,
+      "filename": "frame-0064.png",
+      "sha256": "058c70f0d932ef21b1872a90a6f704f19a2f3bd7366f059811639df5473ffcad",
+      "frame": 553,
+      "time": "2026-03-20T12:02:30Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16498,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010590340817396917
+      }
+    },
+    {
+      "index": 65,
+      "filename": "frame-0065.png",
+      "sha256": "31ed6a15bb125c26489566dcd4cb7ad0ce7fac66a72b63f66ff150857235db0c",
+      "frame": 554,
+      "time": "2026-03-20T12:02:40Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16484,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.0001055856884935044
+      }
+    },
+    {
+      "index": 66,
+      "filename": "frame-0066.png",
+      "sha256": "80fa56b4f210278b0c3f1b31e9bac649399d39c1e65691a99ef65389e50b70d3",
+      "frame": 555,
+      "time": "2026-03-20T12:02:50Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16449,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010533226922456225
+      }
+    },
+    {
+      "index": 67,
+      "filename": "frame-0067.png",
+      "sha256": "68f428cebb98f0ff3f0d0c603962b6f8e942b4c5e49784ceda411d55b644a239",
+      "frame": 556,
+      "time": "2026-03-20T12:03:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16492,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010618267368675865
+      }
+    },
+    {
+      "index": 68,
+      "filename": "frame-0068.png",
+      "sha256": "afe8d888a470daf997fb9d6cba55769323f5a2c06afd2a95323e9ec44951ffd9",
+      "frame": 557,
+      "time": "2026-03-20T12:03:10Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16539,
+        "maxDifference": 52,
+        "meanRgbDifference": 0.00010614989308480594
+      }
+    },
+    {
+      "index": 69,
+      "filename": "frame-0069.png",
+      "sha256": "b4df8d710039965d8b6a5e828873b621ba461ca4d823cbc6b560504d4a3463ee",
+      "frame": 558,
+      "time": "2026-03-20T12:03:20Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16505,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010498681211167595
+      }
+    },
+    {
+      "index": 70,
+      "filename": "frame-0070.png",
+      "sha256": "af08421b558b491464e3c9db0ec3586c6720f564b303ceb166c00488ec0fb8d3",
+      "frame": 559,
+      "time": "2026-03-20T12:03:30Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16475,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010542556786088921
+      }
+    },
+    {
+      "index": 71,
+      "filename": "frame-0071.png",
+      "sha256": "0f5b3ebc3ea5fb9c90058ec806b24de5164104f87b32fa2c734138c6a5135ceb",
+      "frame": 560,
+      "time": "2026-03-20T12:03:40Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16480,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010644113612523198
+      }
+    },
+    {
+      "index": 72,
+      "filename": "frame-0072.png",
+      "sha256": "5365a17f9130bc608cd050b5ca33b2fd9ac94de5d9548a0736d66b2e4ac56d1b",
+      "frame": 561,
+      "time": "2026-03-20T12:03:50Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16506,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010566763999838619
+      }
+    },
+    {
+      "index": 73,
+      "filename": "frame-0073.png",
+      "sha256": "075834417b61a1111459e4db796227a7c1684613dced253a09084d9cf0dda545",
+      "frame": 562,
+      "time": "2026-03-20T12:04:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16523,
+        "maxDifference": 52,
+        "meanRgbDifference": 0.00010519295166626321
+      }
+    },
+    {
+      "index": 74,
+      "filename": "frame-0074.png",
+      "sha256": "01031aba7ff50355cce82ba979194fe5d1f7c2c7b20997dbf788688dd00e476e",
+      "frame": 563,
+      "time": "2026-03-20T12:04:10Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16515,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010579561042524006
+      }
+    },
+    {
+      "index": 75,
+      "filename": "frame-0075.png",
+      "sha256": "fa11c5a6ce8ff7bcdcfa30db163e555df27543a7fae32284574f6c0dd30f0a19",
+      "frame": 564,
+      "time": "2026-03-20T12:04:20Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16423,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010577165536996691
+      }
+    },
+    {
+      "index": 76,
+      "filename": "frame-0076.png",
+      "sha256": "e44fdbecabd0df4e285b7d019306612fc098f4d4f4636cfdc7cb6c89e0f9bbd6",
+      "frame": 565,
+      "time": "2026-03-20T12:04:30Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16490,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.000105507519365771
+      }
+    },
+    {
+      "index": 77,
+      "filename": "frame-0077.png",
+      "sha256": "daa28f6a5b227c6d956ed07d65c52672b18e4c230af38c1302722cec6c63f0cf",
+      "frame": 566,
+      "time": "2026-03-20T12:04:40Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16495,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010608433188090051
+      }
+    },
+    {
+      "index": 78,
+      "filename": "frame-0078.png",
+      "sha256": "3bf59ab121c57c6835285728ac235bd95378f12175e2990f3234536c33724ad8",
+      "frame": 567,
+      "time": "2026-03-20T12:04:50Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16511,
+        "maxDifference": 53,
+        "meanRgbDifference": 0.00010568466069555394
+      }
+    },
+    {
+      "index": 79,
+      "filename": "frame-0079.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 568,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 16488,
+        "maxDifference": 54,
+        "meanRgbDifference": 0.00010483551702574033
+      }
+    },
+    {
+      "index": 80,
+      "filename": "frame-0080.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 569,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "clock stops; exposure ramps 1 to 2",
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 81,
+      "filename": "frame-0081.png",
+      "sha256": "178cf1a86d066788d63f0cbb442699c46fbf7d69cd00b0aca07684465cf0f058",
+      "frame": 570,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15641,
+        "maxDifference": 4,
+        "meanRgbDifference": 0.00005735029351246672
+      }
+    },
+    {
+      "index": 82,
+      "filename": "frame-0082.png",
+      "sha256": "47add23952bc1bbe0280f9288a4858666b7ef3b8cb2b38de551f7f8bfd9166e0",
+      "frame": 571,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15592,
+        "maxDifference": 4,
+        "meanRgbDifference": 0.00005572008896151053
+      }
+    },
+    {
+      "index": 83,
+      "filename": "frame-0083.png",
+      "sha256": "be10bcfd7e841a5219ed56bfb3abf78c7c45bdd1b5ecc80cbec0ef4ab3733077",
+      "frame": 572,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15486,
+        "maxDifference": 4,
+        "meanRgbDifference": 0.00005391148228838861
+      }
+    },
+    {
+      "index": 84,
+      "filename": "frame-0084.png",
+      "sha256": "e8902600ba066326000d57529b391279a686fb08f5daf2a58f83b1ac8f629269",
+      "frame": 573,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15557,
+        "maxDifference": 4,
+        "meanRgbDifference": 0.00005239474905188413
+      }
+    },
+    {
+      "index": 85,
+      "filename": "frame-0085.png",
+      "sha256": "d2ebff8e170441f53dafe148b5e37f5d8cde927c3b8ff9284872bae895fb6f3e",
+      "frame": 574,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15571,
+        "maxDifference": 4,
+        "meanRgbDifference": 0.0000510885681433067
+      }
+    },
+    {
+      "index": 86,
+      "filename": "frame-0086.png",
+      "sha256": "74048923dbe21a59cb76eaac2fdaf8d085e1025b13c45226f7b174227a912b22",
+      "frame": 575,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15615,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004975464980230775
+      }
+    },
+    {
+      "index": 87,
+      "filename": "frame-0087.png",
+      "sha256": "ef99a386b0010e9c9d183eb03fb59af0dde38d4f9da3a93b465d24194bb2e88b",
+      "frame": 576,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15581,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.000048305368958282904
+      }
+    },
+    {
+      "index": 88,
+      "filename": "frame-0088.png",
+      "sha256": "4b079eab777143c24038ca9264726c227a092ff2a1a924f0bedb201c42db13f1",
+      "frame": 577,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15620,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004717885096425401
+      }
+    },
+    {
+      "index": 89,
+      "filename": "frame-0089.png",
+      "sha256": "e4e837e80a4859dfcac8ccec3e5e03d64bfb651428f365a68eb47fdb7b4908d8",
+      "frame": 578,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15571,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004595020878721859
+      }
+    },
+    {
+      "index": 90,
+      "filename": "frame-0090.png",
+      "sha256": "98fb178ad3c5d4d46fbd93f26b2593e17c1e100b34c5876e0de08f8dc1f05625",
+      "frame": 579,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15580,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.000044737956911159525
+      }
+    },
+    {
+      "index": 91,
+      "filename": "frame-0091.png",
+      "sha256": "d0542eecab4fabd0d9031f638835eaeee7261c0032c87dea8cb16848de5e30df",
+      "frame": 580,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15632,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004376840756878883
+      }
+    },
+    {
+      "index": 92,
+      "filename": "frame-0092.png",
+      "sha256": "801df3aa239c58da27dcbd1cdcd7932264fad4d1eacd4608e84c96cc2aaa6cbe",
+      "frame": 581,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15580,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004280705337690632
+      }
+    },
+    {
+      "index": 93,
+      "filename": "frame-0093.png",
+      "sha256": "7d16c1328845bb68ce6ff5682a21d493a8dd908977dcf1342829572de98cbd0d",
+      "frame": 582,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15619,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004168116577906883
+      }
+    },
+    {
+      "index": 94,
+      "filename": "frame-0094.png",
+      "sha256": "e56c4f95f739b3722916e65d58a76e3fc718d1f62a73499ec0befc5ff2f10f6a",
+      "frame": 583,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15573,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00004084589082546599
+      }
+    },
+    {
+      "index": 95,
+      "filename": "frame-0095.png",
+      "sha256": "ec72b73f63964e97da6f597bce9c15f5eec2642adae983d0526bb181d98fc4f8",
+      "frame": 584,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15643,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00003994820664891471
+      }
+    },
+    {
+      "index": 96,
+      "filename": "frame-0096.png",
+      "sha256": "ea477571b7dfcd7b104c1d6591e4504ad1e293af4c3c945ee339864618491230",
+      "frame": 585,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15644,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00003921253429355281
+      }
+    },
+    {
+      "index": 97,
+      "filename": "frame-0097.png",
+      "sha256": "0012aef976df86f60199c30c27ebb1cdf368b0edcc6e49c00973f844b5d76a41",
+      "frame": 586,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15622,
+        "maxDifference": 3,
+        "meanRgbDifference": 0.00003827261357217784
+      }
+    },
+    {
+      "index": 98,
+      "filename": "frame-0098.png",
+      "sha256": "dbcbbe2722671fcae1f34af1c7353f4096eddb8c509380347a666b4e7b40235a",
+      "frame": 587,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15522,
+        "maxDifference": 2,
+        "meanRgbDifference": 0.000037419687525215845
+      }
+    },
+    {
+      "index": 99,
+      "filename": "frame-0099.png",
+      "sha256": "ccc91fc37b294df10ddeb82cebbf72f8d7db95500fd500612d8411948e1f5c65",
+      "frame": 588,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 15588,
+        "maxDifference": 2,
+        "meanRgbDifference": 0.00003673885963850561
+      }
+    },
+    {
+      "index": 100,
+      "filename": "frame-0100.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 589,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": "exposure returns to 1; actual resize to 1280x720",
+      "motion": {
+        "comparable": false,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": null
+      }
+    },
+    {
+      "index": 101,
+      "filename": "frame-0101.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 590,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 102,
+      "filename": "frame-0102.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 591,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 103,
+      "filename": "frame-0103.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 592,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 104,
+      "filename": "frame-0104.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 593,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 105,
+      "filename": "frame-0105.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 594,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 106,
+      "filename": "frame-0106.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 595,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 107,
+      "filename": "frame-0107.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 596,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 108,
+      "filename": "frame-0108.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 597,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 109,
+      "filename": "frame-0109.png",
+      "sha256": "5e8d06d957d3bb7f5167e6ac72787c4c64fb9bb51e7284544be2d0b712b6a20f",
+      "frame": 598,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1280,
+        720
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 110,
+      "filename": "frame-0110.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 599,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "actual resize to 1920x1080",
+      "motion": {
+        "comparable": false,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": null
+      }
+    },
+    {
+      "index": 111,
+      "filename": "frame-0111.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 600,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": "fixed state after resize; all remaining frames retained",
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 112,
+      "filename": "frame-0112.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 601,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 113,
+      "filename": "frame-0113.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 602,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 114,
+      "filename": "frame-0114.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 603,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 115,
+      "filename": "frame-0115.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 604,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 116,
+      "filename": "frame-0116.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 605,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 117,
+      "filename": "frame-0117.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 606,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 118,
+      "filename": "frame-0118.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 607,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    },
+    {
+      "index": 119,
+      "filename": "frame-0119.png",
+      "sha256": "e49a6d24ca30b5f85299b6ae016fbd09af448320e70da8b42252df3dbf00e27f",
+      "frame": 608,
+      "time": "2026-03-20T12:05:00Z",
+      "canvas": [
+        1920,
+        1080
+      ],
+      "event": null,
+      "motion": {
+        "comparable": true,
+        "changedPixels": 0,
+        "maxDifference": 0,
+        "meanRgbDifference": 0
+      }
+    }
+  ]
+}

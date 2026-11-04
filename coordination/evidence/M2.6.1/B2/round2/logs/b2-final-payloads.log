@@ -1,0 +1,13 @@
+
+> cesium@1.146.0 build-solar-textures
+> node coordination/ci/build-solar-textures.mjs
+
+Rays/radial-rays-01.svg -> GPU\radial-rays-01.r8 (262144 bytes; alpha 0..84; coverage 0.21179962158203125)
+Rays/radial-rays-02.svg -> GPU\radial-rays-02.r8 (262144 bytes; alpha 0..30; coverage 0.18858718872070312)
+Rays/radial-rays-03.svg -> GPU\radial-rays-03.r8 (262144 bytes; alpha 0..49; coverage 0.2023468017578125)
+Halo/soft-halo.svg -> GPU\soft-halo.r8 (262144 bytes; alpha 0..254; coverage 0.7418212890625)
+Halo/wide-halo.svg -> GPU\wide-halo.r8 (262144 bytes; alpha 0..205; coverage 0.740753173828125)
+Corona/corona-fine.svg -> GPU\corona-fine.r8 (262144 bytes; alpha 0..107; coverage 0.6833343505859375)
+Corona/corona-mid.svg -> GPU\corona-mid.r8 (262144 bytes; alpha 0..137; coverage 0.7056884765625)
+Noise/radial-noise.svg -> GPU\radial-noise.r8 (262144 bytes; alpha 0..108; coverage 0.7663726806640625)
+Atmosphere/glow-gradient.svg -> GPU\glow-gradient.rgba8 (1048576 bytes; alpha 255..255; coverage 1)

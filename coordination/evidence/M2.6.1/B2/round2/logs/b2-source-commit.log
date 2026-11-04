@@ -1,0 +1,8 @@
+[detached HEAD e009078] fix(solar): soften B2 corona density and retain matched capture tooling
+ 17 files changed, 1316 insertions(+), 57 deletions(-)
+ create mode 100644 coordination/audits/M2.6.1-B2-round2-plan.md
+ create mode 100644 coordination/ci/generate-corona-artwork.mjs
+ create mode 100644 coordination/ci/m2-b2-halo-corona.test.mjs
+ delete mode 100644 coordination/ci/m2.6.1-b2-halo-corona.test.mjs
+ create mode 100644 coordination/ci/m2.6.1-b2-round2-capture.mjs
+ create mode 100644 coordination/ci/m2.6.1-b2-round2-extended.mjs

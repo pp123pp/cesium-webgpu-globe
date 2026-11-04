@@ -1,0 +1,57 @@
+{
+  "suite": "m2.6-solar-asset-corrupt",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T00:20:24.880Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "b5fc33e37e0a8f5faeb731df23c954cb86f36dd0",
+  "sourceStatus": "",
+  "bundleSha256": "504a8b4ae55497191400a1e4208c577473c414b74b18ec4adcf61ef42e40b99e",
+  "browserErrors": [],
+  "checks": [
+    "single failed solar payload falls back to neutral textures and releases every partial/fallback allocation"
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.76",
+  "fallback": {
+    "solarAssetsLoaded": false,
+    "solarAssetError": "Solar texture glow-gradient has 30 bytes; expected 1048576.",
+    "textureCount": 9,
+    "texturesCreated": 20,
+    "texturesDestroyed": 8
+  },
+  "lifecycle": {
+    "destroyed": true,
+    "texturesCreated": 20,
+    "texturesDestroyed": 20,
+    "buffersCreated": 3,
+    "buffersDestroyed": 3
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: solar disk uses a normalized limb profile without changing physical Sun parameters
+ok 1 - solar disk uses a normalized limb profile without changing physical Sun parameters
+  ---
+  duration_ms: 0.7931
+  type: 'test'
+  ...
+# Subtest: solar ray layers use fixed independent UV transforms and retain exactly three ray samples
+ok 2 - solar ray layers use fixed independent UV transforms and retain exactly three ray samples
+  ---
+  duration_ms: 0.1625
+  type: 'test'
+  ...
+# Subtest: M2.6 solar pack contains all authored SVG sources and 512px GPU mask payloads
+ok 3 - M2.6 solar pack contains all authored SVG sources and 512px GPU mask payloads
+  ---
+  duration_ms: 11.9666
+  type: 'test'
+  ...
+# Subtest: solar texture conversion source is deterministic and preserves source SVGs
+ok 4 - solar texture conversion source is deterministic and preserves source SVGs
+  ---
+  duration_ms: 2.05
+  type: 'test'
+  ...
+# Subtest: destroy during a pending solar fetch stops further GPU allocation and upload
+ok 5 - destroy during a pending solar fetch stops further GPU allocation and upload
+  ---
+  duration_ms: 3.8745
+  type: 'test'
+  ...
+# Subtest: solar initialization is idempotent and all owned resources are freed exactly once
+ok 6 - solar initialization is idempotent and all owned resources are freed exactly once
+  ---
+  duration_ms: 2.1576
+  type: 'test'
+  ...
+# Subtest: GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+ok 7 - GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+  ---
+  duration_ms: 1.6642
+  type: 'test'
+  ...
+# Subtest: M2.6.1 B2 composes three halo scales and two authored corona bands
+ok 8 - M2.6.1 B2 composes three halo scales and two authored corona bands
+  ---
+  duration_ms: 8.1581
+  type: 'test'
+  ...
+# Subtest: B2 corona payloads feather transverse edges without erasing directional energy
+ok 9 - B2 corona payloads feather transverse edges without erasing directional energy
+  ---
+  duration_ms: 25.7375
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 413.0554

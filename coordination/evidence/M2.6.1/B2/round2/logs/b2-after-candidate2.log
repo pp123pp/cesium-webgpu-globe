@@ -1,0 +1,27 @@
+node : warning: in the working copy of 'coordination/ci/m2.6.1-b2-halo-corona.test.mjs', LF will be replaced by CRLF th
+e next time Git touches it
+所在位置 行:1 字符: 629
++ ... andidate2'; node coordination/ci/m2.6.1-b2-round2-capture.mjs *> Buil ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-fine.svg', LF will b
+e replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-mid.svg', LF will be
+ replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/manifest.json', LF will be rep
+laced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Scene/WebGPUSunShader.js', LF will be replaced by CRLF the next
+ time Git touches it
+warning: in the working copy of 'coordination/ci/m2.6.1-b2-halo-corona.test.mjs', LF will be replaced by CRLF the next 
+time Git touches it
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-fine.svg', LF will b
+e replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/Corona/corona-mid.svg', LF will be
+ replaced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Assets/Textures/WebGPU/Solar/GPU/manifest.json', LF will be rep
+laced by CRLF the next time Git touches it
+warning: in the working copy of 'packages/engine/Source/Scene/WebGPUSunShader.js', LF will be replaced by CRLF the next
+ time Git touches it
+M1 b2-round2-baseline PASS: 6 normal 60-degree full frames; 7 matched 12-degree diagnostics; actual 1280x720 resize and restoration, explicit state reset for each case; production Bloom=0.35; actual WebGPU PNG hashes; matched served assets

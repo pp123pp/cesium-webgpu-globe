@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6 accepted and merged; M2.6.1-A is complete, B1 was visually accepted by the user on 2026-11-03, and B2 Halo/Corona second-round refinement is active on PR #22. B2 visual acceptance remains open.**
+Current milestone: **M2.6 accepted and merged; M2.6.1-A is complete, B1 was visually accepted by the user on 2026-11-03, and B2 Halo/Corona second-round implementation and technical verification are complete on PR #22, awaiting user visual acceptance.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -55,12 +55,13 @@ The following known limitations remain recorded and are not silently waived by M
 - Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356) and executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341) passed on publication HEAD `3bcaac3`. The separate WebGL differential passed on runtime `cf2c1d1`: baseline/candidate each 3,811 pass, the same 11 inherited failures and 12,068 skipped, with no new failures or changed signatures. Raw suites retain exit 1; the comparison runner passes.
 - PR #18 merged as `cf4f56cebd7ee37f761bb6668770d78c5081533e`. M2.6 A07–A10 is accepted and integrated into `main`. Existing `M1-NAV-001`, NaturalEarth detail/seams, exposure-2 low-Sun contrast, resident VRAM and multi-device / long-duration coverage limitations remain.
 
-## Active task — M2.6.1-B2 second-round Halo / Corona refinement
+## Current handoff — M2.6.1-B2 round two, awaiting user visual acceptance
 
 - Integration owner update under the user's explicit 2026-11-04 B2 task. Main is `5cb8eda655314119fa5567e1b4c023e2c4217906`; B1 is `22515f64eeb04f9d6aab887073051f7e2a34543b` on open, unmerged [PR #21](https://github.com/pp123pp/cesium-webgpu-globe/pull/21).
 - B1 B01 Solar Disc / B02 Rays was visually accepted by the user on 2026-11-03. Old PR wording does not override that later decision. No B1 merge is authorized.
 - B2 [PR #22](https://github.com/pp123pp/cesium-webgpu-globe/pull/22) remains based on the B1 branch. Its round-two starting head is `302682b41a9e0ec64fcda1a0621dc49205eb694d`. Do not reset the branch or retarget the PR from historical planning instructions.
-- Active scope is B03 Halo retention/combination checks and B04 Corona contour/filament refinement. The original Halo falloff is retained; static Corona artwork is being corrected. The exact source, new matched hardware evidence, results and limitations are recorded in [B2 evidence](evidence/M2.6.1/B2/README.md) and the [round-two plan](audits/M2.6.1-B2-round2-plan.md).
+- Active scope is B03 Halo retention/combination checks and B04 Corona contour/filament refinement. The original Halo falloff is retained; Corona contours are replaced with feathered, tapered density and restrained warm-white color. The exact source, new matched hardware evidence, results and limitations are recorded in [round-two evidence](evidence/M2.6.1/B2/round2/README.md) and the [round-two plan](audits/M2.6.1-B2-round2-plan.md).
+- Runtime source is `b5fc33e37e0a8f5faeb731df23c954cb86f36dd0` (clean), implementation commit `e009078aa836e2631e8ec8566aa30255363ee6e1`. The new before/after sets contain 158 matching captures each, including 120 consecutive frames; Halo-only and Corona-off are byte-identical. Earth hidden-pixel difference is 0; actual mesh occlusion/removal and 404/corrupt teardown pass. Nine focused units, targeted lint, generated/engine types and build pass. Exact publication-head CI is linked from PR #22; hardware and CI are separate evidence.
 - The original B2 `combined` captures were 12-degree diagnostics with Rays and Bloom disabled. They remain historical evidence; new 60-degree full-effect captures explicitly restore every layer and Bloom 0.35.
 - Technical checks and authored-mask metrics do not grant user visual acceptance. B2 must stop for user review after its scoped delivery. Do not merge PR #21/#22, push main, or start B3 Bloom, B4 atmospheric integration, B5 integrated acceptance, M2.7/M2.8 or M3.
 - Existing `M1-NAV-001`, NaturalEarth detail/seams and single-device coverage limits remain. M2.6 A07–A10 acceptance is preserved; this round does not claim final M2.6.1 integrated acceptance.

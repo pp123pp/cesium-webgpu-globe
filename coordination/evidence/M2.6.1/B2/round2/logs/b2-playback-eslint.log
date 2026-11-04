@@ -1,0 +1,13 @@
+
+D:\github\cesium-webgpu-globe-b2-round2\coordination\evidence\M2.6.1\B2\round2\after-extended\continuous\index.html
+  5:36336  error  Expected { after 'else'  curly
+
+D:\github\cesium-webgpu-globe-b2-round2\coordination\evidence\M2.6.1\B2\round2\attempts\before-extended-initial\continuous\index.html
+  5:36329  error  Expected { after 'else'  curly
+
+D:\github\cesium-webgpu-globe-b2-round2\coordination\evidence\M2.6.1\B2\round2\before-extended\continuous\index.html
+  5:36329  error  Expected { after 'else'  curly
+
+鉁?3 problems (3 errors, 0 warnings)
+  3 errors and 0 warnings potentially fixable with the `--fix` option.
+

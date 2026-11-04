@@ -21,7 +21,7 @@ M2.6.1 is a focused visual-polish task after the merged M2.6 solar implementatio
 
 The long-term visual target is **real-time solar rendering with mature game-engine visual quality while preserving Cesium's geospatial correctness**. The staged direction, reference implementations, architecture boundaries and future acceptance principles are documented in [Solar Rendering Vision](docs/SOLAR_RENDERING_VISION.md).
 
-M2.6.1 remains the current, bounded polish task. B1–B5 are sequential review phases; B1 B01/B02 was visually accepted by the user on 2026-11-03; B2 B03/B04 is active on `feat/m2-6-1-b2-solar-halo-corona` and PR #22. B3–B5 require separate authorization. M2.7 and M2.8 are optional future tracks after M5: they must not delay or become prerequisites for M3 volumetric clouds, M4 cloud lighting, M5 stabilization or V1.0. They require separate task definitions and explicit authorization before implementation. No full RenderGraph, general PBR engine or broad renderer rewrite is implied.
+M2.6.1 remains the current, bounded polish task. B1–B5 are sequential review phases; B1 B01/B02 was visually accepted by the user on 2026-11-03; B2 B03/B04 round-two technical delivery awaits user visual acceptance on `feat/m2-6-1-b2-solar-halo-corona` and PR #22. B3–B5 require separate authorization. M2.7 and M2.8 are optional future tracks after M5: they must not delay or become prerequisites for M3 volumetric clouds, M4 cloud lighting, M5 stabilization or V1.0. They require separate task definitions and explicit authorization before implementation. No full RenderGraph, general PBR engine or broad renderer rewrite is implied.
 
 ## Strict scope gate
 

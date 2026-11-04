@@ -1,0 +1,28 @@
+git : [33m[STARTED][39m Backing up original state...
+所在位置 行:4 字符: 1
++ git commit -m 'docs: normalize roadmap formatting for current scope'  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([33m[STARTED]...iginal state...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[32m[COMPLETED][39m Backed up original state in git stash (43f6a50)
+[33m[STARTED][39m Running tasks for staged files...
+[33m[STARTED][39m lint-staged.config.js[0;90m 鈥?1 file[0m
+[33m[STARTED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?0 files[0m
+[33m[SKIPPED][39m *.{js,cjs,mjs,ts,tsx,css,html}[0;90m 鈥?no files[0m
+[33m[STARTED][39m *.md[0;90m 鈥?1 file[0m
+[33m[STARTED][39m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:\g
+ithub\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md
+[32m[COMPLETED][39m markdownlint --config D:\github\cesium-webgpu-globe-b2-round2\.markdownlint.json --ignore-path D:
+\github\cesium-webgpu-globe-b2-round2\.markdownlintignore D:/github/cesium-webgpu-globe-b2-round2/ROADMAP.md
+[33m[STARTED][39m prettier --write
+[32m[COMPLETED][39m prettier --write
+[32m[COMPLETED][39m *.md[0;90m 鈥?1 file[0m
+[32m[COMPLETED][39m lint-staged.config.js[0;90m 鈥?1 file[0m
+[32m[COMPLETED][39m Running tasks for staged files...
+[33m[STARTED][39m Applying modifications from tasks...
+[32m[COMPLETED][39m Applying modifications from tasks...
+[33m[STARTED][39m Cleaning up temporary files...
+[32m[COMPLETED][39m Cleaning up temporary files...
+[detached HEAD b5fc33e] docs: normalize roadmap formatting for current scope
+ 1 file changed, 15 insertions(+), 13 deletions(-)
