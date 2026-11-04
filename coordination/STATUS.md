@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B4 / B05 implementation, scoped technical verification and user visual acceptance PASS; PR #25 merged into main at `34f2571b80ee1854e4a7b8369c845aa506a0b24d` (2026-11-04). B5 / B07 is not started. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B5-A static integrated visual audit assembled; static visual gate FAIL (2026-11-04). Eight fresh raw WebGPU screenshots captured from a clean main-derived checkout; no engine runtime code change. B5-B/B5-C not started. M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -334,3 +334,13 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - Supplementary 10e3d08/f58881f recapture metadata is preserved separately; all 84 image hashes equal the canonical images. Its distinct candidate bundle is not conflated with the canonical build. Subsequent publication/audit-label changes do not imply a new hardware test.
 - [CI record](evidence/M2.6.1/B4/round2/ci-status.json) identifies actual commit/job states; PR #25 tracks later publication checks. Canonical ac7884d Fast and executed Full passed; later documentation-head Full skips are explicitly skips. No manual Full dispatch, new local WebGL differential, timing, 120-frame sequence or full B5 matrix.
 - [Handoff](handoffs/M2.6.1-B4-atmospheric-glow.md) records B4 acceptance and merge. Stop after B4; do not start B5/B07 or claim M2.6.1 complete without separate authorization.
+
+## M2.6.1-B5-A — Static Integrated Visual Audit (2026-11-04)
+
+**Result: static visual gate FAIL; evidence package assembled; awaiting user review.** The audit covers A01–A08 using eight fresh, unmodified raw WebGPU PNGs captured from a clean main-derived build. The capture run is not a B5-B/C result. The B5-A capture was headed Chrome 156.0.8078.80 on Intel Xe-LPG non-fallback hardware at 1920×1080, exposure 1 and fixed scene time; full per-scene camera vectors, Sun elevations, hashes and build identity are in [B5-A result](evidence/M2.6.1/B5/A/result.json).
+
+- Capture runtime/checkout 4544a483171ed94f4b1124323cf630773854c20b; successful npm run build; bundle SHA-256 3c5b8bb7ca8322a86e1292b848cc28a929dd9577fa21b637b2bb32fb49df63a3. The build served to headed Chrome was verified byte-identical to the local bundle. Current main at audit start f51ee9ea1618071ec67f77421c5a4d933ce1f3d4; packages/engine/Source compares identical to the capture checkout. The local main-derived build is verified; a new GitHub Pages deployment identity is not claimed.
+- Scene status: A01 FAIL (regular/prominent far-orbit Rays); A02 FAIL (hard saturated Earth rim); A03 FAIL (saturated sunrise horizon); A04 FAIL (warm horizon/contrast); A05 FAIL (washed low-Sun sky and weak disk); A06 PASS (ground daytime); A07 FAIL (yellow field and weak disk contrast); A08 BLOCKED (inherited bright blue unlit night-side surface).
+- Known baseline issues are not attributed to B4: yellow twilight persists with physical-only/no-Bloom controls; constant-color night terrain remains too bright. No Shader/runtime changes were made; no new pass was added.
+- See [B5-A review](evidence/M2.6.1/B5/A/README.md) and [handoff](handoffs/M2.6.1-B5-A-static-integrated-visual-audit.md). The branch/PR is an evidence-and-documentation closeout only.
+- B5-B temporal/continuous movement and complete occultation tests are NOT RUN. B5-C performance, resource lifecycle and final regression are NOT RUN. Do not mark them passed; do not close M2.6.1.
