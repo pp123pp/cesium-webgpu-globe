@@ -1,7 +1,8 @@
 # Solar Rendering Vision — Game-Engine-Quality Real-Time Sun
 
 **Status:** Long-term visual direction; planning only.  
-**Current implementation gate:** M2.6.1-B1, limited to B01 Solar Disc Polish and B02 Solar Rays Polish.  
+**Current implementation gate:** M2.6.1 B1/B2 are user-accepted; integration into main is authorized as of 2026-11-04. B3–B5 remain planned and require separate authorization.
+
 **Non-goal:** Replacing Cesium's physical/geospatial solar and atmosphere implementation with another engine.
 
 ## 1. Vision
@@ -48,13 +49,13 @@ M2.6.1 is the immediate, finite improvement to the already integrated M2.6 rende
 
 | Phase | Scope | Completion boundary |
 |---|---|---|
-| B1 | Solar Disc and Solar Rays (B01–B02) | Current development phase. Visual acceptance is still required. |
-| B2 | Solar Halo and Corona | Start only after B1 visual acceptance and a separate instruction. |
-| B3 | HDR Bloom refinement | Improve the existing Bloom path; no general-purpose post-processing framework. |
-| B4 | Atmospheric Glow integration | Tune interaction with the existing physical atmosphere; no duplicate scattering model. |
-| B5 | Integrated visual acceptance | Complete SVP-01–SVP-10 evidence and regression gates. |
+| B1 | Solar Disc and Solar Rays (B01–B02) | Visually accepted by the user on 2026-11-03; integration authorized on 2026-11-04. |
+| B2 | Solar Halo and Corona (B03–B04) | Visually accepted by the user on 2026-11-04; integration into main authorized. |
+| B3 | HDR Bloom refinement (B06) | Planned; requires separate authorization. Improve the existing Bloom path; no general-purpose post-processing framework. |
+| B4 | Atmospheric Glow integration (B05) | Planned; requires separate authorization. Tune interaction with the existing physical atmosphere; no duplicate scattering model. |
+| B5 | Integrated visual acceptance (B07) | Planned after B1–B4; requires separate authorization. Complete SVP-01–SVP-10 evidence and regression gates. |
 
-The active B1 PR must remain limited to B01 and B02 runtime work. Planning later phases does not authorize their implementation.
+B1 and B2 retain their respective B01/B02 and B03/B04 implementation scopes during integration. The user's 2026-11-04 instruction authorizes integrating the accepted results into main; planning later phases does not authorize their implementation.
 
 ## 5. M2.7 — Advanced Solar Rendering (future proposal)
 

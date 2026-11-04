@@ -1,8 +1,14 @@
 # M2.6.1-B2 round two — matched hardware evidence
 
-**Technical result: PASS. User visual acceptance: PENDING_USER_REVIEW.**
+**Technical result: PASS. User visual acceptance: ACCEPTED_BY_USER — 2026-11-04.**
 
 This is B03 Halo retention/combination verification and B04 Corona refinement only. B1 disk/rays remain user-accepted. B3 Bloom, B4 atmospheric integration, B5 integrated acceptance and later milestones are not started.
+
+## User acceptance — 2026-11-04
+
+The user explicitly confirmed (Asia/Shanghai): “B2通过画面验收，将当前成果合并到main”. B03 Halo / B04 Corona are accepted for publication head `d5d7b84ecdb27091537d9a564b9ccf7942561cc6`. The accepted B1 prerequisite is integrated through PR #21, followed by PR #22 targeting main; this instruction authorizes the current results' integration only. B3–B5 and later milestones still require separate authorization.
+
+Original run reports retain their capture-time PENDING/READY states, source hashes, measurements and images. They are not rewritten as new tests. This later user decision is recorded here and in the [current machine-readable summary](../result.json). The visual and evidence limitations below remain applicable.
 
 ## Source and environment
 
@@ -155,4 +161,4 @@ Historical M2.6 device-loss/recreation and full WebGL differential evidence rema
 - [Candidate 2](attempts/candidate-2/result.json) is the reviewed visual state. Final clean-source captures reproduce that state; the last shader change only clarified its luminance-preservation comment.
 - [Round-one originals](../round1/README.md) and the user's original review are preserved through the [B2 evidence index](../README.md).
 
-**Handoff: B2 第二轮优化与技术验证完成，等待用户视觉验收。** No PR merge, main push or B3 implementation is part of this delivery.
+**Handoff: B2 已于 2026-11-04 获用户画面验收通过，并获授权将已通过的 B1/B2 成果合入 main。** Complete that integration, then stop; B3–B5 and later milestones remain unauthorized. PR #21/#22 merge records provide the actual integration commits; the original runtime/evidence sources above remain unchanged.

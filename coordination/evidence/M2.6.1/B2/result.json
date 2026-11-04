@@ -1,8 +1,8 @@
 {
   "suite": "M2.6.1-B2-round2",
   "technicalStatus": "PASS",
-  "visualAcceptance": "PENDING_USER_REVIEW",
-  "handoff": "B2 第二轮优化与技术验证完成，等待用户视觉验收。",
+  "visualAcceptance": "ACCEPTED_BY_USER",
+  "handoff": "B2 已于 2026-11-04 获用户画面验收通过，已授权将通过的 B1/B2 成果合入 main；完成集成后停止，B3–B5 尚未授权。",
   "scope": [
     "B03 Halo retention and combination verification",
     "B04 Corona refinement"
@@ -92,13 +92,23 @@
     }
   },
   "visualReview": {
-    "status": "READY_FOR_USER_REVIEW",
+    "status": "ACCEPTED_BY_USER",
     "fineContours": "visibly reduced; variable-width diffuse internal structure",
     "broadPlumes": "complete ellipse/petal/ribbon rims visibly reduced; directional energy retained",
     "halo": "unchanged continuous falloff",
     "fullEffects": "improvement visible in normal 60-degree full-effect captures",
     "highExposure": "bounded white core; exposure 2 compresses weak inner detail",
-    "userApproved": false
+    "userApproved": true,
+    "userAcceptance": {
+      "date": "2026-11-04",
+      "timezone": "Asia/Shanghai",
+      "statement": "B2通过画面验收，将当前成果合并到main",
+      "reviewedPublicationHead": "d5d7b84ecdb27091537d9a564b9ccf7942561cc6",
+      "scope": [
+        "B03 Halo",
+        "B04 Corona"
+      ]
+    }
   },
   "unchangedDiagnostics": [
     {
@@ -477,7 +487,6 @@
     "webglDifferential": "M2.6 closeout; unchanged implementation, final PR CI separately checked"
   },
   "limits": [
-    "User visual acceptance pending",
     "Single physical GPU/browser; no long-duration soak or new hardware device-loss/recreation stress",
     "12-degree broad corona remains soft and somewhat cloud-like; normal-view detail merges",
     "Exposure 2 reduces weak inner contrast",
@@ -490,9 +499,11 @@
   "publication": {
     "branch": "feat/m2-6-1-b2-solar-halo-corona",
     "pr": "https://github.com/pp123pp/cesium-webgpu-globe/pull/22",
-    "base": "feat/m2-6-1-b1-solar-disc-rays",
+    "base": "main",
     "checks": "https://github.com/pp123pp/cesium-webgpu-globe/pull/22/checks",
-    "note": "Exact publication-head Fast/Full links recorded in PR delivery summary. No merge or main push."
+    "note": "User accepted B2 and authorized dependency-ordered B1/B2 integration into main on 2026-11-04. PR #21 merged first; PR #22 now targets main. Final integration status and SHA are recorded by GitHub PR merge records. B3–B5 remain unauthorized.",
+    "b1MergeCommit": "eeaca1ddc3ef960ad23cd4aae9757b31ea98063a",
+    "integrationAuthorizedByUser": true
   },
   "supplementaryAfterOnlyMotion": {
     "status": "PASS",
