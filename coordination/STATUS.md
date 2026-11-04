@@ -1,12 +1,20 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B4 / B05 implementation, scoped technical verification and user visual acceptance PASS; PR #25 merged into main at `34f2571b80ee1854e4a7b8369c845aa506a0b24d` (2026-11-04). B5 / B07 is not started. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B5-A static visual acceptance PASS (user-confirmed 2026-11-04); PR #27 merged into main at `0cf85063a4c63251b71be95375da03ba6354f869`. B5-B temporal and B5-C performance/lifecycle acceptance are not complete; M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
+
+## B5-A acceptance and integration — 2026-11-04
+
+- User explicitly confirmed visual acceptance and authorized merging to main. A02's thin limb and A05's haze remain accepted limitations, not claimed eliminated.
+- [PR #27](https://github.com/pp123pp/cesium-webgpu-globe/pull/27) merged tested head `dd641663698c08894f9ef5b15b876ceebb5f5479` as `0cf85063a4c63251b71be95375da03ba6354f869`. Engine runtime is unchanged from `9a3a1f2`; clean `885e6a3` hardware recapture verified all 70 image hashes match the third-round evidence.
+- Final-head [Fast 41826987786](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41826987786) and executed [Full 41826987870](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41826987870) PASS. Both hosted tiers are non-rendering under the user's latest instruction; they do not certify a complete WebGL differential.
+- Local rendering verification now uses a bounded 640×360 native ellipsoid fixture (maximum level 8) for the B5 lighting/depth/color checks, preserving all 10 original assertions. Hardware positive checks passed; disabling actual surface lighting made both twilight/night brightness checks fail. All subsequent rendering verification uses the local physical GPU, never SwiftShader. Browser configuration defaults to hardware and requires a physical adapter. Hosted Fast no longer runs software rendering; local functional fixtures and milestone visual matrices follow `docs/CI.md` and `AGENTS.md`.
+- [Visual evidence](evidence/M2.6.1/B5-A-R/round3/README.md) and [CI diagnosis](evidence/M2.6.1/B5-A-R/ci-followup/settle-fix.json) retain exact sources, the failed hosted attempts, the local software-adapter limitation and scoped hardware validation. No new rendering implementation, B5-B/B5-C acceptance, resident-VRAM measurement or complete WebGL differential is claimed.
 
 ## Current integration state
 
@@ -322,7 +330,7 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - Recovery after device loss is destruction and recreation; no backend hot switch.
 - Read `coordination/handoffs/M0.4-webgpu-proof.md` for the supported API, commands, evidence and environment limits.
 
-## Current handoff — B4 / B05 accepted and merged, 2026-11-04
+## Historical handoff — B4 / B05 accepted and merged, 2026-11-04
 
 **B4 / B05 implementation, scoped technical verification and user visual acceptance PASS. PR #25 merged into main at `34f2571b80ee1854e4a7b8369c845aa506a0b24d`. B5 / B07 remains unstarted; M2.6.1 as a whole is not complete.**
 
