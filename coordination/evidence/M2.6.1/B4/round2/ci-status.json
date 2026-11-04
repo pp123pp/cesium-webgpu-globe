@@ -1,5 +1,4 @@
 {
-  "observedAt": "2026-11-04T05:13:00Z",
   "pullRequest": 25,
   "branch": "feat/m2-6-1-b4-atmospheric-glow",
   "canonicalCapture": {
@@ -30,8 +29,8 @@
       "fast": {
         "runId": 41777393065,
         "jobId": 126401247018,
-        "status": "in_progress",
-        "conclusion": null
+        "status": "completed",
+        "conclusion": "cancelled"
       },
       "full": {
         "runId": 41777393255,
@@ -41,9 +40,27 @@
         "regressionConclusion": "skipped",
         "actuallyExecuted": false
       }
+    },
+    {
+      "commit": "835d967944d432eb062db2944587d367991a7b79",
+      "fast": {
+        "runId": 41778005735,
+        "jobId": 126403016936,
+        "status": "in_progress",
+        "conclusion": null
+      },
+      "full": {
+        "runId": 41778005829,
+        "selectorConclusion": "success",
+        "regressionJobId": 126402843189,
+        "regressionStatus": "completed",
+        "regressionConclusion": "success",
+        "actuallyExecuted": true
+      }
     }
   ],
   "manualFullDispatch": false,
   "newLocalWebglDifferential": false,
-  "note": "Snapshot before the provenance/measurement correction commit. Subsequent PR-head checks are reported in PR #25; no future or skipped job is claimed passed."
+  "note": "Actual job snapshot before the final log/documentation commit. The 835d967 Full regression executed and passed. d54d8c4 Full was skipped and its superseded Fast was cancelled. Later publication-head checks are tracked in PR #25; none is predeclared passed. Canonical hardware capture and runtime remain unchanged.",
+  "recordedAt": "2026-11-04T05:19:48Z"
 }

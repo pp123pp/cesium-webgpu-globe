@@ -1,0 +1,19 @@
+{
+    "focusedTests":  {
+                         "command":  "node --test coordination/ci/m2.6.1-b4-atmospheric-glow.test.mjs coordination/ci/m2-atmosphere-model.test.mjs coordination/ci/m2-atmosphere-lifecycle.test.mjs coordination/ci/m2-sun.test.mjs coordination/ci/m2-b1-solar.test.mjs",
+                         "passed":  18,
+                         "failed":  0,
+                         "skipped":  0,
+                         "original":  {
+                                          "path":  "focused-tests.original.log",
+                                          "encoding":  "UTF-16LE with BOM",
+                                          "sha256":  "0f3c7e72106f78cc24d70febc7277377f5cee3ace489b2e610888ac95d22225b"
+                                      },
+                         "readableCopy":  {
+                                              "path":  "focused-tests.log",
+                                              "encoding":  "UTF-8",
+                                              "sha256":  "64961a5677c724f5493aeb2e6c1181e22540e925c52282d14ee46a76f252a746"
+                                          },
+                         "transformation":  "UTF-16LE to UTF-8 and CRLF to LF for readable publication; all test text and counts preserved in the original log."
+                     }
+}
