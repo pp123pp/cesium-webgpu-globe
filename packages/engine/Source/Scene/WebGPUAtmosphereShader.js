@@ -244,6 +244,20 @@ fn atmosphereIntegrate(direction: vec3f, sceneDistance: f32) -> AtmosphereResult
   return result;
 }
 
+// Long grazing paths can produce a saturated, one-pixel limb/horizon band after
+// tone mapping. Apply a restrained scene-linear display balance to the combined
+// transmitted scene and in-scattered atmosphere. Transport transmittance, physical
+// coefficients, direct Sun energy and the single ACES/sRGB output remain unchanged.
+fn atmosphereLongPathBalance(radiance: vec3f, transmittance: vec3f) -> vec3f {
+  let weights = vec3f(0.2126, 0.7152, 0.0722);
+  let opacity = clamp(1.0 - dot(transmittance, weights), 0.0, 1.0);
+  let grazingPath = smoothstep(0.25, 0.75, opacity);
+  let luminance = max(dot(radiance, weights), 0.0);
+  let desaturation = 0.58 * grazingPath;
+  let attenuation = 1.0 - 0.18 * grazingPath;
+  return mix(radiance, vec3f(luminance), desaturation) * attenuation;
+}
+
 fn atmosphereEncodeSrgb(value: vec3f) -> vec3f {
   let color = max(value, vec3f(0.0));
   return select(1.055 * pow(color, vec3f(1.0 / 2.4)) - 0.055, color * 12.92,
@@ -281,8 +295,10 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let linear = (background + stars + solar + moon) * transport.transmittance +
-               transport.radiance + moonTerrain;
+  let atmosphereComposite = background * transport.transmittance + transport.radiance;
+  let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
+  let linear = (stars + solar + moon) * transport.transmittance +
+               balancedAtmosphere + moonTerrain;
   return atmosphereDisplayOutput(linear);
 }
 
@@ -301,8 +317,10 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let linear = (background + stars + solar + moon) * transport.transmittance +
-               transport.radiance + moonTerrain;
+  let atmosphereComposite = background * transport.transmittance + transport.radiance;
+  let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
+  let linear = (stars + solar + moon) * transport.transmittance +
+               balancedAtmosphere + moonTerrain;
   return vec4f(linear, 1.0);
 }
 

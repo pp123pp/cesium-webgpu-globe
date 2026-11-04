@@ -120,9 +120,9 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32, viewTransmittanc
   let primaryRayUv = solarRayUv(uv, 0.11, 0.96);
   let fineRayUv = solarRayUv(uv, -0.19, 1.07);
   let broadRayUv = solarRayUv(uv, 0.31, 0.86);
-  let rays = textureSampleLevel(solarRaysPrimary, solarSampler, primaryRayUv, 0.0).r * 0.45 +
-             textureSampleLevel(solarRaysFine, solarSampler, fineRayUv, 0.0).r * 0.15 +
-             textureSampleLevel(solarRaysBroad, solarSampler, broadRayUv, 0.0).r * 0.40;
+  let rays = textureSampleLevel(solarRaysPrimary, solarSampler, primaryRayUv, 0.0).r * 0.15 +
+             textureSampleLevel(solarRaysFine, solarSampler, fineRayUv, 0.0).r * 0.65 +
+             textureSampleLevel(solarRaysBroad, solarSampler, broadRayUv, 0.0).r * 0.20;
   let tint = mix(vec3f(1.0), textureSampleLevel(solarGlowGradient, solarSampler,
                                 vec2f(1.0 - r, 0.5), 0.0).rgb, atmosphere.exposure.w);
   // Three overlapping halo scales share the two authored radial masks:
@@ -148,8 +148,8 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32, viewTransmittanc
   // preserves pre-transport linear Rec.709 luminance; Halo/Rays tint is unchanged.
   let coronaLuminance = dot(tint, vec3f(0.2126, 0.7152, 0.0722));
   let coronaTint = mix(tint, vec3f(coronaLuminance), 0.72);
-  let rayFade = 1.0 - smoothstep(0.68, 1.0, r);
-  let rayDetail = atmosphere.sun.z * 2.5 * rays * rayFade * atmosphere.solarEffects.x;
+  let rayFade = 1.0 - smoothstep(0.52, 0.90, r);
+  let rayDetail = atmosphere.sun.z * 0.75 * rays * rayFade * atmosphere.solarEffects.x;
   // The analytic disk is the direct photosphere and follows Beer-Lambert
   // attenuation in the compositor. Artwork is a restrained visual supplement,
   // not a second scattering solution: reduce it as the physical view path
@@ -157,7 +157,7 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32, viewTransmittanc
   // the atmospheric glow. This avoids a second orange veil at the limb while
   // retaining the full authored appearance in optically thin space.
   let viewTransmission = dot(viewTransmittance, vec3f(0.2126, 0.7152, 0.0722));
-  let artworkTransmission = mix(0.58, 1.0, smoothstep(0.25, 0.90, viewTransmission));
+  let artworkTransmission = mix(0.28, 1.0, smoothstep(0.35, 0.90, viewTransmission));
   return atmosphere.sun.y * (disk +
     (tint * (halo + rayDetail) + coronaTint * coronaDetail) * visibility * artworkTransmission);
 }
