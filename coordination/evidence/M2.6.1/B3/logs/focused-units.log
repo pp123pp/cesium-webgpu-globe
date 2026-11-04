@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+ok 1 - atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+  ---
+  duration_ms: 1.5511
+  type: 'test'
+  ...
+# Subtest: resize and failure release the atmosphere color attachment with scene depth
+ok 2 - resize and failure release the atmosphere color attachment with scene depth
+  ---
+  duration_ms: 0.7856
+  type: 'test'
+  ...
+# Subtest: HDR clear decodes background RGB while M0 preserves display RGB and alpha
+ok 3 - HDR clear decodes background RGB while M0 preserves display RGB and alpha
+  ---
+  duration_ms: 1.1779
+  type: 'test'
+  ...
+# Subtest: a combined resize restores Bloom and all controls after an isolated off-axis capture
+ok 4 - a combined resize restores Bloom and all controls after an isolated off-axis capture
+  ---
+  duration_ms: 2.2053
+  type: 'test'
+  ...
+# Subtest: resolution equality rejects the historical Bloom leak and the matrix resets off-axis yaw
+ok 5 - resolution equality rejects the historical Bloom leak and the matrix resets off-axis yaw
+  ---
+  duration_ms: 4.4307
+  type: 'test'
+  ...
+# Subtest: M2.6.1 B2 composes three halo scales and two authored corona bands
+ok 6 - M2.6.1 B2 composes three halo scales and two authored corona bands
+  ---
+  duration_ms: 10.488
+  type: 'test'
+  ...
+# Subtest: B2 corona payloads feather transverse edges without erasing directional energy
+ok 7 - B2 corona payloads feather transverse edges without erasing directional energy
+  ---
+  duration_ms: 28.1743
+  type: 'test'
+  ...
+# Subtest: coordination\\ci\\m2-hdr.test.mjs
+ok 4 - coordination\\ci\\m2-hdr.test.mjs
+  ---
+  duration_ms: 462.534
+  type: 'test'
+  ...
+# Subtest: destroy during a pending solar fetch stops further GPU allocation and upload
+ok 9 - destroy during a pending solar fetch stops further GPU allocation and upload
+  ---
+  duration_ms: 3.7252
+  type: 'test'
+  ...
+# Subtest: solar initialization is idempotent and all owned resources are freed exactly once
+ok 10 - solar initialization is idempotent and all owned resources are freed exactly once
+  ---
+  duration_ms: 2.0715
+  type: 'test'
+  ...
+# Subtest: GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+ok 11 - GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+  ---
+  duration_ms: 1.175
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 604.2566

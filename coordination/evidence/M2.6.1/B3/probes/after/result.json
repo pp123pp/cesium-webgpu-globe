@@ -1,0 +1,168 @@
+{
+  "suite": "m2-solar-bloom",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T02:17:04.774Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+  "sourceStatus": "M coordination/ci/m2-solar-bloom-smoke.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUSolarBloomShader.js\n?? coordination/ci/m2.6.1-b3-audit.mjs\n?? coordination/ci/m2.6.1-b3-capture.mjs\n?? coordination/evidence/M2.6.1/B3/",
+  "bundleSha256": "7c9880bf43281d762d8470e82070f96f6c81e09c19d6880fb571a5e496856953",
+  "browserErrors": [],
+  "checks": [
+    "real production HDR final pass respects terrain depth and WGS84 with positive/negative controls",
+    "production blur conserves small-highlight energy with connected falloff; soft knee preserves black and high radiance"
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.76",
+  "probe": {
+    "smallHighlightHalf": 12800,
+    "blurProbe": {
+      "center": 0.0263671875,
+      "axis": [
+        0.0263671875,
+        0.0175933837890625,
+        0.004375457763671875,
+        0
+      ],
+      "diagonal": [
+        0.0263671875,
+        0.01174163818359375,
+        0.0007266998291015625,
+        0
+      ],
+      "sum": 0.18747711181640625,
+      "nonnegativeFinite": true,
+      "symmetryError": 0
+    },
+    "knee": [
+      {
+        "input": 0.5,
+        "output": 0
+      },
+      {
+        "input": 0.75,
+        "output": 0.03125
+      },
+      {
+        "input": 1,
+        "output": 0.125
+      },
+      {
+        "input": 1.25,
+        "output": 0.28125
+      },
+      {
+        "input": 1.5,
+        "output": 0.5
+      }
+    ],
+    "visible": {
+      "center": [
+        186,
+        186,
+        186
+      ],
+      "corner": [
+        186,
+        186,
+        186
+      ],
+      "litPixels": 16384
+    },
+    "terrainBlocked": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        0,
+        0,
+        0
+      ],
+      "litPixels": 0
+    },
+    "ellipsoidBlocked": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        186,
+        186,
+        186
+      ],
+      "litPixels": 12100
+    },
+    "disabledAfterEnabled": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        0,
+        0,
+        0
+      ],
+      "litPixels": 0
+    },
+    "adapterFeatures": [
+      "depth32float-stencil8",
+      "rg11b10ufloat-renderable",
+      "texture-formats-tier1",
+      "bgra8unorm-storage",
+      "texture-compression-bc",
+      "dual-source-blending",
+      "core-features-and-limits",
+      "float32-filterable",
+      "indirect-first-instance",
+      "float32-blendable",
+      "subgroup-size-control",
+      "texture-compression-unaligned",
+      "depth-clip-control",
+      "texture-compression-bc-sliced-3d",
+      "timestamp-query",
+      "shader-f16",
+      "texture-formats-tier2",
+      "clip-distances",
+      "primitive-index",
+      "texture-component-swizzle",
+      "subgroups"
+    ],
+    "deviceFeatures": [
+      "core-features-and-limits",
+      "timestamp-query"
+    ],
+    "probeResourcesCreated": 9,
+    "probeResourcesDestroyed": 9
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,149 @@
+{
+  "suite": "m2-solar-bloom",
+  "browserConsole": [],
+  "capturedAt": "2026-11-04T02:02:58.606Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "args": []
+    }
+  },
+  "source": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+  "sourceStatus": "M ThirdParty.json\n M coordination/ci/m2-solar-bloom-smoke.mjs",
+  "bundleSha256": "eb724fba3ee9720711eb0c1afdc127c907878138fd480f695fb65c754c121ced",
+  "browserErrors": [],
+  "checks": [],
+  "scenes": [],
+  "browser": "156.0.8078.76",
+  "probe": {
+    "smallHighlightHalf": 12800,
+    "blurProbe": {
+      "center": 0.06744384765625,
+      "axis": [
+        0.06744384765625,
+        0,
+        0,
+        0
+      ],
+      "diagonal": [
+        0.06744384765625,
+        0,
+        0.029998779296875,
+        0
+      ],
+      "sum": 0.18743896484375,
+      "nonnegativeFinite": true,
+      "symmetryError": 0
+    },
+    "knee": [
+      {
+        "input": 0.5,
+        "output": 0
+      },
+      {
+        "input": 0.75,
+        "output": 0
+      },
+      {
+        "input": 1,
+        "output": 0
+      },
+      {
+        "input": 1.25,
+        "output": 0.25
+      },
+      {
+        "input": 1.5,
+        "output": 0.5
+      }
+    ],
+    "visible": {
+      "center": [
+        186,
+        186,
+        186
+      ],
+      "corner": [
+        186,
+        186,
+        186
+      ],
+      "litPixels": 16384
+    },
+    "terrainBlocked": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        0,
+        0,
+        0
+      ],
+      "litPixels": 0
+    },
+    "ellipsoidBlocked": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        186,
+        186,
+        186
+      ],
+      "litPixels": 12100
+    },
+    "disabledAfterEnabled": {
+      "center": [
+        0,
+        0,
+        0
+      ],
+      "corner": [
+        0,
+        0,
+        0
+      ],
+      "litPixels": 0
+    },
+    "adapterFeatures": [
+      "depth32float-stencil8",
+      "rg11b10ufloat-renderable",
+      "texture-formats-tier1",
+      "bgra8unorm-storage",
+      "texture-compression-bc",
+      "dual-source-blending",
+      "core-features-and-limits",
+      "float32-filterable",
+      "indirect-first-instance",
+      "float32-blendable",
+      "subgroup-size-control",
+      "texture-compression-unaligned",
+      "depth-clip-control",
+      "texture-compression-bc-sliced-3d",
+      "timestamp-query",
+      "shader-f16",
+      "texture-formats-tier2",
+      "clip-distances",
+      "primitive-index",
+      "texture-component-swizzle",
+      "subgroups"
+    ],
+    "deviceFeatures": [
+      "core-features-and-limits",
+      "timestamp-query"
+    ],
+    "probeResourcesCreated": 9,
+    "probeResourcesDestroyed": 9
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: Small highlights need connected, decreasing axial spread, not detached diagonal copies",
+  "timedOut": false
+}

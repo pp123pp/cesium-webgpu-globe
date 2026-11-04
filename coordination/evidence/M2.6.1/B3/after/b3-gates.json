@@ -1,0 +1,1590 @@
+{
+  "phase": "after",
+  "gates": [
+    {
+      "name": "normal-60-center-exposure-0.5: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-center-exposure-0.5: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-center-exposure-1: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-center-exposure-1: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-center-exposure-2: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-center-exposure-2: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-offaxis-exposure-0.5: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-offaxis-exposure-0.5: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-offaxis-exposure-1: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-offaxis-exposure-1: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-offaxis-exposure-2: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-offaxis-exposure-2: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "normal-60-edge-exposure-1: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "normal-60-edge-exposure-1: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "resize-720: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "resize-720: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "resize-restored-1080: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "resize-restored-1080: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "high-orbit-sunrise: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "high-orbit-sunrise: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "low-orbit-low-sun: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "low-orbit-low-sun: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 0,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": null
+      }
+    },
+    {
+      "name": "near-ground-low-sun: matched exposure and canvas",
+      "passed": true
+    },
+    {
+      "name": "near-ground-low-sun: post-blur Earth receivers",
+      "passed": true,
+      "details": {
+        "pixels": 1002240,
+        "changedAbove1Byte": 0,
+        "maxByteDifference": 0,
+        "absoluteRgbSum": 0,
+        "signedRgbSum": [
+          0,
+          0,
+          0
+        ],
+        "meanAbsoluteRgbBytes": 0
+      }
+    },
+    {
+      "name": "earth-visible: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "earth-visible: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "earth-visible: visible source",
+      "passed": true
+    },
+    {
+      "name": "earth-partial: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "earth-partial: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "earth-partial: partial source area",
+      "passed": true,
+      "details": 0.45132743362831856
+    },
+    {
+      "name": "earth-partial: exposed source stays visible",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden: independently hidden entire source",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "name": "earth-hidden: direct production solar radiance",
+      "passed": true,
+      "details": 0
+    },
+    {
+      "name": "earth-hidden: no added HDR signal in _linearTexture",
+      "passed": true,
+      "details": {
+        "key": "_linearTexture",
+        "label": "M2.6 scene-linear HDR composite",
+        "size": [
+          1920,
+          1080
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden: no added HDR signal in _bloomTextureA",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureA",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden: no added HDR signal in _bloomTextureB",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureB",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden: no added solar pixels anywhere",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 922269,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 1143651,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 5656,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 784831,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 746603,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "earth-hidden: no direct solar contribution",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden: no added blurred solar contribution",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 922269,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 1143651,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 5656,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 784831,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 746603,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "earth-hidden-normal-fov: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden-normal-fov: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden-normal-fov: independently hidden entire source",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "name": "earth-hidden-normal-fov: direct production solar radiance",
+      "passed": true,
+      "details": 0
+    },
+    {
+      "name": "earth-hidden-normal-fov: no added HDR signal in _linearTexture",
+      "passed": true,
+      "details": {
+        "key": "_linearTexture",
+        "label": "M2.6 scene-linear HDR composite",
+        "size": [
+          1920,
+          1080
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden-normal-fov: no added HDR signal in _bloomTextureA",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureA",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden-normal-fov: no added HDR signal in _bloomTextureB",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureB",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "earth-hidden-normal-fov: no added solar pixels anywhere",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 1072364,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 993556,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 188,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 1067632,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 854314,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "earth-hidden-normal-fov: no direct solar contribution",
+      "passed": true
+    },
+    {
+      "name": "earth-hidden-normal-fov: no added blurred solar contribution",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 1072364,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 993556,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 188,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 1067632,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 854314,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "terrain-partial: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "terrain-partial: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "terrain-partial: real mesh above analytic Earth",
+      "passed": true
+    },
+    {
+      "name": "terrain-partial: partial source area",
+      "passed": true,
+      "details": 0.6548672566371682
+    },
+    {
+      "name": "terrain-partial: exposed source stays visible",
+      "passed": true
+    },
+    {
+      "name": "terrain-hidden: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "terrain-hidden: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "terrain-hidden: real mesh above analytic Earth",
+      "passed": true
+    },
+    {
+      "name": "terrain-hidden: independently hidden entire source",
+      "passed": true,
+      "details": 1
+    },
+    {
+      "name": "terrain-hidden: direct production solar radiance",
+      "passed": true,
+      "details": 0
+    },
+    {
+      "name": "terrain-hidden: no added HDR signal in _linearTexture",
+      "passed": true,
+      "details": {
+        "key": "_linearTexture",
+        "label": "M2.6 scene-linear HDR composite",
+        "size": [
+          1920,
+          1080
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "terrain-hidden: no added HDR signal in _bloomTextureA",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureA",
+        "label": "M2.6 quarter-resolution HDR bloom A",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "terrain-hidden: no added HDR signal in _bloomTextureB",
+      "passed": true,
+      "details": {
+        "key": "_bloomTextureB",
+        "label": "M2.6 quarter-resolution HDR bloom B",
+        "size": [
+          480,
+          270
+        ],
+        "maxAbsoluteRgb": 0,
+        "meanAbsoluteRgb": 0
+      }
+    },
+    {
+      "name": "terrain-hidden: no added solar pixels anywhere",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 1070590,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 995330,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 5656,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 878088,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 833724,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "terrain-hidden: no direct solar contribution",
+      "passed": true
+    },
+    {
+      "name": "terrain-hidden: no added blurred solar contribution",
+      "passed": true,
+      "details": {
+        "all": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "clearSky": {
+          "pixels": 1070590,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "coveredEarth": {
+          "pixels": 995330,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "grazing": {
+          "pixels": 7680,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "disk": {
+          "pixels": 5656,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "outerSky": {
+          "pixels": 878088,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        },
+        "farSky": {
+          "pixels": 833724,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "signedRgbSum": [
+            0,
+            0,
+            0
+          ],
+          "meanAbsoluteRgbBytes": 0
+        }
+      }
+    },
+    {
+      "name": "terrain-removed: clear sky is tested",
+      "passed": true
+    },
+    {
+      "name": "terrain-removed: Earth receiver mask",
+      "passed": true
+    },
+    {
+      "name": "terrain-removed: visible source",
+      "passed": true
+    },
+    {
+      "name": "mountain removal preserves camera and time",
+      "passed": true,
+      "details": 1.8041124150158794e-16
+    },
+    {
+      "name": "mountain removal removes the real mesh",
+      "passed": true
+    },
+    {
+      "name": "motion 0: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 1: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 2: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 3: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 4: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 5: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 6: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 7: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 8: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 9: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 10: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 11: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 12: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 13: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 14: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 15: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 16: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 17: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 18: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 19: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 20: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 21: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 22: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 23: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 24: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 25: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 26: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 27: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 28: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 29: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 30: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 31: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 32: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 33: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 34: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 35: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 36: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 37: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 38: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 39: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 40: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 41: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 42: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 43: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 44: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 45: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 46: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 47: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 48: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 49: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 50: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 51: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 52: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 53: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 54: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 55: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 56: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 57: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 58: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 59: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 60: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 61: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 62: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 63: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 64: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 65: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 66: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 67: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 68: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 69: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 70: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 71: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 72: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 73: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 74: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 75: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 76: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 77: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 78: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 79: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 80: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 81: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 82: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 83: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 84: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 85: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 86: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 87: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 88: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 89: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 90: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 91: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 92: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 93: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 94: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 95: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 96: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 97: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 98: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 99: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 100: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 101: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 102: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 103: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 104: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 105: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 106: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 107: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 108: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 109: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 110: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 111: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 112: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 113: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 114: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 115: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 116: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 117: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 118: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "motion 119: fixed settings",
+      "passed": true
+    },
+    {
+      "name": "120 uninterrupted camera and time frames",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 0: real resize and restore",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 0: renderer resources balanced",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 0: native solar resources destroyed once",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 0: no render or GPU errors",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 1: real resize and restore",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 1: renderer resources balanced",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 1: native solar resources destroyed once",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 1: no render or GPU errors",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 2: real resize and restore",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 2: renderer resources balanced",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 2: native solar resources destroyed once",
+      "passed": true
+    },
+    {
+      "name": "lifecycle 2: no render or GPU errors",
+      "passed": true
+    },
+    {
+      "name": "all compiled shader diagnostics",
+      "passed": true
+    }
+  ],
+  "failed": [],
+  "note": "Capture completeness does not grant visual acceptance. Audit AFTER and inspect all PNGs."
+}

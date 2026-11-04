@@ -1,0 +1,3543 @@
+{
+  "kind": "DERIVED_DIAGNOSTIC_MOTION_OVERVIEW",
+  "label": "Diagnostic contact sheet derived exclusively from 120 previously captured B3 AFTER PNGs; not a new rendering capture.",
+  "generatedAt": "2026-11-04T02:34:54.273Z",
+  "output": {
+    "filename": "derived/motion-overview.png",
+    "sha256": "c4bbb3ce21c6f5fec8d89af296f931f7b2766943be89ff755454bbcf99853935",
+    "bytes": 2823867,
+    "width": 1656,
+    "height": 1668
+  },
+  "sources": {
+    "root": "D:\\github\\cesium-webgpu-globe-b3\\coordination\\evidence\\M2.6.1\\B3",
+    "phase": "after",
+    "captureProtocol": "M2.6.1-B3-v1",
+    "report": {
+      "filename": "after/result.json",
+      "sha256": "c0aa21bae841593df13d34b7b03e1a0be1666d98d9d99b4ab7be305e0cfa5ae4"
+    },
+    "sequence": {
+      "filename": "after/motion/sequence.json",
+      "sha256": "5a3d3cf909a67406f713e303a9722d3caf56a5f761c3ad26a8dc7153afbbef2f"
+    },
+    "frames": [
+      {
+        "index": 0,
+        "filename": "after/motion/frame-0000.png",
+        "sha256": "42f4d14afb4bab3f9bd3f58bc2e29ff7c34e62134e585c5008ab51112bda9c1a",
+        "bytes": 76210,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 687,
+        "time": "2026-03-20T12:00:10Z",
+        "sunProjection": [
+          959.567595580145,
+          541.2094438775687
+        ],
+        "crop": {
+          "x": 896,
+          "y": 477,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 000"
+      },
+      {
+        "index": 1,
+        "filename": "after/motion/frame-0001.png",
+        "sha256": "b1aa190c5c02c82ec433055b8e5650ad45b7571faffba6e06f7ed72fdb12a2fd",
+        "bytes": 76234,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 688,
+        "time": "2026-03-20T12:00:20Z",
+        "sunProjection": [
+          959.1351904421036,
+          542.418889282931
+        ],
+        "crop": {
+          "x": 895,
+          "y": 478,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 001"
+      },
+      {
+        "index": 2,
+        "filename": "after/motion/frame-0002.png",
+        "sha256": "7549557c8406ba1bf8c809987bd64ba8c8123c7dd3bee9b0f72d3fef28531aed",
+        "bytes": 76047,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 689,
+        "time": "2026-03-20T12:00:30Z",
+        "sunProjection": [
+          958.7027845312612,
+          543.6283377410273
+        ],
+        "crop": {
+          "x": 895,
+          "y": 480,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 002"
+      },
+      {
+        "index": 3,
+        "filename": "after/motion/frame-0003.png",
+        "sha256": "e57eebecb023a0210148d61cb0a7b622a1b95fd4f71d726766688cffbae213da",
+        "bytes": 76246,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 690,
+        "time": "2026-03-20T12:00:40Z",
+        "sunProjection": [
+          958.2703777928704,
+          544.8377907770758
+        ],
+        "crop": {
+          "x": 894,
+          "y": 481,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 003"
+      },
+      {
+        "index": 4,
+        "filename": "after/motion/frame-0004.png",
+        "sha256": "83bc4915ff9cc8d63723e323e2b02ae53b69999d055b9215c3d5438db00ee848",
+        "bytes": 76040,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 691,
+        "time": "2026-03-20T12:00:50Z",
+        "sunProjection": [
+          957.8379701721811,
+          546.0472499162446
+        ],
+        "crop": {
+          "x": 894,
+          "y": 482,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 004"
+      },
+      {
+        "index": 5,
+        "filename": "after/motion/frame-0005.png",
+        "sha256": "65bc9affc7a0233811e856d5bfe8c3211d8ae5ae7ab177680f230bf80feceafe",
+        "bytes": 75981,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 692,
+        "time": "2026-03-20T12:01:00Z",
+        "sunProjection": [
+          957.4055616145727,
+          547.2567166834964
+        ],
+        "crop": {
+          "x": 893,
+          "y": 483,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 005"
+      },
+      {
+        "index": 6,
+        "filename": "after/motion/frame-0006.png",
+        "sha256": "c8beffb77e83c1b6787dd88e168fe465a6e784b7afb96c3f5b60e2b6325e265c",
+        "bytes": 76113,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 693,
+        "time": "2026-03-20T12:01:10Z",
+        "sunProjection": [
+          956.9731520652903,
+          548.4661926042068
+        ],
+        "crop": {
+          "x": 893,
+          "y": 484,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 006"
+      },
+      {
+        "index": 7,
+        "filename": "after/motion/frame-0007.png",
+        "sha256": "457990045e9026feb6e4e838f7d61239d0c5ef85db8c5be36729a054344aaf6a",
+        "bytes": 76209,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 694,
+        "time": "2026-03-20T12:01:20Z",
+        "sunProjection": [
+          956.5407414696143,
+          549.6756792035567
+        ],
+        "crop": {
+          "x": 893,
+          "y": 486,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 007"
+      },
+      {
+        "index": 8,
+        "filename": "after/motion/frame-0008.png",
+        "sha256": "8f20e16b62bc0dee40a39578986ec087349bb6ebd41140ca4501d86b89a12f94",
+        "bytes": 76070,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 695,
+        "time": "2026-03-20T12:01:30Z",
+        "sunProjection": [
+          956.1083297727484,
+          550.8851780071319
+        ],
+        "crop": {
+          "x": 892,
+          "y": 487,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 008"
+      },
+      {
+        "index": 9,
+        "filename": "after/motion/frame-0009.png",
+        "sha256": "41536f4e965b30a8451405eb59ee868a3080579fe7f46f83e6dca848df833acb",
+        "bytes": 76184,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 696,
+        "time": "2026-03-20T12:01:40Z",
+        "sunProjection": [
+          955.6759169200802,
+          552.0946905398763
+        ],
+        "crop": {
+          "x": 892,
+          "y": 488,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 009"
+      },
+      {
+        "index": 10,
+        "filename": "after/motion/frame-0010.png",
+        "sha256": "aecb053f5dc26c8d3b0605aaa0907b64bd441e41f61678af042d4cd4f141f2e1",
+        "bytes": 76155,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 697,
+        "time": "2026-03-20T12:01:50Z",
+        "sunProjection": [
+          955.2435028568465,
+          553.3042183274002
+        ],
+        "crop": {
+          "x": 891,
+          "y": 489,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 010"
+      },
+      {
+        "index": 11,
+        "filename": "after/motion/frame-0011.png",
+        "sha256": "5c77903579ac5ec1eac5a1035780f6d07292013c50882d0edd8162635eedaee2",
+        "bytes": 76135,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 698,
+        "time": "2026-03-20T12:02:00Z",
+        "sunProjection": [
+          954.8110875281862,
+          554.5137628954501
+        ],
+        "crop": {
+          "x": 891,
+          "y": 491,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 80,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 011"
+      },
+      {
+        "index": 12,
+        "filename": "after/motion/frame-0012.png",
+        "sha256": "c397f97b3d824278854492d14c736052beaf70b7317786c9b31dea880fa1e77c",
+        "bytes": 76102,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 699,
+        "time": "2026-03-20T12:02:10Z",
+        "sunProjection": [
+          954.3786708796499,
+          555.7233257689242
+        ],
+        "crop": {
+          "x": 890,
+          "y": 492,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 012"
+      },
+      {
+        "index": 13,
+        "filename": "after/motion/frame-0013.png",
+        "sha256": "a3e590949fff74d93e5559e14d46734d48735ec5f72f1ef786f7787d8971514c",
+        "bytes": 76025,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 700,
+        "time": "2026-03-20T12:02:20Z",
+        "sunProjection": [
+          953.9462528562597,
+          556.9329084740167
+        ],
+        "crop": {
+          "x": 890,
+          "y": 493,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 013"
+      },
+      {
+        "index": 14,
+        "filename": "after/motion/frame-0014.png",
+        "sha256": "c2b9500997abcf1b9a818d570c1b0b6892447e07e78fc1671baeb77ccd4ea89b",
+        "bytes": 76085,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 701,
+        "time": "2026-03-20T12:02:30Z",
+        "sunProjection": [
+          953.5138334034297,
+          558.1425125360928
+        ],
+        "crop": {
+          "x": 890,
+          "y": 494,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 014"
+      },
+      {
+        "index": 15,
+        "filename": "after/motion/frame-0015.png",
+        "sha256": "d11ca3e23f77f28b8aef0b8669d308362b7e7bad7c9afcee5a627629d694812e",
+        "bytes": 76047,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 702,
+        "time": "2026-03-20T12:02:40Z",
+        "sunProjection": [
+          953.0814124662518,
+          559.3521394813121
+        ],
+        "crop": {
+          "x": 889,
+          "y": 495,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 015"
+      },
+      {
+        "index": 16,
+        "filename": "after/motion/frame-0016.png",
+        "sha256": "5bba4a4fa4a7669ee968d4e8cd518b230f1f05653d3af0978ecca67a850ef3b1",
+        "bytes": 76074,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 703,
+        "time": "2026-03-20T12:02:50Z",
+        "sunProjection": [
+          952.6489899901169,
+          560.5617908353464
+        ],
+        "crop": {
+          "x": 889,
+          "y": 497,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 016"
+      },
+      {
+        "index": 17,
+        "filename": "after/motion/frame-0017.png",
+        "sha256": "e21dc5ff7189d0c24018fbc518facdf9e18a47695a2908971e2a65e1a6fc0c26",
+        "bytes": 76114,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 704,
+        "time": "2026-03-20T12:03:00Z",
+        "sunProjection": [
+          952.2165659202997,
+          561.7714681240856
+        ],
+        "crop": {
+          "x": 888,
+          "y": 498,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 017"
+      },
+      {
+        "index": 18,
+        "filename": "after/motion/frame-0018.png",
+        "sha256": "1d38f8878ff685ce0578c905099ed5aa27aca317dc2e64a51b59813838697122",
+        "bytes": 75890,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 705,
+        "time": "2026-03-20T12:03:10Z",
+        "sunProjection": [
+          951.7841402019795,
+          562.9811728738937
+        ],
+        "crop": {
+          "x": 888,
+          "y": 499,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 018"
+      },
+      {
+        "index": 19,
+        "filename": "after/motion/frame-0019.png",
+        "sha256": "b6cfddc5348c2bc79b29c75122950957ec12633d5bc735216f8729d2a59de25a",
+        "bytes": 76000,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 706,
+        "time": "2026-03-20T12:03:20Z",
+        "sunProjection": [
+          951.3517127804639,
+          564.1909066108763
+        ],
+        "crop": {
+          "x": 887,
+          "y": 500,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 019"
+      },
+      {
+        "index": 20,
+        "filename": "after/motion/frame-0020.png",
+        "sha256": "6aa4532561a18a1c6533224fb0af7277d57fc1dc2696160d5e63301a2f174ece",
+        "bytes": 76179,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 707,
+        "time": "2026-03-20T12:03:30Z",
+        "sunProjection": [
+          950.9192836008895,
+          565.4006708615738
+        ],
+        "crop": {
+          "x": 887,
+          "y": 501,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 020"
+      },
+      {
+        "index": 21,
+        "filename": "after/motion/frame-0021.png",
+        "sha256": "724650884a0992d3adf533ccf5a8395e37d91bd03abfb57aa0f0414626858802",
+        "bytes": 76117,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 708,
+        "time": "2026-03-20T12:03:40Z",
+        "sunProjection": [
+          950.4868526086339,
+          566.6104671521714
+        ],
+        "crop": {
+          "x": 886,
+          "y": 503,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 021"
+      },
+      {
+        "index": 22,
+        "filename": "after/motion/frame-0022.png",
+        "sha256": "33d2a74c65f9fcca56850899b890174d9c023d92f9d7b9020935b34eee02e469",
+        "bytes": 75891,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 709,
+        "time": "2026-03-20T12:03:50Z",
+        "sunProjection": [
+          950.0544197489411,
+          567.8202970093287
+        ],
+        "crop": {
+          "x": 886,
+          "y": 504,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 022"
+      },
+      {
+        "index": 23,
+        "filename": "after/motion/frame-0023.png",
+        "sha256": "650935eb7c810bc32e2c292002d41acc00d5c47ed6937a1974e63376c235e088",
+        "bytes": 75924,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 710,
+        "time": "2026-03-20T12:04:00Z",
+        "sunProjection": [
+          949.6219849669966,
+          569.0301619599784
+        ],
+        "crop": {
+          "x": 886,
+          "y": 505,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 238,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 023"
+      },
+      {
+        "index": 24,
+        "filename": "after/motion/frame-0024.png",
+        "sha256": "012dc293c3cd72a1989cb826c229546844329c4578a9943c7f38170d6bd4b05a",
+        "bytes": 75991,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 711,
+        "time": "2026-03-20T12:04:10Z",
+        "sunProjection": [
+          949.1895482079452,
+          570.2400635311791
+        ],
+        "crop": {
+          "x": 885,
+          "y": 506,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 024"
+      },
+      {
+        "index": 25,
+        "filename": "after/motion/frame-0025.png",
+        "sha256": "72abb53a2c02183a323c945a44a30bf73e63a122fa27f8aebddf980be09036e2",
+        "bytes": 75971,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 712,
+        "time": "2026-03-20T12:04:20Z",
+        "sunProjection": [
+          948.7571094171925,
+          571.4500032496833
+        ],
+        "crop": {
+          "x": 885,
+          "y": 507,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 025"
+      },
+      {
+        "index": 26,
+        "filename": "after/motion/frame-0026.png",
+        "sha256": "e862e4c823a46e29864ce322c942b5611c12cc561cedc6e0d90da81137d82fee",
+        "bytes": 75963,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 713,
+        "time": "2026-03-20T12:04:30Z",
+        "sunProjection": [
+          948.3246685398971,
+          572.6599826428601
+        ],
+        "crop": {
+          "x": 884,
+          "y": 509,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 026"
+      },
+      {
+        "index": 27,
+        "filename": "after/motion/frame-0027.png",
+        "sha256": "571480c6a8fa7f4a3a4a03c47bb88648d0c110fef65491ad9f5388775fb6768b",
+        "bytes": 75983,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 714,
+        "time": "2026-03-20T12:04:40Z",
+        "sunProjection": [
+          947.892225521309,
+          573.870003238103
+        ],
+        "crop": {
+          "x": 884,
+          "y": 510,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 027"
+      },
+      {
+        "index": 28,
+        "filename": "after/motion/frame-0028.png",
+        "sha256": "9934ca406cebdb1a26fade33944f971e96bae86a7ad190a6a1063332e0f1e408",
+        "bytes": 76050,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 715,
+        "time": "2026-03-20T12:04:50Z",
+        "sunProjection": [
+          947.4597803066756,
+          575.0800665628327
+        ],
+        "crop": {
+          "x": 883,
+          "y": 511,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 028"
+      },
+      {
+        "index": 29,
+        "filename": "after/motion/frame-0029.png",
+        "sha256": "67b6c43ee9cc6adee3f9a43bcc459f7e4310047c2c081e7e3ccf1381dfd22d3a",
+        "bytes": 75782,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 716,
+        "time": "2026-03-20T12:05:00Z",
+        "sunProjection": [
+          947.0273328411296,
+          576.2901741451326
+        ],
+        "crop": {
+          "x": 883,
+          "y": 512,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 029"
+      },
+      {
+        "index": 30,
+        "filename": "after/motion/frame-0030.png",
+        "sha256": "4daf5c4c8193c85345450f5da07bb28362224a05f7c170a0196f9d16bbff217b",
+        "bytes": 76011,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 717,
+        "time": "2026-03-20T12:05:10Z",
+        "sunProjection": [
+          946.5948830700254,
+          577.5003275125692
+        ],
+        "crop": {
+          "x": 883,
+          "y": 514,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 030"
+      },
+      {
+        "index": 31,
+        "filename": "after/motion/frame-0031.png",
+        "sha256": "85638b4510fce00d016ba7e78faa6609afffc7fc873d5a86ecfcc5d042b0e97b",
+        "bytes": 76011,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 718,
+        "time": "2026-03-20T12:05:20Z",
+        "sunProjection": [
+          946.1624309384531,
+          578.7105281936955
+        ],
+        "crop": {
+          "x": 882,
+          "y": 515,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 031"
+      },
+      {
+        "index": 32,
+        "filename": "after/motion/frame-0032.png",
+        "sha256": "095bbfd824702126544d41bade9ec9083e962dcadd866ba8352d4d4320393558",
+        "bytes": 75842,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 719,
+        "time": "2026-03-20T12:05:30Z",
+        "sunProjection": [
+          945.7299763917431,
+          579.9207777164386
+        ],
+        "crop": {
+          "x": 882,
+          "y": 516,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 032"
+      },
+      {
+        "index": 33,
+        "filename": "after/motion/frame-0033.png",
+        "sha256": "fc9d0c465e0edf1dca00317c53b3dc9ecb5aedbf8e60e0a0b2529ee3078dfacc",
+        "bytes": 75871,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 720,
+        "time": "2026-03-20T12:05:40Z",
+        "sunProjection": [
+          945.2975193749991,
+          581.1310776097155
+        ],
+        "crop": {
+          "x": 881,
+          "y": 517,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 033"
+      },
+      {
+        "index": 34,
+        "filename": "after/motion/frame-0034.png",
+        "sha256": "23a19f4f4db4ea28fe8b2d93beaf4a03ac15fecd8f106985bc731f96027cd3b3",
+        "bytes": 75837,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 721,
+        "time": "2026-03-20T12:05:50Z",
+        "sunProjection": [
+          944.8650598335835,
+          582.3414294018636
+        ],
+        "crop": {
+          "x": 881,
+          "y": 518,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 034"
+      },
+      {
+        "index": 35,
+        "filename": "after/motion/frame-0035.png",
+        "sha256": "025692eedf49d5357a3fddcac0eb54645e0d2e773a2629b47cc7c55cfc963783",
+        "bytes": 76039,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 722,
+        "time": "2026-03-20T12:06:00Z",
+        "sunProjection": [
+          944.4325977125575,
+          583.5518346223182
+        ],
+        "crop": {
+          "x": 880,
+          "y": 520,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 396,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 035"
+      },
+      {
+        "index": 36,
+        "filename": "after/motion/frame-0036.png",
+        "sha256": "56a043c3b6153479c1e0c38aecd519abe06bfdb75604ab84ecfbd455807f2866",
+        "bytes": 75753,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 723,
+        "time": "2026-03-20T12:06:10Z",
+        "sunProjection": [
+          944.0001329572218,
+          584.7622947999558
+        ],
+        "crop": {
+          "x": 880,
+          "y": 521,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 036"
+      },
+      {
+        "index": 37,
+        "filename": "after/motion/frame-0037.png",
+        "sha256": "77fe59691348dc0c7b28c7ce85e775863225c43c2410c2157b2b5803484c3ba4",
+        "bytes": 75818,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 724,
+        "time": "2026-03-20T12:06:20Z",
+        "sunProjection": [
+          943.5676655127446,
+          585.972811464336
+        ],
+        "crop": {
+          "x": 880,
+          "y": 522,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 037"
+      },
+      {
+        "index": 38,
+        "filename": "after/motion/frame-0038.png",
+        "sha256": "1b3c2a29983878fd7192d3eae04ede29151d276dd4a33e7603c1cf8c549d061e",
+        "bytes": 75835,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 725,
+        "time": "2026-03-20T12:06:30Z",
+        "sunProjection": [
+          943.1351953243467,
+          587.1833861450546
+        ],
+        "crop": {
+          "x": 879,
+          "y": 523,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 038"
+      },
+      {
+        "index": 39,
+        "filename": "after/motion/frame-0039.png",
+        "sha256": "040b4fd5a037a597ff28934a4e6b8f6e083251558d87ca34b47b30c60f1a9dd0",
+        "bytes": 75923,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 726,
+        "time": "2026-03-20T12:06:40Z",
+        "sunProjection": [
+          942.7027223372469,
+          588.3940203720625
+        ],
+        "crop": {
+          "x": 879,
+          "y": 524,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 039"
+      },
+      {
+        "index": 40,
+        "filename": "after/motion/frame-0040.png",
+        "sha256": "6a5b8a5154f6115fbc19dafeb4882fc78510c9c2a75dc46c21a53ffbada986bf",
+        "bytes": 75789,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 727,
+        "time": "2026-03-20T12:06:50Z",
+        "sunProjection": [
+          942.2702464965106,
+          589.6047156757628
+        ],
+        "crop": {
+          "x": 878,
+          "y": 526,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 040"
+      },
+      {
+        "index": 41,
+        "filename": "after/motion/frame-0041.png",
+        "sha256": "7d82c8b9af06caefa4221a9b9858df1596451968b09b38ef41e2fce8069c0501",
+        "bytes": 75825,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 728,
+        "time": "2026-03-20T12:07:00Z",
+        "sunProjection": [
+          941.8377677475385,
+          590.8154735861468
+        ],
+        "crop": {
+          "x": 878,
+          "y": 527,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 041"
+      },
+      {
+        "index": 42,
+        "filename": "after/motion/frame-0042.png",
+        "sha256": "7fd2b464a4efff5be4b9b4ba446e8c083b640b633d7090854086cd1f8e2892d5",
+        "bytes": 75840,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 729,
+        "time": "2026-03-20T12:07:10Z",
+        "sunProjection": [
+          941.4052860353349,
+          592.0262956343807
+        ],
+        "crop": {
+          "x": 877,
+          "y": 528,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 042"
+      },
+      {
+        "index": 43,
+        "filename": "after/motion/frame-0043.png",
+        "sha256": "490b27a1279b2086011ef6c6b433d5481dcc32697e7e11e2dff57e912264bcde",
+        "bytes": 75678,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 730,
+        "time": "2026-03-20T12:07:20Z",
+        "sunProjection": [
+          940.9728013052197,
+          593.2371833511306
+        ],
+        "crop": {
+          "x": 877,
+          "y": 529,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 043"
+      },
+      {
+        "index": 44,
+        "filename": "after/motion/frame-0044.png",
+        "sha256": "21a705f285e1775a81eb8d2b548e52a778942c148d3664bea575291fc34a9fec",
+        "bytes": 75867,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 731,
+        "time": "2026-03-20T12:07:30Z",
+        "sunProjection": [
+          940.5403135023414,
+          594.448138267651
+        ],
+        "crop": {
+          "x": 877,
+          "y": 530,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 044"
+      },
+      {
+        "index": 45,
+        "filename": "after/motion/frame-0045.png",
+        "sha256": "bbd64b1c30b8b8281c16594ad1d249b329ddf46ebe40072b63e3481f1732c129",
+        "bytes": 75846,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 732,
+        "time": "2026-03-20T12:07:40Z",
+        "sunProjection": [
+          940.1078225718461,
+          595.6591619155602
+        ],
+        "crop": {
+          "x": 876,
+          "y": 532,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 045"
+      },
+      {
+        "index": 46,
+        "filename": "after/motion/frame-0046.png",
+        "sha256": "7bb7f2277e2c3e85fc393c115e693942f451255750b3b81d296d86220087e7a4",
+        "bytes": 75748,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 733,
+        "time": "2026-03-20T12:07:50Z",
+        "sunProjection": [
+          939.6753284589519,
+          596.8702558266644
+        ],
+        "crop": {
+          "x": 876,
+          "y": 533,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 046"
+      },
+      {
+        "index": 47,
+        "filename": "after/motion/frame-0047.png",
+        "sha256": "8fa33c3c0a805a0a342a098a58e68f9716b5a8114626cfeedc00a5fcb7e5a831",
+        "bytes": 75806,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 734,
+        "time": "2026-03-20T12:08:00Z",
+        "sunProjection": [
+          939.242831108855,
+          598.081421532965
+        ],
+        "crop": {
+          "x": 875,
+          "y": 534,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 554,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 047"
+      },
+      {
+        "index": 48,
+        "filename": "after/motion/frame-0048.png",
+        "sha256": "af8d04385effcb452aebdf5bb16879c08cd35363ef493c1ea0388bc5f0bb5d40",
+        "bytes": 75631,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 735,
+        "time": "2026-03-20T12:08:10Z",
+        "sunProjection": [
+          938.8103304666558,
+          599.2926605671295
+        ],
+        "crop": {
+          "x": 875,
+          "y": 535,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 048"
+      },
+      {
+        "index": 49,
+        "filename": "after/motion/frame-0049.png",
+        "sha256": "7a986dd35bccbf77ab8203020ec4add37fdae9e88a82632a7fcc2eba1299acde",
+        "bytes": 75750,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 736,
+        "time": "2026-03-20T12:08:20Z",
+        "sunProjection": [
+          938.377826477564,
+          600.5039744617286
+        ],
+        "crop": {
+          "x": 874,
+          "y": 537,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 049"
+      },
+      {
+        "index": 50,
+        "filename": "after/motion/frame-0050.png",
+        "sha256": "255c6a1796180ba797e7ec06633c38ae1cc30195c9f4e08052af14548634dbe7",
+        "bytes": 75628,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 737,
+        "time": "2026-03-20T12:08:30Z",
+        "sunProjection": [
+          937.9453190867679,
+          601.7153647498768
+        ],
+        "crop": {
+          "x": 874,
+          "y": 538,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 050"
+      },
+      {
+        "index": 51,
+        "filename": "after/motion/frame-0051.png",
+        "sha256": "52fe31be62dd9c44cdbaf8cb129d20189846a5224b040c49c2e01c31d5213164",
+        "bytes": 75665,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 738,
+        "time": "2026-03-20T12:08:40Z",
+        "sunProjection": [
+          937.5128082394712,
+          602.9268329647476
+        ],
+        "crop": {
+          "x": 874,
+          "y": 539,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 051"
+      },
+      {
+        "index": 52,
+        "filename": "after/motion/frame-0052.png",
+        "sha256": "f05ad02c6abef160bdb45ba87534fa178cad3d9c75312dc14a2bdc6930d17eb1",
+        "bytes": 75655,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 739,
+        "time": "2026-03-20T12:08:50Z",
+        "sunProjection": [
+          937.0802938807068,
+          604.1383806403818
+        ],
+        "crop": {
+          "x": 873,
+          "y": 540,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 052"
+      },
+      {
+        "index": 53,
+        "filename": "after/motion/frame-0053.png",
+        "sha256": "62d64087da4ca3ec50d2c7720c2632a9b69011126c15496fcb1fb171b31ad172",
+        "bytes": 75777,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 740,
+        "time": "2026-03-20T12:09:00Z",
+        "sunProjection": [
+          936.6477759558229,
+          605.3500093103443
+        ],
+        "crop": {
+          "x": 873,
+          "y": 541,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 053"
+      },
+      {
+        "index": 54,
+        "filename": "after/motion/frame-0054.png",
+        "sha256": "1af9b1cf67237e6a0031912dcb760d4c29e670baa59d887aa4b066115b1fc276",
+        "bytes": 75787,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 741,
+        "time": "2026-03-20T12:09:10Z",
+        "sunProjection": [
+          936.215254409753,
+          606.5617205096087
+        ],
+        "crop": {
+          "x": 872,
+          "y": 543,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 054"
+      },
+      {
+        "index": 55,
+        "filename": "after/motion/frame-0055.png",
+        "sha256": "9f49f67f7762397d672b0674c1354332a254f436ab3310ec45aa179417f4538b",
+        "bytes": 75697,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 742,
+        "time": "2026-03-20T12:09:20Z",
+        "sunProjection": [
+          935.7827291878393,
+          607.773515772433
+        ],
+        "crop": {
+          "x": 872,
+          "y": 544,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 055"
+      },
+      {
+        "index": 56,
+        "filename": "after/motion/frame-0056.png",
+        "sha256": "59f817bf4c967c9c1579e84194b189057ac1f10fb917031bedc74c072feb8a5e",
+        "bytes": 75719,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 743,
+        "time": "2026-03-20T12:09:30Z",
+        "sunProjection": [
+          935.3502002351785,
+          608.9853966340277
+        ],
+        "crop": {
+          "x": 871,
+          "y": 545,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 056"
+      },
+      {
+        "index": 57,
+        "filename": "after/motion/frame-0057.png",
+        "sha256": "75c482bf4ce3e22820a76876f9fd2f70da08e35090fe39de00c272273e620f32",
+        "bytes": 75474,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 744,
+        "time": "2026-03-20T12:09:40Z",
+        "sunProjection": [
+          934.9176674969008,
+          610.1973646298458
+        ],
+        "crop": {
+          "x": 871,
+          "y": 546,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 057"
+      },
+      {
+        "index": 58,
+        "filename": "after/motion/frame-0058.png",
+        "sha256": "a4151529898382dbb26bfb325fbc11eefaa33ea6fd59525e2c740e2b049c8392",
+        "bytes": 75625,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 745,
+        "time": "2026-03-20T12:09:50Z",
+        "sunProjection": [
+          934.4851309181344,
+          611.4094212958182
+        ],
+        "crop": {
+          "x": 870,
+          "y": 547,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 058"
+      },
+      {
+        "index": 59,
+        "filename": "after/motion/frame-0059.png",
+        "sha256": "ee38d182a05fad17e40aed6a151e61c647b953e13f0433c552143e2e891cf87f",
+        "bytes": 75737,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 746,
+        "time": "2026-03-20T12:10:00Z",
+        "sunProjection": [
+          934.0525904439852,
+          612.6215681681833
+        ],
+        "crop": {
+          "x": 870,
+          "y": 549,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 712,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 059"
+      },
+      {
+        "index": 60,
+        "filename": "after/motion/frame-0060.png",
+        "sha256": "af62a637cb5e4aba36ad6842a737a88f20c0e5dcfdc024c4d1447f33c847b9f1",
+        "bytes": 75636,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 747,
+        "time": "2026-03-20T12:10:10Z",
+        "sunProjection": [
+          933.6200460198194,
+          613.8338067829898
+        ],
+        "crop": {
+          "x": 870,
+          "y": 550,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 060"
+      },
+      {
+        "index": 61,
+        "filename": "after/motion/frame-0061.png",
+        "sha256": "25430a508f937f999f3f453cdd997c2e1c9013f0f6a973055f54f7150e3d4a1a",
+        "bytes": 75645,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 748,
+        "time": "2026-03-20T12:10:20Z",
+        "sunProjection": [
+          933.187497590512,
+          615.0461386778036
+        ],
+        "crop": {
+          "x": 869,
+          "y": 551,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 061"
+      },
+      {
+        "index": 62,
+        "filename": "after/motion/frame-0062.png",
+        "sha256": "cd56e7284a8ca7d3ba355a265facb9e9907d1e0b8151b41b1014fe3a638d4faf",
+        "bytes": 75570,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 749,
+        "time": "2026-03-20T12:10:30Z",
+        "sunProjection": [
+          932.7549451013102,
+          616.2585653896799
+        ],
+        "crop": {
+          "x": 869,
+          "y": 552,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 062"
+      },
+      {
+        "index": 63,
+        "filename": "after/motion/frame-0063.png",
+        "sha256": "3940929ef32c62d431fa820b9cb2842c93c03594dc3a5fc259dcead867ed84fe",
+        "bytes": 75570,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 750,
+        "time": "2026-03-20T12:10:40Z",
+        "sunProjection": [
+          932.3223884974029,
+          617.4710884563154
+        ],
+        "crop": {
+          "x": 868,
+          "y": 553,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 063"
+      },
+      {
+        "index": 64,
+        "filename": "after/motion/frame-0064.png",
+        "sha256": "1790aa2730efe9612c974642c2754024d42661d1b260108400557746db479e15",
+        "bytes": 75402,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 751,
+        "time": "2026-03-20T12:10:50Z",
+        "sunProjection": [
+          931.8898277237497,
+          618.683709416189
+        ],
+        "crop": {
+          "x": 868,
+          "y": 555,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 064"
+      },
+      {
+        "index": 65,
+        "filename": "after/motion/frame-0065.png",
+        "sha256": "8b44f5f5dfa2bd8524cfcfaa464a2cac5ed2c1549be1d7260ad17cffd297e791",
+        "bytes": 75516,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 752,
+        "time": "2026-03-20T12:11:00Z",
+        "sunProjection": [
+          931.4572627256834,
+          619.8964298074709
+        ],
+        "crop": {
+          "x": 867,
+          "y": 556,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 065"
+      },
+      {
+        "index": 66,
+        "filename": "after/motion/frame-0066.png",
+        "sha256": "1d293e07e83b659a1b1ddfe84f1429209bf049771451da106de4f802b5e90236",
+        "bytes": 75427,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 753,
+        "time": "2026-03-20T12:11:10Z",
+        "sunProjection": [
+          931.0246934481017,
+          621.1092511696048
+        ],
+        "crop": {
+          "x": 867,
+          "y": 557,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 066"
+      },
+      {
+        "index": 67,
+        "filename": "after/motion/frame-0067.png",
+        "sha256": "117a5b5ce777cd37ff8df956e420a9e00036a73c990b57e05e223bccae87a805",
+        "bytes": 75552,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 754,
+        "time": "2026-03-20T12:11:20Z",
+        "sunProjection": [
+          930.5921198363313,
+          622.3221750416834
+        ],
+        "crop": {
+          "x": 867,
+          "y": 558,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 067"
+      },
+      {
+        "index": 68,
+        "filename": "after/motion/frame-0068.png",
+        "sha256": "10980ada897d0dc33f1dd53511faa1e905f9a433b5cbed14c6ce4f4f5f6e8945",
+        "bytes": 75473,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 755,
+        "time": "2026-03-20T12:11:30Z",
+        "sunProjection": [
+          930.1595418353575,
+          623.535202963645
+        ],
+        "crop": {
+          "x": 866,
+          "y": 560,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 068"
+      },
+      {
+        "index": 69,
+        "filename": "after/motion/frame-0069.png",
+        "sha256": "74a045f0c5ae52b9f7383574016344abc1fc0d8912734d707378c0aee4abb71e",
+        "bytes": 75347,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 756,
+        "time": "2026-03-20T12:11:40Z",
+        "sunProjection": [
+          929.7269593903135,
+          624.7483364758909
+        ],
+        "crop": {
+          "x": 866,
+          "y": 561,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 069"
+      },
+      {
+        "index": 70,
+        "filename": "after/motion/frame-0070.png",
+        "sha256": "be7fa73ab0667c8b781cea958888c1490792082c0bdca23f9d4251f69eb45422",
+        "bytes": 75492,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 757,
+        "time": "2026-03-20T12:11:50Z",
+        "sunProjection": [
+          929.2943724464226,
+          625.96157711883
+        ],
+        "crop": {
+          "x": 865,
+          "y": 562,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 070"
+      },
+      {
+        "index": 71,
+        "filename": "after/motion/frame-0071.png",
+        "sha256": "dc69131fdcec09712b5ddf9b221a21bab1564833a77cc7fd1df668cc0be8e1b7",
+        "bytes": 75419,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 758,
+        "time": "2026-03-20T12:12:00Z",
+        "sunProjection": [
+          928.8617809486618,
+          627.1749264340368
+        ],
+        "crop": {
+          "x": 865,
+          "y": 563,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 870,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 071"
+      },
+      {
+        "index": 72,
+        "filename": "after/motion/frame-0072.png",
+        "sha256": "88bb3e9df70653b733087904ba7833255e7627b3bc74a664d1e7cc8590452107",
+        "bytes": 75448,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 759,
+        "time": "2026-03-20T12:12:10Z",
+        "sunProjection": [
+          928.4291848422109,
+          628.38838596292
+        ],
+        "crop": {
+          "x": 864,
+          "y": 564,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 072"
+      },
+      {
+        "index": 73,
+        "filename": "after/motion/frame-0073.png",
+        "sha256": "b89fbeef585d42aec9ae216d3e80746cf311e668875b7e1a5c3b88dca54691b8",
+        "bytes": 75421,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 760,
+        "time": "2026-03-20T12:12:20Z",
+        "sunProjection": [
+          927.996584072097,
+          629.6019572478876
+        ],
+        "crop": {
+          "x": 864,
+          "y": 566,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 073"
+      },
+      {
+        "index": 74,
+        "filename": "after/motion/frame-0074.png",
+        "sha256": "b01abc6c88b5b605e8ad89e132f4380e7bf6622c80c865c3cba80e11338bdd7f",
+        "bytes": 75395,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 761,
+        "time": "2026-03-20T12:12:30Z",
+        "sunProjection": [
+          927.5639785834749,
+          630.8156418312567
+        ],
+        "crop": {
+          "x": 864,
+          "y": 567,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 074"
+      },
+      {
+        "index": 75,
+        "filename": "after/motion/frame-0075.png",
+        "sha256": "6928c7c621c2e7dbd193c51a520bc38748c9e535001ffbfaa86473a18361b2c6",
+        "bytes": 75500,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 762,
+        "time": "2026-03-20T12:12:40Z",
+        "sunProjection": [
+          927.1313683214781,
+          632.0294412561636
+        ],
+        "crop": {
+          "x": 863,
+          "y": 568,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 075"
+      },
+      {
+        "index": 76,
+        "filename": "after/motion/frame-0076.png",
+        "sha256": "ed0fe93617b271b12902829dfa036d8109e4ac7855e66f3bd10e93b2b854e834",
+        "bytes": 75391,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 763,
+        "time": "2026-03-20T12:12:50Z",
+        "sunProjection": [
+          926.6987532311053,
+          633.243357066239
+        ],
+        "crop": {
+          "x": 863,
+          "y": 569,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 076"
+      },
+      {
+        "index": 77,
+        "filename": "after/motion/frame-0077.png",
+        "sha256": "f57661eca53553c4ec9b39ebb4bbc41ca13bc688c860b56c36a0dd8de232d3ea",
+        "bytes": 75346,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 764,
+        "time": "2026-03-20T12:13:00Z",
+        "sunProjection": [
+          926.26613325754,
+          634.4573908054311
+        ],
+        "crop": {
+          "x": 862,
+          "y": 570,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 077"
+      },
+      {
+        "index": 78,
+        "filename": "after/motion/frame-0078.png",
+        "sha256": "d12433fa3f0270a28e05c948b50153c92fb7b130f6e8340a3133e35032d92908",
+        "bytes": 75205,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 765,
+        "time": "2026-03-20T12:13:10Z",
+        "sunProjection": [
+          925.8335083457373,
+          635.671544018523
+        ],
+        "crop": {
+          "x": 862,
+          "y": 572,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 078"
+      },
+      {
+        "index": 79,
+        "filename": "after/motion/frame-0079.png",
+        "sha256": "ebdc772bf5340cdd69bffd0e81efde4733f4938137862f910f67926de663c4ea",
+        "bytes": 75448,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 766,
+        "time": "2026-03-20T12:13:20Z",
+        "sunProjection": [
+          925.4008784409307,
+          636.8858182503375
+        ],
+        "crop": {
+          "x": 861,
+          "y": 573,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 079"
+      },
+      {
+        "index": 80,
+        "filename": "after/motion/frame-0080.png",
+        "sha256": "6720c371118756b9257992a4c75a5a0521b6a2747c0a18c98dad806b7542b488",
+        "bytes": 75246,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 767,
+        "time": "2026-03-20T12:13:30Z",
+        "sunProjection": [
+          924.968243488069,
+          638.1002150466011
+        ],
+        "crop": {
+          "x": 861,
+          "y": 574,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 080"
+      },
+      {
+        "index": 81,
+        "filename": "after/motion/frame-0081.png",
+        "sha256": "24698d075ef1d23b21b054d82c6e54333043207293c121fe5a3ff94e6cfe09cb",
+        "bytes": 75376,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 768,
+        "time": "2026-03-20T12:13:40Z",
+        "sunProjection": [
+          924.5356034323416,
+          639.3147359532189
+        ],
+        "crop": {
+          "x": 861,
+          "y": 575,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 081"
+      },
+      {
+        "index": 82,
+        "filename": "after/motion/frame-0082.png",
+        "sha256": "45e00db2f30db407805039ff5f7ed3dfacfcd40dfb3c73932cc930897c3c19a6",
+        "bytes": 75333,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 769,
+        "time": "2026-03-20T12:13:50Z",
+        "sunProjection": [
+          924.1029582188044,
+          640.529382516886
+        ],
+        "crop": {
+          "x": 860,
+          "y": 577,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 082"
+      },
+      {
+        "index": 83,
+        "filename": "after/motion/frame-0083.png",
+        "sha256": "85794464d803f689eb71c89be09bd609ce35089323179e8dba004def1114a54f",
+        "bytes": 75245,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 770,
+        "time": "2026-03-20T12:14:00Z",
+        "sunProjection": [
+          923.6703077924335,
+          641.7441562849325
+        ],
+        "crop": {
+          "x": 860,
+          "y": 578,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 1028,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 083"
+      },
+      {
+        "index": 84,
+        "filename": "after/motion/frame-0084.png",
+        "sha256": "6921b0e940279ae9a4296685607a07f1616ee55d36edd3a8987d17d0a9c947e0",
+        "bytes": 75220,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 771,
+        "time": "2026-03-20T12:14:10Z",
+        "sunProjection": [
+          923.2376520983909,
+          642.9590588048637
+        ],
+        "crop": {
+          "x": 859,
+          "y": 579,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 084"
+      },
+      {
+        "index": 85,
+        "filename": "after/motion/frame-0085.png",
+        "sha256": "1979e04524e72a4995bb02207493550b68ef104e98267feebb9a8b6e8f93a98c",
+        "bytes": 75340,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 772,
+        "time": "2026-03-20T12:14:20Z",
+        "sunProjection": [
+          922.804991081703,
+          644.1740916248884
+        ],
+        "crop": {
+          "x": 859,
+          "y": 580,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 085"
+      },
+      {
+        "index": 86,
+        "filename": "after/motion/frame-0086.png",
+        "sha256": "effe25e7b26ae95f825e0cc6ebe05d0ed71bc88d64a59a52b4779c9e1d71faa2",
+        "bytes": 75317,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 773,
+        "time": "2026-03-20T12:14:30Z",
+        "sunProjection": [
+          922.3723246874314,
+          645.3892562939018
+        ],
+        "crop": {
+          "x": 858,
+          "y": 581,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 086"
+      },
+      {
+        "index": 87,
+        "filename": "after/motion/frame-0087.png",
+        "sha256": "d726ead7e8ac9014f28ed0251a5d9ba1f49da45153c6ec53228cf8c07efccd7e",
+        "bytes": 75201,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 774,
+        "time": "2026-03-20T12:14:40Z",
+        "sunProjection": [
+          921.9396528606712,
+          646.6045543610859
+        ],
+        "crop": {
+          "x": 858,
+          "y": 583,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 087"
+      },
+      {
+        "index": 88,
+        "filename": "after/motion/frame-0088.png",
+        "sha256": "e579d8d417bbd99216a0bb208ce805a1e6df3f269f670e677589479d0478a0c7",
+        "bytes": 75317,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 775,
+        "time": "2026-03-20T12:14:50Z",
+        "sunProjection": [
+          921.5069755464214,
+          647.8199873765534
+        ],
+        "crop": {
+          "x": 858,
+          "y": 584,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 088"
+      },
+      {
+        "index": 89,
+        "filename": "after/motion/frame-0089.png",
+        "sha256": "1dc318af1c6fa525f2fb1e16ccc8cda92c2da0994e131e488aa709f78d5772e1",
+        "bytes": 75092,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 776,
+        "time": "2026-03-20T12:15:00Z",
+        "sunProjection": [
+          921.0742926897896,
+          649.0355568905795
+        ],
+        "crop": {
+          "x": 857,
+          "y": 585,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 089"
+      },
+      {
+        "index": 90,
+        "filename": "after/motion/frame-0090.png",
+        "sha256": "738ec7ae962922eebf536a52611223d1da4e3111660d3e94f445f6675ec351d6",
+        "bytes": 75187,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 777,
+        "time": "2026-03-20T12:15:10Z",
+        "sunProjection": [
+          920.6416042357488,
+          650.2512644544718
+        ],
+        "crop": {
+          "x": 857,
+          "y": 586,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 090"
+      },
+      {
+        "index": 91,
+        "filename": "after/motion/frame-0091.png",
+        "sha256": "60dd0722215bd4c4a91013fc3d2f437e55444f8098a58a51f7260a3a8ac9d203",
+        "bytes": 75295,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 778,
+        "time": "2026-03-20T12:15:20Z",
+        "sunProjection": [
+          920.208910129457,
+          651.4671116196126
+        ],
+        "crop": {
+          "x": 856,
+          "y": 587,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 091"
+      },
+      {
+        "index": 92,
+        "filename": "after/motion/frame-0092.png",
+        "sha256": "ec84d22073cec14fc56a5de0a53e473853fb5d64229b2ed403afc4f3af3d7c16",
+        "bytes": 75166,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 779,
+        "time": "2026-03-20T12:15:30Z",
+        "sunProjection": [
+          919.7762103158244,
+          652.6830999384675
+        ],
+        "crop": {
+          "x": 856,
+          "y": 589,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 092"
+      },
+      {
+        "index": 93,
+        "filename": "after/motion/frame-0093.png",
+        "sha256": "1ec25731f98c832ccec8936d94bc453dd2df10d36a3adeb6815c0bf4a2a1719b",
+        "bytes": 75200,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 780,
+        "time": "2026-03-20T12:15:40Z",
+        "sunProjection": [
+          919.3435047400023,
+          653.8992309636092
+        ],
+        "crop": {
+          "x": 855,
+          "y": 590,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 093"
+      },
+      {
+        "index": 94,
+        "filename": "after/motion/frame-0094.png",
+        "sha256": "77037b4b6eb0e244a5160a125b99e46e778a8faf9908636bbd0356a4ab99ea81",
+        "bytes": 75168,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 781,
+        "time": "2026-03-20T12:15:50Z",
+        "sunProjection": [
+          918.910793346913,
+          655.1155062488134
+        ],
+        "crop": {
+          "x": 855,
+          "y": 591,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 094"
+      },
+      {
+        "index": 95,
+        "filename": "after/motion/frame-0095.png",
+        "sha256": "42d6f0e637aee98af1b809c8a48a49463eeaa58f1dff68e7a7ae61831195f0de",
+        "bytes": 75065,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 782,
+        "time": "2026-03-20T12:16:00Z",
+        "sunProjection": [
+          918.4780760816639,
+          656.3319273478812
+        ],
+        "crop": {
+          "x": 854,
+          "y": 592,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 1186,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 095"
+      },
+      {
+        "index": 96,
+        "filename": "after/motion/frame-0096.png",
+        "sha256": "c48ca42423dea7638831174bd60d887907f6d79e96c15ee85523a72797c80510",
+        "bytes": 75123,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 783,
+        "time": "2026-03-20T12:16:10Z",
+        "sunProjection": [
+          918.0453528893211,
+          657.5484958154697
+        ],
+        "crop": {
+          "x": 854,
+          "y": 594,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 096"
+      },
+      {
+        "index": 97,
+        "filename": "after/motion/frame-0097.png",
+        "sha256": "2c13ab9305c5fac9e5d01e86d84af63ceea852e5f14312909c0361c1ab8aa5be",
+        "bytes": 75021,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 784,
+        "time": "2026-03-20T12:16:20Z",
+        "sunProjection": [
+          917.6126237148345,
+          658.7652132070101
+        ],
+        "crop": {
+          "x": 854,
+          "y": 595,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 097"
+      },
+      {
+        "index": 98,
+        "filename": "after/motion/frame-0098.png",
+        "sha256": "2a55a99e909eb9c4d99f1b5ac695a25d8b1392976f0ff7b6609a5b53c21c991e",
+        "bytes": 74928,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 785,
+        "time": "2026-03-20T12:16:30Z",
+        "sunProjection": [
+          917.179888503264,
+          659.9820810783044
+        ],
+        "crop": {
+          "x": 853,
+          "y": 596,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 098"
+      },
+      {
+        "index": 99,
+        "filename": "after/motion/frame-0099.png",
+        "sha256": "6282af9c925c975fa7bd5225900f7bc282bdc196872f6a10c91eb02590d2f394",
+        "bytes": 75065,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 786,
+        "time": "2026-03-20T12:16:40Z",
+        "sunProjection": [
+          916.7471471995906,
+          661.199100986116
+        ],
+        "crop": {
+          "x": 853,
+          "y": 597,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 099"
+      },
+      {
+        "index": 100,
+        "filename": "after/motion/frame-0100.png",
+        "sha256": "e1636ce14f4e97da0a65c203c9ee4a442e15b7111ff9c3a5ed84947052009f0d",
+        "bytes": 75021,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 787,
+        "time": "2026-03-20T12:16:50Z",
+        "sunProjection": [
+          916.3143997489233,
+          662.4162744872878
+        ],
+        "crop": {
+          "x": 852,
+          "y": 598,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 100"
+      },
+      {
+        "index": 101,
+        "filename": "after/motion/frame-0101.png",
+        "sha256": "9db28505cc562ad1922587ac2fe0a81e947079cdeaa9c28d3a93a242f2a7cefc",
+        "bytes": 74995,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 788,
+        "time": "2026-03-20T12:17:00Z",
+        "sunProjection": [
+          915.8816460961431,
+          663.633603140098
+        ],
+        "crop": {
+          "x": 852,
+          "y": 600,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 101"
+      },
+      {
+        "index": 102,
+        "filename": "after/motion/frame-0102.png",
+        "sha256": "fac898d216300bd266d5827507cee45daaf399d107caeb0d6a6d8abfe1d046bf",
+        "bytes": 75077,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 789,
+        "time": "2026-03-20T12:17:10Z",
+        "sunProjection": [
+          915.448886186314,
+          664.8510885028994
+        ],
+        "crop": {
+          "x": 851,
+          "y": 601,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 102"
+      },
+      {
+        "index": 103,
+        "filename": "after/motion/frame-0103.png",
+        "sha256": "2df40b75116304837a476c1ea67030d4a0c39ce03651e6dd734dd613088662a5",
+        "bytes": 74869,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 790,
+        "time": "2026-03-20T12:17:20Z",
+        "sunProjection": [
+          915.0161199644986,
+          666.0687321347457
+        ],
+        "crop": {
+          "x": 851,
+          "y": 602,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 103"
+      },
+      {
+        "index": 104,
+        "filename": "after/motion/frame-0104.png",
+        "sha256": "e180dfd2fed0202935a44b6da0112591e28938294167ad385d5d08f1b69909ef",
+        "bytes": 74979,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 791,
+        "time": "2026-03-20T12:17:30Z",
+        "sunProjection": [
+          914.5833473756227,
+          667.2865355956324
+        ],
+        "crop": {
+          "x": 851,
+          "y": 603,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 104"
+      },
+      {
+        "index": 105,
+        "filename": "after/motion/frame-0105.png",
+        "sha256": "fe0e1106026668e879e11c95ab02d0547f80984eb935c13070af71689330baea",
+        "bytes": 74974,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 792,
+        "time": "2026-03-20T12:17:40Z",
+        "sunProjection": [
+          914.150568364704,
+          668.5045004461256
+        ],
+        "crop": {
+          "x": 850,
+          "y": 605,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 105"
+      },
+      {
+        "index": 106,
+        "filename": "after/motion/frame-0106.png",
+        "sha256": "46f858fdb077b36007eeb59f43b8d06eb69dd2e7b76f9b948f32d73eefedef66",
+        "bytes": 74893,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 793,
+        "time": "2026-03-20T12:17:50Z",
+        "sunProjection": [
+          913.7177828767184,
+          669.7226282474168
+        ],
+        "crop": {
+          "x": 850,
+          "y": 606,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 106"
+      },
+      {
+        "index": 107,
+        "filename": "after/motion/frame-0107.png",
+        "sha256": "5febc121f633e51f8b13f4a75754cd772d2be896f9d8333d9e458de2a03f21e8",
+        "bytes": 74882,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 794,
+        "time": "2026-03-20T12:18:00Z",
+        "sunProjection": [
+          913.2849908568271,
+          670.9409205611747
+        ],
+        "crop": {
+          "x": 849,
+          "y": 607,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 1344,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 107"
+      },
+      {
+        "index": 108,
+        "filename": "after/motion/frame-0108.png",
+        "sha256": "fb055191ff04017081c95bfe7b6a68d5d3445adc22bcac7b7fed13b8f970bcae",
+        "bytes": 74914,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 795,
+        "time": "2026-03-20T12:18:10Z",
+        "sunProjection": [
+          912.8521922496979,
+          672.1593789505317
+        ],
+        "crop": {
+          "x": 849,
+          "y": 608,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 16,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 108"
+      },
+      {
+        "index": 109,
+        "filename": "after/motion/frame-0109.png",
+        "sha256": "e730d68aa658a82ea0c20481c10dc7bd7090fafd52e55a46b7fd48405844bbc3",
+        "bytes": 74814,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 796,
+        "time": "2026-03-20T12:18:20Z",
+        "sunProjection": [
+          912.4193870005981,
+          673.3780049782989
+        ],
+        "crop": {
+          "x": 848,
+          "y": 609,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 152,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 109"
+      },
+      {
+        "index": 110,
+        "filename": "after/motion/frame-0110.png",
+        "sha256": "d344b3dad6bdc8bb47e66adc48b25c5cef7ee499fb23e69990de1f7d2caf5029",
+        "bytes": 74773,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 797,
+        "time": "2026-03-20T12:18:30Z",
+        "sunProjection": [
+          911.9865750543204,
+          674.5968002088699
+        ],
+        "crop": {
+          "x": 848,
+          "y": 611,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 288,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 110"
+      },
+      {
+        "index": 111,
+        "filename": "after/motion/frame-0111.png",
+        "sha256": "524bf71115b803936779592d8f6c29b1b5909742b7f89748d3d44826ebe0ae9a",
+        "bytes": 74866,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 798,
+        "time": "2026-03-20T12:18:40Z",
+        "sunProjection": [
+          911.5537563559933,
+          675.8157662067189
+        ],
+        "crop": {
+          "x": 848,
+          "y": 612,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 424,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 111"
+      },
+      {
+        "index": 112,
+        "filename": "after/motion/frame-0112.png",
+        "sha256": "fdfd7697512cca7865bc1c1857036c2ede42c272acc7ec52c6a3b144035516d0",
+        "bytes": 74661,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 799,
+        "time": "2026-03-20T12:18:50Z",
+        "sunProjection": [
+          911.1209308505533,
+          677.0349045373341
+        ],
+        "crop": {
+          "x": 847,
+          "y": 613,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 560,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 112"
+      },
+      {
+        "index": 113,
+        "filename": "after/motion/frame-0113.png",
+        "sha256": "439d1c3e44d06141b7510cc7aa262dbc84cf5b94de38cff04c400ed58b914a1f",
+        "bytes": 74850,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 800,
+        "time": "2026-03-20T12:19:00Z",
+        "sunProjection": [
+          910.6880984828773,
+          678.2542167672177
+        ],
+        "crop": {
+          "x": 847,
+          "y": 614,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 696,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 113"
+      },
+      {
+        "index": 114,
+        "filename": "after/motion/frame-0114.png",
+        "sha256": "6c10605f12cb6f0e46b73a04de5ce62d882ce8d787340b5801dfb3d567807062",
+        "bytes": 74709,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 801,
+        "time": "2026-03-20T12:19:10Z",
+        "sunProjection": [
+          910.2552591980265,
+          679.4737044630232
+        ],
+        "crop": {
+          "x": 846,
+          "y": 615,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 832,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 114"
+      },
+      {
+        "index": 115,
+        "filename": "after/motion/frame-0115.png",
+        "sha256": "2fd052d2bf48cecfd8050a1022dca37792634b064037ba659943f0df0174f89f",
+        "bytes": 74820,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 802,
+        "time": "2026-03-20T12:19:20Z",
+        "sunProjection": [
+          909.822412940927,
+          680.6933691926823
+        ],
+        "crop": {
+          "x": 846,
+          "y": 617,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 968,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 115"
+      },
+      {
+        "index": 116,
+        "filename": "after/motion/frame-0116.png",
+        "sha256": "ba10c3ce060b3b1604d078671fc640e0372c28aa95927c5c0cd4685f783699d9",
+        "bytes": 74679,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 803,
+        "time": "2026-03-20T12:19:30Z",
+        "sunProjection": [
+          909.3895596564827,
+          681.9132125245483
+        ],
+        "crop": {
+          "x": 845,
+          "y": 618,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1104,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 116"
+      },
+      {
+        "index": 117,
+        "filename": "after/motion/frame-0117.png",
+        "sha256": "e14ff9f67d67e8f4fdb70a83b71b738af1866d2a33d3241b2e1004e5e949b8b4",
+        "bytes": 74655,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 804,
+        "time": "2026-03-20T12:19:40Z",
+        "sunProjection": [
+          908.9566992898383,
+          683.1332360275026
+        ],
+        "crop": {
+          "x": 845,
+          "y": 619,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1240,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 117"
+      },
+      {
+        "index": 118,
+        "filename": "after/motion/frame-0118.png",
+        "sha256": "de98a906272efee84dbcfb1b8ebc133fe6281e748db35a394a23e3cc18217910",
+        "bytes": 74683,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 805,
+        "time": "2026-03-20T12:19:50Z",
+        "sunProjection": [
+          908.52383178574,
+          684.3534412720375
+        ],
+        "crop": {
+          "x": 845,
+          "y": 620,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1376,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 118"
+      },
+      {
+        "index": 119,
+        "filename": "after/motion/frame-0119.png",
+        "sha256": "1c7a00efa0e91343a5731aa2294f2462c4e193941956fa11f4a578d6ed90f795",
+        "bytes": 74589,
+        "sourceDimensions": [
+          1920,
+          1080
+        ],
+        "capturedFrame": 806,
+        "time": "2026-03-20T12:20:00Z",
+        "sunProjection": [
+          908.0909570892314,
+          685.5738298286062
+        ],
+        "crop": {
+          "x": 844,
+          "y": 622,
+          "width": 128,
+          "height": 128
+        },
+        "destination": {
+          "x": 1512,
+          "y": 1502,
+          "width": 128,
+          "height": 128
+        },
+        "label": "Frame 119"
+      }
+    ]
+  },
+  "transformation": {
+    "ordering": "120 manifest frames in increasing index order, row-major, 12 columns by 10 rows",
+    "crop": "128 by 128 integer source pixels; x = Math.round(saved sunProjection[0] - 64), y = Math.round(saved sunProjection[1] - 64); all crops fully inside their original PNG; no padding or clamping.",
+    "scale": "1:1; each source pixel maps to one destination pixel; no resampling",
+    "imageSmoothingEnabled": false,
+    "pixelProcessing": "No brightness, contrast, color, gamma, or other image adjustment; createImageBitmap colorSpaceConversion:none and premultiplyAlpha:none; sRGB Canvas2D; PNG output.",
+    "annotations": "Title and DIAGNOSTIC description above the grid; frame numbers beneath each crop; no text or borders over source pixels.",
+    "layout": {
+      "columns": 12,
+      "rows": 10,
+      "cropWidth": 128,
+      "cropHeight": 128,
+      "horizontalGap": 8,
+      "labelHeight": 22,
+      "rowGap": 8,
+      "margin": 16,
+      "firstTileTop": 80,
+      "columnPitch": 136,
+      "rowPitch": 158
+    },
+    "verification": "Every source SHA-256 matched both sequence.json and result.json; every composed tile matched its independently copied decoded source crop byte-for-byte in Canvas2D RGBA; raw source files were only read."
+  },
+  "processing": {
+    "method": "Headless Chrome Canvas2D composition of file bytes; isolated about:blank document; no Cesium app, WebGPU scene, new capture, or test suite loaded.",
+    "chrome": "156.0.8078.76",
+    "node": "v22.20.0",
+    "executable": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+    "arguments": [
+      "--disable-gpu",
+      "--force-color-profile=srgb"
+    ],
+    "builder": {
+      "filename": "Build/b3-motion-overview.mjs",
+      "sha256": "9e528d6128dd879ea2f4d2dbb9d7733dec90edfdef73e93e09a6ced03bb4f851"
+    }
+  }
+}

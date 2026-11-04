@@ -1,0 +1,251 @@
+{
+  "purpose": "Diagnostic panels derived solely from the original captured PNG files. The original full-resolution PNGs remain the acceptance evidence. No color, exposure, contrast, sharpening, or generative changes. Labels are outside image areas.",
+  "inputsSha256": {
+    "before/normal-60-center-exposure-1-full.png": "6a43e0a03803baf6c44a7f527a7f23e84479c20d49f05407489ae279e314bff4",
+    "after/normal-60-center-exposure-1-full.png": "5ec5e8b5478a7c5574731661e0f59534c604a3189e9370c2beb984318516c47a",
+    "before/normal-60-center-exposure-0.5-full.png": "87adbed9ed463eabefdd395b93791d476892305946c1f6afbee2a860fab1925d",
+    "after/normal-60-center-exposure-0.5-full.png": "65a2fe81f15e83bd57a405aea2fc4971771138022650273d173547d9afac897c",
+    "before/normal-60-center-exposure-2-full.png": "755410f72e836dd7e690e84fe452a458135fac0682b3bb90bee9b3b118dc89c0",
+    "after/normal-60-center-exposure-2-full.png": "ffb60dd8f10c9f03b55c4d4f255437429fe7b2c57d222a2ec637f7b37e4465fd",
+    "after/resize-720-full.png": "2301ec27bbea50d7a397de406e59426a3dd6a2aeef98ee524cf97140cbe1937b",
+    "after/normal-60-offaxis-exposure-1-full.png": "fb565fd715ebd9299f84730cad5ed6a5565c51b04650b876d8b9ad23ab489393",
+    "after/normal-60-edge-exposure-1-full.png": "8a438b4a79885e8959c5302a38069390786b9cd9e01442db56aa95896f562ab6",
+    "after/high-orbit-sunrise-full.png": "6b8d72d83262be8281c343ccdd3f4b62a601f6f9e83630aa44fa25c477d2d210",
+    "after/near-ground-low-sun-full.png": "a0dacdaeae918d4b0a18be56d3efa7a08c3a91a306f02ef165ac3313bc4ff355",
+    "after/earth-partial-fullOn.png": "41483ea15e2af5252729984a8d77e8e2c3aa2580ab4c1d707c55205511a720d2",
+    "after/earth-hidden-normal-fov-fullOn.png": "02d5d4da4991578c36221c88136b2e307929618a390a3734ffee0b4245d85a36",
+    "after/terrain-hidden-fullOn.png": "70624ba36e9a00ac044f5baa74b5da8817a5424e795cf600593f252e24562709",
+    "after/terrain-removed-fullOn.png": "0c040da128fe26dddf8fa9809dbe94d5e395b9d501ecca30a17e1e564401494c"
+  },
+  "figures": [
+    {
+      "file": "solar-detail-comparison.png",
+      "size": [
+        1200,
+        640
+      ],
+      "imageOperations": [
+        {
+          "source": "before/normal-60-center-exposure-1-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            600,
+            600
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "after/normal-60-center-exposure-1-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            600,
+            600
+          ],
+          "resampling": "nearest"
+        }
+      ]
+    },
+    {
+      "file": "exposure-comparison.png",
+      "size": [
+        640,
+        1080
+      ],
+      "imageOperations": [
+        {
+          "source": "before/normal-60-center-exposure-0.5-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "after/normal-60-center-exposure-0.5-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "before/normal-60-center-exposure-1-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "after/normal-60-center-exposure-1-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "before/normal-60-center-exposure-2-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        },
+        {
+          "source": "after/normal-60-center-exposure-2-full.png",
+          "crop": [
+            820,
+            400,
+            1100,
+            680
+          ],
+          "outputImageSize": [
+            320,
+            320
+          ],
+          "resampling": "nearest"
+        }
+      ]
+    },
+    {
+      "file": "scene-overview.png",
+      "size": [
+        1440,
+        900
+      ],
+      "imageOperations": [
+        {
+          "source": "after/resize-720-full.png",
+          "label": "720p resize | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/normal-60-offaxis-exposure-1-full.png",
+          "label": "Off-axis | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/normal-60-edge-exposure-1-full.png",
+          "label": "Screen edge | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/high-orbit-sunrise-full.png",
+          "label": "High-orbit sunrise | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/near-ground-low-sun-full.png",
+          "label": "Near-ground low Sun | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/earth-partial-fullOn.png",
+          "label": "Earth partial | 12 FOV diagnostic",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/earth-hidden-normal-fov-fullOn.png",
+          "label": "Earth hidden | 60 FOV",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/terrain-hidden-fullOn.png",
+          "label": "Terrain hidden | 12 FOV diagnostic",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        },
+        {
+          "source": "after/terrain-removed-fullOn.png",
+          "label": "Terrain removed | 12 FOV diagnostic",
+          "fullImage": true,
+          "outputImageSize": [
+            480,
+            270
+          ],
+          "resampling": "lanczos"
+        }
+      ]
+    }
+  ]
+}
