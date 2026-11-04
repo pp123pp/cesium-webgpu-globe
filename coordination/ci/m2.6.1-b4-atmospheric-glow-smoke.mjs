@@ -15,8 +15,9 @@ const git = (root, args) => execFileSync("git", args, { cwd: root, encoding: "ut
 await runM1BrowserSuite("m2.6.1-b4-round2", async ({ page, report, output }) => {
   report.provenance = {
     role: process.env.B4_ROLE ?? "candidate",
-    runtimeCommit: report.source,
-    runtimeTree: git(process.cwd(), ["rev-parse", "HEAD:packages/engine/Source"]),
+    runtimeCommit: process.env.B4_RUNTIME_COMMIT ?? report.source,
+    runtimeCheckoutCommit: report.source,
+    runtimeTree: git(process.cwd(), ["rev-parse", `${process.env.B4_RUNTIME_COMMIT ?? "HEAD"}:packages/engine/Source`]),
     runtimeStatus: report.sourceStatus,
     harnessCommit: git(harnessRoot, ["rev-parse", "HEAD"]),
     harnessStatus: git(harnessRoot, ["status", "--porcelain"]),
