@@ -2,7 +2,7 @@
   "status": "PASS",
   "historicalReportsPreserved": true,
   "allPngHashesVerified": true,
-  "totalArchivedPngs": 489,
+  "totalArchivedPngs": 611,
   "suites": [
     {
       "directory": "before",
@@ -57,6 +57,12 @@
       "status": "PASS",
       "source": "302682b41a9e0ec64fcda1a0621dc49205eb694d",
       "images": 16
+    },
+    {
+      "directory": "after-continuous-motion",
+      "status": "PASS",
+      "source": "b7846cf0d7ab5417a37b31f32a47e2888429c147",
+      "images": 122
     }
   ],
   "relativeLinksVerified": 65,
@@ -64,5 +70,8 @@
   "notes": [
     "Only playback HTML braces and formatting adjusted; raw PNG/JSON unchanged.",
     "Evidence runtime b5fc33e; final source diff is docs/evidence and HTML playback template only."
-  ]
+  ],
+  "supplementaryAfterMotionVerified": true,
+  "supplementaryCaptureScriptHashVerified": true,
+  "relativeLinksVerifiedRound2Readme": 67
 }

@@ -108,6 +108,12 @@ View [partial Earth occlusion](after-extended/earth-occultation-0.png), [fully E
 
 The near-ground low-Sun image retains a strong yellow/orange sky, coarse blue surface and visible imagery seams; it does not establish that the overall Earth scene is fully natural. The high-orbit image named `high-orbit-sunrise-limb` does not show a clearly discernible Earth edge and is used only for high-orbit Sun appearance. Low-orbit and explicit Earth-mask images provide the visible limb/occlusion evidence. These background limitations are not attributed to the B2 Corona without a demonstrated regression.
 
+### Additional uninterrupted motion coverage
+
+To cover 120 moving frames independently of deliberate exposure/resize events, an additional **after-only 120-frame sequence** moves the camera **0.025 degree** and advances native time **2 seconds on every frame**, with exposure 1, FOV 60 degrees, 1920×1080 and all effects fixed. All 120 render-frame numbers are consecutive, all camera/time steps occur, all PNG hashes verify, and browser/console/provider/GPU/request-error arrays are empty. The maximum adjacent whole-frame mean-luminance change is 4.108815e-7 (0–1 units); this is descriptive, not a stand-alone flicker acceptance test.
+
+[Raw report](after-continuous-motion/result.json), [verification](after-continuous-motion/verification.json), [playback](after-continuous-motion/continuous/index.html), [ordered-frame manifest](after-continuous-motion/continuous/sequence.json), and [reproducible capture script](continuous-motion-capture.mjs) are retained. The [exact captured script snapshot](continuous-motion-capture.original.mjs.txt) matches the provenance hash; the runnable copy receives only ESLint cleanup (explicit working directory and equivalent template-string syntax). Run that script from the repository root with the same hardware/browser/base URL variables, B2_PHASE=after and a new empty M1_OUTPUT. Its recorded clean source is b7846cf0d7ab5417a37b31f32a47e2888429c147; all runtime source/asset hashes and the bundle equal primary runtime b5fc33e. This adds **122 raw images** (120 motion frames plus initial/timing states) and is not counted as extra before/after pairs: the matched sets remain 158 each, and all after suites now contain 280 raw images.
+
 ## GPU cost and resource behavior
 
 These are GPU timestamp-query measurements at the same full 60° scene, 1920×1080, 30 samples per mode after six warmup iterations. Render-pass sums are distinct from CPU render/map waiting time.

@@ -1,0 +1,2177 @@
+{
+  "count": 120,
+  "afterOnly": true,
+  "contiguousRenderFrameNumbers": true,
+  "everyFrameTimeAdvanced": true,
+  "everyFrameCameraMoved": true,
+  "exposure": 1,
+  "canvas": [
+    1920,
+    1080
+  ],
+  "cameraStepDegrees": 0.025,
+  "timeStepSeconds": 2,
+  "viewer": "continuous/index.html",
+  "observations": [
+    {
+      "index": 0,
+      "filename": "frame-0000.png",
+      "sha256": "9746d3c1740ba63d4cf3b8d65622d04ee9ef24884d56c33825db89d6858a5772",
+      "frame": 17,
+      "time": "2026-03-20T12:00:02Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994706163336649,
+        0.03253284727661423,
+        -0.0003177006148457822
+      ],
+      "nativeSun": [
+        0.9994750864067907,
+        0.0323880121039037,
+        -0.0007538727314586172
+      ]
+    },
+    {
+      "index": 1,
+      "filename": "frame-0001.png",
+      "sha256": "37b9a0f2db935b79d6212fd4e3f0edbfc206976baeaa9e6e369f7d9dcd200638",
+      "frame": 18,
+      "time": "2026-03-20T12:00:04Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994706782798249,
+        0.03253227913129646,
+        0.0001186313204050062
+      ],
+      "nativeSun": [
+        0.9994797875596207,
+        0.03224261429427717,
+        -0.0007537129732611236
+      ]
+    },
+    {
+      "index": 2,
+      "filename": "frame-0002.png",
+      "sha256": "903d5c82ae3dcb843509fb9d352587fd7f9ac058f931c69d23d3e6c941766370",
+      "frame": 19,
+      "time": "2026-03-20T12:00:06Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994705499408761,
+        0.03253170479229166,
+        0.0005549632330700659
+      ],
+      "nativeSun": [
+        0.9994844675608026,
+        0.032097215802168746,
+        -0.0007535532151200718
+      ]
+    },
+    {
+      "index": 3,
+      "filename": "frame-0003.png",
+      "sha256": "7be4071988c9d2e461e8a8f873bb0ec48a93c292528dee87dec576c58e4f3d1c",
+      "frame": 20,
+      "time": "2026-03-20T12:00:08Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994702313168426,
+        0.032531124259709526,
+        0.0009912950400779597
+      ],
+      "nativeSun": [
+        0.9994891264102334,
+        0.031951816630788464,
+        -0.0007533934569677518
+      ]
+    },
+    {
+      "index": 4,
+      "filename": "frame-0004.png",
+      "sha256": "786bd66838fae5e5bf8b9e380d890a76e3f54c9e832eccc309707fcc5e013915",
+      "frame": 21,
+      "time": "2026-03-20T12:00:10Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994697224077853,
+        0.03253053753366083,
+        0.0014276266583572706
+      ],
+      "nativeSun": [
+        0.9994937641078169,
+        0.031806416783134124,
+        -0.0007532336988381351
+      ]
+    },
+    {
+      "index": 5,
+      "filename": "frame-0005.png",
+      "sha256": "f6e6b411683a5dd77790b03e78f49684da02fc18456a25eac563cd7b31542006",
+      "frame": 22,
+      "time": "2026-03-20T12:00:12Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999469023213801,
+        0.03252994461425692,
+        0.0018639580048366176
+      ],
+      "nativeSun": [
+        0.9994983806534528,
+        0.0316610162623634,
+        -0.0007530739406970494
+      ]
+    },
+    {
+      "index": 6,
+      "filename": "frame-0006.png",
+      "sha256": "97ec6b93a7060308ca36879b55c43783ca337541bc344ebea258f8416157005d",
+      "frame": 23,
+      "time": "2026-03-20T12:00:14Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999468133735023,
+        0.032529345501610636,
+        0.002300288996444672
+      ],
+      "nativeSun": [
+        0.9995029760470476,
+        0.031515615071398544,
+        -0.0007529141826012306
+      ]
+    },
+    {
+      "index": 7,
+      "filename": "frame-0007.png",
+      "sha256": "7e959137d7b22791eac6b9370d9b2446cdabbc416b05275cc9fa3ba5169e6294",
+      "frame": 24,
+      "time": "2026-03-20T12:00:16Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994670539716204,
+        0.032528740195835924,
+        0.002736619550110171
+      ],
+      "nativeSun": [
+        0.9995075502884934,
+        0.031370213213675426,
+        -0.0007527544244150781
+      ]
+    },
+    {
+      "index": 8,
+      "filename": "frame-0008.png",
+      "sha256": "096f45b318fc783cc2ec598fc89baace9e562bc4420802d4ac7344b8c48f1300",
+      "frame": 25,
+      "time": "2026-03-20T12:00:18Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994657839237988,
+        0.03252812869704857,
+        0.0031729495827619372
+      ],
+      "nativeSun": [
+        0.9995121033777042,
+        0.031224810691909768,
+        -0.0007525946662853347
+      ]
+    },
+    {
+      "index": 9,
+      "filename": "frame-0009.png",
+      "sha256": "6c11eb524d31dcdc6e24ceb6bea764fad48fbe7e56b95701484303fd3f1e695b",
+      "frame": 26,
+      "time": "2026-03-20T12:00:20Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994643235918,
+        0.032527511005364475,
+        0.0036092790113288896
+      ],
+      "nativeSun": [
+        0.9995166353145796,
+        0.03107940750933011,
+        -0.0007524349081555716
+      ]
+    },
+    {
+      "index": 10,
+      "filename": "frame-0010.png",
+      "sha256": "ae269d92d9df518b3c11319fa5b1ea4188baf8b95f1d2a13d6821dcf376e1738",
+      "frame": 27,
+      "time": "2026-03-20T12:00:22Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994626729759023,
+        0.03252688712090133,
+        0.004045607752740067
+      ],
+      "nativeSun": [
+        0.9995211460990241,
+        0.030934003668974714,
+        -0.0007522751500145105
+      ]
+    },
+    {
+      "index": 11,
+      "filename": "frame-0011.png",
+      "sha256": "1f00a010a0d218d78ff58b11dc490bf37b069a94fa1644252913ab796954b158",
+      "frame": 28,
+      "time": "2026-03-20T12:00:24Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994608320764194,
+        0.032526257043778234,
+        0.004481935723924636
+      ],
+      "nativeSun": [
+        0.9995256357309421,
+        0.030788599173933097,
+        -0.0007521153918849031
+      ]
+    },
+    {
+      "index": 12,
+      "filename": "frame-0012.png",
+      "sha256": "638b958af91df98a32b3cebc4721e3cc5b87c754c73d77d4a8c96a6658d3a653",
+      "frame": 29,
+      "time": "2026-03-20T12:00:26Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994588008937024,
+        0.032525620774115055,
+        0.00491826284181191
+      ],
+      "nativeSun": [
+        0.9995301042102404,
+        0.030643194027236653,
+        -0.0007519556337777425
+      ]
+    },
+    {
+      "index": 13,
+      "filename": "frame-0013.png",
+      "sha256": "c220a783c375a9c114f110eaa2975f5952fffa3e48c46c71e3cdd2f47255026b",
+      "frame": 30,
+      "time": "2026-03-20T12:00:28Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994565794281376,
+        0.032524978312032625,
+        0.005354589023331361
+      ],
+      "nativeSun": [
+        0.99953455153682,
+        0.03049778823209146,
+        -0.0007517958756367371
+      ]
+    },
+    {
+      "index": 14,
+      "filename": "frame-0014.png",
+      "sha256": "35e41179d1929e5becd852f7bf7a020fb67a18dcc8e592fff9bbc1a223bb05d9",
+      "frame": 31,
+      "time": "2026-03-20T12:00:30Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994541676801482,
+        0.032524329657653395,
+        0.005790914185412645
+      ],
+      "nativeSun": [
+        0.9995389777105902,
+        0.0303523817914696,
+        -0.0007516361175070663
+      ]
+    },
+    {
+      "index": 15,
+      "filename": "frame-0015.png",
+      "sha256": "83eefadc83657c1b8ec3c944d9afa9ac7e7a6ea76e276ed1a353af13f5283017",
+      "frame": 32,
+      "time": "2026-03-20T12:00:32Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999451565650193,
+        0.03252367481110059,
+        0.006227238244985612
+      ],
+      "nativeSun": [
+        0.9995433827314595,
+        0.03020697470837601,
+        -0.0007514763594112318
+      ]
+    },
+    {
+      "index": 16,
+      "filename": "frame-0016.png",
+      "sha256": "613a8759e98872a04f22c0ff8b951c536287d25b821da58960da6a11eafc7e70",
+      "frame": 33,
+      "time": "2026-03-20T12:00:34Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994487733387677,
+        0.03252301377249956,
+        0.006663561118980317
+      ],
+      "nativeSun": [
+        0.9995477665993284,
+        0.030061566986086686,
+        -0.0007513166012814953
+      ]
+    },
+    {
+      "index": 17,
+      "filename": "frame-0017.png",
+      "sha256": "8f4486c50aa7a21317a2067cd4fb1a0e3a6947add6632149612cdc6984becc7a",
+      "frame": 34,
+      "time": "2026-03-20T12:00:36Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994457907464039,
+        0.03252234654197557,
+        0.007099882724327046
+      ],
+      "nativeSun": [
+        0.9995521293141066,
+        0.02991615862760634,
+        -0.0007511568431404446
+      ]
+    },
+    {
+      "index": 18,
+      "filename": "frame-0018.png",
+      "sha256": "3fad0c0198b40b469499f54331af91d240ba1a2af1622cb706780852b78192df",
+      "frame": 35,
+      "time": "2026-03-20T12:00:38Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994426178736694,
+        0.03252167311965604,
+        0.007536202977956321
+      ],
+      "nativeSun": [
+        0.9995564708757068,
+        0.029770749635853837,
+        -0.000750997085056001
+      ]
+    },
+    {
+      "index": 19,
+      "filename": "frame-0019.png",
+      "sha256": "4ca1328b31a6af17a716b929f60f523ca048b43a0744f361cff6912126c1ee15",
+      "frame": 36,
+      "time": "2026-03-20T12:00:40Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999439254721168,
+        0.03252099350566896,
+        0.007972521796798927
+      ],
+      "nativeSun": [
+        0.9995607912840293,
+        0.02962534001414695,
+        -0.0007508373269149864
+      ]
+    },
+    {
+      "index": 20,
+      "filename": "frame-0020.png",
+      "sha256": "31ea3249c6001809f7933b41a71d7bca06ae2150e0ef611f04438cacfffb77e4",
+      "frame": 37,
+      "time": "2026-03-20T12:00:42Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994357012895405,
+        0.03252030770014371,
+        0.008408839097785923
+      ],
+      "nativeSun": [
+        0.9995650905389895,
+        0.029479929765345823,
+        -0.0007506775688304329
+      ]
+    },
+    {
+      "index": 21,
+      "filename": "frame-0021.png",
+      "sha256": "c79f375f1852551131fdd7e8a1d9f443b32f2c08c40ca00bce7d105c70572bb6",
+      "frame": 38,
+      "time": "2026-03-20T12:00:44Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999431957579463,
+        0.03251961570321109,
+        0.008845154797848653
+      ],
+      "nativeSun": [
+        0.9995693686404898,
+        0.029334518892738817,
+        -0.0007505178107007779
+      ]
+    },
+    {
+      "index": 22,
+      "filename": "frame-0022.png",
+      "sha256": "b8b2ee1a958f41b46901495d4c8e30f9612a81916cf1f7553eb995748ea50024",
+      "frame": 39,
+      "time": "2026-03-20T12:00:46Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994280235916486,
+        0.032518917515002646,
+        0.009281468813918762
+      ],
+      "nativeSun": [
+        0.9995736255884468,
+        0.02918910739917479,
+        -0.000750358052616253
+      ]
+    },
+    {
+      "index": 23,
+      "filename": "frame-0023.png",
+      "sha256": "f9329cb7f75659c0bae5bb4ceac6dd681a5e675f4df182da9356e6fd8453af69",
+      "frame": 40,
+      "time": "2026-03-20T12:00:48Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994238993268459,
+        0.03251821313565142,
+        0.009717781062928223
+      ],
+      "nativeSun": [
+        0.9995778613827644,
+        0.029043695287929817,
+        -0.0007501982945091141
+      ]
+    },
+    {
+      "index": 24,
+      "filename": "frame-0024.png",
+      "sha256": "4e4e40936b5659e97a2ad505f7ca5bdb5f6dbd8fe4a9d0e155d3313e6bd15a88",
+      "frame": 41,
+      "time": "2026-03-20T12:00:50Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994195847858404,
+        0.03251750256529136,
+        0.010154091461809348
+      ],
+      "nativeSun": [
+        0.999582076023355,
+        0.02889828256200835,
+        -0.0007500385364021129
+      ]
+    },
+    {
+      "index": 25,
+      "filename": "frame-0025.png",
+      "sha256": "dc13c46be2fc040dcfff7abb57f568f276428d8262f402532662c75d01032073",
+      "frame": 42,
+      "time": "2026-03-20T12:00:52Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994150799694533,
+        0.03251678580405772,
+        0.010590399927494786
+      ],
+      "nativeSun": [
+        0.9995862695101302,
+        0.028752869224460496,
+        -0.0007498787783062835
+      ]
+    },
+    {
+      "index": 26,
+      "filename": "frame-0026.png",
+      "sha256": "46a0010a993819aa1a916037c190b011963d7890b4054934524c1ec8bf1ad078",
+      "frame": 43,
+      "time": "2026-03-20T12:00:54Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994103848785425,
+        0.03251606285208716,
+        0.01102670637691757
+      ],
+      "nativeSun": [
+        0.9995904418430014,
+        0.02860745527836901,
+        -0.0007497190202104226
+      ]
+    },
+    {
+      "index": 27,
+      "filename": "frame-0027.png",
+      "sha256": "b8363b55e9a664f030cca55535873f0f8986047d6bde2356ebdf5135cede16c5",
+      "frame": 44,
+      "time": "2026-03-20T12:00:56Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9994054995140017,
+        0.03251533370951726,
+        0.011463010727011105
+      ],
+      "nativeSun": [
+        0.999594593021878,
+        0.02846204072687971,
+        -0.0007495592621033204
+      ]
+    },
+    {
+      "index": 28,
+      "filename": "frame-0028.png",
+      "sha256": "ef0e1f423f793d018490cd5d2a6bdb7ab0eae1753114d3f7c4e4d908d43bac17",
+      "frame": 45,
+      "time": "2026-03-20T12:00:58Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999400423876761,
+        0.03251459837648677,
+        0.011899312894709206
+      ],
+      "nativeSun": [
+        0.9995987230466737,
+        0.028316625573023564,
+        -0.0007493995039962399
+      ]
+    },
+    {
+      "index": 29,
+      "filename": "frame-0029.png",
+      "sha256": "1b355e62cc8602f43aa55e7a07b03f8e96c67ee3cb6f290641d012d6a2134c56",
+      "frame": 46,
+      "time": "2026-03-20T12:01:00Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993951579677869,
+        0.03251385685313569,
+        0.012335612796946097
+      ],
+      "nativeSun": [
+        0.9996028319173016,
+        0.02817120981984724,
+        -0.0007492397459117397
+      ]
+    },
+    {
+      "index": 30,
+      "filename": "frame-0030.png",
+      "sha256": "ade81d037063b6b6971979c07b9510e2d0b711265f83584828542146969caa2a",
+      "frame": 47,
+      "time": "2026-03-20T12:01:02Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993897017880817,
+        0.03251310913960513,
+        0.01277191035065644
+      ],
+      "nativeSun": [
+        0.999606919633675,
+        0.028025793470435007,
+        -0.0007490799878272083
+      ]
+    },
+    {
+      "index": 31,
+      "filename": "frame-0031.png",
+      "sha256": "0e6ff710a240d2c0850986e1ed3fb5b5b398c8cf6a745b5589b5d921181aaab5",
+      "frame": 48,
+      "time": "2026-03-20T12:01:04Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993840553386845,
+        0.03251235523603766,
+        0.013208205472775333
+      ],
+      "nativeSun": [
+        0.9996109861957062,
+        0.027880376527891926,
+        -0.0007489202297314215
+      ]
+    },
+    {
+      "index": 32,
+      "filename": "frame-0032.png",
+      "sha256": "5836be0e7585d21b8ed95297c4936a34426587bf3e84944996a6328709b9b6ae",
+      "frame": 49,
+      "time": "2026-03-20T12:01:06Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.99937821862067,
+        0.03251159514257648,
+        0.013644498080238345
+      ],
+      "nativeSun": [
+        0.999615031603309,
+        0.027734958995312094,
+        -0.0007487604716356175
+      ]
+    },
+    {
+      "index": 33,
+      "filename": "frame-0033.png",
+      "sha256": "21313f741b73a16c213224f7c994d05b45fdbb8b306f70d9bfa866a4b9bd1021",
+      "frame": 50,
+      "time": "2026-03-20T12:01:08Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993721916351496,
+        0.03251082885936685,
+        0.01408078808998153
+      ],
+      "nativeSun": [
+        0.9996190558563989,
+        0.02758954087572647,
+        -0.0007486007135510976
+      ]
+    },
+    {
+      "index": 34,
+      "filename": "frame-0034.png",
+      "sha256": "402e878832764c605f803e417c7d042ac91a2b642d6adaac560aea888022ee7c",
+      "frame": 51,
+      "time": "2026-03-20T12:01:10Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993659743832706,
+        0.032510056386554055,
+        0.014517075418941414
+      ],
+      "nativeSun": [
+        0.99962305895489,
+        0.02744412217223764,
+        -0.0007484409554665748
+      ]
+    },
+    {
+      "index": 35,
+      "filename": "frame-0035.png",
+      "sha256": "a0f20e271dabd3cb19b07e66428d6117b176cf33bdd0beb92f6c7e8321485295",
+      "frame": 52,
+      "time": "2026-03-20T12:01:12Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993595668662169,
+        0.03250927772428545,
+        0.01495335998405506
+      ],
+      "nativeSun": [
+        0.9996270408986976,
+        0.027298702887925838,
+        -0.0007482811973708286
+      ]
+    },
+    {
+      "index": 36,
+      "filename": "frame-0036.png",
+      "sha256": "4649eb9d9b63bf0e47c0943b45da14223e6454b50cb1b8cedd314b95af908177",
+      "frame": 53,
+      "time": "2026-03-20T12:01:14Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993529690852083,
+        0.03250849287270931,
+        0.015389641702260043
+      ],
+      "nativeSun": [
+        0.9996310016877394,
+        0.027153283025784757,
+        -0.0007481214393202168
+      ]
+    },
+    {
+      "index": 37,
+      "filename": "frame-0037.png",
+      "sha256": "cbf6119131d6835e66916cff29f0e775cb633502aa85d66b64342b5f68f0cd8f",
+      "frame": 54,
+      "time": "2026-03-20T12:01:16Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993461810415009,
+        0.0325077018319752,
+        0.01582592049049448
+      ],
+      "nativeSun": [
+        0.9996349413219285,
+        0.027007862589024115,
+        -0.0007479616812469904
+      ]
+    },
+    {
+      "index": 38,
+      "filename": "frame-0038.png",
+      "sha256": "5c9c31f2ffdcfec733581f0c644c106de5be58c3e72e318b4dc52966357ede48",
+      "frame": 55,
+      "time": "2026-03-20T12:01:18Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993392027363869,
+        0.03250690460223316,
+        0.016262196265697047
+      ],
+      "nativeSun": [
+        0.9996388598011822,
+        0.026862441580692994,
+        -0.0007478019231738702
+      ]
+    },
+    {
+      "index": 39,
+      "filename": "frame-0039.png",
+      "sha256": "5f2d2a5a71f2c1e706cbd88f2287ab576dd0b933e711b6de4455fe2b483841d3",
+      "frame": 56,
+      "time": "2026-03-20T12:01:20Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993320341711951,
+        0.03250610118363549,
+        0.016698468944806998
+      ],
+      "nativeSun": [
+        0.9996427571254163,
+        0.02671702000390233,
+        -0.0007476421650667149
+      ]
+    },
+    {
+      "index": 40,
+      "filename": "frame-0040.png",
+      "sha256": "0fa0bc43b35283f881849b75144c16715474ff1a2edf7c06b16c10d680a59d6f",
+      "frame": 57,
+      "time": "2026-03-20T12:01:22Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993246753472903,
+        0.03250529157633497,
+        0.017134738444764173
+      ],
+      "nativeSun": [
+        0.9996466332945556,
+        0.02657159786146777,
+        -0.0007474824070386995
+      ]
+    },
+    {
+      "index": 41,
+      "filename": "frame-0041.png",
+      "sha256": "7e8c113e0601154d1a0be12ea5746fc26414905d92e36676aebed2e5fb34de58",
+      "frame": 58,
+      "time": "2026-03-20T12:01:24Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993171262660734,
+        0.0325044757804857,
+        0.01757100468250902
+      ],
+      "nativeSun": [
+        0.9996504883085076,
+        0.026426175156851667,
+        -0.0007473226489429741
+      ]
+    },
+    {
+      "index": 42,
+      "filename": "frame-0042.png",
+      "sha256": "ceb7bf53a16fef4b68fc2cd428315b028b086d0b0bf9f1b0b98bda88981db15f",
+      "frame": 59,
+      "time": "2026-03-20T12:01:26Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993093869289816,
+        0.03250365379624301,
+        0.018007267574982597
+      ],
+      "nativeSun": [
+        0.9996543221671991,
+        0.0262807518928213,
+        -0.0007471628909036784
+      ]
+    },
+    {
+      "index": 43,
+      "filename": "frame-0043.png",
+      "sha256": "72b95529830c7a786eecee7f03ff5c382623403403b09c25375fce58f8d2aa29",
+      "frame": 60,
+      "time": "2026-03-20T12:01:28Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9993014573374885,
+        0.03250282562376347,
+        0.018443527039126613
+      ],
+      "nativeSun": [
+        0.9996581348705441,
+        0.02613532807263833,
+        -0.0007470031328417468
+      ]
+    },
+    {
+      "index": 44,
+      "filename": "frame-0044.png",
+      "sha256": "aa102e03286dd38cbbe6411eaff0ca56cbd5aca7c8942e33d0f4dfbca4e47764",
+      "frame": 61,
+      "time": "2026-03-20T12:01:30Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992933374931038,
+        0.032501991263204834,
+        0.018879782991883424
+      ],
+      "nativeSun": [
+        0.9996619264184627,
+        0.025989903699356262,
+        -0.0007468433747572143
+      ]
+    },
+    {
+      "index": 45,
+      "filename": "frame-0045.png",
+      "sha256": "035584a78fbf5f2077146d9cfdec06915b64992713430905adce577168fc255c",
+      "frame": 62,
+      "time": "2026-03-20T12:01:32Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992850273973731,
+        0.03250115071472584,
+        0.019316035350196055
+      ],
+      "nativeSun": [
+        0.9996656968108758,
+        0.02584447877599432,
+        -0.0007466836166954049
+      ]
+    },
+    {
+      "index": 46,
+      "filename": "frame-0046.png",
+      "sha256": "5f1c25e6c4fe9aa123c3b36ded37d68ee22a6bc3c44dd67c9d1bbdcf02361f85",
+      "frame": 63,
+      "time": "2026-03-20T12:01:34Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992765270518789,
+        0.03250030397848665,
+        0.019752284031008212
+      ],
+      "nativeSun": [
+        0.9996694460477038,
+        0.025699053305633546,
+        -0.0007465238586448115
+      ]
+    },
+    {
+      "index": 47,
+      "filename": "frame-0047.png",
+      "sha256": "4ac56a93dd202376f2f46f1cb926520e6ea6206467af754aba0043cb11ca12e4",
+      "frame": 64,
+      "time": "2026-03-20T12:01:36Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992678364582394,
+        0.0324994510546483,
+        0.020188528951264304
+      ],
+      "nativeSun": [
+        0.9996731741288644,
+        0.025553627291450907,
+        -0.0007463641005715805
+      ]
+    },
+    {
+      "index": 48,
+      "filename": "frame-0048.png",
+      "sha256": "c6c127c74a79b62bde3ae1a77b8a95b143c92142a5879fe30f489ea5cccba1c6",
+      "frame": 65,
+      "time": "2026-03-20T12:01:38Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992589556181091,
+        0.03249859194337323,
+        0.020624770027909457
+      ],
+      "nativeSun": [
+        0.9996768810542838,
+        0.025408200736350698,
+        -0.0007462043425324052
+      ]
+    },
+    {
+      "index": 49,
+      "filename": "frame-0049.png",
+      "sha256": "80bfd8aed6f456796c36166e75d4df08e8f1a338bd0d481975c9f6862335f40b",
+      "frame": 66,
+      "time": "2026-03-20T12:01:40Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992498845331788,
+        0.03249772664482495,
+        0.021061007177889533
+      ],
+      "nativeSun": [
+        0.9996805668238796,
+        0.0252627736435397,
+        -0.0007460445844704744
+      ]
+    },
+    {
+      "index": 50,
+      "filename": "frame-0050.png",
+      "sha256": "cef096515fe44e82dff108603bd7d1d6363ed9910cc0e9c10df6ede2ca71aa80",
+      "frame": 67,
+      "time": "2026-03-20T12:01:42Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992406232051756,
+        0.032496855159168093,
+        0.021497240318151128
+      ],
+      "nativeSun": [
+        0.9996842314375762,
+        0.02511734601601099,
+        -0.0007458848264424938
+      ]
+    },
+    {
+      "index": 51,
+      "filename": "frame-0051.png",
+      "sha256": "d27ce50e1de3ad6bc3c9180c85dd4d2c247ffeba2b9b41e15ed993cff1fe4b68",
+      "frame": 68,
+      "time": "2026-03-20T12:01:44Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992311716358627,
+        0.032495977486568725,
+        0.021933469365641618
+      ],
+      "nativeSun": [
+        0.9996878748952922,
+        0.02497191785700181,
+        -0.0007457250683692417
+      ]
+    },
+    {
+      "index": 52,
+      "filename": "frame-0052.png",
+      "sha256": "83d974bae7045f5a0110f2285080f724479b5353cc1f85ce4f65f6de4b8b7d1e",
+      "frame": 69,
+      "time": "2026-03-20T12:01:46Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992215298270396,
+        0.032495093627194,
+        0.022369694237309144
+      ],
+      "nativeSun": [
+        0.9996914971969543,
+        0.024826489169432066,
+        -0.0007455653103187453
+      ]
+    },
+    {
+      "index": 53,
+      "filename": "frame-0053.png",
+      "sha256": "a7ef4667d7296b74010196abac53a9e5a9cd262e832d5a5984b9860a1bb2e9d5",
+      "frame": 70,
+      "time": "2026-03-20T12:01:48Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992116977805418,
+        0.03249420358121212,
+        0.022805914850102648
+      ],
+      "nativeSun": [
+        0.9996950983424862,
+        0.02468105995635963,
+        -0.0007454055522907241
+      ]
+    },
+    {
+      "index": 54,
+      "filename": "frame-0054.png",
+      "sha256": "1768cb7d9b3c4a49e9216abf6f2bad3c8847bb3e27a484e58afca777b09d0d3d",
+      "frame": 71,
+      "time": "2026-03-20T12:01:50Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9992016754982412,
+        0.03249330734879279,
+        0.023242131120971895
+      ],
+      "nativeSun": [
+        0.9996986783318076,
+        0.024535630221034756,
+        -0.0007452457942288199
+      ]
+    },
+    {
+      "index": 55,
+      "filename": "frame-0055.png",
+      "sha256": "ca2b4bf5578a434cf1fccd59189375acb1edfeb875abfb20041830dc36d82b16",
+      "frame": 72,
+      "time": "2026-03-20T12:01:52Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999191462982046,
+        0.032492404930106224,
+        0.023678342966867442
+      ],
+      "nativeSun": [
+        0.9997022371648469,
+        0.0243901999663582,
+        -0.0007450860362009093
+      ]
+    },
+    {
+      "index": 56,
+      "filename": "frame-0056.png",
+      "sha256": "6efc4ad2e7a24d7a5b41cd864332f3212061582547bb97632a0f63a1e46384d8",
+      "frame": 73,
+      "time": "2026-03-20T12:01:54Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9991810602339005,
+        0.032491496325324484,
+        0.024114550304740728
+      ],
+      "nativeSun": [
+        0.9997057748415276,
+        0.02424476919545923,
+        -0.0007449262781842454
+      ]
+    },
+    {
+      "index": 57,
+      "filename": "frame-0057.png",
+      "sha256": "f30ba039216a01d293be8344129c4cdff556e69a9bb361e3c7f7b0c632840e47",
+      "frame": 74,
+      "time": "2026-03-20T12:01:56Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9991704672557853,
+        0.03249058153462037,
+        0.024550753051544028
+      ],
+      "nativeSun": [
+        0.9997092913617741,
+        0.02409933791144063,
+        -0.000744766520167561
+      ]
+    },
+    {
+      "index": 58,
+      "filename": "frame-0058.png",
+      "sha256": "45adbbbfcf1abc51778fb4089e51cdcf1a1913a2c3a89a613c2bd6d4cca8b2c2",
+      "frame": 75,
+      "time": "2026-03-20T12:01:58Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999159684049717,
+        0.0324896605581683,
+        0.024986951124230498
+      ],
+      "nativeSun": [
+        0.9997127867255097,
+        0.02395390611748597,
+        -0.0007446067621057333
+      ]
+    },
+    {
+      "index": 59,
+      "filename": "frame-0059.png",
+      "sha256": "80cc94bdd39b21bac3a830b8c5e8c631ffe84ff86e9ddb4abb71f23833ad4f94",
+      "frame": 76,
+      "time": "2026-03-20T12:02:00Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9991487106177488,
+        0.03248873339614344,
+        0.025423144439754183
+      ],
+      "nativeSun": [
+        0.999716260932667,
+        0.023808473816388606,
+        -0.0007444470041116831
+      ]
+    },
+    {
+      "index": 60,
+      "filename": "frame-0060.png",
+      "sha256": "0221349ddcfd58174029b8153b37b300759f8d10ad763593d583ff4b67ce04cd",
+      "frame": 77,
+      "time": "2026-03-20T12:02:02Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9991375469619697,
+        0.03248780004872233,
+        0.02585933291507003
+      ],
+      "nativeSun": [
+        0.9997197139831647,
+        0.02366304101156301,
+        -0.0007442872460497801
+      ]
+    },
+    {
+      "index": 61,
+      "filename": "frame-0061.png",
+      "sha256": "fccb710a470aea64ac86e3e47cb68607f34dff7cc0ed939a5d6e20058cda2947",
+      "frame": 78,
+      "time": "2026-03-20T12:02:04Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999126193084505,
+        0.03248686051608272,
+        0.026295516467133906
+      ],
+      "nativeSun": [
+        0.9997231458769344,
+        0.02351760770587272,
+        -0.0007441274880217822
+      ]
+    },
+    {
+      "index": 62,
+      "filename": "frame-0062.png",
+      "sha256": "0c47714fc183a4015929db36d032e3776044b68bacac6272516e0bfdbee9a221",
+      "frame": 79,
+      "time": "2026-03-20T12:02:06Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9991146489875165,
+        0.0324859147984033,
+        0.026731695012902627
+      ],
+      "nativeSun": [
+        0.9997265566139041,
+        0.02337217390237481,
+        -0.0007439677300277902
+      ]
+    },
+    {
+      "index": 63,
+      "filename": "frame-0063.png",
+      "sha256": "e916415977566dbb24f098acc4e0b14efe99e1f6e9fc271fdb329fd74d83d793",
+      "frame": 80,
+      "time": "2026-03-20T12:02:08Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999102914673202,
+        0.03248496289586441,
+        0.027167868469333955
+      ],
+      "nativeSun": [
+        0.999729946193999,
+        0.02322673960427697,
+        -0.0007438079720111031
+      ]
+    },
+    {
+      "index": 64,
+      "filename": "frame-0064.png",
+      "sha256": "73eb958f85ed8df365a0f901ab2304347b5c38e4f4f36ae3d0991a225db0aaa5",
+      "frame": 81,
+      "time": "2026-03-20T12:02:10Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990909901437954,
+        0.03248400480864717,
+        0.027604036753386622
+      ],
+      "nativeSun": [
+        0.9997333146171454,
+        0.023081304814707982,
+        -0.0007436482139492046
+      ]
+    },
+    {
+      "index": 65,
+      "filename": "frame-0065.png",
+      "sha256": "292bd5007005e0c28dfbcbd6bf972a324a00cd6cae59cf6f46b52eecc5df829d",
+      "frame": 82,
+      "time": "2026-03-20T12:02:12Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990788754015673,
+        0.032483040536934064,
+        0.028040199782020336
+      ],
+      "nativeSun": [
+        0.9997366618832798,
+        0.0229358695364383,
+        -0.0007434884559665121
+      ]
+    },
+    {
+      "index": 66,
+      "filename": "frame-0066.png",
+      "sha256": "7815c70ad3821b25cfe1aea85b40f9532bd57ef057ae8776be6de92d20035361",
+      "frame": 83,
+      "time": "2026-03-20T12:02:14Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990665704488239,
+        0.03248207008090847,
+        0.02847635747219581
+      ],
+      "nativeSun": [
+        0.9997399879923223,
+        0.022790433772927533,
+        -0.0007433286979159545
+      ]
+    },
+    {
+      "index": 67,
+      "filename": "frame-0067.png",
+      "sha256": "8e48da328c58c25809ce7bf80492aa3b338e58cc0679e0c6240c4d540d4b970c",
+      "frame": 84,
+      "time": "2026-03-20T12:02:16Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.999054075287908,
+        0.03248109344075519,
+        0.028912509740874805
+      ],
+      "nativeSun": [
+        0.9997432929442077,
+        0.022644997527020677,
+        -0.0007431689398992528
+      ]
+    },
+    {
+      "index": 68,
+      "filename": "frame-0068.png",
+      "sha256": "975241f0b0ae28c91d80823ec5f589dfbdf5e22a69e9499e336b6e51d6fed6a6",
+      "frame": 85,
+      "time": "2026-03-20T12:02:18Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990413899211984,
+        0.03248011061666018,
+        0.029348656505020044
+      ],
+      "nativeSun": [
+        0.9997465767388661,
+        0.022499560801802244,
+        -0.0007430091818938745
+      ]
+    },
+    {
+      "index": 69,
+      "filename": "frame-0069.png",
+      "sha256": "2b6020827ac27560039647b148b4cd27821c6a7178366784484cdd3290c2ab60",
+      "frame": 86,
+      "time": "2026-03-20T12:02:20Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990285143511103,
+        0.03247912160881054,
+        0.029784797681595372
+      ],
+      "nativeSun": [
+        0.9997498393762273,
+        0.022354123600375066,
+        -0.0007428494238885949
+      ]
+    },
+    {
+      "index": 70,
+      "filename": "frame-0070.png",
+      "sha256": "35a4e68e69d08fd50e74979e4f55127d3c8b200983972da7e2ff8c232d8cf056",
+      "frame": 87,
+      "time": "2026-03-20T12:02:22Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990154485800951,
+        0.0324781264173947,
+        0.03022093318756566
+      ],
+      "nativeSun": [
+        0.9997530808562227,
+        0.02220868592581157,
+        -0.0007426896659057899
+      ]
+    },
+    {
+      "index": 71,
+      "filename": "frame-0071.png",
+      "sha256": "2aba46dd62651e38adc903fc3326dcca8a1b16475c26de5d53caa02d4f69df05",
+      "frame": 88,
+      "time": "2026-03-20T12:02:24Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9990021926106402,
+        0.03247712504260187,
+        0.03065706293989684
+      ],
+      "nativeSun": [
+        0.9997563011787797,
+        0.022063247781347523,
+        -0.0007425299078665762
+      ]
+    },
+    {
+      "index": 72,
+      "filename": "frame-0072.png",
+      "sha256": "fbdbe6d94418d5a1767dd4092f3a0aa6180308cd40036cf505e44f6185289da1",
+      "frame": 89,
+      "time": "2026-03-20T12:02:26Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989887464452694,
+        0.032476117484622785,
+        0.031093186855555975
+      ],
+      "nativeSun": [
+        0.9997595003438366,
+        0.021917809169775978,
+        -0.0007423701498952349
+      ]
+    },
+    {
+      "index": 73,
+      "filename": "frame-0073.png",
+      "sha256": "89cfda7a53a677d6c04e1b2197f196c73d58e37098ccd0bd206866c76d8b32d5",
+      "frame": 90,
+      "time": "2026-03-20T12:02:28Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989751100865426,
+        0.03247510374364956,
+        0.031529304851511245
+      ],
+      "nativeSun": [
+        0.9997626783513192,
+        0.02177237009448636,
+        -0.0007422103918558969
+      ]
+    },
+    {
+      "index": 74,
+      "filename": "frame-0074.png",
+      "sha256": "a13b7971b7eeee2dcf245f06e71c2c58f865116bfad65e7ddf6cd2ca5d2952c6",
+      "frame": 91,
+      "time": "2026-03-20T12:02:30Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998961283537056,
+        0.032474083819874926,
+        0.03196541684473192
+      ],
+      "nativeSun": [
+        0.9997658352011646,
+        0.021626930558327113,
+        -0.0007420506338391958
+      ]
+    },
+    {
+      "index": 75,
+      "filename": "frame-0075.png",
+      "sha256": "9ec19765cc607be77e36cffd87436a55a8b47bbd893b66460e67628ea6e119d7",
+      "frame": 92,
+      "time": "2026-03-20T12:02:32Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989472667994421,
+        0.032473057713493216,
+        0.032401522752188446
+      ],
+      "nativeSun": [
+        0.9997689708933061,
+        0.021481490564392438,
+        -0.0007418908758565553
+      ]
+    },
+    {
+      "index": 76,
+      "filename": "frame-0076.png",
+      "sha256": "7bd4fab3bb7e940bec0d981287236102893af656d2e2cd7fc10438be5a5f09e8",
+      "frame": 93,
+      "time": "2026-03-20T12:02:34Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989330598763694,
+        0.03247202542469976,
+        0.03283762249085241
+      ],
+      "nativeSun": [
+        0.9997720854276748,
+        0.021336050115866863,
+        -0.000741731117862495
+      ]
+    },
+    {
+      "index": 77,
+      "filename": "frame-0077.png",
+      "sha256": "ba94eed22b97909bfa8eddb422dd7bbd22e62d25a6ad9922aefb5f1b42f73377",
+      "frame": 94,
+      "time": "2026-03-20T12:02:36Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989186627705425,
+        0.03247098695369087,
+        0.03327371597769658
+      ],
+      "nativeSun": [
+        0.9997751788042066,
+        0.021190609215756693,
+        -0.0007415713598684392
+      ]
+    },
+    {
+      "index": 78,
+      "filename": "frame-0078.png",
+      "sha256": "19d6a8a4a27a0de82e0d19c03a62a5ead932961dc8d1867980d8faf0b3a4a0f1",
+      "frame": 95,
+      "time": "2026-03-20T12:02:38Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9989040754847028,
+        0.03246994230066457,
+        0.033709803129694904
+      ],
+      "nativeSun": [
+        0.9997782510228364,
+        0.021045167867112906,
+        -0.0007414116018856807
+      ]
+    },
+    {
+      "index": 79,
+      "filename": "frame-0079.png",
+      "sha256": "7024dcd09461721534d496b262e454078cf6995d71ccd03f90f192df2aab22b6",
+      "frame": 96,
+      "time": "2026-03-20T12:02:40Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988892980216273,
+        0.032468891465819244,
+        0.03414588386382255
+      ],
+      "nativeSun": [
+        0.9997813020834977,
+        0.02089972607308546,
+        -0.0007412518439030185
+      ]
+    },
+    {
+      "index": 80,
+      "filename": "frame-0080.png",
+      "sha256": "90273c5bad0a8c823acebe6a365ed844ff87791000e9fa031be859647b35acd1",
+      "frame": 97,
+      "time": "2026-03-20T12:02:42Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988743303841293,
+        0.03246783444935537,
+        0.0345819580970559
+      ],
+      "nativeSun": [
+        0.9997843319861249,
+        0.020754283836780896,
+        -0.0007410920858976477
+      ]
+    },
+    {
+      "index": 81,
+      "filename": "frame-0081.png",
+      "sha256": "b6ac860503fcac9df8f4139f83bd3328851baac5a5eb2f69297b5d48c0b37cb0",
+      "frame": 98,
+      "time": "2026-03-20T12:02:44Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988591725750587,
+        0.03246677125147426,
+        0.035018025746372576
+      ],
+      "nativeSun": [
+        0.9997873407306581,
+        0.020608841161122278,
+        -0.0007409323279375081
+      ]
+    },
+    {
+      "index": 82,
+      "filename": "frame-0082.png",
+      "sha256": "d35688a983e7c599c0416d30fd00963fcaa4d158530fa75440114e58e146d6df",
+      "frame": 99,
+      "time": "2026-03-20T12:02:46Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988438245973013,
+        0.03246570187237835,
+        0.03545408672875146
+      ],
+      "nativeSun": [
+        0.9997903283170294,
+        0.020463398049346788,
+        -0.0007407725699435407
+      ]
+    },
+    {
+      "index": 83,
+      "filename": "frame-0083.png",
+      "sha256": "0909124064a1974ca25c9c4469316257d4fd5c997f7c10df9c14e20f31f9fc2a",
+      "frame": 100,
+      "time": "2026-03-20T12:02:48Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988282864537787,
+        0.032464626312270935,
+        0.03589014096117268
+      ],
+      "nativeSun": [
+        0.9997932947451779,
+        0.020317954504445897,
+        -0.0007406128119721256
+      ]
+    },
+    {
+      "index": 84,
+      "filename": "frame-0084.png",
+      "sha256": "ef8995b0412e990c785d93a9e613a262a00df62b0b76dc3cf3c2d12a8e3e0fad",
+      "frame": 101,
+      "time": "2026-03-20T12:02:50Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9988125581474496,
+        0.03246354457135676,
+        0.03632618836061767
+      ],
+      "nativeSun": [
+        0.9997962400150396,
+        0.020172510529529165,
+        -0.0007404530540007123
+      ]
+    },
+    {
+      "index": 85,
+      "filename": "frame-0085.png",
+      "sha256": "d3c9c0fa50be52f6d32273b3f533e1d6d7451fa3bbb961b1359d4480f060c220",
+      "frame": 102,
+      "time": "2026-03-20T12:02:52Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987966396813085,
+        0.03246245664984215,
+        0.03676222884406917
+      ],
+      "nativeSun": [
+        0.9997991641265523,
+        0.020027066127698917,
+        -0.0007402932960179778
+      ]
+    },
+    {
+      "index": 86,
+      "filename": "frame-0086.png",
+      "sha256": "44e1baae267959d5e0c853a6e05333ecd137a9c45816dfaa6a965f54146fd274",
+      "frame": 103,
+      "time": "2026-03-20T12:02:54Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987805310583857,
+        0.03246136254793399,
+        0.03719826232851122
+      ],
+      "nativeSun": [
+        0.9998020670796532,
+        0.01988162130205692,
+        -0.0007401335380240046
+      ]
+    },
+    {
+      "index": 87,
+      "filename": "frame-0087.png",
+      "sha256": "64b9b9ed7addfde223305678b896f6b2c1639e63ebc1325705f43c8869b8482b",
+      "frame": 104,
+      "time": "2026-03-20T12:02:56Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987642322817484,
+        0.03246026226584058,
+        0.0376342887309292
+      ],
+      "nativeSun": [
+        0.9998049488742842,
+        0.01973617605553577,
+        -0.0007399737800525941
+      ]
+    },
+    {
+      "index": 88,
+      "filename": "frame-0088.png",
+      "sha256": "b6b38705720caca9e9fd3b806316209776222bf1f1e0b32bfe6f83b3a6d3e85e",
+      "frame": 105,
+      "time": "2026-03-20T12:02:58Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987477433544992,
+        0.032459155803771296,
+        0.03807030796830984
+      ],
+      "nativeSun": [
+        0.9998078095103813,
+        0.019590730391331312,
+        -0.0007398140220811373
+      ]
+    },
+    {
+      "index": 89,
+      "filename": "frame-0089.png",
+      "sha256": "02c59e274195e1b65436c2faf3e570d28de9f408a7c9a26f982236e87749652e",
+      "frame": 106,
+      "time": "2026-03-20T12:03:00Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987310642797779,
+        0.032458043161936914,
+        0.038506319957641234
+      ],
+      "nativeSun": [
+        0.9998106489878853,
+        0.019445284312474755,
+        -0.0007396542641210854
+      ]
+    },
+    {
+      "index": 90,
+      "filename": "frame-0090.png",
+      "sha256": "58370d7cc4f7df801b9f44ffb35965cca3571f15775763fd8370147ece6cf00a",
+      "frame": 107,
+      "time": "2026-03-20T12:03:02Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9987141950607595,
+        0.03245692434054934,
+        0.03894232461591285
+      ],
+      "nativeSun": [
+        0.9998134673067351,
+        0.01929983782209483,
+        -0.0007394945061496757
+      ]
+    },
+    {
+      "index": 91,
+      "filename": "frame-0091.png",
+      "sha256": "895052b99d02478b8d684b13f496e525114be4ad0f996a6b188be3af84bf6f47",
+      "frame": 108,
+      "time": "2026-03-20T12:03:04Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998697135700656,
+        0.032455799339821616,
+        0.039378321860115556
+      ],
+      "nativeSun": [
+        0.9998162644668722,
+        0.01915439092322306,
+        -0.0007393347481782405
+      ]
+    },
+    {
+      "index": 92,
+      "filename": "frame-0092.png",
+      "sha256": "479a33e6e8765348b9dadf42cb7b320d4ff93608e7e99e38e702e1484f2c03ab",
+      "frame": 109,
+      "time": "2026-03-20T12:03:06Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9986798862027151,
+        0.0324546681599677,
+        0.03981431160724162
+      ],
+      "nativeSun": [
+        0.9998190404682366,
+        0.019008943618953743,
+        -0.0007391749902181984
+      ]
+    },
+    {
+      "index": 93,
+      "filename": "frame-0093.png",
+      "sha256": "051a0b90b67c30b1b8220179c0baebe7e67b183d490102cfb0efd5fc222510e4",
+      "frame": 110,
+      "time": "2026-03-20T12:03:08Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9986624465702209,
+        0.032453530801203154,
+        0.04025029377428476
+      ],
+      "nativeSun": [
+        0.9998217953107691,
+        0.018863495912397006,
+        -0.0007390152322467932
+      ]
+    },
+    {
+      "index": 94,
+      "filename": "frame-0094.png",
+      "sha256": "288f7d47759dc59ed947e07ef8b1ac1af7046c94f34e81f342968efb4fd67fd4",
+      "frame": 111,
+      "time": "2026-03-20T12:03:10Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9986448168064936,
+        0.03245238726374433,
+        0.04068626827824013
+      ],
+      "nativeSun": [
+        0.9998245289944133,
+        0.018718047806525678,
+        -0.000738855474309283
+      ]
+    },
+    {
+      "index": 95,
+      "filename": "frame-0095.png",
+      "sha256": "6eb5cbc746afa1ca23a955f58e5df3454c870a39c2db9a0bbad081ed9d26c1f5",
+      "frame": 112,
+      "time": "2026-03-20T12:03:12Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9986269969148898,
+        0.03245123754780926,
+        0.041122235036104335
+      ],
+      "nativeSun": [
+        0.9998272415191088,
+        0.018572599304569462,
+        -0.0007386957163491495
+      ]
+    },
+    {
+      "index": 96,
+      "filename": "frame-0096.png",
+      "sha256": "61c46f6fad893608184bb41bc4677d0545163909f6a56190f19f54a250369481",
+      "frame": 113,
+      "time": "2026-03-20T12:03:14Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998608986898802,
+        0.03245008165361664,
+        0.04155819396487545
+      ],
+      "nativeSun": [
+        0.9998299328848007,
+        0.018427150409463144,
+        -0.000738535958400424
+      ]
+    },
+    {
+      "index": 97,
+      "filename": "frame-0097.png",
+      "sha256": "e9d08dd0e78e92b89b884967baac1ba0c2e1875845b7bb7c34d8dc957074e7dd",
+      "frame": 114,
+      "time": "2026-03-20T12:03:16Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9985907867616589,
+        0.03244891958138644,
+        0.04199414498155306
+      ],
+      "nativeSun": [
+        0.9998326030914294,
+        0.01828170112442832,
+        -0.0007383762004289961
+      ]
+    },
+    {
+      "index": 98,
+      "filename": "frame-0098.png",
+      "sha256": "f05b3f569fcec2a374e20b65845e0fc3f1b770efc99378dc14b43b1f8db38d45",
+      "frame": 115,
+      "time": "2026-03-20T12:03:18Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9985723965069261,
+        0.03244775133134003,
+        0.04243008800313824
+      ],
+      "nativeSun": [
+        0.9998352521389423,
+        0.018136251452313835,
+        -0.0007382164425254076
+      ]
+    },
+    {
+      "index": 99,
+      "filename": "frame-0099.png",
+      "sha256": "6eae312f52504070a3b30a65bb62701f47964010a5905f12f12fe854d4ec9a8f",
+      "frame": 116,
+      "time": "2026-03-20T12:03:20Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9985538161381043,
+        0.03244657690369967,
+        0.04286602294663359
+      ],
+      "nativeSun": [
+        0.9998378800272779,
+        0.017990801396516404,
+        -0.0007380566845314995
+      ]
+    },
+    {
+      "index": 100,
+      "filename": "frame-0100.png",
+      "sha256": "471b06a832abe796dd90cf581d50afdd852367c3c3f6cb7d40b2f98dd6a84905",
+      "frame": 117,
+      "time": "2026-03-20T12:03:22Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9985350456587313,
+        0.03244539629868919,
+        0.043301949729043256
+      ],
+      "nativeSun": [
+        0.9998404867563867,
+        0.017845350959762026,
+        -0.0007378969266392184
+      ]
+    },
+    {
+      "index": 101,
+      "filename": "frame-0101.png",
+      "sha256": "d5dfb830062254e929ca05ee508e5c179c75dc74794e1b0f46484e161102cb2e",
+      "frame": 118,
+      "time": "2026-03-20T12:03:24Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9985160850723804,
+        0.03244420951653335,
+        0.04373786826737294
+      ],
+      "nativeSun": [
+        0.9998430723262067,
+        0.017699900145526425,
+        -0.0007377371686565226
+      ]
+    },
+    {
+      "index": 102,
+      "filename": "frame-0102.png",
+      "sha256": "3c82deb9cabb5f671f22ef9e0bf6a31ee102e300b196bb16cfe788b71e956c42",
+      "frame": 119,
+      "time": "2026-03-20T12:03:26Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9984969343826617,
+        0.03244301655745778,
+        0.04417377847862988
+      ],
+      "nativeSun": [
+        0.9998456367366886,
+        0.01755444895657412,
+        -0.0007375774107190218
+      ]
+    },
+    {
+      "index": 103,
+      "filename": "frame-0103.png",
+      "sha256": "0397d5100f64e62f41ae7b9e72e4cf1efc80834d742976e11f572628ab9b6d47",
+      "frame": 120,
+      "time": "2026-03-20T12:03:28Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9984775935932212,
+        0.032441817421689965,
+        0.04460968027982294
+      ],
+      "nativeSun": [
+        0.999848179987776,
+        0.01740899739609291,
+        -0.0007374176527702966
+      ]
+    },
+    {
+      "index": 104,
+      "filename": "frame-0104.png",
+      "sha256": "de424b5beda6d281da8da6cb59f37381b6b47e2ba4a3ff20665d548ed7b2b7bf",
+      "frame": 121,
+      "time": "2026-03-20T12:03:30Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998458062707741,
+        0.03244061210945797,
+        0.04504557358796258
+      ],
+      "nativeSun": [
+        0.9998507020794163,
+        0.017263545467099684,
+        -0.0007372578948554171
+      ]
+    },
+    {
+      "index": 105,
+      "filename": "frame-0105.png",
+      "sha256": "67c03e1ccd03807fc95d075a65e858d573cd508056eca69f3a3ac585854557dd",
+      "frame": 122,
+      "time": "2026-03-20T12:03:32Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9984383417299395,
+        0.03243940062099154,
+        0.04548145832006086
+      ],
+      "nativeSun": [
+        0.9998532030115532,
+        0.017118093172856702,
+        -0.0007370981368953059
+      ]
+    },
+    {
+      "index": 106,
+      "filename": "frame-0106.png",
+      "sha256": "7f2f282ee33479fd1babbea79d3103f8f3b1ae1a166845dc36f9c56e61ba3c5b",
+      "frame": 123,
+      "time": "2026-03-20T12:03:34Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9984184306635715,
+        0.03243818295652101,
+        0.045917334393131476
+      ],
+      "nativeSun": [
+        0.9998556827841374,
+        0.016972640516187968,
+        -0.0007369383789805333
+      ]
+    },
+    {
+      "index": 107,
+      "filename": "frame-0107.png",
+      "sha256": "65fc90df625af0b4a24aed5f7c3554197a446131806346188300a1a73a1fd0fd",
+      "frame": 124,
+      "time": "2026-03-20T12:03:36Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9983983295124274,
+        0.03243695911627833,
+        0.04635320172418975
+      ],
+      "nativeSun": [
+        0.9998581413971143,
+        0.016827187500349873,
+        -0.0007367786210430699
+      ]
+    },
+    {
+      "index": 108,
+      "filename": "frame-0108.png",
+      "sha256": "9927049b5190c96892b8d41467dafbd90ea787e7697350c819e87843dd760d6d",
+      "frame": 125,
+      "time": "2026-03-20T12:03:38Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9983780382803344,
+        0.03243572910049648,
+        0.04678906023025274
+      ],
+      "nativeSun": [
+        0.9998605788504333,
+        0.01668173412829572,
+        -0.0007366188631282034
+      ]
+    },
+    {
+      "index": 109,
+      "filename": "frame-0109.png",
+      "sha256": "e0123e1b8d8ed6efd0bf8ad3f33f6687c68e935e501e6868a836bf4971a6166e",
+      "frame": 126,
+      "time": "2026-03-20T12:03:40Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9983575569711559,
+        0.03243449290940969,
+        0.04722490982833912
+      ],
+      "nativeSun": [
+        0.9998629951440409,
+        0.016536280403224343,
+        -0.000736459105202097
+      ]
+    },
+    {
+      "index": 110,
+      "filename": "frame-0110.png",
+      "sha256": "39faca6f2b917c23e2861bc532ebd574dbf5aa8207930de697eb0d25ef30004d",
+      "frame": 127,
+      "time": "2026-03-20T12:03:42Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998336885588791,
+        0.0324332505432533,
+        0.04766075043546929
+      ],
+      "nativeSun": [
+        0.9998653902778869,
+        0.0163908263281678,
+        -0.0007362993472759214
+      ]
+    },
+    {
+      "index": 111,
+      "filename": "frame-0111.png",
+      "sha256": "e30491c51d2182f3b9eaebde3849286b5948fe1ae2519b53a5694a205b1330e0",
+      "frame": 128,
+      "time": "2026-03-20T12:03:44Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9983160241371751,
+        0.03243200200226364,
+        0.04809658196866532
+      ],
+      "nativeSun": [
+        0.9998677642519201,
+        0.016245371906229197,
+        -0.0007361395893384741
+      ]
+    },
+    {
+      "index": 112,
+      "filename": "frame-0112.png",
+      "sha256": "fd804f692573edb7b291de9c4e52e3442af6daddb340402ea20c1241876987bc",
+      "frame": 129,
+      "time": "2026-03-20T12:03:46Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9982949726202801,
+        0.03243074728667872,
+        0.04853240434495105
+      ],
+      "nativeSun": [
+        0.9998701170660914,
+        0.01609991714041162,
+        -0.0007359798314123131
+      ]
+    },
+    {
+      "index": 113,
+      "filename": "frame-0113.png",
+      "sha256": "be984899218167720e135238c78ea5801a5aac772d7841a69bf79516c53ba337",
+      "frame": 130,
+      "time": "2026-03-20T12:03:48Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998273731042114,
+        0.03242948639673712,
+        0.04896821748135208
+      ],
+      "nativeSun": [
+        0.9998724487203507,
+        0.01595446203383928,
+        -0.0007358200734975381
+      ]
+    },
+    {
+      "index": 114,
+      "filename": "frame-0114.png",
+      "sha256": "b4b7550810bdcaccd234aaf0b810c0d680e7c20a7e02166d8116b9e11a4a3f45",
+      "frame": 131,
+      "time": "2026-03-20T12:03:50Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9982522994067208,
+        0.03242821933267911,
+        0.04940402129489571
+      ],
+      "nativeSun": [
+        0.9998747592146472,
+        0.01580900658964115,
+        -0.0007356603155713624
+      ]
+    },
+    {
+      "index": 115,
+      "filename": "frame-0115.png",
+      "sha256": "be13340a56a85aa17e3ed6b413c5839019080d32c94cdafa7661a17a3ef132a2",
+      "frame": 132,
+      "time": "2026-03-20T12:03:52Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9982306777181806,
+        0.03242694609474615,
+        0.049839815702611034
+      ],
+      "nativeSun": [
+        0.9998770485489338,
+        0.015663550810800477,
+        -0.000735500557656486
+      ]
+    },
+    {
+      "index": 116,
+      "filename": "frame-0116.png",
+      "sha256": "7bc89177c0a819d97af606be308025c5020d948798ff0ad004c1b793c1a53137",
+      "frame": 133,
+      "time": "2026-03-20T12:03:54Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9982088659806102,
+        0.03242566668318015,
+        0.05027560062152899
+      ],
+      "nativeSun": [
+        0.9998793167231623,
+        0.015518094700393512,
+        -0.0007353407997530072
+      ]
+    },
+    {
+      "index": 117,
+      "filename": "frame-0117.png",
+      "sha256": "fd53dd76548bce7cb6d7108698b89bded72d3f387d7ca7c82d94813d61a50081",
+      "frame": 134,
+      "time": "2026-03-20T12:03:56Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.998186864198162,
+        0.03242438109822506,
+        0.050711375968682255
+      ],
+      "nativeSun": [
+        0.9998815637372827,
+        0.01537263826159711,
+        -0.0007351810418381991
+      ]
+    },
+    {
+      "index": 118,
+      "filename": "frame-0118.png",
+      "sha256": "c0a0f421b4d46a7a04a4fdf5a5914243dfe9a697a1d025923ef0d99a70c3ebd4",
+      "frame": 135,
+      "time": "2026-03-20T12:03:58Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9981646723750252,
+        0.0324230893401256,
+        0.051147141661105365
+      ],
+      "nativeSun": [
+        0.9998837895912481,
+        0.015227181497466479,
+        -0.0007350212839120226
+      ]
+    },
+    {
+      "index": 119,
+      "filename": "frame-0119.png",
+      "sha256": "242e0c56932f124afe17148917eb893b049224ab0066c0e59cb689bee7ca85c8",
+      "frame": 136,
+      "time": "2026-03-20T12:04:00Z",
+      "event": "camera +0.025 degree and clock +2 seconds; exposure/resolution fixed",
+      "directionWC": [
+        0.9981422905154241,
+        0.03242179140912736,
+        0.051582897615834684
+      ],
+      "nativeSun": [
+        0.9998859942850122,
+        0.015081724411026681,
+        -0.0007348615259971765
+      ]
+    }
+  ]
+}

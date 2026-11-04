@@ -25,7 +25,8 @@
     "after": "round2/after/result.json",
     "afterExtended": "round2/after-extended/result.json",
     "fallback404": "round2/resource-fallback-404/result.json",
-    "fallbackCorrupt": "round2/resource-fallback-corrupt/result.json"
+    "fallbackCorrupt": "round2/resource-fallback-corrupt/result.json",
+    "supplementaryAfterMotion": "round2/after-continuous-motion/result.json"
   },
   "audit": "round2/audit.json",
   "matchedScenePairs": 158,
@@ -446,8 +447,7 @@
     "counterScope": "WebGPUAtmosphereRenderer after viewer.destroy; not whole-engine native allocation totals"
   },
   "newVerification": {
-    "hardwareSuites": 4,
-    "afterRawImages": 158,
+    "hardwareSuites": 5,
     "beforeRawImages": 158,
     "focusedUnits": {
       "pass": 9,
@@ -466,7 +466,10 @@
       "provider": 0,
       "gpu": 0,
       "shader": 0
-    }
+    },
+    "matchedAfterImages": 158,
+    "supplementaryAfterImages": 122,
+    "totalAfterImages": 280
   },
   "historicalEvidence": {
     "roundOne": "round1/result.json",
@@ -490,5 +493,30 @@
     "base": "feat/m2-6-1-b1-solar-disc-rays",
     "checks": "https://github.com/pp123pp/cesium-webgpu-globe/pull/22/checks",
     "note": "Exact publication-head Fast/Full links recorded in PR delivery summary. No merge or main push."
+  },
+  "supplementaryAfterOnlyMotion": {
+    "status": "PASS",
+    "source": "b7846cf0d7ab5417a37b31f32a47e2888429c147",
+    "bundleSha256": "504a8b4ae55497191400a1e4208c577473c414b74b18ec4adcf61ef42e40b99e",
+    "sourceStatus": "",
+    "rawImages": 122,
+    "frames": 120,
+    "cameraMovedEveryFrame": true,
+    "timeAdvancedEveryFrame": true,
+    "contiguous": true,
+    "allRuntimeInputHashesEqualToPrimary": true,
+    "allPngHashesVerified": true,
+    "exposure": 1,
+    "canvas": [
+      1920,
+      1080
+    ],
+    "cameraStepDegrees": 0.025,
+    "timeStepSeconds": 2,
+    "maxAdjacentMeanLumaDelta": 4.1088152081050766e-7,
+    "browserErrors": 0,
+    "gpuErrors": 0,
+    "providerErrors": 0,
+    "requestFailures": 0
   }
 }
