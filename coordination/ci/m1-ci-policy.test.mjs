@@ -279,58 +279,69 @@ test("new PR revisions cancel the same tier without cancelling the other tier", 
   assert.equal(expression(full.concurrency.group, context), fullKey);
 });
 
-test("Full excludes rendering gates and retains the complete non-WebGL suite", () => {
+test("Fast and Full exclude rendering gates and retain their non-rendering checks", () => {
   const { fast, full } = workflows();
   const commands = (workflow) =>
     Object.values(workflow.jobs)
       .flatMap((job) => job.steps ?? [])
       .map((step) => step.run ?? "")
       .join("\n");
-  const fullCommands = commands(full);
-  for (const gate of [
-    "m0-webgl-smoke.mjs",
-    "m0-webgpu-smoke.mjs",
-    "m1-globe-smoke.mjs",
-    "m1-imagery-smoke.mjs",
-    "m1-navigation-smoke.mjs",
-    "m1-terrain-smoke.mjs",
-    "m1-demo-smoke.mjs",
-    "m2-foundation-smoke.mjs",
-    "m2-atmosphere-smoke.mjs",
-    "m2-sun-smoke.mjs",
-    "m2-space-smoke.mjs",
-    "m0-webgl-regression.mjs",
-  ]) {
-    assert.equal(
-      fullCommands.includes(`node coordination/ci/${gate}`),
-      false,
-      gate,
+  for (const [tier, workflow] of Object.entries({ fast, full })) {
+    const tierCommands = commands(workflow);
+    for (const gate of [
+      "m0-webgl-smoke.mjs",
+      "m0-webgpu-smoke.mjs",
+      "m1-globe-smoke.mjs",
+      "m1-imagery-smoke.mjs",
+      "m1-navigation-smoke.mjs",
+      "m1-terrain-smoke.mjs",
+      "m1-demo-smoke.mjs",
+      "m2-foundation-smoke.mjs",
+      "m2-atmosphere-smoke.mjs",
+      "m2-sun-smoke.mjs",
+      "m2-space-smoke.mjs",
+      "m2.6.1-b5-a-remediation-smoke.mjs",
+      "m0-webgl-regression.mjs",
+    ]) {
+      assert.equal(
+        tierCommands.includes(`node coordination/ci/${gate}`),
+        false,
+        `${tier}: ${gate}`,
+      );
+    }
+    assert.equal(tierCommands.includes("xvfb-run"), false, tier);
+    assert.equal(tierCommands.includes("M0_NEGATIVE_CONTROL"), false, tier);
+    const steps = Object.values(workflow.jobs).flatMap(
+      (job) => job.steps ?? [],
     );
+    assert.equal(
+      steps.some(
+        (step) =>
+          step.with?.path === "Build/m0-reference-source" ||
+          step["working-directory"] === "Build/m0-reference-source",
+      ),
+      false,
+      `${tier}: no independent rendering-reference checkout or build`,
+    );
+    for (const unit of [
+      "m0-webgpu-unit.test.mjs",
+      "m0-visual-checks.test.mjs",
+      "m0-browser-config.test.mjs",
+      "m0-webgl-regression.test.mjs",
+      "m1-*.test.mjs",
+      "m2-*.test.mjs",
+    ]) {
+      assert.ok(
+        tierCommands.includes(`coordination/ci/${unit}`),
+        `${tier}: ${unit}`,
+      );
+    }
   }
-  assert.equal(fullCommands.includes("xvfb-run"), false);
-  assert.equal(fullCommands.includes("M0_NEGATIVE_CONTROL"), false);
-  assert.equal(
-    full.jobs.regression.steps.some(
-      (step) => step.with?.path === "Build/m0-reference-source",
-    ),
-    false,
-  );
   assert.ok(
-    fullCommands.includes(
+    commands(full).includes(
       "npm run test-non-webgl -- --browsers ChromeHeadless --failTaskOnError",
     ),
   );
-  const fastCommands = commands(fast);
-  assert.ok(fastCommands.includes("M0_NEGATIVE_CONTROL=missing-globe"));
-  for (const gate of [
-    "m0-webgl-smoke.mjs",
-    "m0-webgpu-smoke.mjs",
-    "m1-globe-smoke.mjs",
-  ]) {
-    assert.ok(fastCommands.includes(`node coordination/ci/${gate}`), gate);
-  }
-  assert.ok(fastCommands.includes("coordination/ci/m1-*.test.mjs"));
-  assert.ok(fullCommands.includes("coordination/ci/m1-*.test.mjs"));
 });
 
 test("each tier builds the candidate once and retains lint and generated API checks", () => {
