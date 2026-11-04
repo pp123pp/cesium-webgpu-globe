@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-04
-Current milestone: **M2.6.1-B4 / B05 round-two scenario repair and scoped technical recheck complete on feat/m2-6-1-b4-atmospheric-glow; appearance limitations remain and user visual re-review is pending. Not merged. B5 / B07 is not started. M2.6.1 is not closed.**
+Current milestone: **M2.6.1-B4 / B05 implementation, scoped technical verification and user visual acceptance PASS (2026-11-04). PR #25 merge is authorized and in closeout. B5 / B07 is not started. M2.6.1 is not closed.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -322,15 +322,15 @@ Earlier local results remain separately in `coordination/evidence/M1/closeout/lo
 - Recovery after device loss is destruction and recreation; no backend hot switch.
 - Read `coordination/handoffs/M0.4-webgpu-proof.md` for the supported API, commands, evidence and environment limits.
 
-## Current handoff — B4 round-two repair and recheck, 2026-11-04
+## Current handoff — B4 / B05 acceptance and integration closeout, 2026-11-04
 
-**B4 / B05 scoped technical checks complete; appearance limitations remain; awaiting user visual re-review. Not merged.**
+**B4 / B05 implementation, scoped technical verification and user visual acceptance PASS. User authorized PR #25 merge. B5 / B07 remains unstarted; M2.6.1 as a whole is not complete.**
 
-- [PR #25](https://github.com/pp123pp/cesium-webgpu-globe/pull/25) remains draft on feat/m2-6-1-b4-atmospheric-glow. Canonical baseline/build: `5f18afc1b77f433892f14510b2599c374f8a4942`; candidate capture/shared harness: `ac7884dcb15b0e83ac173f211b7eb1814ee26a92`; candidate bundle built at `995860bf2e3aa6cee0731d2e110643f45e16f6bf`, with identical runtime/build inputs at capture. Original B4 engine commit ff06e96 is unchanged.
+- [PR #25](https://github.com/pp123pp/cesium-webgpu-globe/pull/25) is the B4 integration PR on feat/m2-6-1-b4-atmospheric-glow; user visual acceptance was confirmed on 2026-11-04 and merge was explicitly authorized. Canonical baseline/build: `5f18afc1b77f433892f14510b2599c374f8a4942`; candidate capture/shared harness: `ac7884dcb15b0e83ac173f211b7eb1814ee26a92`; candidate bundle built at `995860bf2e3aa6cee0731d2e110643f45e16f6bf`, with identical runtime/build inputs at capture. Original B4 engine commit ff06e96 is unchanged.
 - Corrected actual-limb exposures 0.5/1/2, independent night camera, distinct 36,000 km/400 km/2 km/2 m views and ground-facing day/terminator/night. Added partial Earth and real-mesh full occultation, matched effect controls, source isolation and complete source/bundle/camera/PNG hashes. [Round-two evidence](evidence/M2.6.1/B4/round2/README.md) preserves 42 PNGs per side.
 - Both canonical builds passed; original build logs are retained. Focused Node batch: 18/18 passed, none skipped. Intel Xe-LPG / headed Chrome 156.0.8078.80, 1920×1080; no browser errors/warnings. Offline audit verifies 84 PNG hashes, 42 matched state pairs, 24 required invariant pairs and 28 identical pairs.
 - Partial Earth: 36/81 disk samples blocked, 45 clear, hidden-receiver solar difference 0. Full terrain: 81/81 mesh hits, 0 analytic Earth hits, positive depth and zero solar readback; full-frame Sun on/off difference 0. Mesh removal restores the source; −8°/−4° sky residual controls also have max difference 0.
 - Yellow twilight and weak disk contrast remain in the baseline-identical physical-only/no-Bloom control. Bloom additionally changes brightness/color and reduces contrast; authored artwork contributes a smaller local veil. Geometric night framing is corrected, but inherited unlit terrain remains unrealistically bright. Atmosphere/HDR calibration and surface lighting require separate work; no B4 runtime retune or exposure reduction was justified.
 - Supplementary 10e3d08/f58881f recapture metadata is preserved separately; all 84 image hashes equal the canonical images. Its distinct candidate bundle is not conflated with the canonical build. Subsequent publication/audit-label changes do not imply a new hardware test.
 - [CI record](evidence/M2.6.1/B4/round2/ci-status.json) identifies actual commit/job states; PR #25 tracks later publication checks. Canonical ac7884d Fast and executed Full passed; later documentation-head Full skips are explicitly skips. No manual Full dispatch, new local WebGL differential, timing, 120-frame sequence or full B5 matrix.
-- [Handoff](handoffs/M2.6.1-B4-atmospheric-glow.md): stop at B4 for user visual re-review. No main merge/push, B5 start or M2.6.1 closure.
+- [Handoff](handoffs/M2.6.1-B4-atmospheric-glow.md) records user visual acceptance and PR #25 integration. After B4 merges, stop; do not start B5/B07 or claim M2.6.1 complete without separate authorization.
