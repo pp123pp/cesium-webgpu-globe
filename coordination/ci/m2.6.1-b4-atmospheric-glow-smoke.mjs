@@ -24,7 +24,7 @@ await runM1BrowserSuite("m2.6.1-b4-round2", async ({ page, report, output }) => 
       "packages/engine/Source/Scene/WebGPUSunShader.js",
       "packages/engine/Source/Scene/WebGPUAtmosphereShader.js",
       "packages/engine/Source/Scene/WebGPUSolarBloomShader.js",
-      "package-lock.json",
+      "package.json",
     ]),
     harnessFiles: await fileHashes(harnessRoot, [
       "coordination/ci/m2.6.1-b4-atmospheric-glow-smoke.mjs",
@@ -76,6 +76,19 @@ await runM1BrowserSuite("m2.6.1-b4-round2", async ({ page, report, output }) => 
       `${result.name  } must contain sky and Earth, not an empty Sun-only or underground view`);
     assert.ok(result.terrain.selectedMeshes.length > 0 && result.terrain.tilesLoaded);
   };
+  const belowHorizonControl = async (name) => {
+    const observation = await page.evaluate(async () => {
+      const value = await window.__b4.occlusion();
+      const visibleSkyPixels = [[960, 250], [960, 500]];
+      return { ...value, visibleSkyPixels, visibleSky: await window.__m2Sun.probe(visibleSkyPixels) };
+    });
+    assert.ok(observation.maxDelta <= 1, "Hidden Sun must not leave decorative light in the night/twilight frame");
+    assert.ok(observation.visibleSky.every((row) => row.slice(0, 3).every((v) => Math.abs(v) <= 1e-6)));
+    await mode("sun-off");
+    await capture(name);
+    await mode("all");
+    return observation;
+  };
   // Preserve failure evidence for the old camera setups without publishing
   // their invalid views as new acceptance images.
   report.reproducedFramingDefects = [];
@@ -115,6 +128,9 @@ await runM1BrowserSuite("m2.6.1-b4-round2", async ({ page, report, output }) => 
         assert.ok(result.sun.elevationDegrees < -7.99 && result.camera.elevationDegrees > 0);
       }
     }
+    if (sceneCase.name === "ground-night-2m") {
+      report.nightResidual = await belowHorizonControl("ground-night-2m-sun-off");
+    }
   }
   report.checks.push("Distinct 36000 km/400 km/2 km/2 m views; valid night horizon and downward day/terminator/night; atmosphere off/on.");
 
@@ -138,6 +154,9 @@ await runM1BrowserSuite("m2.6.1-b4-round2", async ({ page, report, output }) => 
     const geometry = await view({ height: 2, elevation, cameraElevation: 0.5, fov: 30 });
     const result = await capture(`ground-transition-sun-${  elevation}`, { geometry });
     horizon(result);
+    if (elevation === -4) {
+      report.twilightResidual = await belowHorizonControl("ground-transition-sun--4-sun-off");
+    }
   }
 
   const twilight = await view({ height: 2, elevation: 1 });
