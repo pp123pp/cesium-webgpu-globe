@@ -1,22 +1,26 @@
 {
   "pullRequest": 25,
   "branch": "feat/m2-6-1-b4-atmospheric-glow",
+  "observedHead": "016dd3bc42b3c16690f5c31f6da6c44489e02f63",
   "testedRuntimeCommit": "ff06e9691ae98550cc965e1f8c6313a730c0bab6",
   "testedHarnessCommit": "10e3d0892b4f4ece7f61dd4c66c1da6afb07d2aa",
-  "publicationCommit": null,
   "githubActions": {
     "fast": {
-      "runId": null,
-      "status": "NOT_YET_TRIGGERED_FOR_PUBLICATION_HEAD",
-      "note": "A new commit will be pushed after this record is prepared; refresh with the exact new PR head."
+      "runId": 41777087020,
+      "runNumber": 110,
+      "status": "in_progress",
+      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41777087020"
     },
     "full": {
-      "runId": null,
-      "status": "NOT_YET_TRIGGERED_FOR_PUBLICATION_HEAD",
-      "note": "Do not interpret absence as a pass or as a skip."
+      "runId": 41777087022,
+      "runNumber": 87,
+      "selectionJob": "completed_success",
+      "regressionJob": "in_progress",
+      "status": "in_progress",
+      "url": "https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41777087022"
     }
   },
   "manualFullDispatch": false,
   "webglDifferential": "NOT_RUN",
-  "note": "Update this file after the documentation/evidence publication commit is pushed and the exact PR-head runs are inspected."
+  "note": "These states are recorded for observedHead only. The subsequent CI-status documentation commit will trigger its own PR checks; do not treat this record as the status of a later head."
 }
