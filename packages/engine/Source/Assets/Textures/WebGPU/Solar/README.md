@@ -20,6 +20,20 @@ All nine SVG sources are 1024 × 1024 and remain editable in this directory. The
 
 The generated `GPU/manifest.json` records each source/payload path, source and output dimensions, GPU format, color-space semantics, alpha minimum/maximum/coverage and exact byte length. The eight R8 payloads use the SVG alpha channel, not the RGB luminance. The color ramp retains all four RGBA channels and is uploaded as `rgba8unorm-srgb`, so WebGPU sampling decodes the authored sRGB values to linear. No color-space transfer is applied to the scalar masks. The color ramp is an authored tint resource; it does not replace Rayleigh/Mie scattering or transmittance. GPU effects are generated in scene-linear HDR and pass through the existing single ACES and sRGB output stage.
 
+## Corona artwork regeneration
+
+The B2 round-two Corona sources use filled, tapered density envelopes with
+longitudinal opacity variation and Gaussian feathering, replacing fixed-width
+strokes and hollow elliptical rims. Unequal angular groups and distinct radial
+reaches keep fine detail within the broad energy distribution. This is authored
+visual structure, not a magnetic-field or plasma simulation.
+
+To reproduce the two editable Corona SVGs, run
+`node coordination/ci/generate-corona-artwork.mjs`, then use the unchanged
+`npm run build-solar-textures` conversion step. All parameters are fixed offline;
+there is no frame-random noise, per-frame artwork generation, added texture,
+sample, binding or render pass. Other solar artwork is retained.
+
 ## Runtime loading and ownership
 
 `WebGPUAtmosphereRenderer` fetches the nine pre-rasterized payloads once during asynchronous initialization, validates exact byte lengths, creates R8Unorm/RGBA8Unorm-sRGB sampled textures and uploads them once. The payloads total 3,145,728 bytes (3.00 MiB) before driver allocation/alignment. The existing linear sampler is reused. Textures are retained for the renderer lifetime and destroyed by its owner; created/destroyed counts and payload bytes are exposed in renderer statistics.

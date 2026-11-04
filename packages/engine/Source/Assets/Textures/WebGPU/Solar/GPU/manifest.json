@@ -111,8 +111,8 @@
       "colorSpace": "linear scalar coverage",
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
-      "alphaMax": 169,
-      "alphaNonZeroCoverage": 0.7145156860351562,
+      "alphaMax": 107,
+      "alphaNonZeroCoverage": 0.6833343505859375,
       "byteLength": 262144
     },
     {
@@ -131,7 +131,7 @@
       "channelSemantic": "SVG alpha coverage in R channel",
       "alphaMin": 0,
       "alphaMax": 137,
-      "alphaNonZeroCoverage": 0.7295074462890625,
+      "alphaNonZeroCoverage": 0.7056884765625,
       "byteLength": 262144
     },
     {

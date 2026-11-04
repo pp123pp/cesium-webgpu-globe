@@ -143,9 +143,15 @@ fn sunRadiance(direction: vec3f, pixel: vec2i, pixelWidth: f32) -> vec3f {
   let coronaEnvelope = smoothstep(0.08, 0.20, r) * (1.0 - smoothstep(0.62, 0.96, r));
   let coronaPattern = mix(coronaMid, coronaFine, 0.56) * mix(0.58, 1.18, noise);
   let coronaDetail = atmosphere.sun.z * 2.2 * coronaPattern * coronaEnvelope * atmosphere.solarEffects.w;
+  // Diffuse corona remains warm-white instead of accumulating a brown-gold
+  // veil. Desaturate only this layer toward its own linear luminance: this
+  // preserves pre-transport linear Rec.709 luminance; Halo/Rays tint is unchanged.
+  let coronaLuminance = dot(tint, vec3f(0.2126, 0.7152, 0.0722));
+  let coronaTint = mix(tint, vec3f(coronaLuminance), 0.72);
   let rayFade = 1.0 - smoothstep(0.68, 1.0, r);
   let rayDetail = atmosphere.sun.z * 2.5 * rays * rayFade * atmosphere.solarEffects.x;
-  return atmosphere.sun.y * (disk + tint * (halo + coronaDetail + rayDetail) * visibility);
+  return atmosphere.sun.y * (disk +
+    (tint * (halo + rayDetail) + coronaTint * coronaDetail) * visibility);
 }
 `;
 

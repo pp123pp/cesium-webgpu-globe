@@ -1,7 +1,7 @@
 # Single source of truth — status
 
-Last updated: 2026-11-03
-Current milestone: **M2.6 accepted and merged; M2.6.1 Solar Visual Polish is the next requirements-defined task. No M2.6.1 engine implementation has started.**
+Last updated: 2026-11-04
+Current milestone: **M2.6 accepted and merged; M2.6.1-A is complete, B1 was visually accepted by the user on 2026-11-03, and B2 Halo/Corona second-round refinement is active on PR #22. B2 visual acceptance remains open.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -16,7 +16,7 @@ Import workflow result: SUCCESS; source presence verified.
 - PR [#10](https://github.com/pp123pp/cesium-webgpu-globe/pull/10) merged the public Moon / Stars / moonlight demo controls at `d52bdb43ce8c76f9e7f3b32c247200c974d6d9cb`. Its final head `482ce2b438c64070c996426276074ee91c5c415a` passed Fast [41585321728](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321728) and Full [41585321714](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41585321714).
 - PR [#11](https://github.com/pp123pp/cesium-webgpu-globe/pull/11) merged native Cesium Timeline integration, configured default ion token usage and Pages stylesheet-path handling. Its head `b46f97ab29e8486bcd3715efc348b033d7734bf7` passed Fast [41588524382](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524382) and Full [41588524350](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588524350). The main push Pages workflow [41588552188](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588552188) and Pages deployment [41588680662](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41588680662) succeeded.
 - PR [#6](https://github.com/pp123pp/cesium-webgpu-globe/pull/6) remains open at `6788fbd174a1104688be34abbb40c8f9d305da7a`, with an obsolete base SHA from before the current M2 integration. It is a historical M1 regression-closeout proposal, not an active M2 dependency. Do not merge or close it without separately reviewing whether its changes are already superseded.
-- PR [#18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18) merged M2.6 into `main` at `cf4f56cebd7ee37f761bb6668770d78c5081533e`. Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356), executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341), and the separate WebGL differential passed with no new failures. M2.6 is accepted and merged; M2.6.1 is requirements-only at this checkpoint.
+- PR [#18](https://github.com/pp123pp/cesium-webgpu-globe/pull/18) merged M2.6 into `main` at `cf4f56cebd7ee37f761bb6668770d78c5081533e`. Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356), executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341), and the separate WebGL differential passed with no new failures. M2.6 is accepted and merged. The requirements-only M2.6.1 checkpoint is historical; current B1/B2 development is described below.
 
 ## Accepted milestones
 
@@ -55,14 +55,15 @@ The following known limitations remain recorded and are not silently waived by M
 - Final publication Fast [41625999356](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999356) and executed Full [41625999341](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41625999341) passed on publication HEAD `3bcaac3`. The separate WebGL differential passed on runtime `cf2c1d1`: baseline/candidate each 3,811 pass, the same 11 inherited failures and 12,068 skipped, with no new failures or changed signatures. Raw suites retain exit 1; the comparison runner passes.
 - PR #18 merged as `cf4f56cebd7ee37f761bb6668770d78c5081533e`. M2.6 A07–A10 is accepted and integrated into `main`. Existing `M1-NAV-001`, NaturalEarth detail/seams, exposure-2 low-Sun contrast, resident VRAM and multi-device / long-duration coverage limitations remain.
 
-## Next task — M2.6.1 Solar Visual Polish
+## Active task — M2.6.1-B2 second-round Halo / Corona refinement
 
-- Requirements are defined in [tasks/M2.6.1.md](../tasks/M2.6.1.md) and summarized in [docs/ACCEPTANCE.md](../docs/ACCEPTANCE.md).
-- Scope is limited to refining the existing M2.6 Sun disk, radial rays, halo, corona, authored tint and linear-HDR Bloom presentation. The target is to reduce the decorative / regular golden starburst, improve multi-scale glow and corona detail, and preserve disk readability and black-space contrast.
-- This checkpoint changes planning and acceptance documentation only. No engine source, WGSL, GPU assets, demo runtime, build configuration or rendering pipeline is modified.
-- SVP-01–SVP-10 require matched baseline / polished captures, effect isolation, exposure and viewport comparisons, partial / full Earth and terrain occultation, a 120-frame temporal sequence, same-adapter GPU timestamps, and resource-lifecycle evidence.
-- Cinematic Lens Ghosts, Lens Dirt, Anamorphic Streaks, exaggerated Lens Flare, volumetric clouds and detailed star catalogs remain outside M2.6.1.
-- M2.6.1 implementation has not started. It requires a separate explicit development instruction and must not be inferred from this documentation update.
+- Integration owner update under the user's explicit 2026-11-04 B2 task. Main is `5cb8eda655314119fa5567e1b4c023e2c4217906`; B1 is `22515f64eeb04f9d6aab887073051f7e2a34543b` on open, unmerged [PR #21](https://github.com/pp123pp/cesium-webgpu-globe/pull/21).
+- B1 B01 Solar Disc / B02 Rays was visually accepted by the user on 2026-11-03. Old PR wording does not override that later decision. No B1 merge is authorized.
+- B2 [PR #22](https://github.com/pp123pp/cesium-webgpu-globe/pull/22) remains based on the B1 branch. Its round-two starting head is `302682b41a9e0ec64fcda1a0621dc49205eb694d`. Do not reset the branch or retarget the PR from historical planning instructions.
+- Active scope is B03 Halo retention/combination checks and B04 Corona contour/filament refinement. The original Halo falloff is retained; static Corona artwork is being corrected. The exact source, new matched hardware evidence, results and limitations are recorded in [B2 evidence](evidence/M2.6.1/B2/README.md) and the [round-two plan](audits/M2.6.1-B2-round2-plan.md).
+- The original B2 `combined` captures were 12-degree diagnostics with Rays and Bloom disabled. They remain historical evidence; new 60-degree full-effect captures explicitly restore every layer and Bloom 0.35.
+- Technical checks and authored-mask metrics do not grant user visual acceptance. B2 must stop for user review after its scoped delivery. Do not merge PR #21/#22, push main, or start B3 Bloom, B4 atmospheric integration, B5 integrated acceptance, M2.7/M2.8 or M3.
+- Existing `M1-NAV-001`, NaturalEarth detail/seams and single-device coverage limits remain. M2.6 A07–A10 acceptance is preserved; this round does not claim final M2.6.1 integrated acceptance.
 
 ## Historical M2.6 implementation checkpoint — superseded by closeout
 
