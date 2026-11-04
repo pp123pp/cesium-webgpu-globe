@@ -1,0 +1,17 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Small highlights need connected, decreasing axial spread, not detached diagonal copies
+    at file:///D:/github/cesium-webgpu-globe-b3/coordination/ci/m2-solar-bloom-smoke.mjs:206:10
+    at async runM1BrowserSuite (file:///D:/github/cesium-webgpu-globe-b3/coordination/ci/m1-browser-harness.mjs:82:5)
+    at async file:///D:/github/cesium-webgpu-globe-b3/coordination/ci/m2-solar-bloom-smoke.mjs:8:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v22.20.0

@@ -1,0 +1,3 @@
+warning: in the working copy of 'coordination/ci/m2-solar-bloom-smoke.mjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'coordination/ci/m2-solar-bloom-smoke.mjs', LF will be replaced by CRLF the next time Git touches it
+M1 b2-round2-b3 PASS: B3 matched full/Bloom-off pairs; whole-frame Sun-toggle occlusion controls; actual HDR readbacks; every moving camera/time frame retained; three native create/resize/destroy cycles, explicit state reset for each case; production Bloom=0.35; actual WebGPU PNG hashes; matched served assets

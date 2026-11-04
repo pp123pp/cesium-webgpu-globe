@@ -1,0 +1,1 @@
+M1 m2-solar-bloom PASS: real production HDR final pass respects terrain depth and WGS84 with positive/negative controls, production blur conserves small-highlight energy with connected falloff; soft knee preserves black and high radiance

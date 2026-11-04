@@ -1,0 +1,1715 @@
+{
+  "schema": "M2.6.1-B3-evidence-summary-v1",
+  "milestone": "M2.6.1-B3",
+  "scope": "B06 HDR Bloom Refinement only",
+  "status": "IMPLEMENTATION_AND_TARGETED_VERIFICATION_COMPLETE_AWAITING_USER_VISUAL_ACCEPTANCE",
+  "statusZh": "B3 实现与专项验证完成，等待用户视觉验收。",
+  "technicalEvidenceReady": true,
+  "userVisualAcceptance": "PENDING",
+  "publication": {
+    "commit": null,
+    "pullRequest": null,
+    "treeHashMapping": "PENDING_FINAL_PR_RECORD",
+    "automaticFastCi": "PENDING_PUBLICATION_TRACKING",
+    "automaticFullCi": "PENDING_ACTUAL_SELECTION_AND_RESULT",
+    "manualFullExecuted": false,
+    "manualFullDispatched": false,
+    "manualFullRerun": false,
+    "ciFullLabelToggledToTriggerRun": false,
+    "extraPushSolelyToTriggerFull": false,
+    "mainPushOrMergeAuthorized": false,
+    "note": "Publication revision must be mapped to the captured runtime by the final PR/tree and file hashes; it is not a newly hardware-tested revision."
+  },
+  "sources": {
+    "before": {
+      "report": "before/result.json",
+      "capturedAt": "2026-11-04T02:11:25.179Z",
+      "status": "PASS",
+      "runtimeCommit": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+      "sourceStatus": "M coordination/ci/m2-solar-bloom-smoke.mjs\n?? coordination/ci/m2.6.1-b3-audit.mjs\n?? coordination/ci/m2.6.1-b3-capture.mjs",
+      "bundleSha256": "eb724fba3ee9720711eb0c1afdc127c907878138fd480f695fb65c754c121ced",
+      "provenancePlatform": "win32",
+      "scenePngCount": 175,
+      "lifecyclePngCount": 9,
+      "originalPngCount": 184,
+      "compiledShaderRecordCount": 15,
+      "distinctCompiledShaderFileCount": 6,
+      "automatedGates": {
+        "passed": 206,
+        "failed": 0,
+        "report": "before/b3-gates.json"
+      },
+      "auditedFileCount": 190
+    },
+    "after": {
+      "report": "after/result.json",
+      "capturedAt": "2026-11-04T02:17:47.421Z",
+      "status": "PASS",
+      "runtimeCommit": "4fde49bc63eb67c34816a424895d035b24efc2ea",
+      "sourceStatus": "?? coordination/evidence/M2.6.1/B3/",
+      "bundleSha256": "7c9880bf43281d762d8470e82070f96f6c81e09c19d6880fb571a5e496856953",
+      "provenancePlatform": "win32",
+      "scenePngCount": 175,
+      "lifecyclePngCount": 9,
+      "originalPngCount": 184,
+      "compiledShaderRecordCount": 15,
+      "distinctCompiledShaderFileCount": 6,
+      "automatedGates": {
+        "passed": 206,
+        "failed": 0,
+        "report": "after/b3-gates.json"
+      },
+      "auditedFileCount": 190
+    }
+  },
+  "sourceApplicability": {
+    "captureProtocol": "M2.6.1-B3-v1",
+    "sameCaptureHarness": true,
+    "sameServedSolarAssets": true,
+    "productionChangedFiles": [
+      "packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js",
+      "packages/engine/Source/Scene/WebGPUSolarBloomShader.js"
+    ],
+    "candidateRuntimeFileSha256": {
+      "packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js": "75010acea4d5ec9f3096b56a7e3e68f39a9e832243ba493a20a2db9e75fa8b8d",
+      "packages/engine/Source/Scene/WebGPUSolarBloomShader.js": "540ad32a7bb579c75492e575135d9d2120d4a84532d1a00f5c1304fcd12b46c7"
+    },
+    "localCandidateContentReview": {
+      "recordedSourceHelperAssetFiles": 44,
+      "exactByteMatches": 17,
+      "windowsCrlfEquivalentMatches": 27,
+      "otherDifferences": 0,
+      "changedRuntimeFilesExactByteMatches": 2,
+      "note": "Read-only comparison of recorded candidate hashes with the integration checkout; LF/CRLF differences are explicit and do not create a new hardware execution identity."
+    },
+    "precommitVerification": {
+      "commands": "verification-commands.json",
+      "note": "Build, focused units, lint and probes ran in the candidate working tree before the hardware runtime commit. Preserve their actual source/status and bundle attribution."
+    }
+  },
+  "environment": {
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "browser": "156.0.8078.76",
+    "headed": true,
+    "cesium": "1.146.0",
+    "node": "v22.20.0",
+    "osDeviceRecord": "environment/device.json",
+    "osReportedGpuModel": "Intel Arc 130T",
+    "driverVersion": "32.0.101.8801",
+    "osVersion": "Microsoft Windows NT 10.0.26200.0",
+    "osRecordTime": "2026-11-04T02:34:34.4042093Z",
+    "physicalResidentVramMeasured": false,
+    "capacityLabelIsResidentVramMeasurement": false,
+    "dependenciesReport": "environment/dependencies.json",
+    "dependencies": {
+      "playwright": "1.64.1",
+      "esbuild": "0.28.2",
+      "@zip.js/zip.js": "2.24.0",
+      "dompurify": "3.4.17",
+      "draco3d": "1.5.9",
+      "jsep": "1.6.0"
+    },
+    "providers": {
+      "imagery": "Local NaturalEarthII TileMapServiceImageryProvider",
+      "terrain": [
+        "EllipsoidTerrainProvider",
+        "Controlled CustomHeightmapTerrainProvider fixture"
+      ],
+      "liveGlobalTerrainAcceptance": false
+    }
+  },
+  "productionBehavior": {
+    "bloomStrength": 0.35,
+    "solarEffects": {
+      "rays": 1,
+      "softHalo": 1,
+      "wideHalo": 1,
+      "corona": 1,
+      "tint": 1
+    },
+    "threshold": 1.0,
+    "softKneeHalfWidth": 0.5,
+    "zeroExtractionAtOrBelow": 0.5,
+    "previousExtractedEnergyPreservedAtOrAbove": 1.5,
+    "blur": "Normalized 5x5 kernel reconstructed by nine bilinear texture samples in the existing single quarter-resolution blur pass",
+    "newRenderPasses": 0,
+    "newRendererTextures": 0,
+    "artworkChanged": false,
+    "solarGeometryChanged": false,
+    "occlusionLogicChanged": false,
+    "pipelineOrder": [
+      "scene-linear HDR",
+      "Bloom",
+      "single ACES",
+      "single sRGB"
+    ]
+  },
+  "evidenceInventory": {
+    "perPhase": {
+      "bloomOnOffPairPngs": 24,
+      "occlusionControlPngs": 28,
+      "initialLifecycleReferenceAndTimingStatePngs": 3,
+      "continuousMotionPngs": 120,
+      "scenePngs": 175,
+      "extraLifecyclePngs": 9,
+      "originalPngs": 184,
+      "distinctCompiledShaderFiles": 6,
+      "auditVerifiedFiles": 190
+    },
+    "bothPhasesOriginalPngs": 368,
+    "matchingScenes": 175,
+    "stateMismatchCounts": {
+      "browser": 0,
+      "adapter": 0,
+      "adapterIsFallback": 0,
+      "providers": 0,
+      "viewport": 0,
+      "canvas": 0,
+      "resolutionScale": 0,
+      "devicePixelRatio": 0,
+      "time": 0,
+      "camera": 0,
+      "solarEffects": 0,
+      "bloomStrength": 0,
+      "exposure": 0,
+      "deviceFeatures": 0,
+      "adapterFeatures": 0
+    },
+    "readiness": {
+      "before": {
+        "sceneCount": 175,
+        "tilesLoadedTrue": 175,
+        "unloadedSolarAssetRecords": 0,
+        "providerErrors": 0,
+        "renderErrors": 0,
+        "gpuErrors": 0,
+        "browserErrors": 0,
+        "networkFailures": 0
+      },
+      "after": {
+        "sceneCount": 175,
+        "tilesLoadedTrue": 175,
+        "unloadedSolarAssetRecords": 0,
+        "providerErrors": 0,
+        "renderErrors": 0,
+        "gpuErrors": 0,
+        "browserErrors": 0,
+        "networkFailures": 0
+      }
+    },
+    "audit": "audit.json",
+    "auditAt": "2026-11-04T02:20:07.818Z",
+    "auditStatus": "AUTOMATED_GATES_PASS_VISUAL_REVIEW_REQUIRED",
+    "coreControls": {
+      "beforeFull": "before/normal-60-center-exposure-1-full.png",
+      "afterFull": "after/normal-60-center-exposure-1-full.png",
+      "beforeBloomOff": "before/normal-60-center-exposure-1-bloom-off.png",
+      "afterBloomOff": "after/normal-60-center-exposure-1-bloom-off.png"
+    },
+    "derivedViews": [
+      "derived/solar-detail-comparison.png",
+      "derived/exposure-comparison.png",
+      "derived/scene-overview.png",
+      "derived/motion-overview.png"
+    ]
+  },
+  "visualReview": {
+    "reviewer": "integration owner",
+    "scope": "Representative original frames, derived crops/contact sheets, and motion aggregate metrics",
+    "exhaustiveFrameReviewClaimed": false,
+    "userAcceptanceGranted": false,
+    "observations": [
+      "More compact, smoother inner glow; overall change is subtle.",
+      "B1/B2 Rays and Corona structure remains; black space is preserved in the reviewed views.",
+      "Inherited cloudlike Corona quality and NaturalEarth seam remain."
+    ],
+    "selectedPixelMetrics": {
+      "report": "derived/selected-pixel-metrics.json",
+      "coordinateSystem": "Full-frame sRGB pixels; centered Sun at (960,540)",
+      "results": [
+        {
+          "exposure": 0.5,
+          "changedPixels": 1256,
+          "maxChannelByteDifference": 38,
+          "changedBounds": [
+            942,
+            522,
+            977,
+            557
+          ],
+          "outside180pxMaxByteDifference": 0,
+          "whitePixelsBefore": 96,
+          "whitePixelsAfter": 112
+        },
+        {
+          "exposure": 1.0,
+          "changedPixels": 1159,
+          "maxChannelByteDifference": 30,
+          "changedBounds": [
+            942,
+            522,
+            977,
+            557
+          ],
+          "outside180pxMaxByteDifference": 0,
+          "whitePixelsBefore": 180,
+          "whitePixelsAfter": 180
+        },
+        {
+          "exposure": 2.0,
+          "changedPixels": 1076,
+          "maxChannelByteDifference": 19,
+          "changedBounds": [
+            942,
+            522,
+            977,
+            557
+          ],
+          "outside180pxMaxByteDifference": 0,
+          "whitePixelsBefore": 192,
+          "whitePixelsAfter": 192
+        }
+      ],
+      "limit": "Three centered 60-degree scenes only; no guarantee for other scenes or all exposures. White threshold is all RGB channels >=250."
+    }
+  },
+  "occlusion": {
+    "method": "Sun.show on/off at fixed state for Bloom 0.35 and 0; compare solar-added signal, not total atmospheric radiance.",
+    "finalPixelsPerScene": 2073600,
+    "hdrCoverage": "49 sampled positions in scene-linear HDR and each of Bloom A/B; not full-texture HDR readback.",
+    "partialVisibilityMustRemainNonzero": true,
+    "fullyHiddenCases": [
+      "earth-hidden",
+      "earth-hidden-normal-fov",
+      "terrain-hidden"
+    ],
+    "before": [
+      {
+        "name": "earth-visible",
+        "expected": "visible",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0,
+        "terrainOnlySamples": 0,
+        "centerEarth": false,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 6.866907119750977,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 269983,
+          "maxByteDifference": 161
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 269983,
+          "maxByteDifference": 161
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 9117,
+          "maxByteDifference": 28
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 4.8048095703125,
+            "meanAbsoluteRgb": 0.6788608630498251
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 4.0703125,
+            "meanAbsoluteRgb": 0.5581862261506165
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 3.962890625,
+            "meanAbsoluteRgb": 0.5415780657813662
+          }
+        ]
+      },
+      {
+        "name": "earth-partial",
+        "expected": "partial",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.45132743362831856,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 0.08336237072944641,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 201150,
+          "maxByteDifference": 75
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 201144,
+          "maxByteDifference": 75
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 3264,
+          "maxByteDifference": 12
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 1.34716796875,
+            "meanAbsoluteRgb": 0.03759793237764008
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.755859375,
+            "meanAbsoluteRgb": 0.008698478036997269
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.708984375,
+            "meanAbsoluteRgb": 0.010109027226765951
+          }
+        ]
+      },
+      {
+        "name": "earth-hidden",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "earth-hidden-normal-fov",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "terrain-partial",
+        "expected": "partial",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.6548672566371682,
+        "terrainOnlySamples": 74,
+        "centerEarth": false,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0.052124690264463425,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 111701,
+          "maxByteDifference": 66
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 111701,
+          "maxByteDifference": 58
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 3008,
+          "maxByteDifference": 9
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 1.41552734375,
+            "meanAbsoluteRgb": 0.028741538119153913
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.861328125,
+            "meanAbsoluteRgb": 0.016410710860271842
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.81689453125,
+            "meanAbsoluteRgb": 0.01857823741679289
+          }
+        ]
+      },
+      {
+        "name": "terrain-hidden",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 85,
+        "centerEarth": false,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "terrain-removed",
+        "expected": "visible",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.24778761061946902,
+        "terrainOnlySamples": 0,
+        "centerEarth": false,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 6.7511420249938965,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 139608,
+          "maxByteDifference": 25
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 139608,
+          "maxByteDifference": 25
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 1
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0.466796875,
+            "meanAbsoluteRgb": 0.02533753064213967
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.0355224609375,
+            "meanAbsoluteRgb": 0.00048330973605720365
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.023834228515625,
+            "meanAbsoluteRgb": 0.00044738475968237636
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "name": "earth-visible",
+        "expected": "visible",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0,
+        "terrainOnlySamples": 0,
+        "centerEarth": false,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 6.866907119750977,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 270056,
+          "maxByteDifference": 161
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 269983,
+          "maxByteDifference": 161
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 8021,
+          "maxByteDifference": 26
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 4.8048095703125,
+            "meanAbsoluteRgb": 0.6788608630498251
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 4.0703125,
+            "meanAbsoluteRgb": 0.5587752850688233
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 4.02734375,
+            "meanAbsoluteRgb": 0.5455254916431141
+          }
+        ]
+      },
+      {
+        "name": "earth-partial",
+        "expected": "partial",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.45132743362831856,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 0.08336237072944641,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 201114,
+          "maxByteDifference": 75
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 201144,
+          "maxByteDifference": 75
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 3049,
+          "maxByteDifference": 11
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 1.34716796875,
+            "meanAbsoluteRgb": 0.03759793237764008
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.755859375,
+            "meanAbsoluteRgb": 0.01182670495948013
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.7392578125,
+            "meanAbsoluteRgb": 0.01184795583997454
+          }
+        ]
+      },
+      {
+        "name": "earth-hidden",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "earth-hidden-normal-fov",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 0,
+        "centerEarth": true,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "terrain-partial",
+        "expected": "partial",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.6548672566371682,
+        "terrainOnlySamples": 74,
+        "centerEarth": false,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0.052124690264463425,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 111701,
+          "maxByteDifference": 66
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 111701,
+          "maxByteDifference": 58
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 2576,
+          "maxByteDifference": 9
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 1.41552734375,
+            "meanAbsoluteRgb": 0.028741538119153913
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.861328125,
+            "meanAbsoluteRgb": 0.016447248912992932
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.8447265625,
+            "meanAbsoluteRgb": 0.017530207731285875
+          }
+        ]
+      },
+      {
+        "name": "terrain-hidden",
+        "expected": "hidden",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 1,
+        "terrainOnlySamples": 85,
+        "centerEarth": false,
+        "centerMesh": true,
+        "maxSampledProductionSolarRadiance": 0,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "sourceFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "blurredFinalPixelDifference": {
+          "pixels": 2073600,
+          "changedAbove1Byte": 0,
+          "maxByteDifference": 0,
+          "absoluteRgbSum": 0,
+          "meanAbsoluteRgbBytes": 0
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0,
+            "meanAbsoluteRgb": 0
+          }
+        ]
+      },
+      {
+        "name": "terrain-removed",
+        "expected": "visible",
+        "visibilitySampleCount": 113,
+        "hiddenFraction": 0.24778761061946902,
+        "terrainOnlySamples": 0,
+        "centerEarth": false,
+        "centerMesh": false,
+        "maxSampledProductionSolarRadiance": 6.7511420249938965,
+        "earthReceiverFinalMaxByteDifference": 0,
+        "fullFinalPixelDifference": {
+          "changedAbove1Byte": 139780,
+          "maxByteDifference": 26
+        },
+        "sourceFinalPixelDifference": {
+          "changedAbove1Byte": 139608,
+          "maxByteDifference": 25
+        },
+        "blurredFinalPixelDifference": {
+          "changedAbove1Byte": 1870,
+          "maxByteDifference": 3
+        },
+        "hdrPointsPerTexture": 49,
+        "sampledHdrDelta": [
+          {
+            "key": "_linearTexture",
+            "maxAbsoluteRgb": 0.466796875,
+            "meanAbsoluteRgb": 0.02533753064213967
+          },
+          {
+            "key": "_bloomTextureA",
+            "maxAbsoluteRgb": 0.14072799682617188,
+            "meanAbsoluteRgb": 0.007763341981537488
+          },
+          {
+            "key": "_bloomTextureB",
+            "maxAbsoluteRgb": 0.13744544982910156,
+            "meanAbsoluteRgb": 0.0076406525105846175
+          }
+        ]
+      }
+    ]
+  },
+  "continuousMotion": {
+    "settings": {
+      "framesPerPhase": 120,
+      "exposure": 1,
+      "bloomStrength": 0.35,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "solarEffects": {
+        "rays": 1,
+        "softHalo": 1,
+        "wideHalo": 1,
+        "corona": 1,
+        "tint": 1
+      },
+      "cameraDegreesPerFrame": 0.015,
+      "timeSecondsPerFrame": 10
+    },
+    "isFpsMeasurement": false,
+    "limitations": [
+      "PNG encoding paces the sequence.",
+      "Photometry and adjacent-frame differences are whole-frame aggregates, not Sun ROI quality or proof of no local flicker."
+    ],
+    "before": {
+      "report": "before/result.json",
+      "sequence": "before/motion/sequence.json",
+      "playback": "before/motion/index.html",
+      "originalFramesDirectory": "before/motion/",
+      "count": 120,
+      "firstRendererFrame": 688,
+      "lastRendererFrame": 807,
+      "contiguous": true,
+      "photometryWholeFrame": {
+        "clippedChannelFraction": {
+          "count": 120,
+          "min": 6.99266975308642e-05,
+          "max": 7.426697530864198e-05,
+          "mean": 7.205262988683127e-05,
+          "p95": 7.330246913580247e-05,
+          "populationStandardDeviation": 1.1005797204726016e-06
+        },
+        "whiteFraction": {
+          "count": 120,
+          "min": 8.487654320987654e-05,
+          "max": 8.969907407407407e-05,
+          "mean": 8.734407150205762e-05,
+          "p95": 8.825231481481481e-05,
+          "populationStandardDeviation": 8.145732236850413e-07
+        },
+        "meanLuma": {
+          "count": 120,
+          "min": 0.002038635998017928,
+          "max": 0.0020649565072015435,
+          "mean": 0.0020474690092850047,
+          "p95": 0.0020624065412429395,
+          "populationStandardDeviation": 7.86742553279395e-06
+        }
+      },
+      "lumaTrend": {
+        "first": 0.0020387031669842856,
+        "last": 0.0020649565072015435,
+        "firstToLastPercent": 1.287747065998457,
+        "largestAbsoluteAdjacentChange": 7.433176742862799e-07,
+        "largestAbsoluteAdjacentChangeFrame": 119
+      },
+      "adjacentFrameComparisons": {
+        "changedPixels": {
+          "count": 119,
+          "min": 16003,
+          "max": 16302,
+          "mean": 16122.35294117647,
+          "p95": 16247,
+          "populationStandardDeviation": 67.67154836218863
+        },
+        "maxByteDifference": {
+          "count": 119,
+          "min": 39,
+          "max": 50,
+          "mean": 44.53781512605042,
+          "p95": 50,
+          "populationStandardDeviation": 2.803928564424039
+        },
+        "meanAbsoluteRgbBytes": {
+          "count": 119,
+          "min": 0.0224877829218107,
+          "max": 0.0230054012345679,
+          "mean": 0.022738204656862746,
+          "p95": 0.022923418209876544,
+          "populationStandardDeviation": 0.00011151823089783091
+        }
+      },
+      "largestMeanAbsoluteRgbDifferenceFrame": 117
+    },
+    "after": {
+      "report": "after/result.json",
+      "sequence": "after/motion/sequence.json",
+      "playback": "after/motion/index.html",
+      "originalFramesDirectory": "after/motion/",
+      "count": 120,
+      "firstRendererFrame": 687,
+      "lastRendererFrame": 806,
+      "contiguous": true,
+      "photometryWholeFrame": {
+        "clippedChannelFraction": {
+          "count": 120,
+          "min": 7.282021604938271e-05,
+          "max": 7.716049382716049e-05,
+          "mean": 7.536410108024691e-05,
+          "p95": 7.667824074074074e-05,
+          "populationStandardDeviation": 8.847789050521983e-07
+        },
+        "whiteFraction": {
+          "count": 120,
+          "min": 8.63233024691358e-05,
+          "max": 8.969907407407407e-05,
+          "mean": 8.791875643004116e-05,
+          "p95": 8.921682098765432e-05,
+          "populationStandardDeviation": 7.870133804077554e-07
+        },
+        "meanLuma": {
+          "count": 120,
+          "min": 0.002026216039170188,
+          "max": 0.0020524313403987126,
+          "mean": 0.0020350103611129016,
+          "p95": 0.002049876498577728,
+          "populationStandardDeviation": 7.846959733845302e-06
+        }
+      },
+      "lumaTrend": {
+        "first": 0.002026290493373174,
+        "last": 0.0020524313403987126,
+        "firstToLastPercent": 1.290083880422399,
+        "largestAbsoluteAdjacentChange": 6.003143155353108e-07,
+        "largestAbsoluteAdjacentChangeFrame": 119
+      },
+      "adjacentFrameComparisons": {
+        "changedPixels": {
+          "count": 119,
+          "min": 16019,
+          "max": 16312,
+          "mean": 16139.24369747899,
+          "p95": 16265,
+          "populationStandardDeviation": 68.1847424203809
+        },
+        "maxByteDifference": {
+          "count": 119,
+          "min": 32,
+          "max": 35,
+          "mean": 33.64705882352941,
+          "p95": 35,
+          "populationStandardDeviation": 0.5882352941176471
+        },
+        "meanAbsoluteRgbBytes": {
+          "count": 119,
+          "min": 0.022093942901234568,
+          "max": 0.022603684413580245,
+          "mean": 0.022345287266141024,
+          "p95": 0.022540187757201645,
+          "populationStandardDeviation": 0.0001120182596462004
+        }
+      },
+      "largestMeanAbsoluteRgbDifferenceFrame": 107
+    }
+  },
+  "gpuTiming": {
+    "units": "milliseconds",
+    "durationSamplesAreRawIntegerQueryTicks": false,
+    "allEnabledObservedDurationStepMs": 0.065536,
+    "zeroDurationDoesNotProveZeroWorkOrCost": true,
+    "before": {
+      "report": "before/gpu-timing-raw.json",
+      "status": "MEASURED",
+      "samplesPerMode": 30,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "modes": {
+        "baseline": {
+          "gpuPassSumMs": {
+            "mean": 1.6908287999999996,
+            "p50": 1.6384,
+            "p95": 2.031616
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.029431466666666,
+            "p50": 1.900544,
+            "p95": 3.145728
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.146666669845581,
+            "p50": 5.100000023841858,
+            "p95": 7.300000071525574
+          },
+          "passCount": 3
+        },
+        "solarWithoutBloom": {
+          "gpuPassSumMs": {
+            "mean": 1.6362154666666668,
+            "p50": 1.6384,
+            "p95": 1.900544
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.0032170666666667,
+            "p50": 1.835008,
+            "p95": 2.94912
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.62333334684372,
+            "p50": 4.399999976158142,
+            "p95": 6.700000047683716
+          },
+          "passCount": 3
+        },
+        "allEnabled": {
+          "gpuPassSumMs": {
+            "mean": 2.232593066666667,
+            "p50": 2.29376,
+            "p95": 2.490368
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.7612501333333346,
+            "p50": 2.62144,
+            "p95": 3.538944
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.696666661898295,
+            "p50": 6,
+            "p95": 7.100000023841858
+          },
+          "passCount": 5
+        }
+      },
+      "passSumDurationMs": {
+        "baseline": {
+          "count": 30,
+          "min": 1.245184,
+          "max": 2.686976,
+          "mean": 1.6908288,
+          "p95": 2.031616,
+          "populationStandardDeviation": 0.259067601754497
+        },
+        "solarWithoutBloom": {
+          "count": 30,
+          "min": 1.31072,
+          "max": 1.96608,
+          "mean": 1.6362154666666666,
+          "p95": 1.900544,
+          "populationStandardDeviation": 0.1713014039739572
+        },
+        "allEnabled": {
+          "count": 30,
+          "min": 1.769472,
+          "max": 2.555904,
+          "mean": 2.2325930666666665,
+          "p95": 2.490368,
+          "populationStandardDeviation": 0.18761567920528982
+        }
+      },
+      "allEnabledPassDurations": [
+        {
+          "name": "opaque terrain",
+          "durationMs": {
+            "count": 30,
+            "min": 0,
+            "max": 0,
+            "mean": 0,
+            "p95": 0,
+            "populationStandardDeviation": 0.0
+          },
+          "zeroDurationSamples": 30
+        },
+        {
+          "name": "M2 atmosphere and Sun scene-linear HDR composite",
+          "durationMs": {
+            "count": 30,
+            "min": 0.98304,
+            "max": 1.507328,
+            "mean": 1.2342613333333334,
+            "p95": 1.376256,
+            "populationStandardDeviation": 0.10442434939206256
+          },
+          "zeroDurationSamples": 0
+        },
+        {
+          "name": "M2.6 HDR bloom threshold and downsample",
+          "durationMs": {
+            "count": 30,
+            "min": 0.196608,
+            "max": 0.262144,
+            "mean": 0.2359296,
+            "p95": 0.262144,
+            "populationStandardDeviation": 0.03210595195660766
+          },
+          "zeroDurationSamples": 0
+        },
+        {
+          "name": "M2.6 HDR bloom diagonal blur",
+          "durationMs": {
+            "count": 30,
+            "min": 0,
+            "max": 0.065536,
+            "mean": 0.030583466666666666,
+            "p95": 0.065536,
+            "populationStandardDeviation": 0.03269510113328227
+          },
+          "zeroDurationSamples": 16
+        },
+        {
+          "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+          "durationMs": {
+            "count": 30,
+            "min": 0.589824,
+            "max": 0.851968,
+            "mean": 0.7318186666666666,
+            "p95": 0.786432,
+            "populationStandardDeviation": 0.05882036013339447
+          },
+          "zeroDurationSamples": 0
+        }
+      ],
+      "incrementalBloomGpuMs": 0.5963776000000001,
+      "incrementalAllEffectsGpuMs": 0.5417642666666673,
+      "rendererAllocationsDuringMeasurement": {
+        "textures": 0,
+        "buffers": 0
+      },
+      "profilingResources": {
+        "querySetsCreated": 1,
+        "querySetsDestroyed": 1,
+        "buffersCreated": 2,
+        "buffersDestroyed": 2
+      }
+    },
+    "after": {
+      "report": "after/gpu-timing-raw.json",
+      "status": "MEASURED",
+      "samplesPerMode": 30,
+      "resolution": [
+        1920,
+        1080
+      ],
+      "modes": {
+        "baseline": {
+          "gpuPassSumMs": {
+            "mean": 1.6646144,
+            "p50": 1.6384,
+            "p95": 1.835008
+          },
+          "gpuFrameSpanMs": {
+            "mean": 1.9748181333333334,
+            "p50": 1.835008,
+            "p95": 2.752512
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.773333330949147,
+            "p50": 4.899999976158142,
+            "p95": 7.699999928474426
+          },
+          "passCount": 3
+        },
+        "solarWithoutBloom": {
+          "gpuPassSumMs": {
+            "mean": 1.786948266666667,
+            "p50": 1.6384,
+            "p95": 3.014656
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.1626880000000006,
+            "p50": 1.900544,
+            "p95": 3.342336
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.843333343664805,
+            "p50": 4.899999976158142,
+            "p95": 6.800000071525574
+          },
+          "passCount": 3
+        },
+        "allEnabled": {
+          "gpuPassSumMs": {
+            "mean": 2.317789866666666,
+            "p50": 2.29376,
+            "p95": 2.490368
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.711005866666668,
+            "p50": 2.62144,
+            "p95": 3.407872
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.8566666603088375,
+            "p50": 6,
+            "p95": 8.099999904632568
+          },
+          "passCount": 5
+        }
+      },
+      "passSumDurationMs": {
+        "baseline": {
+          "count": 30,
+          "min": 1.507328,
+          "max": 2.097152,
+          "mean": 1.6646144,
+          "p95": 1.835008,
+          "populationStandardDeviation": 0.10648339617724442
+        },
+        "solarWithoutBloom": {
+          "count": 30,
+          "min": 1.507328,
+          "max": 3.342336,
+          "mean": 1.7869482666666667,
+          "p95": 3.014656,
+          "populationStandardDeviation": 0.39681613556296935
+        },
+        "allEnabled": {
+          "count": 30,
+          "min": 2.162688,
+          "max": 3.0146559999999996,
+          "mean": 2.3177898666666668,
+          "p95": 2.490368,
+          "populationStandardDeviation": 0.14990738250616237
+        }
+      },
+      "allEnabledPassDurations": [
+        {
+          "name": "opaque terrain",
+          "durationMs": {
+            "count": 30,
+            "min": 0,
+            "max": 0,
+            "mean": 0,
+            "p95": 0,
+            "populationStandardDeviation": 0.0
+          },
+          "zeroDurationSamples": 30
+        },
+        {
+          "name": "M2 atmosphere and Sun scene-linear HDR composite",
+          "durationMs": {
+            "count": 30,
+            "min": 1.179648,
+            "max": 1.96608,
+            "mean": 1.2823210666666667,
+            "p95": 1.376256,
+            "populationStandardDeviation": 0.13713928893863914
+          },
+          "zeroDurationSamples": 0
+        },
+        {
+          "name": "M2.6 HDR bloom threshold and downsample",
+          "durationMs": {
+            "count": 30,
+            "min": 0.196608,
+            "max": 0.32768,
+            "mean": 0.25340586666666665,
+            "p95": 0.262144,
+            "populationStandardDeviation": 0.027975676668293276
+          },
+          "zeroDurationSamples": 0
+        },
+        {
+          "name": "M2.6 HDR bloom normalized single-scale blur",
+          "durationMs": {
+            "count": 30,
+            "min": 0,
+            "max": 0.065536,
+            "mean": 0.048059733333333333,
+            "p95": 0.065536,
+            "populationStandardDeviation": 0.028981109634764197
+          },
+          "zeroDurationSamples": 8
+        },
+        {
+          "name": "M2.6 HDR bloom composition, ACES and sRGB output",
+          "durationMs": {
+            "count": 30,
+            "min": 0.720896,
+            "max": 0.786432,
+            "mean": 0.7340032,
+            "p95": 0.786432,
+            "populationStandardDeviation": 0.026214400000000016
+          },
+          "zeroDurationSamples": 0
+        }
+      ],
+      "incrementalBloomGpuMs": 0.5308415999999989,
+      "incrementalAllEffectsGpuMs": 0.6531754666666658,
+      "rendererAllocationsDuringMeasurement": {
+        "textures": 0,
+        "buffers": 0
+      },
+      "profilingResources": {
+        "querySetsCreated": 1,
+        "querySetsDestroyed": 1,
+        "buffersCreated": 2,
+        "buffersDestroyed": 2
+      }
+    },
+    "allEnabledMeanPassSumDeltaMs": 0.08519679999999896,
+    "interpretation": "All-enabled mean rises about 0.085197 ms (3.8%) with unchanged p95; noisy separately sampled Bloom-off modes and quantized short passes prevent a demonstrated speedup/slowdown claim."
+  },
+  "resources": {
+    "before": {
+      "report": "before/result.json",
+      "allocatedTexturePayloadBytes": 21808128,
+      "physicalResidentVramMeasured": false,
+      "continuousFirst": {
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 20,
+        "texturesDestroyed": 6,
+        "solarAssetBytes": 3145728,
+        "bloomTextureBytes": 18662400
+      },
+      "continuousLast": {
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 20,
+        "texturesDestroyed": 6,
+        "solarAssetBytes": 3145728,
+        "bloomTextureBytes": 18662400
+      },
+      "lifecycleCycles": [
+        {
+          "cycle": 0,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        },
+        {
+          "cycle": 1,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        },
+        {
+          "cycle": 2,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        }
+      ],
+      "nativeLedger": {
+        "textures": 69,
+        "buffers": 9,
+        "objects": 78,
+        "allDestroyedExactlyOnce": true
+      }
+    },
+    "after": {
+      "report": "after/result.json",
+      "allocatedTexturePayloadBytes": 21808128,
+      "physicalResidentVramMeasured": false,
+      "continuousFirst": {
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 20,
+        "texturesDestroyed": 6,
+        "solarAssetBytes": 3145728,
+        "bloomTextureBytes": 18662400
+      },
+      "continuousLast": {
+        "buffersCreated": 3,
+        "buffersDestroyed": 0,
+        "texturesCreated": 20,
+        "texturesDestroyed": 6,
+        "solarAssetBytes": 3145728,
+        "bloomTextureBytes": 18662400
+      },
+      "lifecycleCycles": [
+        {
+          "cycle": 0,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        },
+        {
+          "cycle": 1,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        },
+        {
+          "cycle": 2,
+          "captures": 3,
+          "finalRendererTexturesCreated": 20,
+          "finalRendererTexturesDestroyed": 20,
+          "finalRendererBuffersCreated": 3,
+          "finalRendererBuffersDestroyed": 3,
+          "liveSolarAllocations": 0,
+          "extraDestroyCalls": 0
+        }
+      ],
+      "nativeLedger": {
+        "textures": 69,
+        "buffers": 9,
+        "objects": 78,
+        "allDestroyedExactlyOnce": true
+      }
+    },
+    "payloadIncludes": "HDR/Bloom targets and solar asset texture payload; not physical resident VRAM."
+  },
+  "verification": {
+    "commandsAndApplicability": "verification-commands.json",
+    "baselineBuild": {
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "logs/baseline-build.log"
+    },
+    "candidateBuild": {
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "logs/candidate-build.log"
+    },
+    "focusedUnits": {
+      "status": "PASS",
+      "tests": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 604.2566,
+      "files": [
+        "coordination/ci/m2-hdr.test.mjs",
+        "coordination/ci/m2-solar-lifecycle.test.mjs",
+        "coordination/ci/m2-atmosphere-lifecycle.test.mjs",
+        "coordination/ci/m2-b1-round2.test.mjs",
+        "coordination/ci/m2-b2-halo-corona.test.mjs"
+      ],
+      "log": "logs/focused-units.log"
+    },
+    "targetedLint": {
+      "status": "PASS",
+      "exitCode": 0,
+      "scope": "Two runtime files, probe and capture/audit",
+      "log": "logs/candidate-lint.log"
+    },
+    "harnessLint": {
+      "status": "PASS",
+      "exitCode": 0,
+      "log": "logs/harness-lint.log"
+    },
+    "probeBefore": {
+      "status": "FAIL",
+      "role": "Retained negative control for the old disconnected blur",
+      "error": "AssertionError [ERR_ASSERTION]: Small highlights need connected, decreasing axial spread, not detached diagonal copies",
+      "report": "probes/before/error.json",
+      "log": "logs/probe-before.log",
+      "source": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+      "sourceStatus": "M ThirdParty.json\n M coordination/ci/m2-solar-bloom-smoke.mjs",
+      "bundleSha256": "eb724fba3ee9720711eb0c1afdc127c907878138fd480f695fb65c754c121ced",
+      "probe": {
+        "blurProbe": {
+          "center": 0.06744384765625,
+          "axis": [
+            0.06744384765625,
+            0,
+            0,
+            0
+          ],
+          "diagonal": [
+            0.06744384765625,
+            0,
+            0.029998779296875,
+            0
+          ],
+          "sum": 0.18743896484375,
+          "nonnegativeFinite": true,
+          "symmetryError": 0
+        },
+        "knee": [
+          {
+            "input": 0.5,
+            "output": 0
+          },
+          {
+            "input": 0.75,
+            "output": 0
+          },
+          {
+            "input": 1,
+            "output": 0
+          },
+          {
+            "input": 1.25,
+            "output": 0.25
+          },
+          {
+            "input": 1.5,
+            "output": 0.5
+          }
+        ],
+        "probeResourcesCreated": 9,
+        "probeResourcesDestroyed": 9
+      }
+    },
+    "probeAfter": {
+      "status": "PASS",
+      "report": "probes/after/result.json",
+      "log": "logs/probe-after.log",
+      "source": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+      "sourceStatus": "M coordination/ci/m2-solar-bloom-smoke.mjs\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUSolarBloomShader.js\n?? coordination/ci/m2.6.1-b3-audit.mjs\n?? coordination/ci/m2.6.1-b3-capture.mjs\n?? coordination/evidence/M2.6.1/B3/",
+      "bundleSha256": "7c9880bf43281d762d8470e82070f96f6c81e09c19d6880fb571a5e496856953",
+      "bundleMatchesCleanCandidateCapture": true,
+      "probe": {
+        "blurProbe": {
+          "center": 0.0263671875,
+          "axis": [
+            0.0263671875,
+            0.0175933837890625,
+            0.004375457763671875,
+            0
+          ],
+          "diagonal": [
+            0.0263671875,
+            0.01174163818359375,
+            0.0007266998291015625,
+            0
+          ],
+          "sum": 0.18747711181640625,
+          "nonnegativeFinite": true,
+          "symmetryError": 0
+        },
+        "knee": [
+          {
+            "input": 0.5,
+            "output": 0
+          },
+          {
+            "input": 0.75,
+            "output": 0.03125
+          },
+          {
+            "input": 1,
+            "output": 0.125
+          },
+          {
+            "input": 1.25,
+            "output": 0.28125
+          },
+          {
+            "input": 1.5,
+            "output": 0.5
+          }
+        ],
+        "probeResourcesCreated": 9,
+        "probeResourcesDestroyed": 9
+      }
+    },
+    "captureAndAudit": {
+      "status": "AUTOMATED_GATES_PASS_VISUAL_REVIEW_REQUIRED",
+      "report": "audit.json"
+    },
+    "completeWebglDifferentialExecuted": false,
+    "broadTypesClaimed": false,
+    "allDeviceAllSceneAcceptanceClaimed": false
+  },
+  "remaining": [
+    "User visual acceptance.",
+    "Final publication PR/tree/hash mapping.",
+    "Track actual automatic Fast/Full selection and results for the published head; skipped/selector-only Full is not an executed pass."
+  ],
+  "untouchedScope": [
+    "B4",
+    "B5",
+    "M2.7",
+    "M2.8",
+    "M3"
+  ]
+}

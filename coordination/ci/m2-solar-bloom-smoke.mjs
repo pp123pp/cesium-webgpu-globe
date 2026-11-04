@@ -95,7 +95,7 @@ await runM1BrowserSuite("m2-solar-bloom", async ({ page, report }) => {
         const pixel = (x, y) => Array.from(data.slice((y * width + x) * 4, (y * width + x) * 4 + 3));
         return { center: pixel(64, 64), corner: pixel(1, 1), litPixels: data.filter((v, i) => i % 4 === 0 && v > 2).length };
       };
-      const small = texture([32, 32], "rgba16float", GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC);
+      const small = texture([32, 32], "rgba16float", GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC | GPUTextureUsage.TEXTURE_BINDING);
       const extract = await device.createRenderPipelineAsync({
         layout: device.createPipelineLayout({ bindGroupLayouts: [layout] }),
         vertex: { module, entryPoint: "bloomVertex" },
@@ -114,10 +114,72 @@ await runM1BrowserSuite("m2-solar-bloom", async ({ page, report }) => {
       await download.mapAsync(GPUMapMode.READ);
       const smallHighlightHalf = new Uint16Array(download.getMappedRange())[(16 * 32 + 16) * 4];
       download.unmap();
+      // Exercise the shipped blur, not a CPU copy of its weights. A sparse
+      // diagonal kernel leaves a black gap between a small source and its lobes.
+      const blurred = texture([32, 32], "rgba16float", GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC);
+      const blur = await device.createRenderPipelineAsync({
+        layout: device.createPipelineLayout({ bindGroupLayouts: [layout] }),
+        vertex: { module, entryPoint: "bloomVertex" },
+        fragment: { module, entryPoint: "bloomBlur", targets: [{ format: "rgba16float" }] },
+      });
+      const blurGroup = device.createBindGroup({ layout, entries: [
+        { binding: 0, resource: small.createView() },
+        { binding: 1, resource: device.createSampler({ magFilter: "linear", minFilter: "linear" }) },
+        { binding: 2, resource: bloom.createView() },
+        { binding: 3, resource: { buffer: parameters } },
+        { binding: 4, resource: depth.createView() },
+        { binding: 5, resource: { buffer: planetBuffer } },
+      ] });
+      const half = (bits) => {
+        const exponent = (bits >> 10) & 31, fraction = bits & 1023;
+        if (exponent === 31) { return fraction ? NaN : (bits & 32768 ? -Infinity : Infinity); }
+        return (bits & 32768 ? -1 : 1) * (exponent === 0
+          ? fraction * 2 ** -24 : (1 + fraction / 1024) * 2 ** (exponent - 15));
+      };
+      const readStage = async (stage, bindings, target) => {
+        const encoder = device.createCommandEncoder();
+        const pass = encoder.beginRenderPass({ colorAttachments: [{ view: target.createView(), loadOp: "clear", storeOp: "store" }] });
+        pass.setPipeline(stage); pass.setBindGroup(0, bindings); pass.draw(3); pass.end();
+        encoder.copyTextureToBuffer({ texture: target }, { buffer: download, bytesPerRow: 256 }, [32, 32]);
+        device.queue.submit([encoder.finish()]);
+        await download.mapAsync(GPUMapMode.READ);
+        const data = new Uint16Array(download.getMappedRange()).slice(0, 32 * 32 * 4);
+        download.unmap();
+        const red = [];
+        for (let i = 0; i < 32 * 32; i++) { red.push(half(data[i * 4])); }
+        return red;
+      };
+      const impulse = await readStage(blur, blurGroup, blurred);
+      const blurProbe = {
+        center: impulse[16 * 32 + 16],
+        axis: [0, 1, 2, 3].map((dx) => impulse[16 * 32 + 16 + dx]),
+        diagonal: [0, 1, 2, 3].map((d) => impulse[(16 + d) * 32 + 16 + d]),
+        sum: impulse.reduce((sum, value) => sum + value, 0),
+        nonnegativeFinite: impulse.every((value) => Number.isFinite(value) && value >= 0),
+        symmetryError: Math.max(...[1, 2, 3].flatMap((d) => [
+          Math.abs(impulse[16 * 32 + 16 + d] - impulse[16 * 32 + 16 - d]),
+          Math.abs(impulse[16 * 32 + 16 + d] - impulse[(16 + d) * 32 + 16]),
+        ])),
+      };
+      const knee = [];
+      for (const [input, bits] of [[0.5, 0x3800], [0.75, 0x3a00], [1, 0x3c00], [1.25, 0x3d00], [1.5, 0x3e00]]) {
+        for (let y = 64; y < 68; y++) {
+          for (let x = 64; x < 68; x++) {
+            const at = (y * width + x) * 4;
+            sourcePixels[at] = sourcePixels[at + 1] = sourcePixels[at + 2] = bits;
+          }
+        }
+        device.queue.writeTexture({ texture: source }, sourcePixels, { bytesPerRow: width * 8 }, [width, height]);
+        const values = await readStage(extract, group, small);
+        knee.push({ input, output: values[16 * 32 + 16] });
+      }
+      sourcePixels.fill(0);
       sourcePixels[hot] = sourcePixels[hot + 1] = sourcePixels[hot + 2] = 0;
       device.queue.writeTexture({ texture: source }, sourcePixels, { bytesPerRow: width * 8 }, [width, height]);
       result = {
         smallHighlightHalf,
+        blurProbe,
+        knee,
         visible: await render(0, false, 0.35),
         terrainBlocked: await render(0.5, false, 0.35),
         ellipsoidBlocked: await render(0, true, 0.35),
@@ -140,5 +202,18 @@ await runM1BrowserSuite("m2-solar-bloom", async ({ page, report }) => {
   assert.ok(report.probe.ellipsoidBlocked.corner[0] > 20, "Earth masking must not erase visible sky");
   assert.equal(report.probe.disabledAfterEnabled.litPixels, 0, "zero-strength skips stale bloom contribution");
   assert.equal(report.probe.smallHighlightHalf, 0x3200, "one HDR 4.0 texel must retain (4-1)/16 = 0.1875 in the extracted HDR texture");
+  const spread = report.probe.blurProbe;
+  assert.ok(spread.nonnegativeFinite, "Bloom blur must not introduce negative or non-finite radiance");
+  assert.ok(Math.abs(spread.sum - 0.1875) < 0.001, "Interior blur must preserve extracted highlight energy");
+  assert.ok(spread.symmetryError < 0.0001, "A centered source must have symmetric blur");
+  assert.ok(spread.axis[0] > spread.axis[1] && spread.axis[1] > spread.axis[2] && spread.axis[2] > 0,
+    "Small highlights need connected, decreasing axial spread, not detached diagonal copies");
+  assert.ok(spread.diagonal[0] > spread.diagonal[1] && spread.diagonal[1] > spread.diagonal[2],
+    "The blur must decay continuously along its diagonals");
+  for (const [i, expected] of [0, 0.03125, 0.125, 0.28125, 0.5].entries()) {
+    assert.ok(Math.abs(report.probe.knee[i].output - expected) < 0.001,
+      `Soft-knee extraction at HDR ${report.probe.knee[i].input} must be ${expected}`);
+  }
   report.checks.push("real production HDR final pass respects terrain depth and WGS84 with positive/negative controls");
+  report.checks.push("production blur conserves small-highlight energy with connected falloff; soft knee preserves black and high radiance");
 });

@@ -148,7 +148,7 @@ class WebGPUAtmosphereRenderer {
       });
       this._bloomBlurPipeline = await device.createRenderPipelineAsync({
         ...bloomDescriptor,
-        label: "M2.6 HDR bloom low-cost diagonal Kawase blur",
+        label: "M2.6 HDR bloom normalized single-scale blur",
         fragment: { ...bloomDescriptor.fragment, entryPoint: "bloomBlur" },
       });
       this._bloomFinalPipeline = await device.createRenderPipelineAsync({
@@ -625,7 +625,7 @@ class WebGPUAtmosphereRenderer {
         this._bloomTextureB,
         this._bloomBlurPipeline,
         this._bloomBlurBindings,
-        "M2.6 HDR bloom diagonal blur",
+        "M2.6 HDR bloom normalized single-scale blur",
       );
       this.statistics.bloomPasses += 2;
     }

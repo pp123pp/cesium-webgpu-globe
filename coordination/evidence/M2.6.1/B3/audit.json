@@ -1,0 +1,157 @@
+{
+  "protocol": "M2.6.1-B3-v1",
+  "auditedAt": "2026-11-04T02:20:07.818Z",
+  "captures": [
+    {
+      "directory": "D:\\github\\cesium-webgpu-globe-b3\\coordination\\evidence\\M2.6.1\\B3\\before",
+      "phase": "before",
+      "commit": "76faa2be8e0b0b9e4b49a74ba600d0d4eb775aba",
+      "sourceStatus": "M coordination/ci/m2-solar-bloom-smoke.mjs\n?? coordination/ci/m2.6.1-b3-audit.mjs\n?? coordination/ci/m2.6.1-b3-capture.mjs",
+      "bundleSha256": "eb724fba3ee9720711eb0c1afdc127c907878138fd480f695fb65c754c121ced",
+      "filesVerified": 190,
+      "failedGates": [],
+      "gpuTiming": {
+        "baseline": {
+          "gpuPassSumMs": {
+            "mean": 1.6908287999999996,
+            "p50": 1.6384,
+            "p95": 2.031616
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.029431466666666,
+            "p50": 1.900544,
+            "p95": 3.145728
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.146666669845581,
+            "p50": 5.100000023841858,
+            "p95": 7.300000071525574
+          },
+          "passCount": 3
+        },
+        "solarWithoutBloom": {
+          "gpuPassSumMs": {
+            "mean": 1.6362154666666668,
+            "p50": 1.6384,
+            "p95": 1.900544
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.0032170666666667,
+            "p50": 1.835008,
+            "p95": 2.94912
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.62333334684372,
+            "p50": 4.399999976158142,
+            "p95": 6.700000047683716
+          },
+          "passCount": 3
+        },
+        "allEnabled": {
+          "gpuPassSumMs": {
+            "mean": 2.232593066666667,
+            "p50": 2.29376,
+            "p95": 2.490368
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.7612501333333346,
+            "p50": 2.62144,
+            "p95": 3.538944
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.696666661898295,
+            "p50": 6,
+            "p95": 7.100000023841858
+          },
+          "passCount": 5
+        }
+      },
+      "status": "AUTOMATED_GATES_PASS"
+    },
+    {
+      "directory": "D:\\github\\cesium-webgpu-globe-b3\\coordination\\evidence\\M2.6.1\\B3\\after",
+      "phase": "after",
+      "commit": "4fde49bc63eb67c34816a424895d035b24efc2ea",
+      "sourceStatus": "?? coordination/evidence/M2.6.1/B3/",
+      "bundleSha256": "7c9880bf43281d762d8470e82070f96f6c81e09c19d6880fb571a5e496856953",
+      "filesVerified": 190,
+      "failedGates": [],
+      "gpuTiming": {
+        "baseline": {
+          "gpuPassSumMs": {
+            "mean": 1.6646144,
+            "p50": 1.6384,
+            "p95": 1.835008
+          },
+          "gpuFrameSpanMs": {
+            "mean": 1.9748181333333334,
+            "p50": 1.835008,
+            "p95": 2.752512
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.773333330949147,
+            "p50": 4.899999976158142,
+            "p95": 7.699999928474426
+          },
+          "passCount": 3
+        },
+        "solarWithoutBloom": {
+          "gpuPassSumMs": {
+            "mean": 1.786948266666667,
+            "p50": 1.6384,
+            "p95": 3.014656
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.1626880000000006,
+            "p50": 1.900544,
+            "p95": 3.342336
+          },
+          "wallRenderAndMapMs": {
+            "mean": 4.843333343664805,
+            "p50": 4.899999976158142,
+            "p95": 6.800000071525574
+          },
+          "passCount": 3
+        },
+        "allEnabled": {
+          "gpuPassSumMs": {
+            "mean": 2.317789866666666,
+            "p50": 2.29376,
+            "p95": 2.490368
+          },
+          "gpuFrameSpanMs": {
+            "mean": 2.711005866666668,
+            "p50": 2.62144,
+            "p95": 3.407872
+          },
+          "wallRenderAndMapMs": {
+            "mean": 5.8566666603088375,
+            "p50": 6,
+            "p95": 8.099999904632568
+          },
+          "passCount": 5
+        }
+      },
+      "status": "AUTOMATED_GATES_PASS"
+    }
+  ],
+  "comparison": {
+    "matchingScenes": 175,
+    "sameHarness": true,
+    "sameAssets": true,
+    "changedSourceFiles": [
+      "packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js",
+      "packages/engine/Source/Scene/WebGPUSolarBloomShader.js"
+    ],
+    "compiledBloomShaders": {
+      "before": [
+        "5d06ce858ca3aa427d6829472fe9d8d511ae3637debb1c60cee9cec4d2f2ece7"
+      ],
+      "after": [
+        "b9fbdf05ee5df832a6451a4b5b92e6db47bb6a09531c4c4fbd3f0b9aaabe8816"
+      ]
+    },
+    "timingMeanDeltaMs": 0.08519679999999896
+  },
+  "status": "AUTOMATED_GATES_PASS_VISUAL_REVIEW_REQUIRED"
+}

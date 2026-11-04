@@ -1,0 +1,47 @@
+{
+  "description": "Before versus after full-frame sRGB pixel comparison; 60-degree centered Sun at x=960,y=540. White uses all RGB channels >=250. These are diagnostics, not a visual acceptance threshold. Original PNGs are unchanged.",
+  "results": [
+    {
+      "exposure": 0.5,
+      "changedPixels": 1256,
+      "maxChannelByteDifference": 38,
+      "changedBounds": [
+        942,
+        522,
+        977,
+        557
+      ],
+      "outside180pxMaxByteDifference": 0,
+      "whitePixelsBefore": 96,
+      "whitePixelsAfter": 112
+    },
+    {
+      "exposure": 1.0,
+      "changedPixels": 1159,
+      "maxChannelByteDifference": 30,
+      "changedBounds": [
+        942,
+        522,
+        977,
+        557
+      ],
+      "outside180pxMaxByteDifference": 0,
+      "whitePixelsBefore": 180,
+      "whitePixelsAfter": 180
+    },
+    {
+      "exposure": 2.0,
+      "changedPixels": 1076,
+      "maxChannelByteDifference": 19,
+      "changedBounds": [
+        942,
+        522,
+        977,
+        557
+      ],
+      "outside180pxMaxByteDifference": 0,
+      "whitePixelsBefore": 192,
+      "whitePixelsAfter": 192
+    }
+  ]
+}

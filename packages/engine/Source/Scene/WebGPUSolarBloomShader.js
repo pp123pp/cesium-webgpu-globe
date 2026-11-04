@@ -29,24 +29,37 @@ struct BloomParameters {
       let pixel = clamp(origin + vec2i(x, y), vec2i(0), size - 1);
       let color = max(textureLoad(sourceTexture, pixel, 0).rgb, vec3f(0.0));
       let brightness = max(color.r, max(color.g, color.b));
-      contribution += color * max(brightness - 1.0, 0.0) / max(brightness, 1.0e-5);
+      // Scene-linear threshold 1.0 with a 0.5-wide knee on either side.
+      // Both value and slope join continuously: black/dim space stays zero,
+      // while highlights >= 1.5 retain the previous extracted energy.
+      let knee = clamp(brightness - 0.5, 0.0, 1.0);
+      let excess = max(brightness - 1.0, knee * knee * 0.5);
+      contribution += color * excess / max(brightness, 1.0e-5);
     }
   }
   return vec4f(contribution / 16.0, 1.0);
+}
+
+fn bloomBlurRow(uv: vec2f, texel: vec2f) -> vec3f {
+  // Bilinear pairs reconstruct the normalized [1,4,6,4,1]/16 kernel.
+  // Fractional offsets cover adjacent texels instead of copying a small
+  // highlight into disconnected diagonal lobes.
+  let offset = vec2f(texel.x * 1.2, 0.0);
+  return textureSampleLevel(sourceTexture, sourceSampler, uv, 0.0).rgb * 0.375 +
+    (textureSampleLevel(sourceTexture, sourceSampler, uv - offset, 0.0).rgb +
+     textureSampleLevel(sourceTexture, sourceSampler, uv + offset, 0.0).rgb) * 0.3125;
 }
 
 @fragment fn bloomBlur(@builtin(position) position: vec4f) -> @location(0) vec4f {
   let size = vec2f(textureDimensions(sourceTexture));
   let uv = position.xy / size;
   let texel = 1.0 / size;
-  let center = textureSampleLevel(sourceTexture, sourceSampler, uv, 0.0).rgb * 0.36;
-  let diagonals = (
-    textureSampleLevel(sourceTexture, sourceSampler, uv + texel * vec2f(-2.0, -2.0), 0.0).rgb +
-    textureSampleLevel(sourceTexture, sourceSampler, uv + texel * vec2f(2.0, -2.0), 0.0).rgb +
-    textureSampleLevel(sourceTexture, sourceSampler, uv + texel * vec2f(-2.0, 2.0), 0.0).rgb +
-    textureSampleLevel(sourceTexture, sourceSampler, uv + texel * vec2f(2.0, 2.0), 0.0).rgb
-  ) * 0.16;
-  return vec4f(center + diagonals, 1.0);
+  let offset = vec2f(0.0, texel.y * 1.2);
+  // One compact, energy-normalized 5x5 filter, nine bilinear samples. Reuses
+  // the existing quarter-resolution target and single blur pass.
+  let blurred = bloomBlurRow(uv, texel) * 0.375 +
+    (bloomBlurRow(uv - offset, texel) + bloomBlurRow(uv + offset, texel)) * 0.3125;
+  return vec4f(blurred, 1.0);
 }
 
 struct FinalParameters {

@@ -1,0 +1,11 @@
+{
+  "node": "v22.20.0",
+  "dependencies": {
+    "playwright": "1.64.1",
+    "esbuild": "0.28.2",
+    "@zip.js/zip.js": "2.24.0",
+    "dompurify": "3.4.17",
+    "draco3d": "1.5.9",
+    "jsep": "1.6.0"
+  }
+}
