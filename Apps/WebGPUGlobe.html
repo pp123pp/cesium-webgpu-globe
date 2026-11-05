@@ -166,6 +166,9 @@
       </nav>
       <fieldset id="cloud-controls" disabled>
         <legend>Local volumetric clouds</legend>
+        <a href="./WebGPUClouds.html" style="color: #bde5ff"
+          >Open cloud showcase →</a
+        >
         <label
           ><input id="show-cloud-volume" type="checkbox" /> Render clouds</label
         >
@@ -179,6 +182,25 @@
             step="0.01"
             value="0.49"
         /></label>
+        <label
+          >Low cloud type
+          <select id="cloud-type">
+            <option value="cumulus">Cumulus</option>
+            <option value="stratocumulus">Stratocumulus</option>
+          </select></label
+        >
+        <label
+          ><input id="cloud-cirrus" type="checkbox" /> High cirrus (9–11
+          km)</label
+        >
+        <label
+          ><input id="cloud-evolution" type="checkbox" /> Cloud growth and
+          erosion</label
+        >
+        <label
+          ><input id="cloud-mist" type="checkbox" /> Morning mist and light
+          shafts</label
+        >
         <label
           >Quality
           <select id="cloud-quality">
@@ -201,6 +223,13 @@
           <button id="cloud-near" type="button">Near ground</button>
         </nav>
         <button id="cloud-deck" type="button">Fly above local clouds</button>
+        <button id="cloud-compare" type="button">
+          Cloud type comparison view
+        </button>
+        <button id="cloud-growth-view" type="button">Watch cloud growth</button>
+        <button id="cloud-morning-view" type="button">
+          Morning light shafts view
+        </button>
         <output id="cloud-readout">WGS84 shell · base 2 km / top 6 km</output>
         <p>
           <small
@@ -387,10 +416,27 @@
           viewer.scene.clouds.coverage = event.target.valueAsNumber;
         });
       document
+        .getElementById("cloud-type")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.type = event.target.value;
+        });
+      document
+        .getElementById("cloud-cirrus")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.cirrus = event.target.checked;
+        });
+      document
         .getElementById("cloud-quality")
         .addEventListener("change", (event) => {
           viewer.scene.clouds.quality = event.target.value;
         });
+      for (const property of ["evolution", "mist"]) {
+        document
+          .getElementById(`cloud-${property}`)
+          .addEventListener("change", (event) => {
+            viewer.scene.clouds[property] = event.target.checked;
+          });
+      }
       document
         .getElementById("cloud-local-detail")
         .addEventListener("change", (event) => {
@@ -557,7 +603,9 @@
             ? "WGS84 shell 2–6 km"
             : scene._planetState.cameraHeight >= 250000
               ? "Orbit · local clouds hidden"
-              : "Local cloud layer 2–6 km";
+              : scene.clouds.cirrus
+                ? "Low clouds 2–6 km · cirrus 9–11 km"
+                : "Local cloud layer 2–6 km";
           cloudReadout.textContent = `${status} · camera ${height} m`;
         } else {
           cloudReadout.textContent = "Local clouds off";
@@ -648,6 +696,101 @@
           duration: 2,
         });
       });
+      function setCloudReviewView({
+        time,
+        height,
+        heading,
+        pitch,
+        coverage,
+        evolution = false,
+        mist = false,
+      }) {
+        cloudVolumeControl.checked = viewer.scene.clouds.show = true;
+        showCloudGeometry.checked = false;
+        document.getElementById("cloud-coverage").value = String(coverage);
+        document.getElementById("cloud-quality").value = "medium";
+        document.getElementById("cloud-local-detail").checked = true;
+        document.getElementById("cloud-evolution").checked = evolution;
+        document.getElementById("cloud-mist").checked = mist;
+        if (evolution || mist) {
+          document.getElementById("cloud-type").value =
+            viewer.scene.clouds.type = "cumulus";
+          document.getElementById("cloud-cirrus").checked =
+            viewer.scene.clouds.cirrus = false;
+          document.getElementById("show-atmosphere").checked =
+            viewer.scene.atmosphere.show = true;
+          document.getElementById("show-sun").checked =
+            viewer.scene.sun.show = true;
+        }
+        Object.assign(viewer.scene.clouds, {
+          coverage,
+          quality: "medium",
+          localDetail: true,
+          windSpeed: evolution ? 18 : 0,
+          windDirection: 0.75,
+          evolution,
+          mist,
+        });
+        viewer.clock.shouldAnimate = evolution;
+        viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(time);
+        timeline.zoomTo(
+          Cesium.JulianDate.addHours(
+            viewer.clock.currentTime,
+            -2,
+            new Cesium.JulianDate(),
+          ),
+          Cesium.JulianDate.addHours(
+            viewer.clock.currentTime,
+            3,
+            new Cesium.JulianDate(),
+          ),
+        );
+        updateExposure(1);
+        viewer.camera.cancelFlight();
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(0, 0, height),
+          orientation: {
+            heading: Cesium.Math.toRadians(heading),
+            pitch: Cesium.Math.toRadians(pitch),
+            roll: 0,
+          },
+        });
+      }
+      const cloudComparisonView = {
+        time: "2026-03-20T16:30:00Z",
+        height: 9500,
+        heading: 247,
+        pitch: -9,
+        coverage: 0.58,
+      };
+      document
+        .getElementById("cloud-compare")
+        .addEventListener("click", () =>
+          setCloudReviewView(cloudComparisonView),
+        );
+      document
+        .getElementById("cloud-growth-view")
+        .addEventListener("click", () =>
+          setCloudReviewView({
+            ...cloudComparisonView,
+            height: 6900,
+            pitch: -8,
+            evolution: true,
+          }),
+        );
+      document
+        .getElementById("cloud-morning-view")
+        .addEventListener("click", () =>
+          setCloudReviewView({
+            time: "2026-03-20T07:10:00Z",
+            height: 600,
+            heading: 20,
+            pitch: 7,
+            coverage: 0.58,
+            mist: true,
+          }),
+        );
       everest.addEventListener("click", () => {
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(86.925, 27.9, 18000),

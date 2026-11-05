@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>云层观察 · Cesium WebGPU</title>
+    <script src="../Build/Cesium/Cesium.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          14px/1.55 system-ui,
+          sans-serif;
+        color: #eaf2f4;
+      }
+      html,
+      body,
+      #cesiumContainer {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #172a3a;
+      }
+      .controls {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        width: min(256px, calc(100vw - 28px));
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      #panel-toggle,
+      #scene-panel {
+        background: rgba(20, 36, 46, 0.95);
+        border: 1px solid #53707a;
+      }
+      #panel-toggle {
+        padding: 5px 12px;
+        border-radius: 5px;
+      }
+      #scene-panel {
+        margin-top: 6px;
+        padding: 14px;
+        border-radius: 6px;
+        max-height: calc(100dvh - 100px);
+        overflow-y: auto;
+      }
+      h1 {
+        font-size: 19px;
+        margin: 0 0 10px;
+      }
+      fieldset {
+        padding: 0;
+        border: 0;
+        margin: 0;
+      }
+      #scenes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+      }
+      #scenes button,
+      #playback {
+        padding: 7px 5px;
+        background: #223842;
+        border: 1px solid #46616b;
+        border-radius: 3px;
+      }
+      #scenes button[aria-pressed="true"] {
+        background: #d4e9eb;
+        color: #132c36;
+        border-color: #d4e9eb;
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #ffda91;
+        outline-offset: 1px;
+      }
+      button:disabled {
+        cursor: wait;
+      }
+      #description {
+        font-size: 13px;
+        margin: 12px 0 2px;
+      }
+      #view-details {
+        color: #a7c1cb;
+        font-size: 12px;
+      }
+      #playback,
+      #gap-control {
+        margin-top: 10px;
+      }
+      #gap-control input {
+        vertical-align: middle;
+        width: 55%;
+      }
+      #error {
+        position: absolute;
+        bottom: 16px;
+        left: 14px;
+        max-width: min(460px, 85vw);
+        background: #442b25;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="cesiumContainer" aria-label="实时 WebGPU 云层"></main>
+    <div class="controls">
+      <button
+        id="panel-toggle"
+        type="button"
+        aria-expanded="true"
+        aria-controls="scene-panel"
+      >
+        收起面板
+      </button>
+      <aside id="scene-panel" aria-labelledby="panel-title">
+        <h1 id="panel-title">云层观察</h1>
+        <fieldset id="scene-controls" disabled>
+          <div id="scenes" role="group" aria-label="效果视角"></div>
+          <p id="description" aria-live="polite">正在初始化 WebGPU…</p>
+          <div id="view-details"></div>
+          <button id="playback" type="button" hidden>暂停演化</button>
+          <label id="gap-control" hidden
+            >云覆盖率
+            <input
+              id="coverage"
+              type="range"
+              min="0"
+              max="1"
+              step="0.01" /><output id="coverage-value"></output
+          ></label>
+        </fieldset>
+      </aside>
+    </div>
+    <p id="error" role="alert" hidden></p>
+    <script type="module">
+      /* global Cesium */
+      const lowCloudView = {
+        height: 9500,
+        heading: 247,
+        pitch: -9,
+        time: "16:30",
+        coverage: 0.58,
+      };
+      const horizonView = { height: 8000, heading: 265, pitch: -3 };
+      const presets = {
+        cumulus: {
+          label: "积云",
+          description: "观察独立隆起的云冠和云团之间的空隙。",
+        },
+        stratocumulus: {
+          label: "层积云",
+          type: "stratocumulus",
+          description: "与积云使用相同机位。云堤更平，沿水平方向连成片。",
+        },
+        lighting: {
+          label: "日落背光",
+          time: "17:55",
+          description: "比较薄边的暖光与厚云背光面的冷色层次。",
+        },
+        cirrus: {
+          label: "高空卷云",
+          height: 4500,
+          heading: 250,
+          pitch: 14,
+          coverage: 0.35,
+          cirrus: true,
+          description: "从低云空隙向上看，观察高空的半透明冰丝。",
+        },
+        horizon: {
+          label: "远云透视",
+          ...horizonView,
+          description: "沿地平线看云海，比较近云轮廓和远云对比度。",
+        },
+        twilight: {
+          label: "暮光分层",
+          ...horizonView,
+          time: "18:18",
+          coverage: 0.48,
+          cirrus: true,
+          description: "低云已进入阴影，高空卷云仍接收到暖光。",
+        },
+        growth: {
+          label: "生长消散",
+          height: 6900,
+          pitch: -8,
+          evolution: true,
+          description: "以 4 倍速观察同一片云随风移动，云冠生长、边缘消散。",
+        },
+        mist: {
+          label: "晨雾光束",
+          height: 600,
+          heading: 20,
+          pitch: 7,
+          time: "07:10",
+          mist: true,
+          description: "看云底至地平线间的斜向光带。调整覆盖率可观察云隙闭合。",
+        },
+      };
+      const panel = document.getElementById("scene-panel");
+      const toggle = document.getElementById("panel-toggle");
+      toggle.addEventListener("click", () => {
+        panel.hidden = !panel.hidden;
+        toggle.setAttribute("aria-expanded", String(!panel.hidden));
+        toggle.textContent = panel.hidden ? "展开面板" : "收起面板";
+      });
+      const scenes = document.getElementById("scenes");
+      const playback = document.getElementById("playback");
+      const coverage = document.getElementById("coverage");
+      const coverageValue = document.getElementById("coverage-value");
+      let viewer;
+      for (const [key, preset] of Object.entries(presets)) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.id = `cloud-scene-${key}`;
+        button.textContent = preset.label;
+        button.addEventListener("click", () => showScene(key));
+        scenes.append(button);
+      }
+      function showScene(key) {
+        const settings = { ...lowCloudView, ...presets[key] };
+        Object.assign(viewer.scene.clouds, {
+          show: true,
+          quality: "medium",
+          localDetail: true,
+          type: settings.type ?? "cumulus",
+          coverage: settings.coverage,
+          cirrus: settings.cirrus ?? false,
+          evolution: settings.evolution ?? false,
+          mist: settings.mist ?? false,
+          windSpeed: settings.evolution ? 18 : 0,
+          windDirection: 0.75,
+        });
+        viewer.clock.currentTime = Cesium.JulianDate.fromIso8601(
+          `2026-03-20T${settings.time}:00Z`,
+        );
+        viewer.clock.multiplier = settings.evolution ? 4 : 1;
+        viewer.clock.shouldAnimate = settings.evolution === true;
+        viewer.camera.cancelFlight();
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(0, 0, settings.height),
+          orientation: {
+            heading: Cesium.Math.toRadians(settings.heading),
+            pitch: Cesium.Math.toRadians(settings.pitch),
+            roll: 0,
+          },
+        });
+        for (const button of scenes.children) {
+          button.setAttribute(
+            "aria-pressed",
+            String(button.id === `cloud-scene-${key}`),
+          );
+        }
+        document.getElementById("description").textContent =
+          settings.description;
+        document.getElementById("view-details").textContent =
+          `起始机位 ${settings.height / 1000} km · ${settings.time} UTC`;
+        playback.hidden = !settings.evolution;
+        playback.textContent = "暂停演化";
+        document.getElementById("gap-control").hidden = !settings.mist;
+        coverage.value = String(settings.coverage);
+        coverageValue.value = `${Math.round(settings.coverage * 100)}%`;
+      }
+      playback.addEventListener("click", () => {
+        viewer.clock.shouldAnimate = !viewer.clock.shouldAnimate;
+        playback.textContent = viewer.clock.shouldAnimate
+          ? "暂停演化"
+          : "继续演化";
+      });
+      coverage.addEventListener("input", () => {
+        viewer.scene.clouds.coverage = coverage.valueAsNumber;
+        coverageValue.value = `${Math.round(coverage.valueAsNumber * 100)}%`;
+      });
+      function showError(error) {
+        document.getElementById("scene-controls").disabled = true;
+        const message = document.getElementById("error");
+        message.textContent = `云层渲染失败：${error?.message ?? error}`;
+        message.hidden = false;
+      }
+      try {
+        viewer = new Cesium.Viewer("cesiumContainer", {
+          renderingBackend: "webgpu",
+          baseLayer: false,
+        });
+        viewer.renderError.addEventListener((scene, error) => showError(error));
+        await viewer.readyPromise;
+        viewer.scene.globe.enableLighting = true;
+        viewer.scene.globe.baseColor = new Cesium.Color(0.12, 0.22, 0.32, 1);
+        viewer.scene.exposure = 1;
+        showScene("cumulus");
+        document.getElementById("scene-controls").disabled = false;
+      } catch (error) {
+        showError(error);
+      }
+      window.addEventListener("pagehide", (event) => {
+        if (!event.persisted && viewer && !viewer.isDestroyed()) {
+          viewer.destroy();
+        }
+      });
+    </script>
+  </body>
+</html>
