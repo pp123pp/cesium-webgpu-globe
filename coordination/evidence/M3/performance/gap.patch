@@ -1,0 +1,23 @@
+diff --git a/packages/engine/Source/Scene/WebGPUCloudVolumeShader.js b/packages/engine/Source/Scene/WebGPUCloudVolumeShader.js
+--- a/packages/engine/Source/Scene/WebGPUCloudVolumeShader.js
++++ b/packages/engine/Source/Scene/WebGPUCloudVolumeShader.js
+@@ -57,0 +58,3 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
++  let maxStep = span * (1.0 + nonuniform) / f32(count);
++  let polarToEquatorial = planet.inverseRadii.x / planet.inverseRadii.z;
++  let heightRoundoff = 2.0e-6 / planet.inverseRadii.x;
+@@ -69,0 +73,15 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
++    if (clouds.shape.y > 0.5) {
++      let scaledRadius = length(p * planet.inverseRadii.xyz);
++      let height = (scaledRadius - 1.0) * (length(p) / scaledRadius);
++      let clearance = min(height - 6000.0, 9000.0 - height) - heightRoundoff;
++      if (clearance > 0.0) {
++        // Above the surface the radial height gradient is bounded by a/b.
++        // Limit the last skipped bin's far edge, so its jitter cannot cross a layer.
++        let safeTravel = clearance * polarToEquatorial;
++        let bins = floor(max(0.0, safeTravel - (end - midpoint)) / maxStep);
++        i += u32(min(bins, f32(count - i)));
++        let last = f32(i) / f32(count);
++        start = span * mix(last, last*last, nonuniform);
++        continue;
++      }
++    }

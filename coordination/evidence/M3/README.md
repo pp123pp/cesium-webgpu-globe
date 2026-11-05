@@ -39,6 +39,8 @@ and [cloud evolution and morning light shafts](evolution-and-mist/README.md).
 
 ## Performance and resources
 
+The [follow-up performance experiment](performance/README.md) records the zero-coverage fix, both rejected shader candidates and 120-frame physical GPU profiles on the accepted cloud scenes.
+
 Clean capture revision `5a0a22b6a9150e307aaf666acf8c3d1977debd9a`,
 headed Chrome 156.0.8078.80, Intel Xe-LPG WebGPU. WebGL identifies the host
 GPU as Intel Arc 130T. Numbers are cloud-only GPU timestamps with ten measured

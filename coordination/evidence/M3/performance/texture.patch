@@ -1,0 +1,50 @@
+diff --git a/packages/engine/Source/Scene/WebGPUCloudDensityShader.js b/packages/engine/Source/Scene/WebGPUCloudDensityShader.js
+--- a/packages/engine/Source/Scene/WebGPUCloudDensityShader.js
++++ b/packages/engine/Source/Scene/WebGPUCloudDensityShader.js
+@@ -44,0 +45,3 @@ fn cloudCirrus(column: vec3f, height: f32, coverage: f32, footprint: f32, phase:
++  let center = 9850.0 + 560.0 * (warp.g - 0.48);
++  let vertical = 1.0 - smoothstep(0.0, 460.0, abs(height - center));
++  if (vertical == 0.0) { return 0.0; }
+@@ -48,4 +50,0 @@ fn cloudCirrus(column: vec3f, height: f32, coverage: f32, footprint: f32, phase:
+-  let fibers = textureSampleLevel(cloudNoise, cloudSampler,
+-    bent.yzx / vec3f(36500.0, 2100.0, 3200.0), 0.0);
+-  let detail = 1.0 - smoothstep(180.0, 900.0, footprint);
+-  let streak = mix(0.26, smoothstep(0.44, 0.71, 0.64*fibers.r + 0.36*fibers.b), detail);
+@@ -54,2 +53,8 @@ fn cloudCirrus(column: vec3f, height: f32, coverage: f32, footprint: f32, phase:
+-  let center = 9850.0 + 560.0 * (warp.g - 0.48);
+-  let vertical = 1.0 - smoothstep(0.0, 460.0, abs(height - center));
++  if (ice == 0.0) { return 0.0; }
++  let detail = 1.0 - smoothstep(180.0, 900.0, footprint);
++  var streak = 0.26;
++  if (detail > 0.0) {
++    let fibers = textureSampleLevel(cloudNoise, cloudSampler,
++      bent.yzx / vec3f(36500.0, 2100.0, 3200.0), 0.0);
++    streak = mix(0.26, smoothstep(0.44, 0.71, 0.64*fibers.r + 0.36*fibers.b), detail);
++  }
+@@ -90,4 +95,7 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
+-    let billows = textureSampleLevel(cloudNoise, cloudSampler,
+-      (column.zxy + 1300.0 * (cells.rgb - vec3f(0.48))) / 7100.0, 0.0);
+-    let relief = (1.0 - smoothstep(350.0, 1500.0, footprint)) *
+-      (510.0*(billows.g - 0.48) + 210.0*(billows.b - 0.48));
++    let billowsWeight = 1.0 - smoothstep(350.0, 1500.0, footprint);
++    var relief = 0.0;
++    if (billowsWeight > 0.0) {
++      let billows = textureSampleLevel(cloudNoise, cloudSampler,
++        (column.zxy + 1300.0 * (cells.rgb - vec3f(0.48))) / 7100.0, 0.0);
++      relief = billowsWeight * (510.0*(billows.g - 0.48) + 210.0*(billows.b - 0.48));
++    }
+@@ -99,0 +108,2 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
++  // Erosion fades before lobes, and lobes before body, so a zero weight
++  // also excludes every finer sample that uses the noise as a coordinate warp.
+@@ -102 +112,4 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
+-  let body = textureSampleLevel(cloudNoise, cloudSampler, bodyP / 17900.0, 0.0);
++  var body = vec4f(0.0);
++  if (bodyWeight > 0.0) {
++    body = textureSampleLevel(cloudNoise, cloudSampler, bodyP / 17900.0, 0.0);
++  }
+@@ -105 +118,4 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
+-  let lobes = textureSampleLevel(cloudNoise, cloudSampler, lobeP / 8300.0, 0.0);
++  var lobes = vec4f(0.0);
++  if (lobesWeight > 0.0) {
++    lobes = textureSampleLevel(cloudNoise, cloudSampler, lobeP / 8300.0, 0.0);
++  }

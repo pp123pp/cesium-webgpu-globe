@@ -1,0 +1,1434 @@
+{
+  "sourceBase": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+  "runtimeCommit": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+  "scenes": {
+    "cumulus": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "stratocumulus": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "stratocumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "low-cloud-gap": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 4499.999999999069,
+        "heading": 250.00000000000003,
+        "pitch": 13.999999999999995
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.35,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "gap-with-cirrus": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 4499.999999999069,
+        "heading": 250.00000000000003,
+        "pitch": 13.999999999999995
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.35,
+        "type": "cumulus",
+        "cirrus": true,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "horizontal-cloud-sea": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "twilight-low-clouds": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "date": "2026-03-20T18:18:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "twilight-high-layer": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "date": "2026-03-20T18:18:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": true,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "twilight-clouds-off": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "date": "2026-03-20T18:18:00Z",
+      "config": {
+        "show": false,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": true,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "dawn-mist-off": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 599.9999999990687,
+        "heading": 19.99999999999998,
+        "pitch": 6.999999999999997
+      },
+      "date": "2026-03-20T07:10:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    },
+    "dawn-mist-on": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 599.9999999990687,
+        "heading": 19.99999999999998,
+        "pitch": 6.999999999999997
+      },
+      "date": "2026-03-20T07:10:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": true,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "exposure": 1
+    }
+  },
+  "runs": {
+    "A1": {
+      "capturedAt": "2026-11-05T11:23:26.369Z",
+      "bundleSha256": "0b84df194d76a816334185d0e8d91ca29f4980a12c96088b8668d72d84c6eabf",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          12.686677333333336,
+          0.7154346666666664,
+          13.402112,
+          18.0224
+        ],
+        "720p-medium-with-cirrus": [
+          14.889233066666673,
+          1.9327658666666663,
+          16.821998933333337,
+          23.855103999999997
+        ],
+        "720p-medium-horizontal": [
+          14.929646933333332,
+          0.8634367999999996,
+          15.793083733333331,
+          21.233664
+        ]
+      }
+    },
+    "B1": {
+      "capturedAt": "2026-11-05T11:24:53.401Z",
+      "bundleSha256": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          11.910621866666672,
+          0.6640981333333326,
+          12.574719999999996,
+          15.794176
+        ],
+        "720p-medium-with-cirrus": [
+          10.350318933333337,
+          1.1561642666666674,
+          11.506483199999998,
+          13.631488000000001
+        ],
+        "720p-medium-horizontal": [
+          10.30608213333334,
+          0.5270186666666656,
+          10.8331008,
+          13.828096
+        ]
+      }
+    },
+    "T": {
+      "capturedAt": "2026-11-05T11:25:09.802Z",
+      "bundleSha256": "b2537b1257218fd8b845677a58b0c691c488bb1816223c92b93c11261eb3b13b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          10.424593066666652,
+          0.5696170666666663,
+          10.994210133333336,
+          15.269888
+        ],
+        "720p-medium-with-cirrus": [
+          10.39291733333334,
+          1.1758250666666656,
+          11.568742400000001,
+          13.500416000000001
+        ],
+        "720p-medium-horizontal": [
+          10.641408000000007,
+          0.5690709333333328,
+          11.210478933333336,
+          13.43488
+        ]
+      }
+    },
+    "B2": {
+      "capturedAt": "2026-11-05T11:25:26.959Z",
+      "bundleSha256": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          9.532757333333329,
+          0.5242879999999998,
+          10.057045333333326,
+          11.272192
+        ],
+        "720p-medium-with-cirrus": [
+          10.040115200000002,
+          1.1255808000000005,
+          11.165695999999993,
+          12.976128
+        ],
+        "720p-medium-horizontal": [
+          11.615709866666661,
+          0.6133077333333344,
+          12.229017599999997,
+          15.466496
+        ]
+      }
+    },
+    "G": {
+      "capturedAt": "2026-11-05T11:25:42.708Z",
+      "bundleSha256": "900467eb3324bd4f567b0c52198226edb24408dab4480101ec104425f595d0ca",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          11.374318933333324,
+          0.5548714666666666,
+          11.929190400000003,
+          14.811136
+        ],
+        "720p-medium-with-cirrus": [
+          10.088174933333338,
+          1.1075584000000005,
+          11.195733333333333,
+          12.386303999999999
+        ],
+        "720p-medium-horizontal": [
+          10.516889599999997,
+          0.5253802666666657,
+          11.042269866666665,
+          13.76256
+        ]
+      }
+    },
+    "B3": {
+      "capturedAt": "2026-11-05T11:26:00.012Z",
+      "bundleSha256": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          10.18647893333333,
+          0.46912853333333265,
+          10.655607466666662,
+          12.648448
+        ],
+        "720p-medium-with-cirrus": [
+          9.37219413333333,
+          0.9988778666666674,
+          10.371071999999998,
+          11.075584
+        ],
+        "720p-medium-horizontal": [
+          11.58567253333334,
+          0.593646933333334,
+          12.179319466666671,
+          15.335424
+        ]
+      }
+    },
+    "D1": {
+      "capturedAt": "2026-11-05T11:28:47.111Z",
+      "bundleSha256": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "injection": {
+        "mode": "base",
+        "modules": 1,
+        "edits": 0,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36"
+      },
+      "images": {
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "dawn-mist-off": "b7ad5fab6691ebb36cc42b7332d9ddc1c87fdc18ffb84686b64f65af5318f76c",
+        "dawn-mist-on": "b3f36aae2a03f18f028bb6dc060e1131774106921019edaf7c1c0df8cea05b5f"
+      },
+      "timings": {
+        "stratocumulus": [
+          12.777881600000002,
+          0.9404415999999997,
+          13.718323200000006,
+          21.561344
+        ],
+        "dawn-mist-off": [
+          18.38721706666666,
+          0.8765439999999997,
+          19.263761066666664,
+          24.641536000000002
+        ],
+        "dawn-mist-on": [
+          22.565683200000006,
+          0.9928703999999999,
+          23.558553600000003,
+          30.670848
+        ]
+      }
+    },
+    "L": {
+      "capturedAt": "2026-11-05T11:29:04.938Z",
+      "bundleSha256": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "injection": {
+        "mode": "light",
+        "modules": 1,
+        "edits": 1,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "14070440a9feb0700d647488b7b27720bcfd42de6d388bb99fb75335ee3594bd"
+      },
+      "images": {
+        "stratocumulus": "e0056f0acb2544b8b1f8654d8ebfa8e1a62ae1039e446b9f5f82718c4131ca18",
+        "dawn-mist-off": "9c437b2d909eca8a3677a7098786aeb9e697679dfa6b3f7b4739dade5d8781c3",
+        "dawn-mist-on": "276a4899bd3477207449dad6232a91b0f203fca519ba390d2982b7ba626fbf86"
+      },
+      "timings": {
+        "stratocumulus": [
+          9.241668266666663,
+          0.8219306666666658,
+          10.063598933333335,
+          15.925248
+        ],
+        "dawn-mist-off": [
+          13.464371200000004,
+          1.0048853333333325,
+          14.469256533333327,
+          18.743296
+        ],
+        "dawn-mist-on": [
+          19.434154666666657,
+          1.0704213333333332,
+          20.504576,
+          27.19744
+        ]
+      }
+    },
+    "D2": {
+      "capturedAt": "2026-11-05T11:29:23.116Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "injection": {
+        "mode": "base",
+        "modules": 1,
+        "edits": 0,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36"
+      },
+      "images": {
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "dawn-mist-off": "b7ad5fab6691ebb36cc42b7332d9ddc1c87fdc18ffb84686b64f65af5318f76c",
+        "dawn-mist-on": "b3f36aae2a03f18f028bb6dc060e1131774106921019edaf7c1c0df8cea05b5f"
+      },
+      "timings": {
+        "stratocumulus": [
+          11.496106666666668,
+          0.592008533333333,
+          12.088115200000004,
+          15.335424000000001
+        ],
+        "dawn-mist-off": [
+          15.969484800000002,
+          0.5111808000000005,
+          16.480665600000002,
+          19.529728000000002
+        ],
+        "dawn-mist-on": [
+          19.040938666666662,
+          0.5444949333333329,
+          19.58543359999999,
+          21.2992
+        ]
+      }
+    },
+    "P": {
+      "capturedAt": "2026-11-05T11:29:40.334Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "injection": {
+        "mode": "air",
+        "modules": 1,
+        "edits": 1,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "dbdae48702d4a59dd3e227eb1a9651b8648f8c95b1a8d6d816733575db9c259d"
+      },
+      "images": {
+        "stratocumulus": "7c8564511cf57c1fa55ee09a539ec0cf249c80c52eb1be25d59021552d03ebfe",
+        "dawn-mist-off": "04a0e2089985703f4d61b7dbc0b99d5feb0918e54ddcefb8dcab8463e06257ce",
+        "dawn-mist-on": "e1d945709f115d05469891ca2e96c1860ec3d5bba5942960ae242d6cdd3353dc"
+      },
+      "timings": {
+        "stratocumulus": [
+          9.201800533333337,
+          0.5259263999999992,
+          9.727726933333326,
+          15.007744
+        ],
+        "dawn-mist-off": [
+          14.565375999999999,
+          0.4915200000000003,
+          15.056895999999993,
+          17.235968
+        ],
+        "dawn-mist-on": [
+          24.239581866666665,
+          1.5144277333333347,
+          25.754009599999996,
+          40.566784000000006
+        ]
+      }
+    },
+    "D3": {
+      "capturedAt": "2026-11-05T11:29:58.263Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "67bd10662b24047a499a0cac87fd64b7fea66ae1",
+      "injection": {
+        "mode": "base",
+        "modules": 1,
+        "edits": 0,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36"
+      },
+      "images": {
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "dawn-mist-off": "b7ad5fab6691ebb36cc42b7332d9ddc1c87fdc18ffb84686b64f65af5318f76c",
+        "dawn-mist-on": "b3f36aae2a03f18f028bb6dc060e1131774106921019edaf7c1c0df8cea05b5f"
+      },
+      "timings": {
+        "stratocumulus": [
+          11.07121493333333,
+          0.7711402666666667,
+          11.842355200000004,
+          15.269888
+        ],
+        "dawn-mist-off": [
+          16.106018133333336,
+          0.6799360000000002,
+          16.785954133333338,
+          20.447232
+        ],
+        "dawn-mist-on": [
+          22.993851733333333,
+          0.9338879999999998,
+          23.927739733333325,
+          31.195135999999998
+        ]
+      }
+    },
+    "final-profile": {
+      "capturedAt": "2026-11-05T11:34:01.721Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+      "images": {
+        "cumulus": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "low-cloud-gap": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+        "gap-with-cirrus": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+        "horizontal-cloud-sea": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+        "twilight-low-clouds": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+        "twilight-high-layer": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+        "twilight-clouds-off": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c"
+      },
+      "timings": {
+        "720p-medium-stratocumulus": [
+          10.235630933333336,
+          0.47022079999999955,
+          10.705851733333338,
+          12.517376
+        ],
+        "720p-medium-with-cirrus": [
+          9.9483648,
+          1.0545834666666665,
+          11.002948266666671,
+          12.713984
+        ],
+        "720p-medium-horizontal": [
+          10.224162133333328,
+          0.5701631999999998,
+          10.794325333333331,
+          13.041664
+        ]
+      }
+    },
+    "D4": {
+      "capturedAt": "2026-11-05T11:35:06.868Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+      "injection": {
+        "mode": "base",
+        "modules": 1,
+        "edits": 0,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36"
+      },
+      "images": {
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "dawn-mist-off": "b7ad5fab6691ebb36cc42b7332d9ddc1c87fdc18ffb84686b64f65af5318f76c",
+        "dawn-mist-on": "b3f36aae2a03f18f028bb6dc060e1131774106921019edaf7c1c0df8cea05b5f"
+      },
+      "timings": {
+        "stratocumulus": [
+          10.928674133333333,
+          0.5106346666666663,
+          11.439308800000001,
+          14.614528
+        ],
+        "dawn-mist-off": [
+          17.107080533333328,
+          0.45329066666666656,
+          17.5603712,
+          19.791871999999998
+        ],
+        "dawn-mist-on": [
+          20.587042133333338,
+          0.5264725333333327,
+          21.113514666666667,
+          24.117248
+        ]
+      }
+    },
+    "L2": {
+      "capturedAt": "2026-11-05T11:35:23.457Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+      "injection": {
+        "mode": "light",
+        "modules": 1,
+        "edits": 1,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "14070440a9feb0700d647488b7b27720bcfd42de6d388bb99fb75335ee3594bd"
+      },
+      "images": {
+        "stratocumulus": "e0056f0acb2544b8b1f8654d8ebfa8e1a62ae1039e446b9f5f82718c4131ca18",
+        "dawn-mist-off": "9c437b2d909eca8a3677a7098786aeb9e697679dfa6b3f7b4739dade5d8781c3",
+        "dawn-mist-on": "276a4899bd3477207449dad6232a91b0f203fca519ba390d2982b7ba626fbf86"
+      },
+      "timings": {
+        "stratocumulus": [
+          6.467857066666667,
+          0.6116693333333324,
+          7.0795264,
+          8.388608
+        ],
+        "dawn-mist-off": [
+          8.340002133333336,
+          0.4248917333333335,
+          8.764893866666663,
+          10.027008
+        ],
+        "dawn-mist-on": [
+          12.79645013333334,
+          0.5455871999999995,
+          13.34203733333334,
+          15.925248
+        ]
+      }
+    },
+    "D5": {
+      "capturedAt": "2026-11-05T11:35:37.028Z",
+      "bundleSha256": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "browser": "156.0.8078.80",
+      "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+      "injection": {
+        "mode": "base",
+        "modules": 1,
+        "edits": 0,
+        "originalShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36",
+        "actualShaderSha256": "b95a92bbea40219e5a45684423bbc90f89c0517cb3658680fee279b3e4adff36"
+      },
+      "images": {
+        "stratocumulus": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+        "dawn-mist-off": "b7ad5fab6691ebb36cc42b7332d9ddc1c87fdc18ffb84686b64f65af5318f76c",
+        "dawn-mist-on": "b3f36aae2a03f18f028bb6dc060e1131774106921019edaf7c1c0df8cea05b5f"
+      },
+      "timings": {
+        "stratocumulus": [
+          10.1793792,
+          0.49206613333333293,
+          10.671445333333331,
+          12.189696000000001
+        ],
+        "dawn-mist-off": [
+          16.240366933333338,
+          0.4751360000000005,
+          16.715502933333326,
+          18.35008
+        ],
+        "dawn-mist-on": [
+          20.511675733333327,
+          0.657544533333334,
+          21.169220266666663,
+          24.641536
+        ]
+      }
+    }
+  },
+  "zeroCoverage": {
+    "bundle": "d8c97138c019c948c3d245a3df043f50bde1c8ab330adfc97f1d09b299949a11",
+    "baselineError": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n1 !== 0\n",
+    "checks": [
+      "Zero coverage skips cloud allocation and both passes; restoring coverage redraws the same clouds. Raised terrain occludes the cloud column."
+    ],
+    "scenes": [
+      {
+        "name": "clouds-off",
+        "sha256": "0e9bc681d4ef9d7f808ff586e06f118a5ef0bf0b8fe25faa116fc06a20864414",
+        "cloudPasses": 0,
+        "reconstructionPasses": 0,
+        "clouds": {},
+        "centerMax": 0
+      },
+      {
+        "name": "zero-coverage",
+        "sha256": "0e9bc681d4ef9d7f808ff586e06f118a5ef0bf0b8fe25faa116fc06a20864414",
+        "cloudPasses": 0,
+        "reconstructionPasses": 0,
+        "clouds": {},
+        "centerMax": 0
+      },
+      {
+        "name": "restored",
+        "sha256": "fc4f1b1e6549b77e4ee6100a876d82d867944343c7f251dfe7e992241cb5ef24",
+        "cloudPasses": 1,
+        "reconstructionPasses": 1,
+        "clouds": {
+          "width": 240,
+          "height": 135,
+          "primarySteps": 192,
+          "lightSteps": 4,
+          "textureBytes": 390272,
+          "bufferBytes": 144
+        },
+        "centerMax": 83
+      },
+      {
+        "name": "cleared-again",
+        "sha256": "0e9bc681d4ef9d7f808ff586e06f118a5ef0bf0b8fe25faa116fc06a20864414",
+        "cloudPasses": 0,
+        "reconstructionPasses": 0,
+        "clouds": {
+          "width": 0,
+          "height": 0,
+          "primarySteps": 0,
+          "lightSteps": 0,
+          "textureBytes": 390272,
+          "bufferBytes": 144
+        },
+        "centerMax": 83
+      },
+      {
+        "name": "restored-again",
+        "sha256": "fc4f1b1e6549b77e4ee6100a876d82d867944343c7f251dfe7e992241cb5ef24",
+        "cloudPasses": 1,
+        "reconstructionPasses": 1,
+        "clouds": {
+          "width": 240,
+          "height": 135,
+          "primarySteps": 192,
+          "lightSteps": 4,
+          "textureBytes": 390272,
+          "bufferBytes": 144
+        },
+        "centerMax": 83
+      },
+      {
+        "name": "10-raised-terrain-disabled",
+        "sha256": "82e4501999aaac27dd268a2094d2d33ec2908aed5dd97e2bbfd2fa24d92f04ac",
+        "cloudPasses": 0,
+        "reconstructionPasses": 0,
+        "clouds": {
+          "width": 0,
+          "height": 0,
+          "primarySteps": 0,
+          "lightSteps": 0,
+          "textureBytes": 390272,
+          "bufferBytes": 144
+        },
+        "centerMax": 190
+      },
+      {
+        "name": "10-raised-terrain-enabled",
+        "sha256": "82e4501999aaac27dd268a2094d2d33ec2908aed5dd97e2bbfd2fa24d92f04ac",
+        "cloudPasses": 1,
+        "reconstructionPasses": 1,
+        "clouds": {
+          "width": 240,
+          "height": 135,
+          "primarySteps": 192,
+          "lightSteps": 4,
+          "textureBytes": 390272,
+          "bufferBytes": 144
+        },
+        "centerMax": 0
+      }
+    ],
+    "finalReplay": {
+      "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+      "bundle": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+      "checks": [
+        "Zero coverage skips cloud allocation and both passes; restoring coverage redraws the same clouds. Raised terrain occludes the cloud column."
+      ]
+    }
+  },
+  "firstActivation": {
+    "source": "f746d27396c91107ed19f3179a6fb73bbe6bc0f9",
+    "bundle": "79211c4c21b155efab5eaf4e80eb535caa69a33c333a9f90cacace3927c1057b",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "measurement": {
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9500,
+        "pitch": -9,
+        "heading": 247
+      },
+      "date": "2026-03-20T16:30:00Z",
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "stratocumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "size": [
+        1280,
+        720
+      ],
+      "settledFrames": 40,
+      "frames": [
+        {
+          "label": "clouds-disabled",
+          "show": false,
+          "coverage": 0,
+          "before": {
+            "volume": false,
+            "noise": false,
+            "traceTarget": false,
+            "pipelines": 0
+          },
+          "after": {
+            "volume": false,
+            "noise": false,
+            "traceTarget": false,
+            "pipelines": 0
+          },
+          "frame": 42,
+          "renderReturnMs": 0.6000000089406967,
+          "postReturnQueueWaitMs": 9.199999988079071,
+          "wallUntilQueueDoneMs": 9.799999997019768
+        },
+        {
+          "label": "first-clear",
+          "show": true,
+          "coverage": 0,
+          "before": {
+            "volume": false,
+            "noise": false,
+            "traceTarget": false,
+            "pipelines": 0
+          },
+          "after": {
+            "volume": false,
+            "noise": false,
+            "traceTarget": false,
+            "pipelines": 0
+          },
+          "frame": 43,
+          "renderReturnMs": 0.7000000029802322,
+          "postReturnQueueWaitMs": 10.099999994039536,
+          "wallUntilQueueDoneMs": 10.799999997019768
+        },
+        {
+          "label": "first-visible",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": false,
+            "noise": false,
+            "traceTarget": false,
+            "pipelines": 0
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 44,
+          "renderReturnMs": 18.900000005960464,
+          "postReturnQueueWaitMs": 872.0999999940395,
+          "wallUntilQueueDoneMs": 891
+        },
+        {
+          "label": "warm-1",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 45,
+          "renderReturnMs": 0.9000000059604645,
+          "postReturnQueueWaitMs": 28.799999997019768,
+          "wallUntilQueueDoneMs": 29.700000002980232
+        },
+        {
+          "label": "warm-2",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 46,
+          "renderReturnMs": 0.7999999970197678,
+          "postReturnQueueWaitMs": 21.700000002980232,
+          "wallUntilQueueDoneMs": 22.5
+        },
+        {
+          "label": "warm-3",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 47,
+          "renderReturnMs": 0.7000000029802322,
+          "postReturnQueueWaitMs": 21.5,
+          "wallUntilQueueDoneMs": 22.200000002980232
+        },
+        {
+          "label": "warm-4",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 48,
+          "renderReturnMs": 0.5999999940395355,
+          "postReturnQueueWaitMs": 20.700000002980232,
+          "wallUntilQueueDoneMs": 21.299999997019768
+        },
+        {
+          "label": "warm-5",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 49,
+          "renderReturnMs": 0.7000000029802322,
+          "postReturnQueueWaitMs": 19.600000008940697,
+          "wallUntilQueueDoneMs": 20.30000001192093
+        },
+        {
+          "label": "warm-6",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 50,
+          "renderReturnMs": 0.6000000089406967,
+          "postReturnQueueWaitMs": 18.399999991059303,
+          "wallUntilQueueDoneMs": 19
+        },
+        {
+          "label": "warm-7",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 51,
+          "renderReturnMs": 0.699999988079071,
+          "postReturnQueueWaitMs": 17.900000005960464,
+          "wallUntilQueueDoneMs": 18.599999994039536
+        },
+        {
+          "label": "warm-8",
+          "show": true,
+          "coverage": 0.58,
+          "before": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "after": {
+            "volume": true,
+            "noise": true,
+            "traceTarget": true,
+            "pipelines": 2,
+            "width": 640,
+            "height": 360,
+            "primarySteps": 192,
+            "lightSteps": 4,
+            "textureBytes": 1974272,
+            "bufferBytes": 144
+          },
+          "frame": 52,
+          "renderReturnMs": 0.9000000059604645,
+          "postReturnQueueWaitMs": 20.099999994039536,
+          "wallUntilQueueDoneMs": 21
+        }
+      ],
+      "scope": "One first-clear and one first-visible activation on a settled viewer. Wall times include the entire frame and browser scheduling. Queue wait is not a GPU/cloud-pass timestamp."
+    },
+    "noiseSourceSha256": "a1e4e57de6668d5135737fcb5c3780e20548fc6089b3d9a8a631dd125af6543d",
+    "noise": {
+      "scope": "First and five repeated direct CPU calls in a separately imported production ES module in the same browser, after frame timings; excludes module import, hashing and GPU upload.",
+      "samples": [
+        {
+          "call": 1,
+          "elapsedMs": 16.599999994039536,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        },
+        {
+          "call": 2,
+          "elapsedMs": 13.599999994039536,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        },
+        {
+          "call": 3,
+          "elapsedMs": 14.200000002980232,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        },
+        {
+          "call": 4,
+          "elapsedMs": 14,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        },
+        {
+          "call": 5,
+          "elapsedMs": 14.199999988079071,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        },
+        {
+          "call": 6,
+          "elapsedMs": 13.899999991059303,
+          "size": 32,
+          "byteLength": 131072,
+          "sha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca"
+        }
+      ]
+    }
+  },
+  "timingFields": [
+    "traceMeanMs",
+    "reconstructionMeanMs",
+    "combinedMeanMs",
+    "combinedP95Ms"
+  ]
+}
