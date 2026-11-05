@@ -1,0 +1,572 @@
+{
+  "suite": "m3-01-cloud-geometry",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T07:06:41.984Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "bc649cc8d291a2d37f0d2532ec5490312881859d",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M .github/workflows/m1-full-regression.yml\n M scripts/core-reexport-shim-candidates.txt\n?? coordination/ci/m3-cloud-layer-smoke.mjs\n?? coordination/ci/m3-cloud-layer.test.mjs\n?? coordination/plans/\n?? packages/engine/Source/Scene/WebGPUCloudLayer.js\n?? packages/engine/Source/Scene/WebGPUCloudLayerShader.js",
+  "bundleSha256": "c842948b23047a9de1fe65ea07828235eb914c61c0cc1e102b97d22f51a2f0e8",
+  "browserErrors": [],
+  "checks": [
+    "orbit: CPU/GPU entry and exit, actual mesh depth, rendered cloud shell"
+  ],
+  "scenes": [
+    {
+      "name": "orbit-terrain",
+      "settled": {
+        "frames": 10,
+        "elapsedMs": 153.3999999910593,
+        "statistics": {
+          "frame": 11,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 2,
+          "loadedTiles": 2,
+          "terrain": {
+            "requests": 2,
+            "deferred": 0,
+            "meshes": 2,
+            "fills": 0,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 5,
+            "buffersDestroyed": 0,
+            "bufferBytes": 22712,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 11,
+            "bloomPasses": 33,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 12,
+        "selectedTiles": 2,
+        "levels": [
+          0,
+          0
+        ],
+        "cacheTiles": 2,
+        "loadedTiles": 2,
+        "terrain": {
+          "requests": 2,
+          "deferred": 0,
+          "meshes": 2,
+          "fills": 0,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 5,
+          "buffersDestroyed": 0,
+          "bufferBytes": 22712,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 12,
+          "bloomPasses": 36,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        17,
+        49,
+        88,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 208092,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbit-cloud",
+      "view": {
+        "name": "orbit",
+        "height": 35786000,
+        "pitch": -90
+      },
+      "rows": [
+        {
+          "actual": [
+            35780188,
+            35784192,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 35780192.8619692,
+              "stop": 35784193.004870154
+            }
+          ],
+          "direction": [
+            -0.9999991655349731,
+            -0.000902121071703732,
+            -0.0009020952857099473
+          ],
+          "sceneDistance": 35824132,
+          "depth": 2.5914166368323777e-9,
+          "nativePickDistance": 35824133.8781297,
+          "measuredDepth": true
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9365209341049194,
+            -0.0008448559674434364,
+            0.35061055421829224
+          ],
+          "sceneDistance": -1,
+          "depth": 0,
+          "nativePickDistance": null,
+          "measuredDepth": true
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9359652996063232,
+            -0.0008443547412753105,
+            -0.3520912528038025
+          ],
+          "sceneDistance": -1,
+          "depth": 0,
+          "nativePickDistance": null,
+          "measuredDepth": true
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9782586097717285,
+            -0.20738671720027924,
+            -0.00088248320389539
+          ],
+          "sceneDistance": -1,
+          "depth": 0,
+          "nativePickDistance": null,
+          "measuredDepth": true
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9786153435707092,
+            0.205696702003479,
+            -0.0008828050340525806
+          ],
+          "sceneDistance": -1,
+          "depth": 0,
+          "nativePickDistance": null,
+          "measuredDepth": true
+        }
+      ],
+      "diagnostic": {
+        "size": [
+          640,
+          360
+        ],
+        "cloudPixels": 22568,
+        "terrainPixels": 22308,
+        "maximumTerrainLevel": 0
+      }
+    },
+    {
+      "name": "high-terrain",
+      "settled": {
+        "frames": 21,
+        "elapsedMs": 340.1000000089407,
+        "statistics": {
+          "frame": 36,
+          "selectedTiles": 14,
+          "levels": [
+            8,
+            8,
+            8,
+            7,
+            7,
+            6,
+            6,
+            8,
+            8,
+            8,
+            7,
+            7,
+            6,
+            6
+          ],
+          "cacheTiles": 62,
+          "loadedTiles": 62,
+          "terrain": {
+            "requests": 62,
+            "deferred": 0,
+            "meshes": 62,
+            "fills": 21,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 169,
+            "buffersDestroyed": 44,
+            "bufferBytes": 692296,
+            "drawCalls": 14,
+            "triangles": 7980,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 36,
+            "bloomPasses": 108,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 37,
+        "selectedTiles": 14,
+        "levels": [
+          8,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6,
+          8,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6
+        ],
+        "cacheTiles": 62,
+        "loadedTiles": 62,
+        "terrain": {
+          "requests": 62,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 21,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 169,
+          "buffersDestroyed": 44,
+          "bufferBytes": 692296,
+          "drawCalls": 14,
+          "triangles": 7980,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 37,
+          "bloomPasses": 111,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        17,
+        49,
+        88,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 107620,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "fixture": {
+    "viewport": [
+      640,
+      360
+    ],
+    "maximumTerrainLevel": 8,
+    "provider": "native EllipsoidTerrainProvider",
+    "baseHeight": 2000,
+    "topHeight": 6000,
+    "diagnostic": "cyan shell path length over native terrain; no cloud density or scattering"
+  },
+  "probeRows": {
+    "view": "high",
+    "rows": [
+      {
+        "actual": [
+          149136.78125,
+          200208.765625,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 149136.7883632087,
+            "stop": 200208.76187892276
+          }
+        ],
+        "direction": [
+          -0.10542555153369904,
+          0.9944267868995667,
+          -0.0009020952857099473
+        ],
+        "sceneDistance": 227932.84375,
+        "depth": 4.385260865547025e-7,
+        "nativePickDistance": 227942.85093650743,
+        "measuredDepth": true
+      },
+      {
+        "actual": [
+          162579.296875,
+          220604.1875,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 162579.33036499284,
+            "stop": 220604.19806016673
+          }
+        ],
+        "direction": [
+          -0.0987333208322525,
+          0.9313023090362549,
+          0.35061055421829224
+        ],
+        "sceneDistance": 252991.90625,
+        "depth": 4.2186161408608314e-7,
+        "nativePickDistance": 252994.38557046332,
+        "measuredDepth": true
+      },
+      {
+        "actual": [
+          162709.578125,
+          220806.046875,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 162709.57794522622,
+            "stop": 220806.06196626555
+          }
+        ],
+        "direction": [
+          -0.09867474436759949,
+          0.930749773979187,
+          -0.3520912528038025
+        ],
+        "sceneDistance": 253244.6875,
+        "depth": 4.2169057223873097e-7,
+        "nativePickDistance": 253244.59039535807,
+        "measuredDepth": true
+      },
+      {
+        "actual": [
+          45863.0859375,
+          59149.796875,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 45863.08961871295,
+            "stop": 59149.79454471169
+          }
+        ],
+        "direction": [
+          -0.30850648880004883,
+          0.9512218236923218,
+          -0.00088248320389539
+        ],
+        "sceneDistance": 65824.1328125,
+        "depth": 0.0000015527632513112621,
+        "nativePickDistance": 65824.77967375363,
+        "measuredDepth": true
+      },
+      {
+        "actual": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "expected": [],
+        "direction": [
+          0.10227672010660172,
+          0.9947555661201477,
+          -0.0008828049758449197
+        ],
+        "sceneDistance": -1,
+        "depth": 0,
+        "nativePickDistance": null,
+        "measuredDepth": true
+      }
+    ]
+  },
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: high: reconstructed depth agrees with native mesh: 227932.84375 vs 227942.85093650743",
+  "timedOut": false
+}

@@ -1,0 +1,1954 @@
+{
+  "suite": "m3-01-cloud-geometry",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T07:19:09.617Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "bc649cc8d291a2d37f0d2532ec5490312881859d",
+  "sourceStatus": "M .github/workflows/m0-webgl-baseline.yml\n M .github/workflows/m1-full-regression.yml\n M package.json\n M scripts/core-reexport-shim-candidates.txt\n M server.js\n?? coordination/ci/m3-cloud-layer-smoke.mjs\n?? coordination/ci/m3-cloud-layer.test.mjs\n?? coordination/plans/\n?? packages/engine/Source/Scene/WebGPUCloudLayer.js\n?? packages/engine/Source/Scene/WebGPUCloudLayerShader.js",
+  "bundleSha256": "3e47a7fbce11ae87974b8ba4abf6cad91196f671fa1b628dba9d138f7abbf756",
+  "browserErrors": [],
+  "checks": [
+    "orbit: CPU/GPU entry and exit, actual mesh depth, rendered cloud shell",
+    "high: CPU/GPU entry and exit, actual mesh depth, rendered cloud shell",
+    "inside: CPU/GPU entry and exit, actual mesh depth, rendered cloud shell",
+    "near: CPU/GPU entry and exit, actual mesh depth, rendered cloud shell",
+    "controlled orbital/high/near nadir views retain tight native mesh pick/depth comparisons",
+    "orbital near-tangent hits and misses, hollow-interior two segments and Earth clipping"
+  ],
+  "scenes": [
+    {
+      "name": "orbit-terrain",
+      "settled": {
+        "frames": 10,
+        "elapsedMs": 148.79999999701977,
+        "statistics": {
+          "frame": 11,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 2,
+          "loadedTiles": 2,
+          "terrain": {
+            "requests": 2,
+            "deferred": 0,
+            "meshes": 2,
+            "fills": 0,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 5,
+            "buffersDestroyed": 0,
+            "bufferBytes": 22712,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 11,
+            "bloomPasses": 33,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 12,
+        "selectedTiles": 2,
+        "levels": [
+          0,
+          0
+        ],
+        "cacheTiles": 2,
+        "loadedTiles": 2,
+        "terrain": {
+          "requests": 2,
+          "deferred": 0,
+          "meshes": 2,
+          "fills": 0,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 5,
+          "buffersDestroyed": 0,
+          "bufferBytes": 22712,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 12,
+          "bloomPasses": 36,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        17,
+        49,
+        88,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 208092,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "orbit-cloud",
+      "view": {
+        "name": "orbit",
+        "height": 35786000,
+        "pitch": -90
+      },
+      "rows": [
+        {
+          "actual": [
+            35780192,
+            35784192,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 35780192.8619692,
+              "stop": 35784193.004870154
+            }
+          ],
+          "direction": [
+            -0.9999991655349731,
+            -0.000902121071703732,
+            -0.0009020952857099473
+          ],
+          "sceneDistance": 35824132,
+          "cpuSceneDistance": 35824133.19427074,
+          "depth": 2.5914166368323777e-9,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 35824133.8781297,
+          "nativePickDifference": -1.8781296983361244,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9365209341049194,
+            -0.0008448559674434364,
+            0.35061055421829224
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9359652996063232,
+            -0.0008443547412753105,
+            -0.3520912528038025
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9782586097717285,
+            -0.20738671720027924,
+            -0.00088248320389539
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9786153435707092,
+            0.205696702003479,
+            -0.0008828050340525806
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        }
+      ],
+      "diagnostic": {
+        "size": [
+          640,
+          360
+        ],
+        "cloudPixels": 22568,
+        "terrainPixels": 22308,
+        "maximumTerrainLevel": 0
+      }
+    },
+    {
+      "name": "high-terrain",
+      "settled": {
+        "frames": 21,
+        "elapsedMs": 340.29999999701977,
+        "statistics": {
+          "frame": 36,
+          "selectedTiles": 14,
+          "levels": [
+            8,
+            8,
+            8,
+            7,
+            7,
+            6,
+            6,
+            8,
+            8,
+            8,
+            7,
+            7,
+            6,
+            6
+          ],
+          "cacheTiles": 62,
+          "loadedTiles": 62,
+          "terrain": {
+            "requests": 62,
+            "deferred": 0,
+            "meshes": 62,
+            "fills": 21,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 169,
+            "buffersDestroyed": 44,
+            "bufferBytes": 692296,
+            "drawCalls": 14,
+            "triangles": 7980,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 36,
+            "bloomPasses": 108,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 37,
+        "selectedTiles": 14,
+        "levels": [
+          8,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6,
+          8,
+          8,
+          8,
+          7,
+          7,
+          6,
+          6
+        ],
+        "cacheTiles": 62,
+        "loadedTiles": 62,
+        "terrain": {
+          "requests": 62,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 21,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 169,
+          "buffersDestroyed": 44,
+          "bufferBytes": 692296,
+          "drawCalls": 14,
+          "triangles": 7980,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 37,
+          "bloomPasses": 111,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        17,
+        49,
+        88,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 107620,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "high-cloud",
+      "view": {
+        "name": "high",
+        "height": 20000,
+        "pitch": -6
+      },
+      "rows": [
+        {
+          "actual": [
+            149136.78125,
+            200208.765625,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 149136.7883632087,
+              "stop": 200208.76187892276
+            }
+          ],
+          "direction": [
+            -0.10542555153369904,
+            0.9944267868995667,
+            -0.0009020952857099473
+          ],
+          "sceneDistance": 227932.84375,
+          "cpuSceneDistance": 227932.83660152945,
+          "depth": 4.385260865547025e-7,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 227942.85093650743,
+          "nativePickDifference": -10.007186507427832,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            162579.328125,
+            220604.203125,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 162579.33036499284,
+              "stop": 220604.19806016673
+            }
+          ],
+          "direction": [
+            -0.0987333208322525,
+            0.9313023090362549,
+            0.35061055421829224
+          ],
+          "sceneDistance": 252991.90625,
+          "cpuSceneDistance": 252991.91252084897,
+          "depth": 4.2186161408608314e-7,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 252994.38557046332,
+          "nativePickDifference": -2.4793204633169807,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            162709.578125,
+            220806.046875,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 162709.57794522622,
+              "stop": 220806.06196626555
+            }
+          ],
+          "direction": [
+            -0.09867474436759949,
+            0.930749773979187,
+            -0.3520912528038025
+          ],
+          "sceneDistance": 253244.6875,
+          "cpuSceneDistance": 253244.7379062689,
+          "depth": 4.2169057223873097e-7,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 253244.59039535807,
+          "nativePickDifference": 0.097104641929036,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            45863.08984375,
+            59149.79296875,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 45863.08961871295,
+              "stop": 59149.79454471169
+            }
+          ],
+          "direction": [
+            -0.30850648880004883,
+            0.9512218236923218,
+            -0.00088248320389539
+          ],
+          "sceneDistance": 65824.1328125,
+          "cpuSceneDistance": 65824.12984672311,
+          "depth": 0.0000015527632513112621,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 65824.77967375363,
+          "nativePickDifference": -0.6468612536264118,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            0.10227672010660172,
+            0.9947555661201477,
+            -0.0008828049758449197
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        }
+      ],
+      "diagnostic": {
+        "size": [
+          640,
+          360
+        ],
+        "cloudPixels": 127596,
+        "terrainPixels": 122780,
+        "maximumTerrainLevel": 8
+      }
+    },
+    {
+      "name": "inside-terrain",
+      "settled": {
+        "frames": 4,
+        "elapsedMs": 51.599999994039536,
+        "statistics": {
+          "frame": 44,
+          "selectedTiles": 10,
+          "levels": [
+            8,
+            8,
+            8,
+            7,
+            7,
+            8,
+            8,
+            8,
+            7,
+            7
+          ],
+          "cacheTiles": 62,
+          "loadedTiles": 62,
+          "terrain": {
+            "requests": 62,
+            "deferred": 0,
+            "meshes": 62,
+            "fills": 21,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 169,
+            "buffersDestroyed": 44,
+            "bufferBytes": 692296,
+            "drawCalls": 10,
+            "triangles": 5700,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 44,
+            "bloomPasses": 132,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 45,
+        "selectedTiles": 10,
+        "levels": [
+          8,
+          8,
+          8,
+          7,
+          7,
+          8,
+          8,
+          8,
+          7,
+          7
+        ],
+        "cacheTiles": 62,
+        "loadedTiles": 62,
+        "terrain": {
+          "requests": 62,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 21,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 169,
+          "buffersDestroyed": 44,
+          "bufferBytes": 692296,
+          "drawCalls": 10,
+          "triangles": 5700,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 45,
+          "bloomPasses": 135,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 128480,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "inside-cloud",
+      "view": {
+        "name": "inside",
+        "height": 4000,
+        "pitch": 0
+      },
+      "rows": [
+        {
+          "actual": [
+            0,
+            165650.234375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 0,
+              "stop": 165650.22507781445
+            }
+          ],
+          "direction": [
+            -0.000902121071703732,
+            0.9999991655349731,
+            -0.0009020952857099473
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            0,
+            165201.34375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 0,
+              "stop": 165201.3502134659
+            }
+          ],
+          "direction": [
+            -0.0008448559674434364,
+            0.9365209341049194,
+            0.35061055421829224
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            0,
+            165197.4375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 0,
+              "stop": 165197.44838864455
+            }
+          ],
+          "direction": [
+            -0.0008443547412753105,
+            0.9359652996063232,
+            -0.3520912528038025
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            0,
+            9677.6884765625,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 0,
+              "stop": 9677.688489192795
+            }
+          ],
+          "direction": [
+            -0.20738671720027924,
+            0.9782586097717285,
+            -0.00088248320389539
+          ],
+          "sceneDistance": 19426.564453125,
+          "cpuSceneDistance": 19426.564771706297,
+          "depth": 0.000005261793376121204,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 19426.55688801657,
+          "nativePickDifference": 0.007565108429844258,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            0,
+            9688.8232421875,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 0,
+              "stop": 9688.822822258488
+            }
+          ],
+          "direction": [
+            0.205696702003479,
+            0.9786153435707092,
+            -0.0008828050340525806
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        }
+      ],
+      "diagnostic": {
+        "size": [
+          640,
+          360
+        ],
+        "cloudPixels": 230400,
+        "terrainPixels": 101920,
+        "maximumTerrainLevel": 8
+      }
+    },
+    {
+      "name": "near-terrain",
+      "settled": {
+        "frames": 4,
+        "elapsedMs": 52.5,
+        "statistics": {
+          "frame": 52,
+          "selectedTiles": 2,
+          "levels": [
+            8,
+            8
+          ],
+          "cacheTiles": 62,
+          "loadedTiles": 62,
+          "terrain": {
+            "requests": 62,
+            "deferred": 0,
+            "meshes": 62,
+            "fills": 21,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 169,
+            "buffersDestroyed": 44,
+            "bufferBytes": 692296,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 52,
+            "bloomPasses": 156,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "statistics": {
+        "frame": 53,
+        "selectedTiles": 2,
+        "levels": [
+          8,
+          8
+        ],
+        "cacheTiles": 62,
+        "loadedTiles": 62,
+        "terrain": {
+          "requests": 62,
+          "deferred": 0,
+          "meshes": 62,
+          "fills": 21,
+          "upsampled": 0,
+          "failed": 0
+        },
+        "imagery": {
+          "requests": 0,
+          "deferred": 0,
+          "failed": 0,
+          "discarded": 0,
+          "imagesClosed": 0,
+          "pendingRequests": 0,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "activeTextures": 0
+        },
+        "resources": {
+          "buffersCreated": 169,
+          "buffersDestroyed": 44,
+          "bufferBytes": 692296,
+          "drawCalls": 2,
+          "triangles": 1140,
+          "texturesCreated": 0,
+          "texturesDestroyed": 0,
+          "textureBytes": 0,
+          "imageryDrawCalls": 0
+        },
+        "atmosphere": {
+          "frames": 0,
+          "sunFrames": 0,
+          "moonFrames": 0,
+          "starFrames": 0,
+          "lutBuilds": 0,
+          "buffersCreated": 3,
+          "buffersDestroyed": 0,
+          "texturesCreated": 12,
+          "texturesDestroyed": 0,
+          "solarAssetBytes": 3145728,
+          "solarAssetsLoaded": true,
+          "bloomFrames": 53,
+          "bloomPasses": 159,
+          "bloomTextureBytes": 2073600,
+          "bloomWidth": 160,
+          "bloomHeight": 90,
+          "lensFlareTextureBytes": 0,
+          "lensFlarePasses": 0
+        }
+      },
+      "center": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "distinctSampledColors": 2,
+      "backgroundPixels": 128000,
+      "contexts": [
+        "webgpu",
+        "2d"
+      ],
+      "errors": []
+    },
+    {
+      "name": "near-cloud",
+      "view": {
+        "name": "near",
+        "height": 2,
+        "pitch": 2
+      },
+      "rows": [
+        {
+          "actual": [
+            52437.3203125,
+            134680.734375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 52437.3209964745,
+              "stop": 134680.73870785008
+            }
+          ],
+          "direction": [
+            0.03399789333343506,
+            0.9994214773178101,
+            -0.0009020952857099473
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            55241.828125,
+            140101.890625,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 55241.82366917228,
+              "stop": 140101.88043454193
+            }
+          ],
+          "direction": [
+            0.0318397656083107,
+            0.9359799027442932,
+            0.35061055421829224
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            55267.55859375,
+            140150.859375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 55267.55801803678,
+              "stop": 140150.8720147222
+            }
+          ],
+          "direction": [
+            0.0318208746612072,
+            0.9354246258735657,
+            -0.3520912528038025
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.1731196492910385,
+            0.9849003553390503,
+            -0.0008824831456877291
+          ],
+          "sceneDistance": 11.579816818237305,
+          "cpuSceneDistance": 11.579817013355981,
+          "depth": 0.008827639743685722,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 12.869164301856964,
+          "nativePickDifference": -1.2893474836196592,
+          "measuredDepth": true,
+          "requireNativePick": false
+        },
+        {
+          "actual": [
+            8313.2705078125,
+            24830.5234375,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 8313.269559196984,
+              "stop": 24830.52186823677
+            }
+          ],
+          "direction": [
+            0.23972457647323608,
+            0.9708404541015625,
+            -0.0008828050340525806
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": true,
+          "requireNativePick": false
+        }
+      ],
+      "diagnostic": {
+        "size": [
+          640,
+          360
+        ],
+        "cloudPixels": 128000,
+        "terrainPixels": 102400,
+        "maximumTerrainLevel": 8
+      }
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "fixture": {
+    "viewport": [
+      640,
+      360
+    ],
+    "maximumTerrainLevel": 8,
+    "provider": "native EllipsoidTerrainProvider",
+    "baseHeight": 2000,
+    "topHeight": 6000,
+    "diagnostic": "cyan shell path length over native terrain; no cloud density or scattering"
+  },
+  "depthReference": "All measured-depth rows compare GPU reconstruction with CPU WebGPUDepth and clip cloud exits against actual stored depth. Native unsnapped CPU mesh picks and their differences are retained for every surface row; strict pick agreement is additionally required in controlled nadir views. Shallow hardware-rasterized depth and native double mesh picks are separate observations.",
+  "probeRows": {
+    "view": "near",
+    "rows": [
+      {
+        "actual": [
+          52437.3203125,
+          134680.734375,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 52437.3209964745,
+            "stop": 134680.73870785008
+          }
+        ],
+        "direction": [
+          0.03399789333343506,
+          0.9994214773178101,
+          -0.0009020952857099473
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": true,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          55241.828125,
+          140101.890625,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 55241.82366917228,
+            "stop": 140101.88043454193
+          }
+        ],
+        "direction": [
+          0.0318397656083107,
+          0.9359799027442932,
+          0.35061055421829224
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": true,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          55267.55859375,
+          140150.859375,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 55267.55801803678,
+            "stop": 140150.8720147222
+          }
+        ],
+        "direction": [
+          0.0318208746612072,
+          0.9354246258735657,
+          -0.3520912528038025
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": true,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "expected": [],
+        "direction": [
+          -0.1731196492910385,
+          0.9849003553390503,
+          -0.0008824831456877291
+        ],
+        "sceneDistance": 11.579816818237305,
+        "cpuSceneDistance": 11.579817013355981,
+        "depth": 0.008827639743685722,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": 12.869164301856964,
+        "nativePickDifference": -1.2893474836196592,
+        "measuredDepth": true,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          8313.2705078125,
+          24830.5234375,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 8313.269559196984,
+            "stop": 24830.52186823677
+          }
+        ],
+        "direction": [
+          0.23972457647323608,
+          0.9708404541015625,
+          -0.0008828050340525806
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": true,
+        "requireNativePick": false
+      }
+    ]
+  },
+  "diagnostic": {
+    "view": "near",
+    "size": [
+      640,
+      360
+    ],
+    "cloudPixels": 128000,
+    "terrainPixels": 102400,
+    "maximumTerrainLevel": 8
+  },
+  "nadirDepth": [
+    {
+      "height": 35786000,
+      "settled": {
+        "frames": 4,
+        "elapsedMs": 56.30000001192093,
+        "statistics": {
+          "frame": 60,
+          "selectedTiles": 2,
+          "levels": [
+            0,
+            0
+          ],
+          "cacheTiles": 62,
+          "loadedTiles": 62,
+          "terrain": {
+            "requests": 62,
+            "deferred": 0,
+            "meshes": 62,
+            "fills": 21,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 169,
+            "buffersDestroyed": 44,
+            "bufferBytes": 692296,
+            "drawCalls": 2,
+            "triangles": 1140,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 60,
+            "bloomPasses": 180,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "rows": [
+        {
+          "actual": [
+            35780192,
+            35784192,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 35780192.862000614,
+              "stop": 35784193.0049016
+            }
+          ],
+          "direction": [
+            -0.9999991655349731,
+            0.0009020952857099473,
+            -0.000902121071703732
+          ],
+          "sceneDistance": 35824132,
+          "cpuSceneDistance": 35824133.19427074,
+          "depth": 2.5914166368323777e-9,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 35824133.78102932,
+          "nativePickDifference": -1.7810293212532997,
+          "measuredDepth": true,
+          "requireNativePick": true
+        }
+      ]
+    },
+    {
+      "height": 20000,
+      "settled": {
+        "frames": 21,
+        "elapsedMs": 336.5,
+        "statistics": {
+          "frame": 83,
+          "selectedTiles": 4,
+          "levels": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "cacheTiles": 122,
+          "loadedTiles": 122,
+          "terrain": {
+            "requests": 122,
+            "deferred": 0,
+            "meshes": 122,
+            "fills": 42,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 331,
+            "buffersDestroyed": 86,
+            "bufferBytes": 1358296,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 83,
+            "bloomPasses": 249,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "rows": [
+        {
+          "actual": [
+            14000.01171875,
+            18000.015625,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 14000.011418271532,
+              "stop": 18000.01468986903
+            }
+          ],
+          "direction": [
+            -0.9999991655349731,
+            0.0009020952857099473,
+            -0.000902121071703732
+          ],
+          "sceneDistance": 20000.03125,
+          "cpuSceneDistance": 20000.029873529893,
+          "depth": 0.0000049997966016235296,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 20000.03104102889,
+          "nativePickDifference": 0.00020897110880468972,
+          "measuredDepth": true,
+          "requireNativePick": true
+        }
+      ]
+    },
+    {
+      "height": 2,
+      "settled": {
+        "frames": 4,
+        "elapsedMs": 56.6000000089407,
+        "statistics": {
+          "frame": 89,
+          "selectedTiles": 4,
+          "levels": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "cacheTiles": 122,
+          "loadedTiles": 122,
+          "terrain": {
+            "requests": 122,
+            "deferred": 0,
+            "meshes": 122,
+            "fills": 42,
+            "upsampled": 0,
+            "failed": 0
+          },
+          "imagery": {
+            "requests": 0,
+            "deferred": 0,
+            "failed": 0,
+            "discarded": 0,
+            "imagesClosed": 0,
+            "pendingRequests": 0,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "activeTextures": 0
+          },
+          "resources": {
+            "buffersCreated": 331,
+            "buffersDestroyed": 86,
+            "bufferBytes": 1358296,
+            "drawCalls": 4,
+            "triangles": 2280,
+            "texturesCreated": 0,
+            "texturesDestroyed": 0,
+            "textureBytes": 0,
+            "imageryDrawCalls": 0
+          },
+          "atmosphere": {
+            "frames": 0,
+            "sunFrames": 0,
+            "moonFrames": 0,
+            "starFrames": 0,
+            "lutBuilds": 0,
+            "buffersCreated": 3,
+            "buffersDestroyed": 0,
+            "texturesCreated": 12,
+            "texturesDestroyed": 0,
+            "solarAssetBytes": 3145728,
+            "solarAssetsLoaded": true,
+            "bloomFrames": 89,
+            "bloomPasses": 267,
+            "bloomTextureBytes": 2073600,
+            "bloomWidth": 160,
+            "bloomHeight": 90,
+            "lensFlareTextureBytes": 0,
+            "lensFlarePasses": 0
+          }
+        }
+      },
+      "rows": [
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            -0.9999991655349731,
+            0.0009020952857099473,
+            -0.000902121071703732
+          ],
+          "sceneDistance": 2.000002861022949,
+          "cpuSceneDistance": 2.000002782292566,
+          "depth": 0.04999997094273567,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": 2.008416937641795,
+          "nativePickDifference": -0.008414076618845634,
+          "measuredDepth": true,
+          "requireNativePick": true
+        }
+      ]
+    }
+  ],
+  "grazing": {
+    "impacts": [
+      6378037,
+      6379137,
+      6382137,
+      6384127,
+      6384136,
+      6384138,
+      6384147
+    ],
+    "rows": [
+      {
+        "actual": [
+          41399940,
+          41515272,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 41399940.55051688,
+            "stop": 41515274.15840119
+          }
+        ],
+        "direction": [
+          -0.9884929656982422,
+          0.15126687288284302,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          41426172,
+          41565844,
+          41791724,
+          41931396
+        ],
+        "expected": [
+          {
+            "start": 41426171.94373893,
+            "stop": 41565842.31029713
+          },
+          {
+            "start": 41791726.19306371,
+            "stop": 41931396.55962192
+          }
+        ],
+        "direction": [
+          -0.9884889721870422,
+          0.15129296481609344,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          41518532,
+          41838120,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 41518530.03573129,
+            "stop": 41838120.04483467
+          }
+        ],
+        "direction": [
+          -0.9884780645370483,
+          0.15136410295963287,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          41666820,
+          41689220,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 41666821.03727405,
+            "stop": 41689219.39511712
+          }
+        ],
+        "direction": [
+          -0.9884708523750305,
+          0.15141130983829498,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          41674720,
+          41681320,
+          -1,
+          -1
+        ],
+        "expected": [
+          {
+            "start": 41674719.972168565,
+            "stop": 41681317.71203384
+          }
+        ],
+        "direction": [
+          -0.9884707927703857,
+          0.1514115184545517,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "expected": [],
+        "direction": [
+          -0.9884707927703857,
+          0.15141156315803528,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      },
+      {
+        "actual": [
+          -1,
+          -1,
+          -1,
+          -1
+        ],
+        "expected": [],
+        "direction": [
+          -0.9884707927703857,
+          0.151411771774292,
+          0
+        ],
+        "sceneDistance": -1,
+        "cpuSceneDistance": -1,
+        "depth": 0,
+        "productLow": 1.4210854715202004e-14,
+        "nativePickDistance": null,
+        "nativePickDifference": null,
+        "measuredDepth": false,
+        "requireNativePick": false
+      }
+    ]
+  },
+  "exteriorTangent": [
+    {
+      "offset": -0.01,
+      "rows": [
+        {
+          "actual": [
+            999642.6875,
+            1000357.3125,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 999642.6727938694,
+              "stop": 1000357.3272061307
+            }
+          ],
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": false,
+          "requireNativePick": false
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "rows": [
+        {
+          "actual": [
+            999999.875,
+            1000000.125,
+            -1,
+            -1
+          ],
+          "expected": [
+            {
+              "start": 1000000.0000000001,
+              "stop": 1000000.0000000001
+            }
+          ],
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": false,
+          "requireNativePick": false
+        }
+      ]
+    },
+    {
+      "offset": 0.01,
+      "rows": [
+        {
+          "actual": [
+            -1,
+            -1,
+            -1,
+            -1
+          ],
+          "expected": [],
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "sceneDistance": -1,
+          "cpuSceneDistance": -1,
+          "depth": 0,
+          "productLow": 1.4210854715202004e-14,
+          "nativePickDistance": null,
+          "nativePickDifference": null,
+          "measuredDepth": false,
+          "requireNativePick": false
+        }
+      ]
+    }
+  ],
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: exterior tangent contact has zero chord\n+ actual - expected\n\n+ 999999.875\n- 1000000.125\n",
+  "timedOut": false
+}

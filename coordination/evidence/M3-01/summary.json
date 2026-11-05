@@ -1,0 +1,54 @@
+{
+  "source": "07e00af375efa01560df5e3687bbea5aaf2365f5",
+  "sourceStatus": "",
+  "geometryStatus": "PASS",
+  "demoStatus": "PASS",
+  "bundleSha256": "47068cdffc7d51c12543ba10ef50d5679ac4d545f95a054219acb9751c57e8c8",
+  "matchingDemoBundle": true,
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "uniqueProbeRows": 63,
+  "maxCpuGpuEndpointErrorMeters": 2.287966161966324,
+  "maxCpuGpuDepthDecodeErrorMeters": 1.1942707374691963,
+  "maxObservedNativePickDifferenceMeters": 10.007186507427832,
+  "raisedDepth": 6000.0068359375,
+  "raisedCloudExit": 6000.0068359375,
+  "unclippedRaisedExit": 8000.006518592363,
+  "previewRestoredChangedPixels": [
+    {
+      "view": "orbit",
+      "changedPixels": 0
+    },
+    {
+      "view": "high",
+      "changedPixels": 0
+    },
+    {
+      "view": "near",
+      "changedPixels": 0
+    }
+  ],
+  "demoCleanup": {
+    "viewerDestroyed": true,
+    "cloudResources": [
+      {
+        "kind": "Buffer",
+        "label": "M3 cloud preview planet",
+        "destroyed": true
+      },
+      {
+        "kind": "Buffer",
+        "label": "M3 cloud preview shell",
+        "destroyed": true
+      }
+    ],
+    "created": 249,
+    "destroyed": 249
+  }
+}

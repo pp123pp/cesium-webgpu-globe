@@ -1,0 +1,178 @@
+TAP version 13
+# Subtest: a draft documentation update does not inherit an older Viewer change
+ok 1 - a draft documentation update does not inherit an older Viewer change
+  ---
+  duration_ms: 188.2551
+  type: 'test'
+  ...
+# Subtest: opened checks the full PR difference conservatively
+ok 2 - opened checks the full PR difference conservatively
+  ---
+  duration_ms: 167.7973
+  type: 'test'
+  ...
+# Subtest: reopened checks the full PR difference conservatively
+ok 3 - reopened checks the full PR difference conservatively
+  ---
+  duration_ms: 163.1902
+  type: 'test'
+  ...
+# Subtest: a newly changed shared Viewer forces Full on a draft
+ok 4 - a newly changed shared Viewer forces Full on a draft
+  ---
+  duration_ms: 155.578
+  type: 'test'
+  ...
+# Subtest: WebGPU-only production updates remain eligible for Fast on a draft
+ok 5 - WebGPU-only production updates remain eligible for Fast on a draft
+  ---
+  duration_ms: 563.6575
+  type: 'test'
+  ...
+# Subtest: a change to packages/core/Source/Cartesian3.js forces the complete gate
+ok 6 - a change to packages/core/Source/Cartesian3.js forces the complete gate
+  ---
+  duration_ms: 647.3116
+  type: 'test'
+  ...
+# Subtest: a change to packages/engine/Source/Renderer/Context.js forces the complete gate
+ok 7 - a change to packages/engine/Source/Renderer/Context.js forces the complete gate
+  ---
+  duration_ms: 638.3759
+  type: 'test'
+  ...
+# Subtest: a change to packages/engine/Source/Scene/Globe.js forces the complete gate
+ok 8 - a change to packages/engine/Source/Scene/Globe.js forces the complete gate
+  ---
+  duration_ms: 712.1316
+  type: 'test'
+  ...
+# Subtest: a change to .github/workflows/m0-webgl-baseline.yml forces the complete gate
+ok 9 - a change to .github/workflows/m0-webgl-baseline.yml forces the complete gate
+  ---
+  duration_ms: 772.7684
+  type: 'test'
+  ...
+# Subtest: a change to coordination/ci/m1-terrain-smoke.mjs forces the complete gate
+ok 10 - a change to coordination/ci/m1-terrain-smoke.mjs forces the complete gate
+  ---
+  duration_ms: 731.61
+  type: 'test'
+  ...
+# Subtest: a change to package-lock.json forces the complete gate
+ok 11 - a change to package-lock.json forces the complete gate
+  ---
+  duration_ms: 709.2943
+  type: 'test'
+  ...
+# Subtest: a change to tsconfig.json forces the complete gate
+ok 12 - a change to tsconfig.json forces the complete gate
+  ---
+  duration_ms: 667.0942
+  type: 'test'
+  ...
+# Subtest: a change to eslint.config.js forces the complete gate
+ok 13 - a change to eslint.config.js forces the complete gate
+  ---
+  duration_ms: 683.6864
+  type: 'test'
+  ...
+# Subtest: renaming a shared file into a WebGPU path cannot hide the deletion
+ok 14 - renaming a shared file into a WebGPU path cannot hide the deletion
+  ---
+  duration_ms: 764.2691
+  type: 'test'
+  ...
+# Subtest: ready_for_review always runs Full on the exact PR head
+ok 15 - ready_for_review always runs Full on the exact PR head
+  ---
+  duration_ms: 55.994
+  type: 'test'
+  ...
+# Subtest: a ready PR's later documentation commit still runs Full
+ok 16 - a ready PR's later documentation commit still runs Full
+  ---
+  duration_ms: 60.6825
+  type: 'test'
+  ...
+# Subtest: ci:full is an immediate manual trigger without changing draft state
+ok 17 - ci:full is an immediate manual trigger without changing draft state
+  ---
+  duration_ms: 57.9968
+  type: 'test'
+  ...
+# Subtest: a retained ci:full label requests Full on later draft updates
+ok 18 - a retained ci:full label requests Full on later draft updates
+  ---
+  duration_ms: 244.4077
+  type: 'test'
+  ...
+# Subtest: an unrelated label does not restart Full even on a ready PR
+ok 19 - an unrelated label does not restart Full even on a ready PR
+  ---
+  duration_ms: 57.8382
+  type: 'test'
+  ...
+# Subtest: an unavailable synchronize comparison fails closed (undefined)
+ok 20 - an unavailable synchronize comparison fails closed (undefined)
+  ---
+  duration_ms: 57.1519
+  type: 'test'
+  ...
+# Subtest: an unavailable synchronize comparison fails closed (0000000000000000000000000000000000000000)
+ok 21 - an unavailable synchronize comparison fails closed (0000000000000000000000000000000000000000)
+  ---
+  duration_ms: 58.3282
+  type: 'test'
+  ...
+# Subtest: an unavailable synchronize comparison fails closed (ffffffffffffffffffffffffffffffffffffffff)
+ok 22 - an unavailable synchronize comparison fails closed (ffffffffffffffffffffffffffffffffffffffff)
+  ---
+  duration_ms: 153.5302
+  type: 'test'
+  ...
+# Subtest: an unavailable synchronize comparison fails closed (--help)
+ok 23 - an unavailable synchronize comparison fails closed (--help)
+  ---
+  duration_ms: 56.6258
+  type: 'test'
+  ...
+# Subtest: manual dispatch selects Full when GitHub can deliver that event
+ok 24 - manual dispatch selects Full when GitHub can deliver that event
+  ---
+  duration_ms: 59.9008
+  type: 'test'
+  ...
+# Subtest: Fast and Full avoid push/PR duplication and cover final acceptance events
+ok 25 - Fast and Full avoid push/PR duplication and cover final acceptance events
+  ---
+  duration_ms: 4.0538
+  type: 'test'
+  ...
+# Subtest: new PR revisions cancel the same tier without cancelling the other tier
+ok 26 - new PR revisions cancel the same tier without cancelling the other tier
+  ---
+  duration_ms: 4.9161
+  type: 'test'
+  ...
+# Subtest: Fast and Full exclude rendering gates and retain their non-rendering checks
+ok 27 - Fast and Full exclude rendering gates and retain their non-rendering checks
+  ---
+  duration_ms: 2.7732
+  type: 'test'
+  ...
+# Subtest: each tier builds the candidate once and retains lint and generated API checks
+ok 28 - each tier builds the candidate once and retains lint and generated API checks
+  ---
+  duration_ms: 2.1599
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10116.9141

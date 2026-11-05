@@ -1,0 +1,10 @@
+Startup: node server.js --port 8067 --production --no-sandcastle
+Observed: Cesium development server running locally at http://localhost:8067/
+HTTP: GET /Apps/WebGPUCloudGeometry.js => 200
+Listeners during startup: 8067 PID19648; pre-existing 8081 PID30176 unchanged.
+Shutdown: Ctrl-C emitted "Cesium development servers shutting down." and "Cesium development server stopped."
+Post-shutdown: no 8067 listening socket. PTY wrapper reported exit1 after Ctrl-C; server close callback was observed.
+Root npm run tsc: PASS, gulp tsc finished after18s.
+Official tag lookup: git ls-remote https://github.com/CesiumGS/cesium.git refs/tags/1.146*
+Tag: b90bf5fa30c8f573072181165c9462d987e26580
+Peeled: b8d3a36fe98a3e432eb89253c95d5f20e605e0f1

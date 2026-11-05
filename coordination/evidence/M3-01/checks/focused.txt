@@ -1,0 +1,208 @@
+TAP version 13
+# Subtest: public WebGPU globe demo exposes Moon and star controls
+ok 1 - public WebGPU globe demo exposes Moon and star controls
+  ---
+  duration_ms: 1.4914
+  type: 'test'
+  ...
+# Subtest: Moon and star controls update the production WebGPU scene settings
+ok 2 - Moon and star controls update the production WebGPU scene settings
+  ---
+  duration_ms: 0.238
+  type: 'test'
+  ...
+# Subtest: Look at Moon uses the current ephemeris position and camera-relative direction
+ok 3 - Look at Moon uses the current ephemeris position and camera-relative direction
+  ---
+  duration_ms: 0.1918
+  type: 'test'
+  ...
+# Subtest: expanded control panel remains usable on short viewports
+ok 4 - expanded control panel remains usable on short viewports
+  ---
+  duration_ms: 0.1296
+  type: 'test'
+  ...
+# Subtest: shared projection preserves native off-center X/Y while near=1 and far=0
+ok 5 - shared projection preserves native off-center X/Y while near=1 and far=0
+  ---
+  duration_ms: 2.5984
+  type: 'test'
+  ...
+# Subtest: depth reconstruction remains finite from ground to high orbit after float32 storage
+ok 6 - depth reconstruction remains finite from ground to high orbit after float32 storage
+  ---
+  duration_ms: 0.4076
+  type: 'test'
+  ...
+# Subtest: noncentral depth reconstructs ray meters rather than axial eye distance
+ok 7 - noncentral depth reconstructs ray meters rather than axial eye distance
+  ---
+  duration_ms: 1.0892
+  type: 'test'
+  ...
+# Subtest: invalid depths and finite-frustum violations are rejected
+ok 8 - invalid depths and finite-frustum violations are rejected
+  ---
+  duration_ms: 0.6027
+  type: 'test'
+  ...
+# Subtest: Globe depth can be read in a later GPU pass and resize releases its predecessor
+ok 9 - Globe depth can be read in a later GPU pass and resize releases its predecessor
+  ---
+  duration_ms: 1.1712
+  type: 'test'
+  ...
+# Subtest: WGS84 and the enclosing atmosphere use meters and retain polar flattening
+ok 10 - WGS84 and the enclosing atmosphere use meters and retain polar flattening
+  ---
+  duration_ms: 1.9525
+  type: 'test'
+  ...
+# Subtest: explicit atmosphere heights cannot silently become kilometers or invalid radii
+ok 11 - explicit atmosphere heights cannot silently become kilometers or invalid radii
+  ---
+  duration_ms: 0.6699
+  type: 'test'
+  ...
+# Subtest: an equatorial 2 m ray measures meters even with a nonunit direction
+ok 12 - an equatorial 2 m ray measures meters even with a nonunit direction
+  ---
+  duration_ms: 0.5082
+  type: 'test'
+  ...
+# Subtest: an equatorial 400000 m ray measures meters even with a nonunit direction
+ok 13 - an equatorial 400000 m ray measures meters even with a nonunit direction
+  ---
+  duration_ms: 0.2568
+  type: 'test'
+  ...
+# Subtest: an equatorial 35786000 m ray measures meters even with a nonunit direction
+ok 14 - an equatorial 35786000 m ray measures meters even with a nonunit direction
+  ---
+  duration_ms: 0.2176
+  type: 'test'
+  ...
+# Subtest: polar and equatorial ground inward rays return the complete diameter
+ok 15 - polar and equatorial ground inward rays return the complete diameter
+  ---
+  duration_ms: 0.2787
+  type: 'test'
+  ...
+# Subtest: surface outward and tangent contact has zero length rather than Earth occlusion
+ok 16 - surface outward and tangent contact has zero length rather than Earth occlusion
+  ---
+  duration_ms: 0.2048
+  type: 'test'
+  ...
+# Subtest: rotated geodetic ground tangents do not turn rounding into solid-Earth occlusion
+ok 17 - rotated geodetic ground tangents do not turn rounding into solid-Earth occlusion
+  ---
+  duration_ms: 0.8481
+  type: 'test'
+  ...
+# Subtest: rays one centimeter inside and outside the surface remain distinct
+ok 18 - rays one centimeter inside and outside the surface remain distinct
+  ---
+  duration_ms: 0.3563
+  type: 'test'
+  ...
+# Subtest: an exterior tangent and neighboring hit/miss rays keep sorted forward intervals
+ok 19 - an exterior tangent and neighboring hit/miss rays keep sorted forward intervals
+  ---
+  duration_ms: 0.3752
+  type: 'test'
+  ...
+# Subtest: inside-Earth intervals are finite and invalid directions fail explicitly
+ok 20 - inside-Earth intervals are finite and invalid directions fail explicitly
+  ---
+  duration_ms: 0.2799
+  type: 'test'
+  ...
+# Subtest: outer atmosphere entries and exits remain separate from WGS84 surface hits
+ok 21 - outer atmosphere entries and exits remain separate from WGS84 surface hits
+  ---
+  duration_ms: 0.1248
+  type: 'test'
+  ...
+# Subtest: visible atmosphere stops at Earth or a nearer real scene surface
+ok 22 - visible atmosphere stops at Earth or a nearer real scene surface
+  ---
+  duration_ms: 0.299
+  type: 'test'
+  ...
+# Subtest: geocentric Earth-to-Sun direction agrees with equinox day/night and Earth rotation
+ok 23 - geocentric Earth-to-Sun direction agrees with equinox day/night and Earth rotation
+  ---
+  duration_ms: 36.6555
+  type: 'test'
+  ...
+# Subtest: unavailable ICRF data uses the native pseudo-fixed fallback and preserves seasonal direction
+ok 24 - unavailable ICRF data uses the native pseudo-fixed fallback and preserves seasonal direction
+  ---
+  duration_ms: 1.5399
+  type: 'test'
+  ...
+# Subtest: WGS84 axis offsets preserve equator/poles and bound geodetic approximation
+ok 25 - WGS84 axis offsets preserve equator/poles and bound geodetic approximation
+  ---
+  duration_ms: 3.7188
+  type: 'test'
+  ...
+# Subtest: outside/inside/below shell entries and Earth clipping use meter distances
+ok 26 - outside/inside/below shell entries and Earth clipping use meter distances
+  ---
+  duration_ms: 1.1841
+  type: 'test'
+  ...
+# Subtest: hollow interior crossing returns two lobes when Earth is missed
+ok 27 - hollow interior crossing returns two lobes when Earth is missed
+  ---
+  duration_ms: 0.2345
+  type: 'test'
+  ...
+# Subtest: outer tangent is contact, near tangents separate miss and finite chord
+ok 28 - outer tangent is contact, near tangents separate miss and finite chord
+  ---
+  duration_ms: 0.2407
+  type: 'test'
+  ...
+# Subtest: shell boundary directions and terrain clip neither leak nor invent distance
+ok 29 - shell boundary directions and terrain clip neither leak nor invent distance
+  ---
+  duration_ms: 0.3098
+  type: 'test'
+  ...
+# Subtest: parameter and ray validation remains at public entry points
+ok 30 - parameter and ray validation remains at public entry points
+  ---
+  duration_ms: 1.023
+  type: 'test'
+  ...
+# Subtest: inner tangency does not split material; measured depth can stop between lobes
+ok 31 - inner tangency does not split material; measured depth can stop between lobes
+  ---
+  duration_ms: 1.3471
+  type: 'test'
+  ...
+# Subtest: split uniform packing preserves reciprocal radii and near-boundary camera c
+ok 32 - split uniform packing preserves reciprocal radii and near-boundary camera c
+  ---
+  duration_ms: 0.792
+  type: 'test'
+  ...
+# Subtest: geographic shell crossings agree with native WGS84 normal altitude
+ok 33 - geographic shell crossings agree with native WGS84 normal altitude
+  ---
+  duration_ms: 0.798
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 33
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 891.879
