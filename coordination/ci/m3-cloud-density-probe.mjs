@@ -66,6 +66,21 @@ try {
     }
   }
   const shell = [1900, 2000, 6000, 6100].map((h) => sample(20, 35, h, 1));
+  const patches = [];
+  const heights = Array.from({ length: 14 }, (_, i) => 2100 + 300 * i);
+  for (const [longitude, latitude] of [[0, 0], [46, 71], [179.96, 43], [-124, 32], [85, -60], [-50, -4]]) {
+    for (const coverage of [0.23, 0.78]) {
+      const columns = [];
+      for (let y = -8; y <= 8; ++y) {
+        for (let x = -8; x <= 8; ++x) {
+          const lon = longitude + x * 0.009 / Math.cos(latitude * Math.PI / 180);
+          const lat = latitude + y * 0.009;
+          columns.push(heights.map((h) => sample(lon, lat, h, coverage)));
+        }
+      }
+      patches.push({ longitude, latitude, coverage, columns });
+    }
+  }
 
   const { size, data } = createCloudNoise();
   const code = `${planetShader}
@@ -140,12 +155,26 @@ try {
   assert.ok(globe.every((s) => density(s.enhancement) + 1e-10 >= density(s.near)));
   const boosted = globe.filter((s) => density(s.enhancement) > density(s.near) + 0.00001).length;
   assert.ok(boosted > 0);
+  const localSections = patches.map(({ longitude, latitude, coverage, columns }) => {
+    const tops = [];
+    let gaps = 0;
+    for (const column of columns) {
+      const tau = column.reduce((sum, i) => sum + 300 * density(i), 0);
+      if (tau < 0.06) gaps++;
+      if (tau > 0.20) tops.push(heights[column.findLastIndex((i) => density(i) > 0.000019)]);
+    }
+    const summary = { longitude, latitude, coverage, columns: columns.length, gaps,
+      cloudyColumns: tops.length, lowestTop: Math.min(...tops), highestTop: Math.max(...tops) };
+    assert.ok(tops.length >= 3 && gaps >= 3 && summary.highestTop - summary.lowestTop >= 600,
+      `cloud banks, holes and varying tops: ${JSON.stringify(summary)}`);
+    return summary;
+  });
   const occupied = globe.filter((s) => density(s.near) > 0.0005).slice(0, 4);
   const result = { startedAt, finishedAt: new Date().toISOString(), browser: browser.version(), adapter: info,
     shaderSha256: createHash("sha256").update(densityShader).digest("hex"),
     noiseSha256: createHash("sha256").update(data).digest("hex"),
     shaderEvaluations: samples.length / 8, globeDirections: globe.length, coverages: [0, 0.23, 0.58, 1],
-    activeCounts, seamPairs: seams.length, maximumSeamDelta: seam, maximumWindExtinctionDeltaPerMeter: wind,
+    activeCounts, localSections, seamPairs: seams.length, maximumSeamDelta: seam, maximumWindExtinctionDeltaPerMeter: wind,
     nearEnhancementIncreasedCount: boosted, footprintMacroCoverageDelta: 0, densityOutsideShell: shell.map(density),
     sampleLocations: occupied.map((s) => ({ longitude: s.lon, latitude: s.lat, height: 3650, coverage: 0.58,
       windAngle: 0, extinctionPerMeter: density(s.near) })) };

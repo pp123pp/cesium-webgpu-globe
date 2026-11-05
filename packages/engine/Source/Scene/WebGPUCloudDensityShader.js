@@ -19,10 +19,11 @@ fn cloudRegionalWeather(n: vec3f, coverage: f32) -> vec4f {
   let front = textureSampleLevel(cloudNoise, cloudSampler,
     bent * vec3f(1.16, 0.93, 1.60) + vec3f(0.27, 0.35, 0.76), 0.0);
   let regional = 0.69 * front.r + 0.20 * warp.r + 0.11 * front.g;
-  let cover = smoothstep(0.47, 0.68, regional + (coverage - 0.50) * 0.82);
   let development = smoothstep(0.22, 0.70, 0.68 * warp.r + 0.32 * front.b);
-  let base = 2050.0 + 780.0 * (1.0 - development);
-  let top = min(5975.0, base + 700.0 + 1820.0 * development + 1410.0 * cover);
+  let moisture = smoothstep(0.26, 0.68, regional);
+  let cover = coverage * (0.34 + 0.66 * moisture);
+  let base = 2120.0 + 530.0 * (1.0 - development);
+  let top = min(5970.0, base + 1950.0 + 1400.0 * development);
   return vec4f(cover, base, top, development);
 }
 
@@ -34,37 +35,43 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
 
   let advected = cloudWindPosition(p, weather);
   let field = cloudRegionalWeather(normalize(advected), weather.x);
-  if (field.x <= 0.0 || height <= field.y || height >= field.z) { return 0.0; }
-  let h = (height - field.y) / (field.z - field.y);
-  let profile = smoothstep(0.0, 0.15, h) * (1.0 - smoothstep(0.48 + 0.25 * field.w, 1.0, h));
+  if (height <= field.y || height >= field.z) { return 0.0; }
 
-  // A pixel or ray step wider than a feature integrates its mean. Filtering
-  // each octave before thresholding avoids changing to a separate orbital field.
-  let regionWeight = 1.0 - smoothstep(6000.0, 26000.0, footprint);
-  var regionalShape = 0.47;
-  if (regionWeight > 0.0) {
-    let bank = textureSampleLevel(cloudNoise, cloudSampler,
-      advected / 118000.0 + vec3f(0.13, 0.48, 0.75), 0.0);
-    regionalShape = mix(regionalShape, bank.r, regionWeight);
+  // Sample columns on the ellipsoid so a single updraft has a level
+  // condensation base and a lifted crown that stays over its parent cloud.
+  let column = advected / scaledRadius;
+  let bank = textureSampleLevel(cloudNoise, cloudSampler, column / 83500.0, 0.0);
+  let movingP = advected + 2600.0 * (bank.rgb - vec3f(0.48));
+  let bentColumn = column + 2600.0 * (bank.rgb - vec3f(0.48));
+  let cellWeight = 1.0 - smoothstep(950.0, 3200.0, footprint);
+  let cell = textureSampleLevel(cloudNoise, cloudSampler, bentColumn / 19700.0, 0.0);
+  let updraft = mix(0.48, 0.62 * cell.g + 0.38 * cell.r, cellWeight);
+  let shoulder = 0.12 * (bank.r - 0.47) + 0.045 * weather.z * cellWeight;
+  let strength = smoothstep(0.50 - field.x * 0.19, 0.76 - field.x * 0.14, updraft + shoulder);
+  let filteredFill = (1.0 - cellWeight) * (0.13 + 0.48 * field.x);
+  let fill = max(strength, filteredFill);
+  if (fill <= 0.0) { return 0.0; }
+
+  let base = field.y + 140.0 * bank.r;
+  let normalizedHeight = (height - base) / (field.z - base);
+  let shapeWeight = 1.0 - smoothstep(260.0, 1450.0, footprint);
+  let lobes = textureSampleLevel(cloudNoise, cloudSampler, movingP / 10200.0, 0.0);
+  let crown = 0.08 + 0.88 * sqrt(fill) + (lobes.g - 0.48) * 0.30 * shapeWeight;
+  let capDepth = (crown - normalizedHeight) * (field.z - base);
+  if (height <= base || capDepth <= 0.0) { return 0.0; }
+  let lower = smoothstep(0.0, 170.0, height - base);
+  let upper = smoothstep(0.0, 540.0, capDepth);
+
+  let erosionWeight = 1.0 - smoothstep(80.0, 580.0, footprint);
+  var erosion = 0.0;
+  if (erosionWeight > 0.0) {
+    let detail = textureSampleLevel(cloudNoise, cloudSampler, movingP / 4900.0, 0.0);
+    erosion = (dot(detail.gba, vec3f(0.58, 0.29, 0.13)) - 0.20) * erosionWeight;
   }
-  let bodyWeight = 1.0 - smoothstep(650.0, 4400.0, footprint);
-  var body = 0.47;
-  if (bodyWeight > 0.0) {
-    let shape = textureSampleLevel(cloudNoise, cloudSampler, advected / 24200.0, 0.0);
-    body = mix(body, 0.63 * shape.r + 0.37 * shape.g, bodyWeight);
-  }
-  let wisps = weather.z * bodyWeight * (1.0 - field.x) * smoothstep(0.0, 0.16, field.x);
-  let threshold = mix(0.61, 0.22, field.x) - 0.12 * wisps;
-  let signal = 0.58 * regionalShape + 0.42 * body + 0.18 * (profile - 0.5);
-  let filteredWidth = mix(0.14, 0.055, regionWeight);
-  var cloud = smoothstep(threshold - filteredWidth, threshold + filteredWidth, signal);
-  let edgeWeight = 1.0 - smoothstep(65.0, 580.0, footprint);
-  if (cloud > 0.0 && edgeWeight > 0.0) {
-    let erosion = textureSampleLevel(cloudNoise, cloudSampler, advected / 7400.0, 0.0);
-    let cavities = 0.55 * erosion.g + 0.30 * erosion.b + 0.15 * erosion.a;
-    cloud *= mix(1.0, smoothstep(-0.16, 0.48, cloud - (cavities - 0.15)), edgeWeight);
-  }
-  return 0.0016 * cloud * profile * field.x * (0.64 + 0.36 * field.w);
+  let core = (0.40 + 0.60 * fill) * upper;
+  let billows = 1.0 + (lobes.r - 0.47) * 1.25 * shapeWeight;
+  let body = max(0.0, core * billows - erosion * (1.0 - core) * 0.8);
+  return 0.00112 * smoothstep(0.0, 0.15, weather.x) * (0.62 + field.x * 0.38) * fill * lower * body;
 }
 `;
 
