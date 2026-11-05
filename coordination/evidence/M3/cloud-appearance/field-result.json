@@ -1,0 +1,202 @@
+{
+  "startedAt": "2026-11-05T08:44:16.356Z",
+  "finishedAt": "2026-11-05T08:44:19.849Z",
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "shaderSha256": "a6497600e6f9b9fec1976976403f7f1f2d3f98bdd128087de235e3b29aec1c5f",
+  "noiseSha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca",
+  "shaderEvaluations": 53256,
+  "globeDirections": 512,
+  "coverages": [
+    0,
+    0.23,
+    0.58,
+    1
+  ],
+  "activeCounts": [
+    0,
+    113,
+    145,
+    200
+  ],
+  "localSections": [
+    {
+      "longitude": 0,
+      "latitude": 0,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 206,
+      "cloudyColumns": 35,
+      "lowestTop": 3300,
+      "highestTop": 4200
+    },
+    {
+      "longitude": 0,
+      "latitude": 0,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 162,
+      "cloudyColumns": 79,
+      "lowestTop": 3300,
+      "highestTop": 4200
+    },
+    {
+      "longitude": 46,
+      "latitude": 71,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 216,
+      "cloudyColumns": 29,
+      "lowestTop": 3300,
+      "highestTop": 4200
+    },
+    {
+      "longitude": 46,
+      "latitude": 71,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 184,
+      "cloudyColumns": 59,
+      "lowestTop": 3300,
+      "highestTop": 4200
+    },
+    {
+      "longitude": 179.96,
+      "latitude": 43,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 167,
+      "cloudyColumns": 75,
+      "lowestTop": 3300,
+      "highestTop": 4500
+    },
+    {
+      "longitude": 179.96,
+      "latitude": 43,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 138,
+      "cloudyColumns": 118,
+      "lowestTop": 3300,
+      "highestTop": 4500
+    },
+    {
+      "longitude": -124,
+      "latitude": 32,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 236,
+      "cloudyColumns": 22,
+      "lowestTop": 3600,
+      "highestTop": 4200
+    },
+    {
+      "longitude": -124,
+      "latitude": 32,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 197,
+      "cloudyColumns": 43,
+      "lowestTop": 3300,
+      "highestTop": 4200
+    },
+    {
+      "longitude": 85,
+      "latitude": -60,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 164,
+      "cloudyColumns": 88,
+      "lowestTop": 3000,
+      "highestTop": 4500
+    },
+    {
+      "longitude": 85,
+      "latitude": -60,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 123,
+      "cloudyColumns": 132,
+      "lowestTop": 3000,
+      "highestTop": 4800
+    },
+    {
+      "longitude": -50,
+      "latitude": -4,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 162,
+      "cloudyColumns": 99,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    },
+    {
+      "longitude": -50,
+      "latitude": -4,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 135,
+      "cloudyColumns": 120,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    }
+  ],
+  "seamPairs": 57,
+  "maximumSeamDelta": {
+    "extinctionPerMeter": 0.0000017139827832579613,
+    "coverage": 0
+  },
+  "maximumWindExtinctionDeltaPerMeter": {
+    "small": 0.000059691345086321235,
+    "large": 0.001163122826255858,
+    "fullCycle": 0.00002301561471540481
+  },
+  "nearEnhancementIncreasedCount": 145,
+  "footprintMacroCoverageDelta": 0,
+  "densityOutsideShell": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "sampleLocations": [
+    {
+      "longitude": -22.43012355000019,
+      "latitude": -74.34216489728703,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0005628643557429314
+    },
+    {
+      "longitude": 50.15528099999983,
+      "latitude": -66.91466326541112,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0008409062284044921
+    },
+    {
+      "longitude": 12.958078949999617,
+      "latitude": -50.13690194466621,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0006029995274730027
+    },
+    {
+      "longitude": -72.02639294999972,
+      "latitude": -49.44354026172047,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0007488050614483654
+    }
+  ]
+}

@@ -14,7 +14,7 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 | A08 | M2    | twilight, noon, night           | smoothly varying sky and sunlight, believable night background           |
 | A09 | M2    | horizon / aerial perspective    | terrain and atmosphere visually coherent at several altitudes            |
 | A10 | M2    | HDR + solar glow                | HDR detail; subtle bloom/rays; no clipping or Earth/terrain leaks        |
-| A11 | M3    | orbital global clouds           | curved global coverage, meaningful shapes, no planar seam/edge           |
+| A11 | M3    | orbit to local clouds           | clear far orbit, smooth descent to geographically stable local clouds    |
 | A12 | M3    | cloud fly-through               | near-cloud detail and interior density, coherent with distance           |
 | A13 | M3    | sunset/side lighting            | self-shadow and silver lining, no severe temporal ghosting               |
 | A14 | M4    | moving terrestrial cloud shadow | position tracks Sun and cloud movement, follows terrain                  |

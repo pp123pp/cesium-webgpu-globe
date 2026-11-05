@@ -1,6 +1,7 @@
 import { RuntimeError } from "@cesium/core";
 import buildModuleUrl from "../Core/buildModuleUrl.js";
 import WebGPUAtmosphereShader from "./WebGPUAtmosphereShader.js";
+import WebGPUCloudVolume from "./WebGPUCloudVolume.js";
 import WebGPUSolarBloomShader from "./WebGPUSolarBloomShader.js";
 import { createSunParameters, sunDisplayRadiance } from "./WebGPUSun.js";
 import { DEFAULT_EXPOSURE, validateExposure } from "./WebGPUColorPipeline.js";
@@ -393,6 +394,7 @@ class WebGPUAtmosphereRenderer {
     stars = hiddenStars,
     exposure = DEFAULT_EXPOSURE,
     surfaceLighting = false,
+    clouds,
   ) {
     if (this._destroyed) {
       return false;
@@ -504,6 +506,12 @@ class WebGPUAtmosphereRenderer {
     );
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
+    this._cloudsShown = clouds?.show === true && state.cameraHeight < 250000;
+    if (this._cloudsShown) {
+      this._cloudVolume ??= new WebGPUCloudVolume(this, state.planet.ellipsoid);
+      this._cloudVolume.update(state, clouds, parameters.lightIntensity);
+      this.statistics.clouds = this._cloudVolume.statistics;
+    }
     this._sunShown = sun.show;
     this._lensValues.set([
       sun.show && radiance > 0 ? this.lensFlare.strength : 0,
@@ -669,6 +677,14 @@ class WebGPUAtmosphereRenderer {
       this._bindings,
       "M2 atmosphere and Sun scene-linear HDR composite",
     );
+    if (this._cloudsShown) {
+      this._cloudVolume.draw(
+        encoder,
+        this._linearTexture,
+        depth,
+        this._atmosphereShown,
+      );
+    }
     if (this.bloomStrength > 0) {
       this._drawFullscreenPass(
         encoder,
@@ -735,6 +751,8 @@ class WebGPUAtmosphereRenderer {
       return;
     }
     this._destroyed = true;
+    this._cloudVolume?.destroy();
+    this._cloudVolume = undefined;
     this._solarAbort?.abort();
     for (const key of [
       "_planetBuffer",

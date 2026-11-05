@@ -1,0 +1,57 @@
+{
+  "revision": "07e00af375efa01560df5e3687bbea5aaf2365f5",
+  "files": [
+    {
+      "path": "packages/engine/Source/Scene/WebGPUCloudLayer.js",
+      "sha256": "9a41397620b539ff06d02c9a699344449172b8f35f7e99d3a284fe15b89a5a35"
+    },
+    {
+      "path": "packages/engine/Source/Scene/WebGPUCloudLayerShader.js",
+      "sha256": "76f22d67b0625a7bbd3b060be4a7889f6c30471c4811df296e650a103cece00c"
+    },
+    {
+      "path": "Apps/WebGPUCloudGeometry.js",
+      "sha256": "5d119a422938522bebce2342cc1d3a169e96d0b5d7ce1d1dcbd482f2645723c7"
+    },
+    {
+      "path": "Apps/WebGPUGlobe.html",
+      "sha256": "cda4643c5d4cb7a5cf0a730a7bf505cb3d5ce32540c974374b8b26879f441c9b"
+    },
+    {
+      "path": "Apps/WebGPUIndex.html",
+      "sha256": "f9bab0afbe8ffee4b3cfa87214f88df9c56bed1612dcbdb4f135a2a3b50f2f9d"
+    },
+    {
+      "path": "coordination/ci/m3-cloud-layer.test.mjs",
+      "sha256": "be94d1a7128c00a1cd96849cccee16a76ccbf4d553e6248e8f5cf4675bff65d8"
+    },
+    {
+      "path": "coordination/ci/m3-cloud-layer-smoke.mjs",
+      "sha256": "4d952569c65a0e1c38e3be9e686fca8112e2e040c4bcc983cf5d8a35acc31bf6"
+    },
+    {
+      "path": "coordination/ci/m3-cloud-demo-smoke.mjs",
+      "sha256": "a266e16331ace6d71765d4e47956f7ca4749262b46adfdd060f61c68f474cbc4"
+    },
+    {
+      "path": "package.json",
+      "sha256": "5d8edf35b86c5737b343570b83b5a37a3d6fd670347a7bfb78521d8f14987609"
+    },
+    {
+      "path": "server.js",
+      "sha256": "7b88d0c2426fb8ace43fe7ea833f8ebfd8d272480b3ce91f658a1f25bd973bc4"
+    },
+    {
+      "path": ".github/workflows/m0-webgl-baseline.yml",
+      "sha256": "d6761c47e38f797980a1c93fa8fd1fc45bfabbd828c25eea97927f00675d66cb"
+    },
+    {
+      "path": ".github/workflows/m1-full-regression.yml",
+      "sha256": "55ebc8f4f23597f80e46ff778c05dc14784698f87a1ed4df1db92dc4d4edd927"
+    },
+    {
+      "path": ".github/workflows/webgpu-pages.yml",
+      "sha256": "eb49ddc60bf8939011b5788fa22432b1c2f0e8dc480e3a962537892471c4ffd0"
+    }
+  ]
+}

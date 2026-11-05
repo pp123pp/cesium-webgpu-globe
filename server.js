@@ -41,6 +41,11 @@ const argv = await yargs(process.argv)
       type: "boolean",
       description: "If true, skip build step and serve existing built files.",
     },
+    sandcastle: {
+      type: "boolean",
+      default: true,
+      description: "Run the Sandcastle mirror server on port 8081.",
+    },
     embeddings: {
       type: "boolean",
       default: true,
@@ -482,33 +487,37 @@ const throttle = (callback) => {
     console.log("Cesium development server stopped.");
   });
 
-  const sandcastleServer = app.listen(8081, "localhost", function () {
-    // This "mirror" server runs on a separate port to create origin separation between
-    // the main Sandcastle app and the viewer page for security
-    // We use the same express `app` to reuse the auto re-building of assets when the source changes
-    console.log("Sandcastle mirror server running on port 8081");
-  });
+  /** @type {import("node:http").Server | undefined} */
+  let sandcastleServer;
+  if (argv.sandcastle) {
+    sandcastleServer = app.listen(8081, "localhost", function () {
+      // This "mirror" server runs on a separate port to create origin separation between
+      // the main Sandcastle app and the viewer page for security
+      // We use the same express `app` to reuse the auto re-building of assets when the source changes
+      console.log("Sandcastle mirror server running on port 8081");
+    });
 
-  sandcastleServer.on(
-    "error",
-    function (/** @type {NodeJS.ErrnoException} */ e) {
-      if (e.code === "EADDRINUSE") {
-        console.log(
-          "Error: Port 8081 is already in use, please free it and try again",
-        );
-      } else if (e.code === "EACCES") {
-        console.log(
-          "Error: This process does not have permission to listen on port 8081.",
-        );
-      }
+    sandcastleServer.on(
+      "error",
+      function (/** @type {NodeJS.ErrnoException} */ e) {
+        if (e.code === "EADDRINUSE") {
+          console.log(
+            "Error: Port 8081 is already in use, please free it and try again",
+          );
+        } else if (e.code === "EACCES") {
+          console.log(
+            "Error: This process does not have permission to listen on port 8081.",
+          );
+        }
 
-      throw e;
-    },
-  );
+        throw e;
+      },
+    );
 
-  sandcastleServer.on("close", function () {
-    console.log("Sandcastle mirror server stopped.");
-  });
+    sandcastleServer.on("close", function () {
+      console.log("Sandcastle mirror server stopped.");
+    });
+  }
 
   let isFirstSig = true;
   process.on("SIGINT", function () {
@@ -527,7 +536,11 @@ const throttle = (callback) => {
       }
 
       server.close(() => {
-        sandcastleServer.close(() => process.exit(0));
+        if (sandcastleServer) {
+          sandcastleServer.close(() => process.exit(0));
+        } else {
+          process.exit(0);
+        }
       });
 
       isFirstSig = false;
