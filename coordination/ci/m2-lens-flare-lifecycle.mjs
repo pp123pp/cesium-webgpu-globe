@@ -47,6 +47,10 @@ await runM1BrowserSuite("m2-lens-flare-lifecycle", async ({ page, report }) => {
       try {
         viewer = new Cesium.Viewer(container, { renderingBackend: "webgpu", useDefaultRenderLoop: false, baseLayer: false,
           skyBox: false, skyAtmosphere: false, terrainProvider: new BoundedTerrain() });
+        // This lifecycle fixture tests sky optics; pending terrain uploads would
+        // otherwise enter the native-allocation window after the first render.
+        viewer.scene.globe.show = false;
+        result.fixture = "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.";
         renderer = viewer.scene._atmosphere;
         renderer.lensFlare.enabled = true;
         viewer.renderError.addEventListener((...args) => result.errors.push(String(args[1])));
@@ -88,6 +92,7 @@ await runM1BrowserSuite("m2-lens-flare-lifecycle", async ({ page, report }) => {
           for (let frame = 0; frame < 8; frame++) { viewer.resize(); viewer.render(); }
           await device.queue.onSubmittedWorkDone();
           result.captures.push({ size: [viewer.canvas.width, viewer.canvas.height], before, after: native(),
+            terrainDraws: scene._renderer._draws.length,
             lensFlarePasses: renderer.statistics.lensFlarePasses - startPasses, lensFlareTextureBytes: renderer.statistics.lensFlareTextureBytes });
         }
         result.asset = { loaded: renderer.statistics.solarAssetsLoaded, error: renderer._solarAssetError, records: renderer.solarAssetRecords };
@@ -130,6 +135,7 @@ await runM1BrowserSuite("m2-lens-flare-lifecycle", async ({ page, report }) => {
     assert.deepEqual(result.idempotentInitialization.after, result.idempotentInitialization.before);
     assert.deepEqual(result.gpuErrors, []);
     for (const capture of result.captures) {
+      assert.equal(capture.terrainDraws, 0, "Sky-only lifecycle fixture has no asynchronous terrain draws");
       assert.deepEqual(capture.after, capture.before, "Same-size resize and repeated rendering allocate nothing");
       assert.equal(capture.lensFlarePasses, 8);
       assert.equal(capture.lensFlareTextureBytes, 8);
