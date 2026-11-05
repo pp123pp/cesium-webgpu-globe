@@ -1,25 +1,31 @@
 {
   "testedRevision": "07e00af375efa01560df5e3687bbea5aaf2365f5",
+  "hashBasis": "Canonical Git blob bytes; LF-normalized text and original binary bytes",
   "files": [
     {
+      "path": "README.md",
+      "bytes": 9011,
+      "sha256": "ae08e366730318a59d97dbad6b285f070f872f7df0916bc00fcd7344aa2c1c8b"
+    },
+    {
       "path": "checks/build-types.txt",
-      "bytes": 718139,
-      "sha256": "fa06fe3efdb1da58326e421418c91d9959366920395bdee66d19e1aa38e3eab1"
+      "bytes": 714092,
+      "sha256": "fa82d3e070ce07802b4c4d69c9e38eeae40fe31ee06eba5acce837df67435621"
     },
     {
       "path": "checks/build.txt",
-      "bytes": 923,
-      "sha256": "3809ab014bc73970ae9b7ccf3d24c4d43855e1f7f8410186d4527850bb7b3e1c"
+      "bytes": 886,
+      "sha256": "58f7a9a6c00f8ab072a5bf7c20ae3a8d525ea155471701e77de8bbf5945934ee"
     },
     {
       "path": "checks/ci-policy.txt",
-      "bytes": 5983,
-      "sha256": "5872d32bb0c4c6da9fadb6a13a10d8c33ff3309153cbadaebd631f6439a2cc39"
+      "bytes": 5805,
+      "sha256": "ede0dfd2b37a710a6f478624f2c0f9466fc9bb16a763a57cec73df4c1692c519"
     },
     {
       "path": "checks/demo-format.txt",
-      "bytes": 68,
-      "sha256": "f20510a9da4717c51c4cffee6d0dd88d6c9a723d0a83711d01216f5b48961283"
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
     },
     {
       "path": "checks/demo-lint.txt",
@@ -28,18 +34,18 @@
     },
     {
       "path": "checks/focused.txt",
-      "bytes": 7362,
-      "sha256": "8aa7183ce703e95687c1b5be56294cb781db77b577abe2eb983ffdc83b8956bf"
+      "bytes": 7154,
+      "sha256": "7632302aeb2fbeaf46bb375b1886e07e3987a6ca5a223670afcc23824501ec98"
     },
     {
       "path": "checks/format.txt",
-      "bytes": 68,
-      "sha256": "f20510a9da4717c51c4cffee6d0dd88d6c9a723d0a83711d01216f5b48961283"
+      "bytes": 66,
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20"
     },
     {
       "path": "checks/gpu-windows.json",
-      "bytes": 89,
-      "sha256": "257ea68ea6c2105c98e68e79f5437fb583ae63f3fd82c469a1c015e52b388bfd"
+      "bytes": 85,
+      "sha256": "fe2bbda2dccde3d4290dfc0548da3b1ce6b13a3310ba44b7a3fa7b31d911148e"
     },
     {
       "path": "checks/lint.txt",
@@ -48,8 +54,8 @@
     },
     {
       "path": "checks/server-and-provenance.txt",
-      "bytes": 735,
-      "sha256": "19f0a4237af3ad9b09670e35431d61c2084081fa0ecf961c6e70c89973befb70"
+      "bytes": 734,
+      "sha256": "81efd2cf17f5cb8c3298e3ae8105c36a5e3c994f60216df29a690a1fd1aa3aa3"
     },
     {
       "path": "checks/types.txt",
@@ -230,11 +236,6 @@
       "path": "geometry/result.json",
       "bytes": 77098,
       "sha256": "c42e19a7a64dfa4d5bed5a99acf1c82c41d40e83ae692934324801b7a4a13e3f"
-    },
-    {
-      "path": "README.md",
-      "bytes": 8788,
-      "sha256": "16e3f3fadf16828c7c0631e63b6200a55ec8c4c1873ab3f1c29cfbcf40c91953"
     },
     {
       "path": "source-manifest.json",
