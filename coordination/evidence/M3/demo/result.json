@@ -1,0 +1,236 @@
+{
+  "scope": "Actual Demo controls and preview module on production Viewer; injected offline provider, manual render loop, bounded native terrain and test handle only.",
+  "source": "5a0a22b6a9150e307aaf666acf8c3d1977debd9a",
+  "sourceStatus": "",
+  "capturedAt": "2026-11-05T08:12:42.544Z",
+  "demoSourceSha256": "f3688eb65481db65932f3f3ffec7d4d42088251f5d53478a94f63529464b8de9",
+  "moduleSourceSha256": "5d119a422938522bebce2342cc1d3a169e96d0b5d7ce1d1dcbd482f2645723c7",
+  "bundleSha256": "5a7b6536d4fac151e4e9dab4b8aa10dbd3628ec9b962ce1664221ae205e92dd5",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "base": "http://localhost:8069/",
+  "errors": [],
+  "warnings": [],
+  "checks": [
+    "real hardware and preview default off",
+    "local-volume controls, clear orbit and fly-to-cloud-deck work on the actual Demo",
+    "all three controls select intended camera; on output changes, off output restores exactly; resize renders",
+    "pagehide releases preview resources and Viewer without GPU validation errors"
+  ],
+  "views": [
+    {
+      "preset": "orbit",
+      "camera": {
+        "height": 35786000,
+        "longitude": 0,
+        "latitude": 0
+      },
+      "readout": "WGS84 shell 2–6 km · camera 35,786,000 m",
+      "enabled": {
+        "changedPixels": 22568,
+        "maximumChannelDifference": 158
+      },
+      "restored": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      }
+    },
+    {
+      "preset": "high",
+      "camera": {
+        "height": 19999.99999999907,
+        "longitude": 0,
+        "latitude": 0
+      },
+      "readout": "WGS84 shell 2–6 km · camera 20,000 m",
+      "enabled": {
+        "changedPixels": 156396,
+        "maximumChannelDifference": 158
+      },
+      "restored": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      }
+    },
+    {
+      "preset": "near",
+      "camera": {
+        "height": 1.9999999981373549,
+        "longitude": 0,
+        "latitude": 0
+      },
+      "readout": "WGS84 shell 2–6 km · camera 2 m",
+      "enabled": {
+        "changedPixels": 156800,
+        "maximumChannelDifference": 158
+      },
+      "restored": {
+        "changedPixels": 0,
+        "maximumChannelDifference": 0
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "orbit-off.png",
+      "sha256": "210af6f2cb2006ad2c720b6ba17f420c5e46e4e116c9439da135b30ff96c4322",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "orbit-on.png",
+      "sha256": "7bedcbfbf18f98fa445d041d7a7e2c46eb5e3aec8df13900c539fe9dbeaf4a1e",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "orbit-restored.png",
+      "sha256": "210af6f2cb2006ad2c720b6ba17f420c5e46e4e116c9439da135b30ff96c4322",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "orbit-controls.png",
+      "scope": "actual Demo and visible cloud controls"
+    },
+    {
+      "filename": "high-off.png",
+      "sha256": "906ae5cab149030eccd9b03f9f2c102dd7ac32215d21e76cba433defd4ada24e",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "high-on.png",
+      "sha256": "d67d6a96eaf4ecd69b656463d416995382f93e386323c83b909e0631e8113881",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "high-restored.png",
+      "sha256": "906ae5cab149030eccd9b03f9f2c102dd7ac32215d21e76cba433defd4ada24e",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "high-controls.png",
+      "scope": "actual Demo and visible cloud controls"
+    },
+    {
+      "filename": "near-off.png",
+      "sha256": "21bf3e19b74946e13e931c65a8a72f479b3ce6d0b91e7760eed3221e7f7b9a35",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "near-on.png",
+      "sha256": "5e65edf3a3271ddeb5b3bf2f9440c1e1ca84531e444c11aa661aa751922963c2",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "near-restored.png",
+      "sha256": "21bf3e19b74946e13e931c65a8a72f479b3ce6d0b91e7760eed3221e7f7b9a35",
+      "width": 640,
+      "height": 450,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "near-controls.png",
+      "scope": "actual Demo and visible cloud controls"
+    },
+    {
+      "filename": "resized-on.png",
+      "sha256": "8a201636a85a29a5d531406d723857ab46ce4f2c45f41dba9ce084cfb2d75b73",
+      "width": 800,
+      "height": 570,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "volume-orbit.png",
+      "sha256": "5e90a23078f9b56c570b4086238cee89a4b3c70ba976df7044be9f8b4d51de21",
+      "width": 800,
+      "height": 570,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "volume-deck.png",
+      "sha256": "a15e6fdf567430f8d39f9c493cd6e9e0062a3cd7e86563a715a681c031dcc1bf",
+      "width": 800,
+      "height": 570,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    },
+    {
+      "filename": "volume-deck-clear.png",
+      "sha256": "e5aa6fc7f794184acd15fb986f97135fa5ee9a1d03770fb48f49a8c18e5be878",
+      "width": 800,
+      "height": 570,
+      "scope": "actual displayed WebGPU canvas pixels, excludes overlay panel"
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "environment": {
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "cesium": "1.146.0",
+    "maximumTerrainLevel": 8
+  },
+  "resize": {
+    "width": 800,
+    "height": 570
+  },
+  "renderErrors": [],
+  "cleanup": {
+    "viewerDestroyed": true,
+    "cloudResources": [
+      {
+        "kind": "Buffer",
+        "label": "M3 cloud preview planet",
+        "destroyed": true
+      },
+      {
+        "kind": "Buffer",
+        "label": "M3 cloud preview shell",
+        "destroyed": true
+      },
+      {
+        "kind": "Buffer",
+        "label": "M3 cloud shell and weather",
+        "destroyed": true
+      },
+      {
+        "kind": "Texture",
+        "label": "M3 periodic cloud noise",
+        "destroyed": true
+      },
+      {
+        "kind": "Texture",
+        "label": "M3 cloud radiance and opacity",
+        "destroyed": true
+      }
+    ],
+    "created": 408,
+    "destroyed": 408
+  },
+  "status": "PASS"
+}

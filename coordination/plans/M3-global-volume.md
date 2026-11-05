@@ -20,6 +20,15 @@ WGS84 density, M2 solar transmittance and HDR buffer with original equations
 and coefficients. The reference demo's terrain shadow maps and external binary
 noise assets are outside this integration.
 
+**Final implementation decision.** A fixed North Atlantic view showed horizontal
+strata at 48 view samples. Increasing only primary steps to 192 largely removed
+them. Low and Medium now trace at half size on each axis with 96/192 primary
+steps and depth-guided bilinear reconstruction. A missing compatible neighbor
+retraces the native pixel. High traces 224 primary steps at native resolution.
+At low altitude the distance fade ends at 60 km and expands continuously to
+250 km aloft. Atmospheric and cloud light accumulate into the existing
+scene-linear buffer before Bloom and lens measurement. [Final evidence](../evidence/M3/README.md).
+
 Local starting point: M3-01 `e2cb35e1`, including geometry implementation
 `0ed4fb5` and physical-GPU capture source `07e00af`. The user closed M3-01.
 Local and remote main were `bc649cc8` at inspection. Keep both shell intervals,
