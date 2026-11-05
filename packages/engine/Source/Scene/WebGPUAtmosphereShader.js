@@ -8,7 +8,8 @@ import WebGPUSunShader from "./WebGPUSunShader.js";
  * the display-referred canvas format.
  * @private
  */
-const WebGPUAtmosphereShader = `${WebGPUPlanetShader}
+function createAtmosphereShader(cloudShadowShader) {
+  return `${WebGPUPlanetShader}
 struct AtmosphereParameters {
   rayleigh: vec4f, // scattering/extinction RGB in 1/m, scale height in m
   mie: vec4f,      // scattering, extinction in 1/m, scale height in m, g
@@ -263,10 +264,22 @@ fn atmosphereTerrainGeometry(direction: vec3f, sceneDistance: f32) -> vec4f {
   return vec4f(normal, height);
 }
 
-fn terrainSurfaceLight(sunCosine: f32, directTransmittance: vec3f) -> vec3f {
+${cloudShadowShader ?? ""}
+fn terrainSurfaceLight(normal: vec3f, sunCosine: f32, directTransmittance: vec3f) -> vec3f {
   // Lambert irradiance is continuous at the terminator. Normalize the existing
   // scene irradiance convention (10 at default daylight), not the visible disk.
-  let direct = atmosphere.exposure.z * sunCosine * directTransmittance;
+  var direct = atmosphere.exposure.z * sunCosine * directTransmittance;
+  ${
+    cloudShadowShader
+      ? `
+  if (sunCosine > 0.0) {
+    // Recover the zero-height ellipsoid point from its geodetic normal.
+    let scaledNormal = normal / planet.inverseRadii.xyz;
+    let receiver = normalize(scaledNormal) / planet.inverseRadii.xyz;
+    direct *= cloudShadowTransmission(receiver);
+  }`
+      : ""
+  }
   return vec3f(0.025) + direct;
 }
 
@@ -279,7 +292,7 @@ fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
   if (sunCosine > 0.0) {
     directTransmittance = atmosphereSunTransmittance(surface.w, sunCosine);
   }
-  return terrainSurfaceLight(sunCosine, directTransmittance);
+  return terrainSurfaceLight(surface.xyz, sunCosine, directTransmittance);
 }
 
 // The atmosphere-disabled entry point deliberately avoids the transmittance
@@ -289,7 +302,7 @@ fn sunOnlyTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
   let surface = atmosphereTerrainGeometry(direction, sceneDistance);
   if (surface.w < 0.0) { return vec3f(1.0); }
   let sunCosine = max(dot(surface.xyz, planet.sunDirectionWC.xyz), 0.0);
-  return terrainSurfaceLight(sunCosine, vec3f(1.0));
+  return terrainSurfaceLight(surface.xyz, sunCosine, vec3f(1.0));
 }
 
 // Long grazing paths can produce a saturated, one-pixel limb/horizon band after
@@ -409,5 +422,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   return vec4f(source.rgb * surfaceLighting + solar + moon + stars + moonTerrain, 1.0);
 }
 `;
+}
 
-export default WebGPUAtmosphereShader;
+export { createAtmosphereShader };
+export default createAtmosphereShader();

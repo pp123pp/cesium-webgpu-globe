@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>椭球云影 · Cesium WebGPU</title>
+    <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          14px/1.55 system-ui,
+          sans-serif;
+        color: #eaf2f4;
+      }
+      html,
+      body,
+      main {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #172a3a;
+      }
+      aside {
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        padding: 14px;
+        width: min(252px, calc(100vw - 58px));
+        max-height: calc(100dvh - 58px);
+        overflow: auto;
+        background: rgba(20, 36, 46, 0.95);
+        border: 1px solid #53707a;
+        border-radius: 6px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 19px;
+      }
+      p {
+        margin: 0 0 12px;
+        color: #b6cbd1;
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+      }
+      label {
+        display: block;
+        margin: 8px 0;
+      }
+      output {
+        float: right;
+        font-variant-numeric: tabular-nums;
+      }
+      input[type="range"] {
+        width: 100%;
+        margin: 0 0 8px;
+        accent-color: #a5d4d8;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        padding: 5px 10px;
+        background: #223842;
+        border: 1px solid #46616b;
+        border-radius: 3px;
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #ffda91;
+      }
+      #status {
+        margin: 8px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="cesiumContainer" aria-label="WGS84 椭球云影"></main>
+    <aside>
+      <h1>椭球云影</h1>
+      <p>从云底向下看。切换阴影比较同一块地表，播放时间观察云影向东移动。</p>
+      <fieldset id="controls" disabled>
+        <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
+        <label for="seconds"
+          >正午后的时间 <output id="elapsed" for="seconds">0 秒</output></label
+        >
+        <input id="seconds" type="range" min="0" max="180" step="1" value="0" />
+        <button id="play" type="button" aria-pressed="false">
+          播放 · 8 倍速
+        </button>
+        <button id="reset" type="button">复位机位和时间</button>
+        <button id="view" type="button" aria-pressed="false">
+          看云和地平线
+        </button>
+      </fieldset>
+      <p id="status" role="status">正在初始化 WebGPU…</p>
+    </aside>
+    <script type="module">
+      /* global Cesium */
+      const controls = document.getElementById("controls");
+      const shadows = document.getElementById("shadows");
+      const seconds = document.getElementById("seconds");
+      const elapsed = document.getElementById("elapsed");
+      const play = document.getElementById("play");
+      const view = document.getElementById("view");
+      const status = document.getElementById("status");
+      const start = Cesium.JulianDate.fromIso8601("2026-03-20T12:00:00Z");
+      let viewer;
+
+      function setPlaying(playing) {
+        viewer.clock.shouldAnimate = playing;
+        play.setAttribute("aria-pressed", String(playing));
+        play.textContent = playing ? "暂停" : "播放 · 8 倍速";
+      }
+
+      function setView(horizon) {
+        view.setAttribute("aria-pressed", String(horizon));
+        view.textContent = horizon ? "看地表特写" : "看云和地平线";
+        viewer.scene.atmosphere.show = horizon;
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(0, 0, 1800),
+          orientation: {
+            heading: Cesium.Math.toRadians(90),
+            pitch: Cesium.Math.toRadians(horizon ? 2 : -26),
+            roll: 0,
+          },
+        });
+      }
+
+      function reset() {
+        setPlaying(false);
+        viewer.clock.currentTime = Cesium.JulianDate.clone(start);
+        setView(false);
+      }
+
+      function showError(error) {
+        controls.disabled = true;
+        status.hidden = false;
+        status.textContent = `云影渲染失败：${error?.message ?? error}`;
+      }
+
+      try {
+        class BoundedEllipsoid extends Cesium.EllipsoidTerrainProvider {
+          getLevelMaximumGeometricError(level) {
+            return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
+          }
+        }
+        viewer = new Cesium.Viewer("cesiumContainer", {
+          renderingBackend: "webgpu",
+          baseLayer: false,
+          skyAtmosphere: false,
+          skyBox: false,
+        });
+        viewer.renderError.addEventListener((scene, error) => showError(error));
+        await viewer.readyPromise;
+        viewer.terrainProvider = new BoundedEllipsoid();
+        viewer.scene.globe.maximumScreenSpaceError = 3;
+        viewer.scene.globe.baseColor = new Cesium.Color(0.45, 0.45, 0.45, 1);
+        viewer.scene.globe.enableLighting = true;
+        viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
+        Object.assign(viewer.scene.clouds, {
+          show: true,
+          shadows: true,
+          coverage: 0.78,
+          quality: "low",
+          windSpeed: 36,
+          windDirection: 0,
+          evolution: false,
+          mist: false,
+        });
+        viewer.clock.startTime = Cesium.JulianDate.clone(start);
+        viewer.clock.stopTime = Cesium.JulianDate.addSeconds(
+          start,
+          Number(seconds.max),
+          new Cesium.JulianDate(),
+        );
+        viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+        viewer.clock.multiplier = 8;
+        reset();
+        viewer.clock.onTick.addEventListener((clock) => {
+          const time = Math.round(
+            Cesium.JulianDate.secondsDifference(clock.currentTime, start),
+          );
+          if (seconds.valueAsNumber !== time) {
+            seconds.value = String(time);
+          }
+          elapsed.value = `${time} 秒`;
+        });
+        shadows.addEventListener("change", () => {
+          viewer.scene.clouds.shadows = shadows.checked;
+        });
+        seconds.addEventListener("input", () => {
+          setPlaying(false);
+          viewer.clock.currentTime = Cesium.JulianDate.addSeconds(
+            start,
+            seconds.valueAsNumber,
+            new Cesium.JulianDate(),
+          );
+          elapsed.value = `${seconds.value} 秒`;
+        });
+        play.addEventListener("click", () =>
+          setPlaying(!viewer.clock.shouldAnimate),
+        );
+        document.getElementById("reset").addEventListener("click", reset);
+        view.addEventListener("click", () =>
+          setView(view.getAttribute("aria-pressed") !== "true"),
+        );
+        controls.disabled = false;
+        status.hidden = true;
+      } catch (error) {
+        showError(error);
+      }
+      window.addEventListener("pagehide", (event) => {
+        if (!event.persisted && viewer && !viewer.isDestroyed()) {
+          viewer.destroy();
+        }
+      });
+    </script>
+  </body>
+</html>

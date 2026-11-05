@@ -1,20 +1,9 @@
 import WebGPUAtmosphereShader from "./WebGPUAtmosphereShader.js";
-import WebGPUCloudLayerShader from "./WebGPUCloudLayerShader.js";
-import WebGPUCloudDensityShader from "./WebGPUCloudDensityShader.js";
+import { cloudFieldShader } from "./WebGPUCloudDensityShader.js";
 
 // Separate entry points let the vacuum path operate without atmosphere LUTs.
 const WebGPUCloudVolumeShader = `${WebGPUAtmosphereShader}
-${WebGPUCloudLayerShader}
-struct CloudVolume {
-  shell: WebGPUCloudLayer,
-  weather: vec4f,
-  budget: vec4f, // primary steps, light steps, normalized solar irradiance
-  shape: vec4f, // stratocumulus, cirrus, evolution phase, mist
-}
-@group(0) @binding(17) var<uniform> clouds: CloudVolume;
-@group(0) @binding(18) var cloudNoise: texture_3d<f32>;
-@group(0) @binding(19) var cloudSampler: sampler;
-${WebGPUCloudDensityShader}
+${cloudFieldShader}
 
 struct CloudIntegral {
   // Sunlit crowns and opaque shaded banks can sit at different depths on one ray.
@@ -70,11 +59,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let t = segment.x + midpoint;
     let footprint = max(t * angularPixel, ds * 0.22);
     // Local clouds stay in ECEF. Only their optical weight follows the view.
-    let visibleRange = mix(60000.0,250000.0,smoothstep(10000.0,120000.0,planet.cameraLow.w));
-    let rangeWeight = 1.0 - smoothstep(visibleRange*0.42, visibleRange, t);
-    let altitudeWeight = 1.0 - smoothstep(80000.0, 250000.0, planet.cameraLow.w);
     let localExtinction = cloudDensity(p, footprint, clouds.weather, clouds.shape);
-    let sigma = localExtinction * rangeWeight * altitudeWeight;
+    let sigma = cloudVisibleExtinction(localExtinction, t);
     if (sigma <= 0.0) { continue; }
     let attenuation = exp(-sigma * ds);
     let weight = result.transmission * (1.0 - attenuation);
@@ -121,7 +107,7 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
 
 fn cloudTrace(direction: vec3f, pixel: vec2f) -> CloudIntegral {
   let distance = webgpuSceneRayDistance(textureLoad(sceneDepth, vec2i(pixel), 0), direction, planet);
-  let range = mix(60000.0,250000.0,smoothstep(10000.0,120000.0,planet.cameraLow.w));
+  let range = cloudVisibleRange();
   let limit = select(min(distance, range), range, distance < 0.0);
   let segments = webgpuCloudSegments(direction, limit, clouds.shell, planet);
   var result = CloudIntegral(0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0u, 0u);

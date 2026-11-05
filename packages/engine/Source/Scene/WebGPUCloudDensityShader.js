@@ -1,3 +1,5 @@
+import WebGPUCloudLayerShader from "./WebGPUCloudLayerShader.js";
+
 /**
  * Shared cloud extinction field. Positions and sample footprints are meters.
  * Weather and 3D structure advect together around the supplied ECEF wind axis.
@@ -148,4 +150,29 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
 }
 `;
 
+const cloudFieldShader = `${WebGPUCloudLayerShader}
+struct CloudVolume {
+  shell: WebGPUCloudLayer,
+  weather: vec4f,
+  budget: vec4f, // primary steps, light steps, normalized solar irradiance
+  shape: vec4f, // stratocumulus, cirrus, evolution phase, mist
+}
+@group(0) @binding(17) var<uniform> clouds: CloudVolume;
+@group(0) @binding(18) var cloudNoise: texture_3d<f32>;
+@group(0) @binding(19) var cloudSampler: sampler;
+
+fn cloudVisibleRange() -> f32 {
+  return mix(60000.0,250000.0,smoothstep(10000.0,120000.0,planet.cameraLow.w));
+}
+
+fn cloudVisibleExtinction(extinction: f32, distanceToCamera: f32) -> f32 {
+  let visibleRange = cloudVisibleRange();
+  let rangeWeight = 1.0 - smoothstep(visibleRange*0.42, visibleRange, distanceToCamera);
+  let altitudeWeight = 1.0 - smoothstep(80000.0, 250000.0, planet.cameraLow.w);
+  return extinction * rangeWeight * altitudeWeight;
+}
+
+${WebGPUCloudDensityShader}`;
+
+export { cloudFieldShader };
 export default WebGPUCloudDensityShader;

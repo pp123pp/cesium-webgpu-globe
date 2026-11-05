@@ -1,0 +1,140 @@
+{
+  "sourceCommit": "a2425a7d96a1c20a2f848886cc3cde3f6978c590",
+  "referenceCommit": "724b5db8f258d0ce00c4f6b774bd38529e24252b",
+  "fixtureHash": "0fbc7d311cf1a355e4e7eddb49ab2aa04fd64c69d69c6e1e87f58b912c169740",
+  "bundleHash": "970d45d71924bfe9a2aa531974f515156ecc252bd85eee25b5176b5be016e640",
+  "browser": "156.0.8078.4",
+  "os": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "config": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "environment": {
+    "cesiumVersion": "1.146.0",
+    "webglVersion": "WebGL 2.0 (OpenGL ES 3.0 Chromium)",
+    "renderer": "ANGLE (Intel, Intel(R) Arc(TM) 130T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "vendor": "Google Inc. (Intel)",
+    "sceneMode": 3,
+    "terrainProvider": "EllipsoidTerrainProvider"
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "ANGLE (Intel, Intel(R) Arc(TM) 130T GPU (16GB) (0x00007D51) Direct3D11 vs_5_0 ps_5_0, D3D11) Google Inc. (Intel)"
+  },
+  "results": [
+    {
+      "fixture": "orbit",
+      "frames": 16,
+      "readyTiles": 13,
+      "tilesLoaded": true,
+      "width": 1280,
+      "height": 720,
+      "repeatCaptureEqual": true,
+      "repeatCaptureDifferenceBytes": 0,
+      "screenshotSha256": "4485d2f25274b78b772d303b136f7e4846e6d429996ba2f93cc3c59f079eb7d8",
+      "pixelCheck": {
+        "center": [
+          48,
+          112,
+          168,
+          255
+        ],
+        "corner": [
+          8,
+          12,
+          20,
+          255
+        ],
+        "surfacePixels": 238133,
+        "surfaceFraction": 0.2583908420138889
+      },
+      "comparison": {
+        "changedPixels": 102,
+        "changedFraction": 0.00011067708333333333,
+        "maxDifference": 37,
+        "channelTolerance": 4,
+        "maxChangedFraction": 0.005
+      }
+    },
+    {
+      "fixture": "oblique",
+      "frames": 7,
+      "readyTiles": 12,
+      "tilesLoaded": true,
+      "width": 1280,
+      "height": 720,
+      "repeatCaptureEqual": true,
+      "repeatCaptureDifferenceBytes": 0,
+      "screenshotSha256": "bbe5f786a280efb1de3cdb928decc3096d5e51f3e58b71e131766127ec806803",
+      "pixelCheck": {
+        "center": [
+          48,
+          112,
+          168,
+          255
+        ],
+        "corner": [
+          8,
+          12,
+          20,
+          255
+        ],
+        "surfacePixels": 268147,
+        "surfaceFraction": 0.29095811631944446
+      },
+      "comparison": {
+        "changedPixels": 79,
+        "changedFraction": 0.00008572048611111111,
+        "maxDifference": 37,
+        "channelTolerance": 4,
+        "maxChangedFraction": 0.005
+      }
+    },
+    {
+      "fixture": "resized",
+      "frames": 3,
+      "readyTiles": 8,
+      "tilesLoaded": true,
+      "width": 800,
+      "height": 600,
+      "repeatCaptureEqual": true,
+      "repeatCaptureDifferenceBytes": 0,
+      "screenshotSha256": "c0285eed78aa054f054a58c83527431740a2a16c151e7f5c2e18f6161788fd16",
+      "pixelCheck": {
+        "center": [
+          48,
+          112,
+          168,
+          255
+        ],
+        "corner": [
+          8,
+          12,
+          20,
+          255
+        ],
+        "surfacePixels": 64328,
+        "surfaceFraction": 0.13401666666666667
+      },
+      "comparison": {
+        "changedPixels": 45,
+        "changedFraction": 0.00009375,
+        "maxDifference": 37,
+        "channelTolerance": 4,
+        "maxChangedFraction": 0.005
+      }
+    }
+  ],
+  "browserErrors": [],
+  "browserWarnings": []
+}

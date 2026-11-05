@@ -6,6 +6,8 @@ Build with `npm install` and `npm run build`, serve this directory, then open `A
 
 For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](http://localhost:8067/Apps/WebGPUClouds.html). Select an effect to switch the camera and lighting, then collapse the panel for an unobstructed view.
 
+For M4, open the [ellipsoid cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. Toggle shadows at a fixed time to compare direct sunlight on the ground, then play to follow the moving shadow.
+
 ## Online WebGPU demos
 
 - [Interactive WebGPU Globe](https://pp123pp.github.io/cesium-webgpu-globe/Apps/WebGPUGlobe.html)

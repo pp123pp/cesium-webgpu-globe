@@ -263,6 +263,12 @@ class WebGPUCloudVolume {
       { binding: 0, resource: { buffer: this.owner._planetBuffer } },
       { binding: 1, resource: { buffer: this.owner._parametersBuffer } },
       { binding: 6, resource: this.depth.createView() },
+      ...this.fieldEntries(),
+    ];
+  }
+
+  fieldEntries() {
+    return [
       { binding: 17, resource: { buffer: this.parameters } },
       { binding: 18, resource: this.noiseView },
       { binding: 19, resource: this.sampler },

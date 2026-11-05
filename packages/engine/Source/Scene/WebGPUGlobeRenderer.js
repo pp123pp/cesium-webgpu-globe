@@ -1,4 +1,5 @@
 import { Matrix4, RuntimeError, WebMercatorProjection } from "@cesium/core";
+import EllipsoidTerrainProvider from "../Core/EllipsoidTerrainProvider.js";
 import TextureMinificationFilter from "../Renderer/TextureMinificationFilter.js";
 import TextureMagnificationFilter from "../Renderer/TextureMagnificationFilter.js";
 import WebGPUDepth from "../Renderer/WebGPUDepth.js";
@@ -410,6 +411,7 @@ class WebGPUGlobeRenderer {
       scene.exposure,
       scene.globe.enableLighting,
       scene.clouds,
+      scene.terrainProvider instanceof EllipsoidTerrainProvider,
     )
       ? atmosphere.composite
       : undefined;

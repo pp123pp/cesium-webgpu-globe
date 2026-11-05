@@ -1,6 +1,9 @@
 import { RuntimeError } from "@cesium/core";
 import buildModuleUrl from "../Core/buildModuleUrl.js";
-import WebGPUAtmosphereShader from "./WebGPUAtmosphereShader.js";
+import WebGPUCloudShadowShader from "./WebGPUCloudShadowShader.js";
+import WebGPUAtmosphereShader, {
+  createAtmosphereShader,
+} from "./WebGPUAtmosphereShader.js";
 import WebGPUCloudVolume from "./WebGPUCloudVolume.js";
 import WebGPUSolarBloomShader from "./WebGPUSolarBloomShader.js";
 import { createSunParameters, sunDisplayRadiance } from "./WebGPUSun.js";
@@ -395,6 +398,7 @@ class WebGPUAtmosphereRenderer {
     exposure = DEFAULT_EXPOSURE,
     surfaceLighting = false,
     clouds,
+    ellipsoidReceiver = false,
   ) {
     if (this._destroyed) {
       return false;
@@ -528,6 +532,14 @@ class WebGPUAtmosphereRenderer {
         lightSteps: 0,
       });
     }
+    this._cloudShadows =
+      this._cloudsShown &&
+      clouds.shadows !== false &&
+      ellipsoidReceiver &&
+      surfaceLighting;
+    if (this._cloudShadows) {
+      this._activePipeline = this._cloudShadowPipeline(parameters.show);
+    }
     this._sunShown = sun.show;
     this._lensValues.set([
       sun.show && radiance > 0 ? this.lensFlare.strength : 0,
@@ -619,6 +631,31 @@ class WebGPUAtmosphereRenderer {
     this._boundDepth = undefined;
   }
 
+  _cloudShadowPipeline(withAir) {
+    this._shadowPipelines ??= new Map();
+    if (!this._shadowPipelines.has(withAir)) {
+      this._shadowModule ??= this._device.createShaderModule({
+        label: "M4 ellipsoid cloud shadows",
+        code: createAtmosphereShader(WebGPUCloudShadowShader),
+      });
+      const module = this._shadowModule;
+      const pipeline = this._device.createRenderPipeline({
+        label: "M4 ellipsoid direct sunlight",
+        layout: "auto",
+        vertex: { module, entryPoint: "atmosphereVertex" },
+        fragment: {
+          module,
+          entryPoint: withAir
+            ? "atmosphereLinearFragment"
+            : "sunOnlyLinearFragment",
+          targets: [{ format: "rgba16float" }],
+        },
+      });
+      this._shadowPipelines.set(withAir, pipeline);
+    }
+    return this._shadowPipelines.get(withAir);
+  }
+
   _drawFullscreenPass(encoder, target, pipeline, bindings, label) {
     const pass = encoder.beginRenderPass({
       label,
@@ -676,6 +713,9 @@ class WebGPUAtmosphereRenderer {
           },
           { binding: 4, resource: this._sampler },
         );
+      }
+      if (this._cloudShadows) {
+        entries.push(...this._cloudVolume.fieldEntries());
       }
       this._bindings = this._device.createBindGroup({
         label: "M2 completed color/depth and active sky resources",
@@ -818,6 +858,7 @@ class WebGPUAtmosphereRenderer {
     this._bloomFinalDepth = undefined;
     this._pipeline = undefined;
     this._sunPipeline = undefined;
+    this._shadowModule = this._shadowPipelines = undefined;
     this._bloomExtractPipeline = undefined;
     this._bloomBlurPipeline = undefined;
     this._bloomFinalPipeline = undefined;
