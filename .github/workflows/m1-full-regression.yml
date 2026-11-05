@@ -96,7 +96,7 @@ jobs:
 
       - name: Check M1 and M2 source and generated TypeScript APIs
         run: |
-          npx eslint packages/engine/Source/Renderer/WebGPU*.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs coordination/ci/m2-*.mjs Apps/WebGPUGlobe.html
+          npx eslint packages/engine/Source/Renderer/WebGPU*.js packages/engine/Source/Scene/WebGPU*.js packages/engine/Source/Scene/TerrainFillMesh.js packages/engine/Source/Scene/QuadtreePrimitive.js packages/engine/Source/Widget/WebGPUWidget.js packages/widgets/Source/Viewer/Viewer.js coordination/ci/m1-*.mjs coordination/ci/m2-*.mjs coordination/ci/m3-*.mjs Apps/WebGPUGlobe.html
           npm run build-ts
           npm exec --package=typescript --offline -- tsc --project packages/sandcastle/templates/tsconfig.lib.json
           npm run tsc
@@ -107,7 +107,7 @@ jobs:
           node coordination/ci/m0-visual-checks.test.mjs
           node coordination/ci/m0-browser-config.test.mjs
           node coordination/ci/m0-webgl-regression.test.mjs
-          for test in coordination/ci/m1-*.test.mjs coordination/ci/m2-*.test.mjs; do
+          for test in coordination/ci/m1-*.test.mjs coordination/ci/m2-*.test.mjs coordination/ci/m3-*.test.mjs; do
             node "$test"
           done
 
