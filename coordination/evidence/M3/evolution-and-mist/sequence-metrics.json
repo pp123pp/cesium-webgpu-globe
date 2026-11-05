@@ -1,0 +1,50 @@
+{
+  "fixed": {
+    "frames": 21,
+    "RGB_MAE_vs_baseline_minmax": [
+      1.4090813078703703,
+      1.8570500578703704
+    ],
+    "consecutive_candidate_RGB_MAE_minmax": [
+      0.20624421296296297,
+      0.2769994212962963
+    ]
+  },
+  "fly": {
+    "frames": 21,
+    "RGB_MAE_vs_baseline_minmax": [
+      1.4090813078703703,
+      4.227906539351852
+    ],
+    "consecutive_candidate_RGB_MAE_minmax": [
+      1.6071744791666667,
+      5.123893229166667
+    ]
+  },
+  "pan": {
+    "frames": 21,
+    "RGB_MAE_vs_baseline_minmax": [
+      16.510703125,
+      17.930694444444445
+    ],
+    "consecutive_candidate_RGB_MAE_minmax": [
+      4.253122106481482,
+      4.644929108796297
+    ]
+  },
+  "gap": {
+    "frames": 11,
+    "RGB_MAE_vs_baseline_minmax": [
+      14.76158130787037,
+      19.263182870370372
+    ],
+    "consecutive_candidate_RGB_MAE_minmax": [
+      1.1051027199074075,
+      1.6369849537037038
+    ]
+  },
+  "mistContributionROI": {
+    "gap-00.png": 4.7617629764065335,
+    "gap-10.png": -0.8831074410163339
+  }
+}

@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M3 is in progress.** All [five visual enhancements](../tasks/M3.md#planned-visual-enhancements) are planned. Each must be implemented and visually accepted by the user before M3 closes. The next step is sky lighting and approximate multiple scattering inside clouds. M4 terrain shadows follow M3 closure.
+Current milestone: **M3 is complete.** The user visually accepted all [five cloud enhancements](../tasks/M3.md#planned-visual-enhancements) on 2026-11-05, including [cloud evolution and morning light shafts](evidence/M3/evolution-and-mist/README.md), and authorized merging the changes to main. M4 terrain cloud shadows are the next planned milestone.
 
 The user accepted the local volumetric cloud baseline on 2026-11-05, including the revised clear-far-orbit requirement, cloud crowns, interior lighting and reduced flight striations, and authorized delivery to `main`. The accepted Intel Xe-LPG bundle starts with `68649e4b`. [Matched images, physical GPU checks and limitations](evidence/M3/cloud-appearance/README.md).
 

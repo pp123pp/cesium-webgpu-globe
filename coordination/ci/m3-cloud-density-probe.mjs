@@ -95,7 +95,7 @@ try {
       if (i >= arrayLength(&result)) {return;}
       let p = samples[i * 2u]; let w = samples[i * 2u + 1u];
       let f = cloudRegionalWeather(normalize(cloudWindPosition(p.xyz, w)), w.x);
-      result[i] = vec4f(cloudDensity(p.xyz, p.w, w), f.xyz);
+      result[i] = vec4f(cloudDensity(p.xyz, p.w, w, vec4f(0.0)), f.xyz);
     }`;
   const values = await page.evaluate(async ({ samples, code, size, encodedNoise }) => {
     const device = window.cloudProbeDevice;

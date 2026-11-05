@@ -6,6 +6,10 @@ crowns, interior lighting and flight striations in the
 [final matched physical GPU comparisons](cloud-appearance/README.md).
 The measurements below describe the earlier capture at `5a0a22b`.
 
+M3 closed on 2026-11-05 with all five enhancements visually accepted:
+[sky lighting](sky-lighting/README.md), [cloud types and distance](cloud-types-and-distance/README.md),
+and [cloud evolution and morning light shafts](evolution-and-mist/README.md).
+
 ## Replay and results
 
 - **Actual Demo.** Run `npm run demo:webgpu`, open

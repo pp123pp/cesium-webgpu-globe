@@ -158,14 +158,40 @@ try {
   });
   await settle(page);
   await page.locator("#cloud-quality").selectOption("high");
+  await page.locator("#cloud-type").selectOption("stratocumulus");
+  await page.locator("#cloud-cirrus").check();
   await page.locator("#cloud-local-detail").check();
   await saveSnapshot(page, "volume-deck");
   const settings = await page.evaluate(() => window.__cloudDemoViewer.scene.clouds);
   assert.ok(settings.show && settings.localDetail && settings.quality === "high");
+  assert.equal(settings.type, "stratocumulus");
+  assert.equal(settings.cirrus, true);
   await page.locator("#show-cloud-volume").uncheck();
   await saveSnapshot(page, "volume-deck-clear");
   const contrast = await page.evaluate(() => window.__cloudDemoCompare("volume-deck", "volume-deck-clear"));
   assert.ok(contrast.changedPixels > 100, "production cloud controls affect local sky");
+  await page.locator("#cloud-compare").click();
+  const comparePose = () => page.evaluate(() => {
+    const viewer = window.__cloudDemoViewer;
+    return [viewer.camera.positionWC.x, viewer.camera.positionWC.y, viewer.camera.positionWC.z,
+      viewer.camera.heading, viewer.camera.pitch, viewer.camera.roll,
+      Cesium.JulianDate.toIso8601(viewer.clock.currentTime), viewer.scene.exposure, viewer.scene.clouds.windSpeed];
+  });
+  const pose = await comparePose();
+  await page.locator("#cloud-type").selectOption("cumulus");
+  assert.deepEqual(await comparePose(), pose, "changing low cloud type preserves the comparison view");
+  await page.locator("#cloud-growth-view").click();
+  assert.deepEqual(await page.evaluate(() => {
+    const {scene, clock} = window.__cloudDemoViewer;
+    return [scene.clouds.evolution, clock.shouldAnimate, scene.clouds.windSpeed];
+  }), [true, true, 18]);
+  await page.locator("#cloud-morning-view").click();
+  assert.deepEqual(await page.evaluate(() => {
+    const {scene, clock} = window.__cloudDemoViewer;
+    return [scene.clouds.mist, scene.clouds.evolution, clock.shouldAnimate];
+  }), [true, false, false]);
+  await page.locator("#cloud-mist").uncheck();
+  assert.equal(await page.evaluate(() => window.__cloudDemoViewer.scene.clouds.mist), false);
   report.checks.push("local-volume controls, clear orbit and fly-to-cloud-deck work on the actual Demo");
   report.renderErrors = await page.evaluate(() => window.__cloudDemoRenderErrors);
   assert.deepEqual(report.renderErrors, [], "no native render or uncaptured GPU validation errors");

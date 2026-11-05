@@ -33,10 +33,36 @@ fn cloudRoundJoin(a: f32, b: f32, radius: f32) -> f32 {
   return min(a, b) - 0.25 * radius * overlap * overlap;
 }
 
-fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
+// The phase belongs to the advected cloud column. Neighboring updrafts grow
+// and dissipate at different times, independently of camera position or FPS.
+fn cloudGrowth(phase: f32, regional: f32, local: f32) -> f32 {
+  if (phase == 0.0) { return 0.0; }
+  return sin((phase - 1.0) + 15.0*local + 9.0*regional);
+}
+
+fn cloudCirrus(column: vec3f, height: f32, coverage: f32, footprint: f32, phase: f32) -> f32 {
+  let warp = textureSampleLevel(cloudNoise, cloudSampler, column / 68400.0, 0.0);
+  let bent = column + (warp.rgb - vec3f(0.48)) * 5500.0;
+  let veil = textureSampleLevel(cloudNoise, cloudSampler,
+    bent.yzx / vec3f(78000.0, 11000.0, 17000.0), 0.0);
+  let fibers = textureSampleLevel(cloudNoise, cloudSampler,
+    bent.yzx / vec3f(36500.0, 2100.0, 3200.0), 0.0);
+  let detail = 1.0 - smoothstep(180.0, 900.0, footprint);
+  let streak = mix(0.26, smoothstep(0.44, 0.71, 0.64*fibers.r + 0.36*fibers.b), detail);
+  let ice = smoothstep(0.46 - 0.13*coverage, 0.70,
+    veil.r + 0.12*(warp.r - 0.48) + 0.065*cloudGrowth(phase, warp.b, veil.g));
+  let center = 9850.0 + 560.0 * (warp.g - 0.48);
+  let vertical = 1.0 - smoothstep(0.0, 460.0, abs(height - center));
+  return 0.00013 * coverage * vertical * ice * (0.05 + 0.95*streak);
+}
+
+fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f, shape: vec4f) -> f32 {
   if (weather.x <= 0.0) { return 0.0; }
   let scaledRadius = length(p * planet.inverseRadii.xyz);
   let height = (scaledRadius - 1.0) * (length(p) / scaledRadius);
+  if (height > 9000.0 && height < 11000.0 && shape.y > 0.5) {
+    return cloudCirrus(cloudWindPosition(p, weather) / scaledRadius, height, weather.x, footprint, shape.z);
+  }
   if (height <= 2000.0 || height >= 6000.0) { return 0.0; }
 
   let advected = cloudWindPosition(p, weather);
@@ -53,6 +79,24 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
     (column.yzx + 8200.0 * (bank.gbr - vec3f(0.48))) / vec3f(43100.0, 28200.0, 35800.0), 0.0);
   let cluster = 0.55 * (bank.r - 0.47) + 0.82 * (streets.r - 0.47)
               + 0.19 * (streets.b - 0.48);
+  let growth = cloudGrowth(shape.z, bank.b, streets.g);
+  if (shape.x > 0.5) {
+    // Column noise shapes connected banks with open lanes and small billows
+    // on top. Keeping it independent of height gives the deck a level base.
+    let cells = textureSampleLevel(cloudNoise, cloudSampler,
+      (column + 2100.0 * (bank.brg - vec3f(0.48))) / 12600.0, 0.0);
+    let bankFill = cluster + 0.36 * (cells.g - 0.48) + 0.55 * (field.x - 0.25) + 0.035*growth;
+    let base = field.y + 160.0 * streets.r;
+    let billows = textureSampleLevel(cloudNoise, cloudSampler,
+      (column.zxy + 1300.0 * (cells.rgb - vec3f(0.48))) / 7100.0, 0.0);
+    let relief = (1.0 - smoothstep(350.0, 1500.0, footprint)) *
+      (510.0*(billows.g - 0.48) + 210.0*(billows.b - 0.48));
+    let thickness = 420.0 + 870.0 * smoothstep(-0.15, 0.35, bankFill) + relief + 120.0*growth;
+    let side = 6300.0 * (bankFill + 0.07);
+    let depth = cloudRoundJoin(min(height - base, base + thickness - height), side, 290.0);
+    return 0.0022 * smoothstep(0.0, 0.15, weather.x) *
+      smoothstep(-35.0, 235.0 + 0.2 * min(footprint, 700.0), depth);
+  }
   let bodyWeight = 1.0 - smoothstep(900.0, 3300.0, footprint);
   let bodyP = warped + 3600.0 * (streets.brg - vec3f(0.48));
   let body = textureSampleLevel(cloudNoise, cloudSampler, bodyP / 17900.0, 0.0);
@@ -68,11 +112,11 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
   let base = field.y + 220.0 * bank.r + 180.0 * streets.r;
   let extent = field.z - base;
   let wisps = weather.z * 0.036 * lobesWeight;
-  let rise = 0.28 + 0.35 * field.x + 1.05 * cluster + 1.80 * dilation + wisps;
+  let rise = 0.28 + 0.35 * field.x + 1.05 * cluster + 1.80 * dilation + wisps + 0.14*growth;
   // Compress tall updrafts below the regional ceiling instead of slicing
   // every overshooting crown at exactly the same altitude.
   let top = extent * (min(rise, 0.65) + 0.35 * (1.0 - exp(-max(rise - 0.65, 0.0) / 0.35)));
-  let side = 4700.0 * (0.095 + 0.24 * field.x + cluster + 0.88 * dilation + wisps);
+  let side = 4700.0 * (0.095 + 0.24 * field.x + cluster + 0.88 * dilation + wisps + 0.055*growth);
   let aboveBase = height - base;
   let depth = cloudRoundJoin(min(top - aboveBase, aboveBase), side, 580.0);
   if (depth <= -65.0) { return 0.0; }

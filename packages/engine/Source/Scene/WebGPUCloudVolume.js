@@ -15,7 +15,11 @@ class WebGPUCloudVolume {
     this.owner = owner;
     this.device = owner._device;
     this.layer = new WebGPUCloudLayer({ ellipsoid });
-    this.values = new Float32Array(32);
+    this.layerWithCirrus = new WebGPUCloudLayer({
+      ellipsoid,
+      topHeight: 11000,
+    });
+    this.values = new Float32Array(36);
     this.module = this.device.createShaderModule({
       label: "M3 volume integration",
       code: WebGPUCloudVolumeShader,
@@ -60,6 +64,20 @@ class WebGPUCloudVolume {
 
   update(state, options, irradiance) {
     const budget = budgets.get(options.quality);
+    const type = options.type ?? "cumulus";
+    const cirrus = options.cirrus ?? false;
+    const evolution = options.evolution ?? false;
+    const mist = options.mist ?? false;
+    if (
+      (type !== "cumulus" && type !== "stratocumulus") ||
+      typeof cirrus !== "boolean" ||
+      typeof evolution !== "boolean" ||
+      typeof mist !== "boolean"
+    ) {
+      throw new DeveloperError(
+        "Cloud type must be cumulus or stratocumulus. Cirrus, evolution and mist must be booleans.",
+      );
+    }
     if (
       !budget ||
       !Number.isFinite(options.coverage) ||
@@ -76,7 +94,8 @@ class WebGPUCloudVolume {
       (state.time.dayNumber - 2451545) * 86400 + state.time.secondsOfDay;
     const angle =
       ((time * options.windSpeed) / state.planet.maximumRadius) % (2 * Math.PI);
-    this.values.set(this.layer.update(state).uniformValues);
+    const layer = cirrus ? this.layerWithCirrus : this.layer;
+    this.values.set(layer.update(state).uniformValues);
     this.values.set(
       [
         options.coverage,
@@ -88,6 +107,13 @@ class WebGPUCloudVolume {
     );
     this.divisor = options.quality === "high" ? 1 : 2;
     this.values.set([...budget, irradiance / 10, this.divisor], 28);
+    this.values[32] = Number(type === "stratocumulus");
+    this.values[33] = Number(cirrus);
+    // Zero disables evolution. A three-minute phase wraps smoothly across days.
+    this.values[34] = evolution
+      ? 1 + (state.time.secondsOfDay % 180) * ((2 * Math.PI) / 180)
+      : 0;
+    this.values[35] = Number(mist);
     this.device.queue.writeBuffer(this.parameters, 0, this.values);
     Object.assign(this.statistics, {
       primarySteps: budget[0],

@@ -1,0 +1,729 @@
+{
+  "suite": "m3-volume",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T09:38:37.338Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "8a82a8452ef7d07d4c7052aa596bc993605b177f",
+  "sourceStatus": "M Apps/WebGPUGlobe.html\n M README.md\n M coordination/STATUS.md\n M coordination/ci/m3-cloud-demo-smoke.mjs\n M coordination/ci/m3-cloud-density-probe.mjs\n M coordination/ci/m3-volume-smoke.mjs\n M packages/engine/Source/Scene/WebGPUCloudDensityShader.js\n M packages/engine/Source/Scene/WebGPUCloudVolume.js\n M packages/engine/Source/Scene/WebGPUCloudVolumeShader.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M tasks/M3.md\n?? coordination/evidence/M3/cloud-types-and-distance/\n?? coordination/evidence/M3/evolution-and-mist/\n?? coordination/evidence/M3/sky-lighting/",
+  "bundleSha256": "0b84df194d76a816334185d0e8d91ca29f4980a12c96088b8668d72d84c6eabf",
+  "browserErrors": [],
+  "checks": [],
+  "scenes": [
+    {
+      "name": "wrap-0",
+      "sha256": "bda3826115ae92cdb416e10dd3a8b2aa94808f0230e38451440a4e637b4c889c",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 35,
+      "date": "2026-03-20T16:32:22.7999999999992724Z",
+      "view": {
+        "longitude": -0.00012000000000000002,
+        "latitude": 0,
+        "height": 6899.999999999301,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 0,
+        "meanMaxChannelDelta": 0,
+        "max": 0,
+        "centerMax": 0
+      },
+      "phaseUniform": 7.2762041091918945
+    },
+    {
+      "name": "wrap-1",
+      "sha256": "918aab94756edd0d9e510ebdba03c2b797eada77a97969605c49cc72043c33bd",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 36,
+      "date": "2026-03-20T16:32:22.8333333333339397Z",
+      "view": {
+        "longitude": -0.0001,
+        "latitude": 0,
+        "height": 6899.999999999333,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 8468,
+        "meanMaxChannelDelta": 0.03675347222222222,
+        "max": 1,
+        "centerMax": 1
+      },
+      "phaseUniform": 7.27736759185791
+    },
+    {
+      "name": "wrap-2",
+      "sha256": "7f6ece22270354cb25eddafc4903a21b7e0f63d19f104676e34e3790505e5334",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 37,
+      "date": "2026-03-20T16:32:22.866666666666788Z",
+      "view": {
+        "longitude": -0.00008,
+        "latitude": 0,
+        "height": 6899.999999998344,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13520,
+        "meanMaxChannelDelta": 0.05919270833333334,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 7.278531074523926
+    },
+    {
+      "name": "wrap-3",
+      "sha256": "ef7433255ddb89816c10463b2de2100e395762b98560023bf3832e672743f442",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 38,
+      "date": "2026-03-20T16:32:22.8999999999996362Z",
+      "view": {
+        "longitude": -0.00006000000000000001,
+        "latitude": 0,
+        "height": 6899.999999999127,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13707,
+        "meanMaxChannelDelta": 0.06013020833333333,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 7.279694557189941
+    },
+    {
+      "name": "wrap-4",
+      "sha256": "01a1bc4af63100e74b8a0e44073c3f6430e1a70810a950255fd7d2998f9d818c",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 39,
+      "date": "2026-03-20T16:32:22.9333333333324845Z",
+      "view": {
+        "longitude": -0.00004000000000000001,
+        "latitude": 0,
+        "height": 6899.999999999819,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 9525,
+        "meanMaxChannelDelta": 0.04137152777777778,
+        "max": 2,
+        "centerMax": 1
+      },
+      "phaseUniform": 7.280858039855957
+    },
+    {
+      "name": "wrap-5",
+      "sha256": "42d779a1dcae6689a096049a2061226cb9bf3164d49b03f9e4f5a0eb8704bd4d",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 40,
+      "date": "2026-03-20T16:32:22.9666666666671517Z",
+      "view": {
+        "longitude": -0.000019999999999999998,
+        "latitude": 0,
+        "height": 6899.999999999489,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13542,
+        "meanMaxChannelDelta": 0.0595703125,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 7.282021522521973
+    },
+    {
+      "name": "wrap-6",
+      "sha256": "114d04a37fea89f00c4abd6e8056aef255b5180e8762780ddab724705ef25942",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 41,
+      "date": "2026-03-20T16:32:23Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 6899.999999999069,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13202,
+        "meanMaxChannelDelta": 0.058159722222222224,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 1
+    },
+    {
+      "name": "wrap-7",
+      "sha256": "cf18a21a6ddfca3fe54bc7df3894307e4a8a5375b55d66fe93930e9864912a83",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 42,
+      "date": "2026-03-20T16:32:23.03333333333284827Z",
+      "view": {
+        "longitude": 0.000019999999999999998,
+        "latitude": 0,
+        "height": 6899.999999999489,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 9435,
+        "meanMaxChannelDelta": 0.04104600694444444,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.0011636018753052
+    },
+    {
+      "name": "wrap-8",
+      "sha256": "c42293a8b94c5d1fc8e865636362f747fff919a29f8d63a6a9024e404eeb3337",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 43,
+      "date": "2026-03-20T16:32:23.06666666666751553Z",
+      "view": {
+        "longitude": 0.00004000000000000001,
+        "latitude": 0,
+        "height": 6899.999999999819,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13382,
+        "meanMaxChannelDelta": 0.05887586805555556,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.0023270845413208
+    },
+    {
+      "name": "wrap-9",
+      "sha256": "ec4898a37caf29f884a1cafc0eb1256ce066b898a9c5fc2abd1c04240fb3ea66",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 44,
+      "date": "2026-03-20T16:32:23.1000000000003638Z",
+      "view": {
+        "longitude": 0.00006000000000000001,
+        "latitude": 0,
+        "height": 6899.999999999127,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 8562,
+        "meanMaxChannelDelta": 0.037196180555555555,
+        "max": 2,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.003490686416626
+    },
+    {
+      "name": "wrap-10",
+      "sha256": "9b5e6bb95c1e5f2047484bdfe97359b13a660a2f12a2e8b8653433ea2fa815bd",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 45,
+      "date": "2026-03-20T16:32:23.13333333333321207Z",
+      "view": {
+        "longitude": 0.00008,
+        "latitude": 0,
+        "height": 6899.999999998344,
+        "heading": 247,
+        "pitch": -7.999999999999998
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13585,
+        "meanMaxChannelDelta": 0.0596875,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.0046541690826416
+    },
+    {
+      "name": "wrap-11",
+      "sha256": "3219f0ad082618fd3acfc8af3a9025010ce008fbb6f9f4181ef4d9d6a3a41c3b",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 46,
+      "date": "2026-03-20T16:32:23.16666666666606034Z",
+      "view": {
+        "longitude": 0.0001,
+        "latitude": 0,
+        "height": 6899.999999999333,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 13681,
+        "meanMaxChannelDelta": 0.060082465277777775,
+        "max": 3,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.0058177709579468
+    },
+    {
+      "name": "wrap-12",
+      "sha256": "b301c6832e6c1b4de42a6f7429dfdbbaf18635d9a0f9fe29a6949486bb1acc4a",
+      "size": [
+        640,
+        360
+      ],
+      "frame": 47,
+      "date": "2026-03-20T16:32:23.2000000000007276Z",
+      "view": {
+        "longitude": 0.00012000000000000002,
+        "latitude": 0,
+        "height": 6899.999999999301,
+        "heading": 247,
+        "pitch": -8.00000000000001
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 320,
+        "height": 180,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 591872,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 9421,
+        "meanMaxChannelDelta": 0.0409765625,
+        "max": 2,
+        "centerMax": 1
+      },
+      "phaseUniform": 1.006981372833252
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "fixture": {
+    "date": "2026-03-20T12:00:00Z",
+    "viewport": [
+      640,
+      360
+    ],
+    "maximumTerrainLevel": 8,
+    "terrain": "Native bounded ellipsoid terrain",
+    "wind": {
+      "speedMetersPerSecond": 18,
+      "directionRadians": 0.75
+    },
+    "capture": "Matched fixed-view growth, flyby, morning pan and gap closure sequences",
+    "timing": "Production cloud tracing and reconstruction pass timestamps, reported individually and as a paired per-frame sum in milliseconds. Configured step limits and three independently replayed native-pixel step counts are recorded separately. Resident VRAM is unmeasured.",
+    "visualReview": "Review ordered frames for shape, lighting, silver lining, flicker, ghosts, banding, polar seams and continuous cross-scale transitions. Pixel changes alone cannot establish visual acceptance."
+  },
+  "timings": [],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 877,
+      "buffersDestroyed": 877,
+      "bufferBytes": 0,
+      "drawCalls": 14,
+      "triangles": 7980,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      640,
+      360
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

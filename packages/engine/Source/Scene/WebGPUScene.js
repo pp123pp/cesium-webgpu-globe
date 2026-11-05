@@ -161,6 +161,10 @@ class WebGPUScene {
     this.clouds = {
       show: false,
       coverage: 0.49,
+      type: "cumulus",
+      cirrus: false,
+      evolution: false,
+      mist: false,
       quality: "medium",
       windSpeed: 12,
       windDirection: 0.35,

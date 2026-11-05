@@ -1,0 +1,803 @@
+{
+  "suite": "m3-volume",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T09:26:03.006Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "8a82a8452ef7d07d4c7052aa596bc993605b177f",
+  "sourceStatus": "M Apps/WebGPUGlobe.html\n M README.md\n M coordination/STATUS.md\n M coordination/ci/m3-cloud-demo-smoke.mjs\n M coordination/ci/m3-cloud-density-probe.mjs\n M coordination/ci/m3-volume-smoke.mjs\n M packages/engine/Source/Scene/WebGPUCloudDensityShader.js\n M packages/engine/Source/Scene/WebGPUCloudVolume.js\n M packages/engine/Source/Scene/WebGPUCloudVolumeShader.js\n M packages/engine/Source/Scene/WebGPUScene.js\n M tasks/M3.md\n?? coordination/evidence/M3/sky-lighting/",
+  "bundleSha256": "db1e6e19524a122c5ad4d0ed5ee8aac0cf94e9c8b698b5d63130b3280c9003ef",
+  "browserErrors": [],
+  "checks": [
+    "Matched native 720p cloud type, clear gap, horizontal distance and dusk views."
+  ],
+  "scenes": [
+    {
+      "name": "cumulus",
+      "sha256": "6961ae7147dc23926eabb5833efd3f59321a2a2ee7e39e27770d1749ceb2f657",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 42,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 0,
+        "meanMaxChannelDelta": 0,
+        "max": 0,
+        "centerMax": 0
+      }
+    },
+    {
+      "name": "stratocumulus",
+      "sha256": "339bbf393d857e28270b79d74cc825fb24c02deaad594bd0e023ad61aece310a",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 43,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "stratocumulus",
+        "cirrus": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 504797,
+        "meanMaxChannelDelta": 25.85956271701389,
+        "max": 147,
+        "centerMax": 10
+      }
+    },
+    {
+      "name": "low-cloud-gap",
+      "sha256": "2d9fedd13aef6c04389170b0ee725aeac1fd40c23ce2528df02cb3487b3f9e3f",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 61,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 4499.999999999069,
+        "heading": 250.00000000000003,
+        "pitch": 13.999999999999995
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.35,
+        "type": "cumulus",
+        "cirrus": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 921598,
+        "meanMaxChannelDelta": 79.78171006944444,
+        "max": 169,
+        "centerMax": 127
+      }
+    },
+    {
+      "name": "gap-with-cirrus",
+      "sha256": "54bac40b897962aa3e794b65a15b106030845200149b569efc512074dff166cd",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 62,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 4499.999999999069,
+        "heading": 250.00000000000003,
+        "pitch": 13.999999999999995
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.35,
+        "type": "cumulus",
+        "cirrus": true,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 331120,
+        "meanMaxChannelDelta": 3.6229264322916666,
+        "max": 91,
+        "centerMax": 0
+      }
+    },
+    {
+      "name": "horizontal-cloud-sea",
+      "sha256": "28498f54585b8e0b67cf0df5cce9605b4c316949a302ed655c091272e2b9660b",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 80,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 921599,
+        "meanMaxChannelDelta": 60.98882378472222,
+        "max": 153,
+        "centerMax": 113
+      }
+    },
+    {
+      "name": "twilight-low-clouds",
+      "sha256": "78378caf5c8818f8bbf9b31e6a36f4fb8fddd4c719399593bb381a27707bd990",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 93,
+      "date": "2026-03-20T18:18:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 921600,
+        "meanMaxChannelDelta": 177.05921440972222,
+        "max": 228,
+        "centerMax": 202
+      }
+    },
+    {
+      "name": "twilight-high-layer",
+      "sha256": "2ce84d2391a34e5e52c876f09762323a628d35ebcd838eed4a530265f309736a",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 94,
+      "date": "2026-03-20T18:18:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": true,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 329795,
+        "meanMaxChannelDelta": 2.2333268229166667,
+        "max": 83,
+        "centerMax": 0
+      }
+    },
+    {
+      "name": "twilight-clouds-off",
+      "sha256": "029246b7bc5f306a8f171fee904efb2c430e30b7cbbd83ec9bcb49fa774b486c",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 95,
+      "date": "2026-03-20T18:18:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 7999.999999999069,
+        "heading": 265,
+        "pitch": -3.0000000000000044
+      },
+      "cloudPasses": 0,
+      "reconstructionPasses": 0,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": false,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": true,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      },
+      "difference": {
+        "changedPixels": 575500,
+        "meanMaxChannelDelta": 5.012494574652778,
+        "max": 83,
+        "centerMax": 0
+      }
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "fixture": {
+    "date": "2026-03-20T12:00:00Z",
+    "viewport": [
+      1280,
+      720
+    ],
+    "maximumTerrainLevel": 8,
+    "terrain": "Native bounded ellipsoid terrain",
+    "wind": {
+      "speedMetersPerSecond": 0,
+      "directionRadians": 0.75
+    },
+    "capture": "Matched cloud-type, aerial-perspective and twilight views",
+    "timing": "Production cloud tracing and reconstruction pass timestamps, reported individually and as a paired per-frame sum in milliseconds. Configured step limits and three independently replayed native-pixel step counts are recorded separately. Resident VRAM is unmeasured.",
+    "visualReview": "Review ordered frames for shape, lighting, silver lining, flicker, ghosts, banding, polar seams and continuous cross-scale transitions. Pixel changes alone cannot establish visual acceptance."
+  },
+  "timings": [
+    {
+      "name": "720p-medium-stratocumulus",
+      "status": "MEASURED",
+      "count": 10,
+      "samplesMs": [
+        15.925248,
+        15.138816,
+        15.40096,
+        15.138816,
+        16.973824,
+        15.990784,
+        15.07328,
+        16.252928,
+        14.614528,
+        18.415616
+      ],
+      "meanMs": 15.89248,
+      "p95Ms": 18.415616,
+      "passes": {
+        "trace": {
+          "count": 10,
+          "samplesMs": [
+            14.352384,
+            13.959168,
+            14.09024,
+            14.548992,
+            15.466496,
+            14.221312,
+            14.09024,
+            14.7456,
+            13.893632,
+            17.629184
+          ],
+          "meanMs": 14.699724800000002,
+          "p95Ms": 17.629184
+        },
+        "reconstruction": {
+          "count": 10,
+          "samplesMs": [
+            1.572864,
+            1.179648,
+            1.31072,
+            0.589824,
+            1.507328,
+            1.769472,
+            0.98304,
+            1.507328,
+            0.720896,
+            0.786432
+          ],
+          "meanMs": 1.1927552000000001,
+          "p95Ms": 1.769472
+        }
+      },
+      "viewport": [
+        1280,
+        720
+      ],
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      }
+    },
+    {
+      "name": "720p-medium-with-cirrus",
+      "status": "MEASURED",
+      "count": 10,
+      "samplesMs": [
+        14.811136000000001,
+        15.40096,
+        12.517375999999999,
+        11.927552,
+        12.320768,
+        9.633792,
+        10.223616,
+        10.48576,
+        10.420224,
+        11.4688
+      ],
+      "meanMs": 11.920998399999998,
+      "p95Ms": 15.40096,
+      "passes": {
+        "trace": {
+          "count": 10,
+          "samplesMs": [
+            13.238272,
+            13.43488,
+            10.944512,
+            9.895936,
+            10.289152,
+            8.716288,
+            9.306112,
+            8.650752,
+            8.912896,
+            8.781824
+          ],
+          "meanMs": 10.2170624,
+          "p95Ms": 13.43488
+        },
+        "reconstruction": {
+          "count": 10,
+          "samplesMs": [
+            1.572864,
+            1.96608,
+            1.572864,
+            2.031616,
+            2.031616,
+            0.917504,
+            0.917504,
+            1.835008,
+            1.507328,
+            2.686976
+          ],
+          "meanMs": 1.703936,
+          "p95Ms": 2.686976
+        }
+      },
+      "viewport": [
+        1280,
+        720
+      ],
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      }
+    },
+    {
+      "name": "720p-medium-horizontal",
+      "status": "MEASURED",
+      "count": 10,
+      "samplesMs": [
+        9.437184,
+        9.568256,
+        10.551296,
+        11.075584,
+        13.43488,
+        12.582912,
+        14.155776,
+        10.223616,
+        11.010048,
+        10.81344
+      ],
+      "meanMs": 11.2852992,
+      "p95Ms": 14.155776,
+      "passes": {
+        "trace": {
+          "count": 10,
+          "samplesMs": [
+            9.043968,
+            8.51968,
+            9.306112,
+            9.699328,
+            11.665408,
+            10.944512,
+            11.993088,
+            9.306112,
+            9.764864,
+            9.437184
+          ],
+          "meanMs": 9.9680256,
+          "p95Ms": 11.993088
+        },
+        "reconstruction": {
+          "count": 10,
+          "samplesMs": [
+            0.393216,
+            1.048576,
+            1.245184,
+            1.376256,
+            1.769472,
+            1.6384,
+            2.162688,
+            0.917504,
+            1.245184,
+            1.376256
+          ],
+          "meanMs": 1.3172735999999998,
+          "p95Ms": 2.162688
+        }
+      },
+      "viewport": [
+        1280,
+        720
+      ],
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 144
+      }
+    }
+  ],
+  "optics": [
+    {
+      "name": "horizontal-cloud-sea",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0.5560166835784912,
+        "max": 0.9134383201599121
+      },
+      "clearRays": 380,
+      "denseRays": 2,
+      "direct": {
+        "count": 223,
+        "min": 0.009428974241018295,
+        "p10": 0.08539710193872452,
+        "p50": 0.49131205677986145,
+        "p90": 1.0560710430145264,
+        "max": 2.0462355613708496
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 181,
+        "min": 0.9313732899661671,
+        "p10": 1.054052973961923,
+        "p50": 1.4264918729497182,
+        "p90": 1.9175685493394496,
+        "max": 2.386680740166793
+      },
+      "denseDirectPerOpacity": {
+        "count": 2,
+        "min": 1.3344968388808005,
+        "p10": 1.3344968388808005,
+        "p50": 1.3344968388808005,
+        "p90": 1.3344968388808005,
+        "max": 1.3359123807321371
+      },
+      "representativeDistanceMeters": {
+        "count": 223,
+        "min": 12596.712557132825,
+        "p10": 14543.434741744104,
+        "p50": 22670.167245430704,
+        "p90": 42387.87438335329,
+        "max": 51223.760024975825
+      }
+    },
+    {
+      "name": "twilight-low-clouds",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0.5125777721405029,
+        "max": 0.8948377966880798
+      },
+      "clearRays": 391,
+      "denseRays": 0,
+      "direct": {
+        "count": 216,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0,
+        "max": 0.021014390513300896
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 172,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0,
+        "max": 0.04067467799849728
+      },
+      "denseDirectPerOpacity": {
+        "count": 0
+      },
+      "representativeDistanceMeters": {
+        "count": 216,
+        "min": 12551.51548109712,
+        "p10": 14575.712402292767,
+        "p50": 22870.07393398041,
+        "p90": 43099.2063308853,
+        "max": 51283.14572579354
+      }
+    },
+    {
+      "name": "twilight-high-layer",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0.010235488414764404,
+        "p90": 0.5064848065376282,
+        "max": 0.894355297088623
+      },
+      "clearRays": 395,
+      "denseRays": 0,
+      "direct": {
+        "count": 291,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0.11345037817955017,
+        "max": 0.35678449273109436
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 168,
+        "min": 0,
+        "p10": 0,
+        "p50": 0,
+        "p90": 0,
+        "max": 0.03904349403116974
+      },
+      "denseDirectPerOpacity": {
+        "count": 0
+      },
+      "representativeDistanceMeters": {
+        "count": 291,
+        "min": 7271.76949899064,
+        "p10": 13239.935650551153,
+        "p50": 22563.00254362466,
+        "p90": 42100.5805163527,
+        "max": 51247.596505041394
+      }
+    }
+  ],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 410,
+      "buffersDestroyed": 410,
+      "bufferBytes": 0,
+      "drawCalls": 17,
+      "triangles": 9690,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

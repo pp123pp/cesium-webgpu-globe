@@ -1,0 +1,472 @@
+{
+  "suite": "m3-volume",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T09:16:56.264Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "8a82a8452ef7d07d4c7052aa596bc993605b177f",
+  "sourceStatus": "M coordination/ci/m3-volume-smoke.mjs\n M packages/engine/Source/Scene/WebGPUCloudVolumeShader.js",
+  "bundleSha256": "26c3baacb6b363bd0054b2e344d62c55eea73f35ce11954d8c1a247a4890a903",
+  "browserErrors": [],
+  "checks": [
+    "Three fixed-field solar elevations with one production cloud draw and reconstruction each."
+  ],
+  "scenes": [
+    {
+      "name": "noon",
+      "sha256": "248dce7916b45b23cbd0b3553a3de306990d23610487e00d2336d9afa140e9ba",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 42,
+      "date": "2026-03-20T12:00:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 128
+      },
+      "difference": {
+        "changedPixels": 0,
+        "meanMaxChannelDelta": 0,
+        "max": 0,
+        "centerMax": 0
+      }
+    },
+    {
+      "name": "afternoon",
+      "sha256": "9a5bd4e41a198428f39a0f01e4bd9b7f05ca42a258651a8aab65bdb1c641d9e5",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 43,
+      "date": "2026-03-20T16:30:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 128
+      },
+      "difference": {
+        "changedPixels": 921600,
+        "meanMaxChannelDelta": 24.854036458333333,
+        "max": 54,
+        "centerMax": 30
+      }
+    },
+    {
+      "name": "sunset",
+      "sha256": "bbaa8ebc410749367f7c096fd040843067dcf6e8474bfd2f8d3e29abd92e2e19",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 44,
+      "date": "2026-03-20T17:55:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 1,
+      "reconstructionPasses": 1,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": true,
+        "coverage": 0.58,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 128
+      },
+      "difference": {
+        "changedPixels": 921600,
+        "meanMaxChannelDelta": 61.590169270833336,
+        "max": 119,
+        "centerMax": 80
+      }
+    },
+    {
+      "name": "sunset-clouds-off",
+      "sha256": "0b7dffa7c0881d5eaa5a86054ed11ba685397a8dfb56c6f9a20bd8a642bd80f9",
+      "size": [
+        1280,
+        720
+      ],
+      "frame": 57,
+      "date": "2026-03-20T17:55:00Z",
+      "view": {
+        "longitude": 0,
+        "latitude": 0,
+        "height": 9499.999999999069,
+        "heading": 247,
+        "pitch": -9
+      },
+      "cloudPasses": 0,
+      "reconstructionPasses": 0,
+      "atmosphere": true,
+      "lens": false,
+      "exposure": 1,
+      "config": {
+        "show": false,
+        "coverage": 0.58,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 128
+      },
+      "difference": {
+        "changedPixels": 453186,
+        "meanMaxChannelDelta": 32.92283962673611,
+        "max": 149,
+        "centerMax": 96
+      }
+    }
+  ],
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "fixture": {
+    "date": "2026-03-20T12:00:00Z",
+    "viewport": [
+      1280,
+      720
+    ],
+    "maximumTerrainLevel": 8,
+    "terrain": "Native bounded ellipsoid terrain",
+    "wind": {
+      "speedMetersPerSecond": 0,
+      "directionRadians": 0.75
+    },
+    "capture": "Fixed camera, cloud field and exposure, changing only the solar time.",
+    "timing": "Production cloud tracing and reconstruction pass timestamps, reported individually and as a paired per-frame sum in milliseconds. Configured step limits and three independently replayed native-pixel step counts are recorded separately. Resident VRAM is unmeasured.",
+    "visualReview": "Review ordered frames for shape, lighting, silver lining, flicker, ghosts, banding, polar seams and continuous cross-scale transitions. Pixel changes alone cannot establish visual acceptance."
+  },
+  "timings": [
+    {
+      "name": "720p-medium-sunset",
+      "status": "MEASURED",
+      "count": 10,
+      "samplesMs": [
+        23.134208,
+        18.546688000000003,
+        17.891328,
+        19.070975999999998,
+        16.318464,
+        16.121856,
+        15.07328,
+        14.680064,
+        15.466496,
+        14.41792
+      ],
+      "meanMs": 17.072128000000003,
+      "p95Ms": 23.134208,
+      "passes": {
+        "trace": {
+          "count": 10,
+          "samplesMs": [
+            21.364736,
+            17.891328,
+            17.235968,
+            18.546688,
+            14.876672,
+            14.811136,
+            14.286848,
+            13.303808,
+            14.876672,
+            13.893632
+          ],
+          "meanMs": 16.108748799999997,
+          "p95Ms": 21.364736
+        },
+        "reconstruction": {
+          "count": 10,
+          "samplesMs": [
+            1.769472,
+            0.65536,
+            0.65536,
+            0.524288,
+            1.441792,
+            1.31072,
+            0.786432,
+            1.376256,
+            0.589824,
+            0.524288
+          ],
+          "meanMs": 0.9633792,
+          "p95Ms": 1.769472
+        }
+      },
+      "viewport": [
+        1280,
+        720
+      ],
+      "clouds": {
+        "width": 640,
+        "height": 360,
+        "primarySteps": 192,
+        "lightSteps": 4,
+        "textureBytes": 1974272,
+        "bufferBytes": 128
+      }
+    }
+  ],
+  "optics": [
+    {
+      "name": "noon",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0.000003993511199951172,
+        "p90": 0.5777441263198853,
+        "max": 0.8483916521072388
+      },
+      "clearRays": 365,
+      "denseRays": 0,
+      "direct": {
+        "count": 260,
+        "min": 0.004246433265507221,
+        "p10": 0.017176052555441856,
+        "p50": 0.164213165640831,
+        "p90": 0.3719620108604431,
+        "max": 0.4780169725418091
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 197,
+        "min": 0.43195551294549694,
+        "p10": 0.46790114615226724,
+        "p50": 0.517137943027305,
+        "p90": 0.5469402639083675,
+        "max": 0.5644995383208145
+      },
+      "denseDirectPerOpacity": {
+        "count": 0
+      },
+      "representativeDistanceMeters": {
+        "count": 260,
+        "min": 13568.721992649105,
+        "p10": 15501.067012506304,
+        "p50": 23068.836124721136,
+        "p90": 43903.21142092346,
+        "max": 56134.55559413603
+      }
+    },
+    {
+      "name": "afternoon",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0.000003993511199951172,
+        "p90": 0.5777441263198853,
+        "max": 0.8483916521072388
+      },
+      "clearRays": 365,
+      "denseRays": 0,
+      "direct": {
+        "count": 260,
+        "min": 0.009749346412718296,
+        "p10": 0.03460218012332916,
+        "p50": 0.349762886762619,
+        "p90": 1.007906436920166,
+        "max": 1.6525071859359741
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 197,
+        "min": 0.5435015949408223,
+        "p10": 0.769488461184766,
+        "p50": 1.087929116106103,
+        "p90": 1.7308116638884772,
+        "max": 2.328437959572885
+      },
+      "denseDirectPerOpacity": {
+        "count": 0
+      },
+      "representativeDistanceMeters": {
+        "count": 260,
+        "min": 13568.721992649105,
+        "p10": 15501.067012506304,
+        "p50": 23068.836124721136,
+        "p90": 43903.21142092346,
+        "max": 56134.55559413603
+      }
+    },
+    {
+      "name": "sunset",
+      "grid": [
+        32,
+        18
+      ],
+      "opacity": {
+        "count": 576,
+        "min": 0,
+        "p10": 0,
+        "p50": 0.000003993511199951172,
+        "p90": 0.5777441263198853,
+        "max": 0.8483916521072388
+      },
+      "clearRays": 365,
+      "denseRays": 0,
+      "direct": {
+        "count": 260,
+        "min": 0.009886489249765873,
+        "p10": 0.045246511697769165,
+        "p50": 0.38248640298843384,
+        "p90": 1.378568410873413,
+        "max": 3.4726381301879883
+      },
+      "partiallyOpaqueDirectPerOpacity": {
+        "count": 197,
+        "min": 0.28560217331728827,
+        "p10": 0.5491233995153368,
+        "p50": 1.1666737711073731,
+        "p90": 3.2108560504310333,
+        "max": 6.678434913882761
+      },
+      "denseDirectPerOpacity": {
+        "count": 0
+      },
+      "representativeDistanceMeters": {
+        "count": 260,
+        "min": 13568.721992649105,
+        "p10": 15501.067012506304,
+        "p50": 23068.836124721136,
+        "p90": 43903.21142092346,
+        "max": 56134.55559413603
+      }
+    }
+  ],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 410,
+      "buffersDestroyed": 410,
+      "bufferBytes": 0,
+      "drawCalls": 22,
+      "triangles": 12540,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}
