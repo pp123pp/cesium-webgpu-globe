@@ -8,14 +8,14 @@
 | M2.6.1                       | M2.6             | phased solar visual polish: disc/rays → halo/corona → HDR Bloom → atmospheric integration → integrated acceptance             | SVP-01–SVP-10 pass with matched WebGPU evidence; no rendering regressions                        |
 | M2.7 (optional, post-M5)     | M2.6.1 + M5      | advanced game-engine-quality solar rendering: richer photosphere / corona detail, adaptive quality and cross-device profiling | dedicated visual, temporal, occlusion and GPU-cost acceptance; not a V1.0 blocker                |
 | M2.8 (optional, post-M2.6.1) | M2.6.1           | cinematic optical effects: restrained lens flare, ghosts, dirt and anamorphic effects as opt-in presentation                  | independent optical-effects acceptance; disabled by default; not a V1.0 blocker                  |
-| M3                           | M2               | spherical global volumetric clouds                                                                                            | [User visual acceptance passed, 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md) |
+| M3                           | M2               | spherical global volumetric clouds with [five required visual enhancements](tasks/M3.md#planned-visual-enhancements)          | In progress. All five enhancements must be implemented and individually pass user visual acceptance. |
 | M4                           | M3               | cloud shadows and terrain lighting coupling                                                                                   | Planned. Verify geo-registered moving shadows and dimmed sunlight.                               |
 | M5                           | M4               | image-quality stabilization, time stability, profiling                                                                        | visual acceptance and WebGL no-regression                                                        |
 | M6 (later)                   | V1.0             | common mesh-based 3D Tiles and BIM                                                                                            | representative mesh datasets render properly                                                     |
 
 ## M2.6.1 placement and boundary
 
-M2.6.1 refines the rays, halos, corona, authored tint and HDR bloom introduced in M2.6. M3 local volumetric clouds have passed visual acceptance. M4 terrain cloud shadows are the next planned milestone.
+M2.6.1 refines the rays, halos, corona, authored tint and HDR bloom introduced in M2.6. The [M3 cloud baseline passed visual acceptance on 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md). M4 terrain cloud shadows follow completion of M3.
 
 ## Advanced solar visual direction
 

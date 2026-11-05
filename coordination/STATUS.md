@@ -1,7 +1,10 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M3 local volumetric clouds passed user visual acceptance on 2026-11-05.** The user accepted the revised clear-far-orbit requirement separately, then approved the final cloud crowns, interior lighting and reduced flight striations and authorized delivery to `main`. The accepted Intel Xe-LPG bundle starts with `68649e4b`. M4 terrain shadows are next and have not started. [Matched images, physical GPU checks and limitations](evidence/M3/cloud-appearance/README.md).
+Current milestone: **M3 is in progress.** All [five visual enhancements](../tasks/M3.md#planned-visual-enhancements) are planned. Each must be implemented and visually accepted by the user before M3 closes. The next step is sky lighting and approximate multiple scattering inside clouds. M4 terrain shadows follow M3 closure.
+
+The user accepted the local volumetric cloud baseline on 2026-11-05, including the revised clear-far-orbit requirement, cloud crowns, interior lighting and reduced flight striations, and authorized delivery to `main`. The accepted Intel Xe-LPG bundle starts with `68649e4b`. [Matched images, physical GPU checks and limitations](evidence/M3/cloud-appearance/README.md).
+
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`

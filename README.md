@@ -1,8 +1,8 @@
 # Cesium WebGPU Globe
 
-**Current state:** M3 local volumetric clouds passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
+**Current state:** M3 remains in progress. The local volumetric cloud baseline passed user visual acceptance on 2026-11-05. All [five visual enhancements](tasks/M3.md#planned-visual-enhancements) must be implemented and individually accepted before M3 closes. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
-Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
+Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 baseline acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 
 ## Online WebGPU demos
 
@@ -27,8 +27,8 @@ Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP
 | [M0](tasks/M0.md) | WebGL baseline and minimal WebGPU setup           | Integrated                                                                             |
 | [M1](tasks/M1.md) | V0.1 WGS84 Globe, Imagery and Terrain             | Integrated                                                                             |
 | [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR | Integrated                                                                             |
-| [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | [Visually accepted on 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md) |
-| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Planned next                                                                           |
+| [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | In progress. Baseline accepted, five visual enhancements pending. |
+| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Planned after M3 closure                                                                           |
 | [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Planned                                                                                |
 | [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM                                | Deferred                                                                               |
 
