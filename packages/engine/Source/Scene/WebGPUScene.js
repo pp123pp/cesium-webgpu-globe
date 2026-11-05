@@ -158,6 +158,14 @@ class WebGPUScene {
     this.sun = createSunParameters({ show: options.skyBox !== false });
     this.moon = createMoonParameters({ show: options.skyBox !== false });
     this.stars = createStarParameters({ show: options.skyBox !== false });
+    this.clouds = {
+      show: false,
+      coverage: 0.55,
+      quality: "medium",
+      windSpeed: 12,
+      windDirection: 0.35,
+      localDetail: false,
+    };
     this._atmosphere = new WebGPUAtmosphereRenderer(context);
     this.screenSpaceCameraController = new ScreenSpaceCameraController(this);
     this._renderer = new WebGPUGlobeRenderer(context);

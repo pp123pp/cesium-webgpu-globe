@@ -152,7 +152,32 @@
         <button id="everest" disabled>Everest</button>
       </nav>
       <fieldset id="cloud-controls" disabled>
-        <legend>M3-01 cloud geometry</legend>
+        <legend>Volumetric clouds</legend>
+        <label
+          ><input id="show-cloud-volume" type="checkbox" /> Render clouds</label
+        >
+        <label
+          >Coverage
+          <input
+            id="cloud-coverage"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.55"
+        /></label>
+        <label
+          >Quality
+          <select id="cloud-quality">
+            <option>low</option>
+            <option selected>medium</option>
+            <option>high</option>
+          </select></label
+        >
+        <label
+          ><input id="cloud-local-detail" type="checkbox" /> Enhance sparse
+          nearby clouds</label
+        >
         <label
           ><input id="show-cloud-geometry" type="checkbox" /> Preview cloud
           shell</label
@@ -166,7 +191,7 @@
         <p>
           <small
             >Cyan shows geometric path length, with Earth and terrain occlusion.
-            Density and scattering are not implemented.</small
+            Turn off the preview to see cloud lighting.</small
           >
         </p>
       </fieldset>
@@ -321,6 +346,28 @@
         renderingBackend: "webgpu",
       });
       const defaultExposure = viewer.scene.exposure;
+      const cloudVolumeControl = document.getElementById("show-cloud-volume");
+      cloudVolumeControl.addEventListener("change", () => {
+        viewer.scene.clouds.show = cloudVolumeControl.checked;
+        if (cloudVolumeControl.checked) {
+          showCloudGeometry.checked = false;
+        }
+      });
+      document
+        .getElementById("cloud-coverage")
+        .addEventListener("input", (event) => {
+          viewer.scene.clouds.coverage = event.target.valueAsNumber;
+        });
+      document
+        .getElementById("cloud-quality")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.quality = event.target.value;
+        });
+      document
+        .getElementById("cloud-local-detail")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.localDetail = event.target.checked;
+        });
       const lensControls = document.getElementById("lens-controls");
       for (const name of ["enabled", "strength", "diffusion", "reflection"]) {
         const control = document.getElementById(`lens-${name}`);
@@ -537,7 +584,7 @@
               roll: 0,
             },
           });
-          showCloudGeometry.checked = true;
+          showCloudGeometry.checked = !viewer.scene.clouds.show;
           cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height.toLocaleString()} m`;
         });
       }
