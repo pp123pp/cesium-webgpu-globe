@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M2.8 A/B implementation and user visual acceptance COMPLETE. The user authorized delivery through PR #31 and merge into main after the latest CI passes; the PR is authoritative for the delivered head, actual checks and merge SHA. Accepted runtime: `27e8cef`; physical Sun/atmosphere/Bloom remain unchanged. Do not start C/M2.7/M3 or manually trigger Full. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
+Current branch milestone: **M3 local volumetric clouds implemented; final user visual review pending.** The user closed M3-01 and revised A11 to clear far orbit and local clouds on approach at any geographic location. The independent local branch `codex/m3-global-volumetric-clouds` has physical GPU evidence at `5a0a22b`. M4 terrain shadows remain deferred. [M3 evidence, timings, visual limits and replay](evidence/M3/README.md).
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
