@@ -70,3 +70,5 @@ One additional measurement pass and one 1x1 rgba16float record (8 logical bytes)
 Demo: `Apps/WebGPUGlobe.html` → Lens optics. Default off; strength 0–4, diffusion/reflection isolation. No change to physical Sun direction/radius/irradiance, atmosphere coefficients, original solar assets, WebGL rendering or the single exposure/ACES/sRGB path.
 
 Next action: user reviews these original off/on images and the PR. No M2.8-C, M2.7, M3 or merge is authorized by this handoff.
+
+Publication: [Draft PR #31](https://github.com/pp123pp/cesium-webgpu-globe/pull/31). [Fast 41943899573](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41943899573) and [executed Full 41943899662](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41943899662) passed on source/evidence head 655b4ca; [job-level record](ci-status.json). Later log/checklist publication changes no runtime, tests or configuration and does not imply new hardware capture. User visual acceptance remains pending.
