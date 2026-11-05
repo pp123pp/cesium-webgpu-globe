@@ -152,7 +152,7 @@
         <button id="everest" disabled>Everest</button>
       </nav>
       <fieldset id="cloud-controls" disabled>
-        <legend>Volumetric clouds</legend>
+        <legend>Local volumetric clouds</legend>
         <label
           ><input id="show-cloud-volume" type="checkbox" /> Render clouds</label
         >
@@ -182,16 +182,17 @@
           ><input id="show-cloud-geometry" type="checkbox" /> Preview cloud
           shell</label
         >
-        <nav aria-label="Cloud geometry views">
+        <nav aria-label="Cloud views">
           <button id="cloud-orbit" type="button">Cloud orbit</button>
           <button id="cloud-high" type="button">High altitude</button>
           <button id="cloud-near" type="button">Near ground</button>
         </nav>
+        <button id="cloud-deck" type="button">Fly above local clouds</button>
         <output id="cloud-readout">WGS84 shell · base 2 km / top 6 km</output>
         <p>
           <small
-            >Cyan shows geometric path length, with Earth and terrain occlusion.
-            Turn off the preview to see cloud lighting.</small
+            >Zoom below 250 km to see local clouds. The cyan preview shows the
+            geometry of the 2–6 km layer.</small
           >
         </p>
       </fieldset>
@@ -517,13 +518,22 @@
       viewer.scene.postRender.addEventListener((scene) => {
         if (showCloudGeometry.checked && cloudPreview) {
           cloudPreview.render();
+        }
+        if (showCloudGeometry.checked || scene.clouds.show) {
           const height = scene._planetState.cameraHeight.toLocaleString(
             undefined,
             {
               maximumFractionDigits: 0,
             },
           );
-          cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height} m`;
+          const status = showCloudGeometry.checked
+            ? "WGS84 shell 2–6 km"
+            : scene._planetState.cameraHeight >= 250000
+              ? "Orbit · local clouds hidden"
+              : "Local cloud layer 2–6 km";
+          cloudReadout.textContent = `${status} · camera ${height} m`;
+        } else {
+          cloudReadout.textContent = "Local clouds off";
         }
         const illumination = scene._planetState?.moonIllumination;
         if (Number.isFinite(illumination)) {
@@ -588,6 +598,29 @@
           cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height.toLocaleString()} m`;
         });
       }
+      document.getElementById("cloud-deck").addEventListener("click", () => {
+        cloudVolumeControl.checked = viewer.scene.clouds.show = true;
+        showCloudGeometry.checked = false;
+        const target = viewer.camera.pickEllipsoid(
+          new Cesium.Cartesian2(
+            viewer.canvas.clientWidth / 2,
+            viewer.canvas.clientHeight / 2,
+          ),
+          viewer.scene.ellipsoid,
+        );
+        const { longitude, latitude } = target
+          ? viewer.scene.ellipsoid.cartesianToCartographic(target)
+          : viewer.camera.positionCartographic;
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromRadians(longitude, latitude, 8500),
+          orientation: {
+            heading: viewer.camera.heading,
+            pitch: Cesium.Math.toRadians(-18),
+            roll: 0,
+          },
+          duration: 2,
+        });
+      });
       everest.addEventListener("click", () => {
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(86.925, 27.9, 18000),

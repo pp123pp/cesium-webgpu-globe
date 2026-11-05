@@ -506,7 +506,7 @@ class WebGPUAtmosphereRenderer {
     );
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
-    this._cloudsShown = clouds?.show === true;
+    this._cloudsShown = clouds?.show === true && state.cameraHeight < 250000;
     if (this._cloudsShown) {
       this._cloudVolume ??= new WebGPUCloudVolume(this, state.planet.ellipsoid);
       this._cloudVolume.update(state, clouds, parameters.lightIntensity);

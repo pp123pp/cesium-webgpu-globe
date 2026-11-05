@@ -1,5 +1,25 @@
 # M3 global cloud volume
 
+**Revised after first physical capture (2026-11-05).** The user rejected the
+white orbital patches and requested Takram-like local volumes at every zoomed-in
+location. A11 now checks optically clear far orbit, gradual local appearance,
+and geographic persistence. The user selected local cloud availability at every
+region for positive coverage; zero is exactly clear. The original orbital
+visibility objective elsewhere in this design records the first iteration.
+Use an 80–250 km smoothstep for camera altitude and sample range, and skip the
+cloud pass entirely above 250 km. Today's selected thresholds are engineering
+defaults. Wind and local noise remain anchored to Earth. Check cloud-top relief,
+openings, self-shadow and grazing sunlight on captured frames.
+
+The user's local visual reference is `D:/myProject/web3dEng-new/examples/clouds`.
+`main.ts` configures the physical sky and local cloud demo. Its implementation
+in `src/engine/Scene/internal/NodeTidewaterClouds.ts` combines a forward and
+a backscattering lobe, attenuated higher orders, powder, underside darkening
+and altitude-dependent skylight. Adapt these lighting principles to the shared
+WGS84 density, M2 solar transmittance and HDR buffer with original equations
+and coefficients. The reference demo's terrain shadow maps and external binary
+noise assets are outside this integration.
+
 Local starting point: M3-01 `e2cb35e1`, including geometry implementation
 `0ed4fb5` and physical-GPU capture source `07e00af`. The user closed M3-01.
 Local and remote main were `bc649cc8` at inspection. Keep both shell intervals,

@@ -39,15 +39,17 @@ fn cloudLightDepth(p: vec3f, footprint: f32) -> f32 {
   return opticalDepth;
 }
 
+fn cloudPhase(mu: f32, g: f32) -> f32 {
+  return (1.0-g*g) / pow(1.0+g*g-2.0*g*mu, 1.5);
+}
+
 fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel: f32,
                      initial: CloudIntegral) -> CloudIntegral {
   var result = initial;
   let span = segment.y - segment.x;
   let anchor = fma(direction, vec3f(segment.x), planet.cameraHigh.xyz) + planet.cameraLow.xyz;
   let cosine = clamp(dot(direction, planet.sunDirectionWC.xyz), -1.0, 1.0);
-  // Unit-mean HG mixed with a broad scattering lobe.
-  let g = 0.68;
-  let phase = 0.32 + 0.68 * (1.0-g*g) / pow(1.0+g*g-2.0*g*cosine, 1.5);
+  let phase = mix(cloudPhase(cosine, -0.24), cloudPhase(cosine, 0.70), 0.70);
   let nonuniform = 0.8 * (1.0 - smoothstep(0.0, 18000.0, segment.x));
   var start = 0.0;
   for (var i = 1u; i <= count; i++) {
@@ -61,12 +63,17 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let p = fma(direction, vec3f(midpoint), anchor);
     let t = segment.x + midpoint;
     let footprint = max(t * angularPixel, ds * 0.22);
-    let sigma = cloudDensity(p, footprint, clouds.weather);
+    // Local clouds stay in ECEF. Only their optical weight follows the view.
+    let rangeWeight = 1.0 - smoothstep(80000.0, 250000.0, t);
+    let altitudeWeight = 1.0 - smoothstep(80000.0, 250000.0, planet.cameraLow.w);
+    let sigma = cloudDensity(p, footprint, clouds.weather) * rangeWeight * altitudeWeight;
     if (sigma <= 0.0) { continue; }
     let attenuation = exp(-sigma * ds);
     let weight = result.transmission * (1.0 - attenuation);
     let scaled = p * planet.inverseRadii.xyz;
     let normal = normalize(scaled * planet.inverseRadii.xyz);
+    let height = length(p) * (1.0 - 1.0 / length(scaled));
+    let layerHeight = clamp((height - 2000.0) / 4000.0, 0.0, 1.0);
     let mu = dot(normal, planet.sunDirectionWC.xyz);
     let sunScaled = planet.sunDirectionWC.xyz * planet.inverseRadii.xyz;
     let b = dot(scaled, sunScaled);
@@ -74,9 +81,16 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     if (!earthBlocksSun) {
       let tau = cloudLightDepth(p, footprint);
       result.lightSteps += u32(clouds.budget.y);
-      result.direct += weight * (0.72 * phase * exp(-tau) + 0.28 * exp(-0.27*tau));
+      // Diffuse orders retain light in optically thick crowns. Side-lit thin
+      // edges keep their forward lobe while dense undersides receive less sky.
+      let powder = mix(0.74 + 0.26*(1.0-exp(-sigma*2400.0)), 1.0, smoothstep(0.25,0.9,cosine));
+      let single = phase * exp(-tau);
+      let diffuse = 0.36 * cloudPhase(cosine,0.32)*exp(-0.44*tau) + 0.12*exp(-0.18*tau);
+      let baseLight = mix(0.72, 1.0, smoothstep(0.05,0.5,layerHeight));
+      result.direct += weight * (0.76*single + diffuse) * powder * baseLight;
     }
-    result.ambient += weight * (0.012 + 0.24 * smoothstep(-0.13, 0.38, mu));
+    let skyVisibility = mix(0.47, 1.0, sqrt(layerHeight));
+    result.ambient += weight * skyVisibility * (0.01 + 0.34 * smoothstep(-0.13, 0.38, mu));
     result.distanceMoment += weight * t;
     result.transmission *= attenuation;
   }
@@ -85,7 +99,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
 
 fn cloudTrace(direction: vec3f, pixel: vec2f) -> CloudIntegral {
   let distance = webgpuSceneRayDistance(textureLoad(sceneDepth, vec2i(pixel), 0), direction, planet);
-  let segments = webgpuCloudSegments(direction, distance, clouds.shell, planet);
+  let limit = select(min(distance, 250000.0), 250000.0, distance < 0.0);
+  let segments = webgpuCloudSegments(direction, limit, clouds.shell, planet);
   var result = CloudIntegral(0.0, 0.0, 1.0, 0.0, 0u, 0u);
   let first = segments.y - segments.x;
   if (first <= 0.0) { return result; }
