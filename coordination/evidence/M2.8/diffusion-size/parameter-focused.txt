@@ -1,0 +1,108 @@
+TAP version 13
+# Subtest: atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+ok 1 - atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+  ---
+  duration_ms: 2.5972
+  type: 'test'
+  ...
+# Subtest: resize and failure release the atmosphere color attachment with scene depth
+ok 2 - resize and failure release the atmosphere color attachment with scene depth
+  ---
+  duration_ms: 1.4546
+  type: 'test'
+  ...
+# Subtest: HDR clear decodes background RGB while M0 preserves display RGB and alpha
+ok 3 - HDR clear decodes background RGB while M0 preserves display RGB and alpha
+  ---
+  duration_ms: 1.9006
+  type: 'test'
+  ...
+# Subtest: public WebGPU globe demo exposes Moon and star controls
+ok 4 - public WebGPU globe demo exposes Moon and star controls
+  ---
+  duration_ms: 1.2422
+  type: 'test'
+  ...
+# Subtest: Moon and star controls update the production WebGPU scene settings
+ok 5 - Moon and star controls update the production WebGPU scene settings
+  ---
+  duration_ms: 0.2222
+  type: 'test'
+  ...
+# Subtest: Look at Moon uses the current ephemeris position and camera-relative direction
+ok 6 - Look at Moon uses the current ephemeris position and camera-relative direction
+  ---
+  duration_ms: 0.1534
+  type: 'test'
+  ...
+# Subtest: expanded control panel remains usable on short viewports
+ok 7 - expanded control panel remains usable on short viewports
+  ---
+  duration_ms: 0.0911
+  type: 'test'
+  ...
+# Subtest: coordination\\ci\\m2-hdr.test.mjs
+ok 3 - coordination\\ci\\m2-hdr.test.mjs
+  ---
+  duration_ms: 1521.6038
+  type: 'test'
+  ...
+# Subtest: lens controls default off and belong to each renderer
+ok 9 - lens controls default off and belong to each renderer
+  ---
+  duration_ms: 6.5008
+  type: 'test'
+  ...
+# Subtest: invalid mutable lens controls fail at the update boundary
+ok 10 - invalid mutable lens controls fail at the update boundary
+  ---
+  duration_ms: 8.7303
+  type: 'test'
+  ...
+# Subtest: diffusion size changes upload through the existing display uniform
+ok 11 - diffusion size changes upload through the existing display uniform
+  ---
+  duration_ms: 1.7488
+  type: 'test'
+  ...
+# Subtest: destroy during a pending solar fetch stops further GPU allocation and upload
+ok 12 - destroy during a pending solar fetch stops further GPU allocation and upload
+  ---
+  duration_ms: 3.9633
+  type: 'test'
+  ...
+# Subtest: solar initialization is idempotent and all owned resources are freed exactly once
+ok 13 - solar initialization is idempotent and all owned resources are freed exactly once
+  ---
+  duration_ms: 4.2378
+  type: 'test'
+  ...
+# Subtest: GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+ok 14 - GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+  ---
+  duration_ms: 2.1656
+  type: 'test'
+  ...
+# Subtest: shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+ok 15 - shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+  ---
+  duration_ms: 5.0801
+  type: 'test'
+  ...
+# Subtest: Sun-only updates use the existing uniforms without creating medium resources
+ok 16 - Sun-only updates use the existing uniforms without creating medium resources
+  ---
+  duration_ms: 2.2413
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1683.2177
+
+EXIT_CODE=0

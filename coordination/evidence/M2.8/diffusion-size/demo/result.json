@@ -1,0 +1,57 @@
+{
+  "scope": "Real Demo HTML and production Viewer; only offline/no-loop startup and a test viewer handle are injected. The actual slider markup/listener are unchanged.",
+  "demoSourceSha256": "6fecebe0852384f0e7e485d074968b94052a8d298af4cb4a7be05e9773527d9c",
+  "bundleSha256": "c8ae61d356b30fb1d70a8b63d6833ba95d1ee6ad88bb791e41653d9e0d8523ef",
+  "browser": "156.0.8078.80",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "values": [
+    {
+      "input": 0.1,
+      "production": 0.1,
+      "readout": "0.10"
+    },
+    {
+      "input": 0.4,
+      "production": 0.4,
+      "readout": "0.40"
+    },
+    {
+      "input": 0.7,
+      "production": 0.7,
+      "readout": "0.70"
+    },
+    {
+      "input": 1,
+      "production": 1,
+      "readout": "1.00"
+    },
+    {
+      "input": 2,
+      "production": 2,
+      "readout": "2.00"
+    }
+  ],
+  "errors": [],
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "slider": {
+    "min": "0.1",
+    "max": "2",
+    "step": "0.05",
+    "value": 0.7
+  },
+  "status": "PASS"
+}

@@ -66,7 +66,8 @@ fn bloomBlurRow(uv: vec2f, texel: vec2f) -> vec3f {
 struct FinalParameters {
   exposure: f32,
   strength: f32,
-  padding: vec2f,
+  lensDiffusionSize: f32,
+  padding: f32,
 }
 @group(0) @binding(2) var blurredBloom: texture_2d<f32>;
 @group(0) @binding(3) var<uniform> finalParameters: FinalParameters;

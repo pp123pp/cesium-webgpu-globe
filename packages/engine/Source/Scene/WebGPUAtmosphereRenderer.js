@@ -85,6 +85,7 @@ class WebGPUAtmosphereRenderer {
       enabled: false,
       strength: 1,
       diffusion: 1,
+      diffusionSize: 0.7,
       reflection: 1,
     };
     this.statistics.lensFlareTextureBytes = 0;
@@ -519,7 +520,12 @@ class WebGPUAtmosphereRenderer {
       this._parametersValues,
     );
     if (this._postParametersBuffer) {
-      this._postParametersValues.set([exposure, this.bloomStrength, 0, 0]);
+      this._postParametersValues.set([
+        exposure,
+        this.bloomStrength,
+        this.lensFlare.diffusionSize,
+        0,
+      ]);
       this._device.queue.writeBuffer(
         this._postParametersBuffer,
         0,
@@ -799,6 +805,12 @@ class WebGPUAtmosphereRenderer {
           `Lens flare ${name} must be finite within [0, 4].`,
         );
       }
+    }
+    const size = this.lensFlare.diffusionSize;
+    if (!Number.isFinite(size) || size < 0.1 || size > 2) {
+      throw new RuntimeError(
+        "Lens flare diffusionSize must be finite within [0.1, 2].",
+      );
     }
   }
 

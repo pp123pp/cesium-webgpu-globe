@@ -1,6 +1,10 @@
 # M2.8 A/B — hardware evidence and visual review
 
-**The user rejected the restrained first treatment below. See the [current reference-directed revision](revision/README.md) for new screenshots, verification and performance. User visual acceptance remains pending. Stop at B; do not merge main.**
+**Latest: [adjustable diffusion and linked outer halo](diffusion-size/README.md). User follow-ups add the live size parameter/slider and proportional spectral-arc scaling, with fixed core/rays and independent reflection glints. Final native samples and Demo input checks are recorded separately from the intermediate matrix. User visual acceptance is pending; do not merge main.**
+
+**Intermediate: [compact cinematic revision](compaction/README.md). The user approved a lens-only core/diffusion contraction while retaining peaks and the original arc/reflections. Native before/after captures, two motion sequences and scoped WebGL checks remain traceable; the final default output is equivalent. Earlier evidence below remains unchanged.**
+
+**The user rejected the restrained first treatment below. The [preceding reference-directed revision](revision/README.md) retains its original screenshots, verification and performance. Its core/diffusion footprint is superseded by the compact revision above. Stop at B; do not merge main.**
 
 Everything below is the historical first-treatment record; it is retained for traceability and is not the current visual acceptance conclusion.
 

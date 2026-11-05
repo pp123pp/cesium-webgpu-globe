@@ -74,34 +74,41 @@ fn lensRadiance(position: vec4f) -> vec3f {
   let angle = atan2(delta.y, delta.x);
   let irregular = 1.0 + 0.22 * sin(angle * 7.0 + 0.6) +
     0.14 * sin(angle * 13.0 - 1.2) + 0.08 * sin(angle * 23.0 + 2.0);
-  let core = exp(-r * r / (0.006 * irregular)) * 24.0;
-  let shoulder = exp(-r * r / 0.035) * 1.4;
-  let pupil = delta - opticalAxis * 0.055;
+  // Compact the optical footprint without dimming peaks or moving reflections.
+  let coreDelta = delta / 0.6;
+  let coreRadius = r / 0.6;
+  let diffusionDelta = delta / finalParameters.lensDiffusionSize;
+  let diffusionRadius = r / finalParameters.lensDiffusionSize;
+  let core = exp(-coreRadius * coreRadius / (0.006 * irregular)) * 24.0;
+  let shoulder = exp(-diffusionRadius * diffusionRadius / 0.035) * 1.4;
+  let pupil = diffusionDelta - opticalAxis * 0.055;
   let spread = exp(-dot(pupil, pupil) / 0.40) * 0.22;
-  let support = 1.0 - smoothstep(1.35, 1.80, r);
+  let warmSupport = 1.0 - smoothstep(1.35, 1.80, diffusionRadius);
   var rays = 0.0;
   // Beyond this footprint the beam envelope is below 4e-9. Avoid nine mask
   // fetches over the rest of the sky while retaining the broad optical layers.
-  if (r < 0.7) {
-    let rayUv = clamp(vec2f(0.5) + delta / 1.25, vec2f(0.0), vec2f(1.0));
-    let fineDelta = vec2f(delta.x * 0.98 - delta.y * 0.20, delta.x * 0.20 + delta.y * 0.98);
+  if (coreRadius < 0.7) {
+    let rayUv = clamp(vec2f(0.5) + coreDelta / 1.25, vec2f(0.0), vec2f(1.0));
+    let fineDelta = vec2f(coreDelta.x * 0.98 - coreDelta.y * 0.20, coreDelta.x * 0.20 + coreDelta.y * 0.98);
     let fineUv = clamp(vec2f(0.5) + fineDelta / 0.95, vec2f(0.0), vec2f(1.0));
-    let secondDelta = vec2f(delta.x * 0.89 + delta.y * 0.45, -delta.x * 0.45 + delta.y * 0.89);
+    let secondDelta = vec2f(coreDelta.x * 0.89 + coreDelta.y * 0.45, -coreDelta.x * 0.45 + coreDelta.y * 0.89);
     let secondUv = clamp(vec2f(0.5) + secondDelta / 1.15, vec2f(0.0), vec2f(1.0));
     // Remove the masks' low-bit-depth radial pedestal before amplification.
     // Its quantized gradients otherwise become conspicuous concentric bands.
     rays = (lensSoftRay(lensRays, rayUv, vec3f(0.34, 0.16, 0.035)) * 0.20 +
       lensSoftRay(lensFineRays, fineUv, vec3f(0.12, 0.06, 0.015)) * 0.55 +
       lensSoftRay(lensFineRays, secondUv, vec3f(0.12, 0.06, 0.015)) * 0.25) *
-      exp(-r * r / 0.025) * 24.0;
+      exp(-coreRadius * coreRadius / 0.025) * 24.0;
   }
+  // Small warm footprints must not trim the independently sized short rays.
   let diffusion = (vec3f(1.0, 0.91, 0.74) * (core + rays) +
-    vec3f(1.0, 0.85, 0.40) * shoulder +
-    vec3f(1.0, 0.60, 0.45) * spread) * support * lens.diffusion;
+    vec3f(1.0, 0.85, 0.40) * shoulder * warmSupport +
+    vec3f(1.0, 0.60, 0.45) * spread * warmSupport) * lens.diffusion;
 
   let offAxisResponse = smoothstep(0.04, 0.45, offAxis);
   // Broad overlapping wavelength bands form a soft spectral arc, not a line.
-  let ringDistance = vec3f(r) - vec3f(0.94, 1.04, 1.12);
+  let arcScale = finalParameters.lensDiffusionSize / 0.7;
+  let ringDistance = vec3f(r / arcScale) - vec3f(0.94, 1.04, 1.12);
   let arc = exp(-ringDistance * ringDistance / vec3f(0.012, 0.016, 0.018)) *
     vec3f(0.004, 0.009, 0.004) * (0.45 + 0.55 * pow(0.5 + 0.5 * cos(angle + 2.8), 2.0));
   let reflections =
