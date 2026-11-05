@@ -191,6 +191,28 @@
           Sunlight intensity is unchanged.</small
         >
       </fieldset>
+      <fieldset id="lens-controls" disabled>
+        <legend>Lens optics</legend>
+        <label><input id="lens-enabled" type="checkbox" /> Lens flare</label>
+        <label
+          >Strength
+          <input
+            id="lens-strength"
+            type="range"
+            min="0"
+            max="4"
+            step="0.05"
+            value="1"
+        /></label>
+        <label
+          ><input id="lens-diffusion" type="checkbox" checked /> Optical
+          diffusion</label
+        >
+        <label
+          ><input id="lens-reflection" type="checkbox" checked /> Subtle
+          reflection</label
+        >
+      </fieldset>
       <fieldset id="space-controls" disabled>
         <legend>Moon &amp; stars</legend>
         <label><input id="show-moon" type="checkbox" checked /> Moon</label>
@@ -257,6 +279,18 @@
         renderingBackend: "webgpu",
       });
       const defaultExposure = viewer.scene.exposure;
+      const lensControls = document.getElementById("lens-controls");
+      for (const name of ["enabled", "strength", "diffusion", "reflection"]) {
+        const control = document.getElementById(`lens-${name}`);
+        control.addEventListener("input", () => {
+          viewer.scene._atmosphere.lensFlare[name] =
+            name === "enabled"
+              ? control.checked
+              : name === "strength"
+                ? control.valueAsNumber
+                : Number(control.checked);
+        });
+      }
       const updateExposure = (value) => {
         viewer.scene.exposure = value;
         exposure.value = String(value);
@@ -298,6 +332,7 @@
           applyToken.disabled = true;
           sunControls.disabled = true;
           exposureControls.disabled = true;
+          lensControls.disabled = true;
           spaceControls.disabled = true;
         }
       };
@@ -497,6 +532,7 @@
         sunControls.disabled = false;
         updateExposure(defaultExposure);
         exposureControls.disabled = false;
+        lensControls.disabled = false;
         spaceControls.disabled = false;
         viewer.camera.setView({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),

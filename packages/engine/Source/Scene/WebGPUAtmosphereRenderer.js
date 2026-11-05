@@ -81,6 +81,15 @@ class WebGPUAtmosphereRenderer {
       bloomHeight: 0,
     };
     this.bloomStrength = 0.35;
+    this.lensFlare = {
+      enabled: false,
+      strength: 1,
+      diffusion: 1,
+      reflection: 1,
+    };
+    this.statistics.lensFlareTextureBytes = 0;
+    this.statistics.lensFlarePasses = 0;
+    this._lensValues = new Float32Array(4);
     this._postParametersValues = new Float32Array(4);
     this.composite = (encoder, target, color, depth) =>
       this._composite(encoder, target, color, depth);
@@ -157,6 +166,20 @@ class WebGPUAtmosphereRenderer {
         fragment: {
           module: bloomModule,
           entryPoint: "bloomFinal",
+          targets: [{ format: this.context._format }],
+        },
+      });
+      this._lensMeasurePipeline = await device.createRenderPipelineAsync({
+        ...bloomDescriptor,
+        label: "M2.8 solar HDR source measurement",
+        fragment: { ...bloomDescriptor.fragment, entryPoint: "lensMeasure" },
+      });
+      this._lensFinalPipeline = await device.createRenderPipelineAsync({
+        ...bloomDescriptor,
+        label: "M2.8 lens optics and ACES/sRGB output",
+        fragment: {
+          module: bloomModule,
+          entryPoint: "lensFinal",
           targets: [{ format: this.context._format }],
         },
       });
@@ -374,6 +397,7 @@ class WebGPUAtmosphereRenderer {
       return false;
     }
     validateExposure(exposure);
+    this._validateLensFlare();
     if (
       surfaceLighting &&
       (!Number.isFinite(parameters.lightIntensity) ||
@@ -480,6 +504,12 @@ class WebGPUAtmosphereRenderer {
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
     this._sunShown = sun.show;
+    this._lensValues.set([
+      sun.show && radiance > 0 ? this.lensFlare.strength : 0,
+      this.lensFlare.diffusion,
+      this.lensFlare.reflection,
+      solar.angularRadius,
+    ]);
     this._moonShown = moon.show;
     this._starsShown = stars.show;
     this._device.queue.writeBuffer(this._planetBuffer, 0, state.uniformValues);
@@ -554,6 +584,7 @@ class WebGPUAtmosphereRenderer {
       ],
     });
     this._bloomFinalDepth = undefined;
+    this._lensBoundDepth = undefined;
     this._boundColor = undefined;
     this._boundDepth = undefined;
   }
@@ -649,12 +680,32 @@ class WebGPUAtmosphereRenderer {
       );
       this.statistics.bloomPasses += 2;
     }
+    if (this.lensFlare.enabled) {
+      this._prepareLensFlare(depth);
+      this._drawFullscreenPass(
+        encoder,
+        this._lensTexture,
+        this._lensMeasurePipeline,
+        this._lensMeasureBindings,
+        "M2.8 solar HDR source measurement",
+      );
+      ++this.statistics.lensFlarePasses;
+    }
     const finalPass = encoder.beginRenderPass({
       label: "M2.6 HDR bloom composition, ACES and sRGB output",
       colorAttachments: [{ view: target, loadOp: "clear", storeOp: "store" }],
     });
-    finalPass.setPipeline(this._bloomFinalPipeline);
-    finalPass.setBindGroup(0, this._bloomFinalBindings);
+    finalPass.setPipeline(
+      this.lensFlare.enabled
+        ? this._lensFinalPipeline
+        : this._bloomFinalPipeline,
+    );
+    finalPass.setBindGroup(
+      0,
+      this.lensFlare.enabled
+        ? this._lensFinalBindings
+        : this._bloomFinalBindings,
+    );
     finalPass.draw(3);
     finalPass.end();
     ++this.statistics.bloomFrames;
@@ -683,6 +734,7 @@ class WebGPUAtmosphereRenderer {
       "_planetBuffer",
       "_parametersBuffer",
       "_postParametersBuffer",
+      "_lensBuffer",
     ]) {
       if (this[key]) {
         this[key].destroy();
@@ -698,7 +750,12 @@ class WebGPUAtmosphereRenderer {
         this[key] = undefined;
       }
     }
-    for (const key of ["_linearTexture", "_bloomTextureA", "_bloomTextureB"]) {
+    for (const key of [
+      "_linearTexture",
+      "_bloomTextureA",
+      "_bloomTextureB",
+      "_lensTexture",
+    ]) {
       if (this[key]) {
         this[key].destroy();
         ++this.statistics.texturesDestroyed;
@@ -706,6 +763,12 @@ class WebGPUAtmosphereRenderer {
       }
     }
     this.statistics.bloomTextureBytes = 0;
+    this.statistics.lensFlareTextureBytes = 0;
+    this._lensBoundDepth = undefined;
+    this._lensMeasureBindings = undefined;
+    this._lensFinalBindings = undefined;
+    this._lensMeasurePipeline = undefined;
+    this._lensFinalPipeline = undefined;
     this.statistics.bloomWidth = 0;
     this.statistics.bloomHeight = 0;
     this._bindings = undefined;
@@ -723,6 +786,60 @@ class WebGPUAtmosphereRenderer {
     this._boundColor = undefined;
     this._boundDepth = undefined;
     this._boundPipeline = undefined;
+  }
+
+  _validateLensFlare() {
+    if (typeof this.lensFlare.enabled !== "boolean") {
+      throw new RuntimeError("Lens flare enabled must be boolean.");
+    }
+    for (const name of ["strength", "diffusion", "reflection"]) {
+      const value = this.lensFlare[name];
+      if (!Number.isFinite(value) || value < 0 || value > 4) {
+        throw new RuntimeError(
+          `Lens flare ${name} must be finite within [0, 4].`,
+        );
+      }
+    }
+  }
+
+  _prepareLensFlare(depth) {
+    if (!this._lensTexture) {
+      this._lensBuffer = this._createBuffer(16, "M2.8 lens optical controls");
+      this._lensTexture = this._device.createTexture({
+        label: "M2.8 solar HDR source record",
+        size: [1, 1],
+        format: "rgba16float",
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
+      });
+      ++this.statistics.texturesCreated;
+      this.statistics.lensFlareTextureBytes = 8;
+    }
+    this._device.queue.writeBuffer(this._lensBuffer, 0, this._lensValues);
+    if (this._lensBoundDepth === depth) {
+      return;
+    }
+    const entries = [
+      { binding: 0, resource: this._linearTexture.createView() },
+      { binding: 4, resource: depth.createView() },
+      { binding: 5, resource: { buffer: this._planetBuffer } },
+      { binding: 7, resource: { buffer: this._lensBuffer } },
+    ];
+    this._lensMeasureBindings = this._device.createBindGroup({
+      layout: this._lensMeasurePipeline.getBindGroupLayout(0),
+      entries,
+    });
+    this._lensFinalBindings = this._device.createBindGroup({
+      layout: this._lensFinalPipeline.getBindGroupLayout(0),
+      entries: [
+        ...entries,
+        { binding: 1, resource: this._sampler },
+        { binding: 2, resource: this._bloomTextureB.createView() },
+        { binding: 3, resource: { buffer: this._postParametersBuffer } },
+        { binding: 6, resource: this._lensTexture.createView() },
+      ],
+    });
+    this._lensBoundDepth = depth;
   }
 }
 

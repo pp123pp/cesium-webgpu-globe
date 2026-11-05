@@ -1,4 +1,5 @@
 import WebGPUPlanetShader from "./WebGPUPlanetShader.js";
+import WebGPULensFlareShader from "./WebGPULensFlareShader.js";
 
 /** Low-resolution scene-linear HDR bloom and final ACES/sRGB output. @private */
 const WebGPUSolarBloomShader = `${WebGPUPlanetShader}
@@ -82,7 +83,7 @@ fn bloomSrgb(value: vec3f) -> vec3f {
   return select(1.055 * pow(color, vec3f(1.0 / 2.4)) - 0.055,
     color * 12.92, color <= vec3f(0.0031308));
 }
-@fragment fn bloomFinal(@builtin(position) position: vec4f) -> @location(0) vec4f {
+fn bloomLinear(position: vec4f) -> vec3f {
   let size = vec2f(textureDimensions(sourceTexture));
   let uv = position.xy / size;
   let coordinate = vec2i(position.xy);
@@ -99,8 +100,12 @@ fn bloomSrgb(value: vec3f) -> vec3f {
       bloom = textureSampleLevel(blurredBloom, sourceSampler, uv, 0.0).rgb;
     }
   }
-  return vec4f(bloomSrgb(bloomAces(scene + bloom * finalParameters.strength)), 1.0);
+  return scene + bloom * finalParameters.strength;
 }
+@fragment fn bloomFinal(@builtin(position) position: vec4f) -> @location(0) vec4f {
+  return vec4f(bloomSrgb(bloomAces(bloomLinear(position))), 1.0);
+}
+${WebGPULensFlareShader}
 `;
 
 export default WebGPUSolarBloomShader;
