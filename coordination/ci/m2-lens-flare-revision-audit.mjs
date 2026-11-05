@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
@@ -37,11 +38,11 @@ try {
   assert.deepEqual(webgl.browserErrors, []);
   assert.deepEqual(webgl.browserWarnings, []);
   assert.equal(webgl.bundleHash, visual.bundleSha256);
-  assert.equal(webgl.sourceCommit, visual.source);
+  sameRuntime(webgl.sourceCommit, visual.source);
   assert.equal(hash(await readFile("Build/CesiumUnminified/Cesium.js")), visual.bundleSha256);
   assert.notEqual(baseline.bundleSha256, visual.bundleSha256);
   for (const [key, value] of Object.entries(reports)) {
-    assert.equal(value.source, visual.source, `${key}: same committed candidate`);
+    sameRuntime(value.source, visual.source);
     assert.equal(value.bundleSha256, visual.bundleSha256, `${key}: same production bundle`);
     assert.ok(Object.keys(value.runtimeHashes).length >= 3);
     for (const [file, expected] of Object.entries(value.runtimeHashes)) {
@@ -49,9 +50,9 @@ try {
       assert.equal(visual.runtimeHashes[file], expected, `${key}: shared ${file}`);
     }
   }
-  audit.provenance = { candidateCommit: visual.source, candidateBundle: visual.bundleSha256,
+  audit.provenance = { candidateCommit: visual.source, captureCommits: Object.fromEntries(Object.entries(reports).map(([key, value]) => [key, value.source])), webglCommit: webgl.sourceCommit, candidateBundle: visual.bundleSha256,
     baselineCommit: baseline.source, baselineBundle: baseline.bundleSha256, runtimeHashes: visual.runtimeHashes };
-  audit.checks.push("Clean committed hardware captures, one current candidate runtime/bundle, independent historical main baseline.");
+  audit.checks.push("Clean committed hardware captures, identical runtime trees across later harness commits, one current bundle, independent historical main baseline.");
 
   for (const [key, value] of Object.entries(reports)) {
     for (const scene of value.scenes) { await png(`${key}/${scene.name}.png`, scene.pngSha256); }
@@ -158,14 +159,14 @@ try {
   audit.resources.lifecycle = resourceCounts(lifecycleRows);
   audit.timing = timing.timing.map((batch) => {
     assert.equal(batch.status, "MEASURED");
-    assert.equal(batch.samplesPerMode, 180);
+    assert.equal(batch.samplesPerMode, 600);
     assert.equal(batch.warmupPerMode, 60);
     assert.deepEqual(batch.allocationChanges, { textures: 0, buffers: 0 });
     assert.equal(batch.flareTextureBytes, 8);
     const summary = {};
     for (const mode of ["off", "on"]) {
       const rows = batch.samples[mode];
-      assert.equal(rows.length, 180);
+      assert.equal(rows.length, 600);
       for (const row of rows) {
         assert.ok(row.passes.every((pass) => Number.isFinite(pass.gpuMs) && pass.gpuMs >= 0));
         close(row.passes.reduce((sum, pass) => sum + pass.gpuMs, 0), row.gpuPassSumMs);
@@ -200,6 +201,12 @@ async function report(file) {
   const bytes = await readFile(path.join(root, file));
   audit.reports[file] = hash(bytes);
   return JSON.parse(bytes);
+}
+
+function sameRuntime(source, baseline) {
+  const changed = execFileSync("git", ["diff", "--name-only", baseline, source, "--",
+    "packages/engine/Source", "packages/widgets/Source", "packages/core/Source"], { encoding: "utf8" }).trim();
+  assert.equal(changed, "", `Capture runtime trees must match: ${source}`);
 }
 async function png(file, expected) {
   const actual = hash(await readFile(path.join(root, file)));

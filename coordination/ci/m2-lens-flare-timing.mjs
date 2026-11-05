@@ -23,7 +23,7 @@ await runM1BrowserSuite("m2-lens-flare-timing", async ({ page, report, output })
     await page.evaluate(() => { window.__m1.viewer.resize(); window.__m1.viewer.scene._atmosphere.lensFlare.enabled = true; });
     await settleLensFlare(page);
     await captureB4(page, report, output, `timing-${width}-${report.timing.length}`);
-    const row = await measureFlareGpu(page, 180);
+    const row = await measureFlareGpu(page, 600);
     report.timing.push(row);
     assert.equal(row.status, "MEASURED", "Real timestamp-query measurements required");
     assert.ok(row.summary.on.gpuPassSumMs.mean > 0);
@@ -44,7 +44,7 @@ await runM1BrowserSuite("m2-lens-flare-timing", async ({ page, report, output })
     retainedPayloadBytes: report.allocations.filter((row) => !row.destroyed).reduce((sum, row) => sum + row.bytes, 0),
     residentVram: "UNVERIFIED: WebGPU does not expose portable resident VRAM counters",
   };
-  report.checks.push("Alternating 180 timestamps per mode/resolution after 60 warmup pairs, 1080 to 720 to 1080 resize, no steady-state renderer allocations, all native resources released once.");
+  report.checks.push("Alternating 600 timestamps per mode/resolution after 60 warmup pairs, 1080 to 720 to 1080 resize, no steady-state renderer allocations, all native resources released once.");
 });
 
 async function measureFlareGpu(page, samples) {
