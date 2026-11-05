@@ -105,7 +105,7 @@
       <h1>地形云影</h1>
       <p>
         旧金山 ·
-        金门海峡。拖动底部时间轴比较同一片海岸的云影，用左下圆盘播放或调整速度。
+        金门海峡。拖动时间轴观察太阳、昼夜和云影变化，可缩放或平移到任意时间，用左下圆盘播放或调整速度。
       </p>
       <fieldset id="controls" disabled>
         <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
@@ -216,13 +216,13 @@
           mist: false,
         });
         viewer.clock.startTime = Cesium.JulianDate.clone(start);
-        viewer.clock.stopTime = Cesium.JulianDate.addSeconds(
+        viewer.clock.stopTime = Cesium.JulianDate.addDays(
           start,
-          180,
+          1,
           new Cesium.JulianDate(),
         );
-        viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
-        viewer.clock.multiplier = 8;
+        viewer.clock.clockRange = Cesium.ClockRange.UNBOUNDED;
+        viewer.clock.multiplier = 600;
         reset();
         clockViewModel = new Cesium.ClockViewModel(viewer.clock);
         animation = new Cesium.Animation(
