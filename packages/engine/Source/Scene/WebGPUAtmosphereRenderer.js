@@ -506,11 +506,27 @@ class WebGPUAtmosphereRenderer {
     );
     this._activePipeline = parameters.show ? this._pipeline : this._sunPipeline;
     this._atmosphereShown = parameters.show;
-    this._cloudsShown = clouds?.show === true && state.cameraHeight < 250000;
+    const cloudBudget =
+      clouds?.show === true && state.cameraHeight < 250000
+        ? WebGPUCloudVolume.getStepBudget(clouds)
+        : undefined;
+    this._cloudsShown = cloudBudget !== undefined && clouds.coverage > 0;
     if (this._cloudsShown) {
       this._cloudVolume ??= new WebGPUCloudVolume(this, state.planet.ellipsoid);
-      this._cloudVolume.update(state, clouds, parameters.lightIntensity);
+      this._cloudVolume.update(
+        state,
+        clouds,
+        parameters.lightIntensity,
+        cloudBudget,
+      );
       this.statistics.clouds = this._cloudVolume.statistics;
+    } else if (this.statistics.clouds) {
+      Object.assign(this.statistics.clouds, {
+        width: 0,
+        height: 0,
+        primarySteps: 0,
+        lightSteps: 0,
+      });
     }
     this._sunShown = sun.show;
     this._lensValues.set([

@@ -73,6 +73,10 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   const time = async (name, motion = false) => {
     const row = await measureCloudPass(page, motion);
     report.timings.push({ name, ...row });
+    if (process.argv.includes("--profile")) {
+      assert.equal(row.status, "MEASURED", row.reason);
+      assert.equal(row.count, 120);
+    }
     if (row.status === "MEASURED") {
       assert.ok(
         row.samplesMs.every((sample) => Number.isFinite(sample) && sample >= 0),
@@ -84,6 +88,41 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     }
   };
   report.timings = [];
+  if (process.argv.includes("--clear-coverage")) {
+    await settle(at(9500, -9, 0, 0, 247));
+    const off = await frame("clouds-off", { config: { show: false } });
+    const clear = await frame("zero-coverage", {
+      config: { show: true, coverage: 0, mist: true },
+    });
+    assert.equal(clear.cloudPasses, 0);
+    assert.equal(clear.reconstructionPasses, 0);
+    assert.equal(clear.sha256, off.sha256);
+    assert.equal(
+      await page.evaluate(
+        () => !!window.__m1.viewer.scene._atmosphere._cloudVolume,
+      ),
+      false,
+      "initial clear sky does not allocate a cloud volume",
+    );
+    const visible = await frame("restored", { config: { coverage: 0.58 } });
+    assert.equal(visible.cloudPasses, 1);
+    assert.equal(visible.reconstructionPasses, 1);
+    assert.notEqual(visible.sha256, clear.sha256);
+    const cleared = await frame("cleared-again", { config: { coverage: 0 } });
+    assert.equal(cleared.cloudPasses, 0);
+    assert.equal(cleared.reconstructionPasses, 0);
+    assert.equal(cleared.sha256, off.sha256);
+    const restored = await frame("restored-again", {
+      config: { coverage: 0.58 },
+    });
+    assert.equal(restored.sha256, visible.sha256);
+    await checkRaisedTerrain(page, settle, frame);
+    report.checks.push(
+      "Zero coverage skips cloud allocation and both passes; restoring coverage redraws the same clouds. Raised terrain occludes the cloud column.",
+    );
+    report.cleanup = await destroyM1Scene(page);
+    return;
+  }
   if (process.argv.includes("--motion-and-mist")) {
     const baseline = process.argv.includes("--accepted-baseline");
     await page.setViewportSize({ width: 640, height: 360 });
@@ -549,31 +588,7 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
       );
     }
   }
-  await page.evaluate(() => {
-    class Raised extends Cesium.CustomHeightmapTerrainProvider {
-      getLevelMaximumGeometricError(level) {
-        return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
-      }
-    }
-    window.__m1.viewer.terrainProvider = new Raised({
-      width: 32,
-      height: 32,
-      callback: () => new Float32Array(32 * 32).fill(8000),
-    });
-  });
-  await settle(at(10000, -90));
-  await frame("10-raised-terrain-disabled", { config: { show: false } });
-  const blocked = await frame("10-raised-terrain-enabled", {
-    config: { show: true },
-  });
-  assert.equal(
-    blocked.difference.centerMax,
-    0,
-    "8 km terrain hides entire cloud column at nadir",
-  );
-  await page.evaluate(() => {
-    window.__m1.viewer.terrainProvider = window.__volume.terrain;
-  });
+  await checkRaisedTerrain(page, settle, frame);
   await settle(sea);
   await frame("10-exposure-1", { exposure: 1 });
   const exposed = await frame("10-exposure-2", { exposure: 2 });
@@ -649,6 +664,34 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     "selected interior has distinct translucent and dense sightlines",
   );
 });
+
+async function checkRaisedTerrain(page, settle, frame) {
+  await page.evaluate(() => {
+    class Raised extends Cesium.CustomHeightmapTerrainProvider {
+      getLevelMaximumGeometricError(level) {
+        return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
+      }
+    }
+    window.__m1.viewer.terrainProvider = new Raised({
+      width: 32,
+      height: 32,
+      callback: () => new Float32Array(32 * 32).fill(8000),
+    });
+  });
+  await settle(at(10000, -90));
+  await frame("10-raised-terrain-disabled", { config: { show: false } });
+  const blocked = await frame("10-raised-terrain-enabled", {
+    config: { show: true },
+  });
+  assert.equal(
+    blocked.difference.centerMax,
+    0,
+    "8 km terrain hides entire cloud column at nadir",
+  );
+  await page.evaluate(() => {
+    window.__m1.viewer.terrainProvider = window.__volume.terrain;
+  });
+}
 
 async function installFixture(page) {
   await page.evaluate(() => {
@@ -921,7 +964,8 @@ async function recordOptics(page, report, name) {
 }
 
 async function measureCloudPass(page, motion) {
-  return page.evaluate(async (motion) => {
+  const profile = process.argv.includes("--profile");
+  return page.evaluate(async ({ motion, warmup, samples }) => {
     const { viewer } = window.__m1;
     const { scene } = viewer;
     const device = scene.context._device;
@@ -972,10 +1016,10 @@ async function measureCloudPass(page, motion) {
     const traceMs = [];
     const reconstructionMs = [];
     try {
-      for (let i = -2; i < 10; i++) {
+      for (let i = -warmup; i < samples; i++) {
         if (motion) {
           window.__volume.setView({
-            longitude: (i + 2) * 0.14,
+            longitude: (i + warmup) * 0.14,
             latitude: 0,
             height: 8000 + 5000 * Math.sin(i / 3),
             pitch: -9,
@@ -1030,6 +1074,7 @@ async function measureCloudPass(page, motion) {
       };
       return {
         status: "MEASURED",
+        warmup,
         ...distribution(samplesMs),
         passes: {
           trace: distribution(traceMs),
@@ -1044,5 +1089,5 @@ async function measureCloudPass(page, motion) {
       resolved.destroy();
       readback.destroy();
     }
-  }, motion);
+  }, { motion, warmup: profile ? 20 : 2, samples: profile ? 120 : 10 });
 }

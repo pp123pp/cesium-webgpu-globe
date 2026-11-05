@@ -62,7 +62,7 @@ class WebGPUCloudVolume {
     };
   }
 
-  update(state, options, irradiance) {
+  static getStepBudget(options) {
     const budget = budgets.get(options.quality);
     const type = options.type ?? "cumulus";
     const cirrus = options.cirrus ?? false;
@@ -90,11 +90,15 @@ class WebGPUCloudVolume {
         "Clouds require a named quality, coverage in [0,1] and finite wind.",
       );
     }
+    return budget;
+  }
+
+  update(state, options, irradiance, budget) {
     const time =
       (state.time.dayNumber - 2451545) * 86400 + state.time.secondsOfDay;
     const angle =
       ((time * options.windSpeed) / state.planet.maximumRadius) % (2 * Math.PI);
-    const layer = cirrus ? this.layerWithCirrus : this.layer;
+    const layer = options.cirrus ? this.layerWithCirrus : this.layer;
     this.values.set(layer.update(state).uniformValues);
     this.values.set(
       [
@@ -107,13 +111,13 @@ class WebGPUCloudVolume {
     );
     this.divisor = options.quality === "high" ? 1 : 2;
     this.values.set([...budget, irradiance / 10, this.divisor], 28);
-    this.values[32] = Number(type === "stratocumulus");
-    this.values[33] = Number(cirrus);
+    this.values[32] = Number(options.type === "stratocumulus");
+    this.values[33] = Number(options.cirrus ?? false);
     // Zero disables evolution. A three-minute phase wraps smoothly across days.
-    this.values[34] = evolution
+    this.values[34] = options.evolution
       ? 1 + (state.time.secondsOfDay % 180) * ((2 * Math.PI) / 180)
       : 0;
-    this.values[35] = Number(mist);
+    this.values[35] = Number(options.mist ?? false);
     this.device.queue.writeBuffer(this.parameters, 0, this.values);
     Object.assign(this.statistics, {
       primarySteps: budget[0],
