@@ -45,7 +45,7 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     capture:
       "One production viewer render per PNG, same-task swapchain readback. Each sequence has one saved image per scripted camera/time update.",
     timing:
-      "Cloud render-pass timestamps in milliseconds. Configured primary/light step limits are budgets. Separately measured per-ray counts come from three selected native pixels outside the timing window. Resident VRAM is unmeasured.",
+      "Production cloud tracing and reconstruction pass timestamps, reported individually and as a paired per-frame sum in milliseconds. Configured step limits and three independently replayed native-pixel step counts are recorded separately. Resident VRAM is unmeasured.",
     visualReview:
       "Review ordered frames for shape, lighting, silver lining, flicker, ghosts, banding, polar seams and continuous cross-scale transitions. Pixel changes alone cannot establish visual acceptance.",
   };
@@ -129,10 +129,12 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     0,
     "no production cloud pass at GEO, even at full coverage",
   );
+  assert.equal(far.reconstructionPasses, 0);
   report.timings.push({
     name: "orbit",
     status: "CULLED",
     observedPasses: far.cloudPasses,
+    reconstructionPasses: far.reconstructionPasses,
   });
   const restored = await frame("01-orbit-restored", {
     config: { show: false },
@@ -156,6 +158,7 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   });
   assert.equal(limb.sha256, limbOff.sha256);
   assert.equal(limb.cloudPasses, 0);
+  assert.equal(limb.reconstructionPasses, 0);
   const transition = [];
   for (let h = 260000; h >= 70000; h -= 10000) {
     const view = at(h, -55);
@@ -190,11 +193,15 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   await settle(localReferenceView);
   await frame("03-reference-ground", {
     config: { show: true, coverage: 0.49, windSpeed: 12, localDetail: false },
-    exposure: 0.55, date: "2026-03-20T14:00:00Z",
+    exposure: 0.55,
+    date: "2026-03-20T14:00:00Z",
   });
   await recordOptics(page, report, "03-reference-ground");
   await frame("03-reference-ground-default-exposure", { exposure: 1 });
-  await frame("03-reference-clear", { config: { show: false, windSpeed: 18 }, date: noon });
+  await frame("03-reference-clear", {
+    config: { show: false, windSpeed: 18, localDetail: true },
+    date: noon,
+  });
   const sites = [
     { name: "equator", view: at(1200, 11, 0, 0) },
     { name: "north-atlantic", view: at(1200, 11, -29, 37) },
@@ -251,6 +258,14 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   const tiers = [];
   for (const quality of ["low", "medium", "high"]) {
     const row = await frame(`04-tier-${quality}`, { config: { quality } });
+    const divider = quality === "high" ? 1 : 2;
+    assert.deepEqual(
+      [row.clouds.width, row.clouds.height],
+      row.size.map((axis) => Math.ceil(axis / divider)),
+      `${quality} trace target dimensions`,
+    );
+    assert.equal(row.cloudPasses, 1);
+    assert.equal(row.reconstructionPasses, divider === 2 ? 1 : 0);
     tiers.push(row.clouds.primarySteps);
     await time(`cloud-sea-${quality}-tier`);
   }
@@ -393,7 +408,10 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   await page.evaluate(() => window.__m1.viewer.resize());
   const resized = await frame("11-resized", { date: noon });
   assert.deepEqual(resized.size, [512, 288]);
-  assert.deepEqual([resized.clouds.width, resized.clouds.height], resized.size);
+  assert.deepEqual(
+    [resized.clouds.width, resized.clouds.height],
+    resized.size.map((axis) => Math.ceil(axis / 2)),
+  );
   for (const [name, view] of [
     ["west-seam", at(80000, -90, -179.9999, 12)],
     ["east-seam", at(80000, -90, 179.9999, 12)],
@@ -403,6 +421,27 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     await settle(view);
     await frame(`12-${name}`);
   }
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.evaluate(() => window.__m1.viewer.resize());
+  await settle(sea);
+  const large = await frame("13-cloud-sea-720p", {
+    date: noon,
+    config: { quality: "medium", coverage: 0.58, localDetail: true },
+  });
+  assert.deepEqual(large.size, [1280, 720]);
+  assert.deepEqual([large.clouds.width, large.clouds.height], [640, 360]);
+  await time("cloud-sea-medium-1280x720");
+  await settle(localReferenceView);
+  await frame("13-ground-afternoon-720p", {
+    date: "2026-03-20T14:00:00Z",
+    exposure: 0.55,
+    config: {
+      coverage: 0.49,
+      quality: "medium",
+      localDetail: true,
+      windSpeed: 12,
+    },
+  });
   report.checks.push(
     "Revised A11 and A12–A13 review sequences, real raised-terrain occlusion, native HDR exposure, four coverages, resize and date changes",
   );
@@ -469,12 +508,15 @@ async function installFixture(page) {
     const device = scene.context._device;
     const original = device.createCommandEncoder;
     let cloudPasses = 0;
+    let reconstructionPasses = 0;
     device.createCommandEncoder = function (descriptor) {
       const encoder = original.call(this, descriptor);
       const begin = encoder.beginRenderPass;
       encoder.beginRenderPass = function (pass) {
         if (pass.label === "M3 volumetric clouds") {
           cloudPasses++;
+        } else if (pass.label === "M3 cloud reconstruction") {
+          reconstructionPasses++;
         }
         return begin.call(this, pass);
       };
@@ -517,6 +559,7 @@ async function installFixture(page) {
           scene.atmosphere.show = atmosphere;
         }
         cloudPasses = 0;
+        reconstructionPasses = 0;
         const image = window.__m1.pixels();
         if (window.__m1.errors.length) {
           throw new Error(window.__m1.errors.join("\n"));
@@ -569,6 +612,7 @@ async function installFixture(page) {
             pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
           },
           cloudPasses,
+          reconstructionPasses,
           atmosphere: scene.atmosphere.show,
           lens: scene._atmosphere.lensFlare.enabled,
           exposure: scene.exposure,
@@ -709,37 +753,46 @@ async function measureCloudPass(page, motion) {
         reason: "timestamp-query unavailable on the physical device",
       };
     }
-    const querySet = device.createQuerySet({ type: "timestamp", count: 2 });
+    const querySet = device.createQuerySet({ type: "timestamp", count: 4 });
     const resolved = device.createBuffer({
-      size: 16,
+      size: 32,
       usage: GPUBufferUsage.QUERY_RESOLVE | GPUBufferUsage.COPY_SRC,
     });
     const readback = device.createBuffer({
-      size: 16,
+      size: 32,
       usage: GPUBufferUsage.MAP_READ | GPUBufferUsage.COPY_DST,
     });
     const original = device.createCommandEncoder;
-    let seen = 0;
+    let traceCount = 0;
+    let reconstructionCount = 0;
     device.createCommandEncoder = function (descriptor) {
       const encoder = original.call(this, descriptor);
       const begin = encoder.beginRenderPass;
       encoder.beginRenderPass = function (pass) {
-        if (pass.label !== "M3 volumetric clouds") {
+        let index;
+        if (pass.label === "M3 volumetric clouds") {
+          traceCount++;
+          index = 0;
+        } else if (pass.label === "M3 cloud reconstruction") {
+          reconstructionCount++;
+          index = 2;
+        } else {
           return begin.call(this, pass);
         }
-        seen++;
         return begin.call(this, {
           ...pass,
           timestampWrites: {
             querySet,
-            beginningOfPassWriteIndex: 0,
-            endOfPassWriteIndex: 1,
+            beginningOfPassWriteIndex: index,
+            endOfPassWriteIndex: index + 1,
           },
         });
       };
       return encoder;
     };
     const samplesMs = [];
+    const traceMs = [];
+    const reconstructionMs = [];
     try {
       for (let i = -2; i < 10; i++) {
         if (motion) {
@@ -751,31 +804,60 @@ async function measureCloudPass(page, motion) {
             heading: 60 + i * 8,
           });
         }
-        seen = 0;
+        traceCount = 0;
+        reconstructionCount = 0;
         viewer.render();
-        if (seen !== 1) {
+        if (
+          traceCount !== 1 ||
+          reconstructionCount !== (scene.clouds.quality === "high" ? 0 : 1)
+        ) {
           throw new Error(
-            `Expected exactly one M3 volumetric clouds pass, observed ${seen}`,
+            `Unexpected cloud pass counts for ${scene.clouds.quality}: trace=${traceCount}, reconstruction=${reconstructionCount}`,
           );
         }
         const encoder = original.call(device);
-        encoder.resolveQuerySet(querySet, 0, 2, resolved, 0);
-        encoder.copyBufferToBuffer(resolved, 0, readback, 0, 16);
+        const queryCount = 2 + 2 * reconstructionCount;
+        encoder.resolveQuerySet(querySet, 0, queryCount, resolved, 0);
+        encoder.copyBufferToBuffer(resolved, 0, readback, 0, queryCount * 8);
         device.queue.submit([encoder.finish()]);
         await readback.mapAsync(GPUMapMode.READ);
         const stamps = new BigUint64Array(readback.getMappedRange());
-        const delta = Number(stamps[1] - stamps[0]) / 1e6;
+        const trace = Number(stamps[1] - stamps[0]) / 1e6;
+        const reconstruction = reconstructionCount
+          ? Number(stamps[3] - stamps[2]) / 1e6
+          : 0;
         readback.unmap();
+        if (trace < 0 || reconstruction < 0) {
+          throw new Error("Invalid cloud GPU timestamp interval");
+        }
         if (i >= 0) {
-          samplesMs.push(delta);
+          traceMs.push(trace);
+          if (reconstructionCount) {
+            reconstructionMs.push(reconstruction);
+          }
+          samplesMs.push(trace + reconstruction);
         }
       }
-      const sorted = [...samplesMs].sort((a, b) => a - b);
+      const distribution = (values) => {
+        if (!values.length) {
+          return { status: "NO_PASS", count: 0 };
+        }
+        const sorted = [...values].sort((a, b) => a - b);
+        return {
+          count: values.length,
+          samplesMs: values,
+          meanMs: values.reduce((s, v) => s + v, 0) / values.length,
+          p95Ms: sorted[Math.ceil(sorted.length * 0.95) - 1],
+        };
+      };
       return {
         status: "MEASURED",
-        samplesMs,
-        meanMs: samplesMs.reduce((s, v) => s + v, 0) / samplesMs.length,
-        p95Ms: sorted[Math.ceil(sorted.length * 0.95) - 1],
+        ...distribution(samplesMs),
+        passes: {
+          trace: distribution(traceMs),
+          reconstruction: distribution(reconstructionMs),
+        },
+        viewport: [viewer.canvas.width, viewer.canvas.height],
         clouds: { ...scene._atmosphere.statistics.clouds },
       };
     } finally {
