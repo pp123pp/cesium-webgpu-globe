@@ -1,12 +1,19 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M2.6.1 B1–B5 accepted; the separate complete physical-GPU WebGL differential PASSED on merged `main` runtime `b5422e5` (2026-11-05). Final evidence publication/PR integration is pending; no further engine work is authorized.**
+Current milestone: **M2.8-A architecture complete; M2.8-B implementation and local technical verification complete on `feat/m2-8-lens-flare`, pending user visual acceptance and PR review. Do not merge main or start C/M2.7/M3. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
+
+## M2.8 A/B authorized development — 2026-11-05
+
+- User explicitly authorized A followed directly by B, development-branch commit/push and PR, then stop for visual acceptance. This supersedes the historical no-new-engine-work closeout instructions below only within M2.8 A/B.
+- A plan `7f1c24b`; runtime `85017f0`; lifecycle fixture `ada51d5`. Default-off original output, independent optical controls, one 1x1 GPU source record and existing linear-HDR final composition. No M2.6.1 physical Sun/atmosphere or WebGL runtime changes.
+- [Evidence index](evidence/M2.8/README.md): original physical Intel Xe-LPG/Chrome captures, 98 stills +120 contiguous frames, 42 independent main-baseline exact disabled pairs, functional occultation/resize, timestamp/lifecycle records and retained failed attempts. Focused tests/build/lint/types and physical WebGL smoke pass. Final GPU mean increment +0.127/+0.166/+0.181 ms for 1080/720/1080; no resident-VRAM claim.
+- [Handoff](handoffs/M2.8-AB-lens-flare.md). User visual acceptance remains pending; screenshot review is not a declaration of HDRP parity. Hosted job status belongs to the PR, distinct from physical rendering evidence.
 
 ## M2.6.1 final complete WebGL differential — 2026-11-05
 
