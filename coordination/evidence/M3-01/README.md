@@ -11,6 +11,9 @@ This completes only task 1 of `tasks/M3.md`. It does not pass M3 A11–A13.
   Both final browser captures recorded a clean working tree. Subsequent evidence
   publication changes documentation/artifacts only.
 - [Source hashes](source-manifest.json), [machine-readable summary](summary.json).
+  [Artifact hashes](file-manifest.json) use canonical Git blob bytes (LF text),
+  so Windows checkout newline conversion does not alter their meaning. Source
+  hashes above describe the exact capture-time filesystem bytes.
   Final geometry and demo use the same SHA-256 browser bundle:
   `47068cdffc7d51c12543ba10ef50d5679ac4d545f95a054219acb9751c57e8c8`.
 - Chrome **156.0.8078.80**, headed, Windows; physical Intel **Xe-LPG** WebGPU
