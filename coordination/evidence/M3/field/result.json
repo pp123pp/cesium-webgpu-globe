@@ -1,0 +1,80 @@
+{
+  "startedAt": "2026-11-05T07:47:54.298Z",
+  "finishedAt": "2026-11-05T07:47:57.054Z",
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "shaderSha256": "0b4b8f199d0edf02c2f122edcaf3c58086b2d5e8a90c063ef5d984d04c6a4bdd",
+  "noiseSha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca",
+  "shaderEvaluations": 4704,
+  "globeDirections": 512,
+  "coverages": [
+    0,
+    0.23,
+    0.58,
+    1
+  ],
+  "activeCounts": [
+    0,
+    1,
+    256,
+    512
+  ],
+  "seamPairs": 57,
+  "maximumSeamDelta": {
+    "extinctionPerMeter": 0,
+    "coverage": 0
+  },
+  "maximumWindExtinctionDeltaPerMeter": {
+    "small": 0.000006738584488630295,
+    "large": 0.0015999218448996544,
+    "fullCycle": 0.0000012941600289195776
+  },
+  "nearEnhancementIncreasedCount": 59,
+  "footprintMacroCoverageDelta": 0,
+  "densityOutsideShell": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "sampleLocations": [
+    {
+      "longitude": -180,
+      "latitude": -86.4184306813421,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0010688870679587126
+    },
+    {
+      "longitude": 10.031056199999966,
+      "latitude": -79.24124201777585,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0009990519611164927
+    },
+    {
+      "longitude": 147.53882024999996,
+      "latitude": -78.10184509938183,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0007205287110991776
+    },
+    {
+      "longitude": -22.43012355000019,
+      "latitude": -74.34216489728703,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0012128466041758657
+    }
+  ]
+}
