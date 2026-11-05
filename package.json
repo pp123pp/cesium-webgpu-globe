@@ -114,6 +114,7 @@
   "scripts": {
     "prepare": "gulp prepare && husky && node scripts/isCI.js || playwright install --with-deps",
     "start": "node server.js",
+    "demo:webgpu": "npm run build && node server.js --port 8090 --production",
     "start-public": "node server.js --public",
     "build": "gulp build",
     "build-solar-textures": "node coordination/ci/build-solar-textures.mjs",

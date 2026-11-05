@@ -1,14 +1,19 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M2.8-A complete; M2.8-B compact cinematic revision plus adjustable diffusion/linked outer halo implemented on `feat/m2-8-lens-flare`, pending user visual acceptance. The accepted physical Sun/atmosphere/Bloom remain unchanged. Draft PR #31 is not merged. Do not merge main or start C/M2.7/M3. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
+Current milestone: **M2.8 A/B implementation and user visual acceptance COMPLETE. The user authorized delivery through PR #31 and merge into main after the latest CI passes; the PR is authoritative for the delivered head, actual checks and merge SHA. Accepted runtime: `27e8cef`; physical Sun/atmosphere/Bloom remain unchanged. Do not start C/M2.7/M3 or manually trigger Full. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
 
-## M2.8 A/B authorized development — 2026-11-05
+## M2.8 A/B acceptance and authorized closeout — 2026-11-05
+
+- User explicitly confirmed visual acceptance and authorized pushing the latest changes, updating [PR #31](https://github.com/pp123pp/cesium-webgpu-globe/pull/31), waiting for latest-head CI and merging to main. The user additionally requested including the existing `package.json` `demo:webgpu` command. [Acceptance record](evidence/M2.8/ACCEPTANCE.md) identifies the accepted runtime and evidence reuse. Runtime/Demo remain unchanged; no new rendering, broad local suite or manual Full is required for this documentation/npm-script closeout. No C/M2.7/M3 work is authorized.
+- The implementation history below preserves capture-time pending-acceptance states and historical measurements. The acceptance record above supersedes those earlier review states; it does not turn historical checks into new final-HEAD runs.
+
+## M2.8 A/B implementation history — 2026-11-05
 
 - Latest follow-ups: user requested a diffusion-size parameter, then explicitly chose proportional outer-halo scaling. `lensFlare.diffusionSize` defaults to 0.7 within [0.1, 2], with a live Demo slider/readout. Warm shoulder/spread and spectral arc scale together; core/short rays and reflection glints retain independent sizes. Existing final-display uniform padding carries the value without a new GPU allocation. [Parameter and linked-halo evidence](evidence/M2.8/diffusion-size/README.md) checks actual production output and real Demo input. Default 26 PNGs match the intermediate compaction exactly; size 0.3/0.7 arc radii are about 194/451 px. A real-output RED at size 0.1 exposed shared warm support clipping short rays; the fix leaves warm support on warm terms only. Sixteen focused tests, engine TypeScript and scoped lint/format pass. The full scoped static/motion/WebGL evidence below belongs to the default-equivalent intermediate runtime, not a fresh complete final-runtime matrix. No Full or new timing claim; visual acceptance remains pending.
 - Latest correction: user approved keeping the cinematic style while reducing lens-core diameter to about 60% and warm diffusion to about 70%. [Fresh before/after evidence](evidence/M2.8/compaction/README.md) measures core 61.50%/61.56%, short-ray footprint 65.85%/66.25%, warm shoulder 70.20%/69.90% and spread 69.92%/69.92% at 1000x227/1920x1080. All 12 reference disabled frames and the isolated arc/reflection frame match exactly. Physical Intel Xe-LPG reference/exposure/resize/real-mesh/occultation checks and two consecutive 120-frame sequences pass; physical WebGL three-fixture smoke, 11 focused tests, scoped lint/format and the candidate build pass. No Full dispatch, new timing or broader terrain qualification. Source/hash provenance and the expected baseline RED failure are retained; old evidence remains historical. The unchanged spectral arc is more apparent against the smaller warm veil. User visual acceptance is pending.

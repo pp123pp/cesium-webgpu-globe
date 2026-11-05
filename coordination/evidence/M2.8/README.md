@@ -1,6 +1,8 @@
 # M2.8 A/B — hardware evidence and visual review
 
-**Latest: [adjustable diffusion and linked outer halo](diffusion-size/README.md). User follow-ups add the live size parameter/slider and proportional spectral-arc scaling, with fixed core/rays and independent reflection glints. Final native samples and Demo input checks are recorded separately from the intermediate matrix. User visual acceptance is pending; do not merge main.**
+**User visual acceptance PASSED on 2026-11-05. [Acceptance and delivery record](ACCEPTANCE.md) identifies accepted runtime `27e8cef` and the user's authorization to publish/update [PR #31](https://github.com/pp123pp/cesium-webgpu-globe/pull/31), wait for latest CI and merge into main. No C/M2.7/M3 or manual Full. Original capture-time reports and manifests remain unchanged.**
+
+**Latest implementation: [adjustable diffusion and linked outer halo](diffusion-size/README.md). User follow-ups add the live size parameter/slider and proportional spectral-arc scaling, with fixed core/rays and independent reflection glints. Final native samples and Demo input checks are recorded separately from the intermediate matrix. The acceptance record above supersedes pending/no-merge wording in the historical records below.**
 
 **Intermediate: [compact cinematic revision](compaction/README.md). The user approved a lens-only core/diffusion contraction while retaining peaks and the original arc/reflections. Native before/after captures, two motion sequences and scoped WebGL checks remain traceable; the final default output is equivalent. Earlier evidence below remains unchanged.**
 
