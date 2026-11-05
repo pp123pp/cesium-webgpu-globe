@@ -84,6 +84,184 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     }
   };
   report.timings = [];
+  if (process.argv.includes("--motion-and-mist")) {
+    const baseline = process.argv.includes("--accepted-baseline");
+    await page.setViewportSize({ width: 640, height: 360 });
+    await page.evaluate(() => window.__m1.viewer.resize());
+    Object.assign(report.fixture, {
+      viewport: [640, 360],
+      terrain: "Native bounded ellipsoid terrain",
+      capture: "Matched fixed-view growth, flyby, morning pan and gap closure sequences",
+    });
+    const render = async (name, view, config, date, seconds = 0) => {
+      const row = await frame(name, { view, config, date, seconds, exposure: 1, lens: false });
+      assert.equal(row.cloudPasses, 1);
+      assert.equal(row.reconstructionPasses, 1);
+      return row;
+    };
+    const afternoon = "2026-03-20T16:30:00Z";
+    const fixed = at(6900, -8, 0, 0, 247);
+    await settle(fixed);
+    const cloud = { show: true, coverage: 0.58, quality: "medium", windSpeed: 18 };
+    if (process.argv.includes("--phase-wrap")) {
+      const start = "2026-03-20T16:32:23Z";
+      const rows = [];
+      for (let i = -6; i <= 6; i++) {
+        const pose = { ...fixed, longitude: i * 0.00002 };
+        const row = await render(`wrap-${i + 6}`, pose, { ...cloud, evolution: true }, start, i / 30);
+        row.phaseUniform = await page.evaluate(
+          () => window.__m1.viewer.scene._atmosphere._cloudVolume.values[34],
+        );
+        rows.push(row);
+      }
+      assert.ok(rows[5].phaseUniform > 7 && rows[6].phaseUniform < 1.01);
+      const neighbors = [...rows.slice(1, 6), ...rows.slice(7)];
+      assert.ok(rows[6].difference.meanMaxChannelDelta <= 2 * Math.max(...neighbors.map((r) => r.difference.meanMaxChannelDelta)),
+        "the phase wrap stays within neighboring moving-frame changes");
+      report.cleanup = await destroyM1Scene(page);
+      return;
+    }
+    for (const moving of [false, true]) {
+      const prefix = moving ? "fly" : "fixed";
+      for (let i = 0; i <= 20; i++) {
+        const view = moving ? at(6900 - i * 58, -8, i * 0.0025, 0, 247) : fixed;
+        const name = `${prefix}-${String(i).padStart(2, "0")}`;
+        await render(name, view, baseline ? cloud : { ...cloud, evolution: true }, afternoon, i * 3);
+      }
+    }
+    await time("360p-moving-cloud");
+    const dawn = "2026-03-20T07:10:00Z";
+    const view = at(600, 7, 0, 0, 20);
+    const low = { ...cloud, windSpeed: 0 };
+    await settle(view);
+    for (let i = 0; i <= 20; i++) {
+      const pose = { ...view, longitude: (i - 10) * 0.0025 };
+      const name = `pan-${String(i).padStart(2, "0")}`;
+      await render(name, pose, baseline ? low : { ...low, evolution: false, mist: true }, dawn);
+    }
+    await time("360p-dawn-pan");
+    for (let i = 0; i <= 10; i++) {
+      const config = { ...low, coverage: 0.15 + 0.085 * i };
+      await render(`gap-${String(i).padStart(2, "0")}`, view,
+        baseline ? config : { ...config, mist: true }, dawn);
+    }
+    if (!baseline) {
+      await render("fixed-off-control", fixed, { ...cloud, evolution: false, mist: false }, afternoon);
+      await render("pan-off-control", view, { ...low, evolution: false, mist: false }, dawn);
+      const clear = await frame("coverage-zero", { config: { coverage: 0, mist: true } });
+      const off = await frame("clouds-off", { config: { show: false } });
+      assert.equal(clear.sha256, off.sha256, "zero coverage with mist reproduces clear sky");
+    }
+    assert.deepEqual(report.browserConsole, []);
+    report.cleanup = await destroyM1Scene(page);
+    return;
+  }
+  if (process.argv.includes("--cloud-types")) {
+    const baseline = process.argv.includes("--step-one-baseline");
+    const cloud = { show: true, coverage: 0.58, windSpeed: 0 };
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.evaluate(() => window.__m1.viewer.resize());
+    Object.assign(report.fixture, {
+      viewport: [1280, 720],
+      terrain: "Native bounded ellipsoid terrain",
+      wind: { speedMetersPerSecond: 0, directionRadians: 0.75 },
+      capture: "Matched cloud-type, aerial-perspective and twilight views",
+    });
+    const capture = async (name, config, date) => {
+      const row = await frame(name, { config, date, exposure: 1, lens: false });
+      assert.equal(row.cloudPasses, 1);
+      assert.equal(row.reconstructionPasses, 1);
+      return row;
+    };
+    const afternoon = "2026-03-20T16:30:00Z";
+    await settle(at(9500, -9, 0, 0, 247));
+    const cumulus = await capture("cumulus", cloud, afternoon);
+    if (!baseline) {
+      assert.equal(cumulus.config.type, "cumulus");
+      assert.equal(cumulus.config.cirrus, false);
+      const banks = await capture(
+        "stratocumulus",
+        { type: "stratocumulus" },
+        afternoon,
+      );
+      assert.deepEqual(banks.view, cumulus.view);
+      assert.notEqual(cumulus.sha256, banks.sha256);
+      assert.ok(banks.difference.changedPixels > 1000);
+      await time("720p-medium-stratocumulus");
+    }
+    await settle(at(4500, 14, 0, 0, 250));
+    const gap = await capture(
+      "low-cloud-gap",
+      baseline ? { coverage: 0.35 } : { type: "cumulus", coverage: 0.35 },
+      afternoon,
+    );
+    if (!baseline) {
+      const cirrus = await capture(
+        "gap-with-cirrus",
+        { cirrus: true },
+        afternoon,
+      );
+      assert.deepEqual(gap.view, cirrus.view);
+      assert.ok(cirrus.difference.changedPixels > 200);
+      await time("720p-medium-with-cirrus");
+    }
+    await settle(at(8000, -3, 0, 0, 265));
+    await capture(
+      "horizontal-cloud-sea",
+      baseline ? cloud : { ...cloud, cirrus: false },
+      afternoon,
+    );
+    await time("720p-medium-horizontal");
+    const sea = await recordOptics(page, report, "horizontal-cloud-sea");
+    assert.ok(
+      sea.representativeDistanceMeters.p90 > sea.representativeDistanceMeters.p10,
+    );
+    const dusk = "2026-03-20T18:18:00Z";
+    await capture("twilight-low-clouds", { coverage: 0.48 }, dusk);
+    if (!baseline) {
+      const lowLight = await recordOptics(page, report, "twilight-low-clouds");
+      const high = await capture("twilight-high-layer", { cirrus: true }, dusk);
+      assert.ok(high.difference.changedPixels > 200);
+      const highLight = await recordOptics(page, report, "twilight-high-layer");
+      assert.ok(highLight.direct.max > lowLight.direct.max);
+    }
+    await frame("twilight-clouds-off", { config: { show: false } });
+    assert.deepEqual(report.browserConsole, []);
+    report.checks.push(
+      "Matched native 720p cloud type, clear gap, horizontal distance and dusk views.",
+    );
+    report.cleanup = await destroyM1Scene(page);
+    return;
+  }
+  if (process.argv.includes("--sky-lighting")) {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.evaluate(() => window.__m1.viewer.resize());
+    await settle(at(9500, -9, 0, 0, 247));
+    report.fixture.viewport = [1280, 720];
+    report.fixture.wind.speedMetersPerSecond = 0;
+    report.fixture.terrain = "Native bounded ellipsoid terrain";
+    report.fixture.capture =
+      "Fixed camera, cloud field and exposure, changing only the solar time.";
+    const config = { show: true, coverage: 0.58, windSpeed: 0 };
+    for (const [name, date] of [
+      ["noon", noon],
+      ["afternoon", "2026-03-20T16:30:00Z"],
+      ["sunset", "2026-03-20T17:55:00Z"],
+    ]) {
+      const row = await frame(name, { config, date, exposure: 1, lens: false });
+      assert.equal(row.cloudPasses, 1);
+      assert.equal(row.reconstructionPasses, 1);
+      await recordOptics(page, report, name);
+    }
+    await time("720p-medium-sunset");
+    await frame("sunset-clouds-off", { config: { show: false } });
+    assert.deepEqual(report.browserConsole, []);
+    report.checks.push(
+      "Three fixed-field solar elevations with one production cloud draw and reconstruction each.",
+    );
+    report.cleanup = await destroyM1Scene(page);
+    return;
+  }
   report.stepProbes = [];
   const steps = async (name) => {
     const probes = await page.evaluate(async () => {

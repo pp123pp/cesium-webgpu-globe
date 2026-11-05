@@ -1,0 +1,235 @@
+{
+  "started": "2026-11-05T09:42:37.557Z",
+  "htmlHash": "021993457ef02dc1dce4ce5c5c879839852388987b3432af3cb57d0fd2682f62",
+  "bundleHash": "0b84df194d76a816334185d0e8d91ca29f4980a12c96088b8668d72d84c6eabf",
+  "scenes": {
+    "cumulus": {
+      "pose": [
+        0,
+        0,
+        9499.999999999069,
+        4.310963252425994,
+        -0.15707963267948966,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T16:30:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 318927,
+      "sha256": "9d5bdd0f990a27a5a75a32d8b10aa3278dbd3c9e01bb72b977e0ae54ea78bb98"
+    },
+    "stratocumulus": {
+      "pose": [
+        0,
+        0,
+        9499.999999999069,
+        4.310963252425994,
+        -0.15707963267948966,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T16:30:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "stratocumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 332958,
+      "sha256": "294f383b8c39ed40b4eb3f62656cecb76c699dbffeb66874e31bdcbf74cd7c0a"
+    },
+    "lighting": {
+      "pose": [
+        0,
+        0,
+        9499.999999999069,
+        4.310963252425994,
+        -0.15707963267948966,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T17:55:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 321282,
+      "sha256": "1918757c70e55bd20e057fabab6c04e355ba3853680efa064707154947a35c2c"
+    },
+    "cirrus": {
+      "pose": [
+        0,
+        0,
+        4499.999999999069,
+        4.363323129985824,
+        0.24434609527920603,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T16:30:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.35,
+        "type": "cumulus",
+        "cirrus": true,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 252043,
+      "sha256": "73b85864908c6c208e0f93838b792ab0ca47bf6056c9fa984aef16565b7411ab"
+    },
+    "horizon": {
+      "pose": [
+        0,
+        0,
+        7999.999999999069,
+        4.625122517784973,
+        -0.05235987755982996,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T16:30:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 267938,
+      "sha256": "65dd38dda160baa24cf22838506a386068c79d91274ef869722016aedc67463e"
+    },
+    "twilight": {
+      "pose": [
+        0,
+        0,
+        7999.999999999069,
+        4.625122517784973,
+        -0.05235987755982996,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T18:18:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.48,
+        "type": "cumulus",
+        "cirrus": true,
+        "evolution": false,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 309390,
+      "sha256": "57dcc5d7ec788849d28e35ce742f4088ece5a7f126ed936c4bf3599141e2a50e"
+    },
+    "mist": {
+      "pose": [
+        0,
+        0,
+        599.9999999990687,
+        0.3490658503988655,
+        0.12217304763960302,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T07:10:00Z",
+      "animate": false,
+      "multiplier": 1,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": false,
+        "mist": true,
+        "quality": "medium",
+        "windSpeed": 0,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 683369,
+      "sha256": "18338aa11cc8625266501176448d064d5cf705442981e38ed121502f4fac5b67"
+    },
+    "growth": {
+      "pose": [
+        0,
+        0,
+        6899.999999999069,
+        4.310963252425994,
+        -0.13962634015954634,
+        6.283185307179586
+      ],
+      "date": "2026-03-20T16:30:00Z",
+      "animate": true,
+      "multiplier": 4,
+      "clouds": {
+        "show": true,
+        "coverage": 0.58,
+        "type": "cumulus",
+        "cirrus": false,
+        "evolution": true,
+        "mist": false,
+        "quality": "medium",
+        "windSpeed": 18,
+        "windDirection": 0.75,
+        "localDetail": true
+      },
+      "affected": 432280,
+      "sha256": "d4af9baf1d12f1c143d6c655d50407a15a330c3513a25b3428a51c1499387212"
+    }
+  },
+  "errors": [],
+  "warnings": [],
+  "externalRequests": [],
+  "browser": "156.0.8078.80",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "status": "PASS"
+}

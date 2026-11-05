@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/webgpu-pages.yml
       - Apps/WebGPUGlobe.html
+      - Apps/WebGPUClouds.html
       - Apps/WebGPUCloudGeometry.js
       - Apps/WebGPUProof.html
       - Apps/WebGPUIndex.html
@@ -59,10 +60,11 @@ jobs:
           test -d Build/Cesium/Workers
           test -d Build/Cesium/Assets
           mkdir -p site/Apps site/Build/Cesium
-          cp Apps/WebGPUGlobe.html Apps/WebGPUProof.html Apps/WebGPUCloudGeometry.js site/Apps/
+          cp Apps/WebGPUGlobe.html Apps/WebGPUClouds.html Apps/WebGPUProof.html Apps/WebGPUCloudGeometry.js site/Apps/
           cp Apps/WebGPUIndex.html site/index.html
           rsync -a Build/Cesium/ site/Build/Cesium/
-          sed -i 's#../Build/CesiumUnminified/#../Build/Cesium/#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUProof.html
+          sed -i 's#../Build/CesiumUnminified/#../Build/Cesium/#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUClouds.html site/Apps/WebGPUProof.html
+          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUClouds.html
           grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUGlobe.html
           grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUProof.html
           test -s site/Build/Cesium/Widgets/Timeline/Timeline.css
