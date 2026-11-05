@@ -83,18 +83,20 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let sunScaled = planet.sunDirectionWC.xyz * planet.inverseRadii.xyz;
     let b = dot(scaled, sunScaled);
     let earthBlocksSun = b < 0.0 && b*b > dot(sunScaled,sunScaled) * (dot(scaled,scaled)-1.0);
+    var diffuseEscape = 1.0;
     if (!earthBlocksSun) {
       let tau = cloudLightDepth(p, footprint, localExtinction);
       result.lightSteps += u32(clouds.budget.y);
-      // Diffuse orders retain light in optically thick crowns. Side-lit thin
-      // edges keep their forward lobe while dense undersides receive less sky.
+      // The existing light march also distinguishes exposed lobes from
+      // pockets inside the bank. Keep a floor for diffuse skylight there.
+      diffuseEscape = exp(-0.72*tau);
       let powder = mix(0.74 + 0.26*(1.0-exp(-sigma*2400.0)), 1.0, smoothstep(0.25,0.9,cosine));
       let single = phase * exp(-tau);
-      let diffuse = 0.36 * cloudPhase(cosine,0.32)*exp(-0.44*tau) + 0.12*exp(-0.18*tau);
+      let diffuse = 0.31 * cloudPhase(cosine,0.32)*exp(-0.65*tau) + 0.09*exp(-0.24*tau);
       let baseLight = mix(0.72, 1.0, smoothstep(0.05,0.5,layerHeight));
       result.direct += weight * (0.76*single + diffuse) * powder * baseLight;
     }
-    let skyVisibility = mix(0.47, 1.0, sqrt(layerHeight));
+    let skyVisibility = mix(0.42, 1.0, sqrt(layerHeight)) * mix(0.40, 1.0, diffuseEscape);
     result.ambient += weight * skyVisibility * (0.01 + 0.34 * smoothstep(-0.13, 0.38, mu));
     result.distanceMoment += weight * t;
     result.transmission *= attenuation;
@@ -170,7 +172,11 @@ fn cloudReconstruct(pixel: vec2f) -> vec4f {
   let base = vec2i(floor(uv));
   let fraction = fract(uv);
   let depth = textureLoad(sceneDepth, vec2i(pixel), 0);
-  let distance = webgpuSceneRayDistance(depth,cloudViewDirection(pixel),planet);
+  let ray = cloudViewDirection(pixel);
+  let distance = webgpuSceneRayDistance(depth,ray,planet);
+  let hit = ray * distance;
+  let position = (planet.cameraHigh.xyz + hit) + planet.cameraLow.xyz;
+  let normal = normalize(position * planet.inverseRadii.xyz * planet.inverseRadii.xyz);
   var sum = vec4f(0.0);
   var weight = 0.0;
   for (var y=0; y<=1; y++) {
@@ -178,10 +184,17 @@ fn cloudReconstruct(pixel: vec2f) -> vec4f {
       let loc = clamp(base + vec2i(x,y), vec2i(0), size-1);
       let source = cloudNativePixel(vec2f(loc)+0.5);
       let neighbor = textureLoad(sceneDepth,vec2i(source),0);
-      let t = webgpuSceneRayDistance(neighbor,cloudViewDirection(source),planet);
+      let neighborRay = cloudViewDirection(source);
+      let t = webgpuSceneRayDistance(neighbor,neighborRay,planet);
       if ((t < 0.0) != (distance < 0.0)) { continue; }
-      let tolerance = max(10.0, 0.015*distance);
-      let edge = 1.0 - smoothstep(tolerance*0.25,tolerance,abs(t-distance));
+      // At grazing angles, adjacent rays to the same terrain have different
+      // lengths. Compare displacement across its tangent plane instead.
+      var edge = 1.0;
+      if (distance >= 0.0) {
+        let gap = abs(dot(neighborRay * t - hit, normal));
+        let tolerance = max(10.0, 0.015*distance) * max(0.02, abs(dot(neighborRay,normal)));
+        edge = 1.0 - smoothstep(tolerance*0.25,tolerance,gap);
+      }
       let w = edge*select(1.0-fraction.x,fraction.x,x==1)*select(1.0-fraction.y,fraction.y,y==1);
       sum += w * textureLoad(cloudLow,loc,0);
       weight += w;

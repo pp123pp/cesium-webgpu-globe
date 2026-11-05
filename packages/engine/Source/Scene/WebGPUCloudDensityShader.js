@@ -27,6 +27,12 @@ fn cloudRegionalWeather(n: vec3f, coverage: f32) -> vec4f {
   return vec4f(cover, base, top, development);
 }
 
+// Rounded intersection of two signed interior distances, in meters.
+fn cloudRoundJoin(a: f32, b: f32, radius: f32) -> f32 {
+  let overlap = max(radius - abs(a - b), 0.0) / radius;
+  return min(a, b) - 0.25 * radius * overlap * overlap;
+}
+
 fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
   if (weather.x <= 0.0) { return 0.0; }
   let scaledRadius = length(p * planet.inverseRadii.xyz);
@@ -53,15 +59,22 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
   let lobesWeight = 1.0 - smoothstep(300.0, 1350.0, footprint);
   let lobeP = bodyP.zxy + 1250.0 * (body.rgb - vec3f(0.48));
   let lobes = textureSampleLevel(cloudNoise, cloudSampler, lobeP / 8300.0, 0.0);
-  let dilation = bodyWeight * dot(body.rgb - vec3f(0.47, 0.48, 0.48), vec3f(0.68, 0.37, 0.18))
-               + lobesWeight * dot(lobes.rgb - vec3f(0.47, 0.48, 0.48), vec3f(0.47, 0.35, 0.22));
+  // G stores 1 minus distance to a cell center. Its squared distance has
+  // zero slope at the center, so a rising lobe rounds over at its crown.
+  let bodyDistance = 1.0 - body.g;
+  let lobeDistance = 1.0 - lobes.g;
+  let dilation = bodyWeight * (0.60 * (body.r - 0.47) + 0.54 * (0.27 - bodyDistance * bodyDistance))
+               + lobesWeight * (0.38 * (lobes.r - 0.47) + 0.62 * (0.27 - lobeDistance * lobeDistance));
   let base = field.y + 220.0 * bank.r + 180.0 * streets.r;
   let extent = field.z - base;
   let wisps = weather.z * 0.036 * lobesWeight;
-  let top = (0.26 + 0.35 * field.x + 1.05 * cluster + 1.80 * dilation + wisps) * extent;
+  let rise = 0.28 + 0.35 * field.x + 1.05 * cluster + 1.80 * dilation + wisps;
+  // Compress tall updrafts below the regional ceiling instead of slicing
+  // every overshooting crown at exactly the same altitude.
+  let top = extent * (min(rise, 0.65) + 0.35 * (1.0 - exp(-max(rise - 0.65, 0.0) / 0.35)));
   let side = 4700.0 * (0.095 + 0.24 * field.x + cluster + 0.88 * dilation + wisps);
   let aboveBase = height - base;
-  let depth = min(min(top - aboveBase, aboveBase), side);
+  let depth = cloudRoundJoin(min(top - aboveBase, aboveBase), side, 580.0);
   if (depth <= -65.0) { return 0.0; }
 
   // Erosion moves the density boundary at the sides, crown and underside.
@@ -71,18 +84,23 @@ fn cloudDensity(p: vec3f, footprint: f32, weather: vec4f) -> f32 {
   var erosion = 0.0;
   if (depth < 1350.0 && edgeWeight > 0.0) {
     let detailP = lobeP + 590.0 * (lobes.bgr - vec3f(0.48));
-    let detail = textureSampleLevel(cloudNoise, cloudSampler, detailP / 5000.0, 0.0);
-    erosion = 780.0 * dot(detail.rgb, vec3f(0.45, 0.31, 0.24));
+    let detail = textureSampleLevel(cloudNoise, cloudSampler, detailP / 4100.0, 0.0);
+    // Carve the gaps between cells. Their dense centers stay convex and
+    // scatter light into the smaller billows along the larger bank.
+    let gap = 1.0 - detail.g;
+    erosion = 990.0 * gap * gap + 220.0 * (1.0 - detail.r);
     if (fineWeight > 0.0) {
-      let fringe = textureSampleLevel(cloudNoise, cloudSampler, detailP.zxy / 1660.0, 0.0);
-      erosion += 335.0 * fineWeight * (dot(fringe.rgb, vec3f(0.52, 0.30, 0.18)) - 0.47);
+      let fringe = textureSampleLevel(cloudNoise, cloudSampler, detailP.zxy / 1480.0, 0.0);
+      erosion += 340.0 * fineWeight * (0.52 - dot(fringe.gb, vec2f(0.70, 0.30)));
     }
-    erosion *= edgeWeight * mix(0.68, 1.0, smoothstep(0.0, 600.0, aboveBase));
+    erosion *= edgeWeight * mix(0.68, 1.0, smoothstep(0.0, 600.0, aboveBase))
+             * (1.0 - smoothstep(950.0, 1350.0, depth));
   }
-  let edgeWidth = 200.0 + min(footprint, 750.0) * 0.24;
-  let boundary = smoothstep(-65.0, edgeWidth, depth - erosion);
-  let core = 0.40 + 0.60 * smoothstep(150.0, 1350.0, depth);
-  return 0.00115 * smoothstep(0.0, 0.15, weather.x) * (0.62 + 0.38 * field.x) * boundary * core;
+  let edgeWidth = 235.0 + min(footprint, 750.0) * 0.24;
+  let condensed = depth - erosion;
+  let boundary = smoothstep(-65.0, edgeWidth, condensed);
+  let core = 0.34 + 0.66 * smoothstep(100.0, 1100.0, condensed);
+  return 0.00140 * smoothstep(0.0, 0.15, weather.x) * (0.62 + 0.38 * field.x) * boundary * core;
 }
 `;
 
