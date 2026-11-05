@@ -105,6 +105,7 @@
         white-space: pre-wrap;
       }
       #sun-controls,
+      #cloud-controls,
       #exposure-controls {
         margin: 12px 0;
         padding: 10px;
@@ -112,6 +113,7 @@
         border-radius: 6px;
       }
       #sun-controls label,
+      #cloud-controls label,
       #exposure-controls label {
         display: inline-block;
         margin: 4px 12px 4px 0;
@@ -149,6 +151,25 @@
         <button id="terrain" disabled>Reload imagery + terrain</button>
         <button id="everest" disabled>Everest</button>
       </nav>
+      <fieldset id="cloud-controls" disabled>
+        <legend>M3-01 cloud geometry</legend>
+        <label
+          ><input id="show-cloud-geometry" type="checkbox" /> Preview cloud
+          shell</label
+        >
+        <nav aria-label="Cloud geometry views">
+          <button id="cloud-orbit" type="button">Cloud orbit</button>
+          <button id="cloud-high" type="button">High altitude</button>
+          <button id="cloud-near" type="button">Near ground</button>
+        </nav>
+        <output id="cloud-readout">WGS84 shell · base 2 km / top 6 km</output>
+        <p>
+          <small
+            >Cyan shows geometric path length, with Earth and terrain occlusion.
+            Density and scattering are not implemented.</small
+          >
+        </p>
+      </fieldset>
       <fieldset id="sun-controls" disabled>
         <legend>Sun &amp; atmosphere</legend>
         <label><input id="show-sun" type="checkbox" checked /> Sun</label>
@@ -276,6 +297,7 @@
     </aside>
     <script type="module">
       /* global Cesium */
+      import { createCloudGeometryPreview } from "./WebGPUCloudGeometry.js";
       Cesium.Ion.defaultAccessToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZjVlOTZhNC0zNjJmLTQxODYtYjFlNS1kYzljZGZlYjI5ZDEiLCJpZCI6MTExNSwiaWF0IjoxNzY4MjA0OTM4fQ.EfH_dMcNYE2K23Ceq9cv8kZ8ycmYX5zYUxBhr1vGraQ";
       const status = document.getElementById("status");
@@ -291,6 +313,10 @@
       const exposureValue = document.getElementById("exposure-value");
       const spaceControls = document.getElementById("space-controls");
       const moonReadout = document.getElementById("moon-readout");
+      const cloudControls = document.getElementById("cloud-controls");
+      const showCloudGeometry = document.getElementById("show-cloud-geometry");
+      const cloudReadout = document.getElementById("cloud-readout");
+      let cloudPreview;
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
@@ -359,6 +385,7 @@
           exposureControls.disabled = true;
           lensControls.disabled = true;
           spaceControls.disabled = true;
+          cloudControls.disabled = true;
         }
       };
       viewer.renderError.addEventListener((source, error) =>
@@ -441,6 +468,16 @@
         viewer.camera.setView({ orientation: { direction, up } });
       });
       viewer.scene.postRender.addEventListener((scene) => {
+        if (showCloudGeometry.checked && cloudPreview) {
+          cloudPreview.render();
+          const height = scene._planetState.cameraHeight.toLocaleString(
+            undefined,
+            {
+              maximumFractionDigits: 0,
+            },
+          );
+          cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height} m`;
+        }
         const illumination = scene._planetState?.moonIllumination;
         if (Number.isFinite(illumination)) {
           const percent = Math.round(illumination * 100);
@@ -463,6 +500,7 @@
           window.removeEventListener("resize", resizeTimeline);
           timeline.removeEventListener("settime", scrubTime, false);
           timeline.destroy();
+          cloudPreview?.destroy();
           if (!viewer.isDestroyed()) {
             viewer.destroy();
           }
@@ -483,6 +521,26 @@
           duration: 2,
         });
       });
+      for (const [id, height, pitch] of [
+        ["cloud-orbit", 35786000, -90],
+        ["cloud-high", 20000, -6],
+        ["cloud-near", 2, 2],
+      ]) {
+        document.getElementById(id).addEventListener("click", () => {
+          viewer.camera.cancelFlight();
+          viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
+          viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(0, 0, height),
+            orientation: {
+              heading: Math.PI / 2,
+              pitch: Cesium.Math.toRadians(pitch),
+              roll: 0,
+            },
+          });
+          showCloudGeometry.checked = true;
+          cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height.toLocaleString()} m`;
+        });
+      }
       everest.addEventListener("click", () => {
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(86.925, 27.9, 18000),
@@ -554,6 +612,8 @@
       });
       try {
         await viewer.readyPromise;
+        cloudPreview = await createCloudGeometryPreview(viewer.scene);
+        cloudControls.disabled = false;
         sunControls.disabled = false;
         updateExposure(defaultExposure);
         exposureControls.disabled = false;
