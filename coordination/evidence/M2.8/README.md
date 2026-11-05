@@ -1,6 +1,8 @@
 # M2.8 A/B — hardware evidence and visual review
 
-**Technical checks passed; user visual acceptance pending. Stop at B. Do not merge main.**
+**The user rejected the restrained first treatment below. See the [current reference-directed revision](revision/README.md) for new screenshots, verification and performance. User visual acceptance remains pending. Stop at B; do not merge main.**
+
+Everything below is the historical first-treatment record; it is retained for traceability and is not the current visual acceptance conclusion.
 
 Architecture: [M2.8 review](../../../docs/M2.8_LENS_FLARE.md). Execution scope: [task](../../../tasks/M2.8.md).
 

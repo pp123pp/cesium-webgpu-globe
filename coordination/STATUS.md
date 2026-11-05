@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M2.8-A architecture complete; M2.8-B implementation and local technical verification complete on `feat/m2-8-lens-flare`, pending user visual acceptance and PR review. Do not merge main or start C/M2.7/M3. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
+Current milestone: **M2.8-A complete; M2.8-B reference-directed visual revision implemented and hardware-verified on `feat/m2-8-lens-flare`. The initial restrained appearance was rejected; the revised output awaits user visual acceptance in draft PR #31. Do not merge main or start C/M2.7/M3. M2.6.1 final evidence is merged through PR #30 at main `f107e9c`.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
@@ -10,6 +10,8 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## M2.8 A/B authorized development — 2026-11-05
 
+- Latest correction: user requested matching the displayed reference without restraint. Runtime `cf0ec5d`, expanded verification `022c65a`: bright irregular core, wide warm diffusion, soft spectral arc and overlapping reflections; existing R8 masks reused, no additional resource allocations. [Current revision evidence](evidence/M2.8/revision/README.md) has 376 native PNGs, two 120-frame sequences, 42 exact disabled baseline matches and an independent integrity audit. Final GPU mean increments +0.245/+0.266/+0.230 ms and p95 +0.393/+0.328/+0.459 ms at 1080/720/1080, 600 samples per mode/resolution. Prior visual defects and failed timing attempts are retained. Lifecycle, focused tests, build/lint/types and physical WebGL smoke pass. User visual acceptance is still pending.
+- The following bullets describe the historical first treatment, not the current visual conclusion or performance measurement.
 - User explicitly authorized A followed directly by B, development-branch commit/push and PR, then stop for visual acceptance. This supersedes the historical no-new-engine-work closeout instructions below only within M2.8 A/B.
 - A plan `7f1c24b`; runtime `85017f0`; lifecycle fixture `ada51d5`. Default-off original output, independent optical controls, one 1x1 GPU source record and existing linear-HDR final composition. No M2.6.1 physical Sun/atmosphere or WebGL runtime changes.
 - [Evidence index](evidence/M2.8/README.md): original physical Intel Xe-LPG/Chrome captures, 98 stills +120 contiguous frames, 42 independent main-baseline exact disabled pairs, functional occultation/resize, timestamp/lifecycle records and retained failed attempts. Focused tests/build/lint/types and physical WebGL smoke pass. Final GPU mean increment +0.127/+0.166/+0.181 ms for 1080/720/1080; no resident-VRAM claim.
