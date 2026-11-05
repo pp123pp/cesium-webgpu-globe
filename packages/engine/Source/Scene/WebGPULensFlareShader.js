@@ -8,6 +8,8 @@ struct LensParameters {
 }
 @group(0) @binding(6) var lensSource: texture_2d<f32>;
 @group(0) @binding(7) var<uniform> lens: LensParameters;
+@group(0) @binding(8) var lensRays: texture_2d<f32>;
+@group(0) @binding(9) var lensFineRays: texture_2d<f32>;
 
 fn lensProject(direction: vec3f) -> vec2f {
   let forward = dot(direction, bloomPlanet.cameraForwardWC.xyz);
@@ -64,25 +66,73 @@ fn lensRadiance(position: vec4f) -> vec3f {
   let earth = webgpuRayEllipsoid(ray, bloomPlanet);
   if (earth.x >= 0.0 && earth.y > 0.0) { return vec3f(0.0); }
   let sunUv = lensProject(bloomPlanet.sunDirectionWC.xyz);
-  let aspect = vec2f(size.x / size.y, 1.0);
+  // A fixed horizontal film gate keeps lens size stable when only aspect
+  // ratio changes; the reference is a 1000x227 crop of that optical field.
+  let aspect = vec2f(4.405286, 4.405286 * size.y / size.x);
   let delta = (uv - sunUv) * aspect;
   let opticalAxis = (vec2f(0.5) - sunUv) * aspect;
   let offAxis = length(opticalAxis);
   let r = length(delta);
-  // Smooth shoulders, without a hard ring or repeated ghost chain. The broad
-  // component leans toward the optical axis as the Sun moves off-center.
-  let compact = exp(-r * r / 0.0012) * 0.032;
-  let shoulder = exp(-r * r / 0.009) * 0.008;
-  let pupil = delta - opticalAxis * 0.065;
-  let spread = exp(-dot(pupil, pupil) / 0.0144) * 0.004;
-  let diffusion = (compact + shoulder + spread) * lens.diffusion;
-  let reflectionCenter = sunUv + (vec2f(0.5) - sunUv) * 0.72;
-  let reflectionDelta = (uv - reflectionCenter) * aspect;
-  let reflectionRadius = 0.035 + min(offAxis, 0.7) * 0.055;
-  let reflection = exp(-dot(reflectionDelta, reflectionDelta) / (reflectionRadius * reflectionRadius)) *
-    smoothstep(0.04, 0.4, offAxis) * 0.004 * lens.reflection;
-  return energy * lens.strength * (vec3f(1.0, 0.97, 0.91) * diffusion +
-    vec3f(0.80, 0.91, 1.0) * reflection);
+  // Lens glare expands the apparent highlight, never the physical solar disk.
+  // Unequal angular harmonics break up the shoulder without a regular star.
+  let angle = atan2(delta.y, delta.x);
+  let irregular = 1.0 + 0.22 * sin(angle * 7.0 + 0.6) +
+    0.14 * sin(angle * 13.0 - 1.2) + 0.08 * sin(angle * 23.0 + 2.0);
+  let core = exp(-r * r / (0.006 * irregular)) * 24.0;
+  let shoulder = exp(-r * r / 0.035) * 1.4;
+  let pupil = delta - opticalAxis * 0.055;
+  let spread = exp(-dot(pupil, pupil) / 0.40) * 0.22;
+  let support = 1.0 - smoothstep(1.35, 1.80, r);
+  let rayUv = clamp(vec2f(0.5) + delta / 1.25, vec2f(0.0), vec2f(1.0));
+  let fineDelta = vec2f(delta.x * 0.98 - delta.y * 0.20, delta.x * 0.20 + delta.y * 0.98);
+  let fineUv = clamp(vec2f(0.5) + fineDelta / 0.95, vec2f(0.0), vec2f(1.0));
+  let secondDelta = vec2f(delta.x * 0.89 + delta.y * 0.45, -delta.x * 0.45 + delta.y * 0.89);
+  let secondUv = clamp(vec2f(0.5) + secondDelta / 1.15, vec2f(0.0), vec2f(1.0));
+  // Remove the masks' low-bit-depth radial pedestal before amplification.
+  // Its quantized gradients otherwise become conspicuous concentric bands.
+  let rays = (lensSoftRay(lensRays, rayUv, vec3f(0.34, 0.16, 0.035)) * 0.20 +
+    lensSoftRay(lensFineRays, fineUv, vec3f(0.12, 0.06, 0.015)) * 0.55 +
+    lensSoftRay(lensFineRays, secondUv, vec3f(0.12, 0.06, 0.015)) * 0.25) *
+    exp(-r * r / 0.025) * 24.0;
+  let diffusion = (vec3f(1.0, 0.91, 0.74) * (core + rays) +
+    vec3f(1.0, 0.85, 0.40) * shoulder +
+    vec3f(1.0, 0.60, 0.45) * spread) * support * lens.diffusion;
+
+  let offAxisResponse = smoothstep(0.04, 0.45, offAxis);
+  // Broad overlapping wavelength bands form a soft spectral arc, not a line.
+  let ringDistance = vec3f(r) - vec3f(0.94, 1.04, 1.12);
+  let arc = exp(-ringDistance * ringDistance / vec3f(0.012, 0.016, 0.018)) *
+    vec3f(0.004, 0.009, 0.004) * (0.45 + 0.55 * pow(0.5 + 0.5 * cos(angle + 2.8), 2.0));
+  let reflections =
+    lensReflection(delta - opticalAxis * 1.32, 0.043) * vec3f(0.58, 0.70, 0.28) * 0.026 +
+    lensReflection(delta - opticalAxis * 1.42, 0.070) * vec3f(0.48, 0.63, 0.23) * 0.022 +
+    lensReflection(delta - opticalAxis * 1.51, 0.046) * vec3f(0.58, 0.66, 0.31) * 0.012 +
+    lensReflection(delta + opticalAxis * 0.72, 0.022) * vec3f(1.0, 0.67, 0.22) * 0.038;
+  return energy * lens.strength * (diffusion +
+    (arc + reflections) * offAxisResponse * lens.reflection);
+}
+
+fn lensReflection(delta: vec2f, radius: f32) -> f32 {
+  let radial = length(delta / vec2f(radius, radius * 0.85));
+  return (1.0 - smoothstep(0.45, 1.25, radial)) *
+    (0.75 + 0.25 * exp(-radial * radial * 3.0));
+}
+
+fn lensRayPedestal(uv: vec2f, stops: vec3f) -> f32 {
+  // Matches the authored SVG core gradient; retain only the irregular beams.
+  let radius = length(uv - vec2f(0.5)) * (1024.0 / 270.0);
+  if (radius < 0.08) { return mix(stops.x, stops.y, radius / 0.08) + 2.0 / 255.0; }
+  if (radius < 0.42) { return mix(stops.y, stops.z, (radius - 0.08) / 0.34) + 2.0 / 255.0; }
+  return mix(stops.z, 0.0, clamp((radius - 0.42) / 0.58, 0.0, 1.0)) + 2.0 / 255.0;
+}
+
+fn lensSoftRay(mask: texture_2d<f32>, uv: vec2f, stops: vec3f) -> f32 {
+  // Angular filtering gives thin authored beams a finite optical width.
+  let tangent = vec2f(0.5 - uv.y, uv.x - 0.5) * 0.035;
+  let value = textureSampleLevel(mask, sourceSampler, uv, 0.0).r * 0.5 +
+    textureSampleLevel(mask, sourceSampler, uv + tangent, 0.0).r * 0.25 +
+    textureSampleLevel(mask, sourceSampler, uv - tangent, 0.0).r * 0.25;
+  return max(value - lensRayPedestal(uv, stops), 0.0);
 }
 
 @fragment fn lensFinal(@builtin(position) position: vec4f) -> @location(0) vec4f {

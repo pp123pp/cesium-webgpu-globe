@@ -837,6 +837,8 @@ class WebGPUAtmosphereRenderer {
         { binding: 2, resource: this._bloomTextureB.createView() },
         { binding: 3, resource: { buffer: this._postParametersBuffer } },
         { binding: 6, resource: this._lensTexture.createView() },
+        { binding: 8, resource: this._solarTextures[0].createView() },
+        { binding: 9, resource: this._solarTextures[1].createView() },
       ],
     });
     this._lensBoundDepth = depth;
