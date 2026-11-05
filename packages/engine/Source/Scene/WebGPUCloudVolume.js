@@ -19,7 +19,7 @@ class WebGPUCloudVolume {
       ellipsoid,
       topHeight: 11000,
     });
-    this.values = new Float32Array(36);
+    this.values = new Float32Array(40);
     this.module = this.device.createShaderModule({
       label: "M3 volume integration",
       code: WebGPUCloudVolumeShader,
@@ -118,6 +118,7 @@ class WebGPUCloudVolume {
       ? 1 + (state.time.secondsOfDay % 180) * ((2 * Math.PI) / 180)
       : 0;
     this.values[35] = Number(options.mist ?? false);
+    this.values[36] = Number(options.ambientShadows !== false);
     this.device.queue.writeBuffer(this.parameters, 0, this.values);
     Object.assign(this.statistics, {
       primarySteps: budget[0],

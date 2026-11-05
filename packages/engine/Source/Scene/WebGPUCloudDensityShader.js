@@ -156,6 +156,7 @@ struct CloudVolume {
   weather: vec4f,
   budget: vec4f, // primary steps, light steps, normalized solar irradiance
   shape: vec4f, // stratocumulus, cirrus, evolution phase, mist
+  ambientShadows: f32,
 }
 @group(0) @binding(17) var<uniform> clouds: CloudVolume;
 @group(0) @binding(18) var cloudNoise: texture_3d<f32>;

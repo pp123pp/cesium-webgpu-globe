@@ -1,0 +1,155 @@
+{
+  "suite": "m4-ellipsoid-shadows",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T12:01:14.798Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "a9c730d036bafc382dd03075f63c3d3695a3c2fb",
+  "sourceStatus": "M Apps/WebGPUCloudShadows.html\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUCloudDensityShader.js\n M packages/engine/Source/Scene/WebGPUCloudShadowShader.js\n M packages/engine/Source/Scene/WebGPUCloudVolume.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n?? coordination/ci/m4-cloud-shadow-timeline-smoke.mjs\n?? coordination/ci/m4-terrain-shadows-smoke.mjs",
+  "bundleSha256": "d530259bcff852b80728508ab3b53823f21ffa00cf0bb1279e02c2058a938118",
+  "browserErrors": [],
+  "checks": [
+    "paired direct-light attenuation, disabled controls, replay and WGS84 wind advection"
+  ],
+  "scenes": [
+    {
+      "name": "sample-0",
+      "darker": 38799,
+      "brighter": 0,
+      "changed": 38799,
+      "min": 0,
+      "max": 69
+    },
+    {
+      "name": "initial",
+      "darker": 38799,
+      "brighter": 0,
+      "changed": 38799,
+      "min": 0,
+      "max": 69
+    },
+    {
+      "name": "atmosphere",
+      "darker": 38328,
+      "brighter": 0,
+      "changed": 39324,
+      "min": 0,
+      "max": 54
+    },
+    {
+      "name": "unlit",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "clear",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "hidden",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "restored",
+      "darker": 38799,
+      "brighter": 0,
+      "changed": 38799,
+      "min": 0,
+      "max": 69
+    },
+    {
+      "name": "later-fixed",
+      "darker": 42067,
+      "brighter": 0,
+      "changed": 42067,
+      "min": 0,
+      "max": 69
+    },
+    {
+      "name": "later-advected",
+      "darker": 38905,
+      "brighter": 0,
+      "changed": 38905,
+      "min": 0,
+      "max": 68
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "fixture": {
+    "longitude": 0,
+    "latitude": 0,
+    "height": 1800,
+    "pitch": -26,
+    "maximumTerrainLevel": 8
+  },
+  "motion": {
+    "seconds": 90,
+    "offsetDegrees": 0.029105415205472492,
+    "fixed": 17.660555555555554,
+    "advected": 0.7338020833333333
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 169,
+      "buffersDestroyed": 169,
+      "bufferBytes": 0,
+      "drawCalls": 2,
+      "triangles": 1140,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

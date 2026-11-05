@@ -6,7 +6,7 @@ Build with `npm install` and `npm run build`, serve this directory, then open `A
 
 For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](http://localhost:8067/Apps/WebGPUClouds.html). Select an effect to switch the camera and lighting, then collapse the panel for an unobstructed view.
 
-For M4, open the [ellipsoid cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with Esri World Imagery and a local Natural Earth II base layer. Toggle shadows at a fixed time, scrub the Cesium timeline, or use the animation dial to play forward, reverse, and adjust speed.
+For M4, open the [terrain cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with live Esri World Elevation 3D terrain, Esri World Imagery and a local Natural Earth II imagery base layer. Pause the Cesium clock and toggle shadows to compare the same hillside. With shadows enabled, toggle ambient attenuation to isolate the smaller change in sky lighting. Scrub the native timeline or use the animation dial to follow the moving clouds.
 
 ## Online WebGPU demos
 
@@ -22,7 +22,7 @@ Preserve Cesium's original WebGL backend and add a separately selected WebGPU ba
 
 ## Continuing development
 
-Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP.md) and the active milestone task before editing. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head. M4 terrain cloud shadows are planned for a separately assigned task.
+Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP.md) and the active milestone task before editing. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head.
 
 ## Plan and docs
 
@@ -32,7 +32,7 @@ Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP
 | [M1](tasks/M1.md) | V0.1 WGS84 Globe, Imagery and Terrain             | Integrated                                                      |
 | [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR | Integrated                                                      |
 | [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | Complete. Baseline and all five enhancements visually accepted. |
-| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Next planned milestone                                          |
+| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Terrain and ambient lighting in visual review                   |
 | [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Planned                                                         |
 | [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM                                | Deferred                                                        |
 

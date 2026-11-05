@@ -161,6 +161,7 @@ class WebGPUScene {
     this.clouds = {
       show: false,
       shadows: true,
+      ambientShadows: true,
       coverage: 0.49,
       type: "cumulus",
       cirrus: false,

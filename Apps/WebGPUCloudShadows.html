@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>椭球云影 · Cesium WebGPU</title>
+    <title>地形云影 · Cesium WebGPU</title>
     <script src="../Build/CesiumUnminified/Cesium.js"></script>
     <link
       rel="stylesheet"
@@ -98,29 +98,32 @@
     </style>
   </head>
   <body>
-    <main id="cesiumContainer" aria-label="WGS84 椭球云影"></main>
+    <main id="cesiumContainer" aria-label="金门海峡真实地形云影"></main>
     <div id="animation" role="region" aria-label="时间播放控制"></div>
     <div id="timeline" role="region" aria-label="Cesium 时间轴"></div>
     <aside>
-      <h1>椭球云影</h1>
+      <h1>地形云影</h1>
       <p>
         旧金山 ·
         金门海峡。拖动底部时间轴比较同一片海岸的云影，用左下圆盘播放或调整速度。
       </p>
       <fieldset id="controls" disabled>
         <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
+        <label><input id="ambient" type="checkbox" checked /> 环境光衰减</label>
         <button id="reset" type="button">复位机位和时间</button>
         <button id="view" type="button" aria-pressed="false">
           看云和地平线
         </button>
       </fieldset>
       <small id="imagery">Natural Earth II 底图 · 正在连接卫星影像</small>
+      <br /><small id="terrain">正在连接真实地形高程…</small>
       <p id="status" role="status">正在初始化 WebGPU…</p>
     </aside>
     <script type="module">
       /* global Cesium */
       const controls = document.getElementById("controls");
       const shadows = document.getElementById("shadows");
+      const ambient = document.getElementById("ambient");
       const view = document.getElementById("view");
       const status = document.getElementById("status");
       const start = Cesium.JulianDate.fromIso8601("2026-03-20T20:00:00Z");
@@ -144,9 +147,9 @@
         view.setAttribute("aria-pressed", String(horizon));
         view.textContent = horizon ? "看地表特写" : "看云和地平线";
         viewer.camera.setView({
-          destination: Cesium.Cartesian3.fromDegrees(-122.5162, 37.7803, 1850),
+          destination: Cesium.Cartesian3.fromDegrees(-122.489, 37.8113, 1900),
           orientation: {
-            heading: Cesium.Math.toRadians(48),
+            heading: Cesium.Math.toRadians(313),
             pitch: Cesium.Math.toRadians(horizon ? 0 : -28),
             roll: 0,
           },
@@ -184,11 +187,22 @@
       }
 
       try {
+        const terrainProvider =
+          await Cesium.ArcGISTiledElevationTerrainProvider.fromUrl(
+            "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+          );
         viewer = new Cesium.Viewer("cesiumContainer", {
           renderingBackend: "webgpu",
+          terrainProvider,
         });
         viewer.renderError.addEventListener((scene, error) => showError(error));
         await viewer.readyPromise;
+        const terrainLabel = document.getElementById("terrain");
+        terrainLabel.textContent = "地形高程源 · Esri World Elevation 3D";
+        terrainProvider.errorEvent.addEventListener(() => {
+          terrainLabel.textContent =
+            "Esri World Elevation 3D · 部分高程瓦片未载入";
+        });
         viewer.scene.globe.enableLighting = true;
         Object.assign(viewer.scene.clouds, {
           show: true,
@@ -222,6 +236,10 @@
         window.addEventListener("resize", resizeTimeWidgets);
         shadows.addEventListener("change", () => {
           viewer.scene.clouds.shadows = shadows.checked;
+          ambient.disabled = !shadows.checked;
+        });
+        ambient.addEventListener("change", () => {
+          viewer.scene.clouds.ambientShadows = ambient.checked;
         });
         document.getElementById("reset").addEventListener("click", reset);
         view.addEventListener("click", () =>

@@ -265,22 +265,28 @@ fn atmosphereTerrainGeometry(direction: vec3f, sceneDistance: f32) -> vec4f {
 }
 
 ${cloudShadowShader ?? ""}
-fn terrainSurfaceLight(normal: vec3f, sunCosine: f32, directTransmittance: vec3f) -> vec3f {
+fn terrainSurfaceLight(direction: vec3f, sceneDistance: f32, normal: vec3f, sunCosine: f32, directTransmittance: vec3f) -> vec3f {
   // Lambert irradiance is continuous at the terminator. Normalize the existing
   // scene irradiance convention (10 at default daylight), not the visible disk.
+  var ambient = 0.025;
   var direct = atmosphere.exposure.z * sunCosine * directTransmittance;
   ${
     cloudShadowShader
       ? `
   if (sunCosine > 0.0) {
-    // Recover the zero-height ellipsoid point from its geodetic normal.
-    let scaledNormal = normal / planet.inverseRadii.xyz;
-    let receiver = normalize(scaledNormal) / planet.inverseRadii.xyz;
-    direct *= cloudShadowTransmission(receiver);
+    // Completed mesh depth includes terrain height and tile skirts in world space.
+    let receiver = planet.cameraHigh.xyz + fma(direction, vec3f(sceneDistance), planet.cameraLow.xyz);
+    direct *= cloudShadowTransmission(receiver, planet.sunDirectionWC.xyz, 12u);
+    if (clouds.ambientShadows > 0.0) {
+      // Overhead cloud opacity approximates obscured skylight. Preserve fill from
+      // the rest of the hemisphere and fade the daylight response at twilight.
+      let sky = cloudShadowTransmission(receiver, normal, 8u);
+      ambient *= 1.0 - 0.6 * (1.0 - sky) * smoothstep(0.0, 0.15, sunCosine);
+    }
   }`
       : ""
   }
-  return vec3f(0.025) + direct;
+  return vec3f(ambient) + direct;
 }
 
 fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
@@ -292,7 +298,7 @@ fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
   if (sunCosine > 0.0) {
     directTransmittance = atmosphereSunTransmittance(surface.w, sunCosine);
   }
-  return terrainSurfaceLight(surface.xyz, sunCosine, directTransmittance);
+  return terrainSurfaceLight(direction, sceneDistance, surface.xyz, sunCosine, directTransmittance);
 }
 
 // The atmosphere-disabled entry point deliberately avoids the transmittance
@@ -302,7 +308,7 @@ fn sunOnlyTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
   let surface = atmosphereTerrainGeometry(direction, sceneDistance);
   if (surface.w < 0.0) { return vec3f(1.0); }
   let sunCosine = max(dot(surface.xyz, planet.sunDirectionWC.xyz), 0.0);
-  return terrainSurfaceLight(surface.xyz, sunCosine, vec3f(1.0));
+  return terrainSurfaceLight(direction, sceneDistance, surface.xyz, sunCosine, vec3f(1.0));
 }
 
 // Long grazing paths can produce a saturated, one-pixel limb/horizon band after

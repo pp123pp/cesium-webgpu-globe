@@ -398,7 +398,6 @@ class WebGPUAtmosphereRenderer {
     exposure = DEFAULT_EXPOSURE,
     surfaceLighting = false,
     clouds,
-    ellipsoidReceiver = false,
   ) {
     if (this._destroyed) {
       return false;
@@ -533,10 +532,7 @@ class WebGPUAtmosphereRenderer {
       });
     }
     this._cloudShadows =
-      this._cloudsShown &&
-      clouds.shadows !== false &&
-      ellipsoidReceiver &&
-      surfaceLighting;
+      this._cloudsShown && clouds.shadows !== false && surfaceLighting;
     if (this._cloudShadows) {
       this._activePipeline = this._cloudShadowPipeline(parameters.show);
     }
@@ -635,12 +631,12 @@ class WebGPUAtmosphereRenderer {
     this._shadowPipelines ??= new Map();
     if (!this._shadowPipelines.has(withAir)) {
       this._shadowModule ??= this._device.createShaderModule({
-        label: "M4 ellipsoid cloud shadows",
+        label: "M4 terrain cloud shadows",
         code: createAtmosphereShader(WebGPUCloudShadowShader),
       });
       const module = this._shadowModule;
       const pipeline = this._device.createRenderPipeline({
-        label: "M4 ellipsoid direct sunlight",
+        label: "M4 terrain solar and sky lighting",
         layout: "auto",
         vertex: { module, entryPoint: "atmosphereVertex" },
         fragment: {

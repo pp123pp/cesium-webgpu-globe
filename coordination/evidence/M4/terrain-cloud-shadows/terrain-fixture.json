@@ -1,0 +1,344 @@
+{
+  "suite": "m4-terrain-shadows",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T12:02:50.956Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "a9c730d036bafc382dd03075f63c3d3695a3c2fb",
+  "sourceStatus": "M Apps/WebGPUCloudShadows.html\n M packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js\n M packages/engine/Source/Scene/WebGPUAtmosphereShader.js\n M packages/engine/Source/Scene/WebGPUCloudDensityShader.js\n M packages/engine/Source/Scene/WebGPUCloudShadowShader.js\n M packages/engine/Source/Scene/WebGPUCloudVolume.js\n M packages/engine/Source/Scene/WebGPUGlobeRenderer.js\n M packages/engine/Source/Scene/WebGPUScene.js\n?? coordination/ci/m4-cloud-shadow-timeline-smoke.mjs\n?? coordination/ci/m4-terrain-shadows-smoke.mjs",
+  "bundleSha256": "d530259bcff852b80728508ab3b53823f21ffa00cf0bb1279e02c2058a938118",
+  "browserErrors": [],
+  "checks": [
+    "Native relief meshes, tile-edge continuity, direct/ambient separation, moving clouds, controls and above-cloud terrain clearance"
+  ],
+  "scenes": [
+    {
+      "name": "day-vacuum",
+      "direct": {
+        "darker": 41771,
+        "brighter": 0,
+        "maximum": 67,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 8153,
+        "brighter": 0,
+        "maximum": 2,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 0,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "day-air",
+      "direct": {
+        "darker": 42445,
+        "brighter": 0,
+        "maximum": 54,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 15444,
+        "brighter": 0,
+        "maximum": 1,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 0.6898611111111111,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "wind",
+      "direct": {
+        "darker": 36906,
+        "brighter": 0,
+        "maximum": 65,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 13984,
+        "brighter": 0,
+        "maximum": 2,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 14.78203125,
+      "solarElevation": 88.51010561453542
+    },
+    {
+      "name": "low-sun",
+      "direct": {
+        "darker": 55443,
+        "brighter": 0,
+        "maximum": 36,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 10397,
+        "brighter": 0,
+        "maximum": 3,
+        "seamP95": 0,
+        "neighborP95": 1
+      },
+      "motion": 17.191822916666666,
+      "solarElevation": 9.347476442268382
+    },
+    {
+      "name": "clear",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "hidden",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "unlit",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "night",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": -88.16598603080594
+    },
+    {
+      "name": "clear-far-orbit",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": 88.13514312160515
+    },
+    {
+      "name": "above-cloud-top",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.77171875,
+      "solarElevation": 88.13514312160515
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "lowPicks": [
+    {
+      "x": 159,
+      "y": 90,
+      "height": 571.1058895090972,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 160,
+      "y": 90,
+      "height": 571.1122096149578,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    },
+    {
+      "x": 100,
+      "y": 45,
+      "height": 605.6492230883623,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 220,
+      "y": 135,
+      "height": 549.9267375414319,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    }
+  ],
+  "highPicks": [
+    {
+      "x": 159,
+      "y": 90,
+      "height": 8071.027079486935,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 160,
+      "y": 90,
+      "height": 8071.033393110912,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    },
+    {
+      "x": 100,
+      "y": 45,
+      "height": 8105.542801282603,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 220,
+      "y": 135,
+      "height": 8049.870186652956,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    }
+  ],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 453,
+      "buffersDestroyed": 453,
+      "bufferBytes": 0,
+      "drawCalls": 2,
+      "triangles": 4608,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}
