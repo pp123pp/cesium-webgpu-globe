@@ -61,10 +61,6 @@ fn lensRadiance(position: vec4f) -> vec3f {
   }
   let size = vec2f(textureDimensions(sourceTexture));
   let uv = position.xy / size;
-  if (textureLoad(bloomDepth, vec2i(position.xy), 0) != 0.0) { return vec3f(0.0); }
-  let ray = webgpuRayDirection(vec2f(uv.x * 2.0 - 1.0, 1.0 - uv.y * 2.0), bloomPlanet);
-  let earth = webgpuRayEllipsoid(ray, bloomPlanet);
-  if (earth.x >= 0.0 && earth.y > 0.0) { return vec3f(0.0); }
   let sunUv = lensProject(bloomPlanet.sunDirectionWC.xyz);
   // A fixed horizontal film gate keeps lens size stable when only aspect
   // ratio changes; the reference is a 1000x227 crop of that optical field.
@@ -83,17 +79,22 @@ fn lensRadiance(position: vec4f) -> vec3f {
   let pupil = delta - opticalAxis * 0.055;
   let spread = exp(-dot(pupil, pupil) / 0.40) * 0.22;
   let support = 1.0 - smoothstep(1.35, 1.80, r);
-  let rayUv = clamp(vec2f(0.5) + delta / 1.25, vec2f(0.0), vec2f(1.0));
-  let fineDelta = vec2f(delta.x * 0.98 - delta.y * 0.20, delta.x * 0.20 + delta.y * 0.98);
-  let fineUv = clamp(vec2f(0.5) + fineDelta / 0.95, vec2f(0.0), vec2f(1.0));
-  let secondDelta = vec2f(delta.x * 0.89 + delta.y * 0.45, -delta.x * 0.45 + delta.y * 0.89);
-  let secondUv = clamp(vec2f(0.5) + secondDelta / 1.15, vec2f(0.0), vec2f(1.0));
-  // Remove the masks' low-bit-depth radial pedestal before amplification.
-  // Its quantized gradients otherwise become conspicuous concentric bands.
-  let rays = (lensSoftRay(lensRays, rayUv, vec3f(0.34, 0.16, 0.035)) * 0.20 +
-    lensSoftRay(lensFineRays, fineUv, vec3f(0.12, 0.06, 0.015)) * 0.55 +
-    lensSoftRay(lensFineRays, secondUv, vec3f(0.12, 0.06, 0.015)) * 0.25) *
-    exp(-r * r / 0.025) * 24.0;
+  var rays = 0.0;
+  // Beyond this footprint the beam envelope is below 4e-9. Avoid nine mask
+  // fetches over the rest of the sky while retaining the broad optical layers.
+  if (r < 0.7) {
+    let rayUv = clamp(vec2f(0.5) + delta / 1.25, vec2f(0.0), vec2f(1.0));
+    let fineDelta = vec2f(delta.x * 0.98 - delta.y * 0.20, delta.x * 0.20 + delta.y * 0.98);
+    let fineUv = clamp(vec2f(0.5) + fineDelta / 0.95, vec2f(0.0), vec2f(1.0));
+    let secondDelta = vec2f(delta.x * 0.89 + delta.y * 0.45, -delta.x * 0.45 + delta.y * 0.89);
+    let secondUv = clamp(vec2f(0.5) + secondDelta / 1.15, vec2f(0.0), vec2f(1.0));
+    // Remove the masks' low-bit-depth radial pedestal before amplification.
+    // Its quantized gradients otherwise become conspicuous concentric bands.
+    rays = (lensSoftRay(lensRays, rayUv, vec3f(0.34, 0.16, 0.035)) * 0.20 +
+      lensSoftRay(lensFineRays, fineUv, vec3f(0.12, 0.06, 0.015)) * 0.55 +
+      lensSoftRay(lensFineRays, secondUv, vec3f(0.12, 0.06, 0.015)) * 0.25) *
+      exp(-r * r / 0.025) * 24.0;
+  }
   let diffusion = (vec3f(1.0, 0.91, 0.74) * (core + rays) +
     vec3f(1.0, 0.85, 0.40) * shoulder +
     vec3f(1.0, 0.60, 0.45) * spread) * support * lens.diffusion;
@@ -113,7 +114,10 @@ fn lensRadiance(position: vec4f) -> vec3f {
 }
 
 fn lensReflection(delta: vec2f, radius: f32) -> f32 {
-  let radial = length(delta / vec2f(radius, radius * 0.85));
+  let normalized = delta / vec2f(radius, radius * 0.85);
+  let squared = dot(normalized, normalized);
+  if (squared >= 1.5625) { return 0.0; }
+  let radial = sqrt(squared);
   return (1.0 - smoothstep(0.45, 1.25, radial)) *
     (0.75 + 0.25 * exp(-radial * radial * 3.0));
 }
@@ -136,7 +140,23 @@ fn lensSoftRay(mask: texture_2d<f32>, uv: vec2f, stops: vec3f) -> f32 {
 }
 
 @fragment fn lensFinal(@builtin(position) position: vec4f) -> @location(0) vec4f {
-  return vec4f(bloomSrgb(bloomAces(bloomLinear(position) + lensRadiance(position))), 1.0);
+  let uv = position.xy / vec2f(textureDimensions(sourceTexture));
+  let scene = textureLoad(sourceTexture, vec2i(position.xy), 0).rgb;
+  var bloom = vec3f(0.0);
+  var flare = vec3f(0.0);
+  // Both optical layers share the same receiver test. The disabled final
+  // entry point remains untouched; source-disk visibility is still separate.
+  if (textureLoad(bloomDepth, vec2i(position.xy), 0) == 0.0) {
+    let ray = webgpuRayDirection(vec2f(uv.x * 2.0 - 1.0, 1.0 - uv.y * 2.0), bloomPlanet);
+    let earth = webgpuRayEllipsoid(ray, bloomPlanet);
+    if (earth.x < 0.0 || earth.y <= 0.0) {
+      if (finalParameters.strength > 0.0) {
+        bloom = textureSampleLevel(blurredBloom, sourceSampler, uv, 0.0).rgb;
+      }
+      flare = lensRadiance(position);
+    }
+  }
+  return vec4f(bloomSrgb(bloomAces(scene + bloom * finalParameters.strength + flare)), 1.0);
 }
 `;
 

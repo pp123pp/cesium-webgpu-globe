@@ -158,13 +158,14 @@ try {
   audit.resources.lifecycle = resourceCounts(lifecycleRows);
   audit.timing = timing.timing.map((batch) => {
     assert.equal(batch.status, "MEASURED");
-    assert.equal(batch.samplesPerMode, 60);
+    assert.equal(batch.samplesPerMode, 180);
+    assert.equal(batch.warmupPerMode, 60);
     assert.deepEqual(batch.allocationChanges, { textures: 0, buffers: 0 });
     assert.equal(batch.flareTextureBytes, 8);
     const summary = {};
     for (const mode of ["off", "on"]) {
       const rows = batch.samples[mode];
-      assert.equal(rows.length, 60);
+      assert.equal(rows.length, 180);
       for (const row of rows) {
         assert.ok(row.passes.every((pass) => Number.isFinite(pass.gpuMs) && pass.gpuMs >= 0));
         close(row.passes.reduce((sum, pass) => sum + pass.gpuMs, 0), row.gpuPassSumMs);

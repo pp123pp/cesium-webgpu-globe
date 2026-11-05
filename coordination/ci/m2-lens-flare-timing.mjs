@@ -23,7 +23,7 @@ await runM1BrowserSuite("m2-lens-flare-timing", async ({ page, report, output })
     await page.evaluate(() => { window.__m1.viewer.resize(); window.__m1.viewer.scene._atmosphere.lensFlare.enabled = true; });
     await settleLensFlare(page);
     await captureB4(page, report, output, `timing-${width}-${report.timing.length}`);
-    const row = await measureFlareGpu(page, 60);
+    const row = await measureFlareGpu(page, 180);
     report.timing.push(row);
     assert.equal(row.status, "MEASURED", "Real timestamp-query measurements required");
     assert.ok(row.summary.on.gpuPassSumMs.mean > 0);
@@ -44,7 +44,7 @@ await runM1BrowserSuite("m2-lens-flare-timing", async ({ page, report, output })
     retainedPayloadBytes: report.allocations.filter((row) => !row.destroyed).reduce((sum, row) => sum + row.bytes, 0),
     residentVram: "UNVERIFIED: WebGPU does not expose portable resident VRAM counters",
   };
-  report.checks.push("Alternating 60 timestamps per mode/resolution, 1080 to 720 to 1080 resize, no steady-state renderer allocations, all native resources released once.");
+  report.checks.push("Alternating 180 timestamps per mode/resolution after 60 warmup pairs, 1080 to 720 to 1080 resize, no steady-state renderer allocations, all native resources released once.");
 });
 
 async function measureFlareGpu(page, samples) {
@@ -80,7 +80,9 @@ async function measureFlareGpu(page, samples) {
     const before = { ...renderer.statistics };
     const results = { off: [], on: [] };
     try {
-      for (let iteration = -8; iteration < samples; iteration++) {
+      // A full alternating warmup lets the integrated GPU settle after resize
+      // and pipeline creation before comparing the unchanged pass-sum budget.
+      for (let iteration = -60; iteration < samples; iteration++) {
         for (const mode of iteration % 2 ? ["off", "on"] : ["on", "off"]) {
           renderer.lensFlare.enabled = mode === "on";
           names = [];
@@ -110,7 +112,7 @@ async function measureFlareGpu(page, samples) {
       passCount: rows[0].passes.length,
     }]));
     const allocations = window.__solarAllocations.filter((row) => !row.destroyed);
-    return { status: "MEASURED", resolution: [viewer.canvas.width, viewer.canvas.height], samplesPerMode: samples, warmupPerMode: 8, samples: results, summary,
+    return { status: "MEASURED", resolution: [viewer.canvas.width, viewer.canvas.height], samplesPerMode: samples, warmupPerMode: 60, samples: results, summary,
       incrementalMeanMs: summary.on.gpuPassSumMs.mean - summary.off.gpuPassSumMs.mean,
       incrementalP95Ms: summary.on.gpuPassSumMs.p95 - summary.off.gpuPassSumMs.p95,
       allocationChanges: { textures: renderer.statistics.texturesCreated - before.texturesCreated, buffers: renderer.statistics.buffersCreated - before.buffersCreated },
