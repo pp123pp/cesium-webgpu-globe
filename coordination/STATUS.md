@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current branch milestone: **M3 local volumetric clouds implemented; final user visual review pending.** The user closed M3-01 and revised A11 to clear far orbit and local clouds on approach at any geographic location. The independent local branch `codex/m3-global-volumetric-clouds` has physical GPU evidence at `5a0a22b`. M4 terrain shadows remain deferred. [M3 evidence, timings, visual limits and replay](evidence/M3/README.md).
+Current milestone: **M3 local volumetric clouds passed user visual acceptance on 2026-11-05.** The user accepted the revised clear-far-orbit requirement separately, then approved the final cloud crowns, interior lighting and reduced flight striations and authorized delivery to `main`. The accepted Intel Xe-LPG bundle starts with `68649e4b`. M4 terrain shadows are next and have not started. [Matched images, physical GPU checks and limitations](evidence/M3/cloud-appearance/README.md).
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`

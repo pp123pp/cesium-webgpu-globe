@@ -1,9 +1,10 @@
 # M3 local volumetric clouds — physical GPU handoff
 
-**Local implementation ready for visual review.** The user closed M3-01
-and revised A11 to require a clear far orbit and local clouds when approaching
-any region. This branch implements that revision. User visual sign-off for the
-final appearance is open.
+**User visual acceptance passed on 2026-11-05.** The user accepted clear far
+orbit as the revised A11 requirement, then reviewed and accepted the cloud
+crowns, interior lighting and flight striations in the
+[final matched physical GPU comparisons](cloud-appearance/README.md).
+The measurements below describe the earlier capture at `5a0a22b`.
 
 ## Replay and results
 

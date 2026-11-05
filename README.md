@@ -1,8 +1,8 @@
 # Cesium WebGPU Globe
 
-**Current state:** CesiumJS **1.146.0**, with M0 and M1 merged to `main`. M1 provides the experimental WebGPU WGS84 Globe, imagery, quantized terrain and camera navigation. WebGL remains the default; rapid real-terrain descent is still a known M1 limitation (`M1-NAV-001`).
+**Current state:** M3 local volumetric clouds passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
-Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. Current evidence is explicitly labeled software GPU.
+Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 
 ## Online WebGPU demos
 
@@ -18,19 +18,19 @@ Preserve Cesium's original WebGL backend and add a separately selected WebGPU ba
 
 ## Continuing development
 
-Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP.md) and the active milestone task before editing. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head. Source is already imported; do not rerun import or restart M0. M1 is the only currently authorized scope; main merges and M2 need a separate instruction.
+Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP.md) and the active milestone task before editing. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head. M4 terrain cloud shadows are planned for a separately assigned task.
 
 ## Plan and docs
 
-| Milestone         | Deliverable                                       |
-| ----------------- | ------------------------------------------------- |
-| [M0](tasks/M0.md) | WebGL baseline and minimal WebGPU setup           |
-| [M1](tasks/M1.md) | V0.1 WGS84 Globe, Imagery and Terrain             |
-| [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR |
-| [M3](tasks/M3.md) | V0.3 global volumetric clouds, self-shadow        |
-| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               |
-| [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      |
-| [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM (deferred)                     |
+| Milestone         | Deliverable                                       | Progress                                                                               |
+| ----------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| [M0](tasks/M0.md) | WebGL baseline and minimal WebGPU setup           | Integrated                                                                             |
+| [M1](tasks/M1.md) | V0.1 WGS84 Globe, Imagery and Terrain             | Integrated                                                                             |
+| [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR | Integrated                                                                             |
+| [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | [Visually accepted on 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md) |
+| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Planned next                                                                           |
+| [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Planned                                                                                |
+| [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM                                | Deferred                                                                               |
 
 - [Product scope](docs/REQUIREMENTS.md) · [Acceptance criteria](docs/ACCEPTANCE.md)
 - [Source and provenance](docs/SOURCE_BASELINE.md) · [Team workflow](coordination/WORKFLOW.md)
