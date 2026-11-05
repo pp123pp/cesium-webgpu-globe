@@ -4,9 +4,9 @@ import createCloudNoise from "./WebGPUCloudNoise.js";
 import WebGPUCloudVolumeShader from "./WebGPUCloudVolumeShader.js";
 
 const budgets = new Map([
-  ["low", [16, 2]],
-  ["medium", [32, 3]],
-  ["high", [56, 5]],
+  ["low", [24, 2]],
+  ["medium", [48, 4]],
+  ["high", [72, 6]],
 ]);
 
 /** Private owner of the opt-in scene-linear cloud pass. @private */

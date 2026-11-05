@@ -185,6 +185,16 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
   }
   await steps("ground");
   report.regions = [];
+  // Match the local examples/clouds camera and art settings in a WGS84 frame.
+  const localReferenceView = at(8, 2, 0, 0, 125);
+  await settle(localReferenceView);
+  await frame("03-reference-ground", {
+    config: { show: true, coverage: 0.49, windSpeed: 12, localDetail: false },
+    exposure: 0.55, date: "2026-03-20T14:00:00Z",
+  });
+  await recordOptics(page, report, "03-reference-ground");
+  await frame("03-reference-ground-default-exposure", { exposure: 1 });
+  await frame("03-reference-clear", { config: { show: false, windSpeed: 18 }, date: noon });
   const sites = [
     { name: "equator", view: at(1200, 11, 0, 0) },
     { name: "north-atlantic", view: at(1200, 11, -29, 37) },

@@ -160,7 +160,7 @@ class WebGPUScene {
     this.stars = createStarParameters({ show: options.skyBox !== false });
     this.clouds = {
       show: false,
-      coverage: 0.55,
+      coverage: 0.49,
       quality: "medium",
       windSpeed: 12,
       windDirection: 0.35,

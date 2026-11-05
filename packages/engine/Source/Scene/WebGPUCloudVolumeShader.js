@@ -25,13 +25,14 @@ struct CloudIntegral {
   lightSteps: u32,
 }
 
-fn cloudLightDepth(p: vec3f, footprint: f32) -> f32 {
+fn cloudLightDepth(p: vec3f, footprint: f32, localExtinction: f32) -> f32 {
   let count = u32(clouds.budget.y);
-  var opticalDepth = 0.0;
-  var start = 0.0;
+  // Account for near-field self shadow before spreading samples over the bank.
+  var opticalDepth = localExtinction * 75.0;
+  var start = 75.0;
   for (var i = 1u; i <= count; i++) {
     let u = f32(i) / f32(count);
-    let end = 6400.0 * u * u;
+    let end = 75.0 + 6325.0 * u * u * u;
     let sampleP = p + planet.sunDirectionWC.xyz * ((start + end) * 0.5);
     opticalDepth += cloudDensity(sampleP, max(footprint, (end-start)*0.2), clouds.weather) * (end - start);
     start = end;
@@ -43,7 +44,7 @@ fn cloudPhase(mu: f32, g: f32) -> f32 {
   return (1.0-g*g) / pow(1.0+g*g-2.0*g*mu, 1.5);
 }
 
-fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel: f32,
+fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel: f32, jitter: f32,
                      initial: CloudIntegral) -> CloudIntegral {
   var result = initial;
   let span = segment.y - segment.x;
@@ -57,8 +58,10 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     result.primarySteps++;
     let u = f32(i) / f32(count);
     let end = span * mix(u, u*u, nonuniform);
-    let midpoint = (start + end) * 0.5;
     let ds = end - start;
+    // A stationary subpixel phase decorrelates grazing-ray bands without
+    // reseeding the volume or changing a pixel's value on a paused camera.
+    let midpoint = mix(start, end, 0.5 + jitter*smoothstep(130.0,1100.0,ds));
     start = end;
     let p = fma(direction, vec3f(midpoint), anchor);
     let t = segment.x + midpoint;
@@ -66,7 +69,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     // Local clouds stay in ECEF. Only their optical weight follows the view.
     let rangeWeight = 1.0 - smoothstep(80000.0, 250000.0, t);
     let altitudeWeight = 1.0 - smoothstep(80000.0, 250000.0, planet.cameraLow.w);
-    let sigma = cloudDensity(p, footprint, clouds.weather) * rangeWeight * altitudeWeight;
+    let localExtinction = cloudDensity(p, footprint, clouds.weather);
+    let sigma = localExtinction * rangeWeight * altitudeWeight;
     if (sigma <= 0.0) { continue; }
     let attenuation = exp(-sigma * ds);
     let weight = result.transmission * (1.0 - attenuation);
@@ -79,7 +83,7 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let b = dot(scaled, sunScaled);
     let earthBlocksSun = b < 0.0 && b*b > dot(sunScaled,sunScaled) * (dot(scaled,scaled)-1.0);
     if (!earthBlocksSun) {
-      let tau = cloudLightDepth(p, footprint);
+      let tau = cloudLightDepth(p, footprint, localExtinction);
       result.lightSteps += u32(clouds.budget.y);
       // Diffuse orders retain light in optically thick crowns. Side-lit thin
       // edges keep their forward lobe while dense undersides receive less sky.
@@ -107,11 +111,12 @@ fn cloudTrace(direction: vec3f, pixel: vec2f) -> CloudIntegral {
   let second = segments.w - segments.z;
   let steps = u32(clouds.budget.x);
   let angularPixel = 2.0 / (atmosphere.viewport.y * planet.projection.y);
+  let jitter = 0.86 * (fract(52.9829189 * fract(dot(floor(pixel), vec2f(0.06711056,0.00583715)))) - 0.5);
   var n = steps;
   if (second > 0.0) { n = clamp(u32(round(f32(steps)*first/(first+second))), 1u, steps-1u); }
-  result = cloudMarchSegment(segments.xy, direction, n, angularPixel, result);
+  result = cloudMarchSegment(segments.xy, direction, n, angularPixel, jitter, result);
   if (second > 0.0) {
-    result = cloudMarchSegment(segments.zw, direction, steps-n, angularPixel, result);
+    result = cloudMarchSegment(segments.zw, direction, steps-n, angularPixel, jitter, result);
   }
   return result;
 }
