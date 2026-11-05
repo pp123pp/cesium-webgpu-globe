@@ -7,7 +7,11 @@ test("cloud noise is repeatable RGBA8 with useful contrast in every band", () =>
   assert.equal(data.length, size ** 3 * 4);
   assert.deepEqual(createCloudNoise().data, data);
   for (let channel = 0; channel < 4; ++channel) {
-    const values = data.filter((_, i) => i % 4 === channel).sort();
+    const values = [];
+    for (let i = channel; i < data.length; i += 4) {
+      values.push(data[i]);
+    }
+    values.sort((a, b) => a - b);
     const count = values.length;
     assert.ok(values[Math.floor(count * 0.95)] - values[Math.floor(count * 0.05)] > 45);
   }
@@ -23,8 +27,8 @@ test("each repeating face has comparable contrast to adjacent interior slices", 
         const last = Math.floor(voxel / stride) % size === size - 1;
         const next = last ? voxel - (size - 1) * stride : voxel + stride;
         const delta = Math.abs(data[voxel * 4 + channel] - data[next * 4 + channel]);
-        if (last) edge += delta;
-        else interior += delta;
+        if (last) {edge += delta;}
+        else {interior += delta;}
       }
       const ratio = (edge * (size - 1)) / interior;
       assert.ok(ratio > 0.5 && ratio < 1.6, `stride ${stride}, band ${channel}: ${ratio}`);

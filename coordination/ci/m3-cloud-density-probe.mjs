@@ -16,7 +16,7 @@ import { assertPhysicalGpu, classifyGpu, getBrowserConfiguration } from "./m0-br
 const config = getBrowserConfiguration();
 const output = process.env.M3_FIELD_OUTPUT ?? "Build/m3-cloud-density";
 const startedAt = new Date().toISOString();
-const server = createServer((request, response) => response.end("<title>M3 cloud field</title>"));
+const server = createServer((request, response) => response.end(request.url === "/" ? "<title>M3 cloud field</title>" : ""));
 await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
 let browser;
 try {
@@ -25,7 +25,7 @@ try {
   await page.goto(`http://127.0.0.1:${server.address().port}/`);
   const info = await page.evaluate(async () => {
     const adapter = await navigator.gpu.requestAdapter();
-    if (!adapter) throw new Error("WebGPU adapter unavailable");
+    if (!adapter) {throw new Error("WebGPU adapter unavailable");}
     const { vendor, architecture, device, description, isFallbackAdapter } = adapter.info;
     window.cloudProbeDevice = await adapter.requestDevice();
     return { vendor, architecture, device, description, isFallbackAdapter };
@@ -67,7 +67,7 @@ try {
   }
   const shell = [1900, 2000, 6000, 6100].map((h) => sample(20, 35, h, 1));
   const patches = [];
-  const heights = Array.from({ length: 14 }, (_, i) => 2100 + 300 * i);
+  const heights = Array.from(Array(14).keys(), (i) => 2100 + 300 * i);
   for (const [longitude, latitude] of [[0, 0], [46, 71], [179.96, 43], [-124, 32], [85, -60], [-50, -4]]) {
     for (const coverage of [0.23, 0.78]) {
       const columns = [];
@@ -133,7 +133,7 @@ try {
     await read.mapAsync(GPUMapMode.READ);
     const result = Array.from(new Float32Array(read.getMappedRange()));
     read.unmap();
-    for (const resource of [read, out, input, uniform, texture]) resource.destroy();
+    for (const resource of [read, out, input, uniform, texture]) {resource.destroy();}
     device.destroy();
     return result;
   }, { samples, code, size, encodedNoise: Buffer.from(data).toString("base64") });
@@ -160,8 +160,8 @@ try {
     let gaps = 0;
     for (const column of columns) {
       const tau = column.reduce((sum, i) => sum + 300 * density(i), 0);
-      if (tau < 0.06) gaps++;
-      if (tau > 0.20) tops.push(heights[column.findLastIndex((i) => density(i) > 0.000019)]);
+      if (tau < 0.06) {gaps++;}
+      if (tau > 0.20) {tops.push(heights[column.findLastIndex((i) => density(i) > 0.000019)]);}
     }
     const summary = { longitude, latitude, coverage, columns: columns.length, gaps,
       cloudyColumns: tops.length, lowestTop: Math.min(...tops), highestTop: Math.max(...tops) };
@@ -179,7 +179,7 @@ try {
     sampleLocations: occupied.map((s) => ({ longitude: s.lon, latitude: s.lat, height: 3650, coverage: 0.58,
       windAngle: 0, extinctionPerMeter: density(s.near) })) };
   await mkdir(output, { recursive: true });
-  await writeFile(path.join(output, "result.json"), JSON.stringify(result, null, 2) + "\n");
+  await writeFile(path.join(output, "result.json"), `${JSON.stringify(result, null, 2)  }\n`);
   console.log(JSON.stringify(result));
 } finally {
   await browser?.close();
