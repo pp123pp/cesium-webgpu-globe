@@ -35,12 +35,17 @@
         right: 0;
         height: 30px;
       }
-      aside {
+      #panel-toggle {
         position: absolute;
         top: 20px;
         left: 20px;
-        max-width: 380px;
-        max-height: calc(100vh - 70px);
+      }
+      aside {
+        position: absolute;
+        top: 66px;
+        left: 20px;
+        max-width: min(380px, calc(100vw - 40px));
+        max-height: calc(100vh - 116px);
         overflow-y: auto;
         box-sizing: border-box;
         padding: 18px;
@@ -143,7 +148,15 @@
   <body>
     <div id="cesiumContainer"></div>
     <div id="timeline" role="region" aria-label="Scene timeline"></div>
-    <aside>
+    <button
+      id="panel-toggle"
+      type="button"
+      aria-controls="controls-panel"
+      aria-expanded="true"
+    >
+      ‹ Hide controls
+    </button>
+    <aside id="controls-panel">
       <h1>WebGPU · WGS84 Earth</h1>
       <p>Drag to orbit, scroll to zoom, Ctrl-drag to tilt.</p>
       <nav aria-label="Globe controls">
@@ -321,6 +334,20 @@
         to Cesium ion to request the data.</small
       >
     </aside>
+    <script type="module">
+      const panelToggle = document.getElementById("panel-toggle");
+      const controlsPanel = document.getElementById("controls-panel");
+      panelToggle.addEventListener("click", () => {
+        controlsPanel.hidden = !controlsPanel.hidden;
+        panelToggle.setAttribute(
+          "aria-expanded",
+          String(!controlsPanel.hidden),
+        );
+        panelToggle.textContent = controlsPanel.hidden
+          ? "› Show controls"
+          : "‹ Hide controls";
+      });
+    </script>
     <script type="module">
       /* global Cesium */
       import { createCloudGeometryPreview } from "./WebGPUCloudGeometry.js";

@@ -35,6 +35,6 @@ test("Look at Moon uses the current ephemeris position and camera-relative direc
 });
 
 test("expanded control panel remains usable on short viewports", () => {
-  assert.match(demo, /max-height: calc\(100vh - 70px\)/);
+  assert.match(demo, /max-height: calc\(100vh - 116px\)/);
   assert.match(demo, /overflow-y: auto/);
 });
