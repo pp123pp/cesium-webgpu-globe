@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>椭球云影 · Cesium WebGPU</title>
     <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <link
+      rel="stylesheet"
+      href="../Build/CesiumUnminified/Widgets/Animation/Animation.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../Build/CesiumUnminified/Widgets/Timeline/Timeline.css"
+    />
     <style>
       :root {
+        --dial-width: clamp(106px, 16vw, 169px);
         color-scheme: dark;
         font:
           14px/1.55 system-ui,
@@ -23,6 +32,23 @@
       }
       body {
         background: #172a3a;
+      }
+      main {
+        height: calc(100% - 30px);
+      }
+      #animation {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: var(--dial-width);
+        aspect-ratio: 169 / 112;
+      }
+      #timeline {
+        position: absolute;
+        left: var(--dial-width);
+        right: 0;
+        bottom: 0;
+        height: 30px;
       }
       aside {
         position: absolute;
@@ -53,15 +79,6 @@
         display: block;
         margin: 8px 0;
       }
-      output {
-        float: right;
-        font-variant-numeric: tabular-nums;
-      }
-      input[type="range"] {
-        width: 100%;
-        margin: 0 0 8px;
-        accent-color: #a5d4d8;
-      }
       button {
         font: inherit;
         color: inherit;
@@ -82,59 +99,62 @@
   </head>
   <body>
     <main id="cesiumContainer" aria-label="WGS84 椭球云影"></main>
+    <div id="animation" role="region" aria-label="时间播放控制"></div>
+    <div id="timeline" role="region" aria-label="Cesium 时间轴"></div>
     <aside>
       <h1>椭球云影</h1>
-      <p>从云底向下看。切换阴影比较同一块地表，播放时间观察云影向东移动。</p>
+      <p>
+        旧金山 ·
+        金门海峡。拖动底部时间轴比较同一片海岸的云影，用左下圆盘播放或调整速度。
+      </p>
       <fieldset id="controls" disabled>
         <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
-        <label for="seconds"
-          >正午后的时间 <output id="elapsed" for="seconds">0 秒</output></label
-        >
-        <input id="seconds" type="range" min="0" max="180" step="1" value="0" />
-        <button id="play" type="button" aria-pressed="false">
-          播放 · 8 倍速
-        </button>
         <button id="reset" type="button">复位机位和时间</button>
         <button id="view" type="button" aria-pressed="false">
           看云和地平线
         </button>
       </fieldset>
+      <small id="imagery">Natural Earth II 底图 · 正在连接卫星影像</small>
       <p id="status" role="status">正在初始化 WebGPU…</p>
     </aside>
     <script type="module">
       /* global Cesium */
       const controls = document.getElementById("controls");
       const shadows = document.getElementById("shadows");
-      const seconds = document.getElementById("seconds");
-      const elapsed = document.getElementById("elapsed");
-      const play = document.getElementById("play");
       const view = document.getElementById("view");
       const status = document.getElementById("status");
-      const start = Cesium.JulianDate.fromIso8601("2026-03-20T12:00:00Z");
+      const start = Cesium.JulianDate.fromIso8601("2026-03-20T20:00:00Z");
       let viewer;
 
-      function setPlaying(playing) {
-        viewer.clock.shouldAnimate = playing;
-        play.setAttribute("aria-pressed", String(playing));
-        play.textContent = playing ? "暂停" : "播放 · 8 倍速";
+      let animation;
+      let timeline;
+      let clockViewModel;
+
+      function scrubTime(event) {
+        event.clock.currentTime = event.timeJulian;
+        event.clock.shouldAnimate = false;
+      }
+
+      function resizeTimeWidgets() {
+        animation.resize();
+        timeline.resize();
       }
 
       function setView(horizon) {
         view.setAttribute("aria-pressed", String(horizon));
         view.textContent = horizon ? "看地表特写" : "看云和地平线";
-        viewer.scene.atmosphere.show = horizon;
         viewer.camera.setView({
-          destination: Cesium.Cartesian3.fromDegrees(0, 0, 1800),
+          destination: Cesium.Cartesian3.fromDegrees(-122.5162, 37.7803, 1850),
           orientation: {
-            heading: Cesium.Math.toRadians(90),
-            pitch: Cesium.Math.toRadians(horizon ? 2 : -26),
+            heading: Cesium.Math.toRadians(48),
+            pitch: Cesium.Math.toRadians(horizon ? 0 : -28),
             roll: 0,
           },
         });
       }
 
       function reset() {
-        setPlaying(false);
+        viewer.clock.shouldAnimate = false;
         viewer.clock.currentTime = Cesium.JulianDate.clone(start);
         setView(false);
       }
@@ -145,30 +165,37 @@
         status.textContent = `云影渲染失败：${error?.message ?? error}`;
       }
 
-      try {
-        class BoundedEllipsoid extends Cesium.EllipsoidTerrainProvider {
-          getLevelMaximumGeometricError(level) {
-            return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
-          }
+      async function addSatelliteImagery() {
+        const label = document.getElementById("imagery");
+        try {
+          const provider = await Cesium.ArcGisMapServerImageryProvider.fromUrl(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+            { enablePickFeatures: false },
+          );
+          viewer.imageryLayers.addImageryProvider(provider);
+          label.textContent = "卫星与航拍 · Esri World Imagery";
+          provider.errorEvent.addEventListener(() => {
+            label.textContent =
+              "Esri World Imagery · 缺失区域显示 Natural Earth II";
+          });
+        } catch {
+          label.textContent = "卫星服务不可用 · 使用本地 Natural Earth II 底图";
         }
+      }
+
+      try {
         viewer = new Cesium.Viewer("cesiumContainer", {
           renderingBackend: "webgpu",
-          baseLayer: false,
-          skyAtmosphere: false,
-          skyBox: false,
         });
         viewer.renderError.addEventListener((scene, error) => showError(error));
         await viewer.readyPromise;
-        viewer.terrainProvider = new BoundedEllipsoid();
-        viewer.scene.globe.maximumScreenSpaceError = 3;
-        viewer.scene.globe.baseColor = new Cesium.Color(0.45, 0.45, 0.45, 1);
         viewer.scene.globe.enableLighting = true;
-        viewer.scene.screenSpaceCameraController.enableCollisionDetection = false;
         Object.assign(viewer.scene.clouds, {
           show: true,
           shadows: true,
           coverage: 0.78,
-          quality: "low",
+          quality: "high",
+          localDetail: true,
           windSpeed: 36,
           windDirection: 0,
           evolution: false,
@@ -177,47 +204,42 @@
         viewer.clock.startTime = Cesium.JulianDate.clone(start);
         viewer.clock.stopTime = Cesium.JulianDate.addSeconds(
           start,
-          Number(seconds.max),
+          180,
           new Cesium.JulianDate(),
         );
         viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
         viewer.clock.multiplier = 8;
         reset();
-        viewer.clock.onTick.addEventListener((clock) => {
-          const time = Math.round(
-            Cesium.JulianDate.secondsDifference(clock.currentTime, start),
-          );
-          if (seconds.valueAsNumber !== time) {
-            seconds.value = String(time);
-          }
-          elapsed.value = `${time} 秒`;
-        });
+        clockViewModel = new Cesium.ClockViewModel(viewer.clock);
+        animation = new Cesium.Animation(
+          "animation",
+          new Cesium.AnimationViewModel(clockViewModel),
+        );
+        timeline = new Cesium.Timeline("timeline", viewer.clock);
+        timeline.zoomTo(viewer.clock.startTime, viewer.clock.stopTime);
+        timeline.addEventListener("settime", scrubTime, false);
+        viewer.creditDisplay.container.style.left = "var(--dial-width)";
+        window.addEventListener("resize", resizeTimeWidgets);
         shadows.addEventListener("change", () => {
           viewer.scene.clouds.shadows = shadows.checked;
         });
-        seconds.addEventListener("input", () => {
-          setPlaying(false);
-          viewer.clock.currentTime = Cesium.JulianDate.addSeconds(
-            start,
-            seconds.valueAsNumber,
-            new Cesium.JulianDate(),
-          );
-          elapsed.value = `${seconds.value} 秒`;
-        });
-        play.addEventListener("click", () =>
-          setPlaying(!viewer.clock.shouldAnimate),
-        );
         document.getElementById("reset").addEventListener("click", reset);
         view.addEventListener("click", () =>
           setView(view.getAttribute("aria-pressed") !== "true"),
         );
         controls.disabled = false;
         status.hidden = true;
+        void addSatelliteImagery();
       } catch (error) {
         showError(error);
       }
       window.addEventListener("pagehide", (event) => {
         if (!event.persisted && viewer && !viewer.isDestroyed()) {
+          window.removeEventListener("resize", resizeTimeWidgets);
+          timeline?.removeEventListener("settime", scrubTime, false);
+          timeline?.destroy();
+          animation?.destroy();
+          clockViewModel?.destroy();
           viewer.destroy();
         }
       });

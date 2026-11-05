@@ -10,4 +10,4 @@ On Intel Xe-LPG, 38,724 of 57,600 pixels darkened with atmosphere off. No pixels
 
 To replay, build and serve the checkout, set `M1_BASE_URL` to its local URL and run `node coordination/ci/m4-ellipsoid-shadows-smoke.mjs` in a headed hardware browser. The fixture writes the report and matched PNGs to `Build/m4-ellipsoid-shadows`. Real terrain receivers and ambient attenuation belong to the next M4 step.
 
-The [standalone demo](../../../../Apps/WebGPUCloudShadows.html) includes a ground close-up and a [horizon view](demo-horizon.png). Its [hardware interaction check](demo.json) covers the shadow switch, clock, and camera reset.
+The [standalone demo](../../../../Apps/WebGPUCloudShadows.html) shows the Golden Gate Strait with satellite imagery, a ground close-up and a horizon view. The [screenshot](demo-timeline.png) shows the native Cesium Animation dial and Timeline bound to the scene clock. The [hardware interaction check](demo.json) covers dragging the timeline, playing and pausing with the dial, toggling shadows, and resetting the view.

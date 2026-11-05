@@ -1,48 +1,74 @@
 {
   "browser": "156.0.8078.4",
+  "errors": [],
+  "warnings": [],
   "adapter": {
     "vendor": "intel",
     "architecture": "xe-lpg",
-    "description": "",
     "device": "",
+    "description": "",
     "isFallbackAdapter": false
   },
-  "toggle": {
-    "darker": 224172,
-    "brighter": 0,
-    "changed": 224172,
-    "max": 69
+  "geometry": {
+    "timeline": {
+      "x": 170,
+      "y": 611,
+      "width": 909,
+      "height": 23.796875
+    },
+    "animation": {
+      "x": 0,
+      "y": 483,
+      "width": 169,
+      "height": 157
+    }
   },
-  "restore": {
+  "initialShadow": {
+    "darker": 246691,
+    "brighter": 0,
+    "max": 50
+  },
+  "restored": {
     "darker": 0,
     "brighter": 0,
-    "changed": 0,
     "max": 0
   },
-  "time": {
-    "darker": 127213,
-    "brighter": 169024,
-    "changed": 296237,
-    "max": 60
+  "drag": {
+    "startX": 172,
+    "endX": 290.17,
+    "time": "2026-03-20T20:00:23.9603960396052571Z",
+    "events": [
+      "2026-03-20T20:00:00.5940594059393334Z",
+      "2026-03-20T20:00:03.16831683168493328Z",
+      "2026-03-20T20:00:05.7425742574268952Z",
+      "2026-03-20T20:00:08.31683168316885713Z",
+      "2026-03-20T20:00:10.891089108910819Z",
+      "2026-03-20T20:00:13.465346534652781Z",
+      "2026-03-20T20:00:16.0396039603947429Z",
+      "2026-03-20T20:00:18.6138613861403428Z",
+      "2026-03-20T20:00:21.3861386138596572Z",
+      "2026-03-20T20:00:23.9603960396052571Z"
+    ]
   },
-  "paused": 94,
+  "draggedShadow": {
+    "darker": 265963,
+    "brighter": 0,
+    "max": 51
+  },
+  "imageMotion": {
+    "darker": 125268,
+    "brighter": 176641,
+    "max": 50
+  },
+  "paused": "2026-03-20T20:00:24.6291960395574279Z",
+  "playAdvanced": true,
   "reset": {
     "darker": 0,
     "brighter": 0,
-    "changed": 0,
     "max": 0
   },
-  "horizon": {
-    "darker": 73367,
-    "brighter": 0,
-    "changed": 73367,
-    "max": 49
-  },
-  "groundAgain": {
-    "darker": 0,
-    "brighter": 0,
-    "changed": 0,
-    "max": 0
-  },
-  "errors": []
+  "tileSummary": {
+    "requests": 130,
+    "highestRenderedAreaTileLevel": 16
+  }
 }

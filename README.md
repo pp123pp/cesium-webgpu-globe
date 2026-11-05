@@ -6,7 +6,7 @@ Build with `npm install` and `npm run build`, serve this directory, then open `A
 
 For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](http://localhost:8067/Apps/WebGPUClouds.html). Select an effect to switch the camera and lighting, then collapse the panel for an unobstructed view.
 
-For M4, open the [ellipsoid cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. Toggle shadows at a fixed time to compare direct sunlight on the ground, then play to follow the moving shadow.
+For M4, open the [ellipsoid cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with Esri World Imagery and a local Natural Earth II base layer. Toggle shadows at a fixed time, scrub the Cesium timeline, or use the animation dial to play forward, reverse, and adjust speed.
 
 ## Online WebGPU demos
 
