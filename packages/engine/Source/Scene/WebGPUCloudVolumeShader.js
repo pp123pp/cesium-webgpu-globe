@@ -67,7 +67,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let t = segment.x + midpoint;
     let footprint = max(t * angularPixel, ds * 0.22);
     // Local clouds stay in ECEF. Only their optical weight follows the view.
-    let rangeWeight = 1.0 - smoothstep(80000.0, 250000.0, t);
+    let visibleRange = mix(60000.0,250000.0,smoothstep(10000.0,120000.0,planet.cameraLow.w));
+    let rangeWeight = 1.0 - smoothstep(visibleRange*0.42, visibleRange, t);
     let altitudeWeight = 1.0 - smoothstep(80000.0, 250000.0, planet.cameraLow.w);
     let localExtinction = cloudDensity(p, footprint, clouds.weather);
     let sigma = localExtinction * rangeWeight * altitudeWeight;
@@ -103,7 +104,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
 
 fn cloudTrace(direction: vec3f, pixel: vec2f) -> CloudIntegral {
   let distance = webgpuSceneRayDistance(textureLoad(sceneDepth, vec2i(pixel), 0), direction, planet);
-  let limit = select(min(distance, 250000.0), 250000.0, distance < 0.0);
+  let range = mix(60000.0,250000.0,smoothstep(10000.0,120000.0,planet.cameraLow.w));
+  let limit = select(min(distance, range), range, distance < 0.0);
   let segments = webgpuCloudSegments(direction, limit, clouds.shell, planet);
   var result = CloudIntegral(0.0, 0.0, 1.0, 0.0, 0u, 0u);
   let first = segments.y - segments.x;
@@ -125,9 +127,9 @@ fn cloudViewDirection(pixel: vec2f) -> vec3f {
   return webgpuRayDirection(pixel / atmosphere.viewport.xy * vec2f(2.0,-2.0) + vec2f(-1.0,1.0), planet);
 }
 
-@fragment fn cloudAir(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
-  let ray = cloudViewDirection(pixel.xy);
-  let volume = cloudTrace(ray, pixel.xy);
+fn cloudInAir(pixel: vec2f) -> vec4f {
+  let ray = cloudViewDirection(pixel);
+  let volume = cloudTrace(ray, pixel);
   let opacity = 1.0 - volume.transmission;
   if (opacity <= 0.0) { return vec4f(0.0); }
   let distance = volume.distanceMoment / opacity;
@@ -141,9 +143,62 @@ fn cloudViewDirection(pixel: vec2f) -> vec3f {
   return vec4f(air.transmittance * source + opacity * air.radiance, opacity);
 }
 
-@fragment fn cloudVacuum(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
-  let volume = cloudTrace(cloudViewDirection(pixel.xy), pixel.xy);
+fn cloudInVacuum(pixel: vec2f) -> vec4f {
+  let volume = cloudTrace(cloudViewDirection(pixel), pixel);
   return vec4f(clouds.budget.z * vec3f(volume.direct + volume.ambient), 1.0-volume.transmission);
+}
+
+fn cloudNativePixel(pixel: vec2f) -> vec2f {
+  let size = atmosphere.viewport.xy;
+  return floor(pixel * size / ceil(size/clouds.budget.w)) + 0.5;
+}
+@fragment fn cloudAir(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  return cloudInAir(cloudNativePixel(pixel.xy));
+}
+@fragment fn cloudVacuum(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  return cloudInVacuum(cloudNativePixel(pixel.xy));
+}
+
+@group(0) @binding(23) var cloudLow: texture_2d<f32>;
+
+// Accumulate compatible neighbors in premultiplied HDR space. At a silhouette
+// with no compatible depth, retrace that native pixel instead of bleeding cloud
+// across an opaque foreground object.
+fn cloudReconstruct(pixel: vec2f) -> vec4f {
+  let size = vec2i(textureDimensions(cloudLow));
+  let uv = pixel * vec2f(size) / atmosphere.viewport.xy - 0.5;
+  let base = vec2i(floor(uv));
+  let fraction = fract(uv);
+  let depth = textureLoad(sceneDepth, vec2i(pixel), 0);
+  let distance = webgpuSceneRayDistance(depth,cloudViewDirection(pixel),planet);
+  var sum = vec4f(0.0);
+  var weight = 0.0;
+  for (var y=0; y<=1; y++) {
+    for (var x=0; x<=1; x++) {
+      let loc = clamp(base + vec2i(x,y), vec2i(0), size-1);
+      let source = cloudNativePixel(vec2f(loc)+0.5);
+      let neighbor = textureLoad(sceneDepth,vec2i(source),0);
+      let t = webgpuSceneRayDistance(neighbor,cloudViewDirection(source),planet);
+      if ((t < 0.0) != (distance < 0.0)) { continue; }
+      let tolerance = max(10.0, 0.015*distance);
+      let edge = 1.0 - smoothstep(tolerance*0.25,tolerance,abs(t-distance));
+      let w = edge*select(1.0-fraction.x,fraction.x,x==1)*select(1.0-fraction.y,fraction.y,y==1);
+      sum += w * textureLoad(cloudLow,loc,0);
+      weight += w;
+    }
+  }
+  if (weight < 0.001) { return vec4f(0.0,0.0,0.0,-1.0); }
+  return sum/weight;
+}
+@fragment fn resolveCloudAir(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  let sample = cloudReconstruct(pixel.xy);
+  if (sample.a < 0.0) { return cloudInAir(pixel.xy); }
+  return sample;
+}
+@fragment fn resolveCloudVacuum(@builtin(position) pixel: vec4f) -> @location(0) vec4f {
+  let sample = cloudReconstruct(pixel.xy);
+  if (sample.a < 0.0) { return cloudInVacuum(pixel.xy); }
+  return sample;
 }
 
 @group(0) @binding(20) var<uniform> probePixel: vec2u;

@@ -4,9 +4,9 @@ import createCloudNoise from "./WebGPUCloudNoise.js";
 import WebGPUCloudVolumeShader from "./WebGPUCloudVolumeShader.js";
 
 const budgets = new Map([
-  ["low", [24, 2]],
-  ["medium", [48, 4]],
-  ["high", [72, 6]],
+  ["low", [96, 2]],
+  ["medium", [192, 4]],
+  ["high", [224, 6]],
 ]);
 
 /** Private owner of the opt-in scene-linear cloud pass. @private */
@@ -86,7 +86,8 @@ class WebGPUCloudVolume {
       ],
       24,
     );
-    this.values.set([...budget, irradiance / 10, 0], 28);
+    this.divisor = options.quality === "high" ? 1 : 2;
+    this.values.set([...budget, irradiance / 10, this.divisor], 28);
     this.device.queue.writeBuffer(this.parameters, 0, this.values);
     Object.assign(this.statistics, {
       primarySteps: budget[0],
@@ -95,29 +96,40 @@ class WebGPUCloudVolume {
   }
 
   draw(encoder, target, depth, withAir) {
-    let pipeline = this.pipelines.get(withAir);
-    if (!pipeline) {
-      pipeline = this.device.createRenderPipeline({
-        label: "M3 cloud scattering",
-        layout: "auto",
-        vertex: { module: this.module, entryPoint: "atmosphereVertex" },
-        fragment: {
-          module: this.module,
-          entryPoint: withAir ? "cloudAir" : "cloudVacuum",
-          targets: [
-            {
-              format: "rgba16float",
-              blend: {
-                color: { srcFactor: "one", dstFactor: "one-minus-src-alpha" },
-                alpha: { srcFactor: "one", dstFactor: "one-minus-src-alpha" },
-              },
-            },
-          ],
-        },
-      });
-      this.pipelines.set(withAir, pipeline);
+    const width = Math.ceil(target.width / this.divisor);
+    const height = Math.ceil(target.height / this.divisor);
+    const reduced = this.divisor > 1;
+    if (
+      this.lowTexture &&
+      (!reduced ||
+        this.lowTexture.width !== width ||
+        this.lowTexture.height !== height)
+    ) {
+      this.lowTexture.destroy();
+      this.lowTexture = this.bindings = undefined;
     }
-    if (pipeline !== this.boundPipeline || depth !== this.depth) {
+    if (reduced && !this.lowTexture) {
+      this.lowTexture = this.device.createTexture({
+        label: "M3 cloud radiance and opacity",
+        size: [width, height],
+        format: "rgba16float",
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
+      });
+      this.bindings = undefined;
+    }
+    Object.assign(this.statistics, {
+      width,
+      height,
+      textureBytes:
+        this.texture.width ** 3 * 4 + (reduced ? width * height * 8 : 0),
+    });
+    const pipeline = this._pipeline(withAir ? "cloudAir" : "cloudVacuum");
+    if (
+      !this.bindings ||
+      pipeline !== this.boundPipeline ||
+      depth !== this.depth
+    ) {
       this.depth = depth;
       this.boundPipeline = pipeline;
       const entries = this._entries();
@@ -138,17 +150,80 @@ class WebGPUCloudVolume {
         layout: pipeline.getBindGroupLayout(0),
         entries,
       });
+      this.resolveBindings = undefined;
+      if (reduced) {
+        this.resolvePipeline = this._pipeline(
+          withAir ? "resolveCloudAir" : "resolveCloudVacuum",
+        );
+        this.resolveBindings = this.device.createBindGroup({
+          layout: this.resolvePipeline.getBindGroupLayout(0),
+          entries: [
+            ...entries,
+            { binding: 23, resource: this.lowTexture.createView() },
+          ],
+        });
+      }
     }
-    this.statistics.width = target.width;
-    this.statistics.height = target.height;
+    this._draw(
+      encoder,
+      this.lowTexture ?? target,
+      pipeline,
+      this.bindings,
+      "M3 volumetric clouds",
+      reduced,
+    );
+    if (reduced) {
+      this._draw(
+        encoder,
+        target,
+        this.resolvePipeline,
+        this.resolveBindings,
+        "M3 cloud reconstruction",
+        false,
+      );
+    }
+  }
+
+  _pipeline(entryPoint) {
+    let pipeline = this.pipelines.get(entryPoint);
+    if (!pipeline) {
+      pipeline = this.device.createRenderPipeline({
+        label: "M3 cloud scattering",
+        layout: "auto",
+        vertex: { module: this.module, entryPoint: "atmosphereVertex" },
+        fragment: {
+          module: this.module,
+          entryPoint,
+          targets: [
+            {
+              format: "rgba16float",
+              blend: {
+                color: { srcFactor: "one", dstFactor: "one-minus-src-alpha" },
+                alpha: { srcFactor: "one", dstFactor: "one-minus-src-alpha" },
+              },
+            },
+          ],
+        },
+      });
+      this.pipelines.set(entryPoint, pipeline);
+    }
+    return pipeline;
+  }
+
+  _draw(encoder, target, pipeline, bindings, label, clear) {
     const pass = encoder.beginRenderPass({
-      label: "M3 volumetric clouds",
+      label,
       colorAttachments: [
-        { view: target.createView(), loadOp: "load", storeOp: "store" },
+        {
+          view: target.createView(),
+          loadOp: clear ? "clear" : "load",
+          clearValue: [0, 0, 0, 0],
+          storeOp: "store",
+        },
       ],
     });
     pass.setPipeline(pipeline);
-    pass.setBindGroup(0, this.bindings);
+    pass.setBindGroup(0, bindings);
     pass.draw(3);
     pass.end();
   }
@@ -214,6 +289,7 @@ class WebGPUCloudVolume {
   }
 
   destroy() {
+    this.lowTexture?.destroy();
     this.texture.destroy();
     this.parameters.destroy();
     this.depth = this.bindings = this.boundPipeline = undefined;
