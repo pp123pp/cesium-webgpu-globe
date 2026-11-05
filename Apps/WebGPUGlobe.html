@@ -35,12 +35,17 @@
         right: 0;
         height: 30px;
       }
-      aside {
+      #panel-toggle {
         position: absolute;
         top: 20px;
         left: 20px;
-        max-width: 380px;
-        max-height: calc(100vh - 70px);
+      }
+      aside {
+        position: absolute;
+        top: 66px;
+        left: 20px;
+        max-width: min(380px, calc(100vw - 40px));
+        max-height: calc(100vh - 116px);
         overflow-y: auto;
         box-sizing: border-box;
         padding: 18px;
@@ -105,6 +110,7 @@
         white-space: pre-wrap;
       }
       #sun-controls,
+      #cloud-controls,
       #exposure-controls {
         margin: 12px 0;
         padding: 10px;
@@ -112,6 +118,7 @@
         border-radius: 6px;
       }
       #sun-controls label,
+      #cloud-controls label,
       #exposure-controls label {
         display: inline-block;
         margin: 4px 12px 4px 0;
@@ -141,7 +148,15 @@
   <body>
     <div id="cesiumContainer"></div>
     <div id="timeline" role="region" aria-label="Scene timeline"></div>
-    <aside>
+    <button
+      id="panel-toggle"
+      type="button"
+      aria-controls="controls-panel"
+      aria-expanded="true"
+    >
+      ‹ Hide controls
+    </button>
+    <aside id="controls-panel">
       <h1>WebGPU · WGS84 Earth</h1>
       <p>Drag to orbit, scroll to zoom, Ctrl-drag to tilt.</p>
       <nav aria-label="Globe controls">
@@ -149,6 +164,51 @@
         <button id="terrain" disabled>Reload imagery + terrain</button>
         <button id="everest" disabled>Everest</button>
       </nav>
+      <fieldset id="cloud-controls" disabled>
+        <legend>Local volumetric clouds</legend>
+        <label
+          ><input id="show-cloud-volume" type="checkbox" /> Render clouds</label
+        >
+        <label
+          >Coverage
+          <input
+            id="cloud-coverage"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.49"
+        /></label>
+        <label
+          >Quality
+          <select id="cloud-quality">
+            <option>low</option>
+            <option selected>medium</option>
+            <option>high</option>
+          </select></label
+        >
+        <label
+          ><input id="cloud-local-detail" type="checkbox" /> Enhance sparse
+          nearby clouds</label
+        >
+        <label
+          ><input id="show-cloud-geometry" type="checkbox" /> Preview cloud
+          shell</label
+        >
+        <nav aria-label="Cloud views">
+          <button id="cloud-orbit" type="button">Cloud orbit</button>
+          <button id="cloud-high" type="button">High altitude</button>
+          <button id="cloud-near" type="button">Near ground</button>
+        </nav>
+        <button id="cloud-deck" type="button">Fly above local clouds</button>
+        <output id="cloud-readout">WGS84 shell · base 2 km / top 6 km</output>
+        <p>
+          <small
+            >Zoom below 250 km to see local clouds. The cyan preview shows the
+            geometry of the 2–6 km layer.</small
+          >
+        </p>
+      </fieldset>
       <fieldset id="sun-controls" disabled>
         <legend>Sun &amp; atmosphere</legend>
         <label><input id="show-sun" type="checkbox" checked /> Sun</label>
@@ -275,7 +335,22 @@
       >
     </aside>
     <script type="module">
+      const panelToggle = document.getElementById("panel-toggle");
+      const controlsPanel = document.getElementById("controls-panel");
+      panelToggle.addEventListener("click", () => {
+        controlsPanel.hidden = !controlsPanel.hidden;
+        panelToggle.setAttribute(
+          "aria-expanded",
+          String(!controlsPanel.hidden),
+        );
+        panelToggle.textContent = controlsPanel.hidden
+          ? "› Show controls"
+          : "‹ Hide controls";
+      });
+    </script>
+    <script type="module">
       /* global Cesium */
+      import { createCloudGeometryPreview } from "./WebGPUCloudGeometry.js";
       Cesium.Ion.defaultAccessToken =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZjVlOTZhNC0zNjJmLTQxODYtYjFlNS1kYzljZGZlYjI5ZDEiLCJpZCI6MTExNSwiaWF0IjoxNzY4MjA0OTM4fQ.EfH_dMcNYE2K23Ceq9cv8kZ8ycmYX5zYUxBhr1vGraQ";
       const status = document.getElementById("status");
@@ -291,10 +366,36 @@
       const exposureValue = document.getElementById("exposure-value");
       const spaceControls = document.getElementById("space-controls");
       const moonReadout = document.getElementById("moon-readout");
+      const cloudControls = document.getElementById("cloud-controls");
+      const showCloudGeometry = document.getElementById("show-cloud-geometry");
+      const cloudReadout = document.getElementById("cloud-readout");
+      let cloudPreview;
       const viewer = new Cesium.Viewer("cesiumContainer", {
         renderingBackend: "webgpu",
       });
       const defaultExposure = viewer.scene.exposure;
+      const cloudVolumeControl = document.getElementById("show-cloud-volume");
+      cloudVolumeControl.addEventListener("change", () => {
+        viewer.scene.clouds.show = cloudVolumeControl.checked;
+        if (cloudVolumeControl.checked) {
+          showCloudGeometry.checked = false;
+        }
+      });
+      document
+        .getElementById("cloud-coverage")
+        .addEventListener("input", (event) => {
+          viewer.scene.clouds.coverage = event.target.valueAsNumber;
+        });
+      document
+        .getElementById("cloud-quality")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.quality = event.target.value;
+        });
+      document
+        .getElementById("cloud-local-detail")
+        .addEventListener("change", (event) => {
+          viewer.scene.clouds.localDetail = event.target.checked;
+        });
       const lensControls = document.getElementById("lens-controls");
       for (const name of ["enabled", "strength", "diffusion", "reflection"]) {
         const control = document.getElementById(`lens-${name}`);
@@ -359,6 +460,7 @@
           exposureControls.disabled = true;
           lensControls.disabled = true;
           spaceControls.disabled = true;
+          cloudControls.disabled = true;
         }
       };
       viewer.renderError.addEventListener((source, error) =>
@@ -441,6 +543,25 @@
         viewer.camera.setView({ orientation: { direction, up } });
       });
       viewer.scene.postRender.addEventListener((scene) => {
+        if (showCloudGeometry.checked && cloudPreview) {
+          cloudPreview.render();
+        }
+        if (showCloudGeometry.checked || scene.clouds.show) {
+          const height = scene._planetState.cameraHeight.toLocaleString(
+            undefined,
+            {
+              maximumFractionDigits: 0,
+            },
+          );
+          const status = showCloudGeometry.checked
+            ? "WGS84 shell 2–6 km"
+            : scene._planetState.cameraHeight >= 250000
+              ? "Orbit · local clouds hidden"
+              : "Local cloud layer 2–6 km";
+          cloudReadout.textContent = `${status} · camera ${height} m`;
+        } else {
+          cloudReadout.textContent = "Local clouds off";
+        }
         const illumination = scene._planetState?.moonIllumination;
         if (Number.isFinite(illumination)) {
           const percent = Math.round(illumination * 100);
@@ -463,6 +584,7 @@
           window.removeEventListener("resize", resizeTimeline);
           timeline.removeEventListener("settime", scrubTime, false);
           timeline.destroy();
+          cloudPreview?.destroy();
           if (!viewer.isDestroyed()) {
             viewer.destroy();
           }
@@ -480,6 +602,49 @@
         viewer.camera.flyTo({
           destination: Cesium.Cartesian3.fromDegrees(20, 20, 20000000),
           orientation: { heading: 0, pitch: -Math.PI / 2, roll: 0 },
+          duration: 2,
+        });
+      });
+      for (const [id, height, pitch] of [
+        ["cloud-orbit", 35786000, -90],
+        ["cloud-high", 20000, -6],
+        ["cloud-near", 2, 2],
+      ]) {
+        document.getElementById(id).addEventListener("click", () => {
+          viewer.camera.cancelFlight();
+          viewer.camera.frustum.fov = Cesium.Math.toRadians(60);
+          viewer.camera.setView({
+            destination: Cesium.Cartesian3.fromDegrees(0, 0, height),
+            orientation: {
+              heading: Math.PI / 2,
+              pitch: Cesium.Math.toRadians(pitch),
+              roll: 0,
+            },
+          });
+          showCloudGeometry.checked = !viewer.scene.clouds.show;
+          cloudReadout.textContent = `WGS84 shell 2–6 km · camera ${height.toLocaleString()} m`;
+        });
+      }
+      document.getElementById("cloud-deck").addEventListener("click", () => {
+        cloudVolumeControl.checked = viewer.scene.clouds.show = true;
+        showCloudGeometry.checked = false;
+        const target = viewer.camera.pickEllipsoid(
+          new Cesium.Cartesian2(
+            viewer.canvas.clientWidth / 2,
+            viewer.canvas.clientHeight / 2,
+          ),
+          viewer.scene.ellipsoid,
+        );
+        const { longitude, latitude } = target
+          ? viewer.scene.ellipsoid.cartesianToCartographic(target)
+          : viewer.camera.positionCartographic;
+        viewer.camera.flyTo({
+          destination: Cesium.Cartesian3.fromRadians(longitude, latitude, 8500),
+          orientation: {
+            heading: viewer.camera.heading,
+            pitch: Cesium.Math.toRadians(-18),
+            roll: 0,
+          },
           duration: 2,
         });
       });
@@ -554,6 +719,8 @@
       });
       try {
         await viewer.readyPromise;
+        cloudPreview = await createCloudGeometryPreview(viewer.scene);
+        cloudControls.disabled = false;
         sunControls.disabled = false;
         updateExposure(defaultExposure);
         exposureControls.disabled = false;
