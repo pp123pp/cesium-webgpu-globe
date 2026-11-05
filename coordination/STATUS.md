@@ -1,19 +1,26 @@
 # Single source of truth — status
 
 Last updated: 2026-11-05
-Current milestone: **M2.6.1 B1–B5 implementation and phase acceptance PASS; PR #28 merged to main at `1462876` and final-head Fast / executed Full PASS. Milestone-level closure remains PENDING the separately authorized complete WebGL differential.**
+Current milestone: **M2.6.1 B1–B5 accepted; the separate complete physical-GPU WebGL differential PASSED on merged `main` runtime `b5422e5` (2026-11-05). Final evidence publication/PR integration is pending; no further engine work is authorized.**
 Repository: official CesiumJS 1.146.0 monorepo at root + Codex planning documents.
 Upstream official tag: `1.146` (annotated tag object unsigned)
 Upstream commit: `b8d3a36fe98a3e432eb89253c95d5f20e605e0f1`
 Import method: GitHub Actions `.github/workflows/import-cesium.yml`
 Import workflow result: SUCCESS; source presence verified.
 
-## M2.6.1 final-acceptance reconciliation — 2026-11-05
+## M2.6.1 final complete WebGL differential — 2026-11-05
+
+- After explicit user authorization, executed the original complete differential `coordination/ci/m0-webgl-regression.mjs` on real Intel Arc 130T / D3D11 WebGL, headed by Chrome Headless 156.0.8078.80. Baseline `724b5db8f258d0ce00c4f6b774bd38529e24252b`, final merged `main` candidate `b5422e5c9885cfba06efb26ada7d7b5cf6ced22c`; source-clean worktrees. Candidate/baseline bundle SHA-256 and exact run hashes are in [the final WebGL evidence archive](evidence/M2.6.1/final-webgl/README.md).
+- **PASS: original comparator exit code 0**, status `no-new-failures`. Both sides executed 3,822 matching tests, passed 3,819, retained the same 3 failed specs/signatures and skipped 12,068; **0 new failures**, **0 changed signatures**, **0 tolerated drift**. Raw Karma exits were 1 because inherited failures were intentionally retained; do not misreport those tests as fixed.
+- Two earlier complete attempts remain archived. The first failed a Windows `0.0.0.0:9876` bind (Karma shifted to 9880); a local-only loopback binding fixed the environment without changing an assertion. The second failed due to alternating 10-second Cesium3DTileset timeouts; both affected specs passed 2/2 on each revision in focused hardware reruns before the successful full differential. Do not erase either failed attempt.
+- M2.6.1 B1–B5 and SVP-01–SVP-10 have prior user-accepted evidence; the independent final WebGL gate is now also satisfied on the final runtime. All acceptance and tests were performed without production runtime/shader changes, SwiftShader, weakened assertions or mandatory Full redispatch. This documentation/evidence publication is on a separate branch until reviewed and merged; do not start M2.7/M2.8/M3 in this scope.
+
+## Historical M2.6.1 pre-differential reconciliation — 2026-11-05 (superseded by final PASS above)
 
 - PR [#28](https://github.com/pp123pp/cesium-webgpu-globe/pull/28) merged tested head `96820edb62a7c27ef679914d3a2ef257239cbdb1` as main `1462876b3f6428e3fe5da5a054d01bcc6767d66b`. Its [Fast CI 41846319742](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41846319742) and [actually executed Full 41846319604](https://github.com/pp123pp/cesium-webgpu-globe/actions/runs/41846319604) both PASS. Both hosted tiers are non-rendering; the Full job itself completed successfully.
 - B1–B4 and B5-A/B5-B/B5-C have user-confirmed phase acceptance. [Integrated SVP-01–SVP-10 evidence and limitations](evidence/M2.6.1/README.md) link the exact physical-GPU capture and performance reports. No new capture or runtime change occurred in this documentation reconciliation.
 - B5-C's accepted observation remains a **+10.24% mean / +24.77% p95** GPU-timestamp increase over its pooled M2.6 baseline, not a no-regression claim. Lifecycle allocations are balanced; resident VRAM remains unverified.
-- From M2.6 reference `cf2c1d1` to merged M2.6.1, all 21 changed engine/widgets Source paths include `WebGPU`; zero changed paths outside that namespace in those trees. **The complete upstream WebGL differential has NOT RUN** on final M2.6.1 runtime; source auditing and green non-rendering CI do not replace it. Under `docs/CI.md`, the separate differential needs specific authorization before final milestone closeout.
+- From M2.6 reference `cf2c1d1` to merged M2.6.1, all 21 changed engine/widgets Source paths include `WebGPU`; zero changed paths outside that namespace in those trees. At this earlier reconciliation, **the complete upstream WebGL differential had NOT RUN**; the subsequent authorized hardware differential has now PASSED on `b5422e5`, as documented in the final gate section above. Source auditing and non-rendering CI were never treated as substitutes.
 - Existing accepted A02 thin-limb and A05 haze limitations, single-adapter verification, bounded terrain fixtures and `M1-NAV-001` remain disclosed. No M2.7/M2.8/M3 work is authorized in this closeout.
 
 ## B5-B/B5-C acceptance and delivery — 2026-11-04

@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "candidateCommit": "b5422e5c9885cfba06efb26ada7d7b5cf6ced22c",
+  "candidateTree": "78d9a99f1c1ff180e2f5ad691744f5c938481d51",
+  "baselineCommit": "724b5db8f258d0ce00c4f6b774bd38529e24252b",
+  "baselineTree": "0a1f974e2a13557bbf6189b25b7ea1ed775b48b7",
+  "browser": "Chrome Headless 156.0.0.0 (Windows 10)",
+  "gpu": "Intel(R) Arc(TM) 130T GPU (16GB), ANGLE Direct3D11 (separate positive WebGL2 probe; identical actual Karma Chrome launch flags)",
+  "karmaPort": 9876,
+  "karmaBind": "127.0.0.1",
+  "candidateBundleSha256": "c63b041cca2094b5f07174acf19f8c964b2066709e55191be77754678e59e085",
+  "baselineBundleSha256": "e3e4a92f94f7b24e914831a50cf3fe747f72ca8630bc5d3057af42874c397845",
+  "comparison": {
+    "status": "no-new-failures",
+    "message": "WEBGL REGRESSION: no new failures (baseline 3 failures, current 3 failures)",
+    "baselineFailures": 3,
+    "candidateFailures": 3,
+    "unchangedFailures": 3,
+    "fixedFailures": [],
+    "toleratedPixelDrifts": [],
+    "executed": 3822,
+    "skipped": 12068,
+    "executionOrderSha256": "4136196a828a59bef065c9ea2ef2015da0b76f114d4329b4e18ef1e329ec4b37"
+  },
+  "attempts": [
+    {
+      "tag": "port-blocked",
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: baseline runner error: AssertionError [ERR_ASSERTION]: Karma port 9876 was unavailable\n\n9880 !== 9876\n"
+    },
+    {
+      "tag": "timing-unstable",
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: New failed spec: [\"Scene/Cesium3DTileset\",\"Restrict tileset memory usage with maximumCacheOverflowBytes\"]"
+    },
+    {
+      "tag": "accepted",
+      "status": "no-new-failures",
+      "error": null
+    }
+  ],
+  "files": {
+    "port-blocked-baseline.json.gz": {
+      "rawSha256": "cfa4f9fceb762dba2c23691a104486ccf326c4cc6b6d01f1a159c819a8c5fca2",
+      "storedSha256": "e210e87f44b5d4ee185aca0d35acc91c0bc4244ae38795b82fced17d0edc5d72",
+      "rawBytes": 5778280,
+      "storedBytes": 300817,
+      "compressed": true
+    },
+    "port-blocked-candidate.json.gz": {
+      "rawSha256": "1a64ac3c0ad04c7c8b9d20522e4ce00c4ed71f9bba7a331e5a0e905ca3f6e997",
+      "storedSha256": "3b27cb96252c63e75adaf6cdfca6d9f241074cf513bb7a29cd8d596d97f4e5b1",
+      "rawBytes": 5776296,
+      "storedBytes": 300222,
+      "compressed": true
+    },
+    "port-blocked-run.log.gz": {
+      "rawSha256": "ce0af0acb617b348b7745a96738d2fad3e4951d4d39c519fa3b74301471e4b8a",
+      "storedSha256": "130e2a4d82736f078621d6e9b4d334cfa3ea2ed71a89e343f9fc18ef6763e910",
+      "rawBytes": 2226487,
+      "storedBytes": 282403,
+      "compressed": true
+    },
+    "port-blocked-comparison.json": {
+      "rawSha256": "088ee979d63a592373e8db74b9275746e52fff2b143663e99cc8a0f9d48711c2",
+      "storedSha256": "088ee979d63a592373e8db74b9275746e52fff2b143663e99cc8a0f9d48711c2",
+      "rawBytes": 870,
+      "storedBytes": 870,
+      "compressed": false
+    },
+    "timing-unstable-baseline.json.gz": {
+      "rawSha256": "14fcdb0244370c1ff1e6d68e21843d74064277cb4265903a672de77652fe70a4",
+      "storedSha256": "e043501fdfbd0bb252ff1ba3407b79ee553348f2caa9fe7381c3865c466b260f",
+      "rawBytes": 5776228,
+      "storedBytes": 300108,
+      "compressed": true
+    },
+    "timing-unstable-candidate.json.gz": {
+      "rawSha256": "ecc54508b274fc76e26a2816d514c043838c1843b1cd8b2fd5c6e20bf2627d91",
+      "storedSha256": "089e98b028fd4da201ca7868cb8b2049f425960b61206ee5cfe189031c637c38",
+      "rawBytes": 5778029,
+      "storedBytes": 300594,
+      "compressed": true
+    },
+    "timing-unstable-run.log.gz": {
+      "rawSha256": "3b81a9806e72b36b41cb6084529817c856c0b769dcfab4ff0091fa848e2d1ce1",
+      "storedSha256": "7d733e6c3689cf6af8f3b90624545071f00806ca232d3932eb1113548c049dfc",
+      "rawBytes": 2226461,
+      "storedBytes": 282409,
+      "compressed": true
+    },
+    "timing-unstable-comparison.json": {
+      "rawSha256": "b46233ad02f4aca34884240cea5cb941aabc3e47226470c1b471aac58c7609a0",
+      "storedSha256": "b46233ad02f4aca34884240cea5cb941aabc3e47226470c1b471aac58c7609a0",
+      "rawBytes": 660,
+      "storedBytes": 660,
+      "compressed": false
+    },
+    "accepted-baseline.json.gz": {
+      "rawSha256": "5cc313313b3d7608b02890cc810ec351067f8797a87fdf7f820a7d9ba7e7c1c1",
+      "storedSha256": "d5a033e1d967007d30a294238a764f5654e6835a0b4e762261fa66a91cc6704b",
+      "rawBytes": 5778007,
+      "storedBytes": 300672,
+      "compressed": true
+    },
+    "accepted-candidate.json.gz": {
+      "rawSha256": "f31a82d2d2af869305c899aa1514b063d3c0fd2659513978620ed8fbff529eba",
+      "storedSha256": "4d8db77f2a7833f2818221c3e4ff61253ea887640cd17dbaff1ebd0c47ed9ea5",
+      "rawBytes": 5777993,
+      "storedBytes": 300509,
+      "compressed": true
+    },
+    "accepted-run.log.gz": {
+      "rawSha256": "301b77176b52f58fa0748d449b20384ab1fb08c645e09f16b4c3cdb80f575c6f",
+      "storedSha256": "01afbf3223a8eacf6828b489e2a8de6d1b5cb71d2f1ff7f2d19763de798d352c",
+      "rawBytes": 2227226,
+      "storedBytes": 282716,
+      "compressed": true
+    },
+    "accepted-comparison.json": {
+      "rawSha256": "d41fcb3057323e43e3bd671a07b8eefa91a5d556bcbc38293899f91a373bbe67",
+      "storedSha256": "d41fcb3057323e43e3bd671a07b8eefa91a5d556bcbc38293899f91a373bbe67",
+      "rawBytes": 390,
+      "storedBytes": 390,
+      "compressed": false
+    },
+    "targeted-baseline.json.gz": {
+      "rawSha256": "1c71034a8fbee00018c1701a03db4e9c3b896965e0097db96b06a7d5ab74f067",
+      "storedSha256": "bd7f34d1ccbf123428d320f49cc8add2f9fea8ea160e8f6984ff54c399e50db2",
+      "rawBytes": 5727957,
+      "storedBytes": 286838,
+      "compressed": true
+    },
+    "targeted-baseline.log.gz": {
+      "rawSha256": "fd3461b7c9dc9bb792dbc8728e9f0550bb4966e21e3e89326bef08f5f319f247",
+      "storedSha256": "1b48df0926fb4b4ca37d2f0d5f44c899e446c228f27769791e97b73b0bb00d5f",
+      "rawBytes": 2690,
+      "storedBytes": 1033,
+      "compressed": true
+    },
+    "targeted-candidate.json.gz": {
+      "rawSha256": "5b643fba6f38d984e72fa878c63fddb0c8494dfaa469289facd28578f27bea7e",
+      "storedSha256": "b80e7adc3486200f83fad61f9ed95d9583e9f64320e9edee05577e51edb93edf",
+      "rawBytes": 5727931,
+      "storedBytes": 286817,
+      "compressed": true
+    },
+    "targeted-candidate.log.gz": {
+      "rawSha256": "a85310d076cefae86d4190cf9b8751c47fe847435687e85e5f1d19628f88b6da",
+      "storedSha256": "49a52724df1f657cd7884d7c1ef92f0865b2a27d3f78e828e41384a13285126c",
+      "rawBytes": 2636,
+      "storedBytes": 1018,
+      "compressed": true
+    },
+    "hardware-launch.cjs.txt": {
+      "rawSha256": "703b9a834002b023f60e1336ea176c8ded6cb8e7e825394ca58b525226e26fa8",
+      "storedSha256": "703b9a834002b023f60e1336ea176c8ded6cb8e7e825394ca58b525226e26fa8",
+      "rawBytes": 2028,
+      "storedBytes": 2028,
+      "compressed": false
+    },
+    "hardware-probe.cjs.txt": {
+      "rawSha256": "b617f1b98c0bd88a67e8e431cbd00739dfed6ca159a8643ce2c7ad24fdca909f",
+      "storedSha256": "b617f1b98c0bd88a67e8e431cbd00739dfed6ca159a8643ce2c7ad24fdca909f",
+      "rawBytes": 1584,
+      "storedBytes": 1584,
+      "compressed": false
+    },
+    "targeted-runner.mjs.txt": {
+      "rawSha256": "fa70e441b6196f9dc9523779a92b273db635bfc3320beda524965d6731a5b495",
+      "storedSha256": "fa70e441b6196f9dc9523779a92b273db635bfc3320beda524965d6731a5b495",
+      "rawBytes": 1996,
+      "storedBytes": 1996,
+      "compressed": false
+    }
+  }
+}
