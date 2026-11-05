@@ -1,0 +1,1538 @@
+{
+  "suite": "m2-lens-flare-lifecycle",
+  "browserConsole": [],
+  "capturedAt": "2026-11-05T00:41:43.207Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+      "args": []
+    }
+  },
+  "source": "ada51d51bbca77953d6ca4378a929e3a34a545fa",
+  "sourceStatus": "",
+  "bundleSha256": "b27c35918414a341e12d09ea20507d7522c280d8765c3c03684fe66d6df250da",
+  "browserErrors": [],
+  "checks": [
+    "Flare enabled during repeated initialization, resize, corrupt optional assets, real device loss, explicit recreate, and lens pipeline initialization rejection; no native resource retention."
+  ],
+  "scenes": [],
+  "browser": "156.0.8078.80",
+  "runtimeHashes": {
+    "WebGPUAtmosphereRenderer.js": "72c4d04c8825de5adb7f98f41d780ff9f214b9b7347fb6cad0dc9fd5ca762de6",
+    "WebGPUSolarBloomShader.js": "d5d125bafe34536202cd29c551e3e5ef77f9986368b42d836348a148792c9575",
+    "WebGPULensFlareShader.js": "ee6ecf3c900986f2c90b8c5532fd7ee25a3d685859815e8bed2af8f569d547f0"
+  },
+  "cases": [
+    {
+      "kind": "resize",
+      "priorLive": 0,
+      "errors": [],
+      "gpuErrors": [],
+      "captures": [
+        {
+          "size": [
+            1280,
+            720
+          ],
+          "before": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "after": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        },
+        {
+          "size": [
+            1920,
+            1080
+          ],
+          "before": {
+            "created": 25,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 46691752
+          },
+          "after": {
+            "created": 25,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 46691752
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        },
+        {
+          "size": [
+            1280,
+            720
+          ],
+          "before": {
+            "created": 30,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "after": {
+            "created": 30,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        }
+      ],
+      "fixture": "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "idempotentInitialization": {
+        "before": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        },
+        "after": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        }
+      },
+      "asset": {
+        "loaded": true,
+        "records": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 16.5
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.899999991059303
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.9000000059604645
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.8999999910593033
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 7.200000002980232
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.5
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.100000008940697
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.199999988079071
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 8.600000008940697
+          }
+        ]
+      },
+      "viewerDestroyed": true,
+      "rendererAfterDestroy": {
+        "frames": 0,
+        "sunFrames": 27,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 4,
+        "buffersDestroyed": 4,
+        "texturesCreated": 19,
+        "texturesDestroyed": 19,
+        "solarAssetBytes": 0,
+        "solarAssetsLoaded": false,
+        "bloomFrames": 27,
+        "bloomPasses": 81,
+        "bloomTextureBytes": 0,
+        "bloomWidth": 0,
+        "bloomHeight": 0,
+        "lensFlareTextureBytes": 0,
+        "lensFlarePasses": 27
+      },
+      "afterDestroy": {
+        "created": 30,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "allocations": [
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 180000,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 planet, Moon and inertial star state",
+          "bytes": 272,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 atmosphere, Sun and solar effect controls",
+          "bytes": 112,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.6 HDR bloom exposure and strength",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-01",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-02",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-03",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar soft-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar wide-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-fine",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-mid",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-noise",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar glow-gradient",
+          "bytes": 1048576,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 3686400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.8 lens optical controls",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.8 solar HDR source record",
+          "bytes": 8,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 8294400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 16588800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 16588800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 1036800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 1036800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 3686400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        }
+      ],
+      "globalLiveAfterDestroy": 0
+    },
+    {
+      "kind": "asset-corrupt",
+      "priorLive": 0,
+      "errors": [],
+      "gpuErrors": [],
+      "captures": [
+        {
+          "size": [
+            1280,
+            720
+          ],
+          "before": {
+            "created": 28,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 19354036
+          },
+          "after": {
+            "created": 28,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 19354036
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        }
+      ],
+      "fixture": "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "idempotentInitialization": {
+        "before": {
+          "created": 22,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 3686812
+        },
+        "after": {
+          "created": 22,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 3686812
+        }
+      },
+      "asset": {
+        "loaded": false,
+        "error": "Solar texture glow-gradient has 32 bytes; expected 1048576.",
+        "records": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 6.5
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.5
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.100000008940697
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.200000002980232
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.0999999940395355
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.0999999940395355
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5.300000011920929
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 5
+          },
+          {
+            "name": "glow-gradient",
+            "status": "FAILED",
+            "error": "Solar texture glow-gradient has 32 bytes; expected 1048576."
+          }
+        ]
+      },
+      "viewerDestroyed": true,
+      "rendererAfterDestroy": {
+        "frames": 0,
+        "sunFrames": 9,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 4,
+        "buffersDestroyed": 4,
+        "texturesCreated": 21,
+        "texturesDestroyed": 21,
+        "solarAssetBytes": 0,
+        "solarAssetsLoaded": false,
+        "bloomFrames": 9,
+        "bloomPasses": 27,
+        "bloomTextureBytes": 0,
+        "bloomWidth": 0,
+        "bloomHeight": 0,
+        "lensFlareTextureBytes": 0,
+        "lensFlarePasses": 9
+      },
+      "afterDestroy": {
+        "created": 28,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "allocations": [
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 180000,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 planet, Moon and inertial star state",
+          "bytes": 272,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 atmosphere, Sun and solar effect controls",
+          "bytes": 112,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.6 HDR bloom exposure and strength",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-01",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-02",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-03",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar soft-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar wide-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-fine",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-mid",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-noise",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback radial-rays-01",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback radial-rays-02",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback radial-rays-03",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback soft-halo",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback wide-halo",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback corona-fine",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback corona-mid",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback radial-noise",
+          "bytes": 1,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar fallback glow-gradient",
+          "bytes": 4,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 3686400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.8 lens optical controls",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.8 solar HDR source record",
+          "bytes": 8,
+          "destroyed": true,
+          "destroyCalls": 1
+        }
+      ],
+      "globalLiveAfterDestroy": 0
+    },
+    {
+      "kind": "device-loss",
+      "priorLive": 0,
+      "errors": [
+        "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:20320:13)\n    at http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:116210:13"
+      ],
+      "gpuErrors": [],
+      "captures": [
+        {
+          "size": [
+            1280,
+            720
+          ],
+          "before": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "after": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        }
+      ],
+      "fixture": "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "idempotentInitialization": {
+        "before": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        },
+        "after": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        }
+      },
+      "asset": {
+        "loaded": true,
+        "records": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.5999999940395355
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.0999999940395355
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.1000000089406967
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7999999970197678
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999910593033
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2999999970197678
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.7000000029802322
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 3.7000000029802322
+          }
+        ]
+      },
+      "beforeLoss": {
+        "created": 20,
+        "live": 19,
+        "textures": 15,
+        "buffers": 4,
+        "payloadBytes": 22499752
+      },
+      "deviceLoss": {
+        "reason": "destroyed",
+        "message": "Device was destroyed."
+      },
+      "afterLoss": {
+        "created": 20,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "rendererDestroyedByLoss": true,
+      "contextError": "RuntimeError: WebGPU device lost (destroyed): Device was destroyed.\nError\n    at new RuntimeError (http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:20320:13)\n    at http://127.0.0.1:8090/Build/CesiumUnminified/Cesium.js:116210:13",
+      "viewerDestroyed": true,
+      "rendererAfterDestroy": {
+        "frames": 0,
+        "sunFrames": 9,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 4,
+        "buffersDestroyed": 4,
+        "texturesCreated": 13,
+        "texturesDestroyed": 13,
+        "solarAssetBytes": 0,
+        "solarAssetsLoaded": false,
+        "bloomFrames": 9,
+        "bloomPasses": 27,
+        "bloomTextureBytes": 0,
+        "bloomWidth": 0,
+        "bloomHeight": 0,
+        "lensFlareTextureBytes": 0,
+        "lensFlarePasses": 9
+      },
+      "afterDestroy": {
+        "created": 20,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "allocations": [
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 180000,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 planet, Moon and inertial star state",
+          "bytes": 272,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 atmosphere, Sun and solar effect controls",
+          "bytes": 112,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.6 HDR bloom exposure and strength",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-01",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-02",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-03",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar soft-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar wide-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-fine",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-mid",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-noise",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar glow-gradient",
+          "bytes": 1048576,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 3686400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.8 lens optical controls",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.8 solar HDR source record",
+          "bytes": 8,
+          "destroyed": true,
+          "destroyCalls": 1
+        }
+      ],
+      "globalLiveAfterDestroy": 0
+    },
+    {
+      "kind": "recreate-after-loss",
+      "priorLive": 0,
+      "errors": [],
+      "gpuErrors": [],
+      "captures": [
+        {
+          "size": [
+            1280,
+            720
+          ],
+          "before": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "after": {
+            "created": 20,
+            "live": 19,
+            "textures": 15,
+            "buffers": 4,
+            "payloadBytes": 22499752
+          },
+          "terrainDraws": 0,
+          "lensFlarePasses": 8,
+          "lensFlareTextureBytes": 8
+        }
+      ],
+      "fixture": "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "idempotentInitialization": {
+        "before": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        },
+        "after": {
+          "created": 14,
+          "live": 13,
+          "textures": 10,
+          "buffers": 3,
+          "payloadBytes": 6832528
+        }
+      },
+      "asset": {
+        "loaded": true,
+        "records": [
+          {
+            "name": "radial-rays-01",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "radial-rays-02",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.5999999940395355
+          },
+          {
+            "name": "radial-rays-03",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2
+          },
+          {
+            "name": "soft-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.0999999940395355
+          },
+          {
+            "name": "wide-halo",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.9000000059604645
+          },
+          {
+            "name": "corona-fine",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 2.2000000029802322
+          },
+          {
+            "name": "corona-mid",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.8999999910593033
+          },
+          {
+            "name": "radial-noise",
+            "format": "r8unorm",
+            "width": 512,
+            "height": 512,
+            "byteLength": 262144,
+            "status": "LOADED",
+            "loadAndUploadMs": 1.6000000089406967
+          },
+          {
+            "name": "glow-gradient",
+            "format": "rgba8unorm-srgb",
+            "width": 512,
+            "height": 512,
+            "byteLength": 1048576,
+            "status": "LOADED",
+            "loadAndUploadMs": 4.299999997019768
+          }
+        ]
+      },
+      "viewerDestroyed": true,
+      "rendererAfterDestroy": {
+        "frames": 0,
+        "sunFrames": 9,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 4,
+        "buffersDestroyed": 4,
+        "texturesCreated": 13,
+        "texturesDestroyed": 13,
+        "solarAssetBytes": 0,
+        "solarAssetsLoaded": false,
+        "bloomFrames": 9,
+        "bloomPasses": 27,
+        "bloomTextureBytes": 0,
+        "bloomWidth": 0,
+        "bloomHeight": 0,
+        "lensFlareTextureBytes": 0,
+        "lensFlarePasses": 9
+      },
+      "afterDestroy": {
+        "created": 20,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "allocations": [
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 180000,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 planet, Moon and inertial star state",
+          "bytes": 272,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2 atmosphere, Sun and solar effect controls",
+          "bytes": 112,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.6 HDR bloom exposure and strength",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-01",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-02",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-rays-03",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar soft-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar wide-halo",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-fine",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar corona-mid",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar radial-noise",
+          "bytes": 262144,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 solar glow-gradient",
+          "bytes": 1048576,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 3686400,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2 completed terrain color",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 scene-linear HDR composite",
+          "bytes": 7372800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom A",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.6 quarter-resolution HDR bloom B",
+          "bytes": 460800,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Buffer",
+          "label": "M2.8 lens optical controls",
+          "bytes": 16,
+          "destroyed": true,
+          "destroyCalls": 1
+        },
+        {
+          "kind": "Texture",
+          "label": "M2.8 solar HDR source record",
+          "bytes": 8,
+          "destroyed": true,
+          "destroyCalls": 1
+        }
+      ],
+      "globalLiveAfterDestroy": 0
+    },
+    {
+      "kind": "pipeline-rejection",
+      "priorLive": 0,
+      "errors": [
+        "Error: Intentional M2.8 lens pipeline rejection"
+      ],
+      "gpuErrors": [],
+      "captures": [],
+      "fixture": "Globe hidden before initialization; production Sun, depth attachments and Lens Flare retained.",
+      "initializationRejection": "Error: Intentional M2.8 lens pipeline rejection",
+      "viewerDestroyed": true,
+      "rendererAfterDestroy": {
+        "frames": 0,
+        "sunFrames": 0,
+        "moonFrames": 0,
+        "starFrames": 0,
+        "lutBuilds": 0,
+        "buffersCreated": 0,
+        "buffersDestroyed": 0,
+        "texturesCreated": 0,
+        "texturesDestroyed": 0,
+        "solarAssetBytes": 0,
+        "solarAssetsLoaded": false,
+        "bloomFrames": 0,
+        "bloomPasses": 0,
+        "bloomTextureBytes": 0,
+        "bloomWidth": 0,
+        "bloomHeight": 0,
+        "lensFlareTextureBytes": 0,
+        "lensFlarePasses": 0
+      },
+      "afterDestroy": {
+        "created": 1,
+        "live": 0,
+        "textures": 0,
+        "buffers": 0,
+        "payloadBytes": 0
+      },
+      "allocations": [
+        {
+          "kind": "Texture",
+          "label": "WGS84 reversed depth",
+          "bytes": 180000,
+          "destroyed": true,
+          "destroyCalls": 1
+        }
+      ],
+      "globalLiveAfterDestroy": 0
+    }
+  ],
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

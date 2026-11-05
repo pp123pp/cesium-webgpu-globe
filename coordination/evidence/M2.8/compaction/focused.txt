@@ -1,0 +1,78 @@
+TAP version 13
+# Subtest: atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+ok 1 - atmosphere reads completed color/depth after the opaque pass; disabled path stays direct
+  ---
+  duration_ms: 1.5908
+  type: 'test'
+  ...
+# Subtest: resize and failure release the atmosphere color attachment with scene depth
+ok 2 - resize and failure release the atmosphere color attachment with scene depth
+  ---
+  duration_ms: 0.8395
+  type: 'test'
+  ...
+# Subtest: HDR clear decodes background RGB while M0 preserves display RGB and alpha
+ok 3 - HDR clear decodes background RGB while M0 preserves display RGB and alpha
+  ---
+  duration_ms: 1.0777
+  type: 'test'
+  ...
+# Subtest: coordination\\ci\\m2-hdr.test.mjs
+ok 2 - coordination\\ci\\m2-hdr.test.mjs
+  ---
+  duration_ms: 1157.5358
+  type: 'test'
+  ...
+# Subtest: lens controls default off and belong to each renderer
+ok 5 - lens controls default off and belong to each renderer
+  ---
+  duration_ms: 1.4498
+  type: 'test'
+  ...
+# Subtest: invalid mutable lens controls fail at the update boundary
+ok 6 - invalid mutable lens controls fail at the update boundary
+  ---
+  duration_ms: 1.0321
+  type: 'test'
+  ...
+# Subtest: destroy during a pending solar fetch stops further GPU allocation and upload
+ok 7 - destroy during a pending solar fetch stops further GPU allocation and upload
+  ---
+  duration_ms: 4.065
+  type: 'test'
+  ...
+# Subtest: solar initialization is idempotent and all owned resources are freed exactly once
+ok 8 - solar initialization is idempotent and all owned resources are freed exactly once
+  ---
+  duration_ms: 3.3169
+  type: 'test'
+  ...
+# Subtest: GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+ok 9 - GPU upload failures are fatal, balanced, and not disguised as optional asset failures
+  ---
+  duration_ms: 1.6995
+  type: 'test'
+  ...
+# Subtest: shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+ok 10 - shared irradiance controls finite solar radiance and invalid mutable settings are rejected
+  ---
+  duration_ms: 2.1403
+  type: 'test'
+  ...
+# Subtest: Sun-only updates use the existing uniforms without creating medium resources
+ok 11 - Sun-only updates use the existing uniforms without creating medium resources
+  ---
+  duration_ms: 2.5663
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1383.2182
+
+EXIT_CODE=0
