@@ -1,6 +1,6 @@
 {
-  "startedAt": "2026-11-05T07:53:50.180Z",
-  "finishedAt": "2026-11-05T07:53:55.457Z",
+  "startedAt": "2026-11-05T08:03:02.812Z",
+  "finishedAt": "2026-11-05T08:03:06.653Z",
   "browser": "156.0.8078.80",
   "adapter": {
     "vendor": "intel",
@@ -9,7 +9,7 @@
     "description": "",
     "isFallbackAdapter": false
   },
-  "shaderSha256": "5eaf54e2d5c48474fa7195daf0564ce9917927f2b59a7ef14d6b90dd3ee2327e",
+  "shaderSha256": "9810d6c221a585857b7835abe195f48fd3198e6ccbcd337d516f452270a33e15",
   "noiseSha256": "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca",
   "shaderEvaluations": 53256,
   "globeDirections": 512,
@@ -21,9 +21,9 @@
   ],
   "activeCounts": [
     0,
-    124,
-    181,
-    256
+    113,
+    155,
+    215
   ],
   "localSections": [
     {
@@ -31,8 +31,8 @@
       "latitude": 0,
       "coverage": 0.23,
       "columns": 289,
-      "gaps": 235,
-      "cloudyColumns": 35,
+      "gaps": 195,
+      "cloudyColumns": 46,
       "lowestTop": 3600,
       "highestTop": 4800
     },
@@ -41,58 +41,58 @@
       "latitude": 0,
       "coverage": 0.78,
       "columns": 289,
-      "gaps": 182,
-      "cloudyColumns": 75,
-      "lowestTop": 3600,
+      "gaps": 155,
+      "cloudyColumns": 98,
+      "lowestTop": 3300,
       "highestTop": 4800
     },
     {
       "longitude": 46,
       "latitude": 71,
-      "coverage": 0.23,
-      "columns": 289,
-      "gaps": 206,
-      "cloudyColumns": 53,
-      "lowestTop": 3600,
-      "highestTop": 4800
-    },
-    {
-      "longitude": 46,
-      "latitude": 71,
-      "coverage": 0.78,
-      "columns": 289,
-      "gaps": 180,
-      "cloudyColumns": 93,
-      "lowestTop": 3600,
-      "highestTop": 4800
-    },
-    {
-      "longitude": 179.96,
-      "latitude": 43,
-      "coverage": 0.23,
-      "columns": 289,
-      "gaps": 223,
-      "cloudyColumns": 44,
-      "lowestTop": 3600,
-      "highestTop": 4800
-    },
-    {
-      "longitude": 179.96,
-      "latitude": 43,
-      "coverage": 0.78,
-      "columns": 289,
-      "gaps": 167,
-      "cloudyColumns": 86,
-      "lowestTop": 3600,
-      "highestTop": 4800
-    },
-    {
-      "longitude": -124,
-      "latitude": 32,
       "coverage": 0.23,
       "columns": 289,
       "gaps": 212,
-      "cloudyColumns": 42,
+      "cloudyColumns": 39,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    },
+    {
+      "longitude": 46,
+      "latitude": 71,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 174,
+      "cloudyColumns": 64,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    },
+    {
+      "longitude": 179.96,
+      "latitude": 43,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 162,
+      "cloudyColumns": 91,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    },
+    {
+      "longitude": 179.96,
+      "latitude": 43,
+      "coverage": 0.78,
+      "columns": 289,
+      "gaps": 114,
+      "cloudyColumns": 133,
+      "lowestTop": 3300,
+      "highestTop": 4800
+    },
+    {
+      "longitude": -124,
+      "latitude": 32,
+      "coverage": 0.23,
+      "columns": 289,
+      "gaps": 229,
+      "cloudyColumns": 30,
       "lowestTop": 3600,
       "highestTop": 4500
     },
@@ -101,9 +101,9 @@
       "latitude": 32,
       "coverage": 0.78,
       "columns": 289,
-      "gaps": 137,
-      "cloudyColumns": 115,
-      "lowestTop": 3600,
+      "gaps": 183,
+      "cloudyColumns": 54,
+      "lowestTop": 3300,
       "highestTop": 4500
     },
     {
@@ -111,19 +111,19 @@
       "latitude": -60,
       "coverage": 0.23,
       "columns": 289,
-      "gaps": 219,
-      "cloudyColumns": 50,
-      "lowestTop": 3600,
-      "highestTop": 4800
+      "gaps": 151,
+      "cloudyColumns": 102,
+      "lowestTop": 3300,
+      "highestTop": 5100
     },
     {
       "longitude": 85,
       "latitude": -60,
       "coverage": 0.78,
       "columns": 289,
-      "gaps": 152,
-      "cloudyColumns": 107,
-      "lowestTop": 3600,
+      "gaps": 110,
+      "cloudyColumns": 151,
+      "lowestTop": 3000,
       "highestTop": 5100
     },
     {
@@ -131,9 +131,9 @@
       "latitude": -4,
       "coverage": 0.23,
       "columns": 289,
-      "gaps": 199,
-      "cloudyColumns": 62,
-      "lowestTop": 3600,
+      "gaps": 144,
+      "cloudyColumns": 110,
+      "lowestTop": 3300,
       "highestTop": 5100
     },
     {
@@ -141,23 +141,23 @@
       "latitude": -4,
       "coverage": 0.78,
       "columns": 289,
-      "gaps": 165,
-      "cloudyColumns": 96,
-      "lowestTop": 3600,
+      "gaps": 114,
+      "cloudyColumns": 136,
+      "lowestTop": 3300,
       "highestTop": 5100
     }
   ],
   "seamPairs": 57,
   "maximumSeamDelta": {
-    "extinctionPerMeter": 0,
+    "extinctionPerMeter": 0.0000023150350898504257,
     "coverage": 0
   },
   "maximumWindExtinctionDeltaPerMeter": {
-    "small": 0.000010317773558199406,
-    "large": 0.0011884738923981786,
-    "fullCycle": 0.000003081804607063532
+    "small": 0.00005756589234806597,
+    "large": 0.0009441516012884676,
+    "fullCycle": 0.000009201554348692298
   },
-  "nearEnhancementIncreasedCount": 235,
+  "nearEnhancementIncreasedCount": 137,
   "footprintMacroCoverageDelta": 0,
   "densityOutsideShell": [
     0,
@@ -167,36 +167,36 @@
   ],
   "sampleLocations": [
     {
+      "longitude": 10.031056199999966,
+      "latitude": -79.24124201777585,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.000509037054143846
+    },
+    {
+      "longitude": 147.53882024999996,
+      "latitude": -78.10184509938183,
+      "height": 3650,
+      "coverage": 0.58,
+      "windAngle": 0,
+      "extinctionPerMeter": 0.0006255708867684007
+    },
+    {
       "longitude": -22.43012355000019,
       "latitude": -74.34216489728703,
       "height": 3650,
       "coverage": 0.58,
       "windAngle": 0,
-      "extinctionPerMeter": 0.0006568337557837367
+      "extinctionPerMeter": 0.0007655071676708758
     },
     {
-      "longitude": 82.61646074999999,
-      "latitude": -69.95991778684343,
+      "longitude": 115.07764049999992,
+      "latitude": -73.5332462095427,
       "height": 3650,
       "coverage": 0.58,
       "windAngle": 0,
-      "extinctionPerMeter": 0.000899053062312305
-    },
-    {
-      "longitude": 17.694101249999676,
-      "latitude": -64.20946074659442,
-      "height": 3650,
-      "coverage": 0.58,
-      "windAngle": 0,
-      "extinctionPerMeter": 0.0005991660873405635
-    },
-    {
-      "longitude": 155.20186529999955,
-      "latitude": -63.69973420920569,
-      "height": 3650,
-      "coverage": 0.58,
-      "windAngle": 0,
-      "extinctionPerMeter": 0.000555299106054008
+      "extinctionPerMeter": 0.0005310271517373621
     }
   ]
 }

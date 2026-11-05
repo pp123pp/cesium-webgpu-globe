@@ -151,7 +151,7 @@ try {
   assert.equal(maxDelta(pairs("far"), cover), 0);
   const wind = { small: maxDelta(pairs("smallWind"), density), large: maxDelta(pairs("largeWind"), density),
     fullCycle: maxDelta(pairs("cycle"), density) };
-  assert.ok(wind.small < 0.00006 && wind.large > 0.0002 && wind.fullCycle < 0.00003);
+  assert.ok(wind.small < 0.00006 && wind.large > 0.0002 && wind.fullCycle < 0.00003, JSON.stringify(wind));
   assert.ok(globe.every((s) => density(s.enhancement) + 1e-10 >= density(s.near)));
   const boosted = globe.filter((s) => density(s.enhancement) > density(s.near) + 0.00001).length;
   assert.ok(boosted > 0);
