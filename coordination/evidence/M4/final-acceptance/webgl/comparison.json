@@ -1,0 +1,41 @@
+{
+  "status": "no-new-failures",
+  "message": "WEBGL REGRESSION: no new failures (baseline 3 failures, current 1 failures)",
+  "baselineFailures": 3,
+  "candidateFailures": 1,
+  "unchangedFailures": 1,
+  "fixedFailures": [
+    {
+      "suite": [
+        "Scene/Cesium3DTileset"
+      ],
+      "description": "Restrict tileset memory usage with maximumCacheOverflowBytes",
+      "identity": "[\"Scene/Cesium3DTileset\",\"Restrict tileset memory usage with maximumCacheOverflowBytes\"]",
+      "errors": [
+        "Error: Timeout - Async function did not complete within 10000ms (set by jasmine.DEFAULT_TIMEOUT_INTERVAL)\n    at <Jasmine>"
+      ],
+      "messages": [
+        "Error: Timeout - Async function did not complete within 10000ms (set by jasmine.DEFAULT_TIMEOUT_INTERVAL)"
+      ],
+      "signature": "[\"Error: Timeout - Async function did not complete within 10000ms (set by jasmine.DEFAULT_TIMEOUT_INTERVAL)\"]"
+    },
+    {
+      "suite": [
+        "Scene/Cesium3DTileset"
+      ],
+      "description": "Unloads cached tiles outside of the view frustum using cacheBytes",
+      "identity": "[\"Scene/Cesium3DTileset\",\"Unloads cached tiles outside of the view frustum using cacheBytes\"]",
+      "errors": [
+        "Error: Timeout - function did not complete within 10000ms\n    at poller (http://127.0.0.1:9876/base/Build/Specs/SpecList.js?ab5f44dc8c6b3da12137009d79a33e25d2ec4a77:59596:11)"
+      ],
+      "messages": [
+        "Error: Timeout - function did not complete within 10000ms"
+      ],
+      "signature": "[\"Error: Timeout - function did not complete within 10000ms\"]"
+    }
+  ],
+  "toleratedPixelDrifts": [],
+  "executed": 3822,
+  "skipped": 12068,
+  "executionOrderSha256": "4136196a828a59bef065c9ea2ef2015da0b76f114d4329b4e18ef1e329ec4b37"
+}

@@ -1,0 +1,480 @@
+{
+  "suite": "m4-terrain-shadows",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T02:20:41.464Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "89cb9a1b5faa99c5584cd166d1437e32da4996b7",
+  "sourceStatus": "M Apps/WebGPUCloudShadows.html\n M coordination/ci/m4-terrain-shadows-smoke.mjs\n?? coordination/ci/m4-altitude-continuity.mjs\n?? coordination/evidence/M4/final-acceptance/",
+  "bundleSha256": "fd1fabcae758c494e7f457a2c2117ad9967c151f52bf6b65982e80cfe52bb412",
+  "browserErrors": [],
+  "checks": [
+    "Native relief meshes, tile-edge continuity, direct/ambient separation, moving clouds, controls and above-cloud terrain clearance"
+  ],
+  "scenes": [
+    {
+      "name": "day-vacuum",
+      "direct": {
+        "darker": 41894,
+        "brighter": 0,
+        "maximum": 67,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 8165,
+        "brighter": 0,
+        "maximum": 2,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 0,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "day-air",
+      "direct": {
+        "darker": 42637,
+        "brighter": 0,
+        "maximum": 54,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 15400,
+        "brighter": 0,
+        "maximum": 1,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 0.6913020833333333,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "wind",
+      "direct": {
+        "darker": 36995,
+        "brighter": 0,
+        "maximum": 65,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 13903,
+        "brighter": 0,
+        "maximum": 2,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 14.763784722222223,
+      "solarElevation": 88.51010561453542,
+      "sunEast": 0.025989903699356262,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "fixed-clouds-morning",
+      "direct": {
+        "darker": 48723,
+        "brighter": 0,
+        "maximum": 61,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 8821,
+        "brighter": 0,
+        "maximum": 2,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 15.154166666666667,
+      "solarElevation": 43.12637975079045,
+      "sunEast": 0.7298458200488632,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "fixed-clouds-afternoon",
+      "direct": {
+        "darker": 25335,
+        "brighter": 0,
+        "maximum": 51,
+        "seamP95": 2,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 13739,
+        "brighter": 0,
+        "maximum": 1,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 9.7190625,
+      "solarElevation": 46.85515411536506,
+      "sunEast": -0.6838450598020562,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "low-sun-point",
+      "direct": {
+        "darker": 55447,
+        "brighter": 0,
+        "maximum": 36,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 10385,
+        "brighter": 0,
+        "maximum": 3,
+        "seamP95": 0,
+        "neighborP95": 1
+      },
+      "motion": 17.186684027777776,
+      "solarElevation": 9.347476442268382,
+      "sunEast": -0.9867211224744734,
+      "uploadedRadius": 0.000009999999747378752
+    },
+    {
+      "name": "low-sun",
+      "direct": {
+        "darker": 57338,
+        "brighter": 0,
+        "maximum": 36,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 10431,
+        "brighter": 0,
+        "maximum": 3,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 16.449947916666666,
+      "solarElevation": 9.347476442268382,
+      "sunEast": -0.9867211224744734,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "low-sun-wide",
+      "direct": {
+        "darker": 57600,
+        "brighter": 0,
+        "maximum": 35,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "ambient": {
+        "darker": 10301,
+        "brighter": 0,
+        "maximum": 3,
+        "seamP95": 1,
+        "neighborP95": 1
+      },
+      "motion": 14.222100694444444,
+      "solarElevation": 9.347476442268382,
+      "sunEast": -0.9867211224744734,
+      "uploadedRadius": 0.03999999910593033
+    },
+    {
+      "name": "clear",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "hidden",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "unlit",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "night",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": -88.16598603080594,
+      "sunEast": -0.03189034162548988,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "clear-far-orbit",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    },
+    {
+      "name": "above-cloud-top",
+      "direct": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "ambient": {
+        "darker": 0,
+        "brighter": 0,
+        "maximum": 0,
+        "seamP95": 0,
+        "neighborP95": 0
+      },
+      "motion": 8.768072916666666,
+      "solarElevation": 88.13514312160515,
+      "sunEast": 0.03253340922813717,
+      "uploadedRadius": 0.004650000017136335
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "lowPicks": [
+    {
+      "x": 159,
+      "y": 90,
+      "height": 571.1058895090972,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 160,
+      "y": 90,
+      "height": 571.1122096149578,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    },
+    {
+      "x": 100,
+      "y": 45,
+      "height": 605.6492230883623,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 220,
+      "y": 135,
+      "height": 549.9267375414319,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    }
+  ],
+  "solarMotion": {
+    "count": 28800,
+    "correlation": 0.40091179961922024,
+    "fractionalShadowStdDev": [
+      0.08562800853271467,
+      0.06339869576188414
+    ]
+  },
+  "penumbra": {
+    "radiiRadians": [
+      0.00001,
+      0.00465,
+      0.04
+    ],
+    "edges": 7202,
+    "count": 27176,
+    "point": {
+      "changedFromPoint": 0,
+      "meanAbsoluteChange": 0,
+      "meanPointEdgeContrast": 4.220077756178839
+    },
+    "physical": {
+      "changedFromPoint": 24708,
+      "meanAbsoluteChange": 3.9081174565793346,
+      "meanPointEdgeContrast": 1.4387670091641211
+    },
+    "wide": {
+      "changedFromPoint": 25486,
+      "meanAbsoluteChange": 6.446128937297615,
+      "meanPointEdgeContrast": 1.2486809219661206
+    }
+  },
+  "highPicks": [
+    {
+      "x": 159,
+      "y": 90,
+      "height": 8071.027079486935,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 160,
+      "y": 90,
+      "height": 8071.033393110912,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    },
+    {
+      "x": 100,
+      "y": 45,
+      "height": 8105.542801282603,
+      "tile": [
+        8,
+        256,
+        127
+      ]
+    },
+    {
+      "x": 220,
+      "y": 135,
+      "height": 8049.870186652956,
+      "tile": [
+        8,
+        256,
+        128
+      ]
+    }
+  ],
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 453,
+      "buffersDestroyed": 453,
+      "bufferBytes": 0,
+      "drawCalls": 2,
+      "triangles": 4608,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

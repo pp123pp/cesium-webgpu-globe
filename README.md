@@ -1,12 +1,14 @@
 # Cesium WebGPU Globe
 
-**Current state:** M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
+**Current state:** M4 passed technical and user visual acceptance on the local acceptance branch on 2026-11-06. M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
 Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 baseline acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 
 For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](http://localhost:8067/Apps/WebGPUClouds.html). Select an effect to switch the camera and lighting, then collapse the panel for an unobstructed view.
 
-For M4, open the [terrain cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with live Esri World Elevation 3D terrain, Esri World Imagery and a local Natural Earth II imagery base layer. Pause the Cesium clock and toggle shadows to compare the same hillside. With shadows enabled, toggle ambient attenuation to isolate the smaller change in sky lighting. Scrub the native timeline or use the animation dial to follow the moving clouds.
+For M4, open the [terrain cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with live Esri World Elevation 3D terrain, Esri World Imagery and a local Natural Earth II imagery base layer. Pause the Cesium clock and toggle shadows to compare the same hillside. With shadows enabled, toggle ambient attenuation to isolate the smaller change in sky lighting. Scrub the native timeline or use the animation dial to follow the moving clouds. Use the height presets to move from 1.9 km through the cloud layer to 300 km. At a fixed time, compare the physical solar disk against the near-point and enlarged controls to inspect the shadow edge. [M4 acceptance images and regression results](coordination/evidence/M4/final-acceptance/README.md).
+
+Open the [local demo index](http://localhost:8067/Apps/WebGPUIndex.html) for Globe, volumetric clouds, terrain cloud shadows and the minimal WebGPU proof.
 
 ## Online WebGPU demos
 
@@ -32,7 +34,7 @@ Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP
 | [M1](tasks/M1.md) | V0.1 WGS84 Globe, Imagery and Terrain             | Integrated                                                      |
 | [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR | Integrated                                                      |
 | [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | Complete. Baseline and all five enhancements visually accepted. |
-| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | Terrain and ambient lighting in visual review                   |
+| [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | A14/A15 visually accepted; full WebGL differential passed       |
 | [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Planned                                                         |
 | [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM                                | Deferred                                                        |
 

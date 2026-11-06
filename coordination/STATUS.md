@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-06
-Current milestone: **M4 core implementation is integrated; final acceptance is pending.** Ellipsoid and real-terrain cloud shadows, direct-light attenuation, approximate ambient dimming and the interactive timeline demo are on `main` through `1518222`. See [M4 task progress](../tasks/M4.md#progress--2026-11-06) for completed work and acceptance gaps. M5 has not started.
+Current milestone: **M4 is complete on the local acceptance branch. The user visually accepted A14 and A15 on 2026-11-06.** The integrated cloud-shadow runtime on main is extended by finite solar-disk sampling in `89cb9a1`. The [acceptance packet](evidence/M4/final-acceptance/README.md) includes matched images, the physical-GPU altitude sweep and the complete WebGL differential. M5 has not started.
 
 M3 is complete. The user visually accepted all [five cloud enhancements](../tasks/M3.md#planned-visual-enhancements) on 2026-11-05, including [cloud evolution and morning light shafts](evidence/M3/evolution-and-mist/README.md), and authorized merging the changes to main.
 
@@ -15,10 +15,9 @@ Import workflow result: SUCCESS; source presence verified.
 
 ## M4 implementation and acceptance status — 2026-11-06
 
-- Integrated implementation: `cd81055` adds shared-density ellipsoid shadows; `a9c730d` adds the satellite-imagery demo and native time controls; `467cdf7` adds real-terrain direct and ambient attenuation. `505d4b4` adds unbounded timeline playback and `1518222` resizes the timeline widgets with the viewer. These commits establish implementation progress, not final milestone acceptance.
-- Existing [ellipsoid evidence](evidence/M4/ellipsoid-cloud-shadows/README.md) and [terrain evidence](evidence/M4/terrain-cloud-shadows/README.md) record Intel Xe-LPG physical-GPU checks: moving shadows, real terrain, L8 tile continuity, a low Sun angle, neutral controls and three WebGL reference views. Reports retain their original source/dirty-tree and bundle provenance (`d530259b` for the terrain bundle); they are not fresh final-HEAD checks or a complete WebGL differential.
-- A14–A15 have targeted technical evidence; final user visual acceptance is not recorded. Soft-penumbra acceptance remains unresolved: the implementation integrates cloud transmittance along a single solar direction. The 300 km control verifies distance fade to neutral, not complete orbital visual continuity. Single-GPU scope and unmeasured frame cost remain disclosed; profiling belongs to M5 unless separately assigned.
-- This progress reconciliation changes documentation only. No new runtime, rendering, Full regression or milestone acceptance is claimed.
+- Main integrates the ellipsoid, terrain, direct/ambient lighting and timeline work through `1518222`. The tested local shader revision is `89cb9a1`, bundle `fd1fabca`. The earlier [ellipsoid](evidence/M4/ellipsoid-cloud-shadows/README.md) and [terrain](evidence/M4/terrain-cloud-shadows/README.md) captures keep their original source provenance.
+- The finite-disk, wind, solar motion, 19 altitude/return captures, three reference WebGL views and full pinned-baseline WebGL differential passed on one physical Intel adapter. Of 3,822 specs executed on each side, three failed on the baseline and one on the candidate, with zero new failures. [Results and limitations](evidence/M4/final-acceptance/README.md).
+- The user accepted both A14 and A15 on 2026-11-06. The final changes are on the local acceptance branch pending delivery. M4 frame cost and multi-adapter behavior are unmeasured. The updated Golden Gate example exposes the height and solar-radius comparisons.
 
 ## M2.8 A/B acceptance and authorized closeout — 2026-11-05
 

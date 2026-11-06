@@ -1,0 +1,374 @@
+{
+  "suite": "m4-altitude-continuity",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T02:19:18.403Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "89cb9a1b5faa99c5584cd166d1437e32da4996b7",
+  "sourceStatus": "M coordination/ci/m4-terrain-shadows-smoke.mjs\n?? coordination/ci/m4-altitude-continuity.mjs",
+  "bundleSha256": "fd1fabcae758c494e7f457a2c2117ad9967c151f52bf6b65982e80cfe52bb412",
+  "browserErrors": [],
+  "checks": [
+    "Fixed-time paired cloud-shadow images from ground through orbit; fixed 20 km footprint across the fade, including an 80 km revisit."
+  ],
+  "scenes": [
+    {
+      "name": "view-1800",
+      "height": 1800,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999994055,
+        0.01699999999285852,
+        399.16712992748865
+      ],
+      "darker": 36504,
+      "brighter": 0,
+      "maximum": 23,
+      "mean": 8.043721064813974,
+      "lit": 57600
+    },
+    {
+      "name": "view-4000",
+      "height": 4000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999984718,
+        0.01699999995920898,
+        399.1671299293513
+      ],
+      "darker": 34190,
+      "brighter": 0,
+      "maximum": 15,
+      "mean": 2.9301215277778057,
+      "lit": 57600
+    },
+    {
+      "name": "view-12000",
+      "height": 12000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999950758,
+        0.0169999996061973,
+        399.1671299321445
+      ],
+      "darker": 36593,
+      "brighter": 0,
+      "maximum": 43,
+      "mean": 3.442181712962956,
+      "lit": 57600
+    },
+    {
+      "name": "view-80000",
+      "height": 80000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999662119,
+        0.01699998216959462,
+        399.1671300997465
+      ],
+      "darker": 31958,
+      "brighter": 0,
+      "maximum": 42,
+      "mean": 2.361041666666718,
+      "lit": 57600
+    },
+    {
+      "name": "view-160000",
+      "height": 160000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999322536,
+        0.016999929372272835,
+        399.1671306062769
+      ],
+      "darker": 30553,
+      "brighter": 0,
+      "maximum": 13,
+      "mean": 1.0467245370370462,
+      "lit": 57600
+    },
+    {
+      "name": "view-245000",
+      "height": 245000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999998961724,
+        0.016999836382813636,
+        397.8911845248701
+      ],
+      "darker": 3,
+      "brighter": 0,
+      "maximum": 1,
+      "mean": 0.00001736111111111111,
+      "lit": 57600
+    },
+    {
+      "name": "view-250000",
+      "height": 250000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": false,
+      "receiver": [
+        0.012999999998940507,
+        0.016999829758753728,
+        397.8911848694458
+      ],
+      "darker": 0,
+      "brighter": 0,
+      "maximum": 0,
+      "mean": 0,
+      "lit": 57600
+    },
+    {
+      "name": "view-300000",
+      "height": 300000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": false,
+      "receiver": [
+        0.012999999998728265,
+        0.01699975662440665,
+        397.8911886728167
+      ],
+      "darker": 0,
+      "brighter": 0,
+      "maximum": 0,
+      "mean": 0,
+      "lit": 57600
+    },
+    {
+      "name": "view-4500000",
+      "height": 4500000,
+      "fov": 1.0471975511965976,
+      "cloudsShown": false,
+      "receiver": [
+        0.012999999987392595,
+        0.016966340191731797,
+        359.66215413246266
+      ],
+      "darker": 0,
+      "brighter": 0,
+      "maximum": 0,
+      "mean": 0,
+      "lit": 57600
+    },
+    {
+      "name": "patch-80000",
+      "height": 80000,
+      "fov": 0.24994684731555766,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999662119,
+        0.01699998216959462,
+        399.1671300997465
+      ],
+      "darker": 34800,
+      "brighter": 0,
+      "maximum": 30,
+      "mean": 2.1182118055556045,
+      "lit": 57600
+    },
+    {
+      "name": "patch-100000",
+      "height": 100000,
+      "fov": 0.20013253356864688,
+      "cloudsShown": true,
+      "receiver": [
+        0.01299999999957722,
+        0.016999972197008925,
+        399.1671301956521
+      ],
+      "darker": 34675,
+      "brighter": 0,
+      "maximum": 30,
+      "mean": 2.04369791666673,
+      "lit": 57600
+    },
+    {
+      "name": "patch-125000",
+      "height": 125000,
+      "fov": 0.16017033823955282,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999471105,
+        0.01699995669205873,
+        399.16713034463163
+      ],
+      "darker": 34446,
+      "brighter": 0,
+      "maximum": 25,
+      "mean": 1.905011574074106,
+      "lit": 57600
+    },
+    {
+      "name": "patch-150000",
+      "height": 150000,
+      "fov": 0.13349125212644883,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999364983,
+        0.01699993783946927,
+        399.1671305252693
+      ],
+      "darker": 33734,
+      "brighter": 0,
+      "maximum": 16,
+      "mean": 1.57331018518521,
+      "lit": 57600
+    },
+    {
+      "name": "patch-175000",
+      "height": 175000,
+      "fov": 0.11442253365789201,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999258863,
+        0.01699991568343176,
+        399.1671307384964
+      ],
+      "darker": 32046,
+      "brighter": 0,
+      "maximum": 8,
+      "mean": 0.9607812499999928,
+      "lit": 57600
+    },
+    {
+      "name": "patch-200000",
+      "height": 200000,
+      "fov": 0.10011669149319487,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999152747,
+        0.01699989025993735,
+        399.16713098151905
+      ],
+      "darker": 25876,
+      "brighter": 0,
+      "maximum": 3,
+      "mean": 0.3225231481481546,
+      "lit": 57600
+    },
+    {
+      "name": "patch-225000",
+      "height": 225000,
+      "fov": 0.08898842397626185,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999046628,
+        0.016999861607539204,
+        399.1671312562
+      ],
+      "darker": 9986,
+      "brighter": 0,
+      "maximum": 1,
+      "mean": 0.06837384259259952,
+      "lit": 57600
+    },
+    {
+      "name": "patch-245000",
+      "height": 245000,
+      "fov": 0.08172063909585474,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999998961733,
+        0.016999836383700076,
+        399.1671314982918
+      ],
+      "darker": 0,
+      "brighter": 0,
+      "maximum": 0,
+      "mean": 0,
+      "lit": 57600
+    },
+    {
+      "name": "patch-250000",
+      "height": 250000,
+      "fov": 0.08008537424640533,
+      "cloudsShown": false,
+      "receiver": [
+        0.01299999999894051,
+        0.016999829759658268,
+        399.167131561608
+      ],
+      "darker": 0,
+      "brighter": 0,
+      "maximum": 0,
+      "mean": 0,
+      "lit": 57600
+    },
+    {
+      "name": "patch-80000-return",
+      "height": 80000,
+      "fov": 0.24994684731555766,
+      "cloudsShown": true,
+      "receiver": [
+        0.012999999999662119,
+        0.01699998216959462,
+        399.1671300997465
+      ],
+      "darker": 34800,
+      "brighter": 0,
+      "maximum": 30,
+      "mean": 2.1182118055556045,
+      "lit": 57600
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 364,
+      "buffersDestroyed": 364,
+      "bufferBytes": 0,
+      "drawCalls": 4,
+      "triangles": 2560,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

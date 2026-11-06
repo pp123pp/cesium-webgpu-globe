@@ -1,0 +1,155 @@
+{
+  "suite": "m4-ellipsoid-shadows",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T02:17:33.206Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "89cb9a1b5faa99c5584cd166d1437e32da4996b7",
+  "sourceStatus": "M coordination/ci/m4-terrain-shadows-smoke.mjs\n?? coordination/ci/m4-altitude-continuity.mjs",
+  "bundleSha256": "fd1fabcae758c494e7f457a2c2117ad9967c151f52bf6b65982e80cfe52bb412",
+  "browserErrors": [],
+  "checks": [
+    "paired direct-light attenuation, disabled controls, replay and WGS84 wind advection"
+  ],
+  "scenes": [
+    {
+      "name": "sample-0",
+      "darker": 38889,
+      "brighter": 0,
+      "changed": 38889,
+      "min": 0,
+      "max": 68
+    },
+    {
+      "name": "initial",
+      "darker": 38889,
+      "brighter": 0,
+      "changed": 38889,
+      "min": 0,
+      "max": 68
+    },
+    {
+      "name": "atmosphere",
+      "darker": 38418,
+      "brighter": 0,
+      "changed": 39467,
+      "min": 0,
+      "max": 54
+    },
+    {
+      "name": "unlit",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "clear",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "hidden",
+      "darker": 0,
+      "brighter": 0,
+      "changed": 0,
+      "min": 0,
+      "max": 0
+    },
+    {
+      "name": "restored",
+      "darker": 38889,
+      "brighter": 0,
+      "changed": 38889,
+      "min": 0,
+      "max": 68
+    },
+    {
+      "name": "later-fixed",
+      "darker": 42230,
+      "brighter": 0,
+      "changed": 42230,
+      "min": 0,
+      "max": 69
+    },
+    {
+      "name": "later-advected",
+      "darker": 38997,
+      "brighter": 0,
+      "changed": 38997,
+      "min": 0,
+      "max": 68
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "fixture": {
+    "longitude": 0,
+    "latitude": 0,
+    "height": 1800,
+    "pitch": -26,
+    "maximumTerrainLevel": 8
+  },
+  "motion": {
+    "seconds": 90,
+    "offsetDegrees": 0.029105415205472492,
+    "fixed": 17.648263888888888,
+    "advected": 0.7202256944444444
+  },
+  "cleanup": {
+    "resources": {
+      "buffersCreated": 169,
+      "buffersDestroyed": 169,
+      "bufferBytes": 0,
+      "drawCalls": 2,
+      "triangles": 1140,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "textureBytes": 0,
+      "imageryDrawCalls": 0
+    },
+    "imagery": {
+      "requests": 0,
+      "deferred": 0,
+      "failed": 0,
+      "discarded": 0,
+      "imagesClosed": 0,
+      "pendingRequests": 0,
+      "texturesCreated": 0,
+      "texturesDestroyed": 0,
+      "activeTextures": 0
+    },
+    "canvases": 0,
+    "destroyed": true
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

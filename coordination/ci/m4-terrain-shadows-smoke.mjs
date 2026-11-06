@@ -98,7 +98,16 @@ await runM1BrowserSuite(
           }
           return picks;
         },
-        capture({ seconds, coverage, show, lighting, air, save }) {
+        capture({
+          seconds,
+          coverage,
+          show,
+          lighting,
+          air,
+          save,
+          solarRadius,
+          frozenField,
+        }) {
           viewer.clock.currentTime = Cesium.JulianDate.addSeconds(
             start,
             seconds,
@@ -107,6 +116,14 @@ await runM1BrowserSuite(
           Object.assign(scene.clouds, { coverage, show });
           scene.globe.enableLighting = lighting;
           scene.atmosphere.show = air;
+          const previousRadius = scene.sun.angularRadius;
+          const previousSunShown = scene.sun.show;
+          if (solarRadius !== undefined) {
+            // This harness hides the Sun by default. Show the offscreen disk so
+            // the renderer uploads the requested radius instead of its hidden default.
+            scene.sun.show = true;
+            scene.sun.angularRadius = solarRadius;
+          }
           const images = [
             [false, false],
             [true, false],
@@ -115,6 +132,17 @@ await runM1BrowserSuite(
             Object.assign(scene.clouds, { shadows, ambientShadows });
             return pixels();
           });
+          const uploadedRadius = scene._atmosphere._parametersValues[16];
+          if (
+            solarRadius !== undefined &&
+            uploadedRadius !== Math.fround(solarRadius)
+          ) {
+            throw new Error(
+              `Expected solar radius ${solarRadius}, uploaded ${uploadedRadius}`,
+            );
+          }
+          scene.sun.show = previousSunShown;
+          scene.sun.angularRadius = previousRadius;
           const { width, height } = images[0];
           const difference = (from, to) => {
             let darker = 0,
@@ -167,6 +195,22 @@ await runM1BrowserSuite(
               ) / direct.mask.length
             : 0;
           window.__terrainShadow.initialMask ??= direct.mask;
+          if (solarRadius !== undefined) {
+            (window.__terrainShadow.solarMasks ??= []).push(direct.mask);
+          }
+          if (frozenField) {
+            const fractionalShadow = direct.mask
+              .slice(width * Math.floor(height / 2))
+              .map(
+                (delta, i) =>
+                  delta /
+                  Math.max(
+                    1,
+                    images[0].data[4 * (i + width * Math.floor(height / 2))],
+                  ),
+              );
+            (window.__terrainShadow.frozenMasks ??= []).push(fractionalShadow);
+          }
           delete direct.mask;
           delete ambient.mask;
           const pngs = save
@@ -181,7 +225,88 @@ await runM1BrowserSuite(
           const solarElevation = Cesium.Math.toDegrees(
             Math.asin(scene._planetState.sunDirectionWC.x),
           ); // Local up at the equatorial fixture is +X.
-          return { direct, ambient, motion, solarElevation, pngs };
+          return {
+            direct,
+            ambient,
+            motion,
+            solarElevation,
+            sunEast: scene._planetState.sunDirectionWC.y,
+            uploadedRadius,
+            pngs,
+          };
+        },
+        solarMotion() {
+          const normalized = window.__terrainShadow.frozenMasks.map((mask) => {
+            const mean =
+              mask.reduce((sum, value) => sum + value, 0) / mask.length;
+            const centered = mask.map((value) => value - mean);
+            const deviation = Math.sqrt(
+              centered.reduce((sum, value) => sum + value * value, 0) /
+                mask.length,
+            );
+            return { centered, deviation };
+          });
+          const [morning, afternoon] = normalized;
+          const count = morning.centered.length;
+          const correlation =
+            morning.centered.reduce(
+              (sum, value, i) => sum + value * afternoon.centered[i],
+              0,
+            ) /
+            (count * morning.deviation * afternoon.deviation);
+          return {
+            count,
+            correlation,
+            fractionalShadowStdDev: normalized.map((mask) => mask.deviation),
+          };
+        },
+        penumbra() {
+          const masks = window.__terrainShadow.solarMasks;
+          const [point] = masks;
+          const { width, height } = viewer.canvas;
+          const metrics = masks.map(() => ({
+            changedFromPoint: 0,
+            meanAbsoluteChange: 0,
+            meanPointEdgeContrast: 0,
+          }));
+          let count = 0;
+          let edges = 0;
+          // Same foreground mesh and pixels for all radii. A four-pixel baseline
+          // resolves shadow gradients above the one-code screenshot quantization.
+          for (let y = Math.floor(height / 2); y < height - 4; y++) {
+            for (let x = 0; x < width - 4; x++) {
+              const index = y * width + x;
+              for (const offset of [4, 4 * width]) {
+                const contrast = Math.abs(point[index] - point[index + offset]);
+                if (contrast < 3) {
+                  continue;
+                }
+                edges++;
+                for (const [i, mask] of masks.entries()) {
+                  metrics[i].meanPointEdgeContrast += Math.abs(
+                    mask[index] - mask[index + offset],
+                  );
+                }
+              }
+              count++;
+              for (const [i, mask] of masks.entries()) {
+                const change = Math.abs(mask[index] - point[index]);
+                metrics[i].changedFromPoint += Number(change > 0);
+                metrics[i].meanAbsoluteChange += change;
+              }
+            }
+          }
+          for (const row of metrics) {
+            row.meanPointEdgeContrast /= Math.max(edges, 1);
+            row.meanAbsoluteChange /= count;
+          }
+          return {
+            edges,
+            count,
+            point: metrics[0],
+            physical: metrics[1],
+            wide: metrics[2],
+          };
         },
       };
     });
@@ -241,13 +366,70 @@ await runM1BrowserSuite(
       }
     }
     assert.ok((await capture("wind", { seconds: 90 })).motion > 0.5);
-    const grazing = await capture("low-sun", {
+    await page.evaluate(() => {
+      Object.assign(window.__m1.viewer.scene.clouds, {
+        windSpeed: 0,
+        evolution: false,
+      });
+    });
+    const frozen = { frozenField: true, save: true };
+    const morning = await capture("fixed-clouds-morning", {
+      ...frozen,
+      seconds: -3 * 3600,
+    });
+    const afternoon = await capture("fixed-clouds-afternoon", {
+      ...frozen,
+      seconds: 3 * 3600,
+    });
+    report.solarMotion = await page.evaluate(() =>
+      window.__terrainShadow.solarMotion(),
+    );
+    assert.ok(
+      morning.sunEast > 0.5 &&
+        afternoon.sunEast < -0.5 &&
+        Math.abs(morning.solarElevation - afternoon.solarElevation) < 5 &&
+        report.solarMotion.fractionalShadowStdDev.every((v) => v > 0.01) &&
+        report.solarMotion.correlation < 0.9,
+      `stationary clouds must cast different spatial shadow patterns under the morning and afternoon Sun: ${JSON.stringify(report.solarMotion)}`,
+    );
+    await page.evaluate(() => {
+      window.__m1.viewer.scene.clouds.windSpeed = 36;
+    });
+    const lowSun = {
       seconds: 5.5 * 3600,
       coverage: 1,
+      save: true,
+    };
+    await capture("low-sun-point", { ...lowSun, solarRadius: 1e-5 });
+    const physicalRadius = await page.evaluate(
+      () => window.__m1.viewer.scene.sun.angularRadius,
+    );
+    const grazing = await capture("low-sun", {
+      ...lowSun,
+      solarRadius: physicalRadius,
     });
+    await capture("low-sun-wide", { ...lowSun, solarRadius: 0.04 });
     assert.ok(grazing.solarElevation > 0 && grazing.solarElevation < 15);
     assert.ok(grazing.direct.darker > 100 && grazing.direct.brighter === 0);
     assert.equal(grazing.ambient.brighter, 0);
+    const penumbra = await page.evaluate(() =>
+      window.__terrainShadow.penumbra(),
+    );
+    report.penumbra = {
+      radiiRadians: [1e-5, physicalRadius, 0.04],
+      ...penumbra,
+    };
+    assert.ok(
+      penumbra.edges > 100 &&
+        penumbra.physical.changedFromPoint > 100 &&
+        penumbra.physical.meanPointEdgeContrast <
+          penumbra.point.meanPointEdgeContrast &&
+        penumbra.wide.meanAbsoluteChange >
+          penumbra.physical.meanAbsoluteChange &&
+        penumbra.wide.meanPointEdgeContrast <
+          penumbra.point.meanPointEdgeContrast,
+      `physical and magnified solar disks must soften point-source terrain shadow edges: ${JSON.stringify(report.penumbra)}`,
+    );
     for (const [name, options] of [
       ["clear", { coverage: 0 }],
       ["hidden", { show: false }],
