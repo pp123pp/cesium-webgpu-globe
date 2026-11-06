@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 2,
+  "routeVersion": "2.0",
+  "routeDecisionDate": "2026-11-06",
+  "role": "sole-active-ocean-coverage-entry",
+  "status": "SOURCE_NOT_ACQUIRED",
+  "sourceId": null,
+  "buildId": null,
+  "historicalManifest": {
+    "path": "manifest.json",
+    "role": "natural-earth-o0-audit-only",
+    "runtimeFallbackAllowed": false
+  },
+  "source": {
+    "candidateId": "osm-coastline-wgs84-unsimplified",
+    "name": "OpenStreetMap coastline water and land polygons",
+    "status": "SOURCE_NOT_ACQUIRED",
+    "snapshotId": null,
+    "retrievedAt": null,
+    "dataTimestamp": null,
+    "crs": "EPSG:4326",
+    "datum": "WGS84",
+    "coordinateOrder": [
+      "longitudeDegrees",
+      "latitudeDegrees"
+    ],
+    "shorelineReference": "mean high water springs (MHWS)",
+    "verticalDatum": null,
+    "heightDataProvided": false,
+    "candidates": [
+      {
+        "layer": "water-polygons",
+        "variant": "unsimplified-split-wgs84",
+        "candidateUrl": "https://osmdata.openstreetmap.de/download/water-polygons-split-4326.zip",
+        "documentationUrl": "https://osmdata.openstreetmap.de/data/water-polygons.html",
+        "acquisitionStatus": "SOURCE_NOT_ACQUIRED",
+        "retrievedAt": null,
+        "dataTimestamp": null,
+        "bytes": null,
+        "sha256": null,
+        "archivedPath": null
+      },
+      {
+        "layer": "land-polygons",
+        "variant": "unsimplified-split-wgs84",
+        "candidateUrl": "https://osmdata.openstreetmap.de/download/land-polygons-split-4326.zip",
+        "documentationUrl": "https://osmdata.openstreetmap.de/data/land-polygons.html",
+        "acquisitionStatus": "SOURCE_NOT_ACQUIRED",
+        "retrievedAt": null,
+        "dataTimestamp": null,
+        "bytes": null,
+        "sha256": null,
+        "archivedPath": null
+      }
+    ],
+    "inputFiles": [],
+    "inlandWaterLayer": {
+      "status": "NOT_SELECTED_OR_AUDITED",
+      "sourceId": null,
+      "requiredDecisionTask": "M6.O0-R01",
+      "policy": "Audit separately; coastline water-polygons do not cover ordinary lakes/reservoirs. Classify the Caspian exception and other proven closed water components explicitly; unresolved cases stay unknown.",
+      "landCertificationPolicy": "Coastline land-polygons establish non-ocean only. Where inland-water coverage/validity is unaudited, retain unknown with inland-unresolved; a missing layer, unloaded tile or absence of features is not proof of land or a homogeneous land parent/constant. Only audited land evidence can certify class 2; independently verified ocean remains usable."
+    },
+    "runtimeAccess": "distributed derived assets only; never query OSM editing/API/production services for live classification"
+  },
+  "license": {
+    "designation": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "termsUrl": "https://osmdata.openstreetmap.de/info/license.html",
+    "copyrightUrl": "https://www.openstreetmap.org/copyright",
+    "snapshotAuditStatus": "NOT_RUN",
+    "textFile": null,
+    "textSha256": null,
+    "redistributionReviewTask": "M6.O0-R01",
+    "naturalEarthLicenseApplies": false
+  },
+  "classification": {
+    "codes": {
+      "unknown": 0,
+      "ocean": 1,
+      "land": 2,
+      "inland-water": 3
+    },
+    "precedence": [
+      "unresolved-topology/coverage-or-mixed-footprint:unknown",
+      "audited-inland-water:inland-water",
+      "audited-land:land",
+      "audited-connected-ocean:ocean",
+      "uncovered:unknown"
+    ],
+    "oceanConnectivity": {
+      "method": "normalize split/overlap boundaries and holes, then audit vector connected components",
+      "openOceanSeedLongitudeLatitudeDegrees": [
+        -150,
+        0
+      ],
+      "caspianPolicy": "explicitly exclude from ocean after source topology/semantics audit",
+      "otherClosedComponents": "inland-water only when verified; otherwise unknown",
+      "naturalEarthRingAssumptionsAllowed": false,
+      "rasterFloodFillAllowed": false
+    },
+    "unknownReasons": [
+      "mixed-footprint",
+      "source-gap",
+      "topology-unresolved",
+      "inland-unresolved",
+      "missing-tile",
+      "load-failed",
+      "source-not-acquired"
+    ],
+    "footprintRule": "Require one verified class over the entire texel footprint; detect shore crossings and small rings/islands wholly inside it. Centre/four-corner tests alone are insufficient.",
+    "internalCuts": "same-class splits, overlaps, date-line and pole cuts are not semantic shorelines",
+    "waterMaskRole": "auxiliary inside already verified ocean only",
+    "elevationRole": "never infer ocean from negative height or imagery colour"
+  },
+  "grid": {
+    "status": "PLANNED",
+    "levelSystem": "custom-coverage-levels-not-terrain-or-webmercator-zoom",
+    "minimumLevel": 0,
+    "maximumLevel": 9,
+    "baseGlobalWidth": 8192,
+    "baseGlobalHeight": 4096,
+    "baseTileColumns": 16,
+    "baseTileRows": 8,
+    "tileWidth": 512,
+    "tileHeight": 512,
+    "levelScale": "2^level on each axis",
+    "boundsWestSouthEastNorthDegrees": [
+      -180,
+      -90,
+      180,
+      90
+    ],
+    "rowOrder": "north-to-south",
+    "columnOrder": "west-to-east",
+    "longitudeWrap": "[-180,180); +180 and -180 are the same meridian",
+    "texelCenter": "lon=-180+(column+0.5)*360/(8192*2^level); lat=90-(row+0.5)*180/(4096*2^level)",
+    "poleRule": "audited longitude-independent cap semantics; artificial cuts do not create coasts",
+    "equatorialSamplingTargetMeters": {
+      "L0": 4891.97,
+      "L8": 19.11,
+      "L9": 9.55
+    },
+    "samplingTargetIsPositionalAccuracy": false
+  },
+  "runtimeAssets": {
+    "status": "NOT_GENERATED",
+    "generatedAt": null,
+    "generatedByTask": "M6.O1-02 after M6.O0-R01..03",
+    "files": [],
+    "constantRegions": [],
+    "tileAvailabilityIndex": null,
+    "uncertaintyIndex": null,
+    "planned": {
+      "format": "headerless uint8 categorical R8; one byte per texel",
+      "filePattern": "coverage/{buildId}/{level}/{x}/{y}.r8",
+      "sampling": "exact categorical/nearest; no linear interpolation or averaged mipmaps",
+      "sparseRefinement": "refine audited shoreline regions; never materialize all global highest-level tiles",
+      "constantClasses": [
+        1,
+        2,
+        3
+      ],
+      "constantRule": "represent an entire region as a constant only after full-footprint proof from the audited source",
+      "parentRule": "same snapshot/build, conservative full-footprint classification; complete homogeneous certified child footprints may be aggregated, never averaged",
+      "metadataRule": "Record actual availability, source/build identity and a recoverable reason for each unknown texel. Freeze sidecar/index encoding with real O0-R02 prototypes.",
+      "prototypeGate": "O0-R02 evidence is not automatically a published global runtime asset"
+    }
+  },
+  "fallback": {
+    "sameSourceAndBuildRequired": true,
+    "priority": [
+      "already-valid data for the same geographic tile in the active source/build",
+      "published verified conservative parent in the same source/build",
+      "unknown: retain existing terrain/imagery and suppress ocean draw"
+    ],
+    "naturalEarthFallbackAllowed": false,
+    "unknownIsOcean": false,
+    "missingSourceBuild": "fail generation and report missing inputs; never publish a fabricated or empty successful mask"
+  },
+  "budgets": {
+    "maximumResident512SquareClassificationTiles": 32,
+    "scope": "all coverage levels combined, including real resident parents",
+    "status": "STARTING_BUDGET_NOT_MEASURED",
+    "otherResources": "CPU decode, pending requests and metadata need separate bounded budgets at implementation; constants do not imply resident descendants"
+  },
+  "gates": {
+    "defaultNextTask": "M6.O0-R01",
+    "requiredBeforeO102": [
+      "M6.O0-R01",
+      "M6.O0-R02",
+      "M6.O0-R03"
+    ],
+    "O101CpuFrameworkMayProceedIndependently": true,
+    "globalSnapshotAudit": "NOT_RUN",
+    "rasterPrototypeAudit": "NOT_RUN",
+    "runtimeGeneration": "NOT_RUN",
+    "gpuValidation": "NOT_RUN"
+  },
+  "limitations": [
+    "Candidate URLs are acquisition plans, not downloaded or hash-verified source snapshots.",
+    "The raw OSM Alcatraz API sample supports one source-detail comparison only; it does not validate the published global package, raster hierarchy or GPU output.",
+    "OSM vector detail has no uniform metre resolution or guaranteed global positional error bound.",
+    "MHWS is a static coastline reference, not instantaneous tide or mean sea-level height.",
+    "No bathymetry, vertical datum conversion, potential tidal connectivity or sea-ice simulation is provided; O5 retains those data responsibilities.",
+    "Classification never authorizes removal of arbitrary terrain/islands; the bounded identified ocean-lid policy still applies."
+  ]
+}
