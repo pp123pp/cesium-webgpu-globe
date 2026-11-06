@@ -1,0 +1,1962 @@
+{
+  "suite": "m5-time-continuity",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T04:07:25.742Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "1a69ccd4bcb794ad286efcbe2df3a151eb5f02fc",
+  "sourceStatus": "M coordination/ci/m5-reference-scenes-smoke.mjs\n?? coordination/ci/m5-altitude-continuity.mjs\n?? coordination/ci/m5-flight-continuity.mjs\n?? coordination/ci/m5-reference-harness.mjs\n?? coordination/ci/m5-star-continuity.mjs\n?? coordination/ci/m5-time-continuity.mjs",
+  "bundleSha256": "f066309ab78459c00f0c39da47124062485d8f309778b8acfe934a7a5b879c15",
+  "browserErrors": [],
+  "checks": [
+    "Focused time continuity: golden-sunset."
+  ],
+  "scenes": [
+    {
+      "name": "golden-sunset",
+      "center": "golden-sunset",
+      "anchor": "2026-03-21T02:17:50.080Z",
+      "samples": [
+        {
+          "offset": -1200,
+          "utc": "2026-03-21T01:57:50.080Z",
+          "clearance": 0.09332391191838967,
+          "directPixels": 54066,
+          "ambientPixels": 13050
+        },
+        {
+          "offset": -1080,
+          "utc": "2026-03-21T01:59:50.080Z",
+          "clearance": 0.08644765762534146,
+          "directPixels": 48319,
+          "ambientPixels": 14702
+        },
+        {
+          "offset": -960,
+          "utc": "2026-03-21T02:01:50.080Z",
+          "clearance": 0.07956683099011258,
+          "directPixels": 30127,
+          "ambientPixels": 14988
+        },
+        {
+          "offset": -840,
+          "utc": "2026-03-21T02:03:50.080Z",
+          "clearance": 0.07268195667974713,
+          "directPixels": 6548,
+          "ambientPixels": 12282
+        },
+        {
+          "offset": -720,
+          "utc": "2026-03-21T02:05:50.080Z",
+          "clearance": 0.06579355966950717,
+          "directPixels": 130,
+          "ambientPixels": 4910
+        },
+        {
+          "offset": -600,
+          "utc": "2026-03-21T02:07:50.080Z",
+          "clearance": 0.058902165203159634,
+          "directPixels": 0,
+          "ambientPixels": 3800
+        },
+        {
+          "offset": -480,
+          "utc": "2026-03-21T02:09:50.080Z",
+          "clearance": 0.05200829875256974,
+          "directPixels": 0,
+          "ambientPixels": 2831
+        },
+        {
+          "offset": -360,
+          "utc": "2026-03-21T02:11:50.080Z",
+          "clearance": 0.04511248597800126,
+          "directPixels": 0,
+          "ambientPixels": 4445
+        },
+        {
+          "offset": -240,
+          "utc": "2026-03-21T02:13:50.080Z",
+          "clearance": 0.038215252688174904,
+          "directPixels": 0,
+          "ambientPixels": 1596
+        },
+        {
+          "offset": -120,
+          "utc": "2026-03-21T02:15:50.080Z",
+          "clearance": 0.031317124799637275,
+          "directPixels": 0,
+          "ambientPixels": 234
+        },
+        {
+          "offset": 0,
+          "utc": "2026-03-21T02:17:50.080Z",
+          "clearance": 0.024418628297429374,
+          "directPixels": 0,
+          "ambientPixels": 4
+        },
+        {
+          "offset": 120,
+          "utc": "2026-03-21T02:19:50.080Z",
+          "clearance": 0.017520289194367836,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 240,
+          "utc": "2026-03-21T02:21:50.080Z",
+          "clearance": 0.010622633491333525,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 360,
+          "utc": "2026-03-21T02:23:50.080Z",
+          "clearance": 0.003726187137157451,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 480,
+          "utc": "2026-03-21T02:25:50.080Z",
+          "clearance": -0.0031685240114277535,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 600,
+          "utc": "2026-03-21T02:27:50.080Z",
+          "clearance": -0.010060974230096383,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 720,
+          "utc": "2026-03-21T02:29:50.080Z",
+          "clearance": -0.01695063796681433,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 840,
+          "utc": "2026-03-21T02:31:50.080Z",
+          "clearance": -0.023836989881661327,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 960,
+          "utc": "2026-03-21T02:33:50.080Z",
+          "clearance": -0.030719504887049293,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 1080,
+          "utc": "2026-03-21T02:35:50.080Z",
+          "clearance": -0.037597658188131544,
+          "directPixels": 0,
+          "ambientPixels": 0
+        },
+        {
+          "offset": 1200,
+          "utc": "2026-03-21T02:37:50.080Z",
+          "clearance": -0.044470925321913254,
+          "directPixels": 0,
+          "ambientPixels": 0
+        }
+      ],
+      "analysis": {
+        "color": {
+          "adjacent": [
+            {
+              "a": -1200,
+              "b": -1080,
+              "mean": 2.7393923611111113,
+              "area": 0,
+              "local": 6.03125,
+              "maximum": 7,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.424240451388889
+            },
+            {
+              "a": -1080,
+              "b": -960,
+              "mean": 2.6538368055555557,
+              "area": 0,
+              "local": 6.0625,
+              "maximum": 7,
+              "peakPixel": [
+                6,
+                0
+              ],
+              "score": 3.3172960069444444
+            },
+            {
+              "a": -960,
+              "b": -840,
+              "mean": 2.6257118055555555,
+              "area": 0,
+              "local": 5.953125,
+              "maximum": 7,
+              "peakPixel": [
+                4,
+                0
+              ],
+              "score": 3.2821397569444444
+            },
+            {
+              "a": -840,
+              "b": -720,
+              "mean": 2.678541666666667,
+              "area": 0,
+              "local": 6.03125,
+              "maximum": 7,
+              "peakPixel": [
+                1,
+                0
+              ],
+              "score": 3.3481770833333333
+            },
+            {
+              "a": -720,
+              "b": -600,
+              "mean": 2.7477256944444446,
+              "area": 0,
+              "local": 6.53125,
+              "maximum": 7,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.4346571180555556
+            },
+            {
+              "a": -600,
+              "b": -480,
+              "mean": 2.79671875,
+              "area": 0,
+              "local": 7.046875,
+              "maximum": 8,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.4958984375
+            },
+            {
+              "a": -480,
+              "b": -360,
+              "mean": 2.8072395833333332,
+              "area": 0,
+              "local": 7.421875,
+              "maximum": 8,
+              "peakPixel": [
+                2,
+                0
+              ],
+              "score": 3.5090494791666664
+            },
+            {
+              "a": -360,
+              "b": -240,
+              "mean": 2.6879166666666667,
+              "area": 0,
+              "local": 7.578125,
+              "maximum": 8,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.3598958333333333
+            },
+            {
+              "a": -240,
+              "b": -120,
+              "mean": 2.5570833333333334,
+              "area": 0,
+              "local": 7.421875,
+              "maximum": 8,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.1963541666666666
+            },
+            {
+              "a": -120,
+              "b": 0,
+              "mean": 2.514392361111111,
+              "area": 0,
+              "local": 8.1875,
+              "maximum": 9,
+              "peakPixel": [
+                1,
+                0
+              ],
+              "score": 3.1429904513888887
+            },
+            {
+              "a": 0,
+              "b": 120,
+              "mean": 2.659895833333333,
+              "area": 0,
+              "local": 11,
+              "maximum": 12,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.324869791666666
+            },
+            {
+              "a": 120,
+              "b": 240,
+              "mean": 3.094427083333333,
+              "area": 0.00005208333333333334,
+              "local": 14.546875,
+              "maximum": 16,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 3.8680338541666663
+            },
+            {
+              "a": 240,
+              "b": 360,
+              "mean": 2.1872048611111112,
+              "area": 0,
+              "local": 11.921875,
+              "maximum": 13,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 2.734006076388889
+            },
+            {
+              "a": 360,
+              "b": 480,
+              "mean": 0.91046875,
+              "area": 0,
+              "local": 2.84375,
+              "maximum": 3,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 1.1380859375
+            },
+            {
+              "a": 480,
+              "b": 600,
+              "mean": 0.5463020833333333,
+              "area": 0,
+              "local": 1.015625,
+              "maximum": 2,
+              "peakPixel": [
+                292,
+                1
+              ],
+              "score": 0.6828776041666665
+            },
+            {
+              "a": 600,
+              "b": 720,
+              "mean": 0.1934722222222222,
+              "area": 0,
+              "local": 0.953125,
+              "maximum": 1,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0.24184027777777775
+            },
+            {
+              "a": 720,
+              "b": 840,
+              "mean": 0.19802083333333334,
+              "area": 0,
+              "local": 1,
+              "maximum": 1,
+              "peakPixel": [
+                76,
+                0
+              ],
+              "score": 0.24752604166666667
+            },
+            {
+              "a": 840,
+              "b": 960,
+              "mean": 0.20315972222222223,
+              "area": 0,
+              "local": 1,
+              "maximum": 1,
+              "peakPixel": [
+                9,
+                0
+              ],
+              "score": 0.25394965277777776
+            },
+            {
+              "a": 960,
+              "b": 1080,
+              "mean": 0.2076215277777778,
+              "area": 0,
+              "local": 1,
+              "maximum": 1,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0.2595269097222222
+            },
+            {
+              "a": 1080,
+              "b": 1200,
+              "mean": 0.18970486111111112,
+              "area": 0,
+              "local": 0.671875,
+              "maximum": 1,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0.2371310763888889
+            }
+          ],
+          "examined": [
+            {
+              "coarse": {
+                "a": 120,
+                "b": 240,
+                "mean": 3.094427083333333,
+                "area": 0.00005208333333333334,
+                "local": 14.546875,
+                "maximum": 16,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.8680338541666663
+              },
+              "peak": {
+                "a": 170.859375,
+                "b": 170.9765625,
+                "mean": 0.0051736111111111115,
+                "area": 0,
+                "local": 0.203125,
+                "maximum": 1,
+                "peakPixel": [
+                  203,
+                  0
+                ],
+                "score": 0.008463541666666666
+              },
+              "before": {
+                "a": 170.7421875,
+                "b": 170.859375,
+                "mean": 0.005104166666666667,
+                "area": 0,
+                "local": 0.15625,
+                "maximum": 1,
+                "peakPixel": [
+                  35,
+                  0
+                ],
+                "score": 0.006510416666666667
+              },
+              "after": {
+                "a": 170.9765625,
+                "b": 171.09375,
+                "mean": 0.005763888888888889,
+                "area": 0,
+                "local": 0.1875,
+                "maximum": 1,
+                "peakPixel": [
+                  22,
+                  0
+                ],
+                "score": 0.0078125
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -480,
+                "b": -360,
+                "mean": 2.8072395833333332,
+                "area": 0,
+                "local": 7.421875,
+                "maximum": 8,
+                "peakPixel": [
+                  2,
+                  0
+                ],
+                "score": 3.5090494791666664
+              },
+              "peak": {
+                "a": -471.328125,
+                "b": -471.2109375,
+                "mean": 0.007170138888888889,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  2,
+                  0
+                ],
+                "score": 0.00896267361111111
+              },
+              "before": {
+                "a": -471.4453125,
+                "b": -471.328125,
+                "mean": 0.006597222222222222,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  57,
+                  0
+                ],
+                "score": 0.008246527777777778
+              },
+              "after": {
+                "a": -471.2109375,
+                "b": -471.09375,
+                "mean": 0.006302083333333333,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  29,
+                  0
+                ],
+                "score": 0.007877604166666666
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -600,
+                "b": -480,
+                "mean": 2.79671875,
+                "area": 0,
+                "local": 7.046875,
+                "maximum": 8,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.4958984375
+              },
+              "peak": {
+                "a": -532.265625,
+                "b": -532.1484375,
+                "mean": 0.006996527777777778,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  91,
+                  0
+                ],
+                "score": 0.008745659722222222
+              },
+              "before": {
+                "a": -532.3828125,
+                "b": -532.265625,
+                "mean": 0.006649305555555556,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  1,
+                  0
+                ],
+                "score": 0.008311631944444444
+              },
+              "after": {
+                "a": -532.1484375,
+                "b": -532.03125,
+                "mean": 0.006440972222222222,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  132,
+                  0
+                ],
+                "score": 0.008051215277777777
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -720,
+                "b": -600,
+                "mean": 2.7477256944444446,
+                "area": 0,
+                "local": 6.53125,
+                "maximum": 7,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.4346571180555556
+              },
+              "peak": {
+                "a": -691.171875,
+                "b": -691.0546875,
+                "mean": 0.008003472222222223,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  14,
+                  0
+                ],
+                "score": 0.010004340277777777
+              },
+              "before": {
+                "a": -691.2890625,
+                "b": -691.171875,
+                "mean": 0.007881944444444445,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  42,
+                  0
+                ],
+                "score": 0.009852430555555555
+              },
+              "after": {
+                "a": -691.0546875,
+                "b": -690.9375,
+                "mean": 0.007725694444444445,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  20,
+                  0
+                ],
+                "score": 0.009657118055555556
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -1200,
+                "b": -1080,
+                "mean": 2.7393923611111113,
+                "area": 0,
+                "local": 6.03125,
+                "maximum": 7,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.424240451388889
+              },
+              "peak": {
+                "a": -1192.96875,
+                "b": -1192.8515625,
+                "mean": 0.030260416666666668,
+                "area": 0,
+                "local": 0.15625,
+                "maximum": 1,
+                "peakPixel": [
+                  18,
+                  0
+                ],
+                "score": 0.037825520833333334
+              },
+              "before": {
+                "a": -1193.0859375,
+                "b": -1192.96875,
+                "mean": 0.02670138888888889,
+                "area": 0,
+                "local": 0.1875,
+                "maximum": 1,
+                "peakPixel": [
+                  162,
+                  0
+                ],
+                "score": 0.03337673611111111
+              },
+              "after": {
+                "a": -1192.8515625,
+                "b": -1192.734375,
+                "mean": 0.02828125,
+                "area": 0,
+                "local": 0.140625,
+                "maximum": 1,
+                "peakPixel": [
+                  117,
+                  0
+                ],
+                "score": 0.035351562499999996
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -360,
+                "b": -240,
+                "mean": 2.6879166666666667,
+                "area": 0,
+                "local": 7.578125,
+                "maximum": 8,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.3598958333333333
+              },
+              "peak": {
+                "a": -343.9453125,
+                "b": -343.828125,
+                "mean": 0.006197916666666667,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  125,
+                  0
+                ],
+                "score": 0.007747395833333333
+              },
+              "before": {
+                "a": -344.0625,
+                "b": -343.9453125,
+                "mean": 0.00609375,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  212,
+                  0
+                ],
+                "score": 0.0076171875
+              },
+              "after": {
+                "a": -343.828125,
+                "b": -343.7109375,
+                "mean": 0.0059722222222222225,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  43,
+                  0
+                ],
+                "score": 0.007465277777777778
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -840,
+                "b": -720,
+                "mean": 2.678541666666667,
+                "area": 0,
+                "local": 6.03125,
+                "maximum": 7,
+                "peakPixel": [
+                  1,
+                  0
+                ],
+                "score": 3.3481770833333333
+              },
+              "peak": {
+                "a": -721.7578125,
+                "b": -721.640625,
+                "mean": 0.007569444444444445,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  28,
+                  0
+                ],
+                "score": 0.009461805555555555
+              },
+              "before": {
+                "a": -721.875,
+                "b": -721.7578125,
+                "mean": 0.006996527777777778,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  95,
+                  0
+                ],
+                "score": 0.008745659722222222
+              },
+              "after": {
+                "a": -721.640625,
+                "b": -721.5234375,
+                "mean": 0.007083333333333333,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  98,
+                  0
+                ],
+                "score": 0.008854166666666666
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 0,
+                "b": 120,
+                "mean": 2.659895833333333,
+                "area": 0,
+                "local": 11,
+                "maximum": 12,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.324869791666666
+              },
+              "peak": {
+                "a": 116.8359375,
+                "b": 116.953125,
+                "mean": 0.005277777777777778,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  10,
+                  0
+                ],
+                "score": 0.006597222222222222
+              },
+              "before": {
+                "a": 116.71875,
+                "b": 116.8359375,
+                "mean": 0.00515625,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  11,
+                  0
+                ],
+                "score": 0.0064453125
+              },
+              "after": {
+                "a": 116.953125,
+                "b": 117.0703125,
+                "mean": 0.004965277777777778,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  21,
+                  0
+                ],
+                "score": 0.006206597222222222
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -1080,
+                "b": -960,
+                "mean": 2.6538368055555557,
+                "area": 0,
+                "local": 6.0625,
+                "maximum": 7,
+                "peakPixel": [
+                  6,
+                  0
+                ],
+                "score": 3.3172960069444444
+              },
+              "peak": {
+                "a": -980.2734375,
+                "b": -980.15625,
+                "mean": 0.012673611111111111,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  33,
+                  0
+                ],
+                "score": 0.015842013888888888
+              },
+              "before": {
+                "a": -980.390625,
+                "b": -980.2734375,
+                "mean": 0.011875,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  117,
+                  0
+                ],
+                "score": 0.01484375
+              },
+              "after": {
+                "a": -980.15625,
+                "b": -980.0390625,
+                "mean": 0.011215277777777777,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  6,
+                  0
+                ],
+                "score": 0.014019097222222221
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -960,
+                "b": -840,
+                "mean": 2.6257118055555555,
+                "area": 0,
+                "local": 5.953125,
+                "maximum": 7,
+                "peakPixel": [
+                  4,
+                  0
+                ],
+                "score": 3.2821397569444444
+              },
+              "peak": {
+                "a": -941.6015625,
+                "b": -941.484375,
+                "mean": 0.011197916666666667,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  38,
+                  0
+                ],
+                "score": 0.013997395833333332
+              },
+              "before": {
+                "a": -941.71875,
+                "b": -941.6015625,
+                "mean": 0.011076388888888889,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  35,
+                  0
+                ],
+                "score": 0.01384548611111111
+              },
+              "after": {
+                "a": -941.484375,
+                "b": -941.3671875,
+                "mean": 0.009722222222222222,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  219,
+                  0
+                ],
+                "score": 0.012152777777777778
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -240,
+                "b": -120,
+                "mean": 2.5570833333333334,
+                "area": 0,
+                "local": 7.421875,
+                "maximum": 8,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 3.1963541666666666
+              },
+              "peak": {
+                "a": -217.03125,
+                "b": -216.9140625,
+                "mean": 0.006493055555555556,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  6,
+                  0
+                ],
+                "score": 0.008116319444444443
+              },
+              "before": {
+                "a": -217.1484375,
+                "b": -217.03125,
+                "mean": 0.00625,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  26,
+                  0
+                ],
+                "score": 0.0078125
+              },
+              "after": {
+                "a": -216.9140625,
+                "b": -216.796875,
+                "mean": 0.006024305555555555,
+                "area": 0,
+                "local": 0.078125,
+                "maximum": 1,
+                "peakPixel": [
+                  36,
+                  0
+                ],
+                "score": 0.007530381944444444
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -120,
+                "b": 0,
+                "mean": 2.514392361111111,
+                "area": 0,
+                "local": 8.1875,
+                "maximum": 9,
+                "peakPixel": [
+                  1,
+                  0
+                ],
+                "score": 3.1429904513888887
+              },
+              "peak": {
+                "a": -111.5625,
+                "b": -111.4453125,
+                "mean": 0.0060416666666666665,
+                "area": 0,
+                "local": 0.0625,
+                "maximum": 1,
+                "peakPixel": [
+                  4,
+                  1
+                ],
+                "score": 0.0075520833333333325
+              },
+              "before": {
+                "a": -111.6796875,
+                "b": -111.5625,
+                "mean": 0.0055381944444444445,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  49,
+                  0
+                ],
+                "score": 0.006922743055555555
+              },
+              "after": {
+                "a": -111.4453125,
+                "b": -111.328125,
+                "mean": 0.00578125,
+                "area": 0,
+                "local": 0.046875,
+                "maximum": 1,
+                "peakPixel": [
+                  9,
+                  0
+                ],
+                "score": 0.0072265624999999995
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 240,
+                "b": 360,
+                "mean": 2.1872048611111112,
+                "area": 0,
+                "local": 11.921875,
+                "maximum": 13,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 2.734006076388889
+              },
+              "peak": {
+                "a": 248.7890625,
+                "b": 248.90625,
+                "mean": 0.006024305555555555,
+                "area": 0,
+                "local": 0.484375,
+                "maximum": 1,
+                "peakPixel": [
+                  17,
+                  0
+                ],
+                "score": 0.020182291666666668
+              },
+              "before": {
+                "a": 248.671875,
+                "b": 248.7890625,
+                "mean": 0.005295138888888889,
+                "area": 0,
+                "local": 0.28125,
+                "maximum": 1,
+                "peakPixel": [
+                  28,
+                  0
+                ],
+                "score": 0.01171875
+              },
+              "after": {
+                "a": 248.90625,
+                "b": 249.0234375,
+                "mean": 0.005121527777777778,
+                "area": 0,
+                "local": 0.25,
+                "maximum": 1,
+                "peakPixel": [
+                  37,
+                  0
+                ],
+                "score": 0.010416666666666666
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 360,
+                "b": 480,
+                "mean": 0.91046875,
+                "area": 0,
+                "local": 2.84375,
+                "maximum": 3,
+                "peakPixel": [
+                  0,
+                  0
+                ],
+                "score": 1.1380859375
+              },
+              "peak": {
+                "a": 406.0546875,
+                "b": 406.171875,
+                "mean": 0.006736111111111111,
+                "area": 0,
+                "local": 0.40625,
+                "maximum": 1,
+                "peakPixel": [
+                  312,
+                  1
+                ],
+                "score": 0.016927083333333332
+              },
+              "before": {
+                "a": 405.9375,
+                "b": 406.0546875,
+                "mean": 0.005729166666666666,
+                "area": 0,
+                "local": 0.296875,
+                "maximum": 1,
+                "peakPixel": [
+                  8,
+                  1
+                ],
+                "score": 0.012369791666666666
+              },
+              "after": {
+                "a": 406.171875,
+                "b": 406.2890625,
+                "mean": 0.006302083333333333,
+                "area": 0,
+                "local": 0.34375,
+                "maximum": 1,
+                "peakPixel": [
+                  20,
+                  0
+                ],
+                "score": 0.014322916666666666
+              },
+              "localized": false
+            }
+          ]
+        },
+        "direct": {
+          "adjacent": [
+            {
+              "a": -1200,
+              "b": -1080,
+              "mean": 1.1804861111111111,
+              "area": 0,
+              "local": 4.203125,
+              "maximum": 9,
+              "peakPixel": [
+                297,
+                46
+              ],
+              "score": 1.4756076388888888
+            },
+            {
+              "a": -1080,
+              "b": -960,
+              "mean": 1.1697048611111112,
+              "area": 0,
+              "local": 4.078125,
+              "maximum": 8,
+              "peakPixel": [
+                318,
+                148
+              ],
+              "score": 1.4621310763888888
+            },
+            {
+              "a": -960,
+              "b": -840,
+              "mean": 0.5553645833333334,
+              "area": 0,
+              "local": 2.03125,
+              "maximum": 4,
+              "peakPixel": [
+                306,
+                98
+              ],
+              "score": 0.6942057291666667
+            },
+            {
+              "a": -840,
+              "b": -720,
+              "mean": 0.11536458333333334,
+              "area": 0,
+              "local": 0.96875,
+              "maximum": 2,
+              "peakPixel": [
+                251,
+                147
+              ],
+              "score": 0.14420572916666666
+            },
+            {
+              "a": -720,
+              "b": -600,
+              "mean": 0.0022569444444444442,
+              "area": 0,
+              "local": 0.078125,
+              "maximum": 1,
+              "peakPixel": [
+                180,
+                6
+              ],
+              "score": 0.0032552083333333335
+            },
+            {
+              "a": -600,
+              "b": -480,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": -480,
+              "b": -360,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": -360,
+              "b": -240,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": -240,
+              "b": -120,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": -120,
+              "b": 0,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 0,
+              "b": 120,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 120,
+              "b": 240,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 240,
+              "b": 360,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 360,
+              "b": 480,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 480,
+              "b": 600,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 600,
+              "b": 720,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 720,
+              "b": 840,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 840,
+              "b": 960,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 960,
+              "b": 1080,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 1080,
+              "b": 1200,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            }
+          ],
+          "examined": [
+            {
+              "coarse": {
+                "a": -1200,
+                "b": -1080,
+                "mean": 1.1804861111111111,
+                "area": 0,
+                "local": 4.203125,
+                "maximum": 9,
+                "peakPixel": [
+                  297,
+                  46
+                ],
+                "score": 1.4756076388888888
+              },
+              "peak": {
+                "a": -1192.96875,
+                "b": -1192.8515625,
+                "mean": 0.03647569444444444,
+                "area": 0,
+                "local": 0.171875,
+                "maximum": 2,
+                "peakPixel": [
+                  204,
+                  94
+                ],
+                "score": 0.04559461805555555
+              },
+              "before": {
+                "a": -1193.0859375,
+                "b": -1192.96875,
+                "mean": 0.033038194444444446,
+                "area": 0,
+                "local": 0.203125,
+                "maximum": 2,
+                "peakPixel": [
+                  227,
+                  17
+                ],
+                "score": 0.04129774305555556
+              },
+              "after": {
+                "a": -1192.8515625,
+                "b": -1192.734375,
+                "mean": 0.035138888888888886,
+                "area": 0,
+                "local": 0.140625,
+                "maximum": 2,
+                "peakPixel": [
+                  134,
+                  98
+                ],
+                "score": 0.04392361111111111
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": -1080,
+                "b": -960,
+                "mean": 1.1697048611111112,
+                "area": 0,
+                "local": 4.078125,
+                "maximum": 8,
+                "peakPixel": [
+                  318,
+                  148
+                ],
+                "score": 1.4621310763888888
+              },
+              "peak": {
+                "a": -1079.765625,
+                "b": -1079.6484375,
+                "mean": 0.027239583333333334,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 2,
+                "peakPixel": [
+                  205,
+                  85
+                ],
+                "score": 0.03404947916666667
+              },
+              "before": {
+                "a": -1079.8828125,
+                "b": -1079.765625,
+                "mean": 0.025972222222222223,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  81,
+                  0
+                ],
+                "score": 0.03246527777777777
+              },
+              "after": {
+                "a": -1079.6484375,
+                "b": -1079.53125,
+                "mean": 0.026927083333333334,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 2,
+                "peakPixel": [
+                  305,
+                  104
+                ],
+                "score": 0.03365885416666667
+              },
+              "localized": false
+            }
+          ]
+        },
+        "ambient": {
+          "adjacent": [
+            {
+              "a": -1200,
+              "b": -1080,
+              "mean": 0.42484375,
+              "area": 0,
+              "local": 1,
+              "maximum": 2,
+              "peakPixel": [
+                275,
+                8
+              ],
+              "score": 0.5310546875
+            },
+            {
+              "a": -1080,
+              "b": -960,
+              "mean": 0.4377951388888889,
+              "area": 0,
+              "local": 0.953125,
+              "maximum": 2,
+              "peakPixel": [
+                35,
+                91
+              ],
+              "score": 0.5472439236111111
+            },
+            {
+              "a": -960,
+              "b": -840,
+              "mean": 0.40100694444444446,
+              "area": 0,
+              "local": 1.25,
+              "maximum": 2,
+              "peakPixel": [
+                35,
+                91
+              ],
+              "score": 0.5012586805555556
+            },
+            {
+              "a": -840,
+              "b": -720,
+              "mean": 0.27697916666666667,
+              "area": 0,
+              "local": 0.90625,
+              "maximum": 2,
+              "peakPixel": [
+                1,
+                108
+              ],
+              "score": 0.3462239583333333
+            },
+            {
+              "a": -720,
+              "b": -600,
+              "mean": 0.1377951388888889,
+              "area": 0,
+              "local": 0.90625,
+              "maximum": 2,
+              "peakPixel": [
+                1,
+                108
+              ],
+              "score": 0.1722439236111111
+            },
+            {
+              "a": -600,
+              "b": -480,
+              "mean": 0.11041666666666666,
+              "area": 0,
+              "local": 0.546875,
+              "maximum": 1,
+              "peakPixel": [
+                38,
+                0
+              ],
+              "score": 0.13802083333333331
+            },
+            {
+              "a": -480,
+              "b": -360,
+              "mean": 0.11909722222222222,
+              "area": 0,
+              "local": 0.59375,
+              "maximum": 1,
+              "peakPixel": [
+                43,
+                0
+              ],
+              "score": 0.14887152777777776
+            },
+            {
+              "a": -360,
+              "b": -240,
+              "mean": 0.10095486111111111,
+              "area": 0,
+              "local": 0.515625,
+              "maximum": 1,
+              "peakPixel": [
+                119,
+                0
+              ],
+              "score": 0.1261935763888889
+            },
+            {
+              "a": -240,
+              "b": -120,
+              "mean": 0.03170138888888889,
+              "area": 0,
+              "local": 0.21875,
+              "maximum": 1,
+              "peakPixel": [
+                83,
+                0
+              ],
+              "score": 0.03962673611111111
+            },
+            {
+              "a": -120,
+              "b": 0,
+              "mean": 0.004131944444444444,
+              "area": 0,
+              "local": 0.09375,
+              "maximum": 1,
+              "peakPixel": [
+                83,
+                0
+              ],
+              "score": 0.0051649305555555546
+            },
+            {
+              "a": 0,
+              "b": 120,
+              "mean": 0.00006944444444444444,
+              "area": 0,
+              "local": 0.015625,
+              "maximum": 1,
+              "peakPixel": [
+                65,
+                8
+              ],
+              "score": 0.0006510416666666666
+            },
+            {
+              "a": 120,
+              "b": 240,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 240,
+              "b": 360,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 360,
+              "b": 480,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 480,
+              "b": 600,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 600,
+              "b": 720,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 720,
+              "b": 840,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 840,
+              "b": 960,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 960,
+              "b": 1080,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            },
+            {
+              "a": 1080,
+              "b": 1200,
+              "mean": 0,
+              "area": 0,
+              "local": 0,
+              "maximum": 0,
+              "peakPixel": [
+                0,
+                0
+              ],
+              "score": 0
+            }
+          ],
+          "examined": [
+            {
+              "coarse": {
+                "a": -1080,
+                "b": -960,
+                "mean": 0.4377951388888889,
+                "area": 0,
+                "local": 0.953125,
+                "maximum": 2,
+                "peakPixel": [
+                  35,
+                  91
+                ],
+                "score": 0.5472439236111111
+              },
+              "peak": {
+                "a": -963.6328125,
+                "b": -963.515625,
+                "mean": 0.01407986111111111,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  0,
+                  1
+                ],
+                "score": 0.01759982638888889
+              },
+              "before": {
+                "a": -963.75,
+                "b": -963.6328125,
+                "mean": 0.0140625,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  93,
+                  0
+                ],
+                "score": 0.017578125
+              },
+              "after": {
+                "a": -963.515625,
+                "b": -963.3984375,
+                "mean": 0.014184027777777778,
+                "area": 0,
+                "local": 0.09375,
+                "maximum": 1,
+                "peakPixel": [
+                  113,
+                  0
+                ],
+                "score": 0.01773003472222222
+              },
+              "localized": false
+            }
+          ]
+        }
+      },
+      "repeat": {
+        "mean": 0,
+        "area": 0,
+        "local": 0,
+        "maximum": 0,
+        "peakPixel": [
+          0,
+          0
+        ],
+        "score": 0
+      },
+      "returned": {
+        "mean": 0,
+        "area": 0,
+        "local": 0,
+        "maximum": 0,
+        "peakPixel": [
+          0,
+          0
+        ],
+        "score": 0
+      },
+      "renderedTimes": 193,
+      "scene": "terrain-shadow",
+      "images": [
+        "golden-sunset"
+      ]
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "demoSha256": "caf13cc8937c7f4e7c8c3a21f0449cbeb9fe8c73fa033796c0dcd75e6a06fe4e",
+  "temporalSuspects": [],
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

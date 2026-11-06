@@ -1,4 +1,4 @@
-/* global Cesium, window, document, location, requestAnimationFrame, performance, queueMicrotask */
+/* global Cesium, window, document, location, queueMicrotask */
 import assert from "node:assert/strict";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
@@ -7,95 +7,18 @@ import path from "node:path";
 import process from "node:process";
 import { URL } from "node:url";
 import { runM1BrowserSuite } from "./m1-browser-harness.mjs";
-import { assertPhysicalGpu, classifyGpu } from "./m0-browser-config.mjs";
+import {
+  scenes,
+  services,
+  sourceOf,
+  settleReferenceScene,
+  initializeReferenceViewer,
+} from "./m5-reference-harness.mjs";
 
-const scenes = [
-  "orbit-day",
-  "sunrise",
-  "twilight",
-  "night",
-  "cloud-sea",
-  "inside-cloud",
-  "terrain-shadow",
-  "rapid-motion",
-];
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
-const services = {
-  elevation:
-    "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
-  imagery:
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
-};
-function sourceOf(url) {
-  const resource = new URL(url);
-  return Object.keys(services).find(
-    (key) =>
-      resource.origin + resource.pathname === services[key] ||
-      (resource.origin + resource.pathname).startsWith(`${services[key]}/`),
-  );
-}
-
-// Read the actual Viewer's live instance without replacing production code or options.
-async function attachViewer(page) {
-  const session = await page.context().newCDPSession(page);
-  try {
-    const prototype = await session.send("Runtime.evaluate", {
-      expression: "Cesium.Viewer.prototype",
-      objectGroup: "m5-viewer",
-    });
-    const { objects } = await session.send("Runtime.queryObjects", {
-      prototypeObjectId: prototype.result.objectId,
-      objectGroup: "m5-viewer",
-    });
-    const result = await session.send("Runtime.callFunctionOn", {
-      objectId: objects.objectId,
-      functionDeclaration:
-        "function () { const viewers = this.filter(viewer => !viewer.isDestroyed()); if (viewers.length !== 1) throw Error('Expected one reference viewer: ' + viewers.length); window.__referenceViewer = viewers[0]; }",
-    });
-    assert.equal(
-      result.exceptionDetails,
-      undefined,
-      JSON.stringify(result.exceptionDetails),
-    );
-    await session.send("Runtime.releaseObjectGroup", {
-      objectGroup: "m5-viewer",
-    });
-  } finally {
-    await session.detach();
-  }
-}
 
 async function sample(page, output, name, control) {
-  await page.evaluate(async () => {
-    const viewer = window.__referenceViewer;
-    const scene = viewer.scene;
-    let previous;
-    let stable = 0;
-    const start = performance.now();
-    while (performance.now() - start < 60000) {
-      await new Promise(requestAnimationFrame);
-      viewer.render();
-      const stats = scene.debugStatistics;
-      const draws = scene._renderer._draws.map(({ tile }) => [
-        tile.level,
-        tile.x,
-        tile.y,
-      ]);
-      const key = JSON.stringify([draws, stats.imagery.texturesCreated]);
-      const loaded =
-        scene.globe.tilesLoaded &&
-        (draws.length || location.hash === "#night") &&
-        !stats.imagery.pendingRequests;
-      stable = loaded && key === previous ? stable + 1 : 0;
-      if (stable >= 6) {
-        return;
-      }
-      previous = key;
-    }
-    throw new Error(
-      `Reference terrain did not settle: ${JSON.stringify(scene.debugStatistics)}`,
-    );
-  });
+  await settleReferenceScene(page);
   const { png, ...result } = await page.evaluate((control) => {
     const viewer = window.__referenceViewer;
     const { scene, camera } = viewer;
@@ -269,29 +192,7 @@ await runM1BrowserSuite(
       { timeout: 60000 },
     );
     assert.equal(await page.locator("#scene").inputValue(), "sunrise");
-    await attachViewer(page);
-    const adapter = await page.evaluate(() => {
-      const viewer = window.__referenceViewer;
-      const { _adapter, _device } = viewer.scene.context;
-      const { vendor, architecture, device, description, isFallbackAdapter } =
-        _adapter.info;
-      const adapterInfo = {
-        vendor,
-        architecture,
-        device,
-        description,
-        isFallbackAdapter,
-      };
-      window.__m1 = { adapterInfo, errors: [] };
-      _device.addEventListener("uncapturederror", (event) =>
-        window.__m1.errors.push(String(event.error)),
-      );
-      viewer.renderError.addEventListener((...args) =>
-        window.__m1.errors.push(String(args[1])),
-      );
-      return adapterInfo;
-    });
-    assertPhysicalGpu(classifyGpu(adapter), report.configuration);
+    await initializeReferenceViewer(page, report.configuration);
     assert.deepEqual(
       await page
         .locator("#scene option")

@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-06
-Current milestone: **M5 has started on the local reference-scenes branch.** Task 1 is complete: the [eight reference views](evidence/M5/reference-scenes/README.md) reproduced on Intel Xe-LPG, including the live Golden Gate terrain shadow and 61 camera poses. M5 stability, profiling and final regression remain pending. M4 is accepted on local `main`; its [A14/A15 evidence](evidence/M4/final-acceptance/README.md) remains the visual baseline for terrain lighting.
+Current milestone: **M5 tasks 1 and 2 are complete on local branches.** The [eight reference scenes](evidence/M5/reference-scenes/README.md) were used for [altitude and time continuity](evidence/M5/continuity/README.md). Two local transitions in the star field and sunset cloud lighting were fixed and verified on Intel Xe-LPG. The next M5 task covers motion stability and resource lifetime. Profiling and final regression remain pending. M4 A14/A15 are accepted on local `main`.
 
 M3 is complete. The user visually accepted all [five cloud enhancements](../tasks/M3.md#planned-visual-enhancements) on 2026-11-05, including [cloud evolution and morning light shafts](evidence/M3/evolution-and-mist/README.md), and authorized merging the changes to main.
 

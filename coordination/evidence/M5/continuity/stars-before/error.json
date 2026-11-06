@@ -1,0 +1,961 @@
+{
+  "suite": "m5-star-continuity",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T03:59:58.951Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "18e4c8a71cea5b9f5ba7f9675934827f722b19dd",
+  "sourceStatus": "M coordination/ci/m5-reference-scenes-smoke.mjs\n?? coordination/ci/m5-altitude-continuity.mjs\n?? coordination/ci/m5-flight-continuity.mjs\n?? coordination/ci/m5-reference-harness.mjs\n?? coordination/ci/m5-star-continuity.mjs\n?? coordination/ci/m5-time-continuity.mjs",
+  "bundleSha256": "3b09cc24a792207e8e8795df5e00c4126a21b1308a3941894dee40403085b146",
+  "browserErrors": [],
+  "checks": [],
+  "scenes": [
+    {
+      "slug": "night",
+      "start": "2026-03-03T11:30:12.15625Z",
+      "secondsPerTick": 0.015625,
+      "worst": 186,
+      "crossing": 7,
+      "pixel": [
+        221,
+        41
+      ],
+      "crossingRgb": [
+        [
+          185,
+          185,
+          186
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "samples": [
+        {
+          "tick": 1,
+          "maximum": 2,
+          "control": 1,
+          "visible": 72,
+          "bright": 47,
+          "brightest": 214,
+          "pixel": [
+            112,
+            51
+          ],
+          "on": [
+            [
+              54,
+              56,
+              58
+            ],
+            [
+              56,
+              57,
+              60
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 2,
+          "maximum": 2,
+          "control": 1,
+          "visible": 72,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            112,
+            51
+          ],
+          "on": [
+            [
+              56,
+              57,
+              60
+            ],
+            [
+              57,
+              59,
+              62
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 3,
+          "maximum": 2,
+          "control": 1,
+          "visible": 72,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            112,
+            51
+          ],
+          "on": [
+            [
+              57,
+              59,
+              62
+            ],
+            [
+              59,
+              60,
+              63
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 4,
+          "maximum": 2,
+          "control": 1,
+          "visible": 72,
+          "bright": 49,
+          "brightest": 214,
+          "pixel": [
+            112,
+            51
+          ],
+          "on": [
+            [
+              59,
+              60,
+              63
+            ],
+            [
+              60,
+              62,
+              65
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 5,
+          "maximum": 2,
+          "control": 1,
+          "visible": 74,
+          "bright": 49,
+          "brightest": 214,
+          "pixel": [
+            33,
+            11
+          ],
+          "on": [
+            [
+              10,
+              10,
+              9
+            ],
+            [
+              12,
+              11,
+              10
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 6,
+          "maximum": 143,
+          "control": 1,
+          "visible": 72,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            157,
+            36
+          ],
+          "on": [
+            [
+              130,
+              135,
+              143
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 7,
+          "maximum": 186,
+          "control": 1,
+          "visible": 72,
+          "bright": 47,
+          "brightest": 214,
+          "pixel": [
+            221,
+            41
+          ],
+          "on": [
+            [
+              185,
+              185,
+              186
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 8,
+          "maximum": 80,
+          "control": 1,
+          "visible": 74,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            35,
+            88
+          ],
+          "on": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              80,
+              75,
+              66
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 9,
+          "maximum": 12,
+          "control": 1,
+          "visible": 74,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            92,
+            80
+          ],
+          "on": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              12,
+              10,
+              8
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 10,
+          "maximum": 2,
+          "control": 1,
+          "visible": 74,
+          "bright": 48,
+          "brightest": 214,
+          "pixel": [
+            112,
+            51
+          ],
+          "on": [
+            [
+              68,
+              69,
+              73
+            ],
+            [
+              69,
+              71,
+              74
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 11,
+          "maximum": 2,
+          "control": 1,
+          "visible": 74,
+          "bright": 49,
+          "brightest": 214,
+          "pixel": [
+            33,
+            11
+          ],
+          "on": [
+            [
+              18,
+              17,
+              16
+            ],
+            [
+              20,
+              19,
+              18
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "tick": 12,
+          "maximum": 91,
+          "control": 1,
+          "visible": 74,
+          "bright": 51,
+          "brightest": 214,
+          "pixel": [
+            317,
+            146
+          ],
+          "on": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              90,
+              90,
+              91
+            ]
+          ],
+          "off": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "inside-cloud",
+      "start": "2026-03-20T18:15:38.1875Z",
+      "secondsPerTick": 0.015625,
+      "worst": 143,
+      "crossing": 4,
+      "pixel": [
+        141,
+        2
+      ],
+      "crossingRgb": [
+        [
+          44,
+          36,
+          24
+        ],
+        [
+          187,
+          175,
+          145
+        ],
+        [
+          44,
+          36,
+          24
+        ],
+        [
+          44,
+          36,
+          24
+        ]
+      ],
+      "samples": [
+        {
+          "tick": 1,
+          "maximum": 1,
+          "control": 1,
+          "visible": 58,
+          "bright": 42,
+          "brightest": 142,
+          "pixel": [
+            230,
+            13
+          ],
+          "on": [
+            [
+              170,
+              154,
+              118
+            ],
+            [
+              171,
+              154,
+              118
+            ]
+          ],
+          "off": [
+            [
+              42,
+              31,
+              19
+            ],
+            [
+              42,
+              31,
+              19
+            ]
+          ]
+        },
+        {
+          "tick": 2,
+          "maximum": 126,
+          "control": 1,
+          "visible": 57,
+          "bright": 41,
+          "brightest": 142,
+          "pixel": [
+            249,
+            8
+          ],
+          "on": [
+            [
+              169,
+              152,
+              114
+            ],
+            [
+              43,
+              33,
+              21
+            ]
+          ],
+          "off": [
+            [
+              43,
+              33,
+              21
+            ],
+            [
+              43,
+              33,
+              21
+            ]
+          ]
+        },
+        {
+          "tick": 3,
+          "maximum": 1,
+          "control": 1,
+          "visible": 57,
+          "bright": 41,
+          "brightest": 142,
+          "pixel": [
+            47,
+            46
+          ],
+          "on": [
+            [
+              90,
+              66,
+              33
+            ],
+            [
+              90,
+              66,
+              33
+            ]
+          ],
+          "off": [
+            [
+              26,
+              15,
+              11
+            ],
+            [
+              26,
+              15,
+              10
+            ]
+          ]
+        },
+        {
+          "tick": 4,
+          "maximum": 143,
+          "control": 1,
+          "visible": 59,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            141,
+            2
+          ],
+          "on": [
+            [
+              44,
+              36,
+              24
+            ],
+            [
+              187,
+              175,
+              145
+            ]
+          ],
+          "off": [
+            [
+              44,
+              36,
+              24
+            ],
+            [
+              44,
+              36,
+              24
+            ]
+          ]
+        },
+        {
+          "tick": 5,
+          "maximum": 2,
+          "control": 1,
+          "visible": 59,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            185,
+            59
+          ],
+          "on": [
+            [
+              18,
+              11,
+              7
+            ],
+            [
+              16,
+              10,
+              7
+            ]
+          ],
+          "off": [
+            [
+              16,
+              10,
+              7
+            ],
+            [
+              16,
+              10,
+              7
+            ]
+          ]
+        },
+        {
+          "tick": 6,
+          "maximum": 1,
+          "control": 1,
+          "visible": 59,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            117,
+            14
+          ],
+          "on": [
+            [
+              182,
+              161,
+              114
+            ],
+            [
+              182,
+              161,
+              113
+            ]
+          ],
+          "off": [
+            [
+              45,
+              33,
+              20
+            ],
+            [
+              45,
+              33,
+              20
+            ]
+          ]
+        },
+        {
+          "tick": 7,
+          "maximum": 1,
+          "control": 1,
+          "visible": 59,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            38,
+            25
+          ],
+          "on": [
+            [
+              130,
+              102,
+              56
+            ],
+            [
+              130,
+              102,
+              57
+            ]
+          ],
+          "off": [
+            [
+              46,
+              33,
+              19
+            ],
+            [
+              46,
+              33,
+              19
+            ]
+          ]
+        },
+        {
+          "tick": 8,
+          "maximum": 4,
+          "control": 1,
+          "visible": 59,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            35,
+            77
+          ],
+          "on": [
+            [
+              18,
+              10,
+              7
+            ],
+            [
+              14,
+              10,
+              7
+            ]
+          ],
+          "off": [
+            [
+              14,
+              10,
+              7
+            ],
+            [
+              14,
+              10,
+              7
+            ]
+          ]
+        },
+        {
+          "tick": 9,
+          "maximum": 54,
+          "control": 1,
+          "visible": 60,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            231,
+            27
+          ],
+          "on": [
+            [
+              41,
+              28,
+              16
+            ],
+            [
+              95,
+              74,
+              43
+            ]
+          ],
+          "off": [
+            [
+              41,
+              28,
+              16
+            ],
+            [
+              41,
+              28,
+              16
+            ]
+          ]
+        },
+        {
+          "tick": 10,
+          "maximum": 1,
+          "control": 1,
+          "visible": 60,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            138,
+            4
+          ],
+          "on": [
+            [
+              161,
+              141,
+              99
+            ],
+            [
+              161,
+              141,
+              98
+            ]
+          ],
+          "off": [
+            [
+              44,
+              35,
+              23
+            ],
+            [
+              44,
+              35,
+              23
+            ]
+          ]
+        },
+        {
+          "tick": 11,
+          "maximum": 1,
+          "control": 1,
+          "visible": 60,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            59,
+            8
+          ],
+          "on": [
+            [
+              159,
+              151,
+              127
+            ],
+            [
+              159,
+              151,
+              126
+            ]
+          ],
+          "off": [
+            [
+              45,
+              36,
+              23
+            ],
+            [
+              45,
+              36,
+              23
+            ]
+          ]
+        },
+        {
+          "tick": 12,
+          "maximum": 26,
+          "control": 1,
+          "visible": 61,
+          "bright": 43,
+          "brightest": 143,
+          "pixel": [
+            78,
+            56
+          ],
+          "on": [
+            [
+              16,
+              9,
+              7
+            ],
+            [
+              42,
+              24,
+              10
+            ]
+          ],
+          "off": [
+            [
+              16,
+              9,
+              7
+            ],
+            [
+              16,
+              9,
+              7
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "demoSha256": "caf13cc8937c7f4e7c8c3a21f0449cbeb9fe8c73fa033796c0dcd75e6a06fe4e",
+  "status": "FAIL",
+  "error": "AssertionError [ERR_ASSERTION]: night: star contribution changed by 186 display levels in 1/64 s",
+  "timedOut": false
+}

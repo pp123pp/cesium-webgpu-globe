@@ -1,0 +1,599 @@
+{
+  "suite": "m5-time-continuity",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T04:10:34.084Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "1a69ccd4bcb794ad286efcbe2df3a151eb5f02fc",
+  "sourceStatus": "M coordination/ci/m5-reference-scenes-smoke.mjs\n?? coordination/ci/m5-altitude-continuity.mjs\n?? coordination/ci/m5-flight-continuity.mjs\n?? coordination/ci/m5-reference-harness.mjs\n?? coordination/ci/m5-star-continuity.mjs\n?? coordination/ci/m5-time-continuity.mjs\n?? coordination/evidence/M5/continuity/",
+  "bundleSha256": "f066309ab78459c00f0c39da47124062485d8f309778b8acfe934a7a5b879c15",
+  "browserErrors": [],
+  "checks": [
+    "Focused time continuity: sunrise-distant-air."
+  ],
+  "scenes": [
+    {
+      "name": "sunrise-distant-air",
+      "center": "rise",
+      "anchor": "2026-03-20T05:55:01.857Z",
+      "samples": [
+        {
+          "offset": -270,
+          "utc": "2026-03-20T05:50:31.857Z",
+          "clearance": -0.01959791192447833
+        },
+        {
+          "offset": -225,
+          "utc": "2026-03-20T05:51:16.857Z",
+          "clearance": -0.01633337451188812
+        },
+        {
+          "offset": -180,
+          "utc": "2026-03-20T05:52:01.857Z",
+          "clearance": -0.013068077958331085
+        },
+        {
+          "offset": -135,
+          "utc": "2026-03-20T05:52:46.857Z",
+          "clearance": -0.00980205724667798
+        },
+        {
+          "offset": -90,
+          "utc": "2026-03-20T05:53:31.857Z",
+          "clearance": -0.006535347367781795
+        },
+        {
+          "offset": -45,
+          "utc": "2026-03-20T05:54:16.857Z",
+          "clearance": -0.0032679833199690048
+        },
+        {
+          "offset": 0,
+          "utc": "2026-03-20T05:55:01.857Z",
+          "clearance": -1.0831934654786934e-10
+        },
+        {
+          "offset": 45,
+          "utc": "2026-03-20T05:55:46.857Z",
+          "clearance": 0.003268567254982098
+        },
+        {
+          "offset": 90,
+          "utc": "2026-03-20T05:56:31.857Z",
+          "clearance": 0.006537683752145397
+        },
+        {
+          "offset": 135,
+          "utc": "2026-03-20T05:57:16.857Z",
+          "clearance": 0.009807314358998696
+        },
+        {
+          "offset": 180,
+          "utc": "2026-03-20T05:58:01.857Z",
+          "clearance": 0.013077424045971377
+        },
+        {
+          "offset": 225,
+          "utc": "2026-03-20T05:58:46.857Z",
+          "clearance": 0.016347977778530517
+        },
+        {
+          "offset": 270,
+          "utc": "2026-03-20T05:59:31.857Z",
+          "clearance": 0.0196189405171336
+        }
+      ],
+      "analysis": {
+        "color": {
+          "adjacent": [
+            {
+              "a": -270,
+              "b": -225,
+              "mean": 0.25243055555555555,
+              "area": 0,
+              "local": 0.9375,
+              "maximum": 1,
+              "peakPixel": [
+                150,
+                61
+              ],
+              "score": 0.3155381944444444
+            },
+            {
+              "a": -225,
+              "b": -180,
+              "mean": 0.24930555555555556,
+              "area": 0,
+              "local": 0.9375,
+              "maximum": 1,
+              "peakPixel": [
+                150,
+                61
+              ],
+              "score": 0.3116319444444444
+            },
+            {
+              "a": -180,
+              "b": -135,
+              "mean": 0.25197916666666664,
+              "area": 0,
+              "local": 0.953125,
+              "maximum": 1,
+              "peakPixel": [
+                150,
+                61
+              ],
+              "score": 0.3149739583333333
+            },
+            {
+              "a": -135,
+              "b": -90,
+              "mean": 0.2807118055555556,
+              "area": 0,
+              "local": 1,
+              "maximum": 1,
+              "peakPixel": [
+                150,
+                61
+              ],
+              "score": 0.35088975694444446
+            },
+            {
+              "a": -90,
+              "b": -45,
+              "mean": 0.29529513888888886,
+              "area": 0,
+              "local": 1,
+              "maximum": 1,
+              "peakPixel": [
+                150,
+                61
+              ],
+              "score": 0.36911892361111104
+            },
+            {
+              "a": -45,
+              "b": 0,
+              "mean": 0.25753472222222223,
+              "area": 0,
+              "local": 0.96875,
+              "maximum": 2,
+              "peakPixel": [
+                164,
+                61
+              ],
+              "score": 0.3219184027777778
+            },
+            {
+              "a": 0,
+              "b": 45,
+              "mean": 0.5975173611111111,
+              "area": 0.00125,
+              "local": 5.484375,
+              "maximum": 46,
+              "peakPixel": [
+                12,
+                63
+              ],
+              "score": 0.7468967013888889
+            },
+            {
+              "a": 45,
+              "b": 90,
+              "mean": 0.9136111111111112,
+              "area": 0.0010763888888888889,
+              "local": 6.40625,
+              "maximum": 20,
+              "peakPixel": [
+                167,
+                61
+              ],
+              "score": 1.1420138888888889
+            },
+            {
+              "a": 90,
+              "b": 135,
+              "mean": 1.2234201388888888,
+              "area": 0,
+              "local": 7.796875,
+              "maximum": 15,
+              "peakPixel": [
+                42,
+                63
+              ],
+              "score": 1.529275173611111
+            },
+            {
+              "a": 135,
+              "b": 180,
+              "mean": 1.636388888888889,
+              "area": 0,
+              "local": 8.890625,
+              "maximum": 13,
+              "peakPixel": [
+                47,
+                63
+              ],
+              "score": 2.045486111111111
+            },
+            {
+              "a": 180,
+              "b": 225,
+              "mean": 1.935138888888889,
+              "area": 0,
+              "local": 9.4375,
+              "maximum": 13,
+              "peakPixel": [
+                49,
+                64
+              ],
+              "score": 2.418923611111111
+            },
+            {
+              "a": 225,
+              "b": 270,
+              "mean": 2.270208333333333,
+              "area": 0,
+              "local": 10.046875,
+              "maximum": 12,
+              "peakPixel": [
+                53,
+                64
+              ],
+              "score": 2.8377604166666663
+            }
+          ],
+          "examined": [
+            {
+              "coarse": {
+                "a": 225,
+                "b": 270,
+                "mean": 2.270208333333333,
+                "area": 0,
+                "local": 10.046875,
+                "maximum": 12,
+                "peakPixel": [
+                  53,
+                  64
+                ],
+                "score": 2.8377604166666663
+              },
+              "peak": {
+                "a": 263.759765625,
+                "b": 263.84765625,
+                "mean": 0.009479166666666667,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  156,
+                  61
+                ],
+                "score": 0.011848958333333333
+              },
+              "before": {
+                "a": 263.671875,
+                "b": 263.759765625,
+                "mean": 0.009427083333333334,
+                "area": 0,
+                "local": 0.140625,
+                "maximum": 1,
+                "peakPixel": [
+                  163,
+                  61
+                ],
+                "score": 0.011783854166666666
+              },
+              "after": {
+                "a": 263.84765625,
+                "b": 263.935546875,
+                "mean": 0.008732638888888889,
+                "area": 0,
+                "local": 0.109375,
+                "maximum": 1,
+                "peakPixel": [
+                  161,
+                  61
+                ],
+                "score": 0.01091579861111111
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 180,
+                "b": 225,
+                "mean": 1.935138888888889,
+                "area": 0,
+                "local": 9.4375,
+                "maximum": 13,
+                "peakPixel": [
+                  49,
+                  64
+                ],
+                "score": 2.418923611111111
+              },
+              "peak": {
+                "a": 223.505859375,
+                "b": 223.59375,
+                "mean": 0.007881944444444445,
+                "area": 0,
+                "local": 0.140625,
+                "maximum": 1,
+                "peakPixel": [
+                  106,
+                  62
+                ],
+                "score": 0.009852430555555555
+              },
+              "before": {
+                "a": 223.41796875,
+                "b": 223.505859375,
+                "mean": 0.0075,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  79,
+                  62
+                ],
+                "score": 0.009375
+              },
+              "after": {
+                "a": 223.59375,
+                "b": 223.681640625,
+                "mean": 0.007291666666666667,
+                "area": 0,
+                "local": 0.109375,
+                "maximum": 1,
+                "peakPixel": [
+                  86,
+                  62
+                ],
+                "score": 0.009114583333333332
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 135,
+                "b": 180,
+                "mean": 1.636388888888889,
+                "area": 0,
+                "local": 8.890625,
+                "maximum": 13,
+                "peakPixel": [
+                  47,
+                  63
+                ],
+                "score": 2.045486111111111
+              },
+              "peak": {
+                "a": 176.1328125,
+                "b": 176.220703125,
+                "mean": 0.006649305555555556,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  152,
+                  61
+                ],
+                "score": 0.008311631944444444
+              },
+              "before": {
+                "a": 176.044921875,
+                "b": 176.1328125,
+                "mean": 0.006336805555555556,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  63,
+                  62
+                ],
+                "score": 0.007921006944444444
+              },
+              "after": {
+                "a": 176.220703125,
+                "b": 176.30859375,
+                "mean": 0.006076388888888889,
+                "area": 0,
+                "local": 0.109375,
+                "maximum": 1,
+                "peakPixel": [
+                  65,
+                  62
+                ],
+                "score": 0.007595486111111111
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 90,
+                "b": 135,
+                "mean": 1.2234201388888888,
+                "area": 0,
+                "local": 7.796875,
+                "maximum": 15,
+                "peakPixel": [
+                  42,
+                  63
+                ],
+                "score": 1.529275173611111
+              },
+              "peak": {
+                "a": 109.423828125,
+                "b": 109.51171875,
+                "mean": 0.0059722222222222225,
+                "area": 0,
+                "local": 0.140625,
+                "maximum": 1,
+                "peakPixel": [
+                  164,
+                  61
+                ],
+                "score": 0.007465277777777778
+              },
+              "before": {
+                "a": 109.3359375,
+                "b": 109.423828125,
+                "mean": 0.0053125,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  159,
+                  61
+                ],
+                "score": 0.006640625
+              },
+              "after": {
+                "a": 109.51171875,
+                "b": 109.599609375,
+                "mean": 0.0051736111111111115,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  67,
+                  62
+                ],
+                "score": 0.006467013888888889
+              },
+              "localized": false
+            },
+            {
+              "coarse": {
+                "a": 45,
+                "b": 90,
+                "mean": 0.9136111111111112,
+                "area": 0.0010763888888888889,
+                "local": 6.40625,
+                "maximum": 20,
+                "peakPixel": [
+                  167,
+                  61
+                ],
+                "score": 1.1420138888888889
+              },
+              "peak": {
+                "a": 84.375,
+                "b": 84.462890625,
+                "mean": 0.004184027777777778,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  69,
+                  62
+                ],
+                "score": 0.005230034722222222
+              },
+              "before": {
+                "a": 84.287109375,
+                "b": 84.375,
+                "mean": 0.004322916666666667,
+                "area": 0,
+                "local": 0.171875,
+                "maximum": 1,
+                "peakPixel": [
+                  60,
+                  62
+                ],
+                "score": 0.007161458333333333
+              },
+              "after": {
+                "a": 84.462890625,
+                "b": 84.55078125,
+                "mean": 0.0040625,
+                "area": 0,
+                "local": 0.125,
+                "maximum": 1,
+                "peakPixel": [
+                  155,
+                  61
+                ],
+                "score": 0.005208333333333333
+              },
+              "localized": false
+            }
+          ]
+        }
+      },
+      "repeat": {
+        "mean": 0,
+        "area": 0,
+        "local": 0,
+        "maximum": 0,
+        "peakPixel": [
+          0,
+          0
+        ],
+        "score": 0
+      },
+      "returned": {
+        "mean": 0,
+        "area": 0,
+        "local": 0,
+        "maximum": 0,
+        "peakPixel": [
+          0,
+          0
+        ],
+        "score": 0
+      },
+      "transport": {
+        "pixels": 37637,
+        "onOff": {
+          "mean": 41.545399305555556,
+          "area": 0.6533333333333333,
+          "local": 136.265625,
+          "maximum": 159,
+          "peakPixel": [
+            162,
+            61
+          ],
+          "score": 130.66666666666666
+        }
+      },
+      "renderedTimes": 63,
+      "scene": "sunrise",
+      "images": [
+        "sunrise-distant-air",
+        "sunrise-distant-air-vacuum"
+      ]
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "demoSha256": "caf13cc8937c7f4e7c8c3a21f0449cbeb9fe8c73fa033796c0dcd75e6a06fe4e",
+  "temporalSuspects": [],
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      320,
+      180
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}
