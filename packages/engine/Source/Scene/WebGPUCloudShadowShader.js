@@ -35,6 +35,23 @@ fn cloudShadowTransmission(surfaceWC: vec3f, ray: vec3f, steps: u32) -> f32 {
   }
   return exp(-tau);
 }
+
+fn cloudShadowSolarTransmission(surfaceWC: vec3f, sun: vec3f, angularRadius: f32) -> f32 {
+  let axis = select(vec3f(0.0, 1.0, 0.0), vec3f(0.0, 0.0, 1.0), abs(sun.z) < 0.9);
+  let right = normalize(cross(sun, axis));
+  let up = cross(right, sun);
+  // Three equally spaced samples at R/sqrt(2) match the disk's second moments.
+  let ring = tan(angularRadius) * 0.70710678;
+  let offsets = array<vec2f, 3>(
+    vec2f(1.0, 0.0), vec2f(-0.5, 0.8660254), vec2f(-0.5, -0.8660254));
+  var transmission = 0.0;
+  for (var i = 0u; i < 3u; i++) {
+    let offset = offsets[i];
+    let ray = normalize(sun + ring * (offset.x * right + offset.y * up));
+    transmission += cloudShadowTransmission(surfaceWC, ray, 12u);
+  }
+  return transmission / 3.0;
+}
 `;
 
 export default WebGPUCloudShadowShader;

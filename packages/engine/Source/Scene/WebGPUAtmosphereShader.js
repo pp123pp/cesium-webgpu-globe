@@ -276,7 +276,7 @@ fn terrainSurfaceLight(direction: vec3f, sceneDistance: f32, normal: vec3f, sunC
   if (sunCosine > 0.0) {
     // Completed mesh depth includes terrain height and tile skirts in world space.
     let receiver = planet.cameraHigh.xyz + fma(direction, vec3f(sceneDistance), planet.cameraLow.xyz);
-    direct *= cloudShadowTransmission(receiver, planet.sunDirectionWC.xyz, 12u);
+    direct *= cloudShadowSolarTransmission(receiver, planet.sunDirectionWC.xyz, atmosphere.sun.x);
     if (clouds.ambientShadows > 0.0) {
       // Overhead cloud opacity approximates obscured skylight. Preserve fill from
       // the rest of the hemisphere and fade the daylight response at twilight.
