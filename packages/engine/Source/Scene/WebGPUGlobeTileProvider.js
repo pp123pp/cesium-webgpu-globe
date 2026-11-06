@@ -329,7 +329,7 @@ class WebGPUGlobeTileProvider extends GlobeSurfaceTileProvider {
               return;
             }
             data.mesh = mesh;
-            data.gpu = this._renderer.createTile(mesh);
+            data.gpu = this._renderer.createTile(mesh, data.terrainData);
             data.fill = data.fill?.destroy();
             data.terrainState = TerrainState.READY;
             ++this.statistics.meshes;

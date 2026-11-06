@@ -17,14 +17,15 @@ struct CloudIntegral {
   lightSteps: u32,
 }
 
-fn cloudLightDepth(p: vec3f, footprint: f32, localExtinction: f32) -> f32 {
+const cloudLocalLightDistance = 75.0;
+
+fn cloudBankLightDepth(p: vec3f, footprint: f32) -> f32 {
   let count = u32(clouds.budget.y);
-  // Account for near-field self shadow before spreading samples over the bank.
-  var opticalDepth = localExtinction * 75.0;
-  var start = 75.0;
+  var opticalDepth = 0.0;
+  var start = cloudLocalLightDistance;
   for (var i = 1u; i <= count; i++) {
     let u = f32(i) / f32(count);
-    let end = 75.0 + 6325.0 * u * u * u;
+    let end = cloudLocalLightDistance + 6325.0 * u * u * u;
     let sampleP = p + planet.sunDirectionWC.xyz * ((start + end) * 0.5);
     opticalDepth += cloudDensity(sampleP, max(footprint, (end-start)*0.2), clouds.weather, clouds.shape) * (end - start);
     start = end;
@@ -45,6 +46,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
   let phase = mix(cloudPhase(cosine, -0.24), cloudPhase(cosine, 0.70), 0.70);
   let nonuniform = 0.8 * (1.0 - smoothstep(0.0, 18000.0, segment.x));
   var start = 0.0;
+  var reuseStep = 0u;
+  var bankDepth = 0.0;
   for (var i = 1u; i <= count; i++) {
     if (result.transmission < 0.008) { break; }
     result.primarySteps++;
@@ -78,8 +81,14 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
     let sunVisibility = smoothstep(-atmosphere.sun.x, atmosphere.sun.x, scaledMu - horizonMu);
     var diffuseEscape = 1.0;
     if (sunVisibility > 0.0) {
-      let tau = cloudLightDepth(p, footprint, localExtinction);
-      result.lightSteps += u32(clouds.budget.y);
+      // Align light marches across neighboring rays. An even step after
+      // empty space still needs its own light column.
+      if ((i & 1u) != 0u || i != reuseStep) {
+        bankDepth = cloudBankLightDepth(p, footprint);
+        result.lightSteps += u32(clouds.budget.y);
+        reuseStep = i + 1u;
+      }
+      let tau = localExtinction * cloudLocalLightDistance + bankDepth;
       // The existing light march also distinguishes exposed lobes from
       // pockets inside the bank. Keep a floor for diffuse skylight there.
       // The solar-depth contribution to ambient fill fades with the visible disk.

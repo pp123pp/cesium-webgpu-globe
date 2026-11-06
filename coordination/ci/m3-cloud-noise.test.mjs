@@ -1,10 +1,16 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { test } from "node:test";
 import createCloudNoise from "../../packages/engine/Source/Scene/WebGPUCloudNoise.js";
 
 test("cloud noise is repeatable RGBA8 with useful contrast in every band", () => {
   const { size, data } = createCloudNoise();
   assert.equal(data.length, size ** 3 * 4);
+  assert.equal(
+    createHash("sha256").update(data).digest("hex"),
+    "607a75cfd14ad77bcb4f84c5f46115822fde6967bd54fb802a27c1c62ea646ca",
+    "the baked texture preserves the accepted procedural field",
+  );
   assert.deepEqual(createCloudNoise().data, data);
   for (let channel = 0; channel < 4; ++channel) {
     const values = [];

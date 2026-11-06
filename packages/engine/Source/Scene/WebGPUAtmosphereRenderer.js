@@ -65,6 +65,7 @@ class WebGPUAtmosphereRenderer {
       bloomTextureBytes: 0,
       bloomWidth: 0,
       bloomHeight: 0,
+      cloudShadowTextureBytes: 0,
     };
     this.bloomStrength = 0.35;
     this.lensFlare = {
@@ -524,6 +525,8 @@ class WebGPUAtmosphereRenderer {
       this._cloudsShown && clouds.shadows !== false && surfaceLighting;
     if (this._cloudShadows) {
       this._activePipeline = this._cloudShadowPipeline(parameters.show);
+    } else if (this._shadowColumns) {
+      this._releaseShadowColumns();
     }
     this._sunShown = sun.show;
     this._lensValues.set([
@@ -654,8 +657,71 @@ class WebGPUAtmosphereRenderer {
     pass.end();
   }
 
+  _releaseShadowColumns() {
+    this._shadowColumns.destroy();
+    ++this.statistics.texturesDestroyed;
+    this.statistics.cloudShadowTextureBytes = 0;
+    this._shadowColumns = this._shadowDepth = this._shadowBindings = undefined;
+    this._boundPipeline = undefined;
+  }
+
+  _drawShadowColumns(encoder, depth) {
+    const width = Math.ceil(depth.width / 2);
+    const height = depth.height;
+    if (
+      this._shadowColumns &&
+      (width !== this._shadowColumns.width ||
+        height !== this._shadowColumns.height)
+    ) {
+      this._releaseShadowColumns();
+    }
+    if (!this._shadowColumns) {
+      this._shadowColumns = this._device.createTexture({
+        label: "M4 half-width terrain cloud transmittance",
+        size: [width, height],
+        format: "rg16float",
+        usage:
+          GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
+      });
+      ++this.statistics.texturesCreated;
+      this.statistics.cloudShadowTextureBytes = width * height * 4;
+    }
+    this._shadowColumnPipeline ??= this._device.createRenderPipeline({
+      label: "M4 terrain cloud transmittance",
+      layout: "auto",
+      vertex: { module: this._shadowModule, entryPoint: "atmosphereVertex" },
+      fragment: {
+        module: this._shadowModule,
+        entryPoint: "cloudShadowColumnsFragment",
+        targets: [{ format: "rg16float" }],
+      },
+    });
+    if (this._shadowDepth !== depth) {
+      this._shadowBindings = this._device.createBindGroup({
+        layout: this._shadowColumnPipeline.getBindGroupLayout(0),
+        entries: [
+          { binding: 0, resource: { buffer: this._planetBuffer } },
+          { binding: 1, resource: { buffer: this._parametersBuffer } },
+          { binding: 6, resource: depth.createView() },
+          ...this._cloudVolume.fieldEntries(),
+        ],
+      });
+      this._shadowDepth = depth;
+    }
+    this._drawFullscreenPass(
+      encoder,
+      this._shadowColumns,
+      this._shadowColumnPipeline,
+      this._shadowBindings,
+      "M4 half-width terrain cloud transmittance",
+    );
+  }
+
   _composite(encoder, target, color, depth) {
     this._ensurePostProcessTargets();
+    if (this._cloudShadows) {
+      this._drawShadowColumns(encoder, depth);
+    }
     if (this._bloomFinalDepth !== depth) {
       this._bloomFinalBindings = this._device.createBindGroup({
         layout: this._bloomFinalPipeline.getBindGroupLayout(0),
@@ -701,6 +767,10 @@ class WebGPUAtmosphereRenderer {
       }
       if (this._cloudShadows) {
         entries.push(...this._cloudVolume.fieldEntries());
+        entries.push({
+          binding: 20,
+          resource: this._shadowColumns.createView(),
+        });
       }
       this._bindings = this._device.createBindGroup({
         label: "M2 completed color/depth and active sky resources",
@@ -794,6 +864,9 @@ class WebGPUAtmosphereRenderer {
     this._destroyed = true;
     this._cloudVolume?.destroy();
     this._cloudVolume = undefined;
+    if (this._shadowColumns) {
+      this._releaseShadowColumns();
+    }
     this._solarAbort?.abort();
     for (const key of [
       "_planetBuffer",
@@ -844,6 +917,7 @@ class WebGPUAtmosphereRenderer {
     this._pipeline = undefined;
     this._sunPipeline = undefined;
     this._shadowModule = this._shadowPipelines = undefined;
+    this._shadowColumnPipeline = undefined;
     this._bloomExtractPipeline = undefined;
     this._bloomBlurPipeline = undefined;
     this._bloomFinalPipeline = undefined;

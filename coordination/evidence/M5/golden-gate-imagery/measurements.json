@@ -1,0 +1,253 @@
+{
+  "source": "43e6e6f6f2b787ab4085f95a15a3f0ad115aadd9",
+  "baseline": "b43861ed78e72ef63a0426f86672c9c5e6d5c5432d5ed8b4c572e7983bff161f",
+  "candidate": "364d7144261d7f31295c6c18d599a6a4859971c99a11dc65f8910e815a9a1ed4",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "browser": "156.0.8078.4",
+  "camera": {
+    "longitude": -122.489,
+    "latitude": 37.81130000000001,
+    "height": 1900.000000000349,
+    "heading": 312.99999999999994,
+    "pitch": -28.000000000000014,
+    "utc": "2026-03-20T20:00:00Z",
+    "size": [
+      1280,
+      720
+    ],
+    "terrain": "ArcGISTiledElevationTerrainProvider",
+    "source": "live"
+  },
+  "tileSelection": "7b506dd7ab0131f32b7e14171e61fdca9fe1a79a06fadc9f73c49d80e7744f00",
+  "order": [
+    "final-A1",
+    "final-B1",
+    "final-A2",
+    "final-B2",
+    "final-A3",
+    "final-B3",
+    "final-A4",
+    "final-B4"
+  ],
+  "byRun": {
+    "final-A1": {
+      "samples": 120,
+      "completedFPS": 30.54,
+      "rafFPS": 30,
+      "rafP95Ms": 50.3,
+      "completionP95Ms": 56.8,
+      "wallMeanMs": 33.02,
+      "wallP95Ms": 39.5,
+      "gpuMeanMs": 29.19,
+      "gpuP95Ms": 35.13,
+      "terrainImageryMeanMs": 12.65,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 88258560,
+      "compactDraws": 0,
+      "extraIndexBytes": 0,
+      "gridBuildMs": [
+        0
+      ]
+    },
+    "final-B1": {
+      "samples": 120,
+      "completedFPS": 41.6,
+      "rafFPS": 41.38,
+      "rafP95Ms": 33.9,
+      "completionP95Ms": 50.1,
+      "wallMeanMs": 26.44,
+      "wallP95Ms": 30.6,
+      "gpuMeanMs": 22.46,
+      "gpuP95Ms": 25.49,
+      "terrainImageryMeanMs": 4.75,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 11823864,
+      "compactDraws": 208,
+      "extraIndexBytes": 2040672,
+      "gridBuildMs": [
+        2.1
+      ]
+    },
+    "final-A2": {
+      "samples": 120,
+      "completedFPS": 28.5,
+      "rafFPS": 27.91,
+      "rafP95Ms": 66.7,
+      "completionP95Ms": 65.5,
+      "wallMeanMs": 33.57,
+      "wallP95Ms": 42.2,
+      "gpuMeanMs": 29.85,
+      "gpuP95Ms": 39.58,
+      "terrainImageryMeanMs": 12.74,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 88258560,
+      "compactDraws": 0,
+      "extraIndexBytes": 0,
+      "gridBuildMs": [
+        0
+      ]
+    },
+    "final-B2": {
+      "samples": 120,
+      "completedFPS": 35.53,
+      "rafFPS": 34.95,
+      "rafP95Ms": 50.2,
+      "completionP95Ms": 64.9,
+      "wallMeanMs": 38.48,
+      "wallP95Ms": 47.8,
+      "gpuMeanMs": 34.53,
+      "gpuP95Ms": 43.84,
+      "terrainImageryMeanMs": 5.6,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 11823864,
+      "compactDraws": 208,
+      "extraIndexBytes": 2040672,
+      "gridBuildMs": [
+        2.8
+      ]
+    },
+    "final-A3": {
+      "samples": 120,
+      "completedFPS": 26.68,
+      "rafFPS": 26.18,
+      "rafP95Ms": 66.7,
+      "completionP95Ms": 66.8,
+      "wallMeanMs": 32.23,
+      "wallP95Ms": 37.5,
+      "gpuMeanMs": 28.63,
+      "gpuP95Ms": 32.96,
+      "terrainImageryMeanMs": 12.5,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 88258560,
+      "compactDraws": 0,
+      "extraIndexBytes": 0,
+      "gridBuildMs": [
+        0
+      ]
+    },
+    "final-B3": {
+      "samples": 120,
+      "completedFPS": 42.04,
+      "rafFPS": 42.11,
+      "rafP95Ms": 33.9,
+      "completionP95Ms": 50,
+      "wallMeanMs": 24.14,
+      "wallP95Ms": 26.6,
+      "gpuMeanMs": 20.4,
+      "gpuP95Ms": 23.33,
+      "terrainImageryMeanMs": 4.45,
+      "imageryDraws": 221,
+      "terrainIndices": null,
+      "imageryIndices": null,
+      "compactDraws": null,
+      "extraIndexBytes": null,
+      "gridBuildMs": [
+        null
+      ]
+    },
+    "final-A4": {
+      "samples": 120,
+      "completedFPS": 31.31,
+      "rafFPS": 31.31,
+      "rafP95Ms": 66.6,
+      "completionP95Ms": 65.2,
+      "wallMeanMs": 36.11,
+      "wallP95Ms": 44.5,
+      "gpuMeanMs": 32.05,
+      "gpuP95Ms": 41.09,
+      "terrainImageryMeanMs": 13.86,
+      "imageryDraws": 221,
+      "terrainIndices": null,
+      "imageryIndices": null,
+      "compactDraws": null,
+      "extraIndexBytes": null,
+      "gridBuildMs": [
+        null
+      ]
+    },
+    "final-B4": {
+      "samples": 120,
+      "completedFPS": 38.65,
+      "rafFPS": 39.56,
+      "rafP95Ms": 50,
+      "completionP95Ms": 49.9,
+      "wallMeanMs": 32.39,
+      "wallP95Ms": 42.6,
+      "gpuMeanMs": 28.59,
+      "gpuP95Ms": 38.4,
+      "terrainImageryMeanMs": 5.18,
+      "imageryDraws": 221,
+      "terrainIndices": null,
+      "imageryIndices": null,
+      "compactDraws": null,
+      "extraIndexBytes": null,
+      "gridBuildMs": [
+        null
+      ]
+    }
+  },
+  "pooled": {
+    "A": {
+      "samples": 480,
+      "completedFPS": 29.14,
+      "rafFPS": 28.71,
+      "rafP95Ms": 66.6,
+      "completionP95Ms": 65.4,
+      "wallMeanMs": 33.73,
+      "wallP95Ms": 43.1,
+      "gpuMeanMs": 29.93,
+      "gpuP95Ms": 39.12,
+      "terrainImageryMeanMs": 12.94,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 88258560,
+      "compactDraws": 0,
+      "extraIndexBytes": 0,
+      "gridBuildMs": [
+        0,
+        0,
+        0,
+        null
+      ]
+    },
+    "B": {
+      "samples": 480,
+      "completedFPS": 39.27,
+      "rafFPS": 39.29,
+      "rafP95Ms": 50,
+      "completionP95Ms": 50.6,
+      "wallMeanMs": 30.36,
+      "wallP95Ms": 45.3,
+      "gpuMeanMs": 26.49,
+      "gpuP95Ms": 41.68,
+      "terrainImageryMeanMs": 4.99,
+      "imageryDraws": 221,
+      "terrainIndices": 5191680,
+      "imageryIndices": 11823864,
+      "compactDraws": 208,
+      "extraIndexBytes": 2040672,
+      "gridBuildMs": [
+        2.1,
+        2.8,
+        null,
+        null
+      ]
+    }
+  },
+  "controls": {
+    "full": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db",
+    "shadowsOff": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a",
+    "halfAlphaNoSkirts": "5a0bce48379057f249a13bb31ec1564b9a41ec8e5d8b4bea34d17cb9fc4ebbc1"
+  }
+}

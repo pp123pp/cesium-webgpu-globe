@@ -1,0 +1,233 @@
+{
+  "commit": "18e4c8a71cea5b9f5ba7f9675934827f722b19dd",
+  "adapter": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "browser": "156.0.8078.4",
+  "bundles": {
+    "A": {
+      "bytes": 16092671,
+      "gzipBytes": 2922013,
+      "sha256": "8a1cbdec0bfc1d9aed7fc0d5b3b74dac8669191688a197520b0de6046322c34d"
+    },
+    "D": {
+      "bytes": 16264641,
+      "gzipBytes": 3053782,
+      "sha256": "440a68006feaa6cc2a0b81dc290b954f4f6298bb13b06a1aaa41a7978c34daa1"
+    }
+  },
+  "runs": [
+    {
+      "name": "stratocumulus",
+      "samples": 480,
+      "rafFPS": 28.63,
+      "queueCompletionFPS": 28.63,
+      "rafP95Ms": 66.6,
+      "frameMeanMs": 42.02,
+      "frameP95Ms": 96.7,
+      "traceMeanMs": 16.27,
+      "reconstructionMeanMs": 1.43,
+      "variant": "A"
+    },
+    {
+      "name": "stratocumulus",
+      "samples": 480,
+      "rafFPS": 34.57,
+      "queueCompletionFPS": 34.67,
+      "rafP95Ms": 50.1,
+      "frameMeanMs": 29.85,
+      "frameP95Ms": 46.4,
+      "traceMeanMs": 10.47,
+      "reconstructionMeanMs": 0.72,
+      "variant": "D"
+    },
+    {
+      "name": "gap-with-cirrus",
+      "samples": 480,
+      "rafFPS": 41.08,
+      "queueCompletionFPS": 40.64,
+      "rafP95Ms": 50,
+      "frameMeanMs": 25.93,
+      "frameP95Ms": 37.7,
+      "traceMeanMs": 11.84,
+      "reconstructionMeanMs": 1.5,
+      "variant": "A"
+    },
+    {
+      "name": "gap-with-cirrus",
+      "samples": 480,
+      "rafFPS": 41.74,
+      "queueCompletionFPS": 41.51,
+      "rafP95Ms": 50,
+      "frameMeanMs": 23.62,
+      "frameP95Ms": 31.6,
+      "traceMeanMs": 10.49,
+      "reconstructionMeanMs": 1.25,
+      "variant": "D"
+    },
+    {
+      "name": "horizontal",
+      "samples": 480,
+      "rafFPS": 33.92,
+      "queueCompletionFPS": 33.52,
+      "rafP95Ms": 50.1,
+      "frameMeanMs": 31.78,
+      "frameP95Ms": 60.1,
+      "traceMeanMs": 10.73,
+      "reconstructionMeanMs": 2.19,
+      "variant": "A"
+    },
+    {
+      "name": "horizontal",
+      "samples": 480,
+      "rafFPS": 32.62,
+      "queueCompletionFPS": 32.82,
+      "rafP95Ms": 66.6,
+      "frameMeanMs": 31.1,
+      "frameP95Ms": 44.8,
+      "traceMeanMs": 9.69,
+      "reconstructionMeanMs": 2.08,
+      "variant": "D"
+    }
+  ],
+  "firstCloud": {
+    "A": {
+      "fresh-page": {
+        "samples": [
+          {
+            "cpuRenderMs": 26.19999998807907,
+            "renderToQueueDoneMs": 1510.0999999940395
+          },
+          {
+            "cpuRenderMs": 21.899999976158142,
+            "renderToQueueDoneMs": 1269.7999999821186
+          },
+          {
+            "cpuRenderMs": 18.299999982118607,
+            "renderToQueueDoneMs": 1138.5999999940395
+          }
+        ],
+        "medianCpuMs": 21.9,
+        "medianFrameMs": 1269.8
+      },
+      "rebuilt-on-same-page": {
+        "samples": [
+          {
+            "cpuRenderMs": 19.19999998807907,
+            "renderToQueueDoneMs": 78.69999998807907
+          },
+          {
+            "cpuRenderMs": 17.200000017881393,
+            "renderToQueueDoneMs": 89.7000000178814
+          },
+          {
+            "cpuRenderMs": 15.699999988079071,
+            "renderToQueueDoneMs": 55.29999998211861
+          }
+        ],
+        "medianCpuMs": 17.2,
+        "medianFrameMs": 78.7
+      }
+    },
+    "D": {
+      "fresh-page": {
+        "samples": [
+          {
+            "cpuRenderMs": 3.399999976158142,
+            "renderToQueueDoneMs": 1390.5
+          },
+          {
+            "cpuRenderMs": 3.800000011920929,
+            "renderToQueueDoneMs": 1133
+          },
+          {
+            "cpuRenderMs": 3.7999999821186066,
+            "renderToQueueDoneMs": 1196.5999999940395
+          }
+        ],
+        "medianCpuMs": 3.8,
+        "medianFrameMs": 1196.6
+      },
+      "rebuilt-on-same-page": {
+        "samples": [
+          {
+            "cpuRenderMs": 2.4000000059604645,
+            "renderToQueueDoneMs": 49
+          },
+          {
+            "cpuRenderMs": 2.2999999821186066,
+            "renderToQueueDoneMs": 52.19999998807907
+          },
+          {
+            "cpuRenderMs": 2.100000023841858,
+            "renderToQueueDoneMs": 42.60000002384186
+          }
+        ],
+        "medianCpuMs": 2.3,
+        "medianFrameMs": 49
+      }
+    }
+  },
+  "noiseMedianMs": {
+    "A": {
+      "cold": {
+        "loadAndExecuteMs": 408.7999999821186,
+        "fetchMs": 96.59999999403954,
+        "afterResponseMs": 309.19999998807907,
+        "ScriptDurationMs": 246.664,
+        "V8CompileDurationMs": 0.031,
+        "noiseCpuMs": 18.900000005960464,
+        "textureCreateMs": 0.19999998807907104,
+        "writeCallMs": 0.20000001788139343,
+        "queueCompletionMs": 1.699999988079071,
+        "writeThroughCompletionMs": 2,
+        "noiseThroughUploadMs": 21.30000001192093
+      },
+      "warm": {
+        "loadAndExecuteMs": 399.2000000178814,
+        "fetchMs": 87.10000002384186,
+        "afterResponseMs": 311.2000000178814,
+        "ScriptDurationMs": 249.802,
+        "V8CompileDurationMs": 0.031,
+        "noiseCpuMs": 18.5,
+        "textureCreateMs": 0.09999999403953552,
+        "writeCallMs": 0.20000001788139343,
+        "queueCompletionMs": 1.5,
+        "writeThroughCompletionMs": 1.699999988079071,
+        "noiseThroughUploadMs": 20.299999982118607
+      }
+    },
+    "D": {
+      "cold": {
+        "loadAndExecuteMs": 413.59999999403954,
+        "fetchMs": 92.40000000596046,
+        "afterResponseMs": 323.09999999403954,
+        "ScriptDurationMs": 254.454,
+        "V8CompileDurationMs": 0.033,
+        "noiseCpuMs": 1.4000000059604645,
+        "textureCreateMs": 0,
+        "writeCallMs": 0.20000001788139343,
+        "queueCompletionMs": 1.2999999821186066,
+        "writeThroughCompletionMs": 1.5,
+        "noiseThroughUploadMs": 2.9000000059604645
+      },
+      "warm": {
+        "loadAndExecuteMs": 414.5,
+        "fetchMs": 86,
+        "afterResponseMs": 326.89999997615814,
+        "ScriptDurationMs": 260.346,
+        "V8CompileDurationMs": 0.036000000000000004,
+        "noiseCpuMs": 1.4000000059604645,
+        "textureCreateMs": 0.09999999403953552,
+        "writeCallMs": 0.20000001788139343,
+        "queueCompletionMs": 1.0999999940395355,
+        "writeThroughCompletionMs": 1.399999976158142,
+        "noiseThroughUploadMs": 2.800000011920929
+      }
+    }
+  }
+}

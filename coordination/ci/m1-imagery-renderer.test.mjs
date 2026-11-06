@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import HeightmapTerrainData from "../../packages/engine/Source/Core/HeightmapTerrainData.js";
+import WebMercatorTilingScheme from "../../packages/engine/Source/Core/WebMercatorTilingScheme.js";
 import WebGPUGlobeRenderer from "../../packages/engine/Source/Scene/WebGPUGlobeRenderer.js";
 import TextureMinificationFilter from "../../packages/engine/Source/Renderer/TextureMinificationFilter.js";
 import TextureMagnificationFilter from "../../packages/engine/Source/Renderer/TextureMagnificationFilter.js";
@@ -31,6 +33,55 @@ test("image upload failure destroys its texture and restores memory accounting",
   assert.equal(renderer.statistics.texturesCreated, renderer.statistics.texturesDestroyed);
   renderer.destroy();
   assert.equal(destroys(), 1);
+});
+
+test("a partial high-latitude imagery tile retains every contributing heightmap triangle and skirt", (t) => {
+  const width = 65;
+  const height = 41;
+  const terrain = new HeightmapTerrainData({ width, height, buffer: new Uint16Array(width * height) });
+  const mesh = terrain._createMeshSync({ tilingScheme: new WebMercatorTilingScheme(), x: 1, y: 0, level: 2 });
+  const previousUsage = globalThis.GPUBufferUsage;
+  globalThis.GPUBufferUsage = { VERTEX: 1, INDEX: 2 };
+  t.after(() => { globalThis.GPUBufferUsage = previousUsage; });
+  const renderer = new WebGPUGlobeRenderer({});
+  renderer._device = { createBuffer({ size }) {
+    const bytes = new ArrayBuffer(size);
+    return { size, bytes, getMappedRange: () => bytes, unmap() {}, destroy() {} };
+  } };
+  const tile = renderer.createTile(mesh, terrain);
+  t.after(() => tile.destroy());
+  const rectangle = { x: 0.25, y: 0.25, z: 0.5, w: 0.5 };
+  const grid = tile.imageryGrid;
+  const cell = renderer._imageryCell(grid, rectangle, 1);
+  assert.ok(cell, "native Mercator T fits the selected grid cell");
+  assert.equal(renderer._imageryCell(grid, rectangle, 0), undefined, "geographic V covers different rows");
+  assert.equal(renderer._imageryCell(grid, rectangle, 3), undefined, "per-fragment reprojection uses full indices");
+  const IndexArray = mesh.indices.constructor;
+  const packed = new IndexArray(grid.shared.buffer.bytes, cell.firstIndex * IndexArray.BYTES_PER_ELEMENT, cell.indexCount);
+  assert.ok(packed.length < mesh.indices.length);
+  assert.deepEqual(packed.subarray(cell.indexCountWithoutSkirts), mesh.indices.subarray(mesh.indexCountWithoutSkirts));
+
+  const uv = [];
+  for (let i = 0; i < mesh.vertices.length / mesh.encoding.stride; ++i) {
+    uv.push([
+      mesh.encoding.decodeTextureCoordinates(mesh.vertices, i).x,
+      mesh.encoding.decodeWebMercatorT(mesh.vertices, i),
+    ]);
+  }
+  let cursor = 0;
+  for (let i = 0; i < mesh.indices.length; i += 3) {
+    const tri = mesh.indices.subarray(i, i + 3);
+    const next = packed.subarray(cursor, cursor + 3);
+    if (tri.every((index, j) => next[j] === index)) {
+      cursor += 3;
+      continue;
+    }
+    assert.ok(tri.every((index) => uv[index][0] < rectangle.x) ||
+      tri.every((index) => uv[index][0] > rectangle.z) ||
+      tri.every((index) => uv[index][1] < rectangle.y) ||
+      tri.every((index) => uv[index][1] > rectangle.w), `triangle ${i / 3} intersects the imagery coverage`);
+  }
+  assert.equal(cursor, packed.length, "retained triangles follow their original order");
 });
 
 test("native layer minification and magnification filters select a shared matching sampler", () => {

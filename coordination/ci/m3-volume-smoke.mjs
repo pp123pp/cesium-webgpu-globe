@@ -1,4 +1,4 @@
-/* global Cesium, window, document, GPUBufferUsage, GPUMapMode */
+/* global Cesium, window, document, performance, requestAnimationFrame, GPUBufferUsage, GPUMapMode */
 import assert from "node:assert/strict";
 import { Buffer } from "node:buffer";
 import { createHash } from "node:crypto";
@@ -71,6 +71,14 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     );
   };
   const time = async (name, motion = false) => {
+    if (process.argv.includes("--cadence")) {
+      assert.ok(process.argv.includes("--cloud-types"), "--cadence uses fixed cloud-type views");
+      const row = await measureVisibleCadence(page, report.cadence === undefined);
+      (report.cadence ??= []).push({ name, ...row });
+      if (!process.argv.includes("--profile")) {
+        return;
+      }
+    }
     const row = await measureCloudPass(page, motion);
     report.timings.push({ name, ...row });
     if (process.argv.includes("--profile")) {
@@ -88,6 +96,66 @@ await runM1BrowserSuite("m3-volume", async ({ page, report, output }) => {
     }
   };
   report.timings = [];
+  if (process.argv.includes("--first-cloud")) {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    Object.assign(report.fixture, {
+      viewport: [1280, 720],
+      terrain: "Native bounded ellipsoid terrain",
+      capture: "Fixed camera and UTC, clouds off and visible. PNGs are captured on separate renders outside timing intervals.",
+    });
+    report.firstCloud = [];
+    for (const renderer of ["fresh-page", "rebuilt-on-same-page"]) {
+      if (renderer === "rebuilt-on-same-page") {
+        await destroyM1Scene(page);
+        await installM1Scene(page, { baseLayer: false });
+        assert.deepEqual(await page.evaluate(() => window.__m1.adapterInfo), identity);
+        await installFixture(page);
+      }
+      await page.evaluate(() => {
+        window.__m1.viewer.scene.clouds.show = false;
+        window.__m1.viewer.resize();
+      });
+      await settle(at(9500, -9, 0, 0, 247));
+      const off = await frame(`${renderer}-off`, {
+        date: "2026-03-20T16:30:00Z",
+        config: { coverage: 0.58, quality: "medium", windSpeed: 0 },
+      });
+      const timings = await page.evaluate(async () => {
+        const { viewer } = window.__m1;
+        const { scene } = viewer;
+        const { queue } = scene.context._device;
+        if (scene._atmosphere._cloudVolume) {
+          throw new Error("Cloud resources already exist before first enable");
+        }
+        await queue.onSubmittedWorkDone();
+        scene.clouds.show = true;
+        const rows = [];
+        for (let i = 0; i < 9; i++) {
+          const before = window.__volume.passCounts();
+          const start = performance.now();
+          viewer.render();
+          const cpuRenderMs = performance.now() - start;
+          await queue.onSubmittedWorkDone();
+          const renderToQueueDoneMs = performance.now() - start;
+          const after = window.__volume.passCounts();
+          if (after.trace - before.trace !== 1 || after.reconstruction - before.reconstruction !== 1) {
+            throw new Error("Expected one tracing and one reconstruction pass for the visible cloud");
+          }
+          rows.push({ cpuRenderMs, renderToQueueDoneMs });
+        }
+        return { first: rows[0], subsequent: rows.slice(1) };
+      });
+      const visible = await frame(`${renderer}-visible`);
+      assert.equal(visible.cloudPasses, 1);
+      assert.equal(visible.reconstructionPasses, 1);
+      assert.notEqual(visible.sha256, off.sha256);
+      assert.ok(visible.difference.changedPixels > 1000);
+      report.firstCloud.push({ renderer, ...timings });
+    }
+    report.checks.push("Two fresh viewers render visible clouds at the same pose; one uses the original page and one is recreated on that page. Browser/driver caches are uncontrolled.");
+    report.cleanup = await destroyM1Scene(page);
+    return;
+  }
   if (process.argv.includes("--clear-coverage")) {
     await settle(at(9500, -9, 0, 0, 247));
     const off = await frame("clouds-off", { config: { show: false } });
@@ -755,6 +823,7 @@ async function installFixture(page) {
     window.__volume = {
       terrain: viewer.terrainProvider,
       setView,
+      passCounts: () => ({ trace: cloudPasses, reconstruction: reconstructionPasses }),
       frame({ view, config, date, seconds = 0, exposure, lens, atmosphere }) {
         if (view) {
           setView(view);
@@ -963,6 +1032,68 @@ async function recordOptics(page, report, name) {
   return row;
 }
 
+async function measureVisibleCadence(page, measureIdle) {
+  await page.bringToFront();
+  return page.evaluate(async (measureIdle) => {
+    const { viewer } = window.__m1;
+    const queue = viewer.scene.context._device.queue;
+    const warmup = 20;
+    const samples = 120;
+    let wasHidden = document.hidden;
+    const visibilityChanged = () => {
+      wasHidden ||= document.hidden;
+    };
+    document.addEventListener("visibilitychange", visibilityChanged);
+    const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
+    const distribution = (times) => {
+      const intervals = times.slice(1).map((t, i) => t - times[i]);
+      const sorted = [...intervals].sort((a, b) => a - b);
+      const meanMs = intervals.reduce((sum, ms) => sum + ms, 0) / intervals.length;
+      return { samplesMs: intervals, meanMs, p95Ms: sorted[Math.ceil(sorted.length * 0.95) - 1],
+        fps: 1000 / meanMs };
+    };
+    const run = async (render) => {
+      const rAF = [], renderReturned = [], gpuCallbacks = [], completions = [];
+      await queue.onSubmittedWorkDone();
+      for (let i = -warmup; i <= samples; i++) {
+        const tick = await nextFrame();
+        if (wasHidden || document.hidden) {
+          throw new Error("Cadence measurement requires a continuously visible page");
+        }
+        if (render) {
+          viewer.render();
+        }
+        if (i >= 0) {
+          rAF.push(tick);
+          if (render) {
+            renderReturned.push(performance.now());
+            // Observe completion without stalling the next rAF or reading back the GPU.
+            completions.push(queue.onSubmittedWorkDone().then(() => {
+              gpuCallbacks[i] = performance.now();
+            }));
+          }
+        }
+      }
+      await Promise.all(completions);
+      if (wasHidden || document.hidden) {
+        throw new Error("Page became hidden before GPU work completed");
+      }
+      return render
+        ? { rAF: distribution(rAF), renderReturned: distribution(renderReturned),
+          queueCompletionCallbacks: distribution(gpuCallbacks) }
+        : distribution(rAF);
+    };
+    try {
+      const idleRAF = measureIdle ? await run(false) : undefined;
+      const rendered = await run(true);
+      return { warmup, samples, idleRAF, ...rendered, method:
+        "Fixed pose and clock. No per-frame waits, query timestamps or pixel readback. Idle rAF estimates browser/display scheduling ceiling. Render-return intervals measure CPU submission cadence; queue callbacks also include browser notification latency. Actual displayed FPS is unmeasured." };
+    } finally {
+      document.removeEventListener("visibilitychange", visibilityChanged);
+    }
+  }, measureIdle);
+}
+
 async function measureCloudPass(page, motion) {
   const profile = process.argv.includes("--profile");
   return page.evaluate(async ({ motion, warmup, samples }) => {
@@ -1015,7 +1146,10 @@ async function measureCloudPass(page, motion) {
     const samplesMs = [];
     const traceMs = [];
     const reconstructionMs = [];
+    const cpuRenderMs = [];
+    const renderToQueueDoneMs = [];
     try {
+      await device.queue.onSubmittedWorkDone();
       for (let i = -warmup; i < samples; i++) {
         if (motion) {
           window.__volume.setView({
@@ -1028,7 +1162,11 @@ async function measureCloudPass(page, motion) {
         }
         traceCount = 0;
         reconstructionCount = 0;
+        const start = performance.now();
         viewer.render();
+        const renderMs = performance.now() - start;
+        await device.queue.onSubmittedWorkDone();
+        const frameMs = performance.now() - start;
         if (
           traceCount !== 1 ||
           reconstructionCount !== (scene.clouds.quality === "high" ? 0 : 1)
@@ -1053,6 +1191,8 @@ async function measureCloudPass(page, motion) {
           throw new Error("Invalid cloud GPU timestamp interval");
         }
         if (i >= 0) {
+          cpuRenderMs.push(renderMs);
+          renderToQueueDoneMs.push(frameMs);
           traceMs.push(trace);
           if (reconstructionCount) {
             reconstructionMs.push(reconstruction);
@@ -1079,6 +1219,11 @@ async function measureCloudPass(page, motion) {
         passes: {
           trace: distribution(traceMs),
           reconstruction: distribution(reconstructionMs),
+        },
+        frame: {
+          cpuRender: distribution(cpuRenderMs),
+          renderToQueueDone: distribution(renderToQueueDoneMs),
+          method: "Serialized viewer.render() through queue completion. Includes host scheduling; excludes timestamp resolution, mapped readback, presentation and PNG capture.",
         },
         viewport: [viewer.canvas.width, viewer.canvas.height],
         clouds: { ...scene._atmosphere.statistics.clouds },

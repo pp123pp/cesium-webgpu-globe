@@ -1,0 +1,82 @@
+{
+  "baseline": "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\baseline-diagnosis",
+  "candidate": "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\final-B1",
+  "size": [
+    1280,
+    720
+  ],
+  "RGB8": {
+    "mae": 0.012709780092592592,
+    "p99": 1.0,
+    "peak": 1,
+    "changedPixels": 33669,
+    "pixelsWithChannelDeltaAtLeast4": 0
+  },
+  "worstRgb32x32": {
+    "xywh": [
+      988,
+      616,
+      32,
+      32
+    ],
+    "mean": 0.046875000000002665
+  },
+  "candidateOff": "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\final-B1\\shadows-off.png",
+  "offRGB8": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "peak": 0,
+    "changedPixels": 0,
+    "pixelsWithChannelDeltaAtLeast4": 0
+  },
+  "shadowSignal": {
+    "mask": "baseline shadow-off luma minus full luma >= 3 on 8-bit displayed RGB",
+    "pixels": 433237,
+    "baselineMean": 11.001633317098953,
+    "candidateMean": 11.01265344603531,
+    "relativeSignedBias": 0.0010016811703066082,
+    "normalizedMAE": 0.002127796677854107,
+    "correlation": 0.9997852096963692,
+    "absoluteDeltaP99": 0.7151999999999998,
+    "absoluteDeltaPeak": 1.0000000000000036,
+    "worst32x32": {
+      "xywh": [
+        544,
+        93,
+        32,
+        32
+      ],
+      "mean": 0.052616992187499906
+    }
+  },
+  "baselineRepeatRGB8": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "peak": 0,
+    "changedPixels": 0,
+    "pixelsWithChannelDeltaAtLeast4": 0
+  },
+  "pngSha256": {
+    "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\baseline-diagnosis\\full.png": "1f4179430edfa3aebfb96f998669f5a2f3abba27ba9793c4138716e24ffd553c",
+    "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\baseline-diagnosis\\shadows-off.png": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a",
+    "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\final-B1\\full.png": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db",
+    "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\final-B1\\shadows-off.png": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a",
+    "Build\\golden-gate-profile\\final-B2\\full.png": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db",
+    "Build\\golden-gate-profile\\final-B2\\shadows-off.png": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a"
+  },
+  "repeatCandidate": "D:\\github\\cesium-webgpu-globe\\Build\\golden-gate-profile\\final-B2",
+  "repeatFullRGB8": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "peak": 0,
+    "changedPixels": 0,
+    "pixelsWithChannelDeltaAtLeast4": 0
+  },
+  "repeatOffRGB8": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "peak": 0,
+    "changedPixels": 0,
+    "pixelsWithChannelDeltaAtLeast4": 0
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "source": "43e6e6f6f2b787ab4085f95a15a3f0ad115aadd9",
+  "browser": "156.0.8078.4",
+  "gpu": {
+    "vendor": "intel",
+    "architecture": "xe-lpg",
+    "device": "",
+    "description": "",
+    "isFallbackAdapter": false
+  },
+  "camera": {
+    "longitude": -122.489,
+    "latitude": 37.81130000000001,
+    "height": 1900.000000000349,
+    "heading": 312.99999999999994,
+    "pitch": -28.000000000000014,
+    "utc": "2026-03-20T20:00:00Z",
+    "size": [
+      1280,
+      720
+    ],
+    "terrain": "ArcGISTiledElevationTerrainProvider",
+    "source": "live"
+  },
+  "bundle": {
+    "A": "5757d01f98e9f48f0948de9ec76e28c64aa1cf645575322082ea0809b9798282",
+    "B": "b43861ed78e72ef63a0426f86672c9c5e6d5c5432d5ed8b4c572e7983bff161f"
+  },
+  "tileSelection": "7b506dd7ab0131f32b7e14171e61fdca9fe1a79a06fadc9f73c49d80e7744f00",
+  "archived": {
+    "elevation": 137,
+    "imagery": 728
+  },
+  "diagnostics": {
+    "baseline-diagnosis": [
+      {
+        "mode": "full",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 28.12,
+        "completedFPS": 27.91,
+        "rafP95": 50.1,
+        "completionP95": 61.5,
+        "gpuMean": 38.44,
+        "gpuP95": 50.2,
+        "wallMean": 42.02,
+        "wallP95": 53.9,
+        "passMeanMs": {
+          "terrain and imagery": 15.14,
+          "M2 atmosphere and Sun scene-linear HDR composite": 20.79,
+          "M3 volumetric clouds": 1.08,
+          "M2.6 HDR bloom threshold and downsample": 0.16,
+          "M2.6 HDR bloom normalized single-scale blur": 0.01,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.25
+        }
+      },
+      {
+        "mode": "shadows-off",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 45,
+        "completedFPS": 45.13,
+        "rafP95": 33.4,
+        "completionP95": 41,
+        "gpuMean": 20.71,
+        "gpuP95": 22.02,
+        "wallMean": 24.17,
+        "wallP95": 26.2,
+        "passMeanMs": {
+          "terrain and imagery": 12.58,
+          "M2 atmosphere and Sun scene-linear HDR composite": 6.47,
+          "M3 volumetric clouds": 1.17,
+          "M2.6 HDR bloom threshold and downsample": 0.12,
+          "M2.6 HDR bloom normalized single-scale blur": 0,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.21
+        }
+      },
+      {
+        "mode": "first-imagery",
+        "draws": {
+          "terrain": 13,
+          "imagery": 13,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 44.45,
+        "completedFPS": 43.89,
+        "rafP95": 33.4,
+        "completionP95": 47.1,
+        "gpuMean": 21.76,
+        "gpuP95": 23.92,
+        "wallMean": 24.9,
+        "wallP95": 26.9,
+        "passMeanMs": {
+          "terrain and imagery": 3.06,
+          "M2 atmosphere and Sun scene-linear HDR composite": 16.87,
+          "M3 volumetric clouds": 0.89,
+          "M2.6 HDR bloom threshold and downsample": 0.14,
+          "M2.6 HDR bloom normalized single-scale blur": 0.01,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.22
+        }
+      },
+      {
+        "mode": "imagery-off",
+        "draws": {
+          "terrain": 13,
+          "imagery": 0,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 46.75,
+        "completedFPS": 46.53,
+        "rafP95": 33.4,
+        "completionP95": 44,
+        "gpuMean": 20.78,
+        "gpuP95": 22.54,
+        "wallMean": 23.61,
+        "wallP95": 26,
+        "passMeanMs": {
+          "terrain and imagery": 1.9,
+          "M2 atmosphere and Sun scene-linear HDR composite": 16.94,
+          "M3 volumetric clouds": 0.89,
+          "M2.6 HDR bloom threshold and downsample": 0.14,
+          "M2.6 HDR bloom normalized single-scale blur": 0.02,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.23
+        }
+      },
+      {
+        "mode": "full-repeat",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 30.13,
+        "completedFPS": 30.13,
+        "rafP95": 50.2,
+        "completionP95": 62.2,
+        "gpuMean": 31.83,
+        "gpuP95": 36.31,
+        "wallMean": 35.55,
+        "wallP95": 39.1,
+        "passMeanMs": {
+          "terrain and imagery": 12.5,
+          "M2 atmosphere and Sun scene-linear HDR composite": 17.36,
+          "M3 volumetric clouds": 0.93,
+          "M2.6 HDR bloom threshold and downsample": 0.15,
+          "M2.6 HDR bloom normalized single-scale blur": 0.01,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.25
+        }
+      }
+    ],
+    "baseline-reverse": [
+      {
+        "mode": "full",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 30.25,
+        "completedFPS": 30.4,
+        "rafP95": 66.7,
+        "completionP95": 66.9,
+        "gpuMean": 31.67,
+        "gpuP95": 35.98,
+        "wallMean": 35.29,
+        "wallP95": 40.1,
+        "passMeanMs": {
+          "terrain and imagery": 12.51,
+          "M2 atmosphere and Sun scene-linear HDR composite": 17.24,
+          "M3 volumetric clouds": 0.94,
+          "M2.6 HDR bloom threshold and downsample": 0.11,
+          "M2.6 HDR bloom normalized single-scale blur": 0.01,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.23
+        }
+      },
+      {
+        "mode": "first-imagery",
+        "draws": {
+          "terrain": 13,
+          "imagery": 13,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 41.38,
+        "completedFPS": 41.91,
+        "rafP95": 33.5,
+        "completionP95": 35.3,
+        "gpuMean": 22.35,
+        "gpuP95": 24.38,
+        "wallMean": 25.24,
+        "wallP95": 27.3,
+        "passMeanMs": {
+          "terrain and imagery": 3,
+          "M2 atmosphere and Sun scene-linear HDR composite": 17.57,
+          "M3 volumetric clouds": 0.93,
+          "M2.6 HDR bloom threshold and downsample": 0.1,
+          "M2.6 HDR bloom normalized single-scale blur": 0.01,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.2
+        }
+      },
+      {
+        "mode": "shadows-off",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 46.45,
+        "completedFPS": 46.12,
+        "rafP95": 33.5,
+        "completionP95": 48.5,
+        "gpuMean": 24.08,
+        "gpuP95": 30.47,
+        "wallMean": 27.56,
+        "wallP95": 34.5,
+        "passMeanMs": {
+          "terrain and imagery": 14.51,
+          "M2 atmosphere and Sun scene-linear HDR composite": 7.68,
+          "M3 volumetric clouds": 1.42,
+          "M2.6 HDR bloom threshold and downsample": 0.1,
+          "M2.6 HDR bloom normalized single-scale blur": 0.02,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.21
+        }
+      },
+      {
+        "mode": "full-repeat",
+        "draws": {
+          "terrain": 13,
+          "imagery": 221,
+          "triangles": 1730560
+        },
+        "cadenceSamples": 120,
+        "rafFPS": 31.58,
+        "completedFPS": 31.41,
+        "rafP95": 50.1,
+        "completionP95": 66.5,
+        "gpuMean": 33.78,
+        "gpuP95": 39.39,
+        "wallMean": 37.22,
+        "wallP95": 42.6,
+        "passMeanMs": {
+          "terrain and imagery": 13.2,
+          "M2 atmosphere and Sun scene-linear HDR composite": 18.58,
+          "M3 volumetric clouds": 1,
+          "M2.6 HDR bloom threshold and downsample": 0.12,
+          "M2.6 HDR bloom normalized single-scale blur": 0.02,
+          "M2.6 HDR bloom composition, ACES and sRGB output": 0.21
+        }
+      }
+    ]
+  },
+  "orders": {
+    "final-A1": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 120,
+      "rafFPS": 30,
+      "completedFPS": 29.97,
+      "rafP95": 50.6,
+      "completionP95": 67.3,
+      "gpuMean": 32.52,
+      "gpuP95": 37.03,
+      "wallMean": 35.98,
+      "wallP95": 39.8,
+      "passMeanMs": {
+        "terrain and imagery": 13.01,
+        "M2 atmosphere and Sun scene-linear HDR composite": 17.59,
+        "M3 volumetric clouds": 0.94,
+        "M2.6 HDR bloom threshold and downsample": 0.12,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.23
+      }
+    },
+    "final-B1": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 120,
+      "rafFPS": 32.58,
+      "completedFPS": 33.16,
+      "rafP95": 66.6,
+      "completionP95": 65.4,
+      "gpuMean": 28.2,
+      "gpuP95": 32.11,
+      "wallMean": 31.96,
+      "wallP95": 36.5,
+      "passMeanMs": {
+        "terrain and imagery": 12.1,
+        "M4 half-width terrain cloud transmittance": 4.22,
+        "M2 atmosphere and Sun scene-linear HDR composite": 10.18,
+        "M3 volumetric clouds": 0.92,
+        "M2.6 HDR bloom threshold and downsample": 0.09,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.19
+      }
+    },
+    "final-A2": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 120,
+      "rafFPS": 29.15,
+      "completedFPS": 29.47,
+      "rafP95": 50.2,
+      "completionP95": 66.3,
+      "gpuMean": 32.92,
+      "gpuP95": 38.54,
+      "wallMean": 36.67,
+      "wallP95": 43.9,
+      "passMeanMs": {
+        "terrain and imagery": 12.94,
+        "M2 atmosphere and Sun scene-linear HDR composite": 18.08,
+        "M3 volumetric clouds": 0.95,
+        "M2.6 HDR bloom threshold and downsample": 0.12,
+        "M2.6 HDR bloom normalized single-scale blur": 0.02,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.22
+      }
+    },
+    "final-B2": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 120,
+      "rafFPS": 33.65,
+      "completedFPS": 33.7,
+      "rafP95": 50.4,
+      "completionP95": 59.2,
+      "gpuMean": 31.5,
+      "gpuP95": 38.93,
+      "wallMean": 35.24,
+      "wallP95": 41.9,
+      "passMeanMs": {
+        "terrain and imagery": 13.76,
+        "M4 half-width terrain cloud transmittance": 4.69,
+        "M2 atmosphere and Sun scene-linear HDR composite": 11.14,
+        "M3 volumetric clouds": 1.02,
+        "M2.6 HDR bloom threshold and downsample": 0.1,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.21
+      }
+    },
+    "final-A3": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 120,
+      "rafFPS": 26.37,
+      "completedFPS": 26.13,
+      "rafP95": 66.8,
+      "completionP95": 83.5,
+      "gpuMean": 36.86,
+      "gpuP95": 56.69,
+      "wallMean": 40.53,
+      "wallP95": 59.8,
+      "passMeanMs": {
+        "terrain and imagery": 14.27,
+        "M2 atmosphere and Sun scene-linear HDR composite": 20.42,
+        "M3 volumetric clouds": 1.11,
+        "M2.6 HDR bloom threshold and downsample": 0.13,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.23
+      }
+    }
+  },
+  "pooled": {
+    "A": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 360,
+      "rafFPS": 28.42,
+      "completedFPS": 28.42,
+      "rafP95": 66.7,
+      "completionP95": 68.4,
+      "gpuMean": 34.1,
+      "gpuP95": 40.96,
+      "wallMean": 37.73,
+      "wallP95": 45.3,
+      "passMeanMs": {
+        "terrain and imagery": 13.41,
+        "M2 atmosphere and Sun scene-linear HDR composite": 18.7,
+        "M3 volumetric clouds": 1,
+        "M2.6 HDR bloom threshold and downsample": 0.12,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.23
+      }
+    },
+    "B": {
+      "draws": {
+        "terrain": 13,
+        "imagery": 221,
+        "triangles": 1730560
+      },
+      "cadenceSamples": 240,
+      "rafFPS": 33.1,
+      "completedFPS": 33.43,
+      "rafP95": 50.5,
+      "completionP95": 65.4,
+      "gpuMean": 29.85,
+      "gpuP95": 36.18,
+      "wallMean": 33.6,
+      "wallP95": 40.4,
+      "passMeanMs": {
+        "terrain and imagery": 12.93,
+        "M4 half-width terrain cloud transmittance": 4.46,
+        "M2 atmosphere and Sun scene-linear HDR composite": 10.66,
+        "M3 volumetric clouds": 0.97,
+        "M2.6 HDR bloom threshold and downsample": 0.1,
+        "M2.6 HDR bloom normalized single-scale blur": 0.01,
+        "M2.6 HDR bloom composition, ACES and sRGB output": 0.2
+      }
+    }
+  }
+}

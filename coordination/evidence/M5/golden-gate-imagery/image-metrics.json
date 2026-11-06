@@ -1,0 +1,135 @@
+{
+  "bundleSHA256": {
+    "final-A1": "b43861ed78e72ef63a0426f86672c9c5e6d5c5432d5ed8b4c572e7983bff161f",
+    "final-B1": "364d7144261d7f31295c6c18d599a6a4859971c99a11dc65f8910e815a9a1ed4",
+    "final-B2": "364d7144261d7f31295c6c18d599a6a4859971c99a11dc65f8910e815a9a1ed4"
+  },
+  "identicalCameraSelectedTerrainImageryAndDemo": true,
+  "pathsRelativeTo": "Build/golden-imagery-profile",
+  "size": [
+    1280,
+    720
+  ],
+  "images": {
+    "full": {
+      "captures": {
+        "final-A1": {
+          "file": "final-A1/full.png",
+          "sha256": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db"
+        },
+        "final-B1": {
+          "file": "final-B1/full.png",
+          "sha256": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db"
+        },
+        "final-B2": {
+          "file": "final-B2/full.png",
+          "sha256": "fbfaf46d4275fe382d028ba38a48ca38cd2fdfcc4f20d0dc90c99b715facc8db"
+        }
+      },
+      "A1_vs_B1": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "A1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "B1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      }
+    },
+    "shadows-off": {
+      "captures": {
+        "final-A1": {
+          "file": "final-A1/shadows-off.png",
+          "sha256": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a"
+        },
+        "final-B1": {
+          "file": "final-B1/shadows-off.png",
+          "sha256": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a"
+        },
+        "final-B2": {
+          "file": "final-B2/shadows-off.png",
+          "sha256": "de090f1136ba3d6abcf16b3ab5c4a25a1feda06fd3ac4f19d1dd9d751bbb148a"
+        }
+      },
+      "A1_vs_B1": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "A1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "B1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      }
+    },
+    "satellite-half-alpha-no-skirts": {
+      "captures": {
+        "final-A1": {
+          "file": "final-A1/satellite-half-alpha-no-skirts.png",
+          "sha256": "5a0bce48379057f249a13bb31ec1564b9a41ec8e5d8b4bea34d17cb9fc4ebbc1"
+        },
+        "final-B1": {
+          "file": "final-B1/satellite-half-alpha-no-skirts.png",
+          "sha256": "5a0bce48379057f249a13bb31ec1564b9a41ec8e5d8b4bea34d17cb9fc4ebbc1"
+        },
+        "final-B2": {
+          "file": "final-B2/satellite-half-alpha-no-skirts.png",
+          "sha256": "5a0bce48379057f249a13bb31ec1564b9a41ec8e5d8b4bea34d17cb9fc4ebbc1"
+        }
+      },
+      "A1_vs_B1": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "A1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      },
+      "B1_vs_B2": {
+        "changedRGBPixels": 0,
+        "rgbMAE": 0.0,
+        "maxRGBDelta": 0,
+        "p99RGBDelta": 0.0,
+        "alphaChangedPixels": 0,
+        "boundingBoxXYXYInclusive": null
+      }
+    }
+  }
+}

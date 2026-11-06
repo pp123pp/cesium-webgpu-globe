@@ -1,4 +1,5 @@
 import { Matrix4, RuntimeError, WebMercatorProjection } from "@cesium/core";
+import HeightmapTerrainData from "../Core/HeightmapTerrainData.js";
 import TextureMinificationFilter from "../Renderer/TextureMinificationFilter.js";
 import TextureMagnificationFilter from "../Renderer/TextureMagnificationFilter.js";
 import WebGPUDepth from "../Renderer/WebGPUDepth.js";
@@ -77,6 +78,7 @@ class WebGPUGlobeRenderer {
     this._draws = [];
     this._textures = new Set();
     this._samplers = new Map();
+    this._imageryGrids = new Map();
     this._destroyed = false;
     this._matrix = new Matrix4();
     this.statistics = {
@@ -89,6 +91,11 @@ class WebGPUGlobeRenderer {
       texturesDestroyed: 0,
       textureBytes: 0,
       imageryDrawCalls: 0,
+      imageryTriangles: 0,
+      imageryGridDrawCalls: 0,
+      imageryGridBuffers: 0,
+      imageryGridBytes: 0,
+      imageryGridBuildMs: 0,
     };
   }
 
@@ -255,7 +262,7 @@ class WebGPUGlobeRenderer {
     }
   }
 
-  createTile(mesh) {
+  createTile(mesh, terrainData) {
     const decoded = decodeTerrainMesh(mesh);
     let indices = decoded.indices;
     if (indices instanceof Uint8Array) {
@@ -279,10 +286,16 @@ class WebGPUGlobeRenderer {
       this._destroyBuffer(vertex);
       throw error;
     }
+    const imageryGrid =
+      terrainData instanceof HeightmapTerrainData &&
+      terrainData.createMesh === HeightmapTerrainData.prototype.createMesh
+        ? this._acquireImageryGrid(mesh, decoded.vertices)
+        : undefined;
     let destroyed = false;
     return {
       vertex,
       index,
+      imageryGrid,
       indexFormat: indices instanceof Uint32Array ? "uint32" : "uint16",
       indexCount: indices.length,
       indexCountWithoutSkirts: mesh.indexCountWithoutSkirts,
@@ -292,9 +305,97 @@ class WebGPUGlobeRenderer {
           destroyed = true;
           this._destroyBuffer(vertex);
           this._destroyBuffer(index);
+          if (imageryGrid) {
+            this._releaseImageryGrid(imageryGrid.shared);
+          }
         }
       },
     };
+  }
+
+  _acquireImageryGrid(mesh, vertices) {
+    const width = mesh.southIndicesEastToWest.length;
+    const height = mesh.westIndicesSouthToNorth.length;
+    if (
+      width < 33 ||
+      height < 33 ||
+      mesh.indexCountWithoutSkirts !== (width - 1) * (height - 1) * 6
+    ) {
+      return undefined;
+    }
+    const started = performance.now();
+    let shared = this._imageryGrids.get(mesh.indices);
+    if (!shared) {
+      shared = createImageryGrid(mesh, width, height);
+      this._imageryGrids.set(mesh.indices, shared);
+    }
+    ++shared.references;
+    // Native heightmap U depends only on column, V and Mercator T only on row.
+    // The decoded attributes include the same quantization as the vertex shader.
+    const cells = shared.cells.map((cell) => ({
+      cell,
+      west: cell.left === 0 ? -Infinity : vertices[cell.left * 6 + 3],
+      east: cell.right === width - 1 ? Infinity : vertices[cell.right * 6 + 3],
+      north: cell.top === 0 ? Infinity : vertices[cell.top * width * 6 + 4],
+      south:
+        cell.bottom === height - 1
+          ? -Infinity
+          : vertices[cell.bottom * width * 6 + 4],
+      northT: cell.top === 0 ? Infinity : vertices[cell.top * width * 6 + 5],
+      southT:
+        cell.bottom === height - 1
+          ? -Infinity
+          : vertices[cell.bottom * width * 6 + 5],
+    }));
+    this.statistics.imageryGridBuildMs += performance.now() - started;
+    return { shared, cells };
+  }
+
+  _releaseImageryGrid(shared) {
+    if (--shared.references === 0) {
+      this._imageryGrids.delete(shared.indices);
+      if (shared.buffer) {
+        --this.statistics.imageryGridBuffers;
+        this.statistics.imageryGridBytes -= shared.buffer.size;
+        this._destroyBuffer(shared.buffer);
+      }
+    }
+  }
+
+  _imageryCell(grid, rectangle, mode) {
+    if (!grid || mode === 3) {
+      return undefined;
+    }
+    // Keep the discarded geometry strictly beyond the fragment boundary even
+    // after f32 interpolation. Tile-exterior edges have infinite bounds.
+    const margin = 0.00001;
+    for (const bounds of grid.cells) {
+      const north = mode === 1 ? bounds.northT : bounds.north;
+      const south = mode === 1 ? bounds.southT : bounds.south;
+      if (
+        rectangle.x > bounds.west + margin &&
+        rectangle.z < bounds.east - margin &&
+        rectangle.y > south + margin &&
+        rectangle.w < north - margin
+      ) {
+        const shared = grid.shared;
+        if (!shared.buffer) {
+          const started = performance.now();
+          const indices = packImageryGrid(shared);
+          shared.buffer = this._createBuffer(
+            indices.byteLength,
+            GPUBufferUsage.INDEX,
+            indices,
+            "Heightmap imagery cells",
+          );
+          ++this.statistics.imageryGridBuffers;
+          this.statistics.imageryGridBytes += shared.buffer.size;
+          this.statistics.imageryGridBuildMs += performance.now() - started;
+        }
+        return bounds.cell;
+      }
+    }
+    return undefined;
   }
 
   createImageryTexture(image) {
@@ -393,6 +494,8 @@ class WebGPUGlobeRenderer {
     this.statistics.drawCalls = 0;
     this.statistics.triangles = 0;
     this.statistics.imageryDrawCalls = 0;
+    this.statistics.imageryTriangles = 0;
+    this.statistics.imageryGridDrawCalls = 0;
   }
 
   addTile(tile, rectangle) {
@@ -568,6 +671,8 @@ class WebGPUGlobeRenderer {
             : 3
           : 2
         : 0;
+      const gpu = tile.data.gpu ?? tile.data.fill?.vertexArray;
+      draws[i].cell = this._imageryCell(gpu.imageryGrid, rectangle, mode);
       let south = 0;
       let inverseHeight = 1;
       let terrainSouth = 0;
@@ -635,7 +740,7 @@ class WebGPUGlobeRenderer {
         : this._imagePipelineNoCull,
     );
     for (let i = 0; i < draws.length; ++i) {
-      const { tile, image, drawIndex } = draws[i];
+      const { tile, image, drawIndex, cell } = draws[i];
       const texture = image.texture;
       const sampler = this._getSampler(image.imageryLayer);
       if (
@@ -660,11 +765,18 @@ class WebGPUGlobeRenderer {
       pass.setBindGroup(0, this._tileBindings, [drawIndex * stride]);
       pass.setBindGroup(1, texture.bindings, [i * stride]);
       pass.setVertexBuffer(0, gpu.vertex);
-      pass.setIndexBuffer(gpu.index, gpu.indexFormat);
-      pass.drawIndexed(
-        scene.globe.showSkirts ? gpu.indexCount : gpu.indexCountWithoutSkirts,
+      const range = cell ?? gpu;
+      const count = scene.globe.showSkirts
+        ? range.indexCount
+        : range.indexCountWithoutSkirts;
+      pass.setIndexBuffer(
+        cell ? gpu.imageryGrid.shared.buffer : gpu.index,
+        gpu.indexFormat,
       );
+      pass.drawIndexed(count, 1, cell?.firstIndex ?? 0);
       ++this.statistics.imageryDrawCalls;
+      this.statistics.imageryTriangles += (count ?? 0) / 3;
+      this.statistics.imageryGridDrawCalls += Number(cell !== undefined);
     }
   }
 
@@ -688,6 +800,66 @@ class WebGPUGlobeRenderer {
       this._draws.length = 0;
     }
   }
+}
+
+function createImageryGrid(mesh, width, height) {
+  const cells = [];
+  const bodyCount = (height - 1) * (width - 1) * 6;
+  const skirtCount = mesh.indices.length - bodyCount;
+  let length = 0;
+  for (let row = 0; row < 4; ++row) {
+    for (let column = 0; column < 4; ++column) {
+      // One overlapping grid cell retains boundary triangles on both sides.
+      const left = Math.max(0, Math.floor((column * (width - 1)) / 4) - 1);
+      const right = Math.min(
+        width - 1,
+        Math.ceil(((column + 1) * (width - 1)) / 4) + 1,
+      );
+      const top = Math.max(0, Math.floor((row * (height - 1)) / 4) - 1);
+      const bottom = Math.min(
+        height - 1,
+        Math.ceil(((row + 1) * (height - 1)) / 4) + 1,
+      );
+      const indexCountWithoutSkirts = (right - left) * (bottom - top) * 6;
+      const indexCount = indexCountWithoutSkirts + skirtCount;
+      cells.push({
+        left,
+        right,
+        top,
+        bottom,
+        firstIndex: length,
+        indexCount,
+        indexCountWithoutSkirts,
+      });
+      length += indexCount;
+    }
+  }
+  return {
+    indices: mesh.indices,
+    width,
+    bodyCount,
+    cells,
+    length,
+    references: 0,
+  };
+}
+
+function packImageryGrid(shared) {
+  const { indices, width, cells, bodyCount } = shared;
+  const IndexArray = indices.constructor;
+  const packed = new IndexArray(shared.length);
+  for (const cell of cells) {
+    let offset = cell.firstIndex;
+    for (let row = cell.top; row < cell.bottom; ++row) {
+      const first = (row * (width - 1) + cell.left) * 6;
+      const count = (cell.right - cell.left) * 6;
+      packed.set(indices.subarray(first, first + count), offset);
+      offset += count;
+    }
+    // Keep every native skirt and preserve its original relative draw order.
+    packed.set(indices.subarray(bodyCount), offset);
+  }
+  return packed;
 }
 
 export default WebGPUGlobeRenderer;

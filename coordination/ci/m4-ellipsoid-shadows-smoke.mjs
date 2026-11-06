@@ -224,6 +224,24 @@ await runM1BrowserSuite(
     const advected = await distance("initial", "later-advected");
     report.motion = { seconds, offsetDegrees, fixed, advected };
     assert.ok(fixed > 0.5 && advected < fixed, JSON.stringify(report.motion));
+    await page.setViewportSize({ width: 321, height: 181 });
+    report.shadowResize = await page.evaluate(() => {
+      const { viewer } = window.__m1;
+      viewer.resize();
+      viewer.render();
+      const { scene, canvas } = viewer;
+      const active = scene.debugStatistics.atmosphere.cloudShadowTextureBytes;
+      scene.clouds.shadows = false;
+      viewer.render();
+      return {
+        size: [canvas.width, canvas.height],
+        active,
+        disabled: scene.debugStatistics.atmosphere.cloudShadowTextureBytes,
+      };
+    });
+    assert.deepEqual(report.shadowResize, {
+      size: [321, 181], active: 161 * 181 * 4, disabled: 0,
+    });
     assert.deepEqual(await page.evaluate(() => window.__m1.errors), []);
     assert.deepEqual(report.browserConsole, []);
     report.checks.push(

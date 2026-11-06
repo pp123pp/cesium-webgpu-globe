@@ -271,7 +271,7 @@ fn atmosphereTerrainGeometry(direction: vec3f, sceneDistance: f32) -> vec4f {
 }
 
 ${cloudShadowShader ?? ""}
-fn terrainSurfaceLight(direction: vec3f, sceneDistance: f32, normal: vec3f, sunCosine: f32, directTransmittance: vec3f) -> vec3f {
+fn terrainSurfaceLight(pixel: vec2i, direction: vec3f, sceneDistance: f32, normal: vec3f, sunCosine: f32, directTransmittance: vec3f) -> vec3f {
   // Lambert irradiance is continuous at the terminator. Normalize the existing
   // scene irradiance convention (10 at default daylight), not the visible disk.
   var ambient = 0.025;
@@ -280,22 +280,16 @@ fn terrainSurfaceLight(direction: vec3f, sceneDistance: f32, normal: vec3f, sunC
     cloudShadowShader
       ? `
   if (sunCosine > 0.0) {
-    // Completed mesh depth includes terrain height and tile skirts in world space.
-    let receiver = planet.cameraHigh.xyz + fma(direction, vec3f(sceneDistance), planet.cameraLow.xyz);
-    direct *= cloudShadowSolarTransmission(receiver, planet.sunDirectionWC.xyz, atmosphere.sun.x);
-    if (clouds.ambientShadows > 0.0) {
-      // Overhead cloud opacity approximates obscured skylight. Preserve fill from
-      // the rest of the hemisphere and fade the daylight response at twilight.
-      let sky = cloudShadowTransmission(receiver, normal, 8u);
-      ambient *= 1.0 - 0.6 * (1.0 - sky) * smoothstep(0.0, 0.15, sunCosine);
-    }
+    let transmission = cloudShadowResolve(pixel, direction, sceneDistance, normal);
+    direct *= transmission.x;
+    ambient *= 1.0 - 0.6 * (1.0 - transmission.y) * smoothstep(0.0, 0.15, sunCosine);
   }`
       : ""
   }
   return vec3f(ambient) + direct;
 }
 
-fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
+fn atmosphereTerrainLighting(pixel: vec2i, direction: vec3f, sceneDistance: f32) -> vec3f {
   if (atmosphere.exposure.y == 0.0) { return vec3f(1.0); }
   let surface = atmosphereTerrainGeometry(direction, sceneDistance);
   if (surface.w < 0.0) { return vec3f(1.0); }
@@ -304,17 +298,17 @@ fn atmosphereTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
   if (sunCosine > 0.0) {
     directTransmittance = atmosphereSunTransmittance(surface.w, sunCosine);
   }
-  return terrainSurfaceLight(direction, sceneDistance, surface.xyz, sunCosine, directTransmittance);
+  return terrainSurfaceLight(pixel, direction, sceneDistance, surface.xyz, sunCosine, directTransmittance);
 }
 
 // The atmosphere-disabled entry point deliberately avoids the transmittance
 // LUT binding, preserving the cold Sun-only pipeline before LUT allocation.
-fn sunOnlyTerrainLighting(direction: vec3f, sceneDistance: f32) -> vec3f {
+fn sunOnlyTerrainLighting(pixel: vec2i, direction: vec3f, sceneDistance: f32) -> vec3f {
   if (atmosphere.exposure.y == 0.0) { return vec3f(1.0); }
   let surface = atmosphereTerrainGeometry(direction, sceneDistance);
   if (surface.w < 0.0) { return vec3f(1.0); }
   let sunCosine = max(dot(surface.xyz, planet.sunDirectionWC.xyz), 0.0);
-  return terrainSurfaceLight(direction, sceneDistance, surface.xyz, sunCosine, vec3f(1.0));
+  return terrainSurfaceLight(pixel, direction, sceneDistance, surface.xyz, sunCosine, vec3f(1.0));
 }
 
 // Long grazing paths can produce a saturated, one-pixel limb/horizon band after
@@ -368,7 +362,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let surfaceLighting = atmosphereTerrainLighting(direction, sceneDistance);
+  let surfaceLighting = atmosphereTerrainLighting(coordinate, direction, sceneDistance);
   let atmosphereComposite = background * surfaceLighting * transport.transmittance + transport.radiance;
   let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
   let linear = (stars + solar + moon) * transport.transmittance +
@@ -391,7 +385,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let solar = sunRadiance(direction, coordinate, pixelWidth, transport.transmittance);
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let surfaceLighting = atmosphereTerrainLighting(direction, sceneDistance);
+  let surfaceLighting = atmosphereTerrainLighting(coordinate, direction, sceneDistance);
   let atmosphereComposite = background * surfaceLighting * transport.transmittance + transport.radiance;
   let balancedAtmosphere = atmosphereLongPathBalance(atmosphereComposite, transport.transmittance);
   let linear = (stars + solar + moon) * transport.transmittance +
@@ -413,7 +407,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let surfaceLighting = sunOnlyTerrainLighting(direction, sceneDistance);
+  let surfaceLighting = sunOnlyTerrainLighting(coordinate, direction, sceneDistance);
   let linear = source.rgb * surfaceLighting + solar + moon + stars + moonTerrain;
   return atmosphereDisplayOutput(linear);
 }
@@ -430,7 +424,7 @@ fn atmosphereDisplayOutput(linear: vec3f) -> vec4f {
   let moon = moonRadiance(direction, coordinate, pixelWidth);
   let stars = select(vec3f(0.0), starRadiance(direction, pixelWidth), sceneDistance < 0.0);
   let moonTerrain = moonTerrainLight(direction, sceneDistance);
-  let surfaceLighting = sunOnlyTerrainLighting(direction, sceneDistance);
+  let surfaceLighting = sunOnlyTerrainLighting(coordinate, direction, sceneDistance);
   return vec4f(source.rgb * surfaceLighting + solar + moon + stars + moonTerrain, 1.0);
 }
 `;

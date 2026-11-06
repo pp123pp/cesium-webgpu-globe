@@ -1,6 +1,6 @@
 import { DeveloperError } from "@cesium/core";
 import WebGPUCloudLayer from "./WebGPUCloudLayer.js";
-import createCloudNoise from "./WebGPUCloudNoise.js";
+import decodeCloudNoise from "./WebGPUCloudNoise.js";
 import WebGPUCloudVolumeShader from "./WebGPUCloudVolumeShader.js";
 
 const budgets = new Map([
@@ -29,7 +29,7 @@ class WebGPUCloudVolume {
       size: this.values.byteLength,
       usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     });
-    const { size, data } = createCloudNoise();
+    const { size, data } = decodeCloudNoise();
     this.texture = this.device.createTexture({
       label: "M3 periodic cloud noise",
       dimension: "3d",

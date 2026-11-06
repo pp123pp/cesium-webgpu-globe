@@ -52,6 +52,67 @@ fn cloudShadowSolarTransmission(surfaceWC: vec3f, sun: vec3f, angularRadius: f32
   }
   return transmission / 3.0;
 }
+
+@group(0) @binding(20) var shadowColumns: texture_2d<f32>;
+
+fn cloudShadowAtReceiver(direction: vec3f, distance: f32, normal: vec3f) -> vec2f {
+  let receiver = planet.cameraHigh.xyz + fma(direction, vec3f(distance), planet.cameraLow.xyz);
+  let direct = cloudShadowSolarTransmission(receiver, planet.sunDirectionWC.xyz, atmosphere.sun.x);
+  var ambient = 1.0;
+  if (clouds.ambientShadows > 0.0) {
+    ambient = cloudShadowTransmission(receiver, normal, 8u);
+  }
+  return vec2f(direct, ambient);
+}
+
+fn cloudShadowRay(pixel: vec2i) -> vec3f {
+  let uv = (vec2f(pixel) + 0.5) / atmosphere.viewport.xy;
+  return webgpuRayDirection(uv * vec2f(2.0, -2.0) + vec2f(-1.0, 1.0), planet);
+}
+
+@fragment fn cloudShadowColumnsFragment(@builtin(position) pixel: vec4f) -> @location(0) vec2f {
+  let column = vec2i(i32(pixel.x) * 2, i32(pixel.y));
+  let ray = cloudShadowRay(column);
+  let distance = webgpuSceneRayDistance(textureLoad(sceneDepth, column, 0), ray, planet);
+  let surface = atmosphereTerrainGeometry(ray, distance);
+  if (surface.w < 0.0 || dot(surface.xyz, planet.sunDirectionWC.xyz) <= 0.0) { return vec2f(-1.0); }
+  return cloudShadowAtReceiver(ray, distance, surface.xyz);
+}
+
+fn cloudShadowCompatible(pixel: vec2i, hit: vec3f, normal: vec3f) -> bool {
+  let ray = cloudShadowRay(pixel);
+  let distance = webgpuSceneRayDistance(textureLoad(sceneDepth, pixel, 0), ray, planet);
+  let delta = ray * distance - hit;
+  // Compare across the receiver tangent plane so a grazing view over level
+  // ground does not look like a depth discontinuity.
+  return distance >= 0.0 && abs(dot(delta, normal)) <= max(1.0, distance * 0.001 * abs(dot(ray, normal)));
+}
+
+fn cloudShadowResolve(pixel: vec2i, direction: vec3f, distance: f32, normal: vec3f) -> vec2f {
+  let column = vec2i(pixel.x / 2, pixel.y);
+  let left = textureLoad(shadowColumns, column, 0).rg;
+  if ((pixel.x & 1) == 0 && left.x >= 0.0) { return left; }
+  if ((pixel.x & 1) != 0 && pixel.x + 1 < i32(atmosphere.viewport.x) && left.x >= 0.0) {
+    let right = textureLoad(shadowColumns, column + vec2i(1, 0), 0).rg;
+    let hit = direction * distance;
+    // Retrace silhouettes, steep depth edges and narrow penumbrae.
+    if (right.x >= 0.0 &&
+        cloudShadowCompatible(pixel - vec2i(1, 0), hit, normal) &&
+        cloudShadowCompatible(pixel + vec2i(1, 0), hit, normal)) {
+      // The ambient toggle must never change which direct-light samples are used.
+      var transmission = 0.5 * (left + right);
+      let receiver = planet.cameraHigh.xyz + fma(direction, vec3f(distance), planet.cameraLow.xyz);
+      if (abs(left.x - right.x) > 0.02) {
+        transmission.x = cloudShadowSolarTransmission(receiver, planet.sunDirectionWC.xyz, atmosphere.sun.x);
+      }
+      if (clouds.ambientShadows > 0.0 && abs(left.y - right.y) > 0.02) {
+        transmission.y = cloudShadowTransmission(receiver, normal, 8u);
+      }
+      return transmission;
+    }
+  }
+  return cloudShadowAtReceiver(direction, distance, normal);
+}
 `;
 
 export default WebGPUCloudShadowShader;
