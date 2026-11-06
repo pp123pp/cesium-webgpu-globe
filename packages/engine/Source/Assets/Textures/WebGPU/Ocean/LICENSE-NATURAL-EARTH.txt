@@ -1,0 +1,31 @@
+Natural Earth map data — public domain
+Official terms: https://www.naturalearthdata.com/about/terms-of-use/
+Verified: 2026-11-06
+Data release: v5.1.2, commit f1890d9f152c896d250a77557a5751a93d494776
+
+The following is the official data permission and disclaimer text. The
+website's optional logo downloads and third-party source-history releases
+are available at the official terms URL; they impose no additional
+attribution requirement on the Natural Earth data selected here.
+
+All versions of Natural Earth raster + vector map data found on this website
+are in the public domain. You may use the maps in any manner, including
+modifying the content and design, electronic dissemination, and offset
+printing. The primary authors, Tom Patterson and Nathaniel Vaughn Kelso, and
+all other contributors renounce all financial claim to the maps and invites
+you to use them for personal, educational, and commercial purposes.
+
+No permission is needed to use Natural Earth. Crediting the authors is
+unnecessary.
+
+Optional credit:
+Made with Natural Earth. Free vector and raster map data @ naturalearthdata.com.
+
+The authors provide Natural Earth as a public service and are not responsible
+for any problems relating to accuracy, content, design, and how it is used.
+If you find an error or omission, please report it for future updates.
+
+This notice applies to the Natural Earth map data, not Cesium's source code
+or unrelated imagery/terrain services. The selected inputs are the base
+ocean, land and lakes layers; no lake supplements or external datasets are
+included.

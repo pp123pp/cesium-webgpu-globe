@@ -59,7 +59,7 @@
 
 ## 2. 接口冻结的执行规则
 
-O0 创建 `docs/M6_OCEAN_CONTRACTS.md`，为设计中的 OceanTimeSample、OceanCoverageSample、OceanSurfaceState、OceanEnvironment、OceanRenderInputs 写出精确字段、单位、生命周期和调用签名。该文件尚未产生，不能把计划中的接口当成当前可用 API。
+O0 已创建 [M6_OCEAN_CONTRACTS.md](../../M6_OCEAN_CONTRACTS.md) v1.0，为设计中的 OceanTimeSample、OceanCoverageSample、OceanSurfaceState、OceanEnvironment、OceanRenderInputs 写出精确字段、单位、生命周期和调用签名。合同明确已有接点与拟新增接口，不能把后者当成当前可用 API。
 
 冻结时读取真实接点而非猜测符号；把未来 API 与已有 API 分栏标明。下游任务先读合同，只用已冻结名称。若源码演变需要变更，先同步合同和受影响任务，再实现调用方。公开参数入口在 O0 决定，内部实验符号不自动成为稳定 Cesium API。
 
@@ -75,8 +75,8 @@ O0 创建 `docs/M6_OCEAN_CONTRACTS.md`，为设计中的 OceanTimeSample、Ocean
 
 **Produces:** 可核对的接入合同、数据路线、场景和检查命令；不生成海洋 runtime。
 
-- [ ] 从 O0-01 开始，完成该阶段检查清单。
-- [ ] 内容与差异审查通过，实际输出和下一步写入 M6 状态。
+- [x] O0-01—04文档/数据核查结项，见[O0证据](../../../coordination/evidence/M6/O0/README.md)。
+- [x] 内容与差异审查、实际输出和O1-01接续写入M6状态；没有运行时通过结论。
 
 ### Task 1 — M6.O1 全球海洋基础
 
@@ -179,4 +179,4 @@ O0 创建 `docs/M6_OCEAN_CONTRACTS.md`，为设计中的 OceanTimeSample、Ocean
 | R13：水下最后 | O1 最小通路，O7 完整功能 |
 | R14：性能策略 | 全程记录，O3/O6/O7 正式验收 |
 
-**当前交付状态：只有规划文件。** 本清单不得预先勾选运行时任务。后续实际执行使用 [AI 入口](../../../coordination/M6-AI-START.md) 和 [状态表](../../../coordination/M6-STATUS.md)。
+**当前交付状态：O0合同/数据审计已完成，O1—O7 runtime未开始。** 本清单不得预先勾选运行时任务。后续实际执行使用 [AI 入口](../../../coordination/M6-AI-START.md) 和 [状态表](../../../coordination/M6-STATUS.md)，从O1-01继续。

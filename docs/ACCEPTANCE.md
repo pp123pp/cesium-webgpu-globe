@@ -33,9 +33,9 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 
 ## M6 Global Ocean — separate extension gates
 
-The next priority is [M6 Global Ocean](../tasks/M6.md), beginning at O0-01. Its **M6-A01–M6-A22** criteria are in [M6_ACCEPTANCE.md](M6_ACCEPTANCE.md); do not renumber A01–A18 or reuse the historical A19 model criterion for ocean work. A19 moves with 3D Tiles/BIM to M7. Existing evidence and V1.0 acceptance obligations remain unchanged.
+The next priority is [M6 Global Ocean](../tasks/M6.md); O0 is complete and the next task is O1-01. Its **M6-A01–M6-A22** criteria are in [M6_ACCEPTANCE.md](M6_ACCEPTANCE.md); do not renumber A01–A18 or reuse the historical A19 model criterion for ocean work. A19 moves with 3D Tiles/BIM to M7. Existing evidence and V1.0 acceptance obligations remain unchanged.
 
-The ocean package is planning-only: all M6 criteria initially are NOT_RUN. O3, O6 and O7 are separate visual/performance release gates; complete underwater is O7, last. Technical checks, owner visual acceptance and release/integration permissions are distinct. M5 open items remain open unless separately completed with applicable evidence. See [M6-STATUS](../coordination/M6-STATUS.md) for the active task and records.
+M6-A01 has O0 document/data audit evidence; all ocean runtime and rendering/performance criteria remain NOT_RUN. O3, O6 and O7 are separate visual/performance release gates; complete underwater is O7, last. Technical checks, owner visual acceptance and release/integration permissions are distinct. M5 open items remain open unless separately completed with applicable evidence. See [M6-STATUS](../coordination/M6-STATUS.md) for the active task and records.
 
 ## Verification scope and cadence
 

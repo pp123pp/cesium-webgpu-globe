@@ -1,0 +1,6 @@
+command: git ls-remote https://github.com/CesiumGS/cesium.git refs/tags/1.146 refs/tags/1.146^{}
+exitCode: 0
+b90bf5fa30c8f573072181165c9462d987e26580 refs/tags/1.146
+b8d3a36fe98a3e432eb89253c95d5f20e605e0f1 refs/tags/1.146^{}
+GitHub REST API attempt: rate limited; no response treated as PASS.
+Local imported repository has no upstream 1.146 Git tag; verified remote with ls-remote instead.

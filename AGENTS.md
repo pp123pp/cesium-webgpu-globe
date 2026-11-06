@@ -4,11 +4,11 @@ Read this file first. **Do not load the entire documentation tree or Cesium sour
 
 ## Current priority — M6 Global Ocean
 
-Owner decision (2026-11-06): **the next development stage is M6 Global Ocean**, starting at **O0 / O0-01**. Read `coordination/M6-STATUS.md`, `tasks/M6.md` and the current `tasks/M6/Ox.md` after the main STATUS. The agreed scope and sequence are in `docs/OCEAN_PLAN.md`; portable AI entry prompts are in `coordination/M6-AI-START.md`.
+Owner decision (2026-11-06): **the next development stage is M6 Global Ocean**. O0 contracts/data audit is complete; **next task is O1-01**, with O1 runtime NOT_STARTED. Read `coordination/M6-STATUS.md`, `tasks/M6.md` and the current `tasks/M6/Ox.md` after the main STATUS. The frozen interfaces are in `docs/M6_OCEAN_CONTRACTS.md`; agreed scope and sequence are in `docs/OCEAN_PLAN.md`, and portable AI entry prompts are in `coordination/M6-AI-START.md`.
 
 M5 tasks 1 and 2 retain their recorded local completion; the remaining M5 work is still open. Resolve only M5 defects that directly block the active ocean task as prerequisites, and keep the other debt visible. Do not claim V1.0/M5 is finished or require all M5 cleanup before starting O0. The former M6 3D Tiles/BIM task is now `tasks/M7.md`; optional solar work and M7 do not take precedence over M6. Full underwater rendering is the last ocean subphase, O7.
 
-This package changes plans and routing only: all ocean implementation and acceptance start as NOT_STARTED / NOT_RUN. A request to implement the next stage should select M6's current small task; do not implement all eight subphases in one batch. Existing push, merge and CI permissions remain unchanged.
+O0 adds document/data audit evidence only; ocean runtime and rendering/performance acceptance remain NOT_STARTED / NOT_RUN. A request to implement the next stage should select M6's current small task; do not implement all eight subphases in one batch. Existing push, merge and CI permissions remain unchanged.
 
 ## Mission
 

@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "natural-earth-5.1.2",
+  "sourceCommit": "f1890d9f152c896d250a77557a5751a93d494776",
+  "method": "direct-vector-point-classification; no raster generated",
+  "checkedSourceFiles": [
+    {
+      "file": "ne_10m_ocean.shp",
+      "sha256": "bb5ae1e0922b02e61e14f6d562fc2299db4bef5ca36c1008b1a8e7ddf9da6410"
+    },
+    {
+      "file": "ne_10m_ocean.shx",
+      "sha256": "90ada34d9c3ff5f1f53064e01968b178b72d6eb8d3f1cbc1287b501e2805880b"
+    },
+    {
+      "file": "ne_10m_ocean.dbf",
+      "sha256": "4b2f302a84bcbb0fe5d744a9b40df173f562e07eb57532935fb6bc664d21fa33"
+    },
+    {
+      "file": "ne_10m_ocean.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4"
+    },
+    {
+      "file": "ne_10m_ocean.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "file": "ne_10m_ocean.VERSION.txt",
+      "sha256": "f9893302cd3158f3b5aea394dcd2a91574869e9e6ff69e9235b10a3bf8c983fb"
+    },
+    {
+      "file": "ne_10m_ocean.README.html",
+      "sha256": "4b328c8c6372023b088e16b20e0a7aa3722c54e53b1c32daf390a881d0df601b"
+    },
+    {
+      "file": "ne_10m_land.shp",
+      "sha256": "4cad3a49bc75c1a4c2f3d7efae04f2f8e63151c96764b2658effabf524331fa6"
+    },
+    {
+      "file": "ne_10m_land.shx",
+      "sha256": "f3b02a190c3020eeafd0f48de982619826b57ecd853cbc68e4fc049652891a04"
+    },
+    {
+      "file": "ne_10m_land.dbf",
+      "sha256": "e422520372e65c6fb8220888580e5331d04699bcd71c27e53ad42e241a531cbd"
+    },
+    {
+      "file": "ne_10m_land.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4"
+    },
+    {
+      "file": "ne_10m_land.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "file": "ne_10m_land.VERSION.txt",
+      "sha256": "f9893302cd3158f3b5aea394dcd2a91574869e9e6ff69e9235b10a3bf8c983fb"
+    },
+    {
+      "file": "ne_10m_land.README.html",
+      "sha256": "f22176c0b44403fd7b7381a404562007a595c477ca72d23d9b7ed3949e948b12"
+    },
+    {
+      "file": "ne_10m_lakes.shp",
+      "sha256": "11064fa55ed91b56a0d86733643c1a5bfcc137fdf044e83f471978a5b86617e1"
+    },
+    {
+      "file": "ne_10m_lakes.shx",
+      "sha256": "a11ffb02e862b6c4ec8c015e6e0c70502f21bc71dcd79312b8dbc676f7e4c557"
+    },
+    {
+      "file": "ne_10m_lakes.dbf",
+      "sha256": "0edaa87f76c2221c986f0796ce0b54b1c418e9032afba46f8e302edc41193495"
+    },
+    {
+      "file": "ne_10m_lakes.prj",
+      "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4"
+    },
+    {
+      "file": "ne_10m_lakes.cpg",
+      "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824"
+    },
+    {
+      "file": "ne_10m_lakes.VERSION.txt",
+      "sha256": "1cc3d76ac7c21a664e79848fd481e9791016451b244e7de5feeeb9bea5fd2184"
+    },
+    {
+      "file": "ne_10m_lakes.README.html",
+      "sha256": "a5832c49127848fa7ecd16ef3a6b708464249f16d4689596a64fd3988f0731ce"
+    }
+  ],
+  "geometry": {
+    "ocean": {
+      "records": 1,
+      "rings": 6822
+    },
+    "land": {
+      "records": 11,
+      "rings": 6838
+    },
+    "lakes": {
+      "records": 1355,
+      "rings": 1597
+    }
+  },
+  "oceanTopology": [
+    {
+      "ringIndex": 0,
+      "globalOcean": true,
+      "bounds": [
+        -179.99999999999991,
+        -85.22193775799991,
+        180.0,
+        90.00000000000006
+      ]
+    },
+    {
+      "ringIndex": 5778,
+      "globalOcean": false,
+      "bounds": [
+        46.680430535000085,
+        36.58270905200004,
+        54.76742597700007,
+        47.12091705900008
+      ]
+    }
+  ],
+  "missingSourceCheck": {
+    "class": "unknown",
+    "oceanDrawAllowed": false
+  },
+  "samples": [
+    {
+      "id": "date-wrap-minus180",
+      "longitudeDegrees": -180,
+      "latitudeDegrees": 0,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "date-wrap-plus180",
+      "longitudeDegrees": 180,
+      "latitudeDegrees": 0,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "date-wrap-plus540",
+      "longitudeDegrees": 540,
+      "latitudeDegrees": 0,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "date-wrap-west",
+      "longitudeDegrees": 179.999,
+      "latitudeDegrees": 0,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "date-wrap-east",
+      "longitudeDegrees": -179.999,
+      "latitudeDegrees": 0,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "north-pole",
+      "longitudeDegrees": 0,
+      "latitudeDegrees": 90,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "north-pole-other-longitude",
+      "longitudeDegrees": 123,
+      "latitudeDegrees": 90,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "south-pole",
+      "longitudeDegrees": 0,
+      "latitudeDegrees": -90,
+      "geographicClass": "land",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "south-pole-other-longitude",
+      "longitudeDegrees": -123,
+      "latitudeDegrees": -90,
+      "geographicClass": "land",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "antarctic-interior",
+      "longitudeDegrees": 0,
+      "latitudeDegrees": -80,
+      "geographicClass": "land",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "southern-ocean",
+      "longitudeDegrees": 0,
+      "latitudeDegrees": -60,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "gibraltar-strait",
+      "longitudeDegrees": -5.6,
+      "latitudeDegrees": 35.95,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "golden-gate-strait",
+      "longitudeDegrees": -122.4783,
+      "latitudeDegrees": 37.8199,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "bosphorus-strait",
+      "longitudeDegrees": 29.07,
+      "latitudeDegrees": 41.15,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "san-francisco-bay",
+      "longitudeDegrees": -122.3,
+      "latitudeDegrees": 37.7,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "baltic-sea",
+      "longitudeDegrees": 20,
+      "latitudeDegrees": 58,
+      "geographicClass": "ocean",
+      "expectedClass": "ocean",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "hawaii-island",
+      "longitudeDegrees": -155.5,
+      "latitudeDegrees": 19.6,
+      "geographicClass": "land",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "alcatraz-small-island",
+      "longitudeDegrees": -122.421371,
+      "latitudeDegrees": 37.826547,
+      "geographicClass": "land",
+      "note": "Cartographic source may omit this island; O0 records the discrepancy, not a runtime pass.",
+      "expectedClass": "ocean",
+      "geographicSource": "https://filelib.wildlife.ca.gov/Public/OSPR/WebMapping/ACP/dfg_ospr_acp2/pdfs/sensitive_sites/2-402-C.pdf",
+      "actualClass": "ocean",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "global-ocean"
+      },
+      "geographicAgreement": false
+    },
+    {
+      "id": "lake-baikal",
+      "longitudeDegrees": 108.5,
+      "latitudeDegrees": 53.7,
+      "geographicClass": "inland-water",
+      "expectedClass": "inland-water",
+      "actualClass": "inland-water",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "inside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "caspian-sea",
+      "longitudeDegrees": 51,
+      "latitudeDegrees": 42,
+      "geographicClass": "inland-water",
+      "expectedClass": "inland-water",
+      "actualClass": "inland-water",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "closed-inland"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "dead-sea",
+      "longitudeDegrees": 35.5,
+      "latitudeDegrees": 31.5,
+      "geographicClass": "inland-water",
+      "expectedClass": "inland-water",
+      "actualClass": "inland-water",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "inside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "death-valley-dry-depression",
+      "longitudeDegrees": -116.825,
+      "latitudeDegrees": 36.24,
+      "geographicClass": "land",
+      "note": "Below mean sea level; elevation is not a classifier input.",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "qattara-dry-depression",
+      "longitudeDegrees": 27,
+      "latitudeDegrees": 30,
+      "geographicClass": "land",
+      "note": "Below mean sea level; no sea connectivity is inferred from height.",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "netherlands-inland",
+      "longitudeDegrees": 5.05,
+      "latitudeDegrees": 52.2,
+      "geographicClass": "land",
+      "expectedClass": "land",
+      "actualClass": "land",
+      "layerMembership": {
+        "ocean": "outside",
+        "land": "inside",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "garabogaz-inland-lagoon",
+      "longitudeDegrees": 54,
+      "latitudeDegrees": 41.5,
+      "expectedClass": "inland-water",
+      "geographicClass": "inland-water",
+      "note": "The ocean source layer contains this closed Caspian component; connectivity processing excludes it from the global ocean.",
+      "actualClass": "inland-water",
+      "layerMembership": {
+        "ocean": "inside",
+        "land": "outside",
+        "lakes": "outside",
+        "oceanConnectivity": "closed-inland"
+      },
+      "geographicAgreement": true
+    },
+    {
+      "id": "shared-coastline-vertex",
+      "longitudeDegrees": -122.47756480999993,
+      "latitudeDegrees": 37.82510439500004,
+      "expectedClass": "unknown",
+      "geographicClass": "unknown",
+      "note": "Actual ocean record 0 ring 36 vertex 56908, also on the land boundary; a precise semantic shoreline is unresolved for ocean draw.",
+      "actualClass": "unknown",
+      "layerMembership": {
+        "ocean": "boundary",
+        "land": "boundary",
+        "lakes": "outside"
+      },
+      "geographicAgreement": true
+    }
+  ]
+}

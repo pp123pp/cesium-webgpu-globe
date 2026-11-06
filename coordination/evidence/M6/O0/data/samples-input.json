@@ -1,0 +1,190 @@
+[
+  {
+    "id": "date-wrap-minus180",
+    "longitudeDegrees": -180,
+    "latitudeDegrees": 0,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "date-wrap-plus180",
+    "longitudeDegrees": 180,
+    "latitudeDegrees": 0,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "date-wrap-plus540",
+    "longitudeDegrees": 540,
+    "latitudeDegrees": 0,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "date-wrap-west",
+    "longitudeDegrees": 179.999,
+    "latitudeDegrees": 0,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "date-wrap-east",
+    "longitudeDegrees": -179.999,
+    "latitudeDegrees": 0,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "north-pole",
+    "longitudeDegrees": 0,
+    "latitudeDegrees": 90,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "north-pole-other-longitude",
+    "longitudeDegrees": 123,
+    "latitudeDegrees": 90,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "south-pole",
+    "longitudeDegrees": 0,
+    "latitudeDegrees": -90,
+    "geographicClass": "land",
+    "expectedClass": "land"
+  },
+  {
+    "id": "south-pole-other-longitude",
+    "longitudeDegrees": -123,
+    "latitudeDegrees": -90,
+    "geographicClass": "land",
+    "expectedClass": "land"
+  },
+  {
+    "id": "antarctic-interior",
+    "longitudeDegrees": 0,
+    "latitudeDegrees": -80,
+    "geographicClass": "land",
+    "expectedClass": "land"
+  },
+  {
+    "id": "southern-ocean",
+    "longitudeDegrees": 0,
+    "latitudeDegrees": -60,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "gibraltar-strait",
+    "longitudeDegrees": -5.6,
+    "latitudeDegrees": 35.95,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "golden-gate-strait",
+    "longitudeDegrees": -122.4783,
+    "latitudeDegrees": 37.8199,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "bosphorus-strait",
+    "longitudeDegrees": 29.07,
+    "latitudeDegrees": 41.15,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "san-francisco-bay",
+    "longitudeDegrees": -122.3,
+    "latitudeDegrees": 37.7,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "baltic-sea",
+    "longitudeDegrees": 20,
+    "latitudeDegrees": 58,
+    "geographicClass": "ocean",
+    "expectedClass": "ocean"
+  },
+  {
+    "id": "hawaii-island",
+    "longitudeDegrees": -155.5,
+    "latitudeDegrees": 19.6,
+    "geographicClass": "land",
+    "expectedClass": "land"
+  },
+  {
+    "id": "alcatraz-small-island",
+    "longitudeDegrees": -122.421371,
+    "latitudeDegrees": 37.826547,
+    "geographicClass": "land",
+    "note": "Cartographic source may omit this island; O0 records the discrepancy, not a runtime pass.",
+    "expectedClass": "ocean",
+    "geographicSource": "https://filelib.wildlife.ca.gov/Public/OSPR/WebMapping/ACP/dfg_ospr_acp2/pdfs/sensitive_sites/2-402-C.pdf"
+  },
+  {
+    "id": "lake-baikal",
+    "longitudeDegrees": 108.5,
+    "latitudeDegrees": 53.7,
+    "geographicClass": "inland-water",
+    "expectedClass": "inland-water"
+  },
+  {
+    "id": "caspian-sea",
+    "longitudeDegrees": 51,
+    "latitudeDegrees": 42,
+    "geographicClass": "inland-water",
+    "expectedClass": "inland-water"
+  },
+  {
+    "id": "dead-sea",
+    "longitudeDegrees": 35.5,
+    "latitudeDegrees": 31.5,
+    "geographicClass": "inland-water",
+    "expectedClass": "inland-water"
+  },
+  {
+    "id": "death-valley-dry-depression",
+    "longitudeDegrees": -116.825,
+    "latitudeDegrees": 36.24,
+    "geographicClass": "land",
+    "note": "Below mean sea level; elevation is not a classifier input.",
+    "expectedClass": "land"
+  },
+  {
+    "id": "qattara-dry-depression",
+    "longitudeDegrees": 27,
+    "latitudeDegrees": 30,
+    "geographicClass": "land",
+    "note": "Below mean sea level; no sea connectivity is inferred from height.",
+    "expectedClass": "land"
+  },
+  {
+    "id": "netherlands-inland",
+    "longitudeDegrees": 5.05,
+    "latitudeDegrees": 52.2,
+    "geographicClass": "land",
+    "expectedClass": "land"
+  },
+  {
+    "id": "garabogaz-inland-lagoon",
+    "longitudeDegrees": 54,
+    "latitudeDegrees": 41.5,
+    "expectedClass": "inland-water",
+    "geographicClass": "inland-water",
+    "note": "The ocean source layer contains this closed Caspian component; connectivity processing excludes it from the global ocean."
+  },
+  {
+    "id": "shared-coastline-vertex",
+    "longitudeDegrees": -122.47756480999993,
+    "latitudeDegrees": 37.82510439500004,
+    "expectedClass": "unknown",
+    "geographicClass": "unknown",
+    "note": "Actual ocean record 0 ring 36 vertex 56908, also on the land boundary; a precise semantic shoreline is unresolved for ocean draw."
+  }
+]

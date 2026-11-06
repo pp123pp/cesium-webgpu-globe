@@ -11,6 +11,11 @@ coordination/ci/m2.6.1-b5-c-audit.mjs text eol=lf
 # M2.8 report digests refer to the original LF JSON capture bytes.
 coordination/evidence/M2.8/**/*.json text eol=lf
 
+# O0 data audit compares these permission/evidence payloads byte-for-byte.
+coordination/evidence/M6/O0/data/samples-result.json text eol=lf
+coordination/evidence/M6/O0/data/SHA256SUMS.txt text eol=lf
+packages/engine/Source/Assets/Textures/WebGPU/Ocean/LICENSE-NATURAL-EARTH.txt text eol=lf
+
 # The M5 reference report identifies the exact HTML bytes served to the browser.
 Apps/WebGPUReferenceScenes.html text eol=lf
 

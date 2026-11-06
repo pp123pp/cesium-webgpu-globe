@@ -1,0 +1,715 @@
+{
+  "schemaVersion": 1,
+  "taskId": "M6.O0-04",
+  "purpose": "Replay specification only; no executable runner or public API.",
+  "recordedAt": "2026-11-06",
+  "auditedSourceHead": "157a40eed3290b1abed82c64f4e428209b146958",
+  "runtimeStatus": "NOT_RUN",
+  "visualAcceptanceStatus": "NOT_RUN",
+  "performanceAcceptanceStatus": "NOT_RUN",
+  "inheritance": "Resolve globals/profile, then scenario overrides and named inputs. Hash the fully expanded configuration. Only scenario-local matrices expand; no cross-scenario Cartesian product.",
+  "references": {
+    "policy": ["AGENTS.md","docs/CI.md","docs/M6_ACCEPTANCE.md"],
+    "tasks": ["tasks/M6/O0.md","tasks/M6/O1.md","tasks/M6/O2.md","tasks/M6/O3.md","tasks/M6/O6.md","tasks/M6/O7.md"],
+    "existingBrowserConfiguration": "coordination/ci/m0-browser-config.mjs",
+    "existingHarness": "coordination/ci/m1-browser-harness.mjs",
+    "existingBoundedEllipsoidExample": "coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs",
+    "existingBoundedReliefExample": "coordination/ci/m4-terrain-shadows-smoke.mjs",
+    "existingCadenceAndTimestampExample": "coordination/ci/m3-volume-smoke.mjs",
+    "existingReadinessExample": "coordination/ci/m5-reference-harness.mjs",
+    "existingArchivedProviderExample": "coordination/ci/m5-golden-gate-profile.mjs",
+    "contract": "docs/M6_OCEAN_CONTRACTS.md",
+    "coverageManifest": "packages/engine/Source/Assets/Textures/WebGPU/Ocean/manifest.json"
+  },
+  "executionPolicy": {
+    "gpuMode": "hardware",
+    "requirePhysicalGpu": true,
+    "headless": false,
+    "softwareFallbackAllowed": false,
+    "network": "Local origin/data:/blob: only; abort/report external requests. Replay providers locally by content hash.",
+    "pipeline": "Production Viewer/camera/frame.time, native terrain, ocean shaders, reverse depth, surface identity, atmosphere and displayed pixels; no mocked output.",
+    "loading": "Disable expensive sky/solar work only while loading terrain; restore declared settings and complete a production frame before assertions/warmup.",
+    "readiness": {"timeoutMilliseconds":60000,"unchangedSelectedTileFrames":6,"requireTilesLoaded":true,"requireNoPendingImagery":true,"requireNoPendingCoverage":true,"recordActualTileList":true},
+    "evidenceReuse": "Record original tested revision/input/environment hashes; historical or hosted evidence is not a fresh M6 rendering run.",
+    "manualFullAuthorized": false,
+    "broadWebglDifferentialAuthorized": false,
+    "fullUnderwaterPhase": "O7",
+    "physicalGpuUnavailable": "Record BLOCKED with runtime NOT_RUN; no software substitution.",
+    "commonRuntimeResults": {"numerical":"NOT_RUN","hardware":"NOT_RUN","visual":"NOT_RUN","performance":"NOT_RUN"}
+  },
+  "coordinateContract": {
+    "ellipsoid": "WGS84",
+    "longitudeUnit": "degrees east; store continuous unwrapped longitude for paths and normalize only at the consumer boundary",
+    "latitudeUnit": "geodetic degrees north",
+    "cameraHeightUnit": "metres above the WGS84 ellipsoid",
+    "orientationUnit": "degrees: heading clockwise from local north; pitch from local horizontal; roll about view axis",
+    "fovUnit": "degrees passed to camera.frustum.fov, as in the reference demo",
+    "fixtureLocalAxes": ["east metres","north metres","local geodetic Up metres"],
+    "referenceSeaHeightMeters": 0,
+    "referenceSeaHeightMeaning": "Synthetic/display ellipsoid height, not observed mean sea level.",
+    "tide": {"enabled":false,"heightMeters":0},
+    "diagnosticTimeEpochUtc": "2026-03-20T12:00:00Z",
+    "phaseRule": "RTC relocation preserves base phase at equal geodetic point/time/seed. Region-anchor change may use the contract's bounded transition.",
+    "history": {"epochUtc":"2000-01-01T12:00:00Z","maximumSteps":4,"maximumStepSeconds":0.03333333333333333,"fadeSceneSeconds":0.5},
+    "relocation": {"rtcAlignmentMeters":256,"regionAnchorFadeStartMeters":12000,"regionAnchorFadeEndMeters":16000,"regionFadeSceneSeconds":0.5}
+  },
+  "viewports": {
+    "functional": {"width":640,"height":360,"deviceScaleFactor":1},
+    "visual": {"width":1920,"height":1080,"deviceScaleFactor":1},
+    "performance720": {"width":1280,"height":720,"deviceScaleFactor":1},
+    "performance1080": {"width":1920,"height":1080,"deviceScaleFactor":1}
+  },
+  "terrainFixtures": {
+    "O1_LOCAL_RELIEF_L8": {
+      "availability": "PLANNED_FIXTURE_USING_EXISTING_PROVIDER_PATTERN",
+      "provider": "CustomHeightmapTerrainProvider",
+      "tilingScheme": "GeographicTilingScheme",
+      "sampleWidth": 33,
+      "sampleHeight": 33,
+      "maximumLevel": 8,
+      "capMechanism": "Existing override: geometric error = 0 for level >= 8.",
+      "maximumScreenSpaceError": 3,
+      "tileCacheSize": 128,
+      "selectedMeshHardLimit": 64,
+      "hardLimitMeaning": "Assertion, not tileCacheSize resident guarantee; exceedance blocks the small fixture.",
+      "meshBudget": {"heightSamplesPerTile":1089,"surfaceTrianglesPerTileBeforeSkirts":2048,"maximumSelectedSurfaceTrianglesBeforeSkirts":131072},
+      "anchorDegrees": [0,0],
+      "coverageExtentEastNorthMeters": [-20000,-20000,20000,20000],
+      "heightDefinition": "Tile samples use the declared WGS84 ENU anchor. Default=0m. Island: 400*max(0,1-hypot(east-10000,north)/4000)m. Negative-land rectangle=-80m. Lake/unknown=0m. Outside extent=unknown.",
+      "classRegionsInPriorityOrder": [
+        {
+          "classification": "inland-water",
+          "shape": "disk",
+          "centerEastNorthMeters": [10000,0],
+          "radiusMeters": 750
+        },
+        {
+          "classification": "land",
+          "shape": "disk",
+          "centerEastNorthMeters": [10000,0],
+          "radiusMeters": 4000
+        },
+        {
+          "classification": "land",
+          "shape": "rectangle",
+          "boundsEastNorthMeters": [-16000,6000,-8000,14000],
+          "heightMeters": -80
+        },
+        {
+          "classification": "unknown",
+          "shape": "rectangle",
+          "boundsEastNorthMeters": [-16000,-14000,-8000,-6000]
+        },
+        {"classification":"ocean","shape":"remaining-local-extent","heightMeters":0}
+      ],
+      "coverageImplementationRule": "Synthetic labels enter the production consumer; global dataset correctness is tested separately.",
+      "imagery": {"baseLayer":false,"source":"globe.baseColor and production diagnostic radiance; no live provider"},
+      "bathymetry": "None. Retain the initial 0m ocean lid to expose the O1 cap defect.",
+      "requiredOutput": ["tile IDs/height hashes","selected native levels/counts/triangles/skirts","pending requests/readiness","probe classifications"]
+    },
+    "O3_GLOBAL_ELLIPSOID_L8": {
+      "availability": "EXISTING_PATTERN_WITH_PLANNED_OCEAN_INPUTS",
+      "provider": "EllipsoidTerrainProvider",
+      "maximumLevel": 8,
+      "maximumScreenSpaceError": 3,
+      "tileCacheSize": 128,
+      "selectedMeshHardLimit": 64,
+      "imageryFunctionalFallback": "Local Natural Earth II with asset hashes; cannot satisfy production satellite-colour acceptance.",
+      "imageryVisualAcceptance": "License-checked local snapshot of candidate production imagery, all selected tiles content-hashed.",
+      "imagerySnapshotStatus": "NOT_CAPTURED",
+      "coverage": "Frozen manifest and local derived masks, including seed-selected world-ocean outer component; closed components are inland-water.",
+      "bathymetry": "NONE_REQUIRED_FOR_O3_OPEN_OCEAN",
+      "limit": "Bounded lighting/depth/colour and ocean continuity only; actual coast/terrain LOD and bathymetry require their own gates."
+    }
+  },
+  "seaStates": {
+    "diagnostic": {
+      "availability": "PLANNED_TEST_INPUT",
+      "kind": "analytic local-Up displacement in the production ocean mesh/shader",
+      "seed": 1337,
+      "heightAmplitudeMeters": 2,
+      "wavelengthMeters": 1000,
+      "periodSeconds": 8,
+      "propagationDirectionDegreesClockwiseFromNorth": 90,
+      "formula": "height = 2 * sin(2*pi*(east/1000 - sceneSecondsFromDiagnosticEpoch/8)); no FFT, foam or wall-clock accumulation",
+      "horizontalDisplacementMeters": 0,
+      "referenceSeaHeightMeters": 0
+    },
+    "flat": {"availability":"PLANNED_TEST_INPUT","kind":"flat production ocean","seed":1337,"heightAmplitudeMeters":0},
+    "calm": {
+      "availability": "PLANNED_O2_PRESET",
+      "localScale": 1,
+      "swellScale": 0.2,
+      "choppiness": 0.6,
+      "sceneOceanSeaState": {"windSpeed":2,"windDirection":1.1344640137963142,"fetch":120000,"seed":1337}
+    },
+    "moderate": {
+      "availability": "PLANNED_O2_PRESET",
+      "localScale": 1,
+      "swellScale": 0.48,
+      "choppiness": 0.9,
+      "sceneOceanSeaState": {"windSpeed":7,"windDirection":1.1344640137963142,"fetch":120000,"seed":1337}
+    },
+    "strong": {
+      "availability": "PLANNED_O2_PRESET",
+      "localScale": 1,
+      "swellScale": 0.6,
+      "choppiness": 0.9,
+      "sceneOceanSeaState": {"windSpeed":12,"windDirection":1.1344640137963142,"fetch":200000,"seed":1337}
+    },
+    "sharedO2Configuration": {
+      "apiStatus": "scene.ocean.seaState mapping follows the O0 contract: windSpeed m/s, windDirection East toward North radians, fetch metres, seed uint32. Other spectrum/foam fields are proposed internal O2 preset inputs.",
+      "cascadeCount": 4,
+      "fftSize": 256,
+      "cascadeSizesMeters": [733,157,33.3,7.1],
+      "secondarySwell": {"windSpeedMetersPerSecond":6,"waveTravelDirectionDegreesClockwiseFromNorth":5,"fetchKilometers":1200,"spreadBlend":1,"swell":0.9,"shortWavesFade":0.1},
+      "localSpectrum": {"spreadBlend":0.85,"swell":0.05,"peakEnhancement":3.3,"shortWavesFade":0.01},
+      "artificialSpectrumDepthMeters": 500,
+      "depthMeaning": "Artificial spectrum parameter, not bathymetry.",
+      "foam": {"enabled":true,"bias":0.58,"gain":3,"decayPerSecond":0.35,"addPerSecond":2.5},
+      "unresolvedBeforeO3Sampling": ["internal preset mapping and configuration SHA-256","mesh/texture/environment budgets"]
+    }
+  },
+  "profiles": {
+    "O1_FUNCTIONAL": {
+      "viewportId": "functional",
+      "terrainFixtureId": "O1_LOCAL_RELIEF_L8",
+      "seaStateId": "diagnostic",
+      "seed": 1337,
+      "time": {"utc":"2026-03-20T12:00:00Z","shouldAnimate":false,"sampling":"explicit scene timestamps"},
+      "camera": {"longitudeDegrees":0,"latitudeDegrees":0,"heightMeters":10,"headingDegrees":90,"pitchDegrees":-15,"rollDegrees":0,"fovDegrees":60},
+      "environment": {"atmosphere":true,"sun":true,"clouds":false,"exposure":1,"bloomStrength":0.35,"lensFlare":false}
+    },
+    "O3_ACCEPTANCE": {
+      "viewportId": "visual",
+      "terrainFixtureId": "O3_GLOBAL_ELLIPSOID_L8",
+      "seaStateId": "moderate",
+      "seed": 1337,
+      "time": {"utc":"2026-03-20T22:40:00Z","shouldAnimate":false,"sampling":"explicit scene timestamps"},
+      "camera": {"longitudeDegrees":-160,"latitudeDegrees":20,"heightMeters":10,"headingDegrees":180,"pitchDegrees":-5,"rollDegrees":0,"fovDegrees":60},
+      "environment": {
+        "atmosphere": true,
+        "sun": true,
+        "moon": true,
+        "stars": true,
+        "exposure": 1,
+        "bloomStrength": 0.35,
+        "lensFlare": false,
+        "clouds": {"show":true,"type":"cumulus","quality":"medium","coverage":0.58,"localDetail":true,"cirrus":false,"evolution":false,"mist":false,"windSpeed":0,"windDirection":0.75,"shadows":true,"ambientShadows":true}
+      }
+    }
+  },
+  "geographicSamples": [
+    {"id":"pacific","longitudeDegrees":-160,"latitudeDegrees":20,"intendedClass":"ocean","dayUtc":"2026-03-20T22:40:00Z"},
+    {"id":"atlantic","longitudeDegrees":-30,"latitudeDegrees":25,"intendedClass":"ocean","dayUtc":"2026-03-20T14:00:00Z"},
+    {"id":"indian","longitudeDegrees":85,"latitudeDegrees":-20,"intendedClass":"ocean","dayUtc":"2026-03-20T06:20:00Z"},
+    {"id":"arctic","longitudeDegrees":0,"latitudeDegrees":85,"intendedClass":"ocean","dayUtc":"2026-06-21T12:00:00Z"},
+    {"id":"southern","longitudeDegrees":30,"latitudeDegrees":-55,"intendedClass":"ocean","dayUtc":"2026-03-20T10:00:00Z"},
+    {"id":"dateline-west","longitudeDegrees":179.7,"latitudeDegrees":0,"intendedClass":"ocean"},
+    {"id":"dateline-east","longitudeDegrees":-179.7,"latitudeDegrees":0,"intendedClass":"ocean"},
+    {"id":"golden-gate-strait","longitudeDegrees":-122.51,"latitudeDegrees":37.82,"intendedClass":"ocean","precisionCase":"narrow strait; report classification resolution/uncertainty"},
+    {"id":"alcatraz","longitudeDegrees":-122.423,"latitudeDegrees":37.8267,"intendedClass":"land","precisionCase":"Source omits Alcatraz: retain DATA_LIMITATION, not a passed island test."},
+    {"id":"lake-tahoe","longitudeDegrees":-120.032,"latitudeDegrees":39.096,"intendedClass":"inland-water"},
+    {"id":"death-valley","longitudeDegrees":-116.823,"latitudeDegrees":36.24,"intendedClass":"land","precisionCase":"negative-elevation land must remain land"},
+    {"id":"caspian-closed-component","longitudeDegrees":51,"latitudeDegrees":42,"intendedClass":"inland-water","precisionCase":"Present in source ocean layer; must be excluded by seed-selected world-ocean connectivity."}
+  ],
+  "geographicSamplePreflight": {
+    "status": "NOT_RUN",
+    "rule": "Query/archive all points against frozen vector and derived-mask footprints before capture. Intended classes are not query results. Missing/coarse/unknown data stays a recorded limitation/blocker; do not silently relabel.",
+    "extraOceanSamples": {
+      "count": 8,
+      "seed": 1337,
+      "algorithm": "uint32 state=1337; each draw state=(1664525*state+1013904223) mod 2^32, u=state/2^32. Pairs give lon=360*u1-180, lat=asin(2*u2-1) degrees. Accept processed world-ocean class only; archive accepted indices/coordinates/list hash.",
+      "candidatesHardLimit": 4096,
+      "insufficientOceanSamples": "BLOCKED; retain candidate list and source coverage evidence"
+    }
+  },
+  "scenarios": [
+    {
+      "id": "O1-CAP-DEPTH",
+      "taskIds": ["O1-03"],
+      "acceptanceIds": ["M6-A04"],
+      "profileId": "O1_FUNCTIONAL",
+      "timeOffsetsSeconds": [0,2,4,6,8],
+      "probeEastNorthMeters": [[250,0],[750,0],[12000,0]],
+      "controls": ["ocean disabled","ocean enabled with diagnostic displacement","island terrain retained"],
+      "expected": [
+        "At epoch, east=250m crest +2m and east=750m trough -2m both reach production depth/colour.",
+        "Only invalid ocean lid is suppressed; the native land probe at east=12000m remains and occludes water. No double surface, z-fighting or backside leak."
+      ]
+    },
+    {
+      "id": "O1-CLASSIFICATION",
+      "taskIds": ["O1-02"],
+      "acceptanceIds": ["M6-A02","M6-A03"],
+      "profileId": "O1_FUNCTIONAL",
+      "camera": {"longitudeDegrees":0.03,"latitudeDegrees":0,"heightMeters":30000,"headingDegrees":0,"pitchDegrees":-90,"rollDegrees":0,"fovDegrees":60},
+      "seaStateId": "flat",
+      "probeEastNorthMeters": [[0,0],[12000,0],[10000,0],[-12000,10000],[-12000,-10000],[25000,0]],
+      "expectedProbeClasses": ["ocean","land","inland-water","land","unknown","unknown"],
+      "expected": [
+        "Only ocean receives water. Island/lake/negative land/unknown retain previous output.",
+        "Missing child uses an actual valid parent; absent parent remains unknown. The first real mask release has no parent; use an explicit synthetic parent for that test.",
+        "Check declared level/mesh budget; preserve native land even when coarse masks omit a small island."
+      ]
+    },
+    {
+      "id": "O1-LINEAR-COMPOSITION",
+      "taskIds": ["O1-04"],
+      "acceptanceIds": ["M6-A04","M6-A08"],
+      "profileId": "O1_FUNCTIONAL",
+      "seaStateId": "flat",
+      "diagnosticLinearRadianceRgb": [0.18,0.08,0.03],
+      "utcCases": ["2026-03-20T12:00:00Z","2026-03-21T00:00:00Z"],
+      "controls": ["atmosphere on/off","terrain lighting on/off","ocean on/off","exposure 0.5/1/2"],
+      "expected": [
+        "Atmosphere off: terrain Lambert on/off preserves known ocean radiance while native terrain retains lighting response.",
+        "One existing ACES/sRGB display transform; diagnostic output within 3 byte-code values.",
+        "Atmosphere on: correct depth-based transmittance/scattering; sky remains background surface type."
+      ]
+    },
+    {
+      "id": "O1-MINIMAL-WATER-CROSSING",
+      "taskIds": ["O1-03","O1-05"],
+      "acceptanceIds": ["M6-A04"],
+      "profileId": "O1_FUNCTIONAL",
+      "seaStateId": "flat",
+      "camera": {"longitudeDegrees":0,"latitudeDegrees":0,"heightMeters":2,"headingDegrees":90,"pitchDegrees":15,"rollDegrees":0,"fovDegrees":60},
+      "path": {
+        "frames": 241,
+        "explicitSceneStepSeconds": 0,
+        "interpolation": "linear ellipsoid camera height at keyframes; orientation fixed",
+        "keyframes": [
+          {"frame":0,"heightMeters":2},
+          {"frame":60,"heightMeters":0.05},
+          {"frame":120,"heightMeters":-2},
+          {"frame":180,"heightMeters":0.05},
+          {"frame":240,"heightMeters":2}
+        ]
+      },
+      "expected": [
+        "Same camera enters/exits classified ocean; no ellipsoid-interior all-black frame or backside view. Native land restrictions and return-frame depth remain valid.",
+        "Record boundary at abs(signedDistance)<=0.05m. Only medium/depth access; full water optics and waterline quality belong to O7."
+      ]
+    },
+    {
+      "id": "O1-TIME-AND-COORDINATE-NUMERICS",
+      "taskIds": ["O1-01","O1-02"],
+      "acceptanceIds": ["M6-A03","M6-A05"],
+      "profileId": "O1_FUNCTIONAL",
+      "checkKind": "focused numerical/state checks before local hardware smoke",
+      "timeSequenceSecondsFromEpoch": [0,1,1,1,2,86400,-86400,0],
+      "absoluteUtcCases": ["2000-01-01T12:00:00Z","2026-03-20T23:59:59.999Z","2026-03-21T00:00:00.001Z","2100-01-01T12:00:00Z"],
+      "coordinateCasesDegrees": [[179.999999,0],[-179.999999,0],[0,89.999999],[0,90],[180,89.999999],[0,-90]],
+      "expected": [
+        "Equal time holds wave/tide/history independent of browser callbacks. Long-time and pole/date-line math stays finite.",
+        "Equal geodetic point/time/seed preserves base phase across RTC relocation; record coordinate/normal/phase error tolerances.",
+        "Jump/reverse obey <=4 history steps of <=1/30s and 0.5 scene-second fade; paused weight holds. No negative/huge integration dt."
+      ]
+    },
+    {
+      "id": "O1-LIFECYCLE",
+      "taskIds": ["O1-05"],
+      "acceptanceIds": ["M6-A11","M6-A22"],
+      "profileId": "O1_FUNCTIONAL",
+      "cycles": 3,
+      "viewportSequence": [[640,360],[641,361],[640,360]],
+      "operations": [
+        "enable/disable ocean",
+        "resize through the fixed viewport sequence",
+        "switch local terrain providers",
+        "destroy with a pending local coverage request then release its response",
+        "exercise existing device-loss route once"
+      ],
+      "expected": [
+        "Return ocean allocations to disabled/destroyed baseline after queue completion; no per-cycle resource set.",
+        "Recreate colour/depth/type attachments at declared sizes; late requests cannot write new/destroyed state.",
+        "Device loss follows documented recovery or explicit terminal error; no silent backend switch."
+      ]
+    },
+    {
+      "id": "O3-FIVE-OCEANS-AND-SEEDED-ENTRY",
+      "taskIds": ["O3-01"],
+      "acceptanceIds": ["M6-A02","M6-A03","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "sampleIds": ["pacific","atlantic","indian","arctic","southern"],
+      "useSampleDayUtc": true,
+      "cameraHeightCasesMeters": [1.5,100],
+      "seededAdditionalLocations": "geographicSamplePreflight.extraOceanSamples",
+      "seededLocationCameraHeightMeters": 100,
+      "expected": [
+        "Five confirmed seas plus eight seeded positions initialize via the same generic entry; record actual pose/time/solar elevation.",
+        "Correct curved horizon/environment/coverage; retain strait/island/lake/negative-land/Caspian counterexample queries and precision limitations."
+      ]
+    },
+    {
+      "id": "O3-DATELINE",
+      "taskIds": ["O3-01"],
+      "acceptanceIds": ["M6-A03","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "time": {"utc":"2026-03-20T00:00:00Z","shouldAnimate":false,"sampling":"same fixed time for all camera frames"},
+      "path": {
+        "frames": 121,
+        "explicitSceneStepSeconds": 0,
+        "longitudeUnwrappedStartDegrees": 179.99,
+        "longitudeUnwrappedEndDegrees": 180.01,
+        "latitudeDegrees": 0,
+        "heightMeters": 10,
+        "headingDegrees": 90,
+        "pitchDegrees": -5,
+        "rollDegrees": 0,
+        "interpolation": "linear unwrapped longitude"
+      },
+      "expected": [
+        "Wrapped/unwrapped coordinates preserve base phase/normal/classification; no seam, mask gap or seed change.",
+        "Short route isolates date-line and RTC changes within the 12km stable-anchor radius; record origins and same-point probes."
+      ]
+    },
+    {
+      "id": "O3-HIGH-LATITUDE",
+      "taskIds": ["O3-01"],
+      "acceptanceIds": ["M6-A03","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "time": {"utc":"2026-06-21T12:00:00Z","shouldAnimate":false,"sampling":"same fixed time for all camera frames"},
+      "path": {
+        "frames": 121,
+        "explicitSceneStepSeconds": 0,
+        "longitudeUnwrappedStartDegrees": -0.5,
+        "longitudeUnwrappedEndDegrees": 0.5,
+        "latitudeDegrees": 85,
+        "heightMeters": 100,
+        "headingDegrees": 90,
+        "pitchDegrees": -10,
+        "rollDegrees": 0,
+        "interpolation": "linear longitude at fixed geodetic latitude"
+      },
+      "expected": [
+        "High-latitude Up/basis/wave direction and confirmed-ocean masks remain continuous.",
+        "Approximately 9.7km route stays within stable region; pole singularities use O1 numerical cases, not a claimed visible pole crossing."
+      ]
+    },
+    {
+      "id": "O3-LOCAL-RELOCATION",
+      "taskIds": ["O3-01"],
+      "acceptanceIds": ["M6-A03","M6-A09","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "path": {
+        "frames": 241,
+        "explicitSceneStepSeconds": 0,
+        "latitudeDegrees": 20,
+        "heightMeters": 10,
+        "headingDegrees": 90,
+        "pitchDegrees": -5,
+        "rollDegrees": 0,
+        "longitudeKeyframes": [
+          {"frame":0,"unwrappedDegrees":-160},
+          {"frame":120,"unwrappedDegrees":-159.96},
+          {"frame":240,"unwrappedDegrees":-160}
+        ],
+        "interpolation": "linear unwrapped longitude on each leg"
+      },
+      "minimumObservedLocalOriginChanges": 1,
+      "insufficientCoverageRule": "No observed RTC change => BLOCKED/insufficient coverage; revise/freeze path before retry.",
+      "expected": [
+        "Observed 256m RTC changes preserve same-point base height/phase/normals without a pop.",
+        "Approximately 4.2km leg avoids region-anchor fade; return same coordinate/time reproduces the base wave. No exact-history foam assertion."
+      ]
+    },
+    {
+      "id": "O3-REGION-ANCHOR-TRANSITION",
+      "taskIds": ["O3-01","O3-03"],
+      "acceptanceIds": ["M6-A03","M6-A09","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "path": {
+        "frames": 181,
+        "explicitSceneStepSeconds": 0.03333333333333333,
+        "latitudeDegrees": 20,
+        "heightMeters": 10,
+        "headingDegrees": 90,
+        "pitchDegrees": -5,
+        "rollDegrees": 0,
+        "longitudeKeyframes": [
+          {"frame":0,"unwrappedDegrees":-160},
+          {"frame":120,"unwrappedDegrees":-159.5},
+          {"frame":180,"unwrappedDegrees":-159.5}
+        ],
+        "interpolation": "linear longitude then hold; explicit frame.time advances"
+      },
+      "minimumObservedRegionAnchorChanges": 1,
+      "expected": [
+        "Record fade at 12km, detail zero by 16km, new anchor/history generation and <=0.5 scene-second fade-in; base reference surface stays present.",
+        "No observed anchor change => insufficient coverage. Distinguish accepted bounded regional rebuilding from prohibited RTC phase reset; retain all consecutive frames."
+      ]
+    },
+    {
+      "id": "O3-NEAR-ORBIT-RETURN",
+      "taskIds": ["O3-02"],
+      "acceptanceIds": ["M6-A03","M6-A07","M6-A08","M6-A10","M6-A22"],
+      "profileId": "O3_ACCEPTANCE",
+      "camera": {"longitudeDegrees":-160,"latitudeDegrees":20,"heightMeters":1.5,"headingDegrees":270,"pitchDegrees":-5,"rollDegrees":0,"fovDegrees":60},
+      "lightCasesUtc": {"day":"2026-03-20T22:40:00Z","lowSun":"2026-03-21T04:10:00Z","night":"2026-03-21T10:40:00Z"},
+      "path": {
+        "frames": 481,
+        "explicitSceneStepSeconds": 0,
+        "heightKeyframesMeters": [1.5,10,100,10000,300000,10000,100,10,1.5],
+        "intervalsPerLeg": 60,
+        "interpolation": "linear log(height); fixed longitude/latitude, heading, pitch, roll and UTC within each light case"
+      },
+      "expected": [
+        "Single camera, continuous detail/mip/roughness/sea-colour blending, one water depth; no switch ring, seam or sudden whole-band cut.",
+        "Confirm actual Sun elevation for day/low-Sun/night and production imagery hashes; keep all adjacent frames, not endpoints alone.",
+        "Owner visual decision is separate; O3 does not require pixel equality with Tidewater/WebGL."
+      ]
+    },
+    {
+      "id": "O3-SEA-STATE-AND-LIGHT",
+      "taskIds": ["O3-04"],
+      "acceptanceIds": ["M6-A07","M6-A08","M6-A09","M6-A10"],
+      "profileId": "O3_ACCEPTANCE",
+      "seaStateCases": ["calm","moderate","strong"],
+      "cameraHeightCasesMeters": [1.5,10,100],
+      "cameraHeadingCasesDegrees": [270,90],
+      "time": {"utc":"2026-03-21T04:10:00Z","shouldAnimate":false,"sampling":"fixed UTC per still; moderate sea at height 10 m and heading 270 also gets the motion sequence"},
+      "motion": {"frames":121,"sceneStepSeconds":0.03333333333333333,"cameraFixed":true},
+      "expected": [
+        "Distinct expanded presets and repeatable waves/foam; retain all four FFT cascades.",
+        "Existing sky/cloud reflection and independent scene Sun glint, one display conversion.",
+        "120 motion intervals show crest/foam continuity; record matched reference conditions and owner visual decision."
+      ]
+    },
+    {
+      "id": "O3-NAVIGATION-FAULT-AND-RESOURCES",
+      "taskIds": ["O3-03"],
+      "acceptanceIds": ["M6-A11","M6-A22"],
+      "profileId": "O3_ACCEPTANCE",
+      "viewportId": "functional",
+      "cycles": 3,
+      "sampleSequenceIds": ["pacific","atlantic","indian","arctic","southern","pacific"],
+      "cameraHeightSequenceMeters": [10,10000,10,300000,100,10],
+      "sceneTime": "Fixed profile UTC; regional fade completion is tested separately with advancing time.",
+      "faults": [
+        "missing classification child with valid parent",
+        "missing all valid classification ancestors",
+        "local imagery failure then recovery",
+        "old-location coverage response released after moving to a new ocean",
+        "old response released after destroy"
+      ],
+      "viewportSequence": [[640,360],[641,361],[640,360]],
+      "expected": [
+        "Unknown keeps conservative output; parent/recovery observed only when real/synthetic valid data exists.",
+        "No stale-location/destroyed-scene write or unhandled GPU error.",
+        "At each settled return, compare live counts/bytes after queue completion; no per-visited-ocean resource retention."
+      ]
+    },
+    {
+      "id": "O3-FIRST-PERFORMANCE",
+      "taskIds": ["O3-04"],
+      "acceptanceIds": ["M6-A12","M6-A22"],
+      "profileId": "O3_ACCEPTANCE",
+      "viewportIds": ["performance720","performance1080"],
+      "staticCamera": {"longitudeDegrees":-160,"latitudeDegrees":20,"heightMeters":10,"headingDegrees":180,"pitchDegrees":-5,"rollDegrees":0,"fovDegrees":60},
+      "movingCameraScenarioId": "O3-REGION-ANCHOR-TRANSITION",
+      "movingRule": "Replay the regional transition's 181 poses/timestamps; retain relocation/anchor spikes separately from steady state.",
+      "baselineModes": ["ocean disabled with original globe/sky/cloud/HDR settings","full target ocean enabled with the same globe/sky/cloud/HDR settings"],
+      "measurementProtocolId": "O3_PAIRED",
+      "expected": [
+        "Same source/data/pose/clock/cloud quality, only ocean mode changes; measure both exact viewports.",
+        "Report mean/median/p95 and startup/navigation spikes against the previously approved device budget.",
+        "No approved device/budget => UNVERIFIED/BLOCKED; no universal FPS conclusion."
+      ]
+    }
+  ],
+  "performance": {
+    "protocolId": "O3_PAIRED",
+    "runtimeStatus": "NOT_RUN",
+    "approvedHardware": null,
+    "approvedBrowser": null,
+    "approvedBudget": null,
+    "historicalCandidateOnly": {"adapter":"Intel Xe-LPG","browser":"Chromium 156.0.8078.4","provenance":"Historical M5 only, not approved/probed O3 hardware."},
+    "blockersBeforeFormalMeasurement": [
+      "Lock actual adapter/driver/OS/browser and timestamp support.",
+      "Approve device-specific budgets for both viewports and frozen quality.",
+      "Freeze O2/O3 resource/quality settings and data hashes.",
+      "Match served/local bundle SHA-256."
+    ],
+    "orders": [["off","on","on","off"],["on","off","off","on"]],
+    "steadyCadence": {
+      "warmupFramesPerBlock": 20,
+      "sampleIntervalsPerBlock": 120,
+      "totalIntervalsPerMode": 480,
+      "sceneTime": "fixed",
+      "waitsInsideCadenceLoop": false,
+      "pixelReadbackInsideCadenceLoop": false,
+      "requireForegroundVisible": true,
+      "includeIdleRafControl": true
+    },
+    "isolatedPassTiming": {
+      "warmupFramesPerBlock": 10,
+      "samplesPerBlock": 60,
+      "totalSamplesPerMode": 240,
+      "sceneTime": "fixed",
+      "method": "Separate from cadence: actual pass timestamps, CPU render duration and render-to-queue wall time; retain raw samples/pass counts.",
+      "unavailableTimestampRule": "GPU pass time UNVERIFIED; wall-clock/queue wait remains explicitly wall-clock and cannot be renamed GPU time."
+    },
+    "captureRule": "Native screenshots/readbacks occur outside timed intervals.",
+    "statistics": {
+      "timeUnit": "milliseconds",
+      "mean": "arithmetic mean of raw samples",
+      "median": "middle sorted value, mean of the two middle values for even sample count",
+      "p95": "sorted[ceil(0.95*n)-1]",
+      "deltas": "Difference of pooled means/p95 is not the p95 of per-frame deltas."
+    },
+    "passCategoriesToResolveFromImplementation": [
+      "FFT spectrum/IFFT/mips",
+      "foam/history",
+      "environment/reflection update",
+      "ocean surface",
+      "globe/imagery",
+      "atmosphere",
+      "volumetric clouds/reconstruction",
+      "cloud shadows",
+      "HDR/Bloom/final display"
+    ],
+    "extraWindows": ["cold start to valid ocean","cross-ocean teleport","regional-anchor migration","coverage/imagery loading/recovery"],
+    "memory": "Live/peak counts and descriptor-based allocated bytes incl. mips/layers/samples. Driver resident VRAM is separate; UNVERIFIED unless measured.",
+    "noUniversalFpsClaim": true
+  },
+  "futurePhaseBoundaries": {
+    "O6": {
+      "runtimeStatus": "NOT_RUN",
+      "acceptanceIds": ["M6-A16","M6-A17","M6-A18","M6-A22"],
+      "reuse": "Reuse applicable O3 device/browser/viewport/record format; remeasure current nearshore integration.",
+      "additionalModes": ["ocean disabled","open ocean","nearshore including data streaming, propagation, breakers, foam, wetness and display tide"],
+      "requiredLocations": ["frozen Golden Gate rock/steep-coast view","a data-verified sandy/sloping beach selected and hashed in O5/O6"],
+      "fixedGoldenGateReference": {
+        "longitudeDegrees": -122.489,
+        "latitudeDegrees": 37.8113,
+        "heightMeters": 1900,
+        "headingDegrees": 313,
+        "pitchDegrees": -28,
+        "rollDegrees": 0,
+        "fovDegrees": 60,
+        "utc": "2026-03-20T20:00:00Z",
+        "source": "M5 reference; licensed/hash-pinned local terrain/imagery replay required."
+      },
+      "releaseConditions": [
+        "Freeze actual nearshore dataset vertical datum/resolution, loaded region and local-history budgets.",
+        "Record high/low display-tide and dry/wet connectivity cases plus migration/loading spikes.",
+        "A single ideal beach and O3 open-ocean timing cannot satisfy this phase."
+      ]
+    },
+    "O7": {
+      "runtimeStatus": "NOT_RUN",
+      "acceptanceIds": ["M6-A19","M6-A20","M6-A21","M6-A22"],
+      "reuse": "Keep comparable O3/O6 conditions; remeasure current half-submerged/underwater combined costs.",
+      "additionalModes": ["ocean disabled","above open ocean","nearshore","half submerged","underwater with actual validated seabed"],
+      "requiredPaths": [
+        "orbit to nearshore to waterline to seabed and return with one camera",
+        "local-Up/high-latitude/date-line/roll cases",
+        "pause/rate/reverse/jump time and sea-state changes",
+        "resize/quality/enable/destroy/late load/device-loss",
+        "duration soak with duration and resource budget locked before execution"
+      ],
+      "underwaterHeightExamplesMetersRelativeToCurrentWaterSurface": [0.05,-0.05,-0.5,-2,-10],
+      "releaseConditions": [
+        "Freeze each actual datum/sea-depth/attitude/time/seed/quality configuration and official budget.",
+        "Measure atmosphere and water absorption/scattering/refraction/interface transition together, including backside surface, sky/Sun and seabed occlusion.",
+        "Keep M5 unresolved items and required authorized WebGL/final gates visible. Minimal O1 crossing is not O7 optical acceptance."
+      ]
+    }
+  },
+  "commandInventory": {
+    "status": "EXISTENCE_CHECKED_AT_AUDITED_HEAD; NOT_EXECUTED",
+    "shellEnvironmentForFutureHardwareRuns": {
+      "M0_GPU_MODE": "hardware",
+      "M0_REQUIRE_PHYSICAL_GPU": "1",
+      "M0_HEADLESS": "0",
+      "M1_BASE_URL": "http://127.0.0.1:8067/",
+      "M0_BROWSER_EXECUTABLE": "Actual installed browser path; otherwise record M0_BROWSER_CHANNEL.",
+      "M1_OUTPUT": "Fresh absolute output directory per run."
+    },
+    "existing": [
+      {"command":"node server.js --port 8067 --production --no-sandcastle","scope":"Serve existing build; no build."},
+      {"command":"npm run demo:webgpu","scope":"Existing build-and-serve shortcut; not run in O0."},
+      {"command":"node coordination/ci/m2.6.1-b5-a-remediation-smoke.mjs","scope":"Bounded terrain lighting/depth/colour; no ocean."},
+      {"command":"node coordination/ci/m4-terrain-shadows-smoke.mjs","scope":"Native 33x33 bounded relief/real depth; no ocean."},
+      {"command":"node --test coordination/ci/m2-depth.test.mjs","scope":"Existing projection/reverse-depth numerics; no ocean."},
+      {"command":"node coordination/ci/m3-volume-smoke.mjs --cloud-types --profile --cadence","scope":"Cloud timing/cadence pattern; does not consume this file."},
+      {"command":"node coordination/ci/m5-golden-gate-profile.mjs","scope":"Archive replay/profile; requires M5_GOLDEN_ROOT."},
+      {
+        "command": "node coordination/ci/m0-webgl-smoke.mjs",
+        "environment": {"M0_BASE_URL":"http://127.0.0.1:8067/","M0_WEBGL_OUTPUT":"fresh output directory"},
+        "scope": "Existing WebGL smoke; full differential needs separate authorization."
+      }
+    ],
+    "plannedNotPresentAtAuditedHead": [
+      {"command":"node --test coordination/ci/m6-ocean-foundation.test.mjs","ownerTask":"O1"},
+      {"command":"node coordination/ci/m6-ocean-foundation-smoke.mjs","ownerTask":"O1"},
+      {"command":"node --test coordination/ci/m6-ocean-geography.test.mjs","ownerTask":"O3"},
+      {"command":"node coordination/ci/m6-ocean-global-continuity.mjs","ownerTask":"O3"},
+      {"command":"node coordination/ci/m6-ocean-o3-acceptance.mjs","ownerTask":"O3"}
+    ],
+    "plannedSharedFixtureModule": "coordination/ci/m6-ocean-fixtures.mjs",
+    "plannedCommandRule": "All ocean commands are planned task names, absent at the audited HEAD. Future runners must document loading this file; no --scenario option exists yet."
+  },
+  "requiredRunRecordFields": {
+    "provenance": [
+      "run ID and captured UTC",
+      "tested source HEAD and full git status",
+      "bundle/app SHA-256 and equality to served content",
+      "scenario ID and fully resolved configuration SHA-256",
+      "exact command/environment/output path",
+      "dataset manifest/license/version/data and tile SHA-256"
+    ],
+    "environment": [
+      "OS/driver",
+      "browser version/executable/channel and launch flags",
+      "adapter vendor/architecture/device/description/isFallbackAdapter",
+      "classifyGpu/assertPhysicalGpu result",
+      "timestamp-query support",
+      "viewport/canvas pixel dimensions/deviceScaleFactor",
+      "foreground visibility and relevant cache state"
+    ],
+    "frame": [
+      "scenario/mode/order/block/frame index",
+      "scene JulianDate/UTC and relative phase time",
+      "submitted camera pose/frustum and local origin/basis",
+      "sea-state/seed/tide and history generation/fade/substeps",
+      "selected mesh and imagery/coverage tile IDs/levels/readiness",
+      "quality/resource settings and production pass counts"
+    ],
+    "output": [
+      "check ID/acceptance ID/expected/observed/status",
+      "raw CPU/timestamp/cadence/queue samples",
+      "mean/median/p95 and spikes",
+      "current/peak allocation counts/estimated bytes; resident VRAM method or UNVERIFIED",
+      "displayed native images/short sequences and hashes",
+      "GPU/browser/provider errors and retained failed attempts",
+      "separate technical/owner visual/performance decisions",
+      "blocker/release condition/owner/next task"
+    ]
+  },
+  "referenceSourceAudit": {
+    "status": "READ_ONLY_SOURCE_FETCHED; NO_REFERENCE_RUNTIME_EXECUTED",
+    "fixedCommit": "4811ba48d795197de5621985f404e765c0b7c0ef",
+    "method": "GitHub connector fetch at exact commit.",
+    "sources": [
+      {"url":"https://github.com/dgreenheck/tidewater/blob/4811ba48d795197de5621985f404e765c0b7c0ef/LICENSE","lines":"1-13","fact":"MIT, copyright 2026 DRG Software Solutions LLC; preserve notices."},
+      {
+        "url": "https://github.com/dgreenheck/tidewater/blob/4811ba48d795197de5621985f404e765c0b7c0ef/src/ocean/OceanFFT.js",
+        "lines": "26-32, 86, 130-138, 513-516, 605-630",
+        "fact": "Default 4x256 FFT, derivative/displacement mips, stateful Jacobian foam; time accumulates dt, requiring Cesium adaptation."
+      },
+      {
+        "url": "https://github.com/dgreenheck/tidewater/blob/4811ba48d795197de5621985f404e765c0b7c0ef/src/ocean/WaterMaterial.js",
+        "lines": "343-354, 366-374",
+        "fact": "skyReflectionRadiance, optional conditional SSR blend, independent GGX Sun glint."
+      },
+      {
+        "url": "https://github.com/dgreenheck/tidewater/blob/4811ba48d795197de5621985f404e765c0b7c0ef/src/sky/Sky.js",
+        "lines": "68-70, 159-187",
+        "fact": "Water uses sky background + cloudsSample panorama, without Sun/Moon disks; not a separate scene-cubemap claim."
+      }
+    ]
+  }
+}

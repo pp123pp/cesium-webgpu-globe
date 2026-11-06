@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "task": "M6.O0-01..04",
+  "date": "2026-11-06",
+  "auditedSourceHead": "157a40eed3290b1abed82c64f4e428209b146958",
+  "sourceIdentity": "baseline.json sourceSha256; O0 changes are documentation, data metadata and audit fixtures only",
+  "checks": [
+    {
+      "name": "official Cesium tag",
+      "command": "git ls-remote https://github.com/CesiumGS/cesium.git refs/tags/1.146 refs/tags/1.146^{}",
+      "exitCode": 0,
+      "result": "PASS",
+      "evidence": "cesium-tag-remote.txt"
+    },
+    {
+      "name": "package, workspaces, provenance, license and runtime hashes",
+      "command": "Node ESM assertions against package.json, UPSTREAM_REVISION.txt, LICENSE.md and baseline.json; hash reproduction snippet in README.md",
+      "exitCode": 0,
+      "result": "PASS",
+      "cesiumVersion": "1.146.0",
+      "workspaceCount": 4,
+      "verifiedRuntimeHashes": 11
+    },
+    {
+      "name": "offline pinned-source geometry audit",
+      "command": "python -B coordination/evidence/M6/O0/data/audit-natural-earth.py",
+      "exitCode": 0,
+      "result": "PASS_FROZEN_PROCESSING_EXPECTATIONS",
+      "checkedSourceFiles": 21,
+      "checkedPointSamples": 26,
+      "licenseHashVerified": true,
+      "knownGeographicDiscrepancies": [
+        "alcatraz-small-island"
+      ],
+      "resultSha256": "a5efa5cf06df81ac7c01dfa4c04ee076a93b5c557b773a709b0528174e958f44"
+    },
+    {
+      "name": "independent source and contract review",
+      "result": "REVIEWED_AND_CORRECTED",
+      "corrections": [
+        "coverage update request-scheduling entry",
+        "CPU geographical frame before time sample; no circular dependency",
+        "logical-time fade semantics and all anchored displacement relocation",
+        "device loss releases; recovery explicitly recreates Viewer"
+      ],
+      "runtimeExecution": "NOT_RUN"
+    },
+    {
+      "name": "byte-exact audit payload checkout",
+      "command": "git check-attr text eol -- (three hashed O0 data/license payloads)",
+      "result": "PASS",
+      "expected": "text set; eol lf for all three files",
+      "reason": "Windows core.autocrlf=true otherwise changes compared license/result/checksum bytes"
+    },
+    {
+      "name": "local commit hook first attempt",
+      "result": "FAILED_AND_FIXED",
+      "exitCode": 1,
+      "cause": "Markdown-only gate: inherited table alignment/blank lines in README, ROADMAP, WORKFLOW and emphasis headings in O0",
+      "fix": "Scoped existing Prettier/markdownlint fix; convert four task step labels to unique headings; no hook bypass or runtime test"
+    },
+    {
+      "name": "scoped Markdown formatting and lint",
+      "command": "prettier --write plus markdownlint --fix --config .markdownlint.json --ignore-path .markdownlintignore on the 17 staged Markdown files",
+      "exitCode": 0,
+      "result": "PASS"
+    },
+    {
+      "name": "second commit hook attempt",
+      "result": "FAILED_WITH_CONTENT_PRESERVED",
+      "exitCode": 1,
+      "cause": "lint-staged restore of partially staged formatting changes reported a merge conflict; it reverted to original state. No unstaged content remained after inspection.",
+      "recovery": "Inspected index and working tree; reran unchanged repository staged checker with debug capture. No hooks disabled."
+    },
+    {
+      "name": "repository staged checker diagnostic rerun",
+      "command": "npx --offline lint-staged --concurrent false --debug",
+      "exitCode": 0,
+      "result": "PASS",
+      "localDiagnosticLog": ".cache/m6-o0-lint-staged.log",
+      "scope": "existing Markdown lint/format tasks; no engine tests, build or Full"
+    }
+  ],
+  "documentValidation": {
+    "status": "PASS",
+    "jsonFiles": 6,
+    "markdownFiles": 17,
+    "localLinks": 201,
+    "scenarioCount": 15,
+    "taskRefs": 18,
+    "acceptanceRefs": 44,
+    "existingCommands": 8,
+    "plannedAbsentCommands": 5,
+    "runtimeChanges": 0,
+    "reviewedArtifactSha256": {
+      ".gitattributes": "e5b7c1af22cfe03ca506d233198ddad56f97bc09664ac9489d638f030291904e",
+      "AGENTS.md": "64c46ff15fb0e967326e00b81eee7fc97a20314edb689c7b96c44feea267279a",
+      "README.md": "91fb2f9e05d8fe2015ff60093d0ff46405ca3f7cc277aecad56bfd3166d4f005",
+      "ROADMAP.md": "f7b7e049bec880b7c3b7c4b7e751618b1df876422ad4daaaa7eae12d0804c028",
+      "coordination/M6-AI-START.md": "3aaeb1aac7b483b1603f57cf81ffad79b912dbef105ea4043732ff118fd8e6f4",
+      "coordination/M6-STATUS.md": "a76a7ca6c0c887c3371b5be6b2a5a964c7e6a3387a1158399d6349cf18c92b64",
+      "coordination/STATUS.md": "0ca04376da60d843c06b23c367ed7d85785ec33adf1d3253f6f2cbdb394bbe50",
+      "coordination/WORKFLOW.md": "379d6f328111cbe291bd21174fe69b4e427fa1ac65a641d67469debd2be7f0ea",
+      "coordination/evidence/M6/O0/README.md": "54110b826045d4ecd0d03077027fb336930e0a636cbfc824db8e1cceac9ef8eb",
+      "coordination/evidence/M6/O0/baseline.json": "d4bdeef08fbc4616fe12a17abe669b581c5c4d0aa301829d68b1e14273be9c96",
+      "coordination/evidence/M6/O0/cesium-tag-remote.txt": "19d4290366107d45499eac67d9feea34e588f0184db6fac5e80c077af4d5b975",
+      "coordination/evidence/M6/O0/data/README.md": "35ad3e84298d15230fe41d495794dd32628f3f12bef634545346e7c0b392fcd2",
+      "coordination/evidence/M6/O0/data/SHA256SUMS.txt": "61c61a1916f0638e072e59bf6133befe5c46ab77c296b41016bc176e790c8e87",
+      "coordination/evidence/M6/O0/data/audit-natural-earth.py": "ca79ef76ec8c7c0302ca170a5d26d11db3cdb078ebe2549529ffe0ba6cb3f5b5",
+      "coordination/evidence/M6/O0/data/samples-input.json": "8e48a77c590a07b559a7aadf973abd8bbda9e9e69b182adb174cd4bf04cd58ca",
+      "coordination/evidence/M6/O0/data/samples-result.json": "a5efa5cf06df81ac7c01dfa4c04ee076a93b5c557b773a709b0528174e958f44",
+      "coordination/evidence/M6/O0/scenarios.json": "9ee8eff8aafd02866afedc040aebff3e4c0aac288e8f1e54808cc4449810ac79",
+      "docs/ACCEPTANCE.md": "c07ad2fb40f64c113aef20d751832546c1cc1cc3ce79a94013e8a5f95d7b84a9",
+      "docs/M6_ACCEPTANCE.md": "e3da3c7372354b2c2a958e72d3dca4b5780f7ad4abc374051d2ed47bb3d78813",
+      "docs/M6_OCEAN_CONTRACTS.md": "094283c29c26d2eded8ae9c902c514e017375c2a9a28a555a0456682d84b1344",
+      "docs/OCEAN_PLAN.md": "c6905cde66cbc8b38a004f489c9cf671692aeb45e10f6328b2b5dcd4c1998586",
+      "docs/superpowers/plans/2026-11-06-m6-global-ocean.md": "c5b10bf94bc625d32471c887230cd89368deb1093d91d6426f61ee512d807fba",
+      "packages/engine/Source/Assets/Textures/WebGPU/Ocean/LICENSE-NATURAL-EARTH.txt": "b10aaf0c2d085c07cf4ae8737b6e490d7b4dfeb2b6f09deef744c0f6cdbf4258",
+      "packages/engine/Source/Assets/Textures/WebGPU/Ocean/README.md": "a5e6253de2558051df9d87e8a48558444f579378082a942eff2c5a633edb9e34",
+      "packages/engine/Source/Assets/Textures/WebGPU/Ocean/manifest.json": "d9db30efd1462434abf18784d06f5c9697826d29d6ac3cb8166965bd16a36a48",
+      "tasks/M6.md": "68b2c4f8a37787a8606338cc56da69c4e58f50972c1bb72566449fd224976af3",
+      "tasks/M6/O0.md": "bae1bf301efd4938c4cf3ddddd44fa66b5502de3529041ec62dcdba37d8b6ad7"
+    }
+  },
+  "diffCheck": {
+    "status": "PASS",
+    "command": "git diff --cached --check",
+    "exitCode": 0,
+    "scope": "staged O0 documents, metadata, audit script and fixtures; rechecked before commit"
+  },
+  "notRun": [
+    "runtime raster generation or ocean loading",
+    "ocean numerical/runtime acceptance suites (not implemented yet)",
+    "build, generated types or runtime lint",
+    "GPU adapter probe, rendering, screenshots or video",
+    "performance, timestamp-query or resident VRAM measurement",
+    "WebGL smoke/differential, hosted Fast/Full or manual Full"
+  ],
+  "permissions": {
+    "push": false,
+    "merge": false,
+    "manualFull": false
+  },
+  "nextTask": "O1-01"
+}
