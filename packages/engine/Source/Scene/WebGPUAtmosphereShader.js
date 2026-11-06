@@ -66,8 +66,14 @@ fn starRadiance(direction: vec3f, pixelWidth: f32) -> vec3f {
   let offset = vec3f(spaceHash(cell + vec3f(17.0, 3.0, 11.0)),
                     spaceHash(cell + vec3f(5.0, 29.0, 7.0)),
                     spaceHash(cell + vec3f(13.0, 19.0, 31.0)));
-  let radius = length(fract(grid) - offset);
-  let point = 1.0 - smoothstep(0.006, 0.035 + pixelWidth * 900.0, radius);
+  let local = fract(grid);
+  let radius = length(local - offset);
+  let support = 0.035 + pixelWidth * 900.0;
+  // Adjacent cells have independent stars. A clipped footprint must reach zero
+  // at their shared face before the lookup switches to a different star.
+  let face = min(local, 1.0 - local);
+  let edge = smoothstep(0.0, min(support, 0.125), min(face.x, min(face.y, face.z)));
+  let point = (1.0 - smoothstep(0.006, support, radius)) * edge;
   let brightness = mix(0.12, 0.85, spaceHash(cell + vec3f(41.0)));
   let tint = mix(vec3f(0.72, 0.82, 1.0), vec3f(1.0, 0.88, 0.70),
                  spaceHash(cell + vec3f(71.0)));

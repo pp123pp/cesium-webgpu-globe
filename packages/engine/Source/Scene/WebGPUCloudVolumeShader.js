@@ -82,7 +82,8 @@ fn cloudMarchSegment(segment: vec2f, direction: vec3f, count: u32, angularPixel:
       result.lightSteps += u32(clouds.budget.y);
       // The existing light march also distinguishes exposed lobes from
       // pockets inside the bank. Keep a floor for diffuse skylight there.
-      diffuseEscape = exp(-0.72*tau);
+      // The solar-depth contribution to ambient fill fades with the visible disk.
+      diffuseEscape = mix(1.0, exp(-0.72*tau), sunVisibility);
       let powder = mix(0.74 + 0.26*(1.0-exp(-sigma*2400.0)), 1.0, smoothstep(0.25,0.9,cosine));
       let single = phase * exp(-tau);
       // Repeated scattering broadens the phase and carries light deeper into a bank.
