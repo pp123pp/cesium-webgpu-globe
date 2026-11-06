@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>地形云影 · Cesium WebGPU</title>
+    <script src="../Build/Cesium/Cesium.js"></script>
+    <link
+      rel="stylesheet"
+      href="../Build/Cesium/Widgets/Animation/Animation.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../Build/Cesium/Widgets/Timeline/Timeline.css"
+    />
+    <style>
+      :root {
+        --dial-width: 169px;
+        --dial-height: 112px;
+        color-scheme: dark;
+        font:
+          14px/1.55 system-ui,
+          sans-serif;
+        color: #eaf2f4;
+      }
+      html,
+      body,
+      main {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #172a3a;
+      }
+      main {
+        height: calc(100% - 30px);
+      }
+      #animation {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: var(--dial-width);
+        height: var(--dial-height);
+      }
+      #timeline {
+        position: absolute;
+        left: var(--dial-width);
+        right: 0;
+        bottom: 0;
+        height: 30px;
+      }
+      aside {
+        position: absolute;
+        left: 14px;
+        top: 14px;
+        padding: 14px;
+        width: min(252px, calc(100vw - 58px));
+        max-height: calc(100dvh - var(--dial-height) - 58px);
+        overflow: auto;
+        background: rgba(20, 36, 46, 0.95);
+        border: 1px solid #53707a;
+        border-radius: 6px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 19px;
+      }
+      p {
+        margin: 0 0 12px;
+        color: #b6cbd1;
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+      }
+      label {
+        display: block;
+        margin: 8px 0;
+      }
+      button,
+      select {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        padding: 5px 10px;
+        background: #223842;
+        border: 1px solid #46616b;
+        border-radius: 3px;
+      }
+      button:focus-visible,
+      select:focus-visible,
+      input:focus-visible {
+        outline: 2px solid #ffda91;
+      }
+      #status {
+        margin: 8px 0 0;
+      }
+      .preset {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      @media (max-width: 599px) {
+        aside {
+          max-height: min(45dvh, calc(100dvh - var(--dial-height) - 58px));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="cesiumContainer" aria-label="金门海峡真实地形云影"></main>
+    <div id="animation" role="region" aria-label="时间播放控制"></div>
+    <div id="timeline" role="region" aria-label="Cesium 时间轴"></div>
+    <aside>
+      <h1>地形云影</h1>
+      <p>
+        旧金山 ·
+        金门海峡。拖动时间轴观察太阳、昼夜和云影变化，可缩放或平移到任意时间，用左下圆盘播放或调整速度。
+      </p>
+      <fieldset id="controls" disabled>
+        <label class="preset">
+          观察高度
+          <select id="height">
+            <option value="1900">近地 · 1.9 km</option>
+            <option value="4000">云层内 · 4 km</option>
+            <option value="12000">云层上方 · 12 km</option>
+            <option value="90000">高空 · 90 km</option>
+            <option value="175000">渐隐中段 · 175 km</option>
+            <option value="300000">轨道 · 300 km</option>
+          </select>
+        </label>
+        <label class="preset">
+          太阳角半径
+          <select id="sunRadius" aria-describedby="sunRadiusHelp">
+            <option value="0.00465">物理太阳盘 · 0.266°</option>
+            <option value="0.00001">近点光源 · 0.00057°</option>
+            <option value="0.04">放大太阳盘 · 2.29°</option>
+          </select>
+        </label>
+        <small id="sunRadiusHelp"
+          >切换角半径可对照云影半影，也会改变天空中的太阳盘大小。</small
+        >
+        <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
+        <label><input id="ambient" type="checkbox" checked /> 环境光衰减</label>
+        <button id="reset" type="button">复位机位和时间</button>
+        <button id="view" type="button" aria-pressed="false">
+          看云和地平线
+        </button>
+      </fieldset>
+      <small id="imagery">Natural Earth II 底图 · 正在连接卫星影像</small>
+      <br /><small id="terrain">正在连接真实地形高程…</small>
+      <p id="status" role="status">正在初始化 WebGPU…</p>
+    </aside>
+    <script type="module">
+      /* global Cesium */
+      const controls = document.getElementById("controls");
+      const shadows = document.getElementById("shadows");
+      const ambient = document.getElementById("ambient");
+      const view = document.getElementById("view");
+      const height = document.getElementById("height");
+      const sunRadius = document.getElementById("sunRadius");
+      const status = document.getElementById("status");
+      const start = Cesium.JulianDate.fromIso8601("2026-03-20T20:00:00Z");
+      let viewer;
+
+      let animation;
+      let timeline;
+      let clockViewModel;
+
+      function scrubTime(event) {
+        event.clock.currentTime = event.timeJulian;
+        event.clock.shouldAnimate = false;
+      }
+
+      function resizeTimeWidgets() {
+        // Match Viewer.resize(); the WebGPU Viewer does not lay out widgets yet.
+        const width = viewer.container.clientWidth;
+        const [dialWidth, dialHeight] =
+          width > 900 ? [169, 112] : width >= 600 ? [136, 90] : [106, 70];
+        document.documentElement.style.setProperty(
+          "--dial-width",
+          `${dialWidth}px`,
+        );
+        document.documentElement.style.setProperty(
+          "--dial-height",
+          `${dialHeight}px`,
+        );
+        animation.resize();
+        timeline.resize();
+      }
+
+      function setView(horizon) {
+        const altitude = Number(height.value);
+        view.setAttribute("aria-pressed", String(horizon));
+        view.textContent = horizon ? "看地表特写" : "看云和地平线";
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(
+            -122.489,
+            37.8113,
+            altitude,
+          ),
+          orientation: {
+            heading: Cesium.Math.toRadians(313),
+            pitch: Cesium.Math.toRadians(
+              horizon ? 0 : altitude === 1900 ? -28 : -90,
+            ),
+            roll: 0,
+          },
+        });
+      }
+
+      function reset() {
+        viewer.clock.shouldAnimate = false;
+        viewer.clock.currentTime = Cesium.JulianDate.clone(start);
+        height.value = "1900";
+        setView(false);
+      }
+
+      function showError(error) {
+        controls.disabled = true;
+        status.hidden = false;
+        status.textContent = `云影渲染失败：${error?.message ?? error}`;
+      }
+
+      async function addSatelliteImagery() {
+        const label = document.getElementById("imagery");
+        try {
+          const provider = await Cesium.ArcGisMapServerImageryProvider.fromUrl(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+            { enablePickFeatures: false },
+          );
+          viewer.imageryLayers.addImageryProvider(provider);
+          label.textContent = "卫星与航拍 · Esri World Imagery";
+          provider.errorEvent.addEventListener(() => {
+            label.textContent =
+              "Esri World Imagery · 缺失区域显示 Natural Earth II";
+          });
+        } catch {
+          label.textContent = "卫星服务不可用 · 使用本地 Natural Earth II 底图";
+        }
+      }
+
+      try {
+        const terrainProvider =
+          await Cesium.ArcGISTiledElevationTerrainProvider.fromUrl(
+            "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+          );
+        viewer = new Cesium.Viewer("cesiumContainer", {
+          renderingBackend: "webgpu",
+          terrainProvider,
+        });
+        viewer.renderError.addEventListener((scene, error) => showError(error));
+        await viewer.readyPromise;
+        const terrainLabel = document.getElementById("terrain");
+        terrainLabel.textContent = "地形高程源 · Esri World Elevation 3D";
+        terrainProvider.errorEvent.addEventListener(() => {
+          terrainLabel.textContent =
+            "Esri World Elevation 3D · 部分高程瓦片未载入";
+        });
+        viewer.scene.globe.enableLighting = true;
+        Object.assign(viewer.scene.clouds, {
+          show: true,
+          shadows: true,
+          coverage: 0.78,
+          quality: "high",
+          localDetail: true,
+          windSpeed: 36,
+          windDirection: 0,
+          evolution: false,
+          mist: false,
+        });
+        viewer.clock.startTime = Cesium.JulianDate.clone(start);
+        viewer.clock.stopTime = Cesium.JulianDate.addDays(
+          start,
+          1,
+          new Cesium.JulianDate(),
+        );
+        viewer.clock.clockRange = Cesium.ClockRange.UNBOUNDED;
+        viewer.clock.multiplier = 600;
+        reset();
+        clockViewModel = new Cesium.ClockViewModel(viewer.clock);
+        animation = new Cesium.Animation(
+          "animation",
+          new Cesium.AnimationViewModel(clockViewModel),
+        );
+        timeline = new Cesium.Timeline("timeline", viewer.clock);
+        timeline.zoomTo(viewer.clock.startTime, viewer.clock.stopTime);
+        timeline.addEventListener("settime", scrubTime, false);
+        resizeTimeWidgets();
+        viewer.creditDisplay.container.style.left = "var(--dial-width)";
+        window.addEventListener("resize", resizeTimeWidgets);
+        shadows.addEventListener("change", () => {
+          viewer.scene.clouds.shadows = shadows.checked;
+          ambient.disabled = !shadows.checked;
+        });
+        ambient.addEventListener("change", () => {
+          viewer.scene.clouds.ambientShadows = ambient.checked;
+        });
+        document.getElementById("reset").addEventListener("click", reset);
+        height.addEventListener("change", () => setView(false));
+        sunRadius.addEventListener("change", () => {
+          viewer.scene.sun.angularRadius = Number(sunRadius.value);
+        });
+        view.addEventListener("click", () => {
+          height.value = "1900";
+          setView(view.getAttribute("aria-pressed") !== "true");
+        });
+        controls.disabled = false;
+        status.hidden = true;
+        void addSatelliteImagery();
+      } catch (error) {
+        showError(error);
+      }
+      window.addEventListener("pagehide", (event) => {
+        if (!event.persisted && viewer && !viewer.isDestroyed()) {
+          window.removeEventListener("resize", resizeTimeWidgets);
+          timeline?.removeEventListener("settime", scrubTime, false);
+          timeline?.destroy();
+          animation?.destroy();
+          clockViewModel?.destroy();
+          viewer.destroy();
+        }
+      });
+    </script>
+  </body>
+</html>
