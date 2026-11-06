@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "natural-earth-5.1.2",
+  "frozenDate": "2026-11-06",
+  "status": "SOURCE_VERIFIED_RUNTIME_NOT_GENERATED",
+  "source": {
+    "name": "Natural Earth Vector",
+    "release": "v5.1.2",
+    "commit": "f1890d9f152c896d250a77557a5751a93d494776",
+    "releaseUrl": "https://github.com/nvkelso/natural-earth-vector/releases/tag/v5.1.2",
+    "cartographicScaleDenominator": 10000000,
+    "crs": "OGC:CRS84",
+    "datum": "WGS84",
+    "coordinateOrder": [
+      "longitudeDegrees",
+      "latitudeDegrees"
+    ],
+    "verticalDatum": null,
+    "heightDataProvided": false,
+    "tokenRequired": false,
+    "layers": [
+      {
+        "name": "ocean",
+        "version": "5.1.1",
+        "downloadStatus": "DOWNLOADED_SHA256_VERIFIED",
+        "files": [
+          {
+            "file": "ne_10m_ocean.shp",
+            "bytes": 7176064,
+            "sha256": "bb5ae1e0922b02e61e14f6d562fc2299db4bef5ca36c1008b1a8e7ddf9da6410",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.shp"
+          },
+          {
+            "file": "ne_10m_ocean.shx",
+            "bytes": 108,
+            "sha256": "90ada34d9c3ff5f1f53064e01968b178b72d6eb8d3f1cbc1287b501e2805880b",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.shx"
+          },
+          {
+            "file": "ne_10m_ocean.dbf",
+            "bytes": 138,
+            "sha256": "4b2f302a84bcbb0fe5d744a9b40df173f562e07eb57532935fb6bc664d21fa33",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.dbf"
+          },
+          {
+            "file": "ne_10m_ocean.prj",
+            "bytes": 145,
+            "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.prj"
+          },
+          {
+            "file": "ne_10m_ocean.cpg",
+            "bytes": 5,
+            "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.cpg"
+          },
+          {
+            "file": "ne_10m_ocean.VERSION.txt",
+            "bytes": 6,
+            "sha256": "f9893302cd3158f3b5aea394dcd2a91574869e9e6ff69e9235b10a3bf8c983fb",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.VERSION.txt"
+          },
+          {
+            "file": "ne_10m_ocean.README.html",
+            "bytes": 37305,
+            "sha256": "4b328c8c6372023b088e16b20e0a7aa3722c54e53b1c32daf390a881d0df601b",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_ocean.README.html"
+          }
+        ]
+      },
+      {
+        "name": "land",
+        "version": "5.1.1",
+        "downloadStatus": "DOWNLOADED_SHA256_VERIFIED",
+        "files": [
+          {
+            "file": "ne_10m_land.shp",
+            "bytes": 7166824,
+            "sha256": "4cad3a49bc75c1a4c2f3d7efae04f2f8e63151c96764b2658effabf524331fa6",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.shp"
+          },
+          {
+            "file": "ne_10m_land.shx",
+            "bytes": 188,
+            "sha256": "f3b02a190c3020eeafd0f48de982619826b57ecd853cbc68e4fc049652891a04",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.shx"
+          },
+          {
+            "file": "ne_10m_land.dbf",
+            "bytes": 350,
+            "sha256": "e422520372e65c6fb8220888580e5331d04699bcd71c27e53ad42e241a531cbd",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.dbf"
+          },
+          {
+            "file": "ne_10m_land.prj",
+            "bytes": 145,
+            "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.prj"
+          },
+          {
+            "file": "ne_10m_land.cpg",
+            "bytes": 5,
+            "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.cpg"
+          },
+          {
+            "file": "ne_10m_land.VERSION.txt",
+            "bytes": 6,
+            "sha256": "f9893302cd3158f3b5aea394dcd2a91574869e9e6ff69e9235b10a3bf8c983fb",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.VERSION.txt"
+          },
+          {
+            "file": "ne_10m_land.README.html",
+            "bytes": 37096,
+            "sha256": "f22176c0b44403fd7b7381a404562007a595c477ca72d23d9b7ed3949e948b12",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_land.README.html"
+          }
+        ]
+      },
+      {
+        "name": "lakes",
+        "version": "5.0.0",
+        "downloadStatus": "DOWNLOADED_SHA256_VERIFIED",
+        "files": [
+          {
+            "file": "ne_10m_lakes.shp",
+            "bytes": 2682580,
+            "sha256": "11064fa55ed91b56a0d86733643c1a5bfcc137fdf044e83f471978a5b86617e1",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.shp"
+          },
+          {
+            "file": "ne_10m_lakes.shx",
+            "bytes": 10940,
+            "sha256": "a11ffb02e862b6c4ec8c015e6e0c70502f21bc71dcd79312b8dbc676f7e4c557",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.shx"
+          },
+          {
+            "file": "ne_10m_lakes.dbf",
+            "bytes": 9993116,
+            "sha256": "0edaa87f76c2221c986f0796ce0b54b1c418e9032afba46f8e302edc41193495",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.dbf"
+          },
+          {
+            "file": "ne_10m_lakes.prj",
+            "bytes": 145,
+            "sha256": "a02a27b1d1982c8516d83398e85a3c8b1aef1713c13ef4d84d7bde17430c07c4",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.prj"
+          },
+          {
+            "file": "ne_10m_lakes.cpg",
+            "bytes": 5,
+            "sha256": "3ad3031f5503a4404af825262ee8232cc04d4ea6683d42c5dd0a2f2a27ac9824",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.cpg"
+          },
+          {
+            "file": "ne_10m_lakes.VERSION.txt",
+            "bytes": 6,
+            "sha256": "1cc3d76ac7c21a664e79848fd481e9791016451b244e7de5feeeb9bea5fd2184",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.VERSION.txt"
+          },
+          {
+            "file": "ne_10m_lakes.README.html",
+            "bytes": 45753,
+            "sha256": "a5832c49127848fa7ecd16ef3a6b708464249f16d4689596a64fd3988f0731ce",
+            "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/10m_physical/ne_10m_lakes.README.html"
+          }
+        ]
+      }
+    ]
+  },
+  "license": {
+    "designation": "public-domain",
+    "redistributionAllowed": true,
+    "modificationAllowed": true,
+    "commercialUseAllowed": true,
+    "attributionRequired": false,
+    "attribution": "Made with Natural Earth.",
+    "termsUrl": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "textFile": "LICENSE-NATURAL-EARTH.txt",
+    "textSha256": "b10aaf0c2d085c07cf4ae8737b6e490d7b4dfeb2b6f09deef744c0f6cdbf4258",
+    "verifiedDate": "2026-11-06"
+  },
+  "classification": {
+    "codes": {
+      "unknown": 0,
+      "ocean": 1,
+      "land": 2,
+      "inland-water": 3
+    },
+    "precedence": [
+      "boundary-or-unresolved:unknown",
+      "lakes:inland-water",
+      "land:land",
+      "disconnected-ocean-component:inland-water",
+      "global-ocean-component:ocean",
+      "no-covered-class:unknown"
+    ],
+    "oceanConnectivity": {
+      "method": "clockwise-outer-ring-components-of-pinned-ocean-shapefile",
+      "openOceanSeedLongitudeLatitudeDegrees": [
+        -150,
+        0
+      ],
+      "globalOceanGroup": "world-ocean",
+      "closedOuterComponents": "inland-water",
+      "ringIndicesAreDerivedNotHardcoded": true,
+      "rasterFloodFillForbidden": true,
+      "scope": "present-day static source topology; not potential tidal connectivity"
+    },
+    "longitudeWrap": "[-180,180); +180 and -180 are the same meridian",
+    "poleRule": "longitude-independent cap limit: north ocean, south Antarctic land; direct point audit evaluates latitude +/- (90 - 1e-9) degrees",
+    "exactBoundaryRule": "unknown at actual semantic shoreline; internal same-class splits and artificial date-line/pole cuts are not semantic shorelines",
+    "waterMaskRole": "auxiliary only inside already classified global-ocean coverage",
+    "elevationRole": "never infer ocean from negative height; this source has no vertical datum or bathymetry"
+  },
+  "runtimeAssets": {
+    "status": "NOT_GENERATED",
+    "generatedByTask": "M6.O1-02",
+    "files": [],
+    "planned": {
+      "format": "headerless uint8 categorical R8; row-major; one byte per texel",
+      "crs": "OGC:CRS84",
+      "sourceId": "natural-earth-5.1.2",
+      "level": 0,
+      "globalWidth": 8192,
+      "globalHeight": 4096,
+      "tileWidth": 512,
+      "tileHeight": 512,
+      "tileColumns": 16,
+      "tileRows": 8,
+      "tileCount": 128,
+      "filePattern": "coverage/0/{x}/{y}.r8",
+      "uncompressedBytes": 33554432,
+      "boundsWestSouthEastNorthDegrees": [
+        -180,
+        -90,
+        180,
+        90
+      ],
+      "rowOrder": "north-to-south",
+      "columnOrder": "west-to-east",
+      "longitudeStepDegrees": 0.0439453125,
+      "latitudeStepDegrees": 0.0439453125,
+      "texelCenter": "lon=-180+(column+0.5)*360/8192; lat=90-(row+0.5)*180/4096",
+      "sampling": "nearest; no linear interpolation; no mipmaps",
+      "mixedFootprintRule": "unknown unless entire texel footprint has one processed class; intersect all relevant polygon boundary segments, including rings wholly enclosed in a texel; do not use centre/four-corner sampling alone",
+      "periodicSeamRule": "wrap source footprints at +/-180 and treat polar caps consistently; source cut edges alone do not make unknown",
+      "parentAssets": []
+    }
+  },
+  "fallback": {
+    "priority": [
+      "already-valid data for the same geographic tile",
+      "valid actual parent if one exists",
+      "unknown: retain existing terrain and imagery; suppress ocean draw"
+    ],
+    "firstOutputHasParent": false,
+    "unknownIsOcean": false,
+    "missingSourceBuild": "fail generation and report missing inputs; do not publish an empty mask"
+  },
+  "limitations": [
+    "Natural Earth 10m is 1:10 million generalized cartography, not ten-metre data.",
+    "8192x4096 spacing is about 4.89 km at the equator; no measured absolute coastline error bound is claimed.",
+    "Some small islands are absent from the source (Alcatraz audit); mixed-texel detection cannot recover omitted geometry.",
+    "Narrow channels may become unknown or be visually unresolved at this resolution; source connectivity must not be reconstructed by raster flood fill.",
+    "Source land documentation flags northern Russia and southern Chile coastline accuracy.",
+    "No bathymetry, ocean floor, elevation datum, tide-zone connectivity or sea-ice simulation is provided.",
+    "Classification alone cannot remove real terrain/islands; only identified ocean zero-height lid handling is authorized in O1."
+  ],
+  "audit": {
+    "sourceCache": ".cache/m6-ocean-natural-earth-v5.1.2",
+    "evidencePath": "coordination/evidence/M6/O0/data/README.md",
+    "command": "python -B coordination/evidence/M6/O0/data/audit-natural-earth.py",
+    "downloadCommand": "python -B coordination/evidence/M6/O0/data/audit-natural-earth.py --download",
+    "regenerateEvidenceCommand": "python -B coordination/evidence/M6/O0/data/audit-natural-earth.py --write",
+    "runtimeRasterization": "not implemented in O0; implement the frozen output contract in O1-02"
+  }
+}
