@@ -1,7 +1,7 @@
 # Single source of truth — status
 
 Last updated: 2026-11-06
-Current milestone: **M4 is complete on local `main`. The user visually accepted A14 and A15 on 2026-11-06.** The integrated cloud-shadow runtime on main is extended by finite solar-disk sampling in `89cb9a1`. The [acceptance packet](evidence/M4/final-acceptance/README.md) includes matched images, the physical-GPU altitude sweep and the complete WebGL differential. M5 has not started.
+Current milestone: **M5 has started on the local reference-scenes branch.** Task 1 is complete: the [eight reference views](evidence/M5/reference-scenes/README.md) reproduced on Intel Xe-LPG, including the live Golden Gate terrain shadow and 61 camera poses. M5 stability, profiling and final regression remain pending. M4 is accepted on local `main`; its [A14/A15 evidence](evidence/M4/final-acceptance/README.md) remains the visual baseline for terrain lighting.
 
 M3 is complete. The user visually accepted all [five cloud enhancements](../tasks/M3.md#planned-visual-enhancements) on 2026-11-05, including [cloud evolution and morning light shafts](evidence/M3/evolution-and-mist/README.md), and authorized merging the changes to main.
 

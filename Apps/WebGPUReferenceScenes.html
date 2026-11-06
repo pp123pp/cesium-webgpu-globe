@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WebGPU 参考场景 · Cesium</title>
+    <script src="../Build/CesiumUnminified/Cesium.js"></script>
+    <style>
+      :root {
+        color-scheme: dark;
+        font:
+          14px/1.5 system-ui,
+          sans-serif;
+      }
+      html,
+      body,
+      main {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #101c29;
+        color: #eaf2f4;
+      }
+      details {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: min(270px, calc(100vw - 50px));
+        max-height: calc(100dvh - 48px);
+        overflow: auto;
+        padding: 10px 12px;
+        background: #14242ef2;
+        border: 1px solid #53707a;
+        border-radius: 5px;
+      }
+      summary {
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      fieldset {
+        border: 0;
+        margin: 10px 0 0;
+        padding: 0;
+      }
+      p {
+        margin: 6px 0;
+      }
+      select,
+      button {
+        color: inherit;
+        font: inherit;
+        background: #223842;
+        border: 1px solid #53707a;
+        border-radius: 3px;
+        padding: 4px 8px;
+      }
+      select {
+        margin-left: 6px;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.55;
+      }
+      small {
+        color: #b6cbd1;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="cesiumContainer" aria-label="WebGPU 参考场景"></main>
+    <details open>
+      <summary>WebGPU 参考场景</summary>
+      <fieldset id="controls" disabled>
+        <label
+          >场景
+          <select id="scene"></select
+        ></label>
+        <p id="description"></p>
+        <small id="date"></small>
+        <div id="source" hidden>
+          <p>
+            <label
+              ><input id="shadows" type="checkbox" checked /> 地表云影</label
+            >
+            <label
+              ><input id="ambient" type="checkbox" checked /> 环境光衰减</label
+            >
+          </p>
+          <small id="terrainSource"></small><br /><small
+            id="imagerySource"
+          ></small>
+          <br /><a href="./WebGPUCloudShadows.html"
+            >打开带时间轴的金门海峡示例</a
+          >
+        </div>
+        <p>
+          <button type="button" id="reset">复位</button>
+          <span id="motion" hidden>
+            <button type="button" id="replay">重播</button>
+            <button type="button" id="step">下一帧</button>
+            <output id="frame"></output>
+          </span>
+        </p>
+      </fieldset>
+      <p id="status" role="status">正在载入本地参考场景…</p>
+    </details>
+    <script type="module">
+      /* global Cesium */
+      const scenes = {
+        "orbit-day": {
+          label: "白天轨道",
+          description: "从同步轨道距离俯视日照半球与大气边缘。",
+          time: "2026-03-20T12:00:00Z",
+          height: 35786000,
+          heading: 0,
+          pitch: -90,
+        },
+        sunrise: {
+          label: "日出",
+          description: "向东观察低角度的阳光、云缘和地平线。",
+          time: "2026-03-20T06:27:00Z",
+          height: 9500,
+          heading: 112,
+          pitch: -9,
+        },
+        twilight: {
+          label: "暮光",
+          description: "比较低云暗部与仍受光的高层卷云。",
+          time: "2026-03-20T18:18:00Z",
+          height: 8000,
+          heading: 265,
+          pitch: -3,
+          coverage: 0.48,
+          cirrus: true,
+        },
+        night: {
+          label: "月夜",
+          description: "在夜侧低轨仰望近满月与星场。",
+          time: "2026-03-03T11:30:00Z",
+          longitude: -170,
+          latitude: 5,
+          height: 400000,
+          heading: 358.4,
+          pitch: 88.4,
+          fov: 12,
+        },
+        "cloud-sea": {
+          label: "低空云海",
+          description: "沿云顶望向远处，比较近云轮廓与地平线的空气透视。",
+          time: "2026-03-20T16:30:00Z",
+          height: 8000,
+          heading: 265,
+          pitch: -3,
+        },
+        "inside-cloud": {
+          label: "云内",
+          description: "在积云层中观察透光间隙与较密的云体。",
+          time: "2026-03-20T12:00:00Z",
+          height: 3400,
+          heading: 90,
+          pitch: -4,
+          windSpeed: 18,
+        },
+        "terrain-shadow": {
+          label: "地形云影",
+          description:
+            "从金门大桥上空向西北望，观察云影掠过海峡和马林岬角的山坡。",
+          time: "2026-03-20T20:00:00Z",
+          longitude: -122.489,
+          latitude: 37.8113,
+          height: 1900,
+          heading: 313,
+          pitch: -28,
+          coverage: 0.78,
+          quality: "high",
+          windSpeed: 36,
+          windDirection: 0,
+          shadows: true,
+        },
+        "rapid-motion": {
+          label: "快速相机运动",
+          description:
+            "沿固定航线从高空穿过低云至近地，每一步推进一秒模拟时间。",
+          time: "2026-03-20T16:30:00Z",
+          height: 90000,
+          heading: 247,
+          pitch: -38,
+          windSpeed: 18,
+        },
+      };
+      const controls = document.getElementById("controls");
+      const select = document.getElementById("scene");
+      const status = document.getElementById("status");
+      const output = document.getElementById("frame");
+      const step = document.getElementById("step");
+      const lastFrame = 60;
+      const source = document.getElementById("source");
+      const shadows = document.getElementById("shadows");
+      const ambient = document.getElementById("ambient");
+      class BoundedEllipsoid extends Cesium.EllipsoidTerrainProvider {
+        getLevelMaximumGeometricError(level) {
+          return level >= 8 ? 0 : super.getLevelMaximumGeometricError(level);
+        }
+      }
+      const offlineTerrain = new BoundedEllipsoid();
+      const goldenGateSources = {
+        terrain: {
+          load: () =>
+            Cesium.ArcGISTiledElevationTerrainProvider.fromUrl(
+              "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+            ),
+          install: (provider) => {
+            viewer.terrainProvider = provider;
+          },
+          loading: "正在连接金门海峡高程…",
+          live: "地形高程源 · Esri World Elevation 3D",
+          partial: "Esri World Elevation 3D · 部分高程瓦片未载入",
+          fallback: "高程服务不可用 · 仅显示椭球地表",
+        },
+        imagery: {
+          load: () =>
+            Cesium.ArcGisMapServerImageryProvider.fromUrl(
+              "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+              { enablePickFeatures: false },
+            ),
+          install: (provider) => {
+            satellite ??= viewer.imageryLayers.addImageryProvider(provider);
+          },
+          loading: "Natural Earth II 底图 · 正在连接卫星影像…",
+          live: "卫星与航拍 · Esri World Imagery",
+          partial: "Esri World Imagery · 缺失区域显示 Natural Earth II",
+          fallback: "卫星服务不可用 · 使用本地 Natural Earth II 底图",
+        },
+      };
+      let satellite;
+      let visit = 0;
+      let viewer;
+      let frame = 0;
+      let removePlayback;
+      for (const [slug, scene] of Object.entries(scenes)) {
+        select.add(new Option(scene.label, slug));
+      }
+
+      function setFrame(next, renderTime = new Cesium.JulianDate()) {
+        frame = next;
+        const preset = scenes[select.value];
+        let { longitude = 0, latitude = 0, height, heading, pitch } = preset;
+        if (select.value === "rapid-motion") {
+          const t = frame / lastFrame;
+          longitude += 0.28 * t;
+          latitude += 0.12 * t;
+          height *= (1700 / preset.height) ** t;
+          heading += 85 * t;
+          pitch += 35 * t;
+        }
+        viewer.clock.currentTime = Cesium.JulianDate.addSeconds(
+          Cesium.JulianDate.fromIso8601(preset.time),
+          frame,
+          renderTime,
+        );
+        viewer.camera.setView({
+          destination: Cesium.Cartesian3.fromDegrees(
+            longitude,
+            latitude,
+            height,
+          ),
+          orientation: {
+            heading: Cesium.Math.toRadians(heading),
+            pitch: Cesium.Math.toRadians(pitch),
+            roll: 0,
+          },
+        });
+        document.getElementById("date").textContent =
+          Cesium.JulianDate.toIso8601(viewer.clock.currentTime, 0);
+        output.dataset.frame = String(frame);
+        output.dataset.lastFrame = String(lastFrame);
+        output.value = `${frame} / ${lastFrame}`;
+        step.disabled = frame === lastFrame;
+      }
+
+      function reset() {
+        stopPlayback();
+        const slug = location.hash.slice(1);
+        select.value = Object.hasOwn(scenes, slug) ? slug : "orbit-day";
+        if (slug !== select.value) {
+          history.replaceState(null, "", `#${select.value}`);
+        }
+        const preset = scenes[select.value];
+        viewer.camera.cancelFlight();
+        viewer.camera.frustum.fov = Cesium.Math.toRadians(preset.fov ?? 60);
+        viewer.clock.shouldAnimate = false;
+        shadows.checked = true;
+        ambient.checked = true;
+        ambient.disabled = false;
+        setSources(select.value === "terrain-shadow");
+        Object.assign(viewer.scene.clouds, {
+          show: true,
+          quality: preset.quality ?? "medium",
+          localDetail: true,
+          type: "cumulus",
+          coverage: preset.coverage ?? 0.58,
+          cirrus: preset.cirrus ?? false,
+          evolution: false,
+          mist: false,
+          windSpeed: preset.windSpeed ?? 0,
+          windDirection: preset.windDirection ?? 0.75,
+          shadows: preset.shadows ?? false,
+          ambientShadows: true,
+        });
+        document.getElementById("description").textContent = preset.description;
+        document.getElementById("motion").hidden =
+          select.value !== "rapid-motion";
+        setFrame(0);
+      }
+
+      function sourceStatus(kind, state, message) {
+        source.dataset[kind] = state;
+        document.getElementById(`${kind}Source`).textContent = message;
+      }
+
+      function setSources(goldenGate) {
+        const currentVisit = ++visit;
+        source.hidden = !goldenGate;
+        if (satellite) {
+          satellite.show = goldenGate;
+        }
+        if (!goldenGate) {
+          viewer.terrainProvider = offlineTerrain;
+          source.dataset.terrain = "local";
+          source.dataset.imagery = "local";
+          return;
+        }
+        for (const [kind, service] of Object.entries(goldenGateSources)) {
+          void connectSource(kind, service, currentVisit);
+        }
+      }
+
+      async function connectSource(kind, service, currentVisit) {
+        sourceStatus(kind, "loading", service.loading);
+        service.request ??= service.load().then(
+          (provider) => {
+            provider.errorEvent.addEventListener(() => {
+              if (!source.hidden) {
+                sourceStatus(kind, "partial", service.partial);
+              }
+            });
+            return provider;
+          },
+          (error) => {
+            service.request = undefined;
+            throw error;
+          },
+        );
+        try {
+          const provider = await service.request;
+          if (visit === currentVisit) {
+            service.install(provider);
+            sourceStatus(kind, "live", service.live);
+          }
+        } catch {
+          if (visit === currentVisit) {
+            sourceStatus(kind, "fallback", service.fallback);
+          }
+        }
+      }
+
+      function showError(error) {
+        stopPlayback();
+        controls.disabled = true;
+        status.hidden = false;
+        status.textContent = `参考场景载入失败：${error?.message ?? error}`;
+      }
+
+      function stopPlayback() {
+        removePlayback?.();
+        removePlayback = undefined;
+      }
+
+      try {
+        viewer = new Cesium.Viewer("cesiumContainer", {
+          renderingBackend: "webgpu",
+          terrainProvider: offlineTerrain,
+        });
+        viewer.renderError.addEventListener((scene, error) => showError(error));
+        await viewer.readyPromise;
+        await Cesium.CelestialFrameTransforms.preloadIcrfFixed(
+          new Cesium.TimeInterval({
+            start: Cesium.JulianDate.fromIso8601(scenes.night.time),
+            stop: Cesium.JulianDate.fromIso8601("2026-03-21T00:00:00Z"),
+          }),
+        );
+        viewer.scene.globe.enableLighting = true;
+        reset();
+        if (window.matchMedia("(max-width: 600px)").matches) {
+          document.querySelector("details").open = false;
+        }
+        select.addEventListener("change", () => {
+          location.hash = select.value;
+        });
+        window.addEventListener("hashchange", reset);
+        document.getElementById("reset").addEventListener("click", reset);
+        shadows.addEventListener("change", () => {
+          viewer.scene.clouds.shadows = shadows.checked;
+          ambient.disabled = !shadows.checked;
+        });
+        ambient.addEventListener("change", () => {
+          viewer.scene.clouds.ambientShadows = ambient.checked;
+        });
+        step.addEventListener("click", () => {
+          stopPlayback();
+          setFrame(frame + 1);
+        });
+        document.getElementById("replay").addEventListener("click", () => {
+          reset();
+          let lastStep = performance.now();
+          removePlayback = viewer.scene.preUpdate.addEventListener(
+            (scene, time) => {
+              const now = performance.now();
+              if (now - lastStep < 80) {
+                return;
+              }
+              lastStep = now;
+              // WebGPUScene will submit this exact clock instant and pose together.
+              setFrame(frame + 1, time);
+              if (frame === lastFrame) {
+                stopPlayback();
+              }
+            },
+          );
+        });
+        controls.disabled = false;
+        status.hidden = true;
+      } catch (error) {
+        showError(error);
+      }
+      window.addEventListener("pagehide", (event) => {
+        if (!event.persisted && viewer && !viewer.isDestroyed()) {
+          ++visit;
+          stopPlayback();
+          window.removeEventListener("hashchange", reset);
+          viewer.destroy();
+        }
+      });
+    </script>
+  </body>
+</html>

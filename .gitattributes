@@ -11,6 +11,9 @@ coordination/ci/m2.6.1-b5-c-audit.mjs text eol=lf
 # M2.8 report digests refer to the original LF JSON capture bytes.
 coordination/evidence/M2.8/**/*.json text eol=lf
 
+# The M5 reference report identifies the exact HTML bytes served to the browser.
+Apps/WebGPUReferenceScenes.html text eol=lf
+
 # Generated GPU payloads are binary, including ramps with no NUL bytes.
 *.r8 binary
 *.rgba8 binary

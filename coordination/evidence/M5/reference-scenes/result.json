@@ -1,0 +1,1054 @@
+{
+  "suite": "m5-reference-scenes",
+  "browserConsole": [],
+  "capturedAt": "2026-11-06T03:33:53.138Z",
+  "configuration": {
+    "mode": "hardware",
+    "requirePhysicalGpu": true,
+    "launchOptions": {
+      "headless": false,
+      "timeout": 30000,
+      "channel": "chromium",
+      "args": []
+    }
+  },
+  "source": "a6e880471a74b1cbe0dcd4d5e9c1b673af6acbe4",
+  "sourceStatus": "M Apps/WebGPUIndex.html\n M README.md\n M ROADMAP.md\n M coordination/STATUS.md\n M docs/GITHUB_PAGES.md\n M tasks/M5.md\n?? Apps/WebGPUReferenceScenes.html\n?? coordination/ci/m5-reference-scenes-smoke.mjs",
+  "bundleSha256": "cd09679a0c16e59a0b3459381c7795c0af973ee323cc18c93c32303a486812d4",
+  "browserErrors": [],
+  "checks": [
+    "Seven offline presets plus Golden Gate live terrain and imagery, deterministic reset, solar angles, cloud and shadow color controls, actual rapid flight and replay"
+  ],
+  "scenes": [
+    {
+      "slug": "orbit-day",
+      "frame": 0,
+      "utc": "2026-03-20T12:00:00Z",
+      "position": [
+        0,
+        0,
+        35786000
+      ],
+      "orientation": [
+        6.283185307179586,
+        -1.5707963267948966,
+        0
+      ],
+      "solarElevation": 88.13514312160515,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 2,
+      "cloudsShown": false,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        0
+      ],
+      "imageryDrawCalls": 2,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 25597,
+      "intensityLevels": 120,
+      "meanPeakChannel": 20.778858506944445,
+      "capture": "orbit-day.png",
+      "sha256": "6f2ae0fc736247462649ef6e16191568e8831adc2a418b5cc50924fc9ef11a95",
+      "resetSha256": "6f2ae0fc736247462649ef6e16191568e8831adc2a418b5cc50924fc9ef11a95"
+    },
+    {
+      "slug": "sunrise",
+      "frame": 0,
+      "utc": "2026-03-20T06:27:00Z",
+      "position": [
+        0,
+        0,
+        9499.999999999069
+      ],
+      "orientation": [
+        1.9547687622336491,
+        -0.15707963267948966,
+        6.283185307179586
+      ],
+      "solarElevation": 4.868628677773656,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 19,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 19,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 148,
+      "meanPeakChannel": 194.93141927083335,
+      "capture": "sunrise.png",
+      "sha256": "86f270de71cd81c8cac951f478d444b7991698b6eda5547f687cac04e9514cc1",
+      "resetSha256": "86f270de71cd81c8cac951f478d444b7991698b6eda5547f687cac04e9514cc1"
+    },
+    {
+      "slug": "twilight",
+      "frame": 0,
+      "utc": "2026-03-20T18:18:00Z",
+      "position": [
+        0,
+        0,
+        7999.999999999069
+      ],
+      "orientation": [
+        4.625122517784973,
+        -0.05235987755982996,
+        6.283185307179586
+      ],
+      "solarElevation": -2.6549759982015706,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 16,
+      "cloudsShown": true,
+      "coverage": 0.48,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 16,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 206,
+      "meanPeakChannel": 46.18166232638889,
+      "capture": "twilight.png",
+      "sha256": "efd4ddba52700100ffa9d6efc7aca545f8e77a263344fe195baba976492337a9",
+      "resetSha256": "efd4ddba52700100ffa9d6efc7aca545f8e77a263344fe195baba976492337a9"
+    },
+    {
+      "slug": "night",
+      "frame": 0,
+      "utc": "2026-03-03T11:30:00Z",
+      "position": [
+        -170,
+        5.000000000000003,
+        399999.9999999997
+      ],
+      "orientation": [
+        3.113667385557884,
+        1.5428710587629906,
+        0
+      ],
+      "solarElevation": -88.21841106464281,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 0,
+      "cloudsShown": false,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [],
+      "imageryDrawCalls": 0,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 687,
+      "intensityLevels": 123,
+      "meanPeakChannel": 0.2655859375,
+      "capture": "night.png",
+      "sha256": "5a623c78882c783bd72c171ce5208d6a94e197936de93fc133a73b2374813966",
+      "resetSha256": "5a623c78882c783bd72c171ce5208d6a94e197936de93fc133a73b2374813966"
+    },
+    {
+      "slug": "cloud-sea",
+      "frame": 0,
+      "utc": "2026-03-20T16:30:00Z",
+      "position": [
+        0,
+        0,
+        7999.999999999069
+      ],
+      "orientation": [
+        4.625122517784973,
+        -0.05235987755982996,
+        6.283185307179586
+      ],
+      "solarElevation": 24.35054650701905,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 16,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 16,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 55,
+      "meanPeakChannel": 214.11750868055555,
+      "control": "show",
+      "changedPixels": 92062,
+      "capture": "cloud-sea.png",
+      "sha256": "5172c05c915ba57a74f3df2774f55600901672d02f262d0e78ed2738a89c0428",
+      "resetSha256": "5172c05c915ba57a74f3df2774f55600901672d02f262d0e78ed2738a89c0428"
+    },
+    {
+      "slug": "inside-cloud",
+      "frame": 0,
+      "utc": "2026-03-20T12:00:00Z",
+      "position": [
+        0,
+        0,
+        3399.9999999981374
+      ],
+      "orientation": [
+        1.5707963267948966,
+        -0.06981317007977328,
+        6.283185307179586
+      ],
+      "solarElevation": 88.13514312160515,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 10,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8
+      ],
+      "imageryDrawCalls": 10,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 49,
+      "meanPeakChannel": 210.64779513888888,
+      "control": "show",
+      "changedPixels": 190615,
+      "capture": "inside-cloud.png",
+      "sha256": "1d77f8ea2f89bb2d347425dee4df1b6b14668d7aecf339e71c3f154289a534a8",
+      "resetSha256": "1d77f8ea2f89bb2d347425dee4df1b6b14668d7aecf339e71c3f154289a534a8"
+    },
+    {
+      "slug": "terrain-shadow",
+      "frame": 0,
+      "utc": "2026-03-20T20:00:00Z",
+      "position": [
+        -122.489,
+        37.81130000000001,
+        1900.000000000349
+      ],
+      "orientation": [
+        5.462880558742251,
+        -0.4886921905584125,
+        6.283185307179586
+      ],
+      "solarElevation": 52.0667449514666,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.78,
+      "terrainProvider": "ArcGISTiledElevationTerrainProvider",
+      "terrainDrawLevels": [
+        13,
+        12,
+        11,
+        10,
+        7,
+        1
+      ],
+      "imageryDrawCalls": 218,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "live",
+        "imagery": "live"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 131,
+      "meanPeakChannel": 136.68399739583333,
+      "goldenGate": {
+        "lighter": 0,
+        "darker": 0,
+        "minHeight": -98.4284896850586,
+        "maxHeight": 5422.537109375
+      },
+      "capture": "terrain-shadow.png",
+      "sha256": "1062c71e5db3e5fb6282b57137ac3f6b1be6211aaf09f2a54937ccce45a62d03",
+      "resetSha256": "1062c71e5db3e5fb6282b57137ac3f6b1be6211aaf09f2a54937ccce45a62d03"
+    },
+    {
+      "slug": "rapid-motion",
+      "frame": 0,
+      "utc": "2026-03-20T16:30:00Z",
+      "position": [
+        0,
+        0,
+        89999.99999999907
+      ],
+      "orientation": [
+        4.310963252425994,
+        -0.6632251157578453,
+        6.283185307179586
+      ],
+      "solarElevation": 24.35054650701905,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 12,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": false
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 61,
+      "meanPeakChannel": 194.6754079861111,
+      "capture": "rapid-motion.png",
+      "sha256": "5a6b399729860240895e0897953f91fee44e1247b7571410bebca55b29479816",
+      "resetSha256": "5a6b399729860240895e0897953f91fee44e1247b7571410bebca55b29479816"
+    }
+  ],
+  "browser": "156.0.8078.4",
+  "liveSources": {
+    "elevation": {
+      "url": "https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer",
+      "tileCount": 77,
+      "firstTile": "/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer/tile/0/0/0"
+    },
+    "imagery": {
+      "url": "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+      "tileCount": 456,
+      "firstTile": "/ArcGIS/rest/services/World_Imagery/MapServer/tile/23/0/0"
+    }
+  },
+  "demoSha256": "caf13cc8937c7f4e7c8c3a21f0449cbeb9fe8c73fa033796c0dcd75e6a06fe4e",
+  "goldenDemo": "golden-gate-demo.png",
+  "goldenControls": {
+    "direct": {
+      "slug": "terrain-shadow",
+      "frame": 0,
+      "utc": "2026-03-20T20:00:00Z",
+      "position": [
+        -122.489,
+        37.81130000000001,
+        1900.000000000349
+      ],
+      "orientation": [
+        5.462880558742251,
+        -0.4886921905584125,
+        6.283185307179586
+      ],
+      "solarElevation": 52.0667449514666,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.78,
+      "terrainProvider": "ArcGISTiledElevationTerrainProvider",
+      "terrainDrawLevels": [
+        13,
+        12,
+        11,
+        10,
+        7,
+        1
+      ],
+      "imageryDrawCalls": 218,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "live",
+        "imagery": "live"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 131,
+      "meanPeakChannel": 136.7841970486111,
+      "goldenGate": {
+        "lighter": 66387,
+        "darker": 0,
+        "minHeight": -98.4284896850586,
+        "maxHeight": 5422.537109375
+      },
+      "capture": "terrain-shadow-direct.png",
+      "sha256": "5f45e8d6a65d6721b1c39554a16ccc50743d78dbc7fd2c4f0b35f170fe8bcc27"
+    },
+    "off": {
+      "slug": "terrain-shadow",
+      "frame": 0,
+      "utc": "2026-03-20T20:00:00Z",
+      "position": [
+        -122.489,
+        37.81130000000001,
+        1900.000000000349
+      ],
+      "orientation": [
+        5.46288055874225,
+        -0.4886921905584125,
+        6.283185307179586
+      ],
+      "solarElevation": 52.0667449514666,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.78,
+      "terrainProvider": "ArcGISTiledElevationTerrainProvider",
+      "terrainDrawLevels": [
+        13,
+        12,
+        11,
+        10,
+        7,
+        1
+      ],
+      "imageryDrawCalls": 218,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": true
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "live",
+        "imagery": "live"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 131,
+      "meanPeakChannel": 139.67273871527777,
+      "goldenGate": {
+        "lighter": 143598,
+        "darker": 0,
+        "minHeight": -98.4284896850586,
+        "maxHeight": 5422.537109375
+      },
+      "capture": "terrain-shadow-off.png",
+      "sha256": "7df5f97fb90c1dab10c76bc52322efd27a0b8a84392cf495eafe30639736ce91"
+    }
+  },
+  "motion": {
+    "lastFrame": 60,
+    "stepped": {
+      "slug": "rapid-motion",
+      "frame": 3,
+      "utc": "2026-03-20T16:30:03Z",
+      "position": [
+        0.014000000000000002,
+        0.005999999999999998,
+        73799.39984317835
+      ],
+      "orientation": [
+        4.385139745635753,
+        -0.6326818538479442,
+        6.283185307179586
+      ],
+      "solarElevation": 24.324047364654177,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 12,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": false
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 61,
+      "meanPeakChannel": 195.66784722222224,
+      "capture": "rapid-motion-step.png",
+      "sha256": "8ba59b071ca84c2fa56c02d6f355580559d04f80ba90c5ad5a6ecb8dfc368db4"
+    },
+    "end": {
+      "slug": "rapid-motion",
+      "frame": 60,
+      "utc": "2026-03-20T16:31:00Z",
+      "position": [
+        0.28,
+        0.12,
+        1700.0000001679648
+      ],
+      "orientation": [
+        5.794493116621174,
+        -0.05235987755982996,
+        6.283185307179586
+      ],
+      "solarElevation": 23.82051134106549,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 7,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8
+      ],
+      "imageryDrawCalls": 7,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": false
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 135,
+      "meanPeakChannel": 176.91416666666666,
+      "capture": "rapid-motion-end.png",
+      "sha256": "30ccf27371b4bc791e8b808e1a701bfc10b5876b5263f9fe0122fe4b1a669703"
+    },
+    "reset": {
+      "slug": "rapid-motion",
+      "frame": 0,
+      "utc": "2026-03-20T16:30:00Z",
+      "position": [
+        0,
+        0,
+        89999.99999999907
+      ],
+      "orientation": [
+        4.310963252425994,
+        -0.6632251157578453,
+        6.283185307179586
+      ],
+      "solarElevation": 24.35054650701905,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 12,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": false
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 61,
+      "meanPeakChannel": 194.6754079861111,
+      "capture": "rapid-motion-reset.png",
+      "sha256": "5a6b399729860240895e0897953f91fee44e1247b7571410bebca55b29479816"
+    },
+    "repeatedStep": {
+      "slug": "rapid-motion",
+      "frame": 3,
+      "utc": "2026-03-20T16:30:03Z",
+      "position": [
+        0.014000000000000002,
+        0.005999999999999998,
+        73799.39984317835
+      ],
+      "orientation": [
+        4.385139745635753,
+        -0.6326818538479442,
+        6.283185307179586
+      ],
+      "solarElevation": 24.324047364654177,
+      "dimensions": [
+        640,
+        360
+      ],
+      "drawCalls": 12,
+      "cloudsShown": true,
+      "coverage": 0.58,
+      "terrainProvider": "BoundedEllipsoid",
+      "terrainDrawLevels": [
+        8,
+        7
+      ],
+      "imageryDrawCalls": 12,
+      "imagerySources": [
+        {
+          "provider": "TileMapServiceImageryProvider",
+          "shown": true
+        },
+        {
+          "provider": "ArcGisMapServerImageryProvider",
+          "shown": false
+        }
+      ],
+      "sourceStatus": {
+        "terrain": "local",
+        "imagery": "local"
+      },
+      "signalPixels": 230400,
+      "intensityLevels": 61,
+      "meanPeakChannel": 195.66784722222224,
+      "capture": "rapid-motion-step-repeat.png",
+      "sha256": "8ba59b071ca84c2fa56c02d6f355580559d04f80ba90c5ad5a6ecb8dfc368db4"
+    },
+    "playback": [
+      {
+        "frame": 0,
+        "utc": "2026-03-20T16:30:00Z",
+        "rendered": "2026-03-20T16:30:00Z"
+      },
+      {
+        "frame": 1,
+        "utc": "2026-03-20T16:30:01Z",
+        "rendered": "2026-03-20T16:30:01Z"
+      },
+      {
+        "frame": 2,
+        "utc": "2026-03-20T16:30:02Z",
+        "rendered": "2026-03-20T16:30:02Z"
+      },
+      {
+        "frame": 3,
+        "utc": "2026-03-20T16:30:03Z",
+        "rendered": "2026-03-20T16:30:03Z"
+      },
+      {
+        "frame": 4,
+        "utc": "2026-03-20T16:30:04Z",
+        "rendered": "2026-03-20T16:30:04Z"
+      },
+      {
+        "frame": 5,
+        "utc": "2026-03-20T16:30:05Z",
+        "rendered": "2026-03-20T16:30:05Z"
+      },
+      {
+        "frame": 6,
+        "utc": "2026-03-20T16:30:06Z",
+        "rendered": "2026-03-20T16:30:06Z"
+      },
+      {
+        "frame": 7,
+        "utc": "2026-03-20T16:30:07Z",
+        "rendered": "2026-03-20T16:30:07Z"
+      },
+      {
+        "frame": 8,
+        "utc": "2026-03-20T16:30:08Z",
+        "rendered": "2026-03-20T16:30:08Z"
+      },
+      {
+        "frame": 9,
+        "utc": "2026-03-20T16:30:09Z",
+        "rendered": "2026-03-20T16:30:09Z"
+      },
+      {
+        "frame": 10,
+        "utc": "2026-03-20T16:30:10Z",
+        "rendered": "2026-03-20T16:30:10Z"
+      },
+      {
+        "frame": 11,
+        "utc": "2026-03-20T16:30:11Z",
+        "rendered": "2026-03-20T16:30:11Z"
+      },
+      {
+        "frame": 12,
+        "utc": "2026-03-20T16:30:12Z",
+        "rendered": "2026-03-20T16:30:12Z"
+      },
+      {
+        "frame": 13,
+        "utc": "2026-03-20T16:30:13Z",
+        "rendered": "2026-03-20T16:30:13Z"
+      },
+      {
+        "frame": 14,
+        "utc": "2026-03-20T16:30:14Z",
+        "rendered": "2026-03-20T16:30:14Z"
+      },
+      {
+        "frame": 15,
+        "utc": "2026-03-20T16:30:15Z",
+        "rendered": "2026-03-20T16:30:15Z"
+      },
+      {
+        "frame": 16,
+        "utc": "2026-03-20T16:30:16Z",
+        "rendered": "2026-03-20T16:30:16Z"
+      },
+      {
+        "frame": 17,
+        "utc": "2026-03-20T16:30:17Z",
+        "rendered": "2026-03-20T16:30:17Z"
+      },
+      {
+        "frame": 18,
+        "utc": "2026-03-20T16:30:18Z",
+        "rendered": "2026-03-20T16:30:18Z"
+      },
+      {
+        "frame": 19,
+        "utc": "2026-03-20T16:30:19Z",
+        "rendered": "2026-03-20T16:30:19Z"
+      },
+      {
+        "frame": 20,
+        "utc": "2026-03-20T16:30:20Z",
+        "rendered": "2026-03-20T16:30:20Z"
+      },
+      {
+        "frame": 21,
+        "utc": "2026-03-20T16:30:21Z",
+        "rendered": "2026-03-20T16:30:21Z"
+      },
+      {
+        "frame": 22,
+        "utc": "2026-03-20T16:30:22Z",
+        "rendered": "2026-03-20T16:30:22Z"
+      },
+      {
+        "frame": 23,
+        "utc": "2026-03-20T16:30:23Z",
+        "rendered": "2026-03-20T16:30:23Z"
+      },
+      {
+        "frame": 24,
+        "utc": "2026-03-20T16:30:24Z",
+        "rendered": "2026-03-20T16:30:24Z"
+      },
+      {
+        "frame": 25,
+        "utc": "2026-03-20T16:30:25Z",
+        "rendered": "2026-03-20T16:30:25Z"
+      },
+      {
+        "frame": 26,
+        "utc": "2026-03-20T16:30:26Z",
+        "rendered": "2026-03-20T16:30:26Z"
+      },
+      {
+        "frame": 27,
+        "utc": "2026-03-20T16:30:27Z",
+        "rendered": "2026-03-20T16:30:27Z"
+      },
+      {
+        "frame": 28,
+        "utc": "2026-03-20T16:30:28Z",
+        "rendered": "2026-03-20T16:30:28Z"
+      },
+      {
+        "frame": 29,
+        "utc": "2026-03-20T16:30:29Z",
+        "rendered": "2026-03-20T16:30:29Z"
+      },
+      {
+        "frame": 30,
+        "utc": "2026-03-20T16:30:30Z",
+        "rendered": "2026-03-20T16:30:30Z"
+      },
+      {
+        "frame": 31,
+        "utc": "2026-03-20T16:30:31Z",
+        "rendered": "2026-03-20T16:30:31Z"
+      },
+      {
+        "frame": 32,
+        "utc": "2026-03-20T16:30:32Z",
+        "rendered": "2026-03-20T16:30:32Z"
+      },
+      {
+        "frame": 33,
+        "utc": "2026-03-20T16:30:33Z",
+        "rendered": "2026-03-20T16:30:33Z"
+      },
+      {
+        "frame": 34,
+        "utc": "2026-03-20T16:30:34Z",
+        "rendered": "2026-03-20T16:30:34Z"
+      },
+      {
+        "frame": 35,
+        "utc": "2026-03-20T16:30:35Z",
+        "rendered": "2026-03-20T16:30:35Z"
+      },
+      {
+        "frame": 36,
+        "utc": "2026-03-20T16:30:36Z",
+        "rendered": "2026-03-20T16:30:36Z"
+      },
+      {
+        "frame": 37,
+        "utc": "2026-03-20T16:30:37Z",
+        "rendered": "2026-03-20T16:30:37Z"
+      },
+      {
+        "frame": 38,
+        "utc": "2026-03-20T16:30:38Z",
+        "rendered": "2026-03-20T16:30:38Z"
+      },
+      {
+        "frame": 39,
+        "utc": "2026-03-20T16:30:39Z",
+        "rendered": "2026-03-20T16:30:39Z"
+      },
+      {
+        "frame": 40,
+        "utc": "2026-03-20T16:30:40Z",
+        "rendered": "2026-03-20T16:30:40Z"
+      },
+      {
+        "frame": 41,
+        "utc": "2026-03-20T16:30:41Z",
+        "rendered": "2026-03-20T16:30:41Z"
+      },
+      {
+        "frame": 42,
+        "utc": "2026-03-20T16:30:42Z",
+        "rendered": "2026-03-20T16:30:42Z"
+      },
+      {
+        "frame": 43,
+        "utc": "2026-03-20T16:30:43Z",
+        "rendered": "2026-03-20T16:30:43Z"
+      },
+      {
+        "frame": 44,
+        "utc": "2026-03-20T16:30:44Z",
+        "rendered": "2026-03-20T16:30:44Z"
+      },
+      {
+        "frame": 45,
+        "utc": "2026-03-20T16:30:45Z",
+        "rendered": "2026-03-20T16:30:45Z"
+      },
+      {
+        "frame": 46,
+        "utc": "2026-03-20T16:30:46Z",
+        "rendered": "2026-03-20T16:30:46Z"
+      },
+      {
+        "frame": 47,
+        "utc": "2026-03-20T16:30:47Z",
+        "rendered": "2026-03-20T16:30:47Z"
+      },
+      {
+        "frame": 48,
+        "utc": "2026-03-20T16:30:48Z",
+        "rendered": "2026-03-20T16:30:48Z"
+      },
+      {
+        "frame": 49,
+        "utc": "2026-03-20T16:30:49Z",
+        "rendered": "2026-03-20T16:30:49Z"
+      },
+      {
+        "frame": 50,
+        "utc": "2026-03-20T16:30:50Z",
+        "rendered": "2026-03-20T16:30:50Z"
+      },
+      {
+        "frame": 51,
+        "utc": "2026-03-20T16:30:51Z",
+        "rendered": "2026-03-20T16:30:51Z"
+      },
+      {
+        "frame": 52,
+        "utc": "2026-03-20T16:30:52Z",
+        "rendered": "2026-03-20T16:30:52Z"
+      },
+      {
+        "frame": 53,
+        "utc": "2026-03-20T16:30:53Z",
+        "rendered": "2026-03-20T16:30:53Z"
+      },
+      {
+        "frame": 54,
+        "utc": "2026-03-20T16:30:54Z",
+        "rendered": "2026-03-20T16:30:54Z"
+      },
+      {
+        "frame": 55,
+        "utc": "2026-03-20T16:30:55Z",
+        "rendered": "2026-03-20T16:30:55Z"
+      },
+      {
+        "frame": 56,
+        "utc": "2026-03-20T16:30:56Z",
+        "rendered": "2026-03-20T16:30:56Z"
+      },
+      {
+        "frame": 57,
+        "utc": "2026-03-20T16:30:57Z",
+        "rendered": "2026-03-20T16:30:57Z"
+      },
+      {
+        "frame": 58,
+        "utc": "2026-03-20T16:30:58Z",
+        "rendered": "2026-03-20T16:30:58Z"
+      },
+      {
+        "frame": 59,
+        "utc": "2026-03-20T16:30:59Z",
+        "rendered": "2026-03-20T16:30:59Z"
+      },
+      {
+        "frame": 60,
+        "utc": "2026-03-20T16:31:00Z",
+        "rendered": "2026-03-20T16:31:00Z"
+      }
+    ]
+  },
+  "environment": {
+    "cesium": "1.146.0",
+    "adapter": {
+      "vendor": "intel",
+      "architecture": "xe-lpg",
+      "device": "",
+      "description": "",
+      "isFallbackAdapter": false
+    },
+    "viewport": [
+      640,
+      360
+    ]
+  },
+  "gpu": {
+    "kind": "hardware-reported",
+    "reason": "intel xe-lpg"
+  },
+  "status": "PASS"
+}

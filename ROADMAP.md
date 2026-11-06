@@ -15,7 +15,7 @@
 
 ## M2.6.1 placement and boundary
 
-M2.6.1 refines the rays, halos, corona, authored tint and HDR bloom introduced in M2.6. The [M3 cloud baseline passed visual acceptance on 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md). All five M3 enhancements have since passed user visual acceptance. Local `main` includes M4 terrain lighting and finite-disk shadows. The user accepted A14/A15 on 2026-11-06. M5 stabilization and profiling have not started.
+M2.6.1 refines the rays, halos, corona, authored tint and HDR bloom introduced in M2.6. The [M3 cloud baseline passed visual acceptance on 2026-11-05](coordination/evidence/M3/cloud-appearance/README.md). All five M3 enhancements have since passed user visual acceptance. Local `main` includes M4 terrain lighting and finite-disk shadows. The user accepted A14/A15 on 2026-11-06. M5 task 1 is complete on the local branch: [eight reference scenes](tasks/M5.md#reference-scenes). Stability testing and profiling remain pending.
 
 ## Advanced solar visual direction
 

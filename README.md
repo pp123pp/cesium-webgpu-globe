@@ -8,7 +8,7 @@ For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](h
 
 For M4, open the [terrain cloud-shadow demo](http://localhost:8067/Apps/WebGPUCloudShadows.html) on the same server. It shows the Golden Gate Strait with live Esri World Elevation 3D terrain, Esri World Imagery and a local Natural Earth II imagery base layer. Pause the Cesium clock and toggle shadows to compare the same hillside. With shadows enabled, toggle ambient attenuation to isolate the smaller change in sky lighting. Scrub the native timeline or use the animation dial to follow the moving clouds. Use the height presets to move from 1.9 km through the cloud layer to 300 km. At a fixed time, compare the physical solar disk against the near-point and enlarged controls to inspect the shadow edge. [M4 acceptance images and regression results](coordination/evidence/M4/final-acceptance/README.md).
 
-Open the [local demo index](http://localhost:8067/Apps/WebGPUIndex.html) for Globe, volumetric clouds, terrain cloud shadows and the minimal WebGPU proof.
+Open the [local demo index](http://localhost:8067/Apps/WebGPUIndex.html) for Globe, volumetric clouds, terrain cloud shadows, M5 reference scenes and the minimal WebGPU proof. The [M5 example](http://localhost:8067/Apps/WebGPUReferenceScenes.html) provides direct links to eight repeatable scenes, including a camera path that can be replayed or stepped one frame at a time. Its [Golden Gate terrain-shadow reference](http://localhost:8067/Apps/WebGPUReferenceScenes.html#terrain-shadow) uses the M4 camera and live Esri elevation and imagery.
 
 ## Online WebGPU demos
 
