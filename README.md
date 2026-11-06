@@ -1,6 +1,6 @@
 # Cesium WebGPU Globe
 
-**Current state:** M4 passed technical and user visual acceptance on the local acceptance branch on 2026-11-06. M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
+**Current state:** M4 passed technical and user visual acceptance on 2026-11-06 and is integrated into local `main`. M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
 Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 baseline acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 

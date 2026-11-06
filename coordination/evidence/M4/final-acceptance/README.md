@@ -1,6 +1,6 @@
 # M4 visual review and technical acceptance
 
-The tested renderer is `89cb9a1b5faa99c5584cd166d1437e32da4996b7`, built from the reviewed main revision `d2833a1` plus the finite-disk shader change. Chromium 156.0.8078.4 reported a physical Intel Xe-LPG adapter. The served unminified Cesium bundle SHA-256 was `fd1fabcae758c494e7f457a2c2117ad9967c151f52bf6b65982e80cfe52bb412`. The reports retain the status of the working tree at capture. On 2026-11-06 the user explicitly accepted both A14 and A15, including the terrain attachment and motion of the cloud shadows and the direct/ambient dimming. M4 passed on this local branch.
+The tested renderer is `89cb9a1b5faa99c5584cd166d1437e32da4996b7`, built from the reviewed main revision `d2833a1` plus the finite-disk shader change. Chromium 156.0.8078.4 reported a physical Intel Xe-LPG adapter. The served unminified Cesium bundle SHA-256 was `fd1fabcae758c494e7f457a2c2117ad9967c151f52bf6b65982e80cfe52bb412`. The reports retain the status of the working tree at capture. On 2026-11-06 the user explicitly accepted both A14 and A15, including the terrain attachment and motion of the cloud shadows and the direct/ambient dimming. Local `main` integrates the accepted work through `c54bb81`.
 
 ## A14 — shadow attachment, motion and penumbra
 
