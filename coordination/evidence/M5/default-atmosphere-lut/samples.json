@@ -1,0 +1,409 @@
+{
+  "order": "ABBAABBA",
+  "builds": {
+    "A": {
+      "sha256": "891ca7ccb241beb0a7fc1f1adf25983228615c5ffa8ec11156d0c57113224daa",
+      "bytes": 16276633,
+      "gzipBytes": 3050712
+    },
+    "B": {
+      "sha256": "c1b5a7d1371fd66e82c4314e464e9132bdcb85adab51f9ff593983e35c5aab2e",
+      "bytes": 16462521,
+      "gzipBytes": 3117317
+    }
+  },
+  "samples": [
+    {
+      "version": "A",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 513.0999999940395,
+      "firstVisibleQueueMs": 2282,
+      "renderCpuMs": 124.59999999403954,
+      "renderToQueueMs": 139.5,
+      "updateCpuMs": 118.5,
+      "transferSize": 3051012,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 487.90000000596046,
+      "firstVisibleQueueMs": 2283.300000011921,
+      "renderCpuMs": 144.69999998807907,
+      "renderToQueueMs": 169,
+      "updateCpuMs": 138.5,
+      "transferSize": 0,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1,
+      "restore": [
+        {
+          "setting": 8000,
+          "hash": "e9075dbcac1462797f189a000d77e201071b661af525756728ac310f7e1841ab",
+          "sampledColors": 723,
+          "prebakedLoads": 0
+        },
+        {
+          "setting": 12000,
+          "hash": "be9ff3627f93774d88713cb448c0f5606668203c06553297eeab8d29cb09076d",
+          "sampledColors": 597,
+          "prebakedLoads": 0
+        },
+        {
+          "setting": 8000,
+          "hash": "e9075dbcac1462797f189a000d77e201071b661af525756728ac310f7e1841ab",
+          "sampledColors": 723,
+          "prebakedLoads": 0
+        }
+      ]
+    },
+    {
+      "version": "B",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 599.1999999880791,
+      "firstVisibleQueueMs": 2458.699999988079,
+      "renderCpuMs": 8.099999994039536,
+      "renderToQueueMs": 35.39999997615814,
+      "updateCpuMs": 2,
+      "transferSize": 3117617,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 557,
+      "firstVisibleQueueMs": 2261.5999999940395,
+      "renderCpuMs": 8,
+      "renderToQueueMs": 25.5,
+      "updateCpuMs": 2,
+      "transferSize": 0,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1,
+      "restore": [
+        {
+          "setting": 8000,
+          "hash": "e9075dbcac1462797f189a000d77e201071b661af525756728ac310f7e1841ab",
+          "sampledColors": 723,
+          "prebakedLoads": 1
+        },
+        {
+          "setting": 12000,
+          "hash": "be9ff3627f93774d88713cb448c0f5606668203c06553297eeab8d29cb09076d",
+          "sampledColors": 597,
+          "prebakedLoads": 1
+        },
+        {
+          "setting": 8000,
+          "hash": "e9075dbcac1462797f189a000d77e201071b661af525756728ac310f7e1841ab",
+          "sampledColors": 723,
+          "prebakedLoads": 2
+        }
+      ]
+    },
+    {
+      "version": "B",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 558.7999999821186,
+      "firstVisibleQueueMs": 2302.9000000059605,
+      "renderCpuMs": 8.400000005960464,
+      "renderToQueueMs": 29.600000023841858,
+      "updateCpuMs": 2,
+      "transferSize": 3117617,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 491.59999999403954,
+      "firstVisibleQueueMs": 2174.899999976158,
+      "renderCpuMs": 9.100000023841858,
+      "renderToQueueMs": 20,
+      "updateCpuMs": 2.199999988079071,
+      "transferSize": 0,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 541.4000000059605,
+      "firstVisibleQueueMs": 2418.800000011921,
+      "renderCpuMs": 133.90000000596046,
+      "renderToQueueMs": 143.40000000596046,
+      "updateCpuMs": 126.09999999403954,
+      "transferSize": 3051012,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 472.59999999403954,
+      "firstVisibleQueueMs": 2294.800000011921,
+      "renderCpuMs": 138.89999997615814,
+      "renderToQueueMs": 153.59999999403954,
+      "updateCpuMs": 131.7000000178814,
+      "transferSize": 0,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 531.5,
+      "firstVisibleQueueMs": 2426.0999999940395,
+      "renderCpuMs": 130.7000000178814,
+      "renderToQueueMs": 145.7000000178814,
+      "updateCpuMs": 124.90000000596046,
+      "transferSize": 3051012,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 501.19999998807907,
+      "firstVisibleQueueMs": 2307.0999999940395,
+      "renderCpuMs": 128.2000000178814,
+      "renderToQueueMs": 138.80000001192093,
+      "updateCpuMs": 122.40000000596046,
+      "transferSize": 0,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 557.0999999940395,
+      "firstVisibleQueueMs": 2327.9000000059605,
+      "renderCpuMs": 8.699999988079071,
+      "renderToQueueMs": 28.400000005960464,
+      "updateCpuMs": 2.199999988079071,
+      "transferSize": 3117617,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 519.5999999940395,
+      "firstVisibleQueueMs": 2440.0999999940395,
+      "renderCpuMs": 11.699999988079071,
+      "renderToQueueMs": 20.599999994039536,
+      "updateCpuMs": 3.0999999940395355,
+      "transferSize": 0,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 535,
+      "firstVisibleQueueMs": 2353.5,
+      "renderCpuMs": 8.800000011920929,
+      "renderToQueueMs": 30.5,
+      "updateCpuMs": 2.199999988079071,
+      "transferSize": 3117617,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "B",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 511,
+      "firstVisibleQueueMs": 2226.399999976158,
+      "renderCpuMs": 9.300000011920929,
+      "renderToQueueMs": 22.599999994039536,
+      "updateCpuMs": 2.9000000059604645,
+      "transferSize": 0,
+      "encodedBodySize": 3117317,
+      "lutBuilds": 1,
+      "prebakedLoads": 1,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "cold",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 483.59999999403954,
+      "firstVisibleQueueMs": 2180.699999988079,
+      "renderCpuMs": 121.59999999403954,
+      "renderToQueueMs": 131.09999999403954,
+      "updateCpuMs": 116.40000000596046,
+      "transferSize": 3051012,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    },
+    {
+      "version": "A",
+      "cache": "warm",
+      "browser": "156.0.8078.4",
+      "adapter": {
+        "vendor": "intel",
+        "architecture": "xe-lpg",
+        "device": "",
+        "description": "",
+        "isFallbackAdapter": false
+      },
+      "scriptReadyMs": 451.59999999403954,
+      "firstVisibleQueueMs": 2079.199999988079,
+      "renderCpuMs": 124.89999997615814,
+      "renderToQueueMs": 136.19999998807907,
+      "updateCpuMs": 119.59999999403954,
+      "transferSize": 0,
+      "encodedBodySize": 3050712,
+      "lutBuilds": 1,
+      "prebakedLoads": 0,
+      "atmosphereFrames": 1
+    }
+  ]
+}

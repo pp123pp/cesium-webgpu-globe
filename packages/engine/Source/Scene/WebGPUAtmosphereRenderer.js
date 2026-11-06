@@ -8,6 +8,10 @@ import WebGPUCloudVolume from "./WebGPUCloudVolume.js";
 import WebGPUSolarBloomShader from "./WebGPUSolarBloomShader.js";
 import { createSunParameters, sunDisplayRadiance } from "./WebGPUSun.js";
 import { DEFAULT_EXPOSURE, validateExposure } from "./WebGPUColorPipeline.js";
+import encodeHalf from "./WebGPUAtmosphereHalf.js";
+import decodeDefaultAtmosphereLuts, {
+  defaultAtmosphereLutKey,
+} from "./WebGPUDefaultAtmosphereLuts.js";
 import {
   validateAtmosphereParameters,
   atmosphereLutKey,
@@ -30,29 +34,6 @@ const solarAssets = [
 ];
 const solarAssetSize = 512;
 
-// The LUTs contain nonnegative finite radiance/transmittance. Convert to IEEE
-// binary16 with rounding, including subnormals, without an optional GPU feature
-// or requiring the newer JavaScript Float16Array API.
-function encodeHalf(values) {
-  const result = new Uint16Array(values.length);
-  for (let i = 0; i < values.length; i++) {
-    const value = values[i];
-    if (!(value >= 0) || !Number.isFinite(value) || value > 65504) {
-      throw new RuntimeError(
-        "Atmosphere LUT exceeds finite RGBA16Float range.",
-      );
-    }
-    if (value < 2 ** -14) {
-      result[i] = Math.round(value * 2 ** 24);
-    } else {
-      const exponent = Math.floor(Math.log2(value));
-      result[i] =
-        (exponent + 15) * 1024 + Math.round((value / 2 ** exponent - 1) * 1024);
-    }
-  }
-  return result;
-}
-
 /** Shared depth-aware atmosphere/Sun, solar asset and HDR post-process owner. @private */
 class WebGPUAtmosphereRenderer {
   constructor(context) {
@@ -72,6 +53,7 @@ class WebGPUAtmosphereRenderer {
       moonFrames: 0,
       starFrames: 0,
       lutBuilds: 0,
+      prebakedLutLoads: 0,
       buffersCreated: 0,
       buffersDestroyed: 0,
       texturesCreated: 0,
@@ -360,7 +342,8 @@ class WebGPUAtmosphereRenderer {
   }
 
   _uploadLut(table, texture, label) {
-    const data = encodeHalf(table.data);
+    const data =
+      table.data instanceof Uint16Array ? table.data : encodeHalf(table.data);
     const newlyAllocated = !texture;
     if (!texture) {
       texture = this._device.createTexture({
@@ -443,7 +426,10 @@ class WebGPUAtmosphereRenderer {
       ? atmosphereLutKey(parameters, state.planet)
       : this._lutKey;
     if (parameters.show && key !== this._lutKey) {
-      const tables = generateAtmosphereLuts(parameters, state.planet);
+      const usePrebaked = key === defaultAtmosphereLutKey;
+      const tables = usePrebaked
+        ? decodeDefaultAtmosphereLuts()
+        : generateAtmosphereLuts(parameters, state.planet);
       this._transmittanceTexture = this._uploadLut(
         tables.transmittance,
         this._transmittanceTexture,
@@ -456,6 +442,9 @@ class WebGPUAtmosphereRenderer {
       );
       this._lutKey = key;
       ++this.statistics.lutBuilds;
+      if (usePrebaked) {
+        ++this.statistics.prebakedLutLoads;
+      }
       this.statistics.maxFeedback = tables.maxFeedback;
     }
     // Keep the ABI fixed even during partial edits of a hidden medium. Its

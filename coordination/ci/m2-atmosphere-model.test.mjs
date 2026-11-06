@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { DeveloperError, Ellipsoid } from "@cesium/core";
+import encodeHalf from "../../packages/engine/Source/Scene/WebGPUAtmosphereHalf.js";
+import WebGPUAtmosphereRenderer from "../../packages/engine/Source/Scene/WebGPUAtmosphereRenderer.js";
 import { createPlanetParameters } from "../../packages/engine/Source/Scene/WebGPUPlanetMath.js";
 import {
   atmosphereLutKey,
@@ -110,6 +112,84 @@ test("medium changes invalidate the LUT cache while runtime lighting controls do
     ),
     first,
   );
+});
+
+test("renderer uploads exact default LUTs again after custom optics, and builds for a different planet", (t) => {
+  const previousUsage = globalThis.GPUTextureUsage;
+  globalThis.GPUTextureUsage = { TEXTURE_BINDING: 4, COPY_DST: 2 };
+  t.after(() => {
+    if (previousUsage === undefined) {
+      delete globalThis.GPUTextureUsage;
+    } else {
+      globalThis.GPUTextureUsage = previousUsage;
+    }
+  });
+  const uploads = [];
+  const renderer = new WebGPUAtmosphereRenderer({
+    drawingBufferWidth: 640,
+    drawingBufferHeight: 360,
+  });
+  renderer._device = {
+    createTexture: (descriptor) => descriptor,
+    queue: {
+      writeBuffer() {},
+      writeTexture({ texture }, data, layout, size) {
+        const bits = new Uint16Array(
+          data.buffer,
+          data.byteOffset,
+          data.byteLength / 2,
+        );
+        uploads.push({ texture, bits: bits.slice(), layout, size });
+      },
+    },
+  };
+  const state = { planet, uniformValues: new Float32Array(68) };
+  function checkUpload(parameters, expected, prebakedCount) {
+    renderer.update(state, parameters);
+    assert.equal(renderer.statistics.prebakedLutLoads, prebakedCount);
+    assert.equal(uploads.length, 2);
+    for (const table of [expected.transmittance, expected.multipleScattering]) {
+      const { texture, bits, layout, size } = uploads.shift();
+      assert.equal(texture.format, "rgba16float");
+      assert.deepEqual(size, [table.width, table.height]);
+      assert.equal(layout.bytesPerRow, table.width * 8);
+      assert.deepEqual(bits, encodeHalf(table.data));
+      if (table === expected.transmittance) {
+        // Decode the actual upload for a filtered sample between LUT texels.
+        const data = Float32Array.from(bits, (half) => {
+          const exponent = half >> 10;
+          const mantissa = half & 1023;
+          return exponent === 0
+            ? mantissa * 2 ** -24
+            : (1 + mantissa / 1024) * 2 ** (exponent - 15);
+        });
+        const actual = sampleTransmittance(
+          { ...table, data },
+          state.planet,
+          1000,
+          0.2,
+        );
+        const reference = sampleTransmittance(table, state.planet, 1000, 0.2);
+        for (let channel = 0; channel < 3; channel++) {
+          close(actual[channel], reference[channel], 0.00025);
+        }
+      }
+    }
+    assert.equal(renderer.statistics.maxFeedback, expected.maxFeedback);
+  }
+
+  const defaults = getStandardLuts();
+  checkUpload(atmosphere, defaults, 1);
+  renderer.update(state, { ...atmosphere, lightIntensity: 0 });
+  assert.equal(uploads.length, 0);
+  const custom = createAtmosphereParameters({ mieExtinction: 4.44e-4 });
+  checkUpload(custom, generateAtmosphereLuts(custom, planet), 1);
+  checkUpload(atmosphere, defaults, 2);
+  state.planet = createPlanetParameters(
+    new Ellipsoid(6000000, 6000000, 6000000),
+  );
+  checkUpload(atmosphere, generateAtmosphereLuts(atmosphere, state.planet), 2);
+  assert.equal(renderer.statistics.texturesCreated, 2);
 });
 
 test("an empty path transmits all light and increasing extinction cannot brighten a path", () => {
