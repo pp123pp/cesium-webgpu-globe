@@ -57,7 +57,7 @@
         top: 14px;
         padding: 14px;
         width: min(252px, calc(100vw - 58px));
-        max-height: calc(100dvh - 58px);
+        max-height: calc(100dvh - var(--dial-height) - 58px);
         overflow: auto;
         background: rgba(20, 36, 46, 0.95);
         border: 1px solid #53707a;
@@ -80,7 +80,8 @@
         display: block;
         margin: 8px 0;
       }
-      button {
+      button,
+      select {
         font: inherit;
         color: inherit;
         cursor: pointer;
@@ -90,11 +91,23 @@
         border-radius: 3px;
       }
       button:focus-visible,
+      select:focus-visible,
       input:focus-visible {
         outline: 2px solid #ffda91;
       }
       #status {
         margin: 8px 0 0;
+      }
+      .preset {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      @media (max-width: 599px) {
+        aside {
+          max-height: min(45dvh, calc(100dvh - var(--dial-height) - 58px));
+        }
       }
     </style>
   </head>
@@ -109,6 +122,28 @@
         金门海峡。拖动时间轴观察太阳、昼夜和云影变化，可缩放或平移到任意时间，用左下圆盘播放或调整速度。
       </p>
       <fieldset id="controls" disabled>
+        <label class="preset">
+          观察高度
+          <select id="height">
+            <option value="1900">近地 · 1.9 km</option>
+            <option value="4000">云层内 · 4 km</option>
+            <option value="12000">云层上方 · 12 km</option>
+            <option value="90000">高空 · 90 km</option>
+            <option value="175000">渐隐中段 · 175 km</option>
+            <option value="300000">轨道 · 300 km</option>
+          </select>
+        </label>
+        <label class="preset">
+          太阳角半径
+          <select id="sunRadius" aria-describedby="sunRadiusHelp">
+            <option value="0.00465">物理太阳盘 · 0.266°</option>
+            <option value="0.00001">近点光源 · 0.00057°</option>
+            <option value="0.04">放大太阳盘 · 2.29°</option>
+          </select>
+        </label>
+        <small id="sunRadiusHelp"
+          >切换角半径可对照云影半影，也会改变天空中的太阳盘大小。</small
+        >
         <label><input id="shadows" type="checkbox" checked /> 地表云影</label>
         <label><input id="ambient" type="checkbox" checked /> 环境光衰减</label>
         <button id="reset" type="button">复位机位和时间</button>
@@ -126,6 +161,8 @@
       const shadows = document.getElementById("shadows");
       const ambient = document.getElementById("ambient");
       const view = document.getElementById("view");
+      const height = document.getElementById("height");
+      const sunRadius = document.getElementById("sunRadius");
       const status = document.getElementById("status");
       const start = Cesium.JulianDate.fromIso8601("2026-03-20T20:00:00Z");
       let viewer;
@@ -157,13 +194,20 @@
       }
 
       function setView(horizon) {
+        const altitude = Number(height.value);
         view.setAttribute("aria-pressed", String(horizon));
         view.textContent = horizon ? "看地表特写" : "看云和地平线";
         viewer.camera.setView({
-          destination: Cesium.Cartesian3.fromDegrees(-122.489, 37.8113, 1900),
+          destination: Cesium.Cartesian3.fromDegrees(
+            -122.489,
+            37.8113,
+            altitude,
+          ),
           orientation: {
             heading: Cesium.Math.toRadians(313),
-            pitch: Cesium.Math.toRadians(horizon ? 0 : -28),
+            pitch: Cesium.Math.toRadians(
+              horizon ? 0 : altitude === 1900 ? -28 : -90,
+            ),
             roll: 0,
           },
         });
@@ -172,6 +216,7 @@
       function reset() {
         viewer.clock.shouldAnimate = false;
         viewer.clock.currentTime = Cesium.JulianDate.clone(start);
+        height.value = "1900";
         setView(false);
       }
 
@@ -256,9 +301,14 @@
           viewer.scene.clouds.ambientShadows = ambient.checked;
         });
         document.getElementById("reset").addEventListener("click", reset);
-        view.addEventListener("click", () =>
-          setView(view.getAttribute("aria-pressed") !== "true"),
-        );
+        height.addEventListener("change", () => setView(false));
+        sunRadius.addEventListener("change", () => {
+          viewer.scene.sun.angularRadius = Number(sunRadius.value);
+        });
+        view.addEventListener("click", () => {
+          height.value = "1900";
+          setView(view.getAttribute("aria-pressed") !== "true");
+        });
         controls.disabled = false;
         status.hidden = true;
         void addSatelliteImagery();

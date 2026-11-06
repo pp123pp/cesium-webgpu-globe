@@ -8,6 +8,8 @@
 - [Interactive M1 WGS84 Globe](https://pp123pp.github.io/cesium-webgpu-globe/Apps/WebGPUGlobe.html)
 - [M0.4 WebGPU proof](https://pp123pp.github.io/cesium-webgpu-globe/Apps/WebGPUProof.html)
 
+The [source index](../Apps/WebGPUIndex.html) lists Globe, volumetric clouds, terrain cloud shadows and the triangle proof. The publish job stages all four demos and checks each root-index link. The M4 link becomes public when this branch is integrated and the Pages workflow publishes it.
+
 The online site uses HTTPS and requires a WebGPU-capable browser. Real Cesium World Terrain and ArcGIS World Imagery require connectivity and any applicable service authorization.
 
 ## Publishing and updating

@@ -1,6 +1,7 @@
 /* global Cesium, window, document, URL, console, Event */
 import assert from "node:assert/strict";
 import { readFile, mkdir, writeFile } from "node:fs/promises";
+import process from "node:process";
 import { chromium } from "playwright";
 import {
   getBrowserConfiguration,
@@ -8,7 +9,7 @@ import {
   assertPhysicalGpu,
 } from "./m0-browser-config.mjs";
 
-const base = "http://localhost:8067";
+const base = new URL(process.env.M1_BASE_URL ?? "http://localhost:8067").origin;
 const url = `${base}/Apps/WebGPUCloudShadows.html`;
 const source = await readFile("Apps/WebGPUCloudShadows.html", "utf8");
 const fixture = source
@@ -80,6 +81,12 @@ try {
     });
     assert.ok(Math.abs(dial.height - dial.width * 132 / 200) <= 1, "dial retains its native aspect ratio");
     assert.ok(Math.abs(dial.x - dial.y) < 0.01, "dial scales uniformly on initial layout and resize");
+    if (width === 375) {
+      const panel = await page.locator("aside").boundingBox();
+      const animation = await page.locator("#animation").boundingBox();
+      assert.ok(panel.x + panel.width <= width && panel.y + panel.height < animation.y,
+        "mobile controls fit the viewport and leave playback accessible");
+    }
   }
   await page.setViewportSize({ width: 640, height: 360 });
   const sample = () => page.evaluate(() => {
@@ -95,6 +102,46 @@ try {
     };
   });
   const initial = await sample();
+  const viewState = () => page.evaluate(() => {
+    const viewer = window.__timelineViewer;
+    viewer.render();
+    const position = viewer.camera.positionCartographic;
+    return {
+      height: position.height,
+      longitude: Cesium.Math.toDegrees(position.longitude),
+      latitude: Cesium.Math.toDegrees(position.latitude),
+      pitch: Cesium.Math.toDegrees(viewer.camera.pitch),
+      radius: viewer.scene.sun.angularRadius,
+      time: Cesium.JulianDate.toIso8601(viewer.clock.currentTime),
+    };
+  });
+  const defaultView = await viewState();
+  assert.equal(defaultView.radius, 0.00465);
+  const heights = [];
+  for (const altitude of [4000, 12000, 90000, 175000, 300000]) {
+    await page.locator("#height").selectOption(String(altitude));
+    const view = await viewState();
+    assert.ok(Math.abs(view.height - altitude) < 1);
+    assert.ok(Math.abs(view.longitude + 122.489) < 1e-5 && Math.abs(view.latitude - 37.8113) < 1e-5);
+    assert.ok(Math.abs(view.pitch + 90) < 0.01);
+    assert.equal(view.time, initial.time);
+    heights.push(view);
+  }
+  const radii = [];
+  for (const radius of [0.00001, 0.04, 0.00465]) {
+    await page.locator("#sunRadius").selectOption(String(radius));
+    const view = await viewState();
+    assert.equal(view.radius, radius);
+    assert.equal(view.height, heights.at(-1).height);
+    assert.equal(view.time, initial.time);
+    radii.push(view.radius);
+  }
+  await page.locator("#view").click();
+  const horizon = await viewState();
+  assert.ok(Math.abs(horizon.height - 1900) < 1 && Math.abs(horizon.pitch) < 0.01);
+  assert.equal(await page.locator("#height").inputValue(), "1900");
+  await page.locator("#view").click();
+  assert.deepEqual(await viewState(), defaultView);
   const bar = await page.locator(".cesium-timeline-bar").boundingBox();
   assert.ok(bar, "native Timeline is visible");
   await page.mouse.move(bar.x + bar.width * 0.5, bar.y + bar.height * 0.5);
@@ -125,12 +172,17 @@ try {
   });
   assert.ok(unbounded.after > 2 * 86400, "forward playback continues beyond the initial window");
   assert.ok(unbounded.before < -2 * 86400, "reverse playback continues before the initial window");
+  await page.locator("#height").selectOption("300000");
+  await page.locator("#sunRadius").selectOption("0.04");
   await page.locator("#reset").click();
+  assert.deepEqual(await viewState(), { ...defaultView, radius: 0.04 },
+    "camera/time reset preserves the selected lighting settings");
+  assert.equal(await page.locator("#height").inputValue(), "1900");
   assert.deepEqual(await sample(), initial, "reset restores the original time and ephemeris");
   assert.deepEqual(await page.evaluate(() => window.__timelineErrors), []);
   assert.deepEqual(errors, []);
   await mkdir("Build/m4-cloud-shadow-timeline", { recursive: true });
-  await writeFile("Build/m4-cloud-shadow-timeline/result.json", JSON.stringify({ status: "PASS", adapter, initial, dragged }, null, 2));
+  await writeFile("Build/m4-cloud-shadow-timeline/result.json", JSON.stringify({ status: "PASS", adapter, initial, dragged, heights, radii }, null, 2));
   await page.evaluate(() => window.dispatchEvent(new Event("pagehide")));
 } finally {
   await browser.close();

@@ -5,11 +5,8 @@ on:
     branches: [main]
     paths:
       - .github/workflows/webgpu-pages.yml
-      - Apps/WebGPUGlobe.html
-      - Apps/WebGPUClouds.html
+      - 'Apps/WebGPU*.html'
       - Apps/WebGPUCloudGeometry.js
-      - Apps/WebGPUProof.html
-      - Apps/WebGPUIndex.html
       - packages/**
       - scripts/**
       - Source/**
@@ -60,14 +57,18 @@ jobs:
           test -d Build/Cesium/Workers
           test -d Build/Cesium/Assets
           mkdir -p site/Apps site/Build/Cesium
-          cp Apps/WebGPUGlobe.html Apps/WebGPUClouds.html Apps/WebGPUProof.html Apps/WebGPUCloudGeometry.js site/Apps/
-          cp Apps/WebGPUIndex.html site/index.html
+          cp Apps/WebGPU*.html Apps/WebGPUCloudGeometry.js site/Apps/
+          sed 's#href="./WebGPU#href="./Apps/WebGPU#g' Apps/WebGPUIndex.html > site/index.html
           rsync -a Build/Cesium/ site/Build/Cesium/
-          sed -i 's#../Build/CesiumUnminified/#../Build/Cesium/#g' site/Apps/WebGPUGlobe.html site/Apps/WebGPUClouds.html site/Apps/WebGPUProof.html
-          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUClouds.html
-          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUGlobe.html
-          grep -q '../Build/Cesium/Cesium.js' site/Apps/WebGPUProof.html
+          for demo in site/Apps/WebGPU*.html; do
+            name=$(basename "$demo")
+            if [[ "$name" == WebGPUIndex.html ]]; then continue; fi
+            sed -i 's#../Build/CesiumUnminified/#../Build/Cesium/#g' "$demo"
+            grep -Fq '../Build/Cesium/Cesium.js' "$demo"
+            grep -Fq "href=\"./Apps/$name\"" site/index.html
+          done
           test -s site/Build/Cesium/Widgets/Timeline/Timeline.css
+          test -s site/Build/Cesium/Widgets/Animation/Animation.css
           grep -q '../Build/Cesium/Widgets/Timeline/Timeline.css' site/Apps/WebGPUGlobe.html
           touch site/.nojekyll
           printf '%s\n' "$GITHUB_SHA" > site/source-commit.txt
