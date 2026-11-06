@@ -11,7 +11,16 @@
 | M3                           | M2               | spherical global volumetric clouds with [five required visual enhancements](tasks/M3.md#planned-visual-enhancements)          | Complete. Baseline and all five enhancements visually accepted on 2026-11-05.                     |
 | M4                           | M3               | cloud shadows and terrain lighting coupling                                                                                   | Complete on local `main`. A14/A15 and WebGL passed. [Evidence](tasks/M4.md#progress--2026-11-06). |
 | M5                           | M4               | image-quality stabilization, time stability, profiling                                                                        | visual acceptance and WebGL no-regression                                                         |
-| M6 (later)                   | V1.0             | common mesh-based 3D Tiles and BIM                                                                                            | representative mesh datasets render properly                                                      |
+| [M6 — next priority](tasks/M6.md) | existing M0–M4 + reproducible M5 checkpoint | freely explorable global ocean, near-water FFT waves, tides/coasts, full underwater last | separate O0–O7 gates in [M6 acceptance](docs/M6_ACCEPTANCE.md) |
+| [M7 (formerly M6)](tasks/M7.md) | V1.0 validation + current ocean priority completed, unless owner reprioritizes | common mesh-based 3D Tiles and BIM | representative mesh datasets render properly |
+
+## Next stage: M6 Global Ocean — owner decision, 2026-11-06
+
+**Start M6 at O0 / O0-01 next.** The existing M5 tasks 1 and 2 are recorded as locally complete; motion/resource stability, profiling and final regression remain open. Only blockers that directly prevent the active ocean task must be resolved first. This priority decision does not mark M5/V1.0 complete and does not remove its release gates.
+
+The [final ocean plan](docs/OCEAN_PLAN.md) gives the scope and deliverables. The sequence is **O0 integration contracts → O1 ocean coverage/curved surface/time/depth → O2 open-ocean near appearance → O3 global navigation/LOD/first performance acceptance → O4 display tides and time history → O5 coast/bathymetry data → O6 coastal appearance/second performance acceptance → O7 full underwater/final acceptance**. O3 is the first independently useful open-ocean release. Full underwater is deliberately last.
+
+Use [M6-STATUS](coordination/M6-STATUS.md) to select the next small task and [M6-AI-START](coordination/M6-AI-START.md) to resume with another AI. All ocean tasks initially remain NOT_STARTED and all ocean checks NOT_RUN. No calendar date or fixed FPS is promised before the integration and hardware baseline exist. Optional M2.7/M2.8 follow-ups and M7 do not preempt this priority.
 
 ## M2.6.1 placement and boundary
 
@@ -25,8 +34,8 @@ M2.6.1 is the completed, bounded solar-polish implementation and technical-accep
 
 ## Strict scope gate
 
-M0–M5 must **not depend on** implementing 3D Tiles, general GPU material engine, complex RenderGraph or full Cesium WebGPU coverage. Add abstraction only when two real consumers prove necessity. Each milestone: vertical slice → tests → demonstration → handoff.
+M0–M6 must **not depend on** implementing 3D Tiles, general GPU material engine, complex RenderGraph or full Cesium WebGPU coverage. Add abstraction only when two real consumers prove necessity. Each milestone: vertical slice → tests → demonstration → handoff. M6 uses its own acceptance IDs and does not silently expand the original V1.0 definition.
 
 ## Task assignment protocol
 
-Before coding: select **one** numbered bullet from `tasks/MX.md`, state owned files, output, acceptance test and whether it may run in parallel. If a task cannot be independently tested, split it further. Do not implement future milestones in the same PR.
+Before coding: select **one** numbered bullet from `tasks/MX.md` (for M6, one task ID from the active `tasks/M6/Ox.md`), state owned files, output, acceptance test and whether it may run in parallel. If a task cannot be independently tested, split it further. Do not implement future milestones in the same PR.

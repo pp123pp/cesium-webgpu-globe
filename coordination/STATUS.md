@@ -1,7 +1,11 @@
 # Single source of truth — status
 
 Last updated: 2026-11-06
-Current milestone: **M5 tasks 1 and 2 are complete on local branches.** The [eight reference scenes](evidence/M5/reference-scenes/README.md) were used for [altitude and time continuity](evidence/M5/continuity/README.md). Two local transitions in the star field and sunset cloud lighting were fixed and verified on Intel Xe-LPG. The next M5 task covers motion stability and resource lifetime. Profiling and final regression remain pending. M4 A14/A15 are accepted on local `main`.
+Current development priority: **M6 Global Ocean — O0 NOT_STARTED; next task O0-01.** The owner requested adding the ocean stage on the current repository and starting it next. Read [M6 task](../tasks/M6.md), [ocean status](M6-STATUS.md), [final plan](../docs/OCEAN_PLAN.md) and [AI entry](M6-AI-START.md). The former M6 3D Tiles/BIM stage is now [M7](../tasks/M7.md). Full underwater is the last ocean subphase, O7. This is a documentation-only planning update; no ocean runtime, screenshots or test passes are claimed.
+
+**M5 checkpoint and open debt:** M5 tasks 1 and 2 are complete on local branches. The [eight reference scenes](evidence/M5/reference-scenes/README.md) were used for [altitude and time continuity](evidence/M5/continuity/README.md). Two local transitions in the star field and sunset cloud lighting were fixed and verified on Intel Xe-LPG. The next unfinished M5 task covers motion stability and resource lifetime. Profiling and final regression remain pending. M4 A14/A15 are accepted on local `main`. O0 records the actual checked-out source and integration status; only M5 defects directly blocking the active ocean task are prerequisites. Other M5 obligations remain tracked and V1.0 is not declared complete.
+
+**Reading historical records:** the priority decision above supersedes older future-work routing only. Older “M6 3D Tiles/BIM” references below mean today's M7; capture-time status, approvals and evidence stay historical. This update does not grant push/merge/manual-Full authorization or turn old GPU evidence into a new test run.
 
 M3 is complete. The user visually accepted all [five cloud enhancements](../tasks/M3.md#planned-visual-enhancements) on 2026-11-05, including [cloud evolution and morning light shafts](evidence/M3/evolution-and-mist/README.md), and authorized merging the changes to main.
 

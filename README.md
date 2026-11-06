@@ -2,6 +2,8 @@
 
 **Current state:** M4 passed technical and user visual acceptance on 2026-11-06 and is integrated into local `main`. M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
+**Next development stage: [M6 Global Ocean](tasks/M6.md), starting at O0 / O0-01.** The owner prioritized freely explorable global oceans, with near-water appearance guided by [Tidewater](https://github.com/dgreenheck/tidewater), followed by tides, coasts and full underwater rendering last. See the [final phased plan](docs/OCEAN_PLAN.md), [current ocean task/status](coordination/M6-STATUS.md) and [AI continuation prompts](coordination/M6-AI-START.md). These are planning files; ocean runtime is not implemented yet. M5's remaining work stays open, and the former M6 3D Tiles/BIM stage moves to [M7](tasks/M7.md).
+
 Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 baseline acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 
 For a cloud-only demo, run `npm run demo:webgpu` and open [the cloud showcase](http://localhost:8067/Apps/WebGPUClouds.html). Select an effect to switch the camera and lighting, then collapse the panel for an unobstructed view.
@@ -35,12 +37,14 @@ Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP
 | [M2](tasks/M2.md) | V0.2 atmosphere, Sun, space background, Moon, HDR | Integrated                                                      |
 | [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow         | Complete. Baseline and all five enhancements visually accepted. |
 | [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain               | A14/A15 visually accepted; full WebGL differential passed       |
-| [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Planned                                                         |
-| [M6](tasks/M6.md) | V1.1+ 3D Tiles/BIM                                | Deferred                                                        |
+| [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression      | Tasks 1–2 complete locally; other work remains open              |
+| [M6](tasks/M6.md) | Global ocean: open sea → tides/coasts → underwater | **Next priority. O0 / O0-01; implementation NOT_STARTED**        |
+| [M7](tasks/M7.md) | V1.1+ 3D Tiles/BIM (formerly M6)                  | Deferred                                                        |
 
 - [Product scope](docs/REQUIREMENTS.md) · [Acceptance criteria](docs/ACCEPTANCE.md)
 - [Source and provenance](docs/SOURCE_BASELINE.md) · [Team workflow](coordination/WORKFLOW.md)
 - [Context handoff template](coordination/HANDOFF_TEMPLATE.md)
+- [M6 ocean plan](docs/OCEAN_PLAN.md) · [Ocean acceptance](docs/M6_ACCEPTANCE.md) · [AI entry](coordination/M6-AI-START.md)
 
 ## Upstream source
 

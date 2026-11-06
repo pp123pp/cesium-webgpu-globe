@@ -30,7 +30,10 @@ A worktree branch can only be checked out in one worktree; check repository stat
 | M3 | noise/weather generation; cloud scattering reference; camera regression scripts | main cloud pass, temporal history and shared depth integration |
 | M4 | cloud shadow derivation; terrain shadow golden scenes | terrain lighting integration and global uniforms |
 | M5 | QA test matrices; GPU profiling; screenshot/reference review | code fixes touching shared pipeline |
-| M6 | data compatibility matrix; codec checks; sample model inventory | shared scene/model drawing integration |
+| M6 | FFT/math reference checks; coverage/bathymetry data audit; fixtures and evidence, when contracts and ownership are disjoint | shared Scene/Context/Globe/atmosphere composition, depth/surface identity, time and resource lifecycle integration |
+| M7 | data compatibility matrix; codec checks; sample model inventory | shared scene/model drawing integration |
+
+M6 Global Ocean is the next priority. Select the active `tasks/M6/Ox.md` and one task ID from `coordination/M6-STATUS.md`; begin with O0-01. Freeze the real interfaces in O0 before parallel runtime implementation. A single integration owner maintains the main STATUS and M6-STATUS; separate workers do not independently change the shared ocean coordinator or time/depth contracts. A later subphase is not started merely because a worker has spare capacity. M5 open debt and the deferred M7 remain visible.
 
 ## Context budgeting
 - **One agent = one task = one bounded output.** Do not paste full source directories, giant logs, screenshots or whole task archives into prompts.

@@ -26,9 +26,22 @@
 
 ## Deferred
 
-- 3D Tiles 1.0/1.1 common mesh types, photogrammetry/BIM, needed Draco/KTX2, PBR/material lighting and cloud shadows on models: M6.
+- 3D Tiles 1.0/1.1 common mesh types, photogrammetry/BIM, needed Draco/KTX2, PBR/material lighting and cloud shadows on models: M7 (formerly M6).
 - No point clouds, complete 3D Tiles extensions, metadata/picking/styling/classification/clipping, comprehensive Cesium primitives, real weather and modern GI/post effects in first release.
 
 ## Remaining acceptance decisions
 
 Define target OS/browser/GPU/resolution, expected behavior when WebGPU is unavailable, exact imagery and terrain providers, fixed UE5 comparison views, and a representative 3D Tiles dataset **before their respective acceptance gates**. Do not block M0 on choices not needed yet.
+
+## Approved extension: M6 Global Ocean — next priority
+
+The owner requested M6 to begin next from the existing repository; M5's remaining work is not silently completed or discarded. The [M6 ocean plan](OCEAN_PLAN.md) and [design specification](superpowers/specs/2026-11-06-m6-global-ocean-design.md) define the extension, with [separate acceptance IDs](M6_ACCEPTANCE.md). The original V1.0 scope above remains traceable.
+
+- Single main camera, desktop WebGPU, free navigation from orbit to any ocean region; oceans only, excluding inland lakes/rivers/reservoirs.
+- Tidewater guides near-water visual quality and implementation study. Use multi-scale spectral waves and a camera-centered curved surface with geographic anchoring. Far/high views retain the existing imagery ocean color; near detail may appear progressively.
+- Reuse scene sky, Sun and clouds. Approximate their reflected radiance and Sun glint; SSR is optional enhancement and never the sole environment-reflection path.
+- Manual sea-state controls, no real-weather requirement. Display tides use controllable amplitude/period/phase and are not predictive real-world tidal data. Additional shoreline and bathymetry data are allowed.
+- Cesium Clock is the single scene-time source. Wave/tide state follows the target time on a seek; historical foam/wetness may reset and rebuild with bounded work and progressive appearance. Pause, reverse and large time changes have explicit semantics.
+- Deliver open ocean first (O0–O3), display tides (O4), coast/bathymetry data (O5), nearshore appearance (O6), and full underwater rendering **last (O7)**. Earlier minimal camera-medium/depth checks are integration safeguards, not an early full underwater milestone.
+- Global basic coverage and data-dependent coastal/seabed detail are allowed. Never claim uniform high-resolution coast or seafloor coverage. No buoyancy, ship/wake/game-physics system or paid-service dependency is implied.
+- Prioritize the target appearance, record cost as work proceeds, and conduct formal performance acceptance at O3/O6/O7 on recorded hardware/resolution. Follow the existing risk-based verification and physical-GPU rules.

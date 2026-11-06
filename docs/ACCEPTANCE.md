@@ -22,14 +22,20 @@ Evidence per scenario: build/test command + screenshot or short recorded view + 
 | A16 | M5    | camera stress sweep             | rapid pan/zoom/time progression no serious flicker/ghosting              |
 | A17 | M5    | duration soak                   | no steadily growing GPU memory or crashes                                |
 | A18 | M5    | WebGL regression                | tests/smoke of unchanged official path pass                              |
-| A19 | M6    | city/BIM/photogrammetry         | common tile mesh content and necessary compression render correctly      |
+| A19 | M7    | city/BIM/photogrammetry         | common tile mesh content and necessary compression render correctly      |
 
 ## Gates
 
 - **M1 is the first shipping-quality vertical slice.** A mapped sphere with a static texture does NOT pass M1.
-- M2 must be stable before M3 lighting integration. M4 must NOT depend on M6.
+- M2 must be stable before M3 lighting integration. M4 must NOT depend on M7 (the former M6 model stage).
 - V1.0 = M0闁炽儲褰? gates; **A19 is not a blocker for V1.0**.
 - Performance is observational until test GPU/resolution agreed; capture baseline data and regression trends.
+
+## M6 Global Ocean — separate extension gates
+
+The next priority is [M6 Global Ocean](../tasks/M6.md), beginning at O0-01. Its **M6-A01–M6-A22** criteria are in [M6_ACCEPTANCE.md](M6_ACCEPTANCE.md); do not renumber A01–A18 or reuse the historical A19 model criterion for ocean work. A19 moves with 3D Tiles/BIM to M7. Existing evidence and V1.0 acceptance obligations remain unchanged.
+
+The ocean package is planning-only: all M6 criteria initially are NOT_RUN. O3, O6 and O7 are separate visual/performance release gates; complete underwater is O7, last. Technical checks, owner visual acceptance and release/integration permissions are distinct. M5 open items remain open unless separately completed with applicable evidence. See [M6-STATUS](../coordination/M6-STATUS.md) for the active task and records.
 
 ## Verification scope and cadence
 

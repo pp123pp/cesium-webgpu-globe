@@ -2,9 +2,17 @@
 
 Read this file first. **Do not load the entire documentation tree or Cesium source into context.**
 
+## Current priority — M6 Global Ocean
+
+Owner decision (2026-11-06): **the next development stage is M6 Global Ocean**, starting at **O0 / O0-01**. Read `coordination/M6-STATUS.md`, `tasks/M6.md` and the current `tasks/M6/Ox.md` after the main STATUS. The agreed scope and sequence are in `docs/OCEAN_PLAN.md`; portable AI entry prompts are in `coordination/M6-AI-START.md`.
+
+M5 tasks 1 and 2 retain their recorded local completion; the remaining M5 work is still open. Resolve only M5 defects that directly block the active ocean task as prerequisites, and keep the other debt visible. Do not claim V1.0/M5 is finished or require all M5 cleanup before starting O0. The former M6 3D Tiles/BIM task is now `tasks/M7.md`; optional solar work and M7 do not take precedence over M6. Full underwater rendering is the last ocean subphase, O7.
+
+This package changes plans and routing only: all ocean implementation and acceptance start as NOT_STARTED / NOT_RUN. A request to implement the next stage should select M6's current small task; do not implement all eight subphases in one batch. Existing push, merge and CI permissions remain unchanged.
+
 ## Mission
 
-Start from CesiumJS **official 1.146.0 tag** (verify at implementation time), keep the existing WebGL path unchanged in behavior, add a separately selectable WebGPU backend. Prioritize WGS84 Globe, imagery, Terrain, physical atmosphere, Sun, space sky, HDR, volumetric clouds and terrain cloud shadows. **3D Tiles/BIM is deferred until after V1.0 Globe.** Only SceneMode.SCENE3D required for WebGPU.
+Start from CesiumJS **official 1.146.0 tag** (verify at implementation time), keep the existing WebGL path unchanged in behavior, add a separately selectable WebGPU backend. Prioritize WGS84 Globe, imagery, Terrain, physical atmosphere, Sun, space sky, HDR, volumetric clouds and terrain cloud shadows, then the agreed M6 global ocean. **3D Tiles/BIM is deferred to M7, after V1.0 Globe validation and the current ocean priority.** Only SceneMode.SCENE3D required for WebGPU.
 
 ## Always-on rules
 
