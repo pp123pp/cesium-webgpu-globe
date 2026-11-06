@@ -55,6 +55,33 @@ try {
     return { vendor: info.vendor, architecture: info.architecture, description: info.description, isFallbackAdapter: info.isFallbackAdapter };
   });
   assertPhysicalGpu(classifyGpu(adapter), configuration);
+  for (const [width, expectedWidth, expectedHeight] of [
+    [640, 136, 90],
+    [901, 169, 112],
+    [900, 136, 90],
+    [600, 136, 90],
+    [599, 106, 70],
+    [375, 106, 70],
+    [1280, 169, 112],
+  ]) {
+    await page.setViewportSize({ width, height: 360 });
+    await page.waitForFunction(([expectedWidth, expectedHeight]) => {
+      const container = document.getElementById("animation");
+      const svg = container.lastElementChild;
+      return container.clientWidth === expectedWidth &&
+        container.clientHeight === expectedHeight &&
+        svg.clientWidth === expectedWidth && svg.clientHeight === expectedHeight;
+    }, [expectedWidth, expectedHeight], { timeout: 5000 });
+    const dial = await page.evaluate(() => {
+      const container = document.getElementById("animation");
+      const svg = container.lastElementChild;
+      const scale = svg.firstElementChild.transform.baseVal.consolidate().matrix;
+      return { width: container.clientWidth, height: container.clientHeight, x: scale.a, y: scale.d };
+    });
+    assert.ok(Math.abs(dial.height - dial.width * 132 / 200) <= 1, "dial retains its native aspect ratio");
+    assert.ok(Math.abs(dial.x - dial.y) < 0.01, "dial scales uniformly on initial layout and resize");
+  }
+  await page.setViewportSize({ width: 640, height: 360 });
   const sample = () => page.evaluate(() => {
     const viewer = window.__timelineViewer;
     viewer.render();

@@ -15,7 +15,8 @@
     />
     <style>
       :root {
-        --dial-width: clamp(106px, 16vw, 169px);
+        --dial-width: 169px;
+        --dial-height: 112px;
         color-scheme: dark;
         font:
           14px/1.55 system-ui,
@@ -41,7 +42,7 @@
         left: 0;
         bottom: 0;
         width: var(--dial-width);
-        aspect-ratio: 169 / 112;
+        height: var(--dial-height);
       }
       #timeline {
         position: absolute;
@@ -139,6 +140,18 @@
       }
 
       function resizeTimeWidgets() {
+        // Match Viewer.resize(); the WebGPU Viewer does not lay out widgets yet.
+        const width = viewer.container.clientWidth;
+        const [dialWidth, dialHeight] =
+          width > 900 ? [169, 112] : width >= 600 ? [136, 90] : [106, 70];
+        document.documentElement.style.setProperty(
+          "--dial-width",
+          `${dialWidth}px`,
+        );
+        document.documentElement.style.setProperty(
+          "--dial-height",
+          `${dialHeight}px`,
+        );
         animation.resize();
         timeline.resize();
       }
@@ -232,6 +245,7 @@
         timeline = new Cesium.Timeline("timeline", viewer.clock);
         timeline.zoomTo(viewer.clock.startTime, viewer.clock.stopTime);
         timeline.addEventListener("settime", scrubTime, false);
+        resizeTimeWidgets();
         viewer.creditDisplay.container.style.left = "var(--dial-width)";
         window.addEventListener("resize", resizeTimeWidgets);
         shadows.addEventListener("change", () => {
