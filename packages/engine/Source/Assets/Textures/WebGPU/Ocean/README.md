@@ -1,51 +1,42 @@
-# M6 ocean classification assets
+# M6 海洋分类资产
 
-O0 freezes the data source and O1 output contract here. **No runtime mask has
-been generated or loaded.** `manifest.json` records real checksums for the
-downloaded source files; `runtimeAssets.files` remains empty.
+**唯一活动入口：[coverage-manifest.json](coverage-manifest.json)，schemaVersion 2 / routeVersion 2.0。**
+当前为 `SOURCE_NOT_ACQUIRED`，`runtimeAssets.status=NOT_GENERATED`、`files=[]`。
+已经确定路线，但尚未取得并审核全球 OSM 快照，也没有生成或加载运行时分类瓦片。
 
-The unique phase-one source is Natural Earth Vector **v5.1.2**, commit
-`f1890d9f152c896d250a77557a5751a93d494776`, at **1:10 million cartographic
-scale**. “10m” means that scale, not ten-metre spatial resolution. The ocean
-and land layer versions are 5.1.1; base lakes is 5.0.0. Data is public domain,
-free to acquire, modify and redistribute; no account or token is needed.
-Keep [the data terms](LICENSE-NATURAL-EARTH.txt) with generated assets.
+## 当前路线
 
-Classification codes are `unknown=0`, `ocean=1`, `land=2`, `inland-water=3`.
-Natural Earth's ocean layer includes the closed Caspian component. The O0
-audit derives the clockwise outer rings from the actual geometry and selects
-the component containing the open-Pacific seed `(-150°, 0°)` as global ocean.
-Other ocean outer rings are inland water. Lakes override land, land overrides
-water components, and unresolved source/shore boundaries are unknown. No
-elevation threshold, waterMask or raster flood fill can promote a location
-to ocean. This preserves the source's connected bays and straits even if a
-coarse mask cannot display their channels.
+- 主源候选：OSM **未简化 WGS84 split water/land polygons**。candidateUrl 是待获取入口，实际输入的时间、字节、SHA256 和归档路径仍为 null。
+- `split` 只表示大面切分；不采用面向低 zoom 的 simplified 数据或被 Mercator 裁去极区的全球底座。
+- 四类固定为 `unknown=0`、`ocean=1`、`land=2`、`inland-water=3`。里海须从海洋中排除；普通湖库需独立选源/核查，不能假定 water-polygons 已覆盖。
+- 计划采用 coverage L0..L9 的同源分类层级：L0 为 8192×4096，瓦片 512²，每级两个轴各加倍；仅岸线附近稀疏细化，已证明的纯色区域可用常量表示。
+- 分类使用 nearest/精确整数读取，不平均 mipmap。完整像元足迹包含岸线或小岛时保守标 unknown；必须区分边界不确定性和缺数据原因。
+- 父级必须是已发布、验证过的同源保守父级；缺数据不回到 Natural Earth ocean。32 个实际驻留 512² 分类瓦片是**所有层级合计**的起始预算，尚未测量。
 
-O1 will generate 128 headerless 512×512 R8 tiles, a 16×8 grid covering an
-8192×4096 longitude/latitude raster in OGC:CRS84. Nearest sampling, no mipmaps,
-north-to-south rows and periodic longitude are required. Each texel must be
-uniformly one processed class over its whole geographic footprint; source
-boundaries crossing or wholly inside that footprint make it unknown.
-Checking only the centre or four corners misses enclosed small islands.
-Artificial source cuts at the date line/poles are periodic/cap boundaries,
-not coasts. Details are in the manifest and data audit.
+数据源细节、MHWS 定义、OSM 定位限制、生成步骤和官方链接见
+[总体路线](../../../../../../../docs/OCEAN_PLAN.md)；API、字段和回退约束见
+[实施合同](../../../../../../../docs/M6_OCEAN_CONTRACTS.md)。
+L8/L9 约 19.1m/9.6m 只是赤道采样目标，不是已经交付的全球精度。
+派生资产由项目分发；runtime 不直接向 OSM 编辑 API 或生产服务查询分类。
 
-At the equator the grid spacing is about 4.89 km; that is sampling spacing,
-not a coastline accuracy claim. Natural Earth's generalized coastlines omit
-small islands (the audited Alcatraz point is an observed example), and narrow
-channels can become unknown after rasterization. Keep real terrain/island
-occlusion: classification alone never authorizes deleting arbitrary terrain.
-Only an identified ocean zero-height lid can receive the bounded O1 surface
-policy. Fine global coasts, bathymetry, tidal connectivity and sea ice are
-outside this dataset's guarantees.
+## 获取与生成门槛
 
-The first output has one level (`level=0`), with no invented parent asset.
-Keep already valid data for a tile while replacing/loading it. A real valid
-parent may be used if a later level supplies one; otherwise missing data is
-unknown and keeps the existing terrain/imagery visible without ocean draw.
-All generated tiles are distributable local assets; runtime classification
-needs no external data service. The current audit uses downloaded vectors
-only and is not O1 rasterization or rendering acceptance.
+默认下一项为 [O0-R01](../../../../../../../tasks/M6/O0-R.md)：取得固定快照、许可与语义审计；
+随后 O0-R02 做小范围粗细分类样板，O0-R03 冻结实取数据 manifest 和 O1 交接。
+O1-01 CPU 时间/框架可独立并行；O1-02 等待上述门槛。
+原始 OSM 恶魔岛样本只支持单点源细节比较，不构成全球发布包、栅格或 GPU 验证。
 
-Reproduce the source audit and small samples using
-[the O0 data evidence](../../../../../../../coordination/evidence/M6/O0/data/README.md).
+OSM 数据采用 ODbL，署名为 `© OpenStreetMap contributors`。
+固定快照的许可文本、再分发要求和归档记录须在 O0-R01 核查；
+不能把 Natural Earth 的 public-domain 声明用于新资产。
+
+## 历史审计文件
+
+下列文件保持原样，供复查历史 O0，**不作为未来 runtime 默认输入或加载失败回退**：
+
+- [manifest.json](manifest.json)：Natural Earth v5.1.2 源文件哈希和旧单层生成合同。
+- [LICENSE-NATURAL-EARTH.txt](LICENSE-NATURAL-EARTH.txt)：仅属于该历史数据。
+- [O0 数据证据](../../../../../../../coordination/evidence/M6/O0/data/README.md)：原审计脚本和 26 个规则样本。
+
+O0 的历史 TECHNICAL_PASS 没有解决恶魔岛漏岛，也没有证明新来源或运行时通过。
+保留这些原始记录以免把旧证据改写成新路线的验证。

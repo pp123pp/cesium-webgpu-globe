@@ -4,11 +4,11 @@ Read this file first. **Do not load the entire documentation tree or Cesium sour
 
 ## Current priority — M6 Global Ocean
 
-Owner decision (2026-11-06): **the next development stage is M6 Global Ocean**. O0 contracts/data audit is complete; **next task is O1-01**, with O1 runtime NOT_STARTED. Read `coordination/M6-STATUS.md`, `tasks/M6.md` and the current `tasks/M6/Ox.md` after the main STATUS. The frozen interfaces are in `docs/M6_OCEAN_CONTRACTS.md`; agreed scope and sequence are in `docs/OCEAN_PLAN.md`, and portable AI entry prompts are in `coordination/M6-AI-START.md`.
+Owner decision (2026-11-06): **the next development stage is M6 Global Ocean**. Route v2.0 selects detailed OSM coastlines and a sparse, same-source coverage hierarchy. **Next task: O0-R01 in `tasks/M6/O0-R.md`.** Original Natural Earth O0 evidence remains a historical TECHNICAL_PASS; the replacement source is not acquired/accepted and runtime remains NOT_STARTED. Start with this file, `coordination/M6-STATUS.md` and the selected task only. Use `docs/OCEAN_PLAN.md` for the overall route and relevant sections of `docs/M6_OCEAN_CONTRACTS.md` for exact contracts.
 
-M5 tasks 1 and 2 retain their recorded local completion; the remaining M5 work is still open. Resolve only M5 defects that directly block the active ocean task as prerequisites, and keep the other debt visible. Do not claim V1.0/M5 is finished or require all M5 cleanup before starting O0. The former M6 3D Tiles/BIM task is now `tasks/M7.md`; optional solar work and M7 do not take precedence over M6. Full underwater rendering is the last ocean subphase, O7.
+M5 tasks 1 and 2 retain their recorded local completion; the remaining M5 work is still open. Resolve only M5 defects that directly block the active ocean task as prerequisites, and keep the other debt visible. Do not claim V1.0/M5 is finished or require all M5 cleanup before advancing M6. The former M6 3D Tiles/BIM task is now `tasks/M7.md`; optional solar work and M7 do not take precedence over M6. Full underwater rendering is the last ocean subphase, O7.
 
-O0 adds document/data audit evidence only; ocean runtime and rendering/performance acceptance remain NOT_STARTED / NOT_RUN. A request to implement the next stage should select M6's current small task; do not implement all eight subphases in one batch. Existing push, merge and CI permissions remain unchanged.
+O0-R must validate the new source and bounded coarse/fine mask fixtures before O1-02. O1-01 CPU time/geographic work may proceed independently when explicitly assigned. Fine land/island exclusion belongs in O1; O5 adds coastal elevation, bathymetry and inundation behavior. A request to implement the next stage should select the current small task, not all subphases. Route documentation is not runtime or rendering/performance acceptance. Existing push, merge and CI permissions remain unchanged.
 
 ## Mission
 
@@ -57,11 +57,11 @@ Harmless image differences remain acceptable under `docs/ACCEPTANCE.md`; do not 
 
 ## Reading order (context budget)
 
-1. `coordination/STATUS.md` (current state)
-2. `ROADMAP.md` (stage dependency overview)
-3. `tasks/MX.md` (ONLY active milestone)
-4. Relevant excerpt of `docs/REQUIREMENTS.md`, `docs/ACCEPTANCE.md`, `docs/SOURCE_BASELINE.md`
-5. Source files needed for the current task, not whole directories
+1. For M6: this file → `coordination/M6-STATUS.md` → the single selected `tasks/M6/Ox.md` (currently `O0-R.md`). Do not preload all phase tasks.
+2. Read only the needed headings of `docs/OCEAN_PLAN.md`, `docs/M6_OCEAN_CONTRACTS.md` and `docs/M6_ACCEPTANCE.md`; search before opening long files.
+3. Inspect 1–3 relevant source files and their call sites at a time. Load evidence only when its provenance or a result is needed for the active task.
+4. Read the top of `coordination/STATUS.md`, `ROADMAP.md` and requirements/baseline excerpts only for cross-milestone context. Do not routinely load historical status, evidence JSON or completed task archives.
+5. For other milestones: current STATUS excerpt → ROADMAP excerpt → active `tasks/MX.md` → required source/acceptance excerpts. Historical paths inside frozen evidence refer to the recorded revision, not current reading instructions.
 
 ## Workflow
 

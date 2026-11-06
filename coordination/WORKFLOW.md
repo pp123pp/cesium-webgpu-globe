@@ -37,12 +37,12 @@ A worktree branch can only be checked out in one worktree; check repository stat
 | M6 | FFT/math reference checks; coverage/bathymetry data audit; fixtures and evidence, when contracts and ownership are disjoint | shared Scene/Context/Globe/atmosphere composition, depth/surface identity, time and resource lifecycle integration |
 | M7 | data compatibility matrix; codec checks; sample model inventory | shared scene/model drawing integration |
 
-M6 Global Ocean is the next priority. Select the active `tasks/M6/Ox.md` and one task ID from `coordination/M6-STATUS.md`; O0 is complete and the next task is O1-01. Read the frozen `docs/M6_OCEAN_CONTRACTS.md` before runtime implementation. A single integration owner maintains the main STATUS and M6-STATUS; separate workers do not independently change the shared ocean coordinator or time/depth contracts. A later subphase is not started merely because a worker has spare capacity. M5 open debt and the deferred M7 remain visible.
+M6 Global Ocean is the next priority. Select one task ID from `coordination/M6-STATUS.md`; route v2.0 starts with O0-R01 in `tasks/M6/O0-R.md`. The old O0 pass is limited to its historical source. O1-01 CPU time/geography may run independently when assigned; O1-02 requires O0-R's new data gate. Use `docs/OCEAN_PLAN.md` as the overall route and read relevant headings of `docs/M6_OCEAN_CONTRACTS.md` before implementation. A single integration owner maintains the main STATUS and M6-STATUS; separate workers do not independently change shared ocean time/depth contracts. A later subphase is not started merely because a worker has spare capacity. M5 open debt and the deferred M7 remain visible.
 
 ## Context budgeting
 
 - **One agent = one task = one bounded output.** Do not paste full source directories, giant logs, screenshots or whole task archives into prompts.
-- Start each session with only AGENTS, STATUS, ROADMAP and active task. Read just-in-time 1–3 relevant source files and their call sites.
+- For M6, start with AGENTS, M6-STATUS and the selected task only; read route, contract and acceptance headings as needed. For other milestones, use current STATUS/ROADMAP excerpts and the active task. Read just-in-time 1–3 relevant source files and their call sites. Do not preload historical status, evidence or completed tasks.
 - Use search to locate symbols before opening whole files. Capture paths+line ranges, not 5,000-line dumps.
 - At ~half practical context budget or once 1 small PR is ready, produce a handoff using `HANDOFF_TEMPLATE.md`, commit concise notes and start fresh.
 - Limit concurrent implementing workers initially to **2**, plus at most **1 read-only reviewer**. Increase only when merge/test throughput demonstrates benefit.

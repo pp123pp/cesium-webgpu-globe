@@ -2,7 +2,7 @@
 
 **Current state:** M4 passed technical and user visual acceptance on 2026-11-06 and is integrated into local `main`. M3 is complete. The local volumetric cloud baseline and all [five visual enhancements](tasks/M3.md#planned-visual-enhancements) passed user visual acceptance on 2026-11-05. The WebGPU backend on CesiumJS **1.146.0** supports the WGS84 globe, imagery, terrain, physical sky and local clouds. WebGL is the default. Rapid real-terrain descent is a known M1 limitation (`M1-NAV-001`).
 
-**Current priority: [M6 Global Ocean](tasks/M6.md); O0 contracts/data audit complete, next O1-01.** The owner prioritized freely explorable global oceans, with near-water appearance guided by [Tidewater](https://github.com/dgreenheck/tidewater), followed by tides, coasts and full underwater rendering last. See the [frozen contracts](docs/M6_OCEAN_CONTRACTS.md), [current ocean task/status](coordination/M6-STATUS.md) and [AI continuation prompts](coordination/M6-AI-START.md). Ocean runtime and rendering acceptance have not started. M5's remaining work stays open, and the former M6 3D Tiles/BIM stage moves to [M7](tasks/M7.md).
+**Current priority: [M6 Global Ocean](docs/OCEAN_PLAN.md), route v2.0; next [O0-R01](tasks/M6/O0-R.md).** Detailed OSM coastlines and a sparse, same-source coverage hierarchy replace the planned coarse Natural Earth mask as the primary ocean/land boundary. The original O0 audit remains historical; the new source and masks have not been acquired/generated or accepted. Near-water appearance remains guided by [Tidewater](https://github.com/dgreenheck/tidewater), followed by tides, coasts and full underwater rendering last. See the [contracts](docs/M6_OCEAN_CONTRACTS.md) and [current task/status](coordination/M6-STATUS.md). Ocean runtime and rendering acceptance have not started. M5's remaining work stays open, and the former M6 3D Tiles/BIM stage moves to [M7](tasks/M7.md).
 
 Build with `npm install` and `npm run build`, serve this directory, then open `Apps/WebGPUGlobe.html`. Read the [M1 API and usage guide](docs/WEBGPU_M1.md) for supported options, real Providers, navigation, errors and test commands. The [M3 baseline acceptance record](coordination/evidence/M3/cloud-appearance/README.md) includes matched cloud images captured on a physical Intel Xe-LPG GPU.
 
@@ -26,7 +26,7 @@ Preserve Cesium's original WebGL backend and add a separately selected WebGPU ba
 
 ## Continuing development
 
-Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP.md) and the active milestone task before editing. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head.
+For M6, read [AGENTS.md](AGENTS.md), [M6-STATUS](coordination/M6-STATUS.md) and its selected task only; consult contract/acceptance sections as needed. Other milestones use the current [STATUS](coordination/STATUS.md) and [ROADMAP](ROADMAP.md) excerpts. Follow [WORKFLOW](coordination/WORKFLOW.md), preserve existing results, and verify the current remote branch/PR head. Do not load the documentation tree or historical evidence by default.
 
 ## Plan and docs
 
@@ -38,13 +38,13 @@ Read [AGENTS.md](AGENTS.md), [STATUS](coordination/STATUS.md), [ROADMAP](ROADMAP
 | [M3](tasks/M3.md) | V0.3 local volumetric clouds, self-shadow          | Complete. Baseline and all five enhancements visually accepted.      |
 | [M4](tasks/M4.md) | V0.4 cloud shadows on Globe/Terrain                | A14/A15 visually accepted; full WebGL differential passed            |
 | [M5](tasks/M5.md) | V1.0 quality, temporal stability, regression       | Tasks 1–2 complete locally; other work remains open                  |
-| [M6](tasks/M6.md) | Global ocean: open sea → tides/coasts → underwater | **O0 document/data TECHNICAL_PASS; next O1-01, runtime NOT_STARTED** |
+| [M6](docs/OCEAN_PLAN.md) | Global ocean: detailed coverage → open sea → tides/coasts → underwater | **Legacy O0 TECHNICAL_PASS; next O0-R01, new data/runtime NOT_STARTED** |
 | [M7](tasks/M7.md) | V1.1+ 3D Tiles/BIM (formerly M6)                   | Deferred                                                             |
 
 - [Product scope](docs/REQUIREMENTS.md) · [Acceptance criteria](docs/ACCEPTANCE.md)
 - [Source and provenance](docs/SOURCE_BASELINE.md) · [Team workflow](coordination/WORKFLOW.md)
 - [Context handoff template](coordination/HANDOFF_TEMPLATE.md)
-- [M6 ocean plan](docs/OCEAN_PLAN.md) · [Ocean acceptance](docs/M6_ACCEPTANCE.md) · [AI entry](coordination/M6-AI-START.md)
+- [M6 ocean plan](docs/OCEAN_PLAN.md) · [Ocean acceptance](docs/M6_ACCEPTANCE.md) · [Current ocean task](coordination/M6-STATUS.md)
 
 ## Upstream source
 

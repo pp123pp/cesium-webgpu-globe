@@ -1,8 +1,10 @@
 # M6 海洋实施合同
 
-合同版本：**1.0，2026-11-06，O0 冻结**。适用源码检查点 `157a40eed3290b1abed82c64f4e428209b146958`；其 runtime 与设计基线 `8434abc1124fa5389b13f90816d8c2acf52a4382` 相同。
+合同版本：**2.0，2026-11-06，海岸数据路线修订**。本次文档基线为 `e91ae8c4e9070f5abca3674eee05483c976d5562`。已有接口的源码核查仍对应 O0 检查点 `157a40eed3290b1abed82c64f4e428209b146958`，其 runtime 与设计基线 `8434abc1124fa5389b13f90816d8c2acf52a4382` 相同；本次没有新 runtime 或 GPU 验证。
 
-本文件中的“已有”已经核对源码；“拟新增”是后续实现必须消费的签名，**目前没有对应 runtime**。变更合同须同步受影响的阶段任务和调用方。原需求以[设计](superpowers/specs/2026-11-06-m6-global-ocean-design.md)为准；数据以 [manifest](../packages/engine/Source/Assets/Textures/WebGPU/Ocean/manifest.json) 为准；实际核查在 [O0 证据](../coordination/evidence/M6/O0/README.md)。
+本文件中的“已有”来自上述 O0 源码核查；“拟新增”是后续实现必须消费的签名，**目前没有对应 runtime**。总体需求、数据生成路线和阶段顺序以 [OCEAN_PLAN](OCEAN_PLAN.md) 为准；本文件只冻结精确接口和约束。新的唯一活动数据入口是 [coverage-manifest.json](../packages/engine/Source/Assets/Textures/WebGPU/Ocean/coverage-manifest.json)，`schemaVersion=2`、`routeVersion=2.0`，当前为 `SOURCE_NOT_ACQUIRED` / `runtimeAssets.status=NOT_GENERATED`。
+
+原 `manifest.json`、`LICENSE-NATURAL-EARTH.txt` 和 [O0 证据](../coordination/evidence/M6/O0/README.md)保留为 Natural Earth 历史审计及原脚本输入；O0 的 `TECHNICAL_PASS` 仅适用于该历史范围。**旧 manifest 不是未来 runtime 默认入口，也不得作为新源缺失时的海洋回退。** 当前默认下一项为 [O0-R01](../tasks/M6/O0-R.md)；O1-01 的 CPU 时间/框架工作可独立并行，O1-02 须等待数据修订门槛。变更合同须同步受影响的阶段任务和调用方。
 
 ## 1. 已有接点，不能假定已有海洋 API
 
@@ -31,7 +33,7 @@ O2 才增加 `scene.ocean.seaState = { windSpeed: 10, windDirection: 0, fetch: 1
 | 拟新增模块/签名 | 首次实现 | 输入→输出/所有权 |
 | --- | --- | --- |
 | `new WebGPUOceanTime({ epoch, maxHistoryStepSeconds, maxHistorySteps, historyFadeSeconds })`；`update(time, { frameNumber, regionGeneration, seaStateGeneration, explicitSeek }, result)` | O1-01 | JulianDate → OceanTimeSample；CPU，无 GPU 资源；epoch 默认 `2000-01-01T12:00:00Z`，创建时 clone。result 可复用。 |
-| `new WebGPUOceanCoverage(context, { manifestUrl })`；`initialize()`；`update(frame, surfaceState)`；`sample(cartographic, result)`；`destroy()` | O1-02 | update 按当前网格范围调度有限瓦片；sample 不启动网络，返回 OceanCoverageSample；initialize 加载 manifest，不阻塞到全部全球瓦片。 |
+| `new WebGPUOceanCoverage(context, { manifestUrl })`；`initialize()`；`update(frame, surfaceState)`；`sample(cartographic, result)`；`destroy()` | O1-02，须先解除 O0-R 门槛 | 默认仅使用 `coverage-manifest.json` 并校验 schema/source/build 状态；update 按当前网格范围调度有限瓦片；sample 不启动网络，返回 OceanCoverageSample；initialize 不等待全部全球瓦片。未生成资产时报告 unavailable，不从旧 manifest 或候选下载 URL 自动补数据。 |
 | `new WebGPUOceanMesh(context, ellipsoid)`；`updateFrame(camera, result)`；`update(surfaceState, coverage)`；`destroy()` | O1-01/02 | updateFrame 仅更新 CPU 锚点/RTC/regionGeneration；随后 OceanTime 消费 generation、Ocean 填高度/权重；O1-02 才由 update 更新实际 GPU 网格。避免 region 与 time 循环依赖，不在 O1-01 提前分配网格。 |
 | `new WebGPUOcean(scene)`；`initialize()`；`update(frame, planetState)`；`encode(encoder, inputs)`；`destroy()` | O1-03/05 | Scene 持有 `_ocean`；update 在 planetState.update 之后且 opaque pass 前调用一次；encode 在 opaque pass 结束后、atmosphere composite 前。借用 Scene/Context，不拥有 device。 |
 | `WebGPUOcean.updateEnvironment(frame, planetState, atmosphere, clouds)`；`encodeEnvironment(encoder)` | O2-03 | 写在现有拟新增的 WebGPUOcean.js/Shader.js 内，无须另建协调类。输出 OceanEnvironment；从现有物理模型生成方向缓存，不截屏充作环境。 |
@@ -61,13 +63,23 @@ CPU 地理位置/时间均用 JS number 双精度；Cartographic 的 longitude/l
 | 字段 | 类型/含义 |
 | --- | --- |
 | `classification` | `unknown/ocean/land/inland-water`；GPU 编码固定 0/1/2/3。 |
-| `sourceId`, `level`, `tileX`, `tileY` | `natural-earth-5.1.2`、0、0..15、0..7；无数据时 sourceId 可 null。不能把层级 0 解释为原生 terrain level 0。 |
-| `status` | `ready/known-fallback/parent/unavailable`；parent 只能引用真实存在的有效父级，首期未生成父级。 |
-| `oceanConnected` | ocean=true；land/inland-water=false；unknown=null。依据源 ocean 语义，不对粗 raster 做 flood-fill 决定是否为海洋。 |
-| `boundaryUncertain` | boolean；源岸线与 texel 足迹相交则 true、classification=unknown，不能用中心点把含小岛像元判为整片海洋。 |
+| `sourceId`, `buildId` | 已审核源快照和派生产物的固定身份；候选名不能充当快照身份。当前及无有效数据时为 null。 |
+| `requestedLevel`, `level`, `tileX`, `tileY` | requestedLevel 为目标 coverage L0..L9；level 为实际使用层级，x=0..16×2^level−1，y=0..8×2^level−1。无有效瓦片时后三项为 null。coverage 层级不是 terrain level 或 WebMercator zoom。 |
+| `status` | `ready/known-fallback/parent/unavailable`；known-fallback 只能保留同一 sourceId/buildId 的已有效地理瓦片；parent 只能引用已发布、验证过的同源保守父级。 |
+| `oceanConnected` | ocean=true；land/inland-water=false；unknown=null。来自经拓扑审核的矢量连通性，不用粗 raster flood-fill 决定海洋归属。 |
+| `boundaryUncertain` | boolean；确认语义边界与 texel 完整足迹相交，或足迹内含不同类别时为 true、classification=unknown。缺文件/请求失败不能冒充已检测的边界。 |
+| `unknownReason` | 非 unknown 时为 null；否则为 `mixed-footprint/source-gap/topology-unresolved/inland-unresolved/missing-tile/load-failed/source-not-acquired`。前四项由资产原因元数据提供，后三项由加载状态提供；原因不能靠类别 0 猜测。 |
 | `generation` | Provider/资产切换后的版本号；迟到旧请求不得写新缓存。 |
 
-唯一一期主源是 Natural Earth 同一发行的 ocean/land/lakes。不能把 ocean 图层名直接当海洋：实际源把里海也放在该层；用固定开阔太平洋种子选取全球海洋外环组件，其余封闭组件归 inland-water，再按 manifest 规定的 lakes/land 优先级分类。海湾/海峡的连通性取矢量组件，不对粗 raster 做 flood-fill。仅确定 ocean 才增加海面；unknown 保留既有地形/影像。内陆低洼和不在源数据中的小湖不能由负高程转为 ocean。waterMask 只能细化已经确认的海洋内部，不能覆盖上述身份。数据分辨率不等于岸线绝对精度。
+主源候选改为 **OSM 未简化 WGS84 split water/land polygons**；尚未取得或审核全球快照。先合并同类切分/重叠并保留孔洞，再验证跨日期线/极区连接，按固定开阔太平洋种子 `(-150°,0°)` 识别海洋连通组件。里海是 OSM coastline 的内陆例外，必须显式排除；其他闭合组件只有经语义核查后才标 inland-water，否则 unknown。**不沿用 Natural Earth 单记录/顺时针外环假设，不把切分块边缘当岸线，不通过栅格 flood-fill 决定海域。** 内陆水层须独立选源并审核；water-polygons 不提供完整湖库数据。coastline land-polygons 只先证明非海洋；内陆层覆盖/有效性未核验时，该范围保持 unknown + inland-unresolved，缺层、未加载或无要素不能证明 land，也不能认证纯陆常量/父级。只有已审核陆地证据可编码 land；已确认海洋可独立分类。O0-R01 冻结此覆盖与回退约定。
+
+仅确认 ocean 才增加海面；unknown 保留既有地形/影像。不得由负高程、影像颜色或 waterMask 单独推断海洋；waterMask 只能辅助细化已确认海洋内部。MHWS 静态岸线不等于即时水线，源矢量细节和栅格采样间距都不等于绝对定位精度。真实高程、海底和潜在潮间带仍由 O5 处理。
+
+**分类资产合同：** coverage L0 的全球尺寸为 8192×4096、16×8 个 512² 瓦片；每升一级两个轴各加倍，允许 L0..L9。行从北到南、列从西到东，经度在 `[-180°,180°)` 周期重复；全局 texel 中心为 `lon=-180+(column+0.5)*360/(8192*2^L)`、`lat=90-(row+0.5)*180/(4096*2^L)`。输出为无头 uint8 分类 R8，类别精确读取/nearest，禁止线性混合或平均 mipmap。L8/L9 约 19.1m/9.6m 的赤道采样是目标，不是已经生成或测得的全球精度。
+
+岸线附近稀疏细化；经过完整足迹检验的纯海/陆（或已核查内陆水）可用常量区域表示，不能全球密集生成最高层。像元边界穿过岸线或整座小岛完全落入像元时均须检出；仅测中心/四角不合格。父级必须由同一已审快照按完整足迹保守生成，或由完整、同类且无不确定性的子足迹归并，不能把混合子像元平均成海洋。极点使用经审核的经度无关 cap 语义，人工切分线不产生伪岸线。
+
+每个已发布 tile/常量区域必须带 sourceId/buildId、实际层级/范围和可用性；R8 中类别 0 的原因必须能由附属元数据还原。O0-R02 以样板冻结原因与可用性索引编码，O0-R03 冻结交接；尚无真实样板或文件时不得填写伪造路径/哈希。回退顺序为同源已有效数据 → 已发布的同源保守父级 → unknown。不得回到漏岛的 Natural Earth ocean，也不得把候选 URL、尚未生成的父级或未通过样板当有效资产。
 
 ### OceanSurfaceState（拟新增，O1-01/02）
 
@@ -135,7 +147,7 @@ CPU 地理位置/时间均用 JS number 双精度；Cartographic 的 longitude/l
 | 资源 | 拥有者 | 失效/释放 |
 | --- | --- | --- |
 | CPU time sample、稳定锚点 | Scene._ocean | 暂停保留；海况/区域更换更新 generation，无第二 Clock。 |
-| 分类请求/瓦片/GPU mask | OceanCoverage | 已知 tile 缓存按固定预算（首版最多32个512²瓦片）淘汰；Provider/资产更换取消旧请求，旧 generation 回调不能上传。 |
+| 分类请求/瓦片/GPU mask | OceanCoverage | 起始预算为**全部 coverage 层级合计最多 32 个实际驻留 512² 分类瓦片**，不是每级32个；常量表示不隐含物化全部子瓦片。CPU 解码、请求和元数据另设有界预算并实测；Provider/资产更换取消旧请求，旧 generation 回调不能上传。32是待测起点，不是性能通过结论。 |
 | 网格/FFT/泡沫/环境/medium record | Ocean/Mesh/FFT 各模块 | show=false 停止请求和动画；销毁释放，迟到结果丢弃；重启只保留显式允许的有限缓存。 |
 | opaque/final color/depth/type 和以后 preWaterRadiance | Context（屏幕附件）；O5颜色生成由集成负责人接入 | resize 同步换 attachmentGeneration 和 bindings；禁用释放新增附件。不可把纹理 view 长期借给外部。 |
 | device/canvas | 原 Context/Widget | Ocean 先销毁，随后原 Scene→Context；device loss 沿用报错并释放。恢复需调用方显式重新创建 Viewer，没有自动重建，不切后端。 |
@@ -146,8 +158,10 @@ CPU 地理位置/时间均用 JS number 双精度；Cartographic 的 longitude/l
 
 | 任务 | 消费的冻结项 | 必需证据 |
 | --- | --- | --- |
-| **O1-01（下一项）** | TimeSample、SurfaceState 的 time/锚点/米制字段 | 同时刻可复现；暂停；reverse/jump/loop/高倍速预算；RTC变更不重置相位。无需等待所有 M5 尾项。 |
-| O1-02 | 数据 manifest、CoverageSample、曲面 | 真实数据样本与离线原生 mesh；边界/缺失保守；有限网格与缓存。 |
+| **O0-R01（默认下一项）** | coverage-manifest 候选源与新语义 | 固定实际全球快照、许可、文件/时间/字节/哈希；审核里海、切分拓扑与内陆层，不把 API 小样本当全球包。 |
+| O0-R02 → O0-R03 | 同源分级、保守父级、原因/可用性元数据 | 小范围粗细样板检验小岛/岸线/接边/缺失回退；随后冻结实取源 manifest 和 O1 交接，样板不等于全球/GPU验收。 |
+| O1-01（可独立并行） | TimeSample、SurfaceState 的 time/锚点/米制字段 | 同时刻可复现；暂停；reverse/jump/loop/高倍速预算；RTC变更不重置相位。无需等待所有 M5 尾项，不得借此跳过数据门槛。 |
+| O1-02（等待 O0-R01—03） | coverage-manifest v2、CoverageSample、曲面 | 真实同源分级资产与离线原生 mesh；边界/缺失区分、细层失败安全回退；有限网格与全部层级合计缓存。 |
 | O1-03/04/05 | RenderInputs、surface type、介质/深度、所有权 | 生产 GPU 负波谷/岛屿/太阳/最小海下、一次照明/显示转换、开关/resize/销毁；物理 GPU。 |
 | O2 | TimeSample、环境方向合同、同位移介质查询 | FFT数值、实际近景、Jacobian泡沫与环境分账；不照搬 Tidewater 的累计时钟。 |
 | O3 | 参数连续性、资源预算、固定场景 | 全球高度/经线/极区/迁移和首次同条件性能；正式设备与预算未锁定则性能不算 PASS。 |
